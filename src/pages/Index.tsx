@@ -49,65 +49,131 @@ const Index = () => {
       <BreakingNews />
 
       {/* Hero Section */}
-      <section className="relative h-[400px] md:h-[500px] overflow-hidden">
-        <img
-          src={heroImage}
-          alt="Unit Komunikasi Hero"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+      <section className="relative h-[500px] md:h-[600px] overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={heroImage}
+            alt="UKKPK Hero"
+            className="w-full h-full object-cover scale-105 animate-[scale-in_1.5s_ease-out]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-transparent mix-blend-multiply" />
+        </div>
+        
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-              Unit Komunikasi
-            </h1>
-            <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
-              Portal Informasi Resmi - Menyampaikan Berita Terkini dan Kegiatan Organisasi
-            </p>
+            <div className="animate-fade-up">
+              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl">
+                Unit Kegiatan Pers
+                <span className="block mt-2 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                  Kampus & Komunikasi
+                </span>
+              </h1>
+              <p className="text-lg md:text-2xl text-white/95 max-w-3xl mx-auto mb-8 drop-shadow-lg font-medium">
+                Portal Informasi Resmi - Menyampaikan Berita Terkini dan Kegiatan Organisasi
+              </p>
+              <div className="flex gap-4 justify-center">
+                <a
+                  href="#artikel"
+                  className="px-8 py-3 bg-white text-primary font-semibold rounded-full hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-xl"
+                >
+                  Baca Artikel
+                </a>
+                <a
+                  href="/profil-ukkpk"
+                  className="px-8 py-3 bg-white/10 backdrop-blur-md text-white font-semibold rounded-full border-2 border-white/30 hover:bg-white/20 transition-all duration-300 hover:scale-105 shadow-xl"
+                >
+                  Tentang UKKPK
+                </a>
+              </div>
+            </div>
           </div>
+        </div>
+
+        {/* Animated particles effect */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-20 left-10 w-2 h-2 bg-white/30 rounded-full animate-float" />
+          <div className="absolute top-40 right-20 w-3 h-3 bg-white/20 rounded-full animate-float" style={{ animationDelay: '1s' }} />
+          <div className="absolute bottom-32 left-1/4 w-2 h-2 bg-white/25 rounded-full animate-float" style={{ animationDelay: '2s' }} />
         </div>
       </section>
 
       {/* Articles Section */}
-      <section className="py-12">
+      <section id="artikel" className="py-16 bg-gradient-to-b from-background to-muted/30">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {articles.map((article) => (
-              <ArticleCard key={article.id} {...article} />
+          <div className="text-center mb-12 animate-fade-in">
+            <h2 className="text-4xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
+              Berita & Artikel Terkini
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Informasi terbaru seputar kegiatan dan event UKKPK
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {articles.map((article, index) => (
+              <div key={article.id} style={{ animationDelay: `${index * 0.1}s` }}>
+                <ArticleCard {...article} />
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-muted border-t border-border mt-12">
-        <div className="container mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-lg font-bold text-primary mb-4">Unit Komunikasi</h3>
-              <p className="text-sm text-muted-foreground">
-                Menyampaikan informasi terkini dan membangun komunikasi yang efektif
+      <footer className="bg-gradient-to-b from-muted/50 to-muted border-t border-border mt-16">
+        <div className="container mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="md:col-span-2">
+              <h3 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4">UKKPK</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Unit Kegiatan Pers Kampus & Komunikasi - Menyampaikan informasi terkini dan membangun komunikasi yang efektif untuk seluruh sivitas akademika.
               </p>
+              <div className="flex gap-3">
+                <a href="#" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110">
+                  <span className="text-sm font-bold">f</span>
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110">
+                  <span className="text-sm font-bold">𝕏</span>
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110">
+                  <span className="text-sm font-bold">in</span>
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110">
+                  <span className="text-sm font-bold">IG</span>
+                </a>
+              </div>
             </div>
             <div>
               <h3 className="text-lg font-bold mb-4">Menu</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/profil" className="hover:text-primary transition-colors">Profil</a></li>
-                <li><a href="/artikel" className="hover:text-primary transition-colors">Artikel</a></li>
-                <li><a href="/event" className="hover:text-primary transition-colors">Event</a></li>
-                <li><a href="/kontak" className="hover:text-primary transition-colors">Kontak</a></li>
+                <li><a href="/profil-ukkpk" className="hover:text-primary transition-colors hover:translate-x-1 inline-block duration-300">Profil UKKPK</a></li>
+                <li><a href="/artikel" className="hover:text-primary transition-colors hover:translate-x-1 inline-block duration-300">Artikel</a></li>
+                <li><a href="/event" className="hover:text-primary transition-colors hover:translate-x-1 inline-block duration-300">Event</a></li>
+                <li><a href="/mahasiswa" className="hover:text-primary transition-colors hover:translate-x-1 inline-block duration-300">Mahasiswa</a></li>
               </ul>
             </div>
             <div>
               <h3 className="text-lg font-bold mb-4">Kontak</h3>
-              <p className="text-sm text-muted-foreground">
-                Email: info@unitkom.org<br />
-                Telepon: (021) 1234-5678
-              </p>
+              <ul className="space-y-3 text-sm text-muted-foreground">
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-0.5">✉</span>
+                  <span>info@ukkpk.ac.id</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-0.5">📞</span>
+                  <span>(021) 1234-5678</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-0.5">📍</span>
+                  <span>Kampus Universitas, Jl. Pendidikan No. 123</span>
+                </li>
+              </ul>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            © 2025 Unit Komunikasi. All rights reserved.
+          <div className="mt-12 pt-8 border-t border-border text-center">
+            <p className="text-sm text-muted-foreground">
+              © 2025 UKKPK - Unit Kegiatan Pers Kampus & Komunikasi. All rights reserved.
+            </p>
           </div>
         </div>
       </footer>
