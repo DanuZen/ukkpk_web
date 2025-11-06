@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { NavLink } from "@/components/NavLink";
 
 const navItems = [
   { name: "HOME", path: "/" },
@@ -30,21 +31,16 @@ export const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
-            {navItems.map((item, index) => (
-              <Link
+            {navItems.map((item) => (
+              <NavLink
                 key={item.name}
                 to={item.path}
-                className={`px-4 py-5 text-sm font-medium transition-all duration-300 relative overflow-hidden group ${
-                  index === 0 
-                    ? "bg-gradient-primary text-primary-foreground shadow-primary" 
-                    : "text-foreground hover:text-primary"
-                }`}
+                className="px-4 py-5 text-sm font-medium transition-all duration-300 relative overflow-hidden group text-foreground hover:text-primary"
+                activeClassName="bg-gradient-primary text-primary-foreground shadow-primary"
               >
                 <span className="relative z-10">{item.name}</span>
-                {index !== 0 && (
-                  <span className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-                )}
-              </Link>
+                <span className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+              </NavLink>
             ))}
             <Button variant="ghost" size="icon" className="ml-2 hover:bg-primary/10 hover:text-primary transition-all duration-300">
               <Search className="h-5 w-5" />
@@ -63,17 +59,16 @@ export const Navigation = () => {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden py-4 border-t border-border">
-            {navItems.map((item, index) => (
-              <Link
+            {navItems.map((item) => (
+              <NavLink
                 key={item.name}
                 to={item.path}
-                className={`block px-4 py-3 text-sm font-medium transition-colors hover:bg-secondary ${
-                  index === 0 ? "bg-primary text-primary-foreground" : "text-foreground"
-                }`}
+                className="block px-4 py-3 text-sm font-medium transition-colors hover:bg-secondary text-foreground"
+                activeClassName="bg-primary text-primary-foreground"
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}
-              </Link>
+              </NavLink>
             ))}
           </div>
         )}
