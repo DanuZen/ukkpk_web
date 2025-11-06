@@ -2,6 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { BreakingNews } from "@/components/BreakingNews";
 import { ArticleCard } from "@/components/ArticleCard";
 import heroImage from "@/assets/hero-communication.jpg";
+
 const articles = [{
   id: "1",
   title: "UNP BEKALI 5.051 MAHASISWA JELANG KKN PERIODE JULI-DESEMBER 2025",
@@ -33,8 +34,10 @@ const articles = [{
   category: "KEGIATAN",
   link: "/artikel/6"
 }];
+
 const Index = () => {
-  return <div className="min-h-screen bg-background">
+  return (
+    <div className="min-h-screen bg-background">
       <Navigation />
       <BreakingNews />
 
@@ -49,8 +52,9 @@ const Index = () => {
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="container mx-auto px-4 text-center">
             <div className="animate-fade-up">
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl">Unit Kegiatan 
-Kampus & Komunikasi<span className="block mt-2 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Komunikasi & Penyiaran Kampus </span>
+              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl">
+                <span className="block">Unit Kegiatan</span>
+                <span className="block mt-2 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Komunikasi dan Penyiaran Kampus</span>
               </h1>
               <p className="text-lg md:text-2xl text-white/95 max-w-3xl mx-auto mb-8 drop-shadow-lg font-medium">
                 Portal Informasi Resmi - Menyampaikan Berita Terkini dan Kegiatan Organisasi
@@ -70,12 +74,8 @@ Kampus & Komunikasi<span className="block mt-2 bg-gradient-to-r from-white to-wh
         {/* Animated particles effect */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-20 left-10 w-2 h-2 bg-white/30 rounded-full animate-float" />
-          <div className="absolute top-40 right-20 w-3 h-3 bg-white/20 rounded-full animate-float" style={{
-          animationDelay: '1s'
-        }} />
-          <div className="absolute bottom-32 left-1/4 w-2 h-2 bg-white/25 rounded-full animate-float" style={{
-          animationDelay: '2s'
-        }} />
+          <div className="absolute top-40 right-20 w-3 h-3 bg-white/20 rounded-full animate-float" style={{ animationDelay: '1s' }} />
+          <div className="absolute bottom-32 left-1/4 w-2 h-2 bg-white/25 rounded-full animate-float" style={{ animationDelay: '2s' }} />
         </div>
       </section>
 
@@ -91,11 +91,11 @@ Kampus & Komunikasi<span className="block mt-2 bg-gradient-to-r from-white to-wh
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.map((article, index) => <div key={article.id} style={{
-            animationDelay: `${index * 0.1}s`
-          }}>
+            {articles.map((article, index) => (
+              <div key={article.id} style={{ animationDelay: `${index * 0.1}s` }}>
                 <ArticleCard {...article} />
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -107,7 +107,7 @@ Kampus & Komunikasi<span className="block mt-2 bg-gradient-to-r from-white to-wh
             <div className="md:col-span-2">
               <h3 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4">UKKPK</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Unit Kegiatan Pers Kampus & Komunikasi - Menyampaikan informasi terkini dan membangun komunikasi yang efektif untuk seluruh sivitas akademika.
+                Unit Kegiatan Komunikasi dan Penyiaran Kampus - Menyampaikan informasi terkini dan membangun komunikasi yang efektif untuk seluruh sivitas akademika.
               </p>
               <div className="flex gap-3">
                 <a href="#" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110">
@@ -153,11 +153,13 @@ Kampus & Komunikasi<span className="block mt-2 bg-gradient-to-r from-white to-wh
           </div>
           <div className="mt-12 pt-8 border-t border-border text-center">
             <p className="text-sm text-muted-foreground">
-              © 2025 UKKPK - Unit Kegiatan Pers Kampus & Komunikasi. All rights reserved.
+              © 2025 UKKPK - Unit Kegiatan Komunikasi dan Penyiaran Kampus. All rights reserved.
             </p>
           </div>
         </div>
       </footer>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
