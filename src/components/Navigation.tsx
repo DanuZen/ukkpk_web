@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { NavLink } from "@/components/NavLink";
 
 const navItems = [
   { name: "HOME", path: "/" },
@@ -17,6 +16,7 @@ const navItems = [
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <nav className="bg-background/80 backdrop-blur-md border-b border-border sticky top-0 z-50 shadow-sm">
@@ -31,17 +31,25 @@ export const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.name}
-                to={item.path}
-                className="px-4 py-5 text-sm font-medium transition-all duration-300 relative overflow-hidden group text-foreground hover:text-primary"
-                activeClassName="bg-gradient-primary text-primary-foreground shadow-primary"
-              >
-                <span className="relative z-10">{item.name}</span>
-                <span className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-              </NavLink>
-            ))}
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.path;
+              return (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className={`px-4 py-5 text-sm font-medium transition-all duration-300 relative overflow-hidden group ${
+                    isActive 
+                      ? "bg-gradient-primary text-primary-foreground shadow-primary" 
+                      : "text-foreground hover:text-primary"
+                  }`}
+                >
+                  <span className="relative z-10">{item.name}</span>
+                  {!isActive && (
+                    <span className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+                  )}
+                </Link>
+              );
+            })}
             <Button variant="ghost" size="icon" className="ml-2 hover:bg-primary/10 hover:text-primary transition-all duration-300">
               <Search className="h-5 w-5" />
             </Button>
@@ -59,17 +67,21 @@ export const Navigation = () => {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden py-4 border-t border-border">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.name}
-                to={item.path}
-                className="block px-4 py-3 text-sm font-medium transition-colors hover:bg-secondary text-foreground"
-                activeClassName="bg-primary text-primary-foreground"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.name}
-              </NavLink>
-            ))}
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.path;
+              return (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className={`block px-4 py-3 text-sm font-medium transition-colors hover:bg-secondary ${
+                    isActive ? "bg-primary text-primary-foreground" : "text-foreground"
+                  }`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>
