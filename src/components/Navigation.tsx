@@ -66,15 +66,17 @@ export const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-border">
+          <div className="md:hidden py-4 border-t border-border space-y-2">
             {navItems.map((item) => {
               const isActive = location.pathname === item.path;
               return (
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`block px-4 py-3 text-sm font-medium transition-colors hover:bg-secondary ${
-                    isActive ? "bg-primary text-primary-foreground" : "text-foreground"
+                  className={`block mx-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${
+                    isActive 
+                      ? "bg-primary text-primary-foreground shadow-md" 
+                      : "text-foreground hover:bg-secondary"
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
