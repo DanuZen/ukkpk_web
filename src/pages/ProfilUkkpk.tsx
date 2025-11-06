@@ -58,7 +58,7 @@ const ProfilUkkpk = () => {
                 Profil UKKPK
               </h1>
               <p className="text-xl md:text-2xl text-white/95 max-w-3xl mx-auto drop-shadow-lg">
-                Unit Kegiatan Pers Kampus & Komunikasi
+                Unit Kegiatan Komunikasi dan Penyiaran Kampus
               </p>
             </div>
           </div>
@@ -78,7 +78,7 @@ const ProfilUkkpk = () => {
                 Tentang UKKPK
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Unit Kegiatan Pers Kampus & Komunikasi (UKKPK) adalah organisasi mahasiswa yang bergerak dalam bidang jurnalistik, 
+                Unit Kegiatan Komunikasi dan Penyiaran Kampus (UKKPK) adalah organisasi mahasiswa yang bergerak dalam bidang jurnalistik, 
                 komunikasi, dan media. Kami berkomitmen untuk menyajikan informasi yang akurat, berimbang, dan bermanfaat bagi 
                 seluruh sivitas akademika.
               </p>
@@ -204,7 +204,7 @@ const ProfilUkkpk = () => {
       {/* Footer */}
       <footer className="bg-muted border-t border-border py-8">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          © 2025 UKKPK - Unit Kegiatan Pers Kampus & Komunikasi. All rights reserved.
+          © 2025 UKKPK - Unit Kegiatan Komunikasi dan Penyiaran Kampus. All rights reserved.
         </div>
       </footer>
     </div>
