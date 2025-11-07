@@ -41,7 +41,7 @@ const Radio = () => {
             <span className="text-sm font-medium">LIVE NOW</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
-            Radio UKKPK
+            SIGMA RADIO
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8">
             Dengarkan siaran langsung radio kampus kami
