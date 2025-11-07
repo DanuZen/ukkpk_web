@@ -1,4 +1,4 @@
-import { Navigation } from "@/components/Navigation";
+import { Layout } from "@/components/Layout";
 import { Users, Target, Eye, Award, Newspaper, Radio, Camera } from "lucide-react";
 
 const ProfilUkkpk = () => {
@@ -44,8 +44,7 @@ const ProfilUkkpk = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <Layout>
 
       {/* Hero Section */}
       <section className="relative h-[400px] bg-gradient-to-br from-primary via-primary/90 to-accent overflow-hidden">
@@ -201,13 +200,7 @@ const ProfilUkkpk = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-muted border-t border-border py-8">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          © 2025 UKKPK - Unit Kegiatan Komunikasi dan Penyiaran Kampus. All rights reserved.
-        </div>
-      </footer>
-    </div>
+    </Layout>
   );
 };
 

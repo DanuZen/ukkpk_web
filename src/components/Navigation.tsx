@@ -9,7 +9,6 @@ const navItems = [
   { name: "ARTIKEL", path: "/artikel" },
   { name: "MAHASISWA", path: "/mahasiswa" },
   { name: "EVENT", path: "/event" },
-  { name: "BEASISWA", path: "/beasiswa" },
   { name: "KARIR", path: "/karir" },
   { name: "RADIO", path: "/radio" },
 ];

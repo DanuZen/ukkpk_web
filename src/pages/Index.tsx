@@ -1,5 +1,4 @@
-import { Navigation } from "@/components/Navigation";
-import { BreakingNews } from "@/components/BreakingNews";
+import { Layout } from "@/components/Layout";
 import { ArticleCard } from "@/components/ArticleCard";
 import heroImage from "@/assets/hero-communication.jpg";
 
@@ -37,9 +36,7 @@ const articles = [{
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-      <BreakingNews />
+    <Layout>
 
       {/* Hero Section */}
       <section className="relative h-[500px] md:h-[600px] overflow-hidden">
@@ -100,65 +97,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gradient-to-b from-muted/50 to-muted border-t border-border mt-16">
-        <div className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="md:col-span-2">
-              <h3 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4">UKKPK</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Unit Kegiatan Komunikasi dan Penyiaran Kampus - Menyampaikan informasi terkini dan membangun komunikasi yang efektif untuk seluruh sivitas akademika.
-              </p>
-              <div className="flex gap-3">
-                <a href="#" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110">
-                  <span className="text-sm font-bold">f</span>
-                </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110">
-                  <span className="text-sm font-bold">𝕏</span>
-                </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110">
-                  <span className="text-sm font-bold">in</span>
-                </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110">
-                  <span className="text-sm font-bold">IG</span>
-                </a>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold mb-4">Menu</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/profil-ukkpk" className="hover:text-primary transition-colors hover:translate-x-1 inline-block duration-300">Profil UKKPK</a></li>
-                <li><a href="/artikel" className="hover:text-primary transition-colors hover:translate-x-1 inline-block duration-300">Artikel</a></li>
-                <li><a href="/event" className="hover:text-primary transition-colors hover:translate-x-1 inline-block duration-300">Event</a></li>
-                <li><a href="/mahasiswa" className="hover:text-primary transition-colors hover:translate-x-1 inline-block duration-300">Mahasiswa</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold mb-4">Kontak</h3>
-              <ul className="space-y-3 text-sm text-muted-foreground">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-0.5">✉</span>
-                  <span>info@ukkpk.ac.id</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-0.5">📞</span>
-                  <span>(021) 1234-5678</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-0.5">📍</span>
-                  <span>Kampus Universitas, Jl. Pendidikan No. 123</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-12 pt-8 border-t border-border text-center">
-            <p className="text-sm text-muted-foreground">
-              © 2025 UKKPK - Unit Kegiatan Komunikasi dan Penyiaran Kampus. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </Layout>
   );
 };
 
