@@ -6,9 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ProfilUkkpk from "./pages/ProfilUkkpk";
 import Artikel from "./pages/Artikel";
-import Mahasiswa from "./pages/Mahasiswa";
 import Event from "./pages/Event";
-import Karir from "./pages/Karir";
 import Radio from "./pages/Radio";
 import NotFound from "./pages/NotFound";
 
