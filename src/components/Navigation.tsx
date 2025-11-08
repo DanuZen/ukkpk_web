@@ -5,12 +5,10 @@ import { Button } from "@/components/ui/button";
 
 const navItems = [
   { name: "HOME", path: "/" },
-  { name: "PROFIL UKKPK", path: "/profil-ukkpk" },
   { name: "ARTIKEL", path: "/artikel" },
-  { name: "MAHASISWA", path: "/mahasiswa" },
   { name: "EVENT", path: "/event" },
-  { name: "KARIR", path: "/karir" },
   { name: "RADIO", path: "/radio" },
+  { name: "PROFIL UKKPK", path: "/profil-ukkpk" },
 ];
 
 export const Navigation = () => {

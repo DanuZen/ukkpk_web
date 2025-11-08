@@ -1,205 +1,225 @@
+import { useEffect, useState } from "react";
 import { Layout } from "@/components/Layout";
-import { Users, Target, Eye, Award, Newspaper, Radio, Camera } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { supabase } from "@/integrations/supabase/client";
+import { Users, Target, Eye, Megaphone, FileText, Radio } from "lucide-react";
+
+interface OrgMember {
+  id: string;
+  name: string;
+  position: string;
+  photo_url: string | null;
+  order_index: number | null;
+}
 
 const ProfilUkkpk = () => {
+  const [members, setMembers] = useState<OrgMember[]>([]);
+
+  useEffect(() => {
+    fetchMembers();
+  }, []);
+
+  const fetchMembers = async () => {
+    const { data } = await supabase
+      .from("organization")
+      .select("*")
+      .order("order_index", { ascending: true });
+
+    if (data) setMembers(data);
+  };
+
   const features = [
     {
-      icon: Newspaper,
+      icon: <Megaphone className="h-8 w-8" />,
+      title: "MC & Public Speaking",
+      description: "Membina keterampilan berbicara di depan umum dan menjadi pembawa acara profesional",
+    },
+    {
+      icon: <FileText className="h-8 w-8" />,
       title: "Jurnalistik",
-      description: "Meliput dan menyajikan berita kampus dengan standar jurnalistik profesional"
+      description: "Mengembangkan kemampuan menulis berita, artikel, dan liputan mendalam",
     },
     {
-      icon: Camera,
-      title: "Multimedia",
-      description: "Produksi konten foto dan video berkualitas untuk dokumentasi kegiatan"
+      icon: <Radio className="h-8 w-8" />,
+      title: "Penyiaran Radio",
+      description: "Melatih kemampuan penyiaran, produksi audio, dan manajemen program radio",
     },
-    {
-      icon: Radio,
-      title: "Broadcasting",
-      description: "Mengelola radio kampus dan produksi program audio yang edukatif"
-    },
-    {
-      icon: Users,
-      title: "Public Relations",
-      description: "Membangun dan menjaga citra positif institusi melalui komunikasi efektif"
-    }
   ];
 
   const values = [
     {
-      icon: Target,
+      icon: <Users className="h-6 w-6" />,
+      title: "Kekeluargaan",
+      description: "Membangun solidaritas dan kebersamaan antar anggota",
+    },
+    {
+      icon: <Target className="h-6 w-6" />,
       title: "Profesionalisme",
-      description: "Menjalankan tugas dengan standar profesional dan etika jurnalistik"
+      description: "Mengutamakan kualitas dan dedikasi dalam setiap karya",
     },
     {
-      icon: Eye,
-      title: "Transparansi",
-      description: "Menyampaikan informasi secara jujur, akurat, dan berimbang"
+      icon: <Eye className="h-6 w-6" />,
+      title: "Kreativitas",
+      description: "Mendorong inovasi dan ide-ide segar dalam komunikasi",
     },
-    {
-      icon: Award,
-      title: "Inovasi",
-      description: "Terus berinovasi dalam penyajian konten dan pengelolaan media"
-    }
   ];
 
   return (
     <Layout>
-
       {/* Hero Section */}
-      <section className="relative h-[400px] bg-gradient-to-br from-primary via-primary/90 to-accent overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxIDEuNzktNCA0LTRzNCAxLjc5IDQgNC0xLjc5IDQtNCA0LTQtMS43OS00LTR6bTAgMTBjMC0yLjIxIDEuNzktNCA0LTRzNCAxLjc5IDQgNC0xLjc5IDQtNCA0LTQtMS43OS00LTR6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30" />
-        
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="container mx-auto px-4 text-center">
-            <div className="animate-fade-up">
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 drop-shadow-2xl">
-                Profil UKKPK
-              </h1>
-              <p className="text-xl md:text-2xl text-white/95 max-w-3xl mx-auto drop-shadow-lg">
-                Unit Kegiatan Komunikasi dan Penyiaran Kampus
-              </p>
-            </div>
-          </div>
+      <section className="relative py-20 px-4 bg-gradient-to-br from-primary/20 via-background to-secondary/20">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d')] opacity-5 bg-cover bg-center"></div>
+        <div className="container mx-auto text-center relative z-10">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+            Profil UKKPK
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Unit Kegiatan Komunikasi dan Penyiaran Kampus
+          </p>
         </div>
-
-        {/* Floating elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-32 h-32 bg-white/10 rounded-full blur-xl animate-float" style={{ animationDelay: '1s' }} />
       </section>
 
-      {/* About Section */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
+      {/* Tentang UKKPK */}
+      <section className="py-16 px-4 bg-background">
+        <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12 animate-fade-in">
-              <h2 className="text-4xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-                Tentang UKKPK
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Unit Kegiatan Komunikasi dan Penyiaran Kampus (UKKPK) adalah organisasi mahasiswa yang bergerak dalam bidang jurnalistik, 
-                komunikasi, dan media. Kami berkomitmen untuk menyajikan informasi yang akurat, berimbang, dan bermanfaat bagi 
-                seluruh sivitas akademika.
-              </p>
-            </div>
+            <h2 className="text-3xl font-bold mb-6 text-center">Tentang UKKPK</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+              Unit Kegiatan Komunikasi dan Penyiaran Kampus (UKKPK) adalah organisasi mahasiswa yang fokus pada pengembangan keterampilan komunikasi, jurnalistik, dan penyiaran. Kami berkomitmen untuk menghasilkan komunikator handal dan profesional yang siap berkontribusi dalam dunia media dan komunikasi.
+            </p>
 
-            {/* Vision & Mission */}
-            <div className="grid md:grid-cols-2 gap-8 mb-16">
-              <div className="p-8 rounded-2xl bg-gradient-to-br from-card to-muted/50 border border-border hover:shadow-xl transition-all duration-500 hover:-translate-y-2 animate-fade-up">
-                <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center mb-4">
-                  <Eye className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Visi</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Menjadi unit kegiatan mahasiswa yang profesional dalam bidang jurnalistik dan komunikasi, 
-                  serta menjadi wadah pengembangan kompetensi mahasiswa di bidang media dan pers kampus.
-                </p>
-              </div>
+            {/* Visi & Misi */}
+            <div className="grid md:grid-cols-2 gap-8 mt-12">
+              <Card className="border-primary/20">
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Eye className="h-8 w-8 text-primary" />
+                    <h3 className="text-2xl font-bold">Visi</h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Menjadi wadah pengembangan komunikator yang kreatif, inovatif, dan profesional dalam bidang komunikasi dan penyiaran kampus.
+                  </p>
+                </CardContent>
+              </Card>
 
-              <div className="p-8 rounded-2xl bg-gradient-to-br from-card to-muted/50 border border-border hover:shadow-xl transition-all duration-500 hover:-translate-y-2 animate-fade-up" style={{ animationDelay: '0.1s' }}>
-                <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center mb-4">
-                  <Target className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Misi</h3>
-                <ul className="text-muted-foreground space-y-2 leading-relaxed">
-                  <li>• Menyediakan informasi kampus yang akurat dan terpercaya</li>
-                  <li>• Mengembangkan kompetensi jurnalistik mahasiswa</li>
-                  <li>• Membangun komunikasi efektif antar sivitas akademika</li>
-                  <li>• Mengelola media kampus secara profesional</li>
-                </ul>
-              </div>
+              <Card className="border-primary/20">
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Target className="h-8 w-8 text-primary" />
+                    <h3 className="text-2xl font-bold">Misi</h3>
+                  </div>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>• Mengembangkan keterampilan komunikasi mahasiswa</li>
+                    <li>• Menciptakan karya jurnalistik berkualitas</li>
+                    <li>• Mengelola media kampus yang informatif</li>
+                    <li>• Membangun jaringan komunikasi yang solid</li>
+                  </ul>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 bg-gradient-to-b from-muted/30 to-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
-              Bidang Kegiatan
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              Berbagai bidang yang kami kelola untuk menghasilkan konten berkualitas
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+      {/* Bidang Kegiatan */}
+      <section className="py-16 px-4 bg-muted/30">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold mb-12 text-center">Bidang Kegiatan</h2>
+          <div className="grid md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <div
-                key={feature.title}
-                className="p-6 rounded-2xl bg-card border border-border hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-2 text-center animate-fade-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="w-16 h-16 mx-auto bg-gradient-primary rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-primary/20">
-                  <feature.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
-              </div>
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                <CardContent className="pt-6 text-center">
+                  <div className="inline-flex p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+                  <p className="text-muted-foreground">{feature.description}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
-              Nilai-Nilai Kami
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              Prinsip yang kami pegang dalam setiap kegiatan
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      {/* Nilai-Nilai */}
+      <section className="py-16 px-4 bg-background">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold mb-12 text-center">Nilai-Nilai Kami</h2>
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {values.map((value, index) => (
-              <div
-                key={value.title}
-                className="p-8 rounded-2xl bg-gradient-to-br from-card to-muted/50 border border-border hover:shadow-xl transition-all duration-500 hover:-translate-y-2 text-center animate-fade-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="w-16 h-16 mx-auto bg-gradient-primary rounded-full flex items-center justify-center mb-4 shadow-lg shadow-primary/20">
-                  <value.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-3">{value.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{value.description}</p>
-              </div>
+              <Card key={index} className="text-center hover:shadow-md transition-shadow">
+                <CardContent className="pt-6">
+                  <div className="inline-flex p-3 rounded-full bg-primary/10 text-primary mb-3">
+                    {value.icon}
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">{value.title}</h3>
+                  <p className="text-sm text-muted-foreground">{value.description}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Struktur Organisasi */}
+      <section className="py-16 px-4 bg-muted/30">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold mb-12 text-center">Struktur Organisasi</h2>
+          {members.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {members.map((member) => (
+                <Card key={member.id} className="group hover:shadow-lg transition-all duration-300">
+                  <CardContent className="pt-6 text-center">
+                    <div className="mb-4 mx-auto w-24 h-24 rounded-full overflow-hidden bg-muted group-hover:scale-105 transition-transform">
+                      {member.photo_url ? (
+                        <img
+                          src={member.photo_url}
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <Users className="h-12 w-12 text-muted-foreground" />
+                        </div>
+                      )}
+                    </div>
+                    <h3 className="font-semibold mb-1">{member.name}</h3>
+                    <p className="text-sm text-muted-foreground">{member.position}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-muted-foreground">
+              Struktur organisasi akan segera diperbarui
+            </p>
+          )}
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-primary via-primary/90 to-accent text-white">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto animate-fade-up">
-            <h2 className="text-4xl font-bold mb-6">Bergabung Bersama Kami</h2>
-            <p className="text-xl mb-8 text-white/90">
-              Tertarik untuk mengembangkan kemampuan jurnalistik dan komunikasi Anda? 
-              Kami membuka kesempatan bagi mahasiswa untuk bergabung dengan UKKPK.
-            </p>
-            <div className="flex gap-4 justify-center">
-              <a
-                href="/mahasiswa"
-                className="px-8 py-4 bg-white text-primary font-semibold rounded-full hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-xl"
-              >
-                Info Pendaftaran
-              </a>
-              <a
-                href="#kontak"
-                className="px-8 py-4 bg-white/10 backdrop-blur-md text-white font-semibold rounded-full border-2 border-white/30 hover:bg-white/20 transition-all duration-300 hover:scale-105 shadow-xl"
-              >
-                Hubungi Kami
-              </a>
-            </div>
+      <section className="py-16 px-4 bg-gradient-to-br from-primary/10 to-secondary/10">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-4">Bergabung Bersama Kami</h2>
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Kembangkan potensimu di bidang komunikasi dan penyiaran bersama UKKPK
+          </p>
+          <div className="flex gap-4 justify-center flex-wrap">
+            <a
+              href="/event"
+              className="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              Lihat Event
+            </a>
+            <a
+              href="/artikel"
+              className="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors"
+            >
+              Baca Artikel
+            </a>
           </div>
         </div>
       </section>
-
     </Layout>
   );
 };

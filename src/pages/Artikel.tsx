@@ -1,110 +1,129 @@
+import { useEffect, useState } from "react";
 import { Layout } from "@/components/Layout";
-import { ArticleCard } from "@/components/ArticleCard";
-import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { Search, Calendar } from "lucide-react";
 
-const articles = [
-  {
-    id: "1",
-    title: "Tips Menjadi Presenter Radio yang Baik",
-    category: "Radio",
-    image: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=800&auto=format&fit=crop",
-    link: "/artikel/1",
-  },
-  {
-    id: "2",
-    title: "Teknik Fotografi untuk Pemula",
-    category: "Fotografi",
-    image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&auto=format&fit=crop",
-    link: "/artikel/2",
-  },
-  {
-    id: "3",
-    title: "Cara Membuat Konten Video yang Menarik",
-    category: "Videografi",
-    image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&auto=format&fit=crop",
-    link: "/artikel/3",
-  },
-  {
-    id: "4",
-    title: "Strategi Media Sosial untuk Organisasi",
-    category: "Media Sosial",
-    image: "https://images.unsplash.com/photo-1432888622747-4eb9a8f2c293?w=800&auto=format&fit=crop",
-    link: "/artikel/4",
-  },
-  {
-    id: "5",
-    title: "Menulis Berita yang Efektif",
-    category: "Jurnalistik",
-    image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&auto=format&fit=crop",
-    link: "/artikel/5",
-  },
-  {
-    id: "6",
-    title: "Desain Grafis untuk Media Kampus",
-    category: "Desain",
-    image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&auto=format&fit=crop",
-    link: "/artikel/6",
-  },
-];
+interface Article {
+  id: string;
+  title: string;
+  content: string;
+  category: string | null;
+  image_url: string | null;
+  created_at: string;
+}
 
 const Artikel = () => {
+  const [articles, setArticles] = useState<Article[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [filteredArticles, setFilteredArticles] = useState<Article[]>([]);
 
-  const filteredArticles = articles.filter((article) =>
-    article.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  useEffect(() => {
+    fetchArticles();
+  }, []);
+
+  useEffect(() => {
+    const filtered = articles.filter(
+      (article) =>
+        article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        article.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (article.category &&
+          article.category.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+    setFilteredArticles(filtered);
+  }, [searchTerm, articles]);
+
+  const fetchArticles = async () => {
+    const { data } = await supabase
+      .from("articles")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (data) {
+      setArticles(data);
+      setFilteredArticles(data);
+    }
+  };
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString("id-ID", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  };
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-12">
-        {/* Header Section */}
-        <div className="text-center mb-12 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
-            Artikel UKKPK
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Kumpulan artikel, tips, dan panduan seputar komunikasi dan penyiaran kampus
+      {/* Header */}
+      <section className="py-12 px-4 bg-gradient-to-br from-primary/20 to-secondary/20">
+        <div className="container mx-auto text-center">
+          <h1 className="text-4xl font-bold mb-4">Artikel</h1>
+          <p className="text-muted-foreground mb-6">
+            Jelajahi berbagai artikel menarik dari UKKPK
           </p>
-        </div>
-
-        {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-12">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+          <div className="max-w-md mx-auto relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               type="text"
               placeholder="Cari artikel..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 h-12"
+              className="pl-10"
             />
           </div>
         </div>
+      </section>
 
-        {/* Articles Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredArticles.map((article, index) => (
-            <div
-              key={article.id}
-              className="animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <ArticleCard {...article} />
+      {/* Articles Grid */}
+      <section className="py-12 px-4">
+        <div className="container mx-auto">
+          {filteredArticles.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredArticles.map((article) => (
+                <Card
+                  key={article.id}
+                  className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+                >
+                  {article.image_url && (
+                    <div className="aspect-video overflow-hidden">
+                      <img
+                        src={article.image_url}
+                        alt={article.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  )}
+                  <CardHeader>
+                    {article.category && (
+                      <span className="text-xs font-semibold text-primary mb-2 uppercase">
+                        {article.category}
+                      </span>
+                    )}
+                    <CardTitle className="line-clamp-2">{article.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground text-sm line-clamp-3 mb-4">
+                      {article.content}
+                    </p>
+                    <div className="flex items-center text-xs text-muted-foreground">
+                      <Calendar className="h-3 w-3 mr-1" />
+                      {formatDate(article.created_at)}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
-          ))}
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">
+                {searchTerm ? "Artikel tidak ditemukan" : "Belum ada artikel"}
+              </p>
+            </div>
+          )}
         </div>
-
-        {filteredArticles.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">
-              Tidak ada artikel yang ditemukan
-            </p>
-          </div>
-        )}
-      </div>
+      </section>
     </Layout>
   );
 };

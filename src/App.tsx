@@ -8,6 +8,8 @@ import ProfilUkkpk from "./pages/ProfilUkkpk";
 import Artikel from "./pages/Artikel";
 import Event from "./pages/Event";
 import Radio from "./pages/Radio";
+import Auth from "./pages/Auth";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +26,8 @@ const App = () => (
           <Route path="/event" element={<Event />} />
           <Route path="/radio" element={<Radio />} />
           <Route path="/profil-ukkpk" element={<ProfilUkkpk />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
