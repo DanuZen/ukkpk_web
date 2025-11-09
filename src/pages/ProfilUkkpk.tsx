@@ -90,7 +90,10 @@ const ProfilUkkpk = () => {
                     <Eye className="h-8 w-8 text-primary" />
                     <h3 className="text-2xl font-bold">Visi</h3>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed">Menjadi wadah pengembangan komunikator yang kreatif, inovatif, dan profesional dalam bidang komunikasi dan penyiaran kampus.</p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    UKKPK UNP dibentuk untuk membina, mendidik mental, spiritual, dan intelektual dalam rangka membentuk pribadi yang jujur, berani, disiplin, pantang menyerah, bertanggung jawab, dan mendarmabaktikan diri serta kemampuan
+                    untuk kemajuan dan keberhasilan bangsa dan negara sesuai dengan Tri Darma Perguruan Tinggi.
+                  </p>
                 </CardContent>
               </Card>
 
@@ -100,12 +103,9 @@ const ProfilUkkpk = () => {
                     <Target className="h-8 w-8 text-primary" />
                     <h3 className="text-2xl font-bold">Misi</h3>
                   </div>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• Mengembangkan keterampilan komunikasi mahasiswa</li>
-                    <li>• Menciptakan karya jurnalistik berkualitas</li>
-                    <li>• Mengelola media kampus yang informatif</li>
-                    <li>• Membangun jaringan komunikasi yang solid</li>
-                  </ul>
+                  <p className="text-muted-foreground leading-relaxed">
+                    UKKPK UNP membekali keterampilan komunikasi untuk meningkatkan intelektualitas, kepemimpinan, penalaran, minat, kegemaran, dan kesejahteraan untuk mahasiswa UNP dan umum, terutama anggota UKKPK UNP.
+                  </p>
                 </CardContent>
               </Card>
             </div>
