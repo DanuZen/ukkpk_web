@@ -177,7 +177,7 @@ const ProfilUkkpk = () => {
             <p className="text-center text-muted-foreground">
               Struktur organisasi akan segera diperbarui
               <div className="mt-8 max-w-4xl mx-auto">
-                <img src="/images/struktur-organisasi-2025.png" alt="Struktur Organisasi UKKPK 2025" className="w-full h-auto rounded-lg shadow-lg" />
+                <img src="/images/struktur.jpg" alt="Struktur Organisasi UKKPK 2025" className="w-full h-auto rounded-lg shadow-lg" />
               </div>
             </p>
           )}
