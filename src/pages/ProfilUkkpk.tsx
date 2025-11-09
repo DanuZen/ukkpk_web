@@ -109,6 +109,26 @@ const ProfilUkkpk = () => {
                 </CardContent>
               </Card>
             </div>
+            <h2 className="text-3xl font-bold mb-6 text-center">Sejarah UKKPK</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+              UKKPK (Unit Kegiatan Komunikasi dan Penyiaran Kampus) merupakan salah satu unit kegiatan mahasiswa (UKM) yang ada di Universitas Negeri Padang (UNP). UKM ini merupakan fusi tiga UKM, yaitu UK MC, UK Radio, dan UK Penerbitan
+              Kampus, yang telah ada sebelumnya di IKIP Padang. Pada tahun 1993 ketiga tersebut bergabung dan membentuk satu kesatuan dengan nama Unit Kegiatan Komunikasi dan Penerbitan Kampus (UKKPK) IKIP Padang. Namun seiring perkembangan
+              dan kondisi waktu, pada tahun 2000 dalam MUBES III UKKPK UNP berganti nama menjadi Unit Kegiatan Komunikasi dan Penyiaran Kampus namun tetap menggunakan akronim UKKPK. Pergantian nama ini mengingat UKKPK bukanlah UKM yang
+              bergerak dibidang penerbitan, karena sudah ada Lembaga Pers Mahasiswa (LPM) yang menerbitkan SKK Ganto, tapi UKKPK adalah UKM yang melahirkan insan-insan yang aktif dalam kegiatan yang berhubungan dengan komunikasi (jurnalis,
+              penulis, MC/pewara, presenter, penyiar dan juga humas/PR. Lebih lanjut, sejak tahun 1999 UKKPK telah kembali mengaktifkan radio kampus sebagai satu-satunya lembaga penyiaran kampus yang ada di UNP, Kiara AM. Seiring
+              perkembangan teknologi frekuensinya digeser ke gelombang FM dan berganti nama menjadi RKM FM (Radio Komunikasi Mahasiswa). Oleh sebab itu, UKKPK lebih memfokuskan diri pada pengembangan anggota dan pengaplikasian keterampilan
+              yang berhungan dengan komunikasi dan bidang penyiaran. Selanjutnya dalam perkembangannya radio kampus ini terus bergerak maju. Dari hanya bermodalkan sebuah tape tua hingga akhirnya memiliki tip yang cukup bagus dan dengan
+              ‘dibidani’ teknisi radio yang sangat ulet, Joni Mariko, RKM bisa mengudara dengan kekuatan range yang cukup luas hingga akhirnya juga memanfaatkan komputer. Seiring pergantian nama UKKPK, RKM FM juga sempat diganti menjadi
+              Rama FM (Radio Mahasiswa) saat TM Deska K menjadi koordinator radio, tapi nama ini tidak bertahan lama karena mirip dengan nama radio lain di Kota Padang. Dalam suatu rapat anggota salah seorang anggota (Havid Ardi) yang
+              berikutnya menjadi Ketua Umum UKKPK mengusulkan nama SIGMA FM. Akhirnya dalam MUBES III UKKPK, nama radio akhirnya ditetapkan menjadi SIGMA FM (Suara Intelektual Gema Mahasiswa). Nama ini tidak langsung muncul begitu saja
+              tentunya juga mendapat saran, perbaikan, dan masukan dari anggota. lainnya Awalnya Havid mengusulkan Suara Indah Gema Mahasiswa, namun diperbaiki oleh Dulfendra menjadi Suara Intelektual Gema Mahasiswa. Sebagai organisasi
+              mahasiswa UKKPK tak luput dari pasang surut dan tantangan. Seiring hadirnya zaman reformasi, pada tahun 1998 UKKPK juga mengalami dampak langsung. Pengaruh dan perubahan juga terjadi karena banyaknya aktivis reformasi lahir
+              dari UKKPK, salah satu diantaranya Gun Sugianto, mantan ketua UKKPK (berikutnya menjadi anggota DPRD Kota Padang setelah era reformasi). Namun karena hampir semua anggota juga ikut terjun dalam memperjuangkan reformasi
+              kegiatan dan kaderisasi di UKKPK juga sempat mengalami kemandegan. Pasang surut anggota, pengurus, kegiatan dan juga tantangan yang berhubungan dengan kebijakan pemerintah yang belum mengakomodir radio komunitas pada saat awal
+              berdirinya. Tak urung, pada tahun 2000 perangkat siar radio juga sempat disita aparat dengan dalih menggangu frekuensi publik. Perangkat ini sempat tertahan di tangan aparat sehingga menimbulkan kevakuman di UKKPK. UKKPK terus
+              mengalami pendewasaan baik keanggotaan, kepengurusan, dan juga kegiatan yang disesuaikan dengan perkembangan zaman. Diharapkan kedepan UKKPK dapat ikut aktif dalam era teknologi informasi. Sehingga UKKPK dapat melahir
+              komunikator sejati yang mampu berkomunikasi dengan baik dan menguasai teknologi.
+            </p>
           </div>
         </div>
       </section>
