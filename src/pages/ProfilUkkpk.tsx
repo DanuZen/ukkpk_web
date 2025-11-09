@@ -175,7 +175,7 @@ const ProfilUkkpk = () => {
             </div>
           ) : (
             <p className="text-center text-muted-foreground">
-              Struktur organisasi akan segera diperbarui
+              Struktur organisasi DPH Dan Pengurus UKKPK 2025
               <div className="mt-8 max-w-4xl mx-auto">
                 <img src="/images/struktur.jpg" alt="Struktur Organisasi UKKPK 2025" className="w-full h-auto rounded-lg shadow-lg" />
               </div>
