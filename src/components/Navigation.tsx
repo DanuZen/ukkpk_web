@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
+import { SearchDialog } from "@/components/SearchDialog";
+import logoUkkpk from "@/assets/logo-ukkpk.png";
 
 const navItems = [
   { name: "HOME", path: "/" },
@@ -19,6 +21,7 @@ const navItems = [
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -56,7 +59,12 @@ export const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-3 group">
+            <img 
+              src={logoUkkpk} 
+              alt="Logo UKKPK" 
+              className="h-10 w-10 transition-all duration-300 group-hover:scale-105"
+            />
             <div className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent transition-all duration-300 group-hover:scale-105">
               UKKPK
             </div>
@@ -83,7 +91,12 @@ export const Navigation = () => {
                 </Link>
               );
             })}
-            <Button variant="ghost" size="icon" className="ml-2 hover:bg-primary/10 hover:text-primary transition-all duration-300">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="ml-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+              onClick={() => setIsSearchOpen(true)}
+            >
               <Search className="h-5 w-5" />
             </Button>
             
@@ -196,6 +209,9 @@ export const Navigation = () => {
           </div>
         )}
       </div>
+
+      {/* Search Dialog */}
+      <SearchDialog open={isSearchOpen} onOpenChange={setIsSearchOpen} />
     </nav>
   );
 };

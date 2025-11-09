@@ -41,55 +41,72 @@ const events = [
 const Event = () => {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-12 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
-            Event UKKPK
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Ikuti berbagai kegiatan dan event menarik dari UKKPK
-          </p>
+      {/* Hero Section */}
+      <section className="relative py-24 bg-gradient-to-br from-secondary/20 via-background to-primary/20 overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-in">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              Event & Kegiatan
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground">
+              Ikuti berbagai kegiatan dan acara yang diselenggarakan oleh UKKPK
+            </p>
+          </div>
         </div>
+      </section>
 
-        {/* Events Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {events.map((event, index) => (
-            <Card
-              key={index}
-              className="hover-scale border-border/50 hover:border-primary/50 transition-all duration-300"
-            >
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <CardTitle className="text-xl">{event.title}</CardTitle>
-                  <Badge
-                    variant={event.status === "Upcoming" ? "default" : "secondary"}
-                  >
-                    {event.status}
-                  </Badge>
-                </div>
-                <CardDescription>{event.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4" />
-                    <span>{event.date}</span>
+      {/* Events Section */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {events.map((event, index) => (
+              <Card 
+                key={index} 
+                className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50"
+              >
+                <CardHeader className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-2xl group-hover:text-primary transition-colors">
+                      {event.title}
+                    </CardTitle>
+                    <Badge 
+                      variant={event.status === "Upcoming" ? "default" : "secondary"}
+                      className="text-xs px-3 py-1"
+                    >
+                      {event.status === "Upcoming" ? "Mendatang" : "Selesai"}
+                    </Badge>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4" />
-                    <span>{event.time}</span>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {event.description}
+                  </p>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="flex items-center gap-3 text-sm">
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                      <Calendar className="h-4 w-4" />
+                    </div>
+                    <span className="font-medium">{event.date}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4" />
-                    <span>{event.location}</span>
+                  <div className="flex items-center gap-3 text-sm">
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                      <Clock className="h-4 w-4" />
+                    </div>
+                    <span className="font-medium">{event.time}</span>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                  <div className="flex items-center gap-3 text-sm">
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                      <MapPin className="h-4 w-4" />
+                    </div>
+                    <span className="font-medium">{event.location}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
     </Layout>
   );
 };
