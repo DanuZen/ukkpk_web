@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Layout } from '@/components/Layout';
 import { Card, CardContent } from '@/components/ui/card';
 import { supabase } from '@/integrations/supabase/client';
-import { Users, Target, Eye, Megaphone, FileText, Radio } from 'lucide-react';
+import { Users, Target, Eye, Megaphone, FileText, Radio, Briefcase, ClipboardList, Users2, Handshake } from 'lucide-react';
 
 interface OrgMember {
   id: string;
@@ -40,6 +40,26 @@ const ProfilUkkpk = () => {
       icon: <Radio className="h-8 w-8" />,
       title: 'Penyiaran Radio',
       description: 'Melatih kemampuan penyiaran, produksi audio, dan manajemen program radio',
+    },
+    {
+      icon: <Briefcase className="h-8 w-8" />,
+      title: 'Kewirausahaan',
+      description: 'Mengembangkan jiwa entrepreneurship dan keterampilan bisnis di bidang komunikasi',
+    },
+    {
+      icon: <ClipboardList className="h-8 w-8" />,
+      title: 'Kesekretariatan',
+      description: 'Melatih kemampuan administrasi, manajemen dokumen, dan koordinasi organisasi',
+    },
+    {
+      icon: <Users2 className="h-8 w-8" />,
+      title: 'Human Resource Development',
+      description: 'Mengembangkan potensi SDM melalui pelatihan dan pengembangan anggota',
+    },
+    {
+      icon: <Handshake className="h-8 w-8" />,
+      title: 'Public Relation',
+      description: 'Membangun dan memelihara hubungan baik dengan stakeholder internal maupun eksternal',
     },
   ];
 
@@ -153,7 +173,7 @@ const ProfilUkkpk = () => {
       <section className="py-16 px-4 bg-muted/30">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center">Bidang Kegiatan</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
               <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                 <CardContent className="pt-6 text-center">
