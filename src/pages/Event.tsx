@@ -1,52 +1,57 @@
+import { useEffect, useState } from "react";
 import { Layout } from "@/components/Layout";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Clock } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
-const events = [
-  {
-    title: "Workshop Fotografi",
-    date: "15 Desember 2024",
-    time: "14:00 - 17:00",
-    location: "Lab Multimedia",
-    status: "Upcoming",
-    description: "Belajar teknik fotografi dasar dan editing foto",
-  },
-  {
-    title: "Live Radio Show",
-    date: "20 Desember 2024",
-    time: "19:00 - 21:00",
-    location: "Studio Radio UKKPK",
-    status: "Upcoming",
-    description: "Siaran langsung dengan tema musik dan budaya kampus",
-  },
-  {
-    title: "Pelatihan Jurnalistik",
-    date: "10 Desember 2024",
-    time: "13:00 - 16:00",
-    location: "Ruang Seminar",
-    status: "Completed",
-    description: "Workshop menulis berita dan wawancara",
-  },
-  {
-    title: "Video Production Workshop",
-    date: "22 Desember 2024",
-    time: "10:00 - 15:00",
-    location: "Studio Produksi",
-    status: "Upcoming",
-    description: "Belajar produksi video dari konsep hingga editing",
-  },
-];
+interface Event {
+  id: string;
+  name: string;
+  description: string;
+  event_date: string;
+  event_time: string;
+  location: string;
+}
+
+const getEventStatus = (eventDate: string, eventTime: string) => {
+  const eventDateTime = new Date(`${eventDate}T${eventTime}`);
+  const now = new Date();
+  return eventDateTime > now ? "Mendatang" : "Selesai";
+};
 
 const Event = () => {
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("events")
+          .select("*")
+          .order("event_date", { ascending: true });
+
+        if (error) throw error;
+        setEvents(data || []);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-secondary/20 via-background to-primary/20 overflow-hidden">
+      <section className="relative py-24 bg-gradient-to-br from-red-500/20 via-background to-red-600/20 overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-in">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
               Event & Kegiatan
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground">
@@ -59,52 +64,66 @@ const Event = () => {
       {/* Events Section */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {events.map((event, index) => (
-              <Card 
-                key={index} 
-                className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50"
-              >
-                <CardHeader className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-2xl group-hover:text-primary transition-colors">
-                      {event.title}
-                    </CardTitle>
-                    <Badge 
-                      variant={event.status === "Upcoming" ? "default" : "secondary"}
-                      className="text-xs px-3 py-1"
-                    >
-                      {event.status === "Upcoming" ? "Mendatang" : "Selesai"}
-                    </Badge>
-                  </div>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {event.description}
-                  </p>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-center gap-3 text-sm">
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                      <Calendar className="h-4 w-4" />
-                    </div>
-                    <span className="font-medium">{event.date}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm">
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                      <Clock className="h-4 w-4" />
-                    </div>
-                    <span className="font-medium">{event.time}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm">
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                      <MapPin className="h-4 w-4" />
-                    </div>
-                    <span className="font-medium">{event.location}</span>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {loading ? (
+            <p className="text-center text-muted-foreground">Memuat event...</p>
+          ) : events.length === 0 ? (
+            <p className="text-center text-muted-foreground">Belum ada event yang tersedia</p>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {events.map((event) => {
+                const status = getEventStatus(event.event_date, event.event_time);
+                return (
+                  <Card 
+                    key={event.id} 
+                    className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-2 hover:border-red-500/50"
+                  >
+                    <CardHeader className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <CardTitle className="text-2xl group-hover:text-red-600 transition-colors">
+                          {event.name}
+                        </CardTitle>
+                        <Badge 
+                          variant={status === "Mendatang" ? "default" : "secondary"}
+                          className="text-xs px-3 py-1"
+                        >
+                          {status}
+                        </Badge>
+                      </div>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {event.description}
+                      </p>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <div className="flex items-center gap-3 text-sm">
+                        <div className="p-2 rounded-lg bg-red-500/10 text-red-600">
+                          <Calendar className="h-4 w-4" />
+                        </div>
+                        <span className="font-medium">
+                          {new Date(event.event_date).toLocaleDateString("id-ID", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3 text-sm">
+                        <div className="p-2 rounded-lg bg-red-500/10 text-red-600">
+                          <Clock className="h-4 w-4" />
+                        </div>
+                        <span className="font-medium">{event.event_time}</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-sm">
+                        <div className="p-2 rounded-lg bg-red-500/10 text-red-600">
+                          <MapPin className="h-4 w-4" />
+                        </div>
+                        <span className="font-medium">{event.location}</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
     </Layout>

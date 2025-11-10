@@ -47,6 +47,39 @@ export type Database = {
         }
         Relationships: []
       }
+      events: {
+        Row: {
+          created_at: string
+          description: string
+          event_date: string
+          event_time: string
+          id: string
+          location: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          event_date: string
+          event_time: string
+          id?: string
+          location: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          event_date?: string
+          event_time?: string
+          id?: string
+          location?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       news: {
         Row: {
           author_id: string | null
@@ -130,6 +163,57 @@ export type Database = {
           email?: string
           full_name?: string | null
           id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      radio_programs: {
+        Row: {
+          air_time: string
+          created_at: string
+          day_of_week: number
+          description: string
+          host: string
+          id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          air_time: string
+          created_at?: string
+          day_of_week: number
+          description: string
+          host: string
+          id?: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          air_time?: string
+          created_at?: string
+          day_of_week?: number
+          description?: string
+          host?: string
+          id?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      radio_settings: {
+        Row: {
+          id: string
+          streaming_url: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          streaming_url: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          streaming_url?: string
           updated_at?: string
         }
         Relationships: []

@@ -12,6 +12,7 @@ interface SearchResult {
   type: "article" | "news" | "event";
   category?: string;
   date?: string;
+  location?: string;
 }
 
 interface SearchDialogProps {
@@ -49,6 +50,13 @@ export const SearchDialog = ({ open, onOpenChange }: SearchDialogProps) => {
           .or(`title.ilike.${searchTerm},content.ilike.${searchTerm}`)
           .limit(5);
 
+        // Search events
+        const { data: events } = await supabase
+          .from("events")
+          .select("id, name, event_date, location")
+          .or(`name.ilike.${searchTerm},description.ilike.${searchTerm}`)
+          .limit(5);
+
         const allResults: SearchResult[] = [
           ...(articles || []).map((a) => ({
             id: a.id,
@@ -62,6 +70,13 @@ export const SearchDialog = ({ open, onOpenChange }: SearchDialogProps) => {
             title: n.title,
             type: "news" as const,
             date: n.created_at,
+          })),
+          ...(events || []).map((e) => ({
+            id: e.id,
+            title: e.name,
+            type: "event" as const,
+            date: e.event_date,
+            location: e.location,
           })),
         ];
 
@@ -110,7 +125,7 @@ export const SearchDialog = ({ open, onOpenChange }: SearchDialogProps) => {
               {results.map((result) => (
                 <Link
                   key={`${result.type}-${result.id}`}
-                  to={`/artikel`}
+                  to={result.type === "event" ? "/event" : "/artikel"}
                   onClick={() => onOpenChange(false)}
                   className="block p-4 rounded-lg border hover:bg-accent transition-colors"
                 >
@@ -126,9 +141,18 @@ export const SearchDialog = ({ open, onOpenChange }: SearchDialogProps) => {
                           })}
                         </p>
                       )}
+                      {result.location && (
+                        <p className="text-sm text-muted-foreground">
+                          📍 {result.location}
+                        </p>
+                      )}
                     </div>
-                    <Badge variant={result.type === "article" ? "default" : "secondary"}>
-                      {result.type === "article" ? "Artikel" : "Berita"}
+                    <Badge variant={
+                      result.type === "article" ? "default" : 
+                      result.type === "event" ? "destructive" : "secondary"
+                    }>
+                      {result.type === "article" ? "Artikel" : 
+                       result.type === "event" ? "Event" : "Berita"}
                     </Badge>
                   </div>
                 </Link>
