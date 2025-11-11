@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, Search, User, LogOut, LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,8 +7,15 @@ import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
-import { SearchDialog } from "@/components/SearchDialog";
+import { supabase } from "@/integrations/supabase/client";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
+
+interface SearchResult {
+  id: string;
+  title: string;
+  type: 'article' | 'news' | 'event';
+  created_at: string;
+}
 
 const navItems = [
   { name: "HOME", path: "/" },
@@ -22,12 +29,60 @@ export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  const [searchLoading, setSearchLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { user, signIn, signOut } = useAuth();
+
+  useEffect(() => {
+    const searchContent = async () => {
+      if (!searchQuery.trim()) {
+        setSearchResults([]);
+        return;
+      }
+
+      setSearchLoading(true);
+      try {
+        const [articlesRes, newsRes, eventsRes] = await Promise.all([
+          supabase
+            .from('articles')
+            .select('id, title, created_at')
+            .ilike('title', `%${searchQuery}%`)
+            .limit(3),
+          supabase
+            .from('news')
+            .select('id, title, created_at')
+            .ilike('title', `%${searchQuery}%`)
+            .limit(3),
+          supabase
+            .from('events')
+            .select('id, name, event_date')
+            .ilike('name', `%${searchQuery}%`)
+            .limit(3),
+        ]);
+
+        const results: SearchResult[] = [
+          ...(articlesRes.data || []).map(a => ({ id: a.id, title: a.title, type: 'article' as const, created_at: a.created_at })),
+          ...(newsRes.data || []).map(n => ({ id: n.id, title: n.title, type: 'news' as const, created_at: n.created_at })),
+          ...(eventsRes.data || []).map(e => ({ id: e.id, title: e.name, type: 'event' as const, created_at: e.event_date })),
+        ];
+
+        setSearchResults(results);
+      } catch (error) {
+        console.error('Search error:', error);
+      } finally {
+        setSearchLoading(false);
+      }
+    };
+
+    const debounce = setTimeout(searchContent, 300);
+    return () => clearTimeout(debounce);
+  }, [searchQuery]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,34 +126,82 @@ export const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => {
-              const isActive = location.pathname === item.path;
-              return (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className={`px-4 py-5 text-sm font-medium transition-all duration-300 relative overflow-hidden group ${
-                    isActive 
-                      ? "bg-gradient-primary text-primary-foreground shadow-primary" 
-                      : "text-foreground hover:text-primary"
-                  }`}
+          <div className="hidden md:flex items-center gap-1 flex-1 justify-end">
+            {!isSearchOpen ? (
+              <>
+                {navItems.map((item) => {
+                  const isActive = location.pathname === item.path;
+                  return (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      className={`px-4 py-5 text-sm font-medium transition-all duration-300 relative overflow-hidden group ${
+                        isActive 
+                          ? "bg-gradient-primary text-primary-foreground shadow-primary" 
+                          : "text-foreground hover:text-primary"
+                      }`}
+                    >
+                      <span className="relative z-10">{item.name}</span>
+                      {!isActive && (
+                        <span className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+                      )}
+                    </Link>
+                  );
+                })}
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="ml-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                  onClick={() => setIsSearchOpen(true)}
                 >
-                  <span className="relative z-10">{item.name}</span>
-                  {!isActive && (
-                    <span className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-                  )}
-                </Link>
-              );
-            })}
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="ml-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
-              onClick={() => setIsSearchOpen(true)}
-            >
-              <Search className="h-5 w-5" />
-            </Button>
+                  <Search className="h-5 w-5" />
+                </Button>
+              </>
+            ) : (
+              <div className="flex items-center gap-2 animate-fade-in flex-1 max-w-md relative">
+                <Input
+                  type="text"
+                  placeholder="Cari artikel, berita, atau event..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="flex-1"
+                  autoFocus
+                />
+                <Button 
+                  variant="ghost" 
+                  size="icon"
+                  onClick={() => {
+                    setIsSearchOpen(false);
+                    setSearchQuery("");
+                    setSearchResults([]);
+                  }}
+                >
+                  <X className="h-5 w-5" />
+                </Button>
+                
+                {searchResults.length > 0 && (
+                  <div className="absolute top-full mt-2 w-full bg-background border border-border rounded-lg shadow-lg max-h-96 overflow-y-auto z-50 animate-fade-in">
+                    {searchResults.map((result) => (
+                      <Link
+                        key={`${result.type}-${result.id}`}
+                        to={`/${result.type === 'article' ? 'artikel' : result.type === 'news' ? 'berita' : 'event'}`}
+                        className="block px-4 py-3 hover:bg-secondary transition-colors border-b border-border last:border-b-0"
+                        onClick={() => {
+                          setIsSearchOpen(false);
+                          setSearchQuery("");
+                          setSearchResults([]);
+                        }}
+                      >
+                        <div className="font-medium">{result.title}</div>
+                        <div className="text-xs text-muted-foreground mt-1">
+                          {result.type === 'article' ? 'Artikel' : result.type === 'news' ? 'Berita' : 'Event'}
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
             
             {/* Profile Icon with Login/Logout */}
             <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
@@ -209,9 +312,6 @@ export const Navigation = () => {
           </div>
         )}
       </div>
-
-      {/* Search Dialog */}
-      <SearchDialog open={isSearchOpen} onOpenChange={setIsSearchOpen} />
     </nav>
   );
 };
