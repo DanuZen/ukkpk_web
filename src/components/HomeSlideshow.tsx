@@ -38,7 +38,7 @@ export const HomeSlideshow = () => {
 
   if (images.length === 0) {
     return (
-      <section className="relative w-full h-[600px] overflow-hidden bg-gradient-to-br from-primary/20 via-background to-secondary/20">
+      <section className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-primary/20 via-background to-secondary/20">
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center z-10">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
@@ -54,7 +54,7 @@ export const HomeSlideshow = () => {
   }
 
   return (
-    <section className="relative w-full h-[600px] overflow-hidden group">
+    <section className="relative w-full h-screen overflow-hidden group">
       {/* Slideshow Images */}
       <div className="relative w-full h-full">
         {images.map((image, index) => (
@@ -69,7 +69,7 @@ export const HomeSlideshow = () => {
               alt={`Slide ${index + 1}`}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/80"></div>
+            <div className="absolute inset-0 bg-black/60"></div>
           </div>
         ))}
       </div>
