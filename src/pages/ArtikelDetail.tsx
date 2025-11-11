@@ -145,7 +145,7 @@ const ArtikelDetail = () => {
               <div className="prose prose-lg max-w-none mb-8">
                 <div className="text-foreground/90 leading-relaxed text-justify space-y-4">
                   <p className="font-semibold text-foreground">
-                    <span className="text-primary">Ganto.co</span> - {article.content.split('\n\n')[0]}
+                    <span className="text-primary">UKKPK UNP</span> - {article.content.split('\n\n')[0]}
                   </p>
                   {article.content.split('\n\n').slice(1).map((paragraph, index) => <p key={index}>{paragraph}</p>)}
                 </div>
