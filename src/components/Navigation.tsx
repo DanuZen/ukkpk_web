@@ -126,7 +126,7 @@ export const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1 flex-1 justify-end">
+          <div className="hidden md:flex items-center gap-1 flex-1 justify-center">
             {!isSearchOpen ? (
               <>
                 {navItems.map((item) => {
