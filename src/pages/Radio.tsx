@@ -80,8 +80,8 @@ const Radio = () => {
   return (
     <Layout>
       {/* Hero Section with Gradient */}
-      <section className="relative py-20 bg-gradient-to-b from-primary/20 to-background overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+      <section className="relative py-20 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d')] opacity-5 bg-cover bg-center"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12 animate-fade-in">
             <div className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-full mb-4">
