@@ -80,6 +80,30 @@ export type Database = {
         }
         Relationships: []
       }
+      home_slideshow: {
+        Row: {
+          created_at: string
+          id: string
+          image_url: string
+          order_index: number | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          image_url: string
+          order_index?: number | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          image_url?: string
+          order_index?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       news: {
         Row: {
           author_id: string | null

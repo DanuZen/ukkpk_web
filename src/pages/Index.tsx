@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
-import heroImage from '@/assets/hero-communication.jpg';
+import { HomeSlideshow } from '@/components/HomeSlideshow';
 
 interface Article {
   id: string;
@@ -54,25 +54,8 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Hero Section - Fullscreen */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 w-full h-full">
-          <img src={heroImage} alt="UKKPK Communication" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white animate-fade-in drop-shadow-2xl">Selamat Datang di UKKPK</h1>
-          <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-8 max-w-2xl mx-auto animate-fade-in drop-shadow-lg">Unit Kegiatan Komunikasi Dan Penyiaran Kampus - Media Kampus Terpercaya</p>
-          <div className="flex flex-wrap gap-4 justify-center animate-fade-in">
-            <Button size="lg" className="shadow-lg hover:shadow-xl transition-all hover:scale-105">
-              Baca Artikel
-            </Button>
-            <Button size="lg" variant="outline" className="shadow-md bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20">
-              Tentang Kami
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* Hero Slideshow Section */}
+      <HomeSlideshow />
 
       {/* Artikel & Berita Section - Gabungan */}
       <section className="py-16 bg-background">

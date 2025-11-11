@@ -12,6 +12,7 @@ import { NewsManager } from "@/components/admin/NewsManager";
 import { OrganizationManager } from "@/components/admin/OrganizationManager";
 import { RadioManager } from "@/components/admin/RadioManager";
 import { ProfileManager } from "@/components/admin/ProfileManager";
+import { HomeSlideshowManager } from "@/components/admin/HomeSlideshowManager";
 
 const Admin = () => {
   const { user, signOut } = useAuth();
@@ -59,12 +60,13 @@ const Admin = () => {
         </div>
 
         <Tabs defaultValue="articles" className="w-full">
-          <TabsList className="grid w-full grid-cols-5">
+          <TabsList className="grid w-full grid-cols-6">
             <TabsTrigger value="articles">Artikel</TabsTrigger>
             <TabsTrigger value="news">Berita</TabsTrigger>
             <TabsTrigger value="radio">Radio</TabsTrigger>
             <TabsTrigger value="organization">Organisasi</TabsTrigger>
             <TabsTrigger value="profile">Profil</TabsTrigger>
+            <TabsTrigger value="slideshow">Slideshow</TabsTrigger>
           </TabsList>
 
           <TabsContent value="articles">
@@ -85,6 +87,10 @@ const Admin = () => {
 
           <TabsContent value="profile">
             <ProfileManager />
+          </TabsContent>
+
+          <TabsContent value="slideshow">
+            <HomeSlideshowManager />
           </TabsContent>
         </Tabs>
       </div>
