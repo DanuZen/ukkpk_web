@@ -145,7 +145,7 @@ const BeritaDetail = () => {
                   <Calendar className="h-4 w-4" />
                   <span>{formatDate(news.created_at)}</span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
                   {news.author && (
                     <div className="flex flex-col">
                       <span className="text-muted-foreground">Reporter:</span>
@@ -158,12 +158,6 @@ const BeritaDetail = () => {
                       <span className="font-medium text-foreground">{news.cameraman}</span>
                     </div>
                   )}
-                  {news.editor && (
-                    <div className="flex flex-col">
-                      <span className="text-muted-foreground">Penyunting:</span>
-                      <span className="font-medium text-foreground">{news.editor}</span>
-                    </div>
-                  )}
                 </div>
               </div>
 
@@ -174,6 +168,15 @@ const BeritaDetail = () => {
                   dangerouslySetInnerHTML={{ __html: news.content }}
                 />
               </div>
+
+              {/* Editor Info */}
+              {news.editor && (
+                <div className="mb-6 pb-4 border-b border-border">
+                  <p className="text-sm text-muted-foreground">
+                    Penyunting: <span className="font-medium text-foreground">{news.editor}</span>
+                  </p>
+                </div>
+              )}
 
               {/* Bottom Navigation */}
               <div className="mt-8 pt-6 border-t border-border">
