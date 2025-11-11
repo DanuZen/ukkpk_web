@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { Pencil, Trash2 } from "lucide-react";
@@ -280,40 +281,60 @@ export const RadioManager = () => {
 
       {/* Programs List */}
       <div className="space-y-4">
-        <h3 className="text-xl font-semibold">Daftar Program</h3>
-        {programs.map((program) => (
-          <Card key={program.id}>
+        <div className="flex items-center justify-between">
+          <h3 className="text-xl font-semibold">Daftar Program Radio yang Terupload</h3>
+          <Badge variant="secondary">{programs.length} Program</Badge>
+        </div>
+        
+        {programs.length === 0 ? (
+          <Card>
             <CardContent className="pt-6">
-              <div className="flex justify-between items-start">
-                <div className="flex-1">
-                  <h4 className="font-semibold text-lg mb-2">{program.name}</h4>
-                  <p className="text-muted-foreground mb-2">{program.description}</p>
-                  <div className="text-sm text-muted-foreground space-y-1">
-                    <p>📅 {DAYS[program.day_of_week]}</p>
-                    <p>🕐 {program.air_time}</p>
-                    <p>🎙️ Host: {program.host}</p>
-                  </div>
+              <div className="text-center py-8">
+                <div className="mx-auto w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4">
+                  <span className="text-3xl">🎙️</span>
                 </div>
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={() => handleEdit(program)}
-                  >
-                    <Pencil className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="destructive"
-                    size="icon"
-                    onClick={() => handleDelete(program.id)}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </div>
+                <h4 className="text-lg font-semibold mb-2">Belum Ada Program Radio</h4>
+                <p className="text-muted-foreground">
+                  Mulai tambahkan program radio pertama Anda menggunakan form di atas
+                </p>
               </div>
             </CardContent>
           </Card>
-        ))}
+        ) : (
+          programs.map((program) => (
+            <Card key={program.id}>
+              <CardContent className="pt-6">
+                <div className="flex justify-between items-start">
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-lg mb-2">{program.name}</h4>
+                    <p className="text-muted-foreground mb-2">{program.description}</p>
+                    <div className="text-sm text-muted-foreground space-y-1">
+                      <p>📅 {DAYS[program.day_of_week]}</p>
+                      <p>🕐 {program.air_time}</p>
+                      <p>🎙️ Host: {program.host}</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => handleEdit(program)}
+                    >
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="destructive"
+                      size="icon"
+                      onClick={() => handleDelete(program.id)}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))
+        )}
       </div>
     </div>
   );

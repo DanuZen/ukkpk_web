@@ -321,40 +321,61 @@ export const ArticlesManager = () => {
         </CardContent>
       </Card>
 
-      <div className="grid gap-4">
-        {articles.map((article) => (
-          <Card key={article.id}>
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-xl font-semibold">Daftar Artikel yang Terupload</h3>
+          <Badge variant="secondary">{articles.length} Artikel</Badge>
+        </div>
+        
+        {articles.length === 0 ? (
+          <Card>
             <CardContent className="pt-6">
-              <div className="flex justify-between items-start">
-                <div className="flex-1">
-                  <h3 className="font-semibold text-lg">{article.title}</h3>
-                  {article.category && (
-                    <p className="text-sm text-muted-foreground">
-                      {article.category}
-                    </p>
-                  )}
-                  <p className="mt-2 text-sm line-clamp-2">{article.content}</p>
+              <div className="text-center py-8">
+                <div className="mx-auto w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4">
+                  <Plus className="h-8 w-8 text-muted-foreground" />
                 </div>
-                <div className="flex gap-2 ml-4">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => handleEdit(article)}
-                  >
-                    <Pencil className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="destructive"
-                    onClick={() => handleDelete(article.id)}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </div>
+                <h4 className="text-lg font-semibold mb-2">Belum Ada Artikel</h4>
+                <p className="text-muted-foreground">
+                  Mulai tambahkan artikel pertama Anda menggunakan form di atas
+                </p>
               </div>
             </CardContent>
           </Card>
-        ))}
+        ) : (
+          articles.map((article) => (
+            <Card key={article.id}>
+              <CardContent className="pt-6">
+                <div className="flex justify-between items-start">
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-lg">{article.title}</h3>
+                    {article.category && (
+                      <p className="text-sm text-muted-foreground">
+                        {article.category}
+                      </p>
+                    )}
+                    <p className="mt-2 text-sm line-clamp-2">{article.content}</p>
+                  </div>
+                  <div className="flex gap-2 ml-4">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleEdit(article)}
+                    >
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="destructive"
+                      onClick={() => handleDelete(article.id)}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))
+        )}
       </div>
     </div>
   );
