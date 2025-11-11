@@ -152,6 +152,7 @@ export const ArticlesManager = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, title: e.target.value })
                 }
+                placeholder="Masukkan judul artikel"
                 required
               />
             </div>
@@ -163,6 +164,7 @@ export const ArticlesManager = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, category: e.target.value })
                 }
+                placeholder="Contoh: Teknologi, Olahraga, Pendidikan"
               />
             </div>
             <div>
@@ -209,6 +211,7 @@ export const ArticlesManager = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, content: e.target.value })
                 }
+                placeholder="Tulis isi artikel di sini..."
                 rows={6}
                 required
               />
