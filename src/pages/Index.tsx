@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -24,6 +25,7 @@ interface News {
 }
 
 const Index = () => {
+  const navigate = useNavigate();
   const [articles, setArticles] = useState<Article[]>([]);
   const [news, setNews] = useState<News[]>([]);
 
@@ -68,7 +70,11 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Artikel Cards */}
               {articles.map((article) => (
-                <Card key={`article-${article.id}`} className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <Card 
+                  key={`article-${article.id}`} 
+                  className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                  onClick={() => navigate(`/artikel/${article.id}`)}
+                >
                   {article.image_url && (
                     <div className="relative overflow-hidden">
                       <img src={article.image_url} alt={article.title} className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110" />
@@ -92,7 +98,11 @@ const Index = () => {
 
               {/* News Cards */}
               {news.map((item) => (
-                <Card key={`news-${item.id}`} className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <Card 
+                  key={`news-${item.id}`} 
+                  className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                  onClick={() => navigate(`/berita/${item.id}`)}
+                >
                   {item.image_url && (
                     <div className="relative overflow-hidden">
                       <img src={item.image_url} alt={item.title} className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110" />

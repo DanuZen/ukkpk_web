@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -15,6 +16,7 @@ interface News {
 }
 
 const Berita = () => {
+  const navigate = useNavigate();
   const [news, setNews] = useState<News[]>([]);
   const [filteredNews, setFilteredNews] = useState<News[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -99,6 +101,7 @@ const Berita = () => {
                 <Card 
                   key={item.id} 
                   className="overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+                  onClick={() => navigate(`/berita/${item.id}`)}
                 >
                   {item.image_url && (
                     <div className="relative overflow-hidden h-56">
