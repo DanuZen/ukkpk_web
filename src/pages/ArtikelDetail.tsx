@@ -11,7 +11,7 @@ interface Article {
   id: string;
   title: string;
   content: string;
-  category: string | null;
+  category?: string | null;
   image_url: string | null;
   created_at: string;
 }
@@ -63,9 +63,8 @@ const ArtikelDetail = () => {
   const fetchRelatedArticles = async () => {
     try {
       const { data, error } = await supabase
-        .from('articles')
+        .from('news')
         .select('*')
-        .neq('id', id)
         .order('created_at', { ascending: false })
         .limit(5);
 
@@ -192,7 +191,7 @@ const ArtikelDetail = () => {
             <div className="lg:col-span-1">
               <div>
                 <h3 className="text-lg font-bold mb-4 pb-2 border-b border-border">
-                  Artikel Terpopuler
+                  Berita Terpopuler
                 </h3>
                 <div className="space-y-4">
                   {relatedArticles.map((relatedArticle) => (
@@ -200,7 +199,7 @@ const ArtikelDetail = () => {
                       key={relatedArticle.id}
                       className="group cursor-pointer"
                       onClick={() => {
-                        navigate(`/artikel/${relatedArticle.id}`);
+                        navigate(`/berita/${relatedArticle.id}`);
                         window.scrollTo(0, 0);
                       }}
                     >
