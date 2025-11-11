@@ -20,6 +20,7 @@ const ArtikelDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [article, setArticle] = useState<Article | null>(null);
+  const [relatedArticles, setRelatedArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -27,6 +28,12 @@ const ArtikelDetail = () => {
       fetchArticle();
     }
   }, [id]);
+
+  useEffect(() => {
+    if (article) {
+      fetchRelatedArticles();
+    }
+  }, [article]);
 
   const fetchArticle = async () => {
     try {
@@ -50,6 +57,22 @@ const ArtikelDetail = () => {
       toast.error('Gagal memuat artikel');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchRelatedArticles = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('articles')
+        .select('*')
+        .neq('id', id)
+        .order('created_at', { ascending: false })
+        .limit(5);
+
+      if (error) throw error;
+      setRelatedArticles(data || []);
+    } catch (error) {
+      console.error('Error fetching related articles:', error);
     }
   };
 
@@ -79,9 +102,8 @@ const ArtikelDetail = () => {
 
   return (
     <Layout>
-      <article className="py-12 px-4">
-        <div className="container mx-auto max-w-4xl">
-          {/* Back Button */}
+      <article className="py-8 px-4">
+        <div className="container mx-auto max-w-7xl">
           <Button
             variant="ghost"
             className="mb-6"
@@ -91,51 +113,96 @@ const ArtikelDetail = () => {
             Kembali
           </Button>
 
-          {/* Featured Image */}
-          {article.image_url && (
-            <div className="relative w-full h-96 mb-8 rounded-xl overflow-hidden">
-              <img
-                src={article.image_url}
-                alt={article.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-            </div>
-          )}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Main Content */}
+            <div className="lg:col-span-2">
+              {/* Article Header */}
+              <div className="mb-6">
+                <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight text-primary">
+                  {article.title}
+                </h1>
+                <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-center">
+                    <Calendar className="h-4 w-4 mr-1" />
+                    {formatDate(article.created_at)}
+                  </div>
+                  {article.category && (
+                    <Badge variant="secondary">
+                      {article.category}
+                    </Badge>
+                  )}
+                </div>
+              </div>
 
-          {/* Article Header */}
-          <div className="mb-8">
-            <div className="flex items-center gap-3 mb-4">
-              {article.category && (
-                <Badge className="bg-primary text-primary-foreground">
-                  {article.category}
-                </Badge>
+              {/* Featured Image */}
+              {article.image_url && (
+                <div className="relative w-full h-[400px] mb-6 rounded-lg overflow-hidden">
+                  <img
+                    src={article.image_url}
+                    alt={article.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               )}
-              <div className="flex items-center text-sm text-muted-foreground">
-                <Calendar className="h-4 w-4 mr-1" />
-                {formatDate(article.created_at)}
+
+              {/* Article Content */}
+              <div className="prose prose-lg max-w-none mb-8">
+                <div className="text-foreground/90 leading-relaxed whitespace-pre-wrap text-justify">
+                  {article.content}
+                </div>
+              </div>
+
+              {/* Bottom Navigation */}
+              <div className="mt-8 pt-6 border-t border-border">
+                <Button
+                  variant="outline"
+                  onClick={() => navigate('/artikel')}
+                >
+                  Lihat Artikel Lainnya
+                </Button>
               </div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-              {article.title}
-            </h1>
-          </div>
 
-          {/* Article Content */}
-          <div className="prose prose-lg max-w-none">
-            <div className="text-foreground/90 leading-relaxed whitespace-pre-wrap">
-              {article.content}
+            {/* Sidebar - Related Articles */}
+            <div className="lg:col-span-1">
+              <div className="sticky top-24">
+                <h3 className="text-lg font-bold mb-4 pb-2 border-b border-border">
+                  Artikel Terpopuler
+                </h3>
+                <div className="space-y-4">
+                  {relatedArticles.map((relatedArticle) => (
+                    <div
+                      key={relatedArticle.id}
+                      className="group cursor-pointer"
+                      onClick={() => {
+                        navigate(`/artikel/${relatedArticle.id}`);
+                        window.scrollTo(0, 0);
+                      }}
+                    >
+                      <div className="flex gap-3">
+                        {relatedArticle.image_url && (
+                          <div className="w-20 h-20 flex-shrink-0 rounded overflow-hidden">
+                            <img
+                              src={relatedArticle.image_url}
+                              alt={relatedArticle.title}
+                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                            />
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-sm font-semibold line-clamp-2 group-hover:text-primary transition-colors mb-1">
+                            {relatedArticle.title}
+                          </h4>
+                          <p className="text-xs text-muted-foreground">
+                            {formatDate(relatedArticle.created_at)}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-
-          {/* Bottom Navigation */}
-          <div className="mt-12 pt-8 border-t border-border">
-            <Button
-              variant="outline"
-              onClick={() => navigate('/artikel')}
-            >
-              Lihat Artikel Lainnya
-            </Button>
           </div>
         </div>
       </article>

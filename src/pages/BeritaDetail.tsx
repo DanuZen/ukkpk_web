@@ -19,6 +19,7 @@ const BeritaDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [news, setNews] = useState<News | null>(null);
+  const [relatedNews, setRelatedNews] = useState<News[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,6 +27,12 @@ const BeritaDetail = () => {
       fetchNews();
     }
   }, [id]);
+
+  useEffect(() => {
+    if (news) {
+      fetchRelatedNews();
+    }
+  }, [news]);
 
   const fetchNews = async () => {
     try {
@@ -49,6 +56,22 @@ const BeritaDetail = () => {
       toast.error('Gagal memuat berita');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchRelatedNews = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('news')
+        .select('*')
+        .neq('id', id)
+        .order('created_at', { ascending: false })
+        .limit(5);
+
+      if (error) throw error;
+      setRelatedNews(data || []);
+    } catch (error) {
+      console.error('Error fetching related news:', error);
     }
   };
 
@@ -78,9 +101,8 @@ const BeritaDetail = () => {
 
   return (
     <Layout>
-      <article className="py-12 px-4">
-        <div className="container mx-auto max-w-4xl">
-          {/* Back Button */}
+      <article className="py-8 px-4">
+        <div className="container mx-auto max-w-7xl">
           <Button
             variant="ghost"
             className="mb-6"
@@ -90,49 +112,94 @@ const BeritaDetail = () => {
             Kembali
           </Button>
 
-          {/* Featured Image */}
-          {news.image_url && (
-            <div className="relative w-full h-96 mb-8 rounded-xl overflow-hidden">
-              <img
-                src={news.image_url}
-                alt={news.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-            </div>
-          )}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Main Content */}
+            <div className="lg:col-span-2">
+              {/* News Header */}
+              <div className="mb-6">
+                <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight text-primary">
+                  {news.title}
+                </h1>
+                <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-center">
+                    <Calendar className="h-4 w-4 mr-1" />
+                    {formatDate(news.created_at)}
+                  </div>
+                  <Badge variant="secondary">
+                    Berita
+                  </Badge>
+                </div>
+              </div>
 
-          {/* News Header */}
-          <div className="mb-8">
-            <div className="flex items-center gap-3 mb-4">
-              <Badge className="bg-secondary text-secondary-foreground">
-                Berita
-              </Badge>
-              <div className="flex items-center text-sm text-muted-foreground">
-                <Calendar className="h-4 w-4 mr-1" />
-                {formatDate(news.created_at)}
+              {/* Featured Image */}
+              {news.image_url && (
+                <div className="relative w-full h-[400px] mb-6 rounded-lg overflow-hidden">
+                  <img
+                    src={news.image_url}
+                    alt={news.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              )}
+
+              {/* News Content */}
+              <div className="prose prose-lg max-w-none mb-8">
+                <div className="text-foreground/90 leading-relaxed whitespace-pre-wrap text-justify">
+                  {news.content}
+                </div>
+              </div>
+
+              {/* Bottom Navigation */}
+              <div className="mt-8 pt-6 border-t border-border">
+                <Button
+                  variant="outline"
+                  onClick={() => navigate('/berita')}
+                >
+                  Lihat Berita Lainnya
+                </Button>
               </div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-              {news.title}
-            </h1>
-          </div>
 
-          {/* News Content */}
-          <div className="prose prose-lg max-w-none">
-            <div className="text-foreground/90 leading-relaxed whitespace-pre-wrap">
-              {news.content}
+            {/* Sidebar - Related News */}
+            <div className="lg:col-span-1">
+              <div className="sticky top-24">
+                <h3 className="text-lg font-bold mb-4 pb-2 border-b border-border">
+                  Berita Terpopuler
+                </h3>
+                <div className="space-y-4">
+                  {relatedNews.map((relatedItem) => (
+                    <div
+                      key={relatedItem.id}
+                      className="group cursor-pointer"
+                      onClick={() => {
+                        navigate(`/berita/${relatedItem.id}`);
+                        window.scrollTo(0, 0);
+                      }}
+                    >
+                      <div className="flex gap-3">
+                        {relatedItem.image_url && (
+                          <div className="w-20 h-20 flex-shrink-0 rounded overflow-hidden">
+                            <img
+                              src={relatedItem.image_url}
+                              alt={relatedItem.title}
+                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                            />
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-sm font-semibold line-clamp-2 group-hover:text-primary transition-colors mb-1">
+                            {relatedItem.title}
+                          </h4>
+                          <p className="text-xs text-muted-foreground">
+                            {formatDate(relatedItem.created_at)}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-
-          {/* Bottom Navigation */}
-          <div className="mt-12 pt-8 border-t border-border">
-            <Button
-              variant="outline"
-              onClick={() => navigate('/berita')}
-            >
-              Lihat Berita Lainnya
-            </Button>
           </div>
         </div>
       </article>
