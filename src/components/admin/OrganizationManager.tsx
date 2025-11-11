@@ -13,6 +13,8 @@ interface OrgMember {
   position: string;
   photo_url: string | null;
   order_index: number | null;
+  category: string | null;
+  level: number | null;
 }
 
 export const OrganizationManager = () => {
@@ -23,6 +25,8 @@ export const OrganizationManager = () => {
     position: "",
     photo_url: "",
     order_index: 0,
+    category: "anggota",
+    level: 0,
   });
 
   useEffect(() => {
@@ -61,7 +65,7 @@ export const OrganizationManager = () => {
         toast.success("Data berhasil ditambahkan");
       }
 
-      setFormData({ name: "", position: "", photo_url: "", order_index: 0 });
+      setFormData({ name: "", position: "", photo_url: "", order_index: 0, category: "anggota", level: 0 });
       setEditingId(null);
       fetchMembers();
     } catch (error: any) {
@@ -76,6 +80,8 @@ export const OrganizationManager = () => {
       position: member.position,
       photo_url: member.photo_url || "",
       order_index: member.order_index || 0,
+      category: member.category || "anggota",
+      level: member.level || 0,
     });
   };
 
@@ -164,6 +170,8 @@ export const OrganizationManager = () => {
                       position: "",
                       photo_url: "",
                       order_index: 0,
+                      category: "anggota",
+                      level: 0,
                     });
                   }}
                 >

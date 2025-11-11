@@ -136,8 +136,10 @@ export type Database = {
       }
       organization: {
         Row: {
+          category: string | null
           created_at: string
           id: string
+          level: number | null
           name: string
           order_index: number | null
           photo_url: string | null
@@ -145,8 +147,10 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          category?: string | null
           created_at?: string
           id?: string
+          level?: number | null
           name: string
           order_index?: number | null
           photo_url?: string | null
@@ -154,8 +158,10 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          category?: string | null
           created_at?: string
           id?: string
+          level?: number | null
           name?: string
           order_index?: number | null
           photo_url?: string | null
