@@ -42,67 +42,58 @@ export const ProfileManager = () => {
     }
   };
 
-  const handleImageUpload = async (file: File) => {
-    setUploading(true);
-    try {
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Math.random()}.${fileExt}`;
-      const filePath = `profile/${fileName}`;
-
-      const { error: uploadError } = await supabase.storage
-        .from('uploads')
-        .upload(filePath, file);
-
-      if (uploadError) throw uploadError;
-
-      const { data: { publicUrl } } = supabase.storage
-        .from('uploads')
-        .getPublicUrl(filePath);
-
-      setFormData(prev => ({ ...prev, banner_url: publicUrl }));
-      toast.success("Banner berhasil diupload");
-    } catch (error) {
-      toast.error("Gagal upload banner");
-      console.error(error);
-    } finally {
-      setUploading(false);
-      setImageFile(null);
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setUploading(true);
 
-    // Upload image if selected
-    if (imageFile) {
-      await handleImageUpload(imageFile);
-      return;
-    }
+    try {
+      let bannerUrl = formData.banner_url;
 
-    if (profile) {
-      const { error } = await supabase
-        .from("profile_settings")
-        .update(formData)
-        .eq("id", profile.id);
+      // Upload image if new file selected
+      if (imageFile) {
+        const fileExt = imageFile.name.split('.').pop();
+        const fileName = `${Math.random()}.${fileExt}`;
+        const filePath = `profile/${fileName}`;
 
-      if (error) {
-        toast.error("Gagal mengupdate profil");
-        return;
+        const { error: uploadError } = await supabase.storage
+          .from('uploads')
+          .upload(filePath, imageFile);
+
+        if (uploadError) throw uploadError;
+
+        const { data: { publicUrl } } = supabase.storage
+          .from('uploads')
+          .getPublicUrl(filePath);
+
+        bannerUrl = publicUrl;
       }
-      toast.success("Profil berhasil diupdate");
-    } else {
-      const { error } = await supabase
-        .from("profile_settings")
-        .insert([formData]);
 
-      if (error) {
-        toast.error("Gagal membuat profil");
-        return;
+      const dataToSave = { ...formData, banner_url: bannerUrl };
+
+      if (profile) {
+        const { error } = await supabase
+          .from("profile_settings")
+          .update(dataToSave)
+          .eq("id", profile.id);
+
+        if (error) throw error;
+        toast.success("Profil berhasil diupdate");
+      } else {
+        const { error } = await supabase
+          .from("profile_settings")
+          .insert([dataToSave]);
+
+        if (error) throw error;
+        toast.success("Profil berhasil dibuat");
       }
-      toast.success("Profil berhasil dibuat");
-    }
 
-    fetchProfile();
+      setImageFile(null);
+      fetchProfile();
+    } catch (error: any) {
+      toast.error(error.message || "Terjadi kesalahan");
+    } finally {
+      setUploading(false);
+    }
   };
 
   return (

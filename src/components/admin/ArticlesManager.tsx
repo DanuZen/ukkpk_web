@@ -51,54 +51,44 @@ export const ArticlesManager = () => {
     setArticles(data || []);
   };
 
-  const handleImageUpload = async (file: File) => {
-    setUploading(true);
-    try {
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Math.random()}.${fileExt}`;
-      const filePath = `articles/${fileName}`;
-
-      const { error: uploadError } = await supabase.storage
-        .from('uploads')
-        .upload(filePath, file);
-
-      if (uploadError) throw uploadError;
-
-      const { data: { publicUrl } } = supabase.storage
-        .from('uploads')
-        .getPublicUrl(filePath);
-
-      setFormData(prev => ({ ...prev, image_url: publicUrl }));
-      toast.success("Gambar berhasil diupload");
-    } catch (error) {
-      toast.error("Gagal upload gambar");
-      console.error(error);
-    } finally {
-      setUploading(false);
-      setImageFile(null);
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setUploading(true);
 
-    // Upload image if selected
-    if (imageFile) {
-      await handleImageUpload(imageFile);
-      return;
-    }
-    
     try {
+      let imageUrl = formData.image_url;
+
+      // Upload image if new file selected
+      if (imageFile) {
+        const fileExt = imageFile.name.split('.').pop();
+        const fileName = `${Math.random()}.${fileExt}`;
+        const filePath = `articles/${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from('uploads')
+          .upload(filePath, imageFile);
+
+        if (uploadError) throw uploadError;
+
+        const { data: { publicUrl } } = supabase.storage
+          .from('uploads')
+          .getPublicUrl(filePath);
+
+        imageUrl = publicUrl;
+      }
+
+      const dataToSave = { ...formData, image_url: imageUrl };
+
       if (editingId) {
         const { error } = await supabase
           .from("articles")
-          .update(formData)
+          .update(dataToSave)
           .eq("id", editingId);
 
         if (error) throw error;
         toast.success("Artikel berhasil diupdate");
       } else {
-        const { error } = await supabase.from("articles").insert([formData]);
+        const { error } = await supabase.from("articles").insert([dataToSave]);
 
         if (error) throw error;
         toast.success("Artikel berhasil ditambahkan");
@@ -110,6 +100,8 @@ export const ArticlesManager = () => {
       fetchArticles();
     } catch (error: any) {
       toast.error(error.message || "Terjadi kesalahan");
+    } finally {
+      setUploading(false);
     }
   };
 
