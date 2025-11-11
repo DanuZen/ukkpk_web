@@ -120,7 +120,7 @@ export const Navigation = () => {
               alt="Logo UKKPK" 
               className="h-10 w-10 transition-all duration-300 group-hover:scale-105"
             />
-            <div className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent transition-all duration-300 group-hover:scale-105">
+            <div className="text-2xl font-bold text-primary transition-all duration-300 group-hover:scale-105">
               UKKPK
             </div>
           </Link>
@@ -137,13 +137,13 @@ export const Navigation = () => {
                       to={item.path}
                       className={`px-4 py-5 text-sm font-medium transition-all duration-300 relative overflow-hidden group ${
                         isActive 
-                          ? "bg-gradient-primary text-primary-foreground shadow-primary" 
+                          ? "bg-primary text-primary-foreground shadow-primary" 
                           : "text-foreground hover:text-primary"
                       }`}
                     >
                       <span className="relative z-10">{item.name}</span>
                       {!isActive && (
-                        <span className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+                        <span className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
                       )}
                     </Link>
                   );
@@ -185,7 +185,7 @@ export const Navigation = () => {
                       <Link
                         key={`${result.type}-${result.id}`}
                         to={`/${result.type === 'article' ? 'artikel' : result.type === 'news' ? 'berita' : 'event'}`}
-                        className="block px-4 py-3 hover:bg-secondary transition-colors border-b border-border last:border-b-0"
+                        className="block px-4 py-3 hover:bg-secondary/10 transition-colors border-b border-border last:border-b-0"
                         onClick={() => {
                           setIsSearchOpen(false);
                           setSearchQuery("");

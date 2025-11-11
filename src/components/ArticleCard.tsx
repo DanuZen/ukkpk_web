@@ -64,7 +64,7 @@ export const ArticleCard = ({ title, category, image, link = "#", excerpt, date 
         </div>
 
         {/* Hover effect line */}
-        <div className="h-1 bg-gradient-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+        <div className="h-1 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
       </div>
     </Link>
   );

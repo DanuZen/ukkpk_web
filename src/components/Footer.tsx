@@ -8,7 +8,7 @@ export const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           {/* About */}
           <div>
-            <h3 className="font-bold text-lg mb-4 bg-gradient-primary bg-clip-text text-transparent">UKKPK</h3>
+            <h3 className="font-bold text-lg mb-4 text-primary">UKKPK</h3>
             <p className="text-sm text-muted-foreground">Unit Kegiatan Komunikasi dan Penyiaran Kampus</p>
           </div>
 
@@ -57,13 +57,13 @@ export const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Follow Us</h4>
             <div className="flex gap-4">
-              <a href="https://web.facebook.com/p/UKKPK-UNP-100063495233989/?_rdc=1&_rdr#" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors">
+              <a href="https://web.facebook.com/p/UKKPK-UNP-100063495233989/?_rdc=1&_rdr#" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-secondary/10 hover:bg-secondary/20 text-secondary transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="https://www.instagram.com/ukkpk_unp/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors">
+              <a href="https://www.instagram.com/ukkpk_unp/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-secondary/10 hover:bg-secondary/20 text-secondary transition-colors">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="https://www.youtube.com/@UKKPKUNP" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors">
+              <a href="https://www.youtube.com/@UKKPKUNP" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-secondary/10 hover:bg-secondary/20 text-secondary transition-colors">
                 <Youtube className="h-5 w-5" />
               </a>
             </div>

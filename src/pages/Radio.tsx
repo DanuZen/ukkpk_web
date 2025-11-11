@@ -84,11 +84,11 @@ const Radio = () => {
         <div className="absolute inset-0 bg-grid-pattern opacity-5" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12 animate-fade-in">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-red-700 text-white px-4 py-2 rounded-full mb-4">
+            <div className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-full mb-4">
               <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
               <span className="text-sm font-medium">LIVE NOW</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
               SIGMA RADIO UKKPK
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8">
@@ -96,10 +96,10 @@ const Radio = () => {
             </p>
 
             {/* Live Player Card */}
-            <Card className="max-w-2xl mx-auto border-red-500/50">
+            <Card className="max-w-2xl mx-auto border-primary/50">
               <CardHeader>
                 <div className="flex items-center justify-center gap-3 mb-2">
-                  <RadioIcon className="h-6 w-6 text-red-600" />
+                  <RadioIcon className="h-6 w-6 text-primary" />
                   <CardTitle className="text-2xl">
                     Now Playing: {currentProgram?.name || "Off Air"}
                   </CardTitle>
@@ -111,7 +111,7 @@ const Radio = () => {
               <CardContent>
                 <Button 
                   size="lg" 
-                  className="w-full max-w-xs mx-auto bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800"
+                  className="w-full max-w-xs mx-auto"
                   onClick={handleListen}
                 >
                   <Play className="h-5 w-5 mr-2" />
@@ -135,12 +135,12 @@ const Radio = () => {
               {programs.map((program) => (
                 <Card
                   key={program.id}
-                  className="hover-scale border-border/50 hover:border-red-500/50 transition-all duration-300"
+                  className="hover-scale border-border/50 hover:border-secondary/50 transition-all duration-300"
                 >
                   <CardHeader>
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0">
-                        <Mic className="h-6 w-6 text-red-600" />
+                      <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center flex-shrink-0">
+                        <Mic className="h-6 w-6 text-secondary" />
                       </div>
                       <div className="flex-1">
                         <CardTitle className="text-xl mb-1">{program.name}</CardTitle>
