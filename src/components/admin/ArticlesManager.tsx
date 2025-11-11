@@ -25,6 +25,7 @@ export const ArticlesManager = () => {
     content: "",
     category: "",
     author: "",
+    editor: "",
     image_url: "",
   });
   const [uploading, setUploading] = useState(false);
@@ -100,7 +101,7 @@ export const ArticlesManager = () => {
         toast.success("Artikel berhasil ditambahkan");
       }
 
-      setFormData({ title: "", content: "", category: "", author: "", image_url: "" });
+      setFormData({ title: "", content: "", category: "", author: "", editor: "", image_url: "" });
       setEditingId(null);
       setImageFile(null);
       fetchArticles();
@@ -116,6 +117,7 @@ export const ArticlesManager = () => {
       content: article.content,
       category: article.category || "",
       author: "",
+      editor: "",
       image_url: article.image_url || "",
     });
   };
@@ -178,6 +180,17 @@ export const ArticlesManager = () => {
                 placeholder="Nama penulis"
               />
             </div>
+            <div>
+              <Label htmlFor="editor">Penyunting</Label>
+              <Input
+                id="editor"
+                value={formData.editor}
+                onChange={(e) =>
+                  setFormData({ ...formData, editor: e.target.value })
+                }
+                placeholder="Nama penyunting"
+              />
+            </div>
             <div className="space-y-2">
               <Label htmlFor="image-upload">Upload Gambar</Label>
               <div className="flex gap-2">
@@ -232,6 +245,7 @@ export const ArticlesManager = () => {
                       content: "",
                       category: "",
                       author: "",
+                      editor: "",
                       image_url: "",
                     });
                   }}
