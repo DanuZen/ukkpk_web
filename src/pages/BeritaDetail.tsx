@@ -166,14 +166,10 @@ const BeritaDetail = () => {
 
               {/* News Content */}
               <div className="prose prose-lg max-w-none mb-8">
-                <div className="text-foreground/90 leading-relaxed text-justify space-y-4">
-                  <p className="font-semibold text-foreground">
-                    <span className="text-primary">Ganto.co</span> - {news.content.split('\n\n')[0]}
-                  </p>
-                  {news.content.split('\n\n').slice(1).map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
-                  ))}
-                </div>
+                <div 
+                  className="text-foreground/90 leading-relaxed article-content"
+                  dangerouslySetInnerHTML={{ __html: news.content }}
+                />
               </div>
 
               {/* Bottom Navigation */}

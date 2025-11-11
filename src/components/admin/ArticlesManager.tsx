@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { RichTextEditor } from "@/components/admin/RichTextEditor";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Pencil, Trash2, Plus } from "lucide-react";
@@ -218,15 +218,10 @@ export const ArticlesManager = () => {
             </div>
             <div>
               <Label htmlFor="content">Konten</Label>
-              <Textarea
-                id="content"
-                value={formData.content}
-                onChange={(e) =>
-                  setFormData({ ...formData, content: e.target.value })
-                }
+              <RichTextEditor
+                content={formData.content}
+                onChange={(html) => setFormData({ ...formData, content: html })}
                 placeholder="Tulis isi artikel di sini..."
-                rows={6}
-                required
               />
             </div>
             <div className="flex gap-2">
