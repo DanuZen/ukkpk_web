@@ -11,6 +11,7 @@ interface ProfileSettings {
   id: string;
   banner_url: string | null;
   description: string | null;
+  organization_image_url: string | null;
 }
 
 export const ProfileManager = () => {
@@ -18,9 +19,11 @@ export const ProfileManager = () => {
   const [formData, setFormData] = useState({
     banner_url: "",
     description: "",
+    organization_image_url: "",
   });
   const [uploading, setUploading] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [orgImageFile, setOrgImageFile] = useState<File | null>(null);
 
   useEffect(() => {
     fetchProfile();
@@ -38,6 +41,7 @@ export const ProfileManager = () => {
       setFormData({
         banner_url: data.banner_url || "",
         description: data.description || "",
+        organization_image_url: data.organization_image_url || "",
       });
     }
   };
@@ -48,8 +52,9 @@ export const ProfileManager = () => {
 
     try {
       let bannerUrl = formData.banner_url;
+      let organizationImageUrl = formData.organization_image_url;
 
-      // Upload image if new file selected
+      // Upload banner image if new file selected
       if (imageFile) {
         const fileExt = imageFile.name.split('.').pop();
         const fileName = `${Math.random()}.${fileExt}`;
@@ -68,7 +73,30 @@ export const ProfileManager = () => {
         bannerUrl = publicUrl;
       }
 
-      const dataToSave = { ...formData, banner_url: bannerUrl };
+      // Upload organization image if new file selected
+      if (orgImageFile) {
+        const fileExt = orgImageFile.name.split('.').pop();
+        const fileName = `org_${Math.random()}.${fileExt}`;
+        const filePath = `profile/${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from('uploads')
+          .upload(filePath, orgImageFile);
+
+        if (uploadError) throw uploadError;
+
+        const { data: { publicUrl } } = supabase.storage
+          .from('uploads')
+          .getPublicUrl(filePath);
+
+        organizationImageUrl = publicUrl;
+      }
+
+      const dataToSave = { 
+        ...formData, 
+        banner_url: bannerUrl,
+        organization_image_url: organizationImageUrl
+      };
 
       if (profile) {
         const { error } = await supabase
@@ -88,6 +116,7 @@ export const ProfileManager = () => {
       }
 
       setImageFile(null);
+      setOrgImageFile(null);
       fetchProfile();
     } catch (error: any) {
       toast.error(error.message || "Terjadi kesalahan");
@@ -109,6 +138,15 @@ export const ProfileManager = () => {
             currentImageUrl={formData.banner_url}
             onFileSelect={(file) => setImageFile(file)}
             onRemove={() => setFormData({ ...formData, banner_url: "" })}
+            disabled={uploading}
+          />
+
+          <ImageUpload
+            id="organization-upload"
+            label="Foto Struktur Organisasi"
+            currentImageUrl={formData.organization_image_url}
+            onFileSelect={(file) => setOrgImageFile(file)}
+            onRemove={() => setFormData({ ...formData, organization_image_url: "" })}
             disabled={uploading}
           />
 

@@ -16,6 +16,7 @@ interface ProfileSettings {
   id: string;
   banner_url: string | null;
   description: string | null;
+  organization_image_url: string | null;
 }
 
 const ProfilUkkpk = () => {
@@ -290,12 +291,18 @@ const ProfilUkkpk = () => {
               ))}
             </div>
           ) : (
-            <p className="text-center text-muted-foreground">
-              Struktur organisasi DPH Dan Pengurus UKKPK 2025
-              <div className="mt-8 max-w-4xl mx-auto">
-                <img src="/images/struktur.jpg" alt="Struktur Organisasi UKKPK 2025" className="w-full h-auto rounded-lg shadow-lg" />
+            <div className="text-center">
+              <p className="text-muted-foreground mb-8">
+                Struktur organisasi DPH Dan Pengurus UKKPK 2025
+              </p>
+              <div className="max-w-4xl mx-auto">
+                <img 
+                  src={profile?.organization_image_url || "/images/struktur.jpg"} 
+                  alt="Struktur Organisasi UKKPK 2025" 
+                  className="w-full h-auto rounded-lg shadow-lg" 
+                />
               </div>
-            </p>
+            </div>
           )}
         </div>
       </section>
