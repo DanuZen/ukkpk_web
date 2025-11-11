@@ -4,8 +4,9 @@ import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
-import { ArrowLeft, Calendar, User } from 'lucide-react';
+import { ArrowLeft, Calendar, Share2, Facebook, Twitter, MessageCircle, Copy } from 'lucide-react';
 import { toast } from 'sonner';
+
 interface Article {
   id: string;
   title: string;
@@ -13,6 +14,8 @@ interface Article {
   category?: string | null;
   image_url: string | null;
   created_at: string;
+  author: string | null;
+  editor: string | null;
 }
 const ArtikelDetail = () => {
   const {
@@ -114,30 +117,18 @@ const ArtikelDetail = () => {
                 </div>}
 
               {/* Article Metadata */}
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-border">
-                <div className="flex items-center gap-4 text-sm text-muted-foreground">
+              <div className="mb-6 pb-4 border-b border-border space-y-2">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Calendar className="h-4 w-4" />
                   <span>{formatDate(article.created_at)}</span>
-                  <span>Penulis: Redaksi</span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Badge variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">
-                    {article.category || 'ARTIKEL'}
-                  </Badge>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                      </svg>
-                      <span>98</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-                      </svg>
-                      <span>0</span>
-                    </div>
-                  </div>
+                <div className="text-sm space-y-1">
+                  {article.author && (
+                    <p>
+                      <span className="text-muted-foreground">Penulis : </span>
+                      <span className="font-medium text-foreground">{article.author}</span>
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -147,6 +138,79 @@ const ArtikelDetail = () => {
                   className="text-foreground/90 leading-relaxed article-content"
                   dangerouslySetInnerHTML={{ __html: article.content }}
                 />
+              </div>
+
+              {/* Editor Info */}
+              {article.editor && (
+                <div className="mb-6 pb-4 border-b border-border">
+                  <p className="text-sm text-muted-foreground">
+                    Penyunting: <span className="font-medium text-foreground">{article.editor}</span>
+                  </p>
+                </div>
+              )}
+
+              {/* Share Buttons */}
+              <div className="mb-6 pb-4 border-b border-border">
+                <div className="flex items-center gap-2 mb-3">
+                  <Share2 className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm font-medium text-muted-foreground">Bagikan:</span>
+                </div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-colors"
+                    onClick={() => {
+                      const url = window.location.href;
+                      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank', 'width=600,height=400');
+                    }}
+                  >
+                    <Facebook className="h-4 w-4" />
+                    Facebook
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 hover:bg-sky-500 hover:text-white hover:border-sky-500 transition-colors"
+                    onClick={() => {
+                      const url = window.location.href;
+                      const text = article.title;
+                      window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank', 'width=600,height=400');
+                    }}
+                  >
+                    <Twitter className="h-4 w-4" />
+                    Twitter
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 hover:bg-green-500 hover:text-white hover:border-green-500 transition-colors"
+                    onClick={() => {
+                      const url = window.location.href;
+                      const text = article.title;
+                      window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+                    }}
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    WhatsApp
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 hover:bg-primary hover:text-white hover:border-primary transition-colors"
+                    onClick={() => {
+                      const url = window.location.href;
+                      navigator.clipboard.writeText(url).then(() => {
+                        toast.success('Link berhasil disalin!');
+                      }).catch(() => {
+                        toast.error('Gagal menyalin link');
+                      });
+                    }}
+                  >
+                    <Copy className="h-4 w-4" />
+                    Salin URL
+                  </Button>
+                </div>
               </div>
 
               {/* Bottom Navigation */}
