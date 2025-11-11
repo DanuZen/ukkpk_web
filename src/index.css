@@ -17,45 +17,50 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 5%;
 
-    --primary: 0 85% 55%;
+    /* Merah yang lebih profesional dan tidak terlalu terang */
+    --primary: 356 75% 53%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 91% 60%;
+    /* Biru yang lebih sophisticated */
+    --secondary: 211 85% 50%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 40%;
 
-    --accent: 217 91% 60%;
+    /* Accent menggunakan biru yang lebih terang untuk variasi */
+    --accent: 207 90% 54%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 92%;
+    --border: 0 0% 90%;
     --input: 0 0% 92%;
-    --ring: 0 85% 55%;
+    --ring: 356 75% 53%;
 
     --radius: 0.75rem;
 
-    /* Modern gradients - solid color gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(0 85% 55%) 0%, hsl(0 75% 45%) 100%);
-    --gradient-secondary: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(217 81% 50%) 100%);
-    --gradient-hero: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
-    --gradient-card: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.05) 100%);
+    /* Modern gradients dengan warna yang lebih seimbang */
+    --gradient-primary: linear-gradient(135deg, hsl(356 75% 53%) 0%, hsl(356 70% 45%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(211 85% 50%) 0%, hsl(211 80% 42%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(207 90% 54%) 0%, hsl(207 85% 46%) 100%);
+    --gradient-hero: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
+    --gradient-card: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.03) 100%);
     
-    /* Shadows */
+    /* Shadows dengan warna yang lebih halus */
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
-    --shadow-primary: 0 8px 24px rgba(244, 63, 63, 0.15);
-    --shadow-accent: 0 8px 24px rgba(66, 153, 225, 0.15);
+    --shadow-primary: 0 8px 24px rgba(220, 38, 38, 0.12);
+    --shadow-secondary: 0 8px 24px rgba(37, 99, 235, 0.12);
+    --shadow-accent: 0 8px 24px rgba(56, 189, 248, 0.12);
 
-    /* News badge colors */
-    --badge-kegiatan: 0 85% 55%;
-    --badge-berita: 14 91% 51%;
-    --badge-event: 262 83% 58%;
-    --badge-uncategorized: 0 0% 45%;
+    /* Badge colors yang lebih seimbang */
+    --badge-kegiatan: 356 75% 53%;
+    --badge-berita: 211 85% 50%;
+    --badge-event: 207 90% 54%;
+    --badge-uncategorized: 0 0% 50%;
 
     /* Transition */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -72,16 +77,16 @@ All colors MUST be HSL.
     --popover: 0 0% 12%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 0 85% 55%;
+    --primary: 356 75% 58%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 91% 60%;
+    --secondary: 211 85% 55%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 16%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 217 91% 60%;
+    --accent: 207 90% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62% 50%;
@@ -89,7 +94,7 @@ All colors MUST be HSL.
 
     --border: 0 0% 18%;
     --input: 0 0% 18%;
-    --ring: 0 85% 55%;
+    --ring: 356 75% 58%;
 
     --gradient-card: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0.3) 100%);
   }
