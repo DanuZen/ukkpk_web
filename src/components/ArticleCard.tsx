@@ -21,7 +21,7 @@ const categoryColors: Record<string, string> = {
 export const ArticleCard = ({ title, category, image, link = "#", excerpt, date }: ArticleCardProps) => {
   return (
     <Link to={link} className="group">
-      <div className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-2 transition-all duration-500 h-full flex flex-col animate-fade-up">
+      <div className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 ease-out h-full flex flex-col animate-fade-up">
         {/* Image */}
         <div className="relative h-56 bg-gradient-to-br from-muted to-muted-foreground/10 overflow-hidden">
           {image ? (
@@ -29,9 +29,9 @@ export const ArticleCard = ({ title, category, image, link = "#", excerpt, date 
               <img
                 src={image}
                 alt={title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" />
             </>
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-primary/10 via-accent/5 to-muted relative">
@@ -41,7 +41,7 @@ export const ArticleCard = ({ title, category, image, link = "#", excerpt, date 
           
           {/* Category Badge */}
           <div className="absolute top-4 left-4 z-10">
-            <Badge className={`${categoryColors[category] || categoryColors.UNCATEGORIZED} text-white font-semibold px-4 py-1.5 shadow-lg backdrop-blur-sm border-0 transition-transform duration-300 group-hover:scale-110`}>
+            <Badge className={`${categoryColors[category] || categoryColors.UNCATEGORIZED} text-white font-semibold px-4 py-1.5 shadow-lg backdrop-blur-sm border-0 transition-transform duration-300 ease-out group-hover:scale-105`}>
               {category}
             </Badge>
           </div>
@@ -52,7 +52,7 @@ export const ArticleCard = ({ title, category, image, link = "#", excerpt, date 
 
         {/* Content */}
         <div className="p-6 flex-1 flex flex-col bg-gradient-to-b from-card to-card/50">
-          <h3 className="text-lg font-bold text-card-foreground group-hover:text-primary transition-colors duration-300 line-clamp-2 leading-relaxed mb-2">
+          <h3 className="text-lg font-bold text-card-foreground group-hover:text-primary transition-colors duration-300 ease-out line-clamp-2 leading-relaxed mb-2">
             {title}
           </h3>
           {excerpt && (
@@ -64,7 +64,7 @@ export const ArticleCard = ({ title, category, image, link = "#", excerpt, date 
         </div>
 
         {/* Hover effect line */}
-        <div className="h-1 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+        <div className="h-1 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left" />
       </div>
     </Link>
   );
