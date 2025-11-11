@@ -16,30 +16,36 @@ export type Database = {
     Tables: {
       articles: {
         Row: {
+          author: string | null
           author_id: string | null
           category: string | null
           content: string
           created_at: string
+          editor: string | null
           id: string
           image_url: string | null
           title: string
           updated_at: string
         }
         Insert: {
+          author?: string | null
           author_id?: string | null
           category?: string | null
           content: string
           created_at?: string
+          editor?: string | null
           id?: string
           image_url?: string | null
           title: string
           updated_at?: string
         }
         Update: {
+          author?: string | null
           author_id?: string | null
           category?: string | null
           content?: string
           created_at?: string
+          editor?: string | null
           id?: string
           image_url?: string | null
           title?: string
