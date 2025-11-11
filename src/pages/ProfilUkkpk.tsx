@@ -133,7 +133,7 @@ const ProfilUkkpk = () => {
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6 text-center">Tentang UKKPK</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8 text-justify">
               {profile?.description || 'Unit Kegiatan Komunikasi dan Penyiaran Kampus (UKKPK) adalah organisasi mahasiswa yang fokus pada pengembangan keterampilan komunikasi, jurnalistik, dan penyiaran. Kami berkomitmen untuk menghasilkan komunikator handal dan profesional yang siap berkontribusi dalam dunia media dan komunikasi.'}
             </p>
 
@@ -145,7 +145,7 @@ const ProfilUkkpk = () => {
                     <Eye className="h-8 w-8 text-primary" />
                     <h3 className="text-2xl font-bold">Visi</h3>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed text-justify">
                     UKKPK UNP dibentuk untuk membina, mendidik mental, spiritual, dan intelektual dalam rangka membentuk pribadi yang jujur, berani, disiplin, pantang menyerah, bertanggung jawab, dan mendarmabaktikan diri serta kemampuan
                     untuk kemajuan dan keberhasilan bangsa dan negara sesuai dengan Tri Darma Perguruan Tinggi.
                   </p>
@@ -158,7 +158,7 @@ const ProfilUkkpk = () => {
                     <Target className="h-8 w-8 text-primary" />
                     <h3 className="text-2xl font-bold">Misi</h3>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed text-justify">
                     UKKPK UNP membekali keterampilan komunikasi untuk meningkatkan intelektualitas, kepemimpinan, penalaran, minat, kegemaran, dan kesejahteraan untuk mahasiswa UNP dan umum, terutama anggota UKKPK UNP.
                   </p>
                 </CardContent>
