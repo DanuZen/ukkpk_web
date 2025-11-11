@@ -79,45 +79,51 @@ const Radio = () => {
   };
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-12">
-        {/* Header with Live Player */}
-        <div className="text-center mb-12 animate-fade-in">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-red-700 text-white px-4 py-2 rounded-full mb-4">
-            <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
-            <span className="text-sm font-medium">LIVE NOW</span>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
-            SIGMA RADIO UKKPK
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8">
-            Dengarkan siaran langsung radio kampus kami
-          </p>
+      {/* Hero Section with Gradient */}
+      <section className="relative py-20 bg-gradient-to-br from-primary/20 via-background to-secondary/20 overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-12 animate-fade-in">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-red-700 text-white px-4 py-2 rounded-full mb-4">
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+              <span className="text-sm font-medium">LIVE NOW</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
+              SIGMA RADIO UKKPK
+            </h1>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8">
+              Dengarkan siaran langsung radio kampus kami
+            </p>
 
-          {/* Live Player Card */}
-          <Card className="max-w-2xl mx-auto border-red-500/50">
-            <CardHeader>
-              <div className="flex items-center justify-center gap-3 mb-2">
-                <RadioIcon className="h-6 w-6 text-red-600" />
-                <CardTitle className="text-2xl">
-                  Now Playing: {currentProgram?.name || "Off Air"}
-                </CardTitle>
-              </div>
-              {currentProgram && (
-                <CardDescription>Hosted by {currentProgram.host}</CardDescription>
-              )}
-            </CardHeader>
-            <CardContent>
-              <Button 
-                size="lg" 
-                className="w-full max-w-xs mx-auto bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800"
-                onClick={handleListen}
-              >
-                <Play className="h-5 w-5 mr-2" />
-                Dengarkan Sekarang
-              </Button>
-            </CardContent>
-          </Card>
+            {/* Live Player Card */}
+            <Card className="max-w-2xl mx-auto border-red-500/50">
+              <CardHeader>
+                <div className="flex items-center justify-center gap-3 mb-2">
+                  <RadioIcon className="h-6 w-6 text-red-600" />
+                  <CardTitle className="text-2xl">
+                    Now Playing: {currentProgram?.name || "Off Air"}
+                  </CardTitle>
+                </div>
+                {currentProgram && (
+                  <CardDescription>Hosted by {currentProgram.host}</CardDescription>
+                )}
+              </CardHeader>
+              <CardContent>
+                <Button 
+                  size="lg" 
+                  className="w-full max-w-xs mx-auto bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800"
+                  onClick={handleListen}
+                >
+                  <Play className="h-5 w-5 mr-2" />
+                  Dengarkan Sekarang
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
         </div>
+      </section>
+
+      <div className="container mx-auto px-4 py-12">
 
         {/* Schedule */}
         <div className="mb-12">
