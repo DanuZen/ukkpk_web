@@ -13,6 +13,7 @@ interface News {
   content: string;
   image_url: string | null;
   created_at: string;
+  published_at: string | null;
 }
 
 const Berita = () => {
@@ -119,7 +120,7 @@ const Berita = () => {
                         Berita
                       </Badge>
                       <span className="text-xs text-muted-foreground">
-                        {formatDate(item.created_at)}
+                        {formatDate(item.published_at || item.created_at)}
                       </span>
                     </div>
                     <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-xl">

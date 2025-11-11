@@ -14,6 +14,7 @@ interface Article {
   category: string | null;
   image_url: string | null;
   created_at: string;
+  published_at: string | null;
 }
 
 interface News {
@@ -22,6 +23,7 @@ interface News {
   content: string;
   image_url: string | null;
   created_at: string;
+  published_at: string | null;
 }
 
 const Index = () => {
@@ -86,7 +88,7 @@ const Index = () => {
                   <CardHeader>
                     <div className="flex items-center gap-2 mb-2">
                       <Badge variant="secondary">{article.category}</Badge>
-                      <span className="text-xs text-muted-foreground">{formatDate(article.created_at)}</span>
+                      <span className="text-xs text-muted-foreground">{formatDate(article.published_at || article.created_at)}</span>
                     </div>
                     <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">{article.title}</CardTitle>
                   </CardHeader>
@@ -113,7 +115,7 @@ const Index = () => {
                   )}
                   <CardHeader>
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs text-muted-foreground">{formatDate(item.created_at)}</span>
+                      <span className="text-xs text-muted-foreground">{formatDate(item.published_at || item.created_at)}</span>
                     </div>
                     <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">{item.title}</CardTitle>
                   </CardHeader>

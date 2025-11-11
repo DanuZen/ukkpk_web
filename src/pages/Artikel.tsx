@@ -14,6 +14,7 @@ interface Article {
   category: string | null;
   image_url: string | null;
   created_at: string;
+  published_at: string | null;
 }
 
 const Artikel = () => {
@@ -120,7 +121,7 @@ const Artikel = () => {
                         </Badge>
                       )}
                       <span className="text-xs text-muted-foreground">
-                        {formatDate(article.created_at)}
+                        {formatDate(article.published_at || article.created_at)}
                       </span>
                     </div>
                     <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-xl">

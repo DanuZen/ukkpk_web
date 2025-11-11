@@ -13,6 +13,7 @@ interface News {
   content: string;
   image_url: string | null;
   created_at: string;
+  published_at: string | null;
   author: string | null;
   editor: string | null;
   cameraman: string | null;
@@ -143,7 +144,7 @@ const BeritaDetail = () => {
               <div className="mb-6 pb-4 border-b border-border space-y-2">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Calendar className="h-4 w-4" />
-                  <span>{formatDate(news.created_at)}</span>
+                  <span>{formatDate(news.published_at || news.created_at)}</span>
                 </div>
                 <div className="text-sm space-y-1">
                   {news.author && (
@@ -284,7 +285,7 @@ const BeritaDetail = () => {
                             {relatedItem.title}
                           </h4>
                           <p className="text-xs text-muted-foreground">
-                            {formatDate(relatedItem.created_at)}
+                            {formatDate(relatedItem.published_at || relatedItem.created_at)}
                           </p>
                         </div>
                       </div>

@@ -24,6 +24,7 @@ export type Database = {
           editor: string | null
           id: string
           image_url: string | null
+          published_at: string | null
           title: string
           updated_at: string
         }
@@ -36,6 +37,7 @@ export type Database = {
           editor?: string | null
           id?: string
           image_url?: string | null
+          published_at?: string | null
           title: string
           updated_at?: string
         }
@@ -48,6 +50,7 @@ export type Database = {
           editor?: string | null
           id?: string
           image_url?: string | null
+          published_at?: string | null
           title?: string
           updated_at?: string
         }
@@ -120,6 +123,7 @@ export type Database = {
           editor: string | null
           id: string
           image_url: string | null
+          published_at: string | null
           title: string
           updated_at: string
         }
@@ -132,6 +136,7 @@ export type Database = {
           editor?: string | null
           id?: string
           image_url?: string | null
+          published_at?: string | null
           title: string
           updated_at?: string
         }
@@ -144,6 +149,7 @@ export type Database = {
           editor?: string | null
           id?: string
           image_url?: string | null
+          published_at?: string | null
           title?: string
           updated_at?: string
         }

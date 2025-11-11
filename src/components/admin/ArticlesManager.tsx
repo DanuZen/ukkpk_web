@@ -30,6 +30,8 @@ export const ArticlesManager = () => {
     author: "",
     editor: "",
     image_url: "",
+    publish_date: "",
+    publish_time: "",
   });
   const [uploading, setUploading] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -77,7 +79,23 @@ export const ArticlesManager = () => {
         imageUrl = publicUrl;
       }
 
-      const dataToSave = { ...formData, image_url: imageUrl };
+      // Prepare published_at timestamp
+      let publishedAt = new Date().toISOString();
+      if (formData.publish_date && formData.publish_time) {
+        publishedAt = new Date(`${formData.publish_date}T${formData.publish_time}`).toISOString();
+      } else if (formData.publish_date) {
+        publishedAt = new Date(formData.publish_date).toISOString();
+      }
+
+      const dataToSave = { 
+        title: formData.title,
+        content: formData.content,
+        category: formData.category,
+        author: formData.author,
+        editor: formData.editor,
+        image_url: imageUrl,
+        published_at: publishedAt
+      };
 
       if (editingId) {
         const { error } = await supabase
@@ -94,7 +112,7 @@ export const ArticlesManager = () => {
         toast.success("Artikel berhasil ditambahkan");
       }
 
-      setFormData({ title: "", content: "", category: "", author: "", editor: "", image_url: "" });
+      setFormData({ title: "", content: "", category: "", author: "", editor: "", image_url: "", publish_date: "", publish_time: "" });
       setEditingId(null);
       setImageFile(null);
       fetchArticles();
@@ -114,6 +132,8 @@ export const ArticlesManager = () => {
       author: "",
       editor: "",
       image_url: article.image_url || "",
+      publish_date: "",
+      publish_time: "",
     });
   };
 
@@ -185,6 +205,30 @@ export const ArticlesManager = () => {
                 }
                 placeholder="Nama penyunting"
               />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="publish_date">Tanggal Publikasi</Label>
+                <Input
+                  id="publish_date"
+                  type="date"
+                  value={formData.publish_date}
+                  onChange={(e) =>
+                    setFormData({ ...formData, publish_date: e.target.value })
+                  }
+                />
+              </div>
+              <div>
+                <Label htmlFor="publish_time">Waktu Publikasi</Label>
+                <Input
+                  id="publish_time"
+                  type="time"
+                  value={formData.publish_time}
+                  onChange={(e) =>
+                    setFormData({ ...formData, publish_time: e.target.value })
+                  }
+                />
+              </div>
             </div>
             <ImageUpload
               id="image-upload"
@@ -286,6 +330,8 @@ export const ArticlesManager = () => {
                       author: "",
                       editor: "",
                       image_url: "",
+                      publish_date: "",
+                      publish_time: "",
                     });
                   }}
                 >

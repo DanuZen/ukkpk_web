@@ -29,6 +29,8 @@ export const NewsManager = () => {
     editor: "",
     cameraman: "",
     image_url: "",
+    publish_date: "",
+    publish_time: "",
   });
   const [uploading, setUploading] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -76,7 +78,23 @@ export const NewsManager = () => {
         imageUrl = publicUrl;
       }
 
-      const dataToSave = { ...formData, image_url: imageUrl };
+      // Prepare published_at timestamp
+      let publishedAt = new Date().toISOString();
+      if (formData.publish_date && formData.publish_time) {
+        publishedAt = new Date(`${formData.publish_date}T${formData.publish_time}`).toISOString();
+      } else if (formData.publish_date) {
+        publishedAt = new Date(formData.publish_date).toISOString();
+      }
+
+      const dataToSave = { 
+        title: formData.title,
+        content: formData.content,
+        author: formData.author,
+        editor: formData.editor,
+        cameraman: formData.cameraman,
+        image_url: imageUrl,
+        published_at: publishedAt
+      };
 
       if (editingId) {
         const { error } = await supabase
@@ -93,7 +111,7 @@ export const NewsManager = () => {
         toast.success("Berita berhasil ditambahkan");
       }
 
-      setFormData({ title: "", content: "", author: "", editor: "", cameraman: "", image_url: "" });
+      setFormData({ title: "", content: "", author: "", editor: "", cameraman: "", image_url: "", publish_date: "", publish_time: "" });
       setEditingId(null);
       setImageFile(null);
       fetchNews();
@@ -113,6 +131,8 @@ export const NewsManager = () => {
       editor: "",
       cameraman: "",
       image_url: item.image_url || "",
+      publish_date: "",
+      publish_time: "",
     });
   };
 
@@ -184,6 +204,30 @@ export const NewsManager = () => {
                 }
                 placeholder="Nama kameramen"
               />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="publish_date">Tanggal Publikasi</Label>
+                <Input
+                  id="publish_date"
+                  type="date"
+                  value={formData.publish_date}
+                  onChange={(e) =>
+                    setFormData({ ...formData, publish_date: e.target.value })
+                  }
+                />
+              </div>
+              <div>
+                <Label htmlFor="publish_time">Waktu Publikasi</Label>
+                <Input
+                  id="publish_time"
+                  type="time"
+                  value={formData.publish_time}
+                  onChange={(e) =>
+                    setFormData({ ...formData, publish_time: e.target.value })
+                  }
+                />
+              </div>
             </div>
             <ImageUpload
               id="news-image-upload"
@@ -280,7 +324,7 @@ export const NewsManager = () => {
                   onClick={() => {
                     setEditingId(null);
                     setImageFile(null);
-                    setFormData({ title: "", content: "", author: "", editor: "", cameraman: "", image_url: "" });
+                    setFormData({ title: "", content: "", author: "", editor: "", cameraman: "", image_url: "", publish_date: "", publish_time: "" });
                   }}
                 >
                   Batal

@@ -14,6 +14,7 @@ interface Article {
   category?: string | null;
   image_url: string | null;
   created_at: string;
+  published_at: string | null;
   author: string | null;
   editor: string | null;
 }
@@ -120,7 +121,7 @@ const ArtikelDetail = () => {
               <div className="mb-6 pb-4 border-b border-border space-y-2">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Calendar className="h-4 w-4" />
-                  <span>{formatDate(article.created_at)}</span>
+                  <span>{formatDate(article.published_at || article.created_at)}</span>
                 </div>
                 <div className="text-sm space-y-1">
                   {article.author && (
@@ -241,7 +242,7 @@ const ArtikelDetail = () => {
                             {relatedArticle.title}
                           </h4>
                           <p className="text-xs text-muted-foreground">
-                            {formatDate(relatedArticle.created_at)}
+                            {formatDate(relatedArticle.published_at || relatedArticle.created_at)}
                           </p>
                         </div>
                       </div>
