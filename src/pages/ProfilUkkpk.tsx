@@ -208,9 +208,9 @@ const ProfilUkkpk = () => {
       <section className="py-16 px-4 bg-muted/30">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center">Bidang Kegiatan</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto justify-items-center">
             {features.map((feature, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 w-full max-w-sm">
                 <CardContent className="pt-6 text-center flex flex-col items-center">
                   <div className="inline-flex p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
                     {feature.icon}
