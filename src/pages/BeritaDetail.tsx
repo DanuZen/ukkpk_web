@@ -4,7 +4,7 @@ import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
-import { ArrowLeft, Calendar } from 'lucide-react';
+import { ArrowLeft, Calendar, Share2, Facebook, Twitter, MessageCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface News {
@@ -158,6 +158,54 @@ const BeritaDetail = () => {
                       <span className="font-medium text-foreground">{news.cameraman}</span>
                     </p>
                   )}
+                </div>
+              </div>
+
+              {/* Share Buttons */}
+              <div className="mb-6 pb-4 border-b border-border">
+                <div className="flex items-center gap-2 mb-3">
+                  <Share2 className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm font-medium text-muted-foreground">Bagikan:</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-colors"
+                    onClick={() => {
+                      const url = window.location.href;
+                      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank', 'width=600,height=400');
+                    }}
+                  >
+                    <Facebook className="h-4 w-4" />
+                    Facebook
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 hover:bg-sky-500 hover:text-white hover:border-sky-500 transition-colors"
+                    onClick={() => {
+                      const url = window.location.href;
+                      const text = news.title;
+                      window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank', 'width=600,height=400');
+                    }}
+                  >
+                    <Twitter className="h-4 w-4" />
+                    Twitter
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 hover:bg-green-500 hover:text-white hover:border-green-500 transition-colors"
+                    onClick={() => {
+                      const url = window.location.href;
+                      const text = news.title;
+                      window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+                    }}
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    WhatsApp
+                  </Button>
                 </div>
               </div>
 
