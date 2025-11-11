@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RichTextEditor } from "@/components/admin/RichTextEditor";
+import { ImageUpload } from "@/components/admin/ImageUpload";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
@@ -192,31 +193,14 @@ export const NewsManager = () => {
                 placeholder="Nama kameramen"
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="news-image-upload">Upload Gambar</Label>
-              <div className="flex gap-2">
-                <Input
-                  id="news-image-upload"
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-                  disabled={uploading}
-                />
-                {formData.image_url && (
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setFormData({ ...formData, image_url: "" })}
-                  >
-                    Hapus
-                  </Button>
-                )}
-              </div>
-              {formData.image_url && (
-                <img src={formData.image_url} alt="Preview" className="w-32 h-32 object-cover rounded" />
-              )}
-            </div>
+            <ImageUpload
+              id="news-image-upload"
+              label="Upload Gambar"
+              currentImageUrl={formData.image_url}
+              onFileSelect={(file) => setImageFile(file)}
+              onRemove={() => setFormData({ ...formData, image_url: "" })}
+              disabled={uploading}
+            />
             <div>
               <Label htmlFor="content">Konten</Label>
               <Tabs defaultValue="edit" className="w-full mt-2">

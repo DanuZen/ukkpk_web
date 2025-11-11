@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { ImageUpload } from "@/components/admin/ImageUpload";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
@@ -112,35 +112,14 @@ export const ProfileManager = () => {
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="banner-upload">Banner Profil</Label>
-            <div className="flex gap-2">
-              <Input
-                id="banner-upload"
-                type="file"
-                accept="image/*"
-                onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-                disabled={uploading}
-              />
-              {formData.banner_url && (
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setFormData({ ...formData, banner_url: "" })}
-                >
-                  Hapus Banner
-                </Button>
-              )}
-            </div>
-            {formData.banner_url && (
-              <img 
-                src={formData.banner_url} 
-                alt="Banner Preview" 
-                className="w-full h-48 object-cover rounded"
-              />
-            )}
-          </div>
+          <ImageUpload
+            id="banner-upload"
+            label="Banner Profil"
+            currentImageUrl={formData.banner_url}
+            onFileSelect={(file) => setImageFile(file)}
+            onRemove={() => setFormData({ ...formData, banner_url: "" })}
+            disabled={uploading}
+          />
 
           <div className="space-y-2">
             <Label htmlFor="description">Deskripsi UKKPK</Label>

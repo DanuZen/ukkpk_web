@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { ImageUpload } from '@/components/admin/ImageUpload';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
@@ -111,27 +111,19 @@ export const HomeSlideshowManager = () => {
       <CardContent className="space-y-6">
         {/* Upload Section */}
         <div className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="slideshow-upload">Upload Foto (Maks. 10)</Label>
-            <div className="flex gap-2">
-              <Input
-                id="slideshow-upload"
-                type="file"
-                accept="image/*"
-                onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-                disabled={uploading || images.length >= 10}
-              />
-              <Button 
-                onClick={handleUpload} 
-                disabled={uploading || !imageFile || images.length >= 10}
-              >
-                {uploading ? 'Uploading...' : 'Tambah Foto'}
-              </Button>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              Jumlah foto saat ini: {images.length}/10
-            </p>
-          </div>
+          <ImageUpload
+            id="slideshow-upload"
+            label={`Upload Foto Slideshow (${images.length}/10)`}
+            onFileSelect={(file) => setImageFile(file)}
+            disabled={uploading || images.length >= 10}
+          />
+          <Button 
+            onClick={handleUpload} 
+            disabled={uploading || !imageFile || images.length >= 10}
+            className="w-full"
+          >
+            {uploading ? 'Uploading...' : 'Tambah Foto ke Slideshow'}
+          </Button>
         </div>
 
         {/* Images Grid */}
