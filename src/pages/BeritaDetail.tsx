@@ -4,7 +4,7 @@ import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
-import { ArrowLeft, Calendar, Share2, Facebook, Twitter, MessageCircle } from 'lucide-react';
+import { ArrowLeft, Calendar, Share2, Facebook, Twitter, MessageCircle, Copy } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface News {
@@ -184,7 +184,7 @@ const BeritaDetail = () => {
                   <Share2 className="h-4 w-4 text-muted-foreground" />
                   <span className="text-sm font-medium text-muted-foreground">Bagikan:</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   <Button
                     variant="outline"
                     size="sm"
@@ -222,6 +222,22 @@ const BeritaDetail = () => {
                   >
                     <MessageCircle className="h-4 w-4" />
                     WhatsApp
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 hover:bg-primary hover:text-white hover:border-primary transition-colors"
+                    onClick={() => {
+                      const url = window.location.href;
+                      navigator.clipboard.writeText(url).then(() => {
+                        toast.success('Link berhasil disalin!');
+                      }).catch(() => {
+                        toast.error('Gagal menyalin link');
+                      });
+                    }}
+                  >
+                    <Copy className="h-4 w-4" />
+                    Salin Link
                   </Button>
                 </div>
               </div>
