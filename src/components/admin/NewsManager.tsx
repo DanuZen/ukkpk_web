@@ -22,6 +22,7 @@ export const NewsManager = () => {
   const [formData, setFormData] = useState({
     title: "",
     content: "",
+    author: "",
     image_url: "",
   });
   const [uploading, setUploading] = useState(false);
@@ -97,7 +98,7 @@ export const NewsManager = () => {
         toast.success("Berita berhasil ditambahkan");
       }
 
-      setFormData({ title: "", content: "", image_url: "" });
+      setFormData({ title: "", content: "", author: "", image_url: "" });
       setEditingId(null);
       setImageFile(null);
       fetchNews();
@@ -111,6 +112,7 @@ export const NewsManager = () => {
     setFormData({
       title: item.title,
       content: item.content,
+      author: "",
       image_url: item.image_url || "",
     });
   };
@@ -147,7 +149,19 @@ export const NewsManager = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, title: e.target.value })
                 }
+                placeholder="Masukkan judul berita"
                 required
+              />
+            </div>
+            <div>
+              <Label htmlFor="author">Penulis</Label>
+              <Input
+                id="author"
+                value={formData.author}
+                onChange={(e) =>
+                  setFormData({ ...formData, author: e.target.value })
+                }
+                placeholder="Nama penulis"
               />
             </div>
             <div className="space-y-2">
@@ -183,6 +197,7 @@ export const NewsManager = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, content: e.target.value })
                 }
+                placeholder="Tulis isi berita di sini..."
                 rows={6}
                 required
               />
@@ -198,7 +213,7 @@ export const NewsManager = () => {
                   onClick={() => {
                     setEditingId(null);
                     setImageFile(null);
-                    setFormData({ title: "", content: "", image_url: "" });
+                    setFormData({ title: "", content: "", author: "", image_url: "" });
                   }}
                 >
                   Batal
