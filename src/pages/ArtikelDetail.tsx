@@ -116,39 +116,64 @@ const ArtikelDetail = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Content */}
             <div className="lg:col-span-2">
-              {/* Article Header */}
-              <div className="mb-6">
-                <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight text-primary">
-                  {article.title}
-                </h1>
-                <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center">
-                    <Calendar className="h-4 w-4 mr-1" />
-                    {formatDate(article.created_at)}
-                  </div>
-                  {article.category && (
-                    <Badge variant="secondary">
-                      {article.category}
-                    </Badge>
-                  )}
-                </div>
-              </div>
+              {/* Article Title */}
+              <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-tight text-primary">
+                {article.title}
+              </h1>
 
               {/* Featured Image */}
               {article.image_url && (
-                <div className="relative w-full h-[400px] mb-6 rounded-lg overflow-hidden">
-                  <img
-                    src={article.image_url}
-                    alt={article.title}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="mb-4">
+                  <div className="relative w-full h-[400px] mb-2 overflow-hidden">
+                    <img
+                      src={article.image_url}
+                      alt={article.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <p className="text-sm text-muted-foreground italic mb-4">
+                    {article.title}
+                  </p>
                 </div>
               )}
 
+              {/* Article Metadata */}
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-border">
+                <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                  <span>{formatDate(article.created_at)}</span>
+                  <span>Reporter: Redaksi</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Badge variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">
+                    {article.category || 'ARTIKEL'}
+                  </Badge>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-1">
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                      <span>98</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                      </svg>
+                      <span>0</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* Article Content */}
               <div className="prose prose-lg max-w-none mb-8">
-                <div className="text-foreground/90 leading-relaxed whitespace-pre-wrap text-justify">
-                  {article.content}
+                <div className="text-foreground/90 leading-relaxed text-justify space-y-4">
+                  <p className="font-semibold text-foreground">
+                    <span className="text-primary">Ganto.co</span> - {article.content.split('\n\n')[0]}
+                  </p>
+                  {article.content.split('\n\n').slice(1).map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))}
                 </div>
               </div>
 
