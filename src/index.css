@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
+    --background: 0 0% 99%;
     --foreground: 0 0% 5%;
 
     --card: 0 0% 100%;
@@ -17,86 +17,92 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 5%;
 
-    /* Merah yang lebih profesional dan tidak terlalu terang */
-    --primary: 356 75% 53%;
+    /* Merah modern sebagai warna utama */
+    --primary: 0 84% 60%;
     --primary-foreground: 0 0% 100%;
 
-    /* Biru yang lebih sophisticated */
-    --secondary: 211 85% 50%;
+    /* Merah gelap untuk variasi */
+    --secondary: 0 72% 45%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 0 0% 97%;
+    --muted-foreground: 0 0% 45%;
 
-    /* Accent menggunakan biru yang lebih terang untuk variasi */
-    --accent: 207 90% 54%;
+    /* Coral/Orange-red untuk accent */
+    --accent: 14 90% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 92%;
-    --ring: 356 75% 53%;
+    --border: 0 0% 92%;
+    --input: 0 0% 94%;
+    --ring: 0 84% 60%;
 
-    --radius: 0.75rem;
+    --radius: 0.875rem;
 
-    /* Modern gradients dengan warna yang lebih seimbang */
-    --gradient-primary: linear-gradient(135deg, hsl(356 75% 53%) 0%, hsl(356 70% 45%) 100%);
-    --gradient-secondary: linear-gradient(135deg, hsl(211 85% 50%) 0%, hsl(211 80% 42%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(207 90% 54%) 0%, hsl(207 85% 46%) 100%);
-    --gradient-hero: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
-    --gradient-card: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.03) 100%);
+    /* Modern gradients dengan gradasi merah sophisticated */
+    --gradient-primary: linear-gradient(135deg, hsl(0 84% 60%) 0%, hsl(0 72% 45%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(0 72% 45%) 0%, hsl(0 60% 35%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(14 90% 60%) 0%, hsl(0 84% 60%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(0 84% 60% / 0.95) 0%, hsl(0 60% 35% / 0.9) 100%);
+    --gradient-card: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.02) 100%);
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(0 84% 60% / 0.15) 0px, transparent 50%),
+                     radial-gradient(at 80% 80%, hsl(14 90% 60% / 0.1) 0px, transparent 50%);
     
-    /* Shadows dengan warna yang lebih halus */
+    /* Modern shadows dengan red glow */
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
-    --shadow-primary: 0 8px 24px rgba(220, 38, 38, 0.12);
-    --shadow-secondary: 0 8px 24px rgba(37, 99, 235, 0.12);
-    --shadow-accent: 0 8px 24px rgba(56, 189, 248, 0.12);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.1);
+    --shadow-primary: 0 8px 32px rgba(239, 68, 68, 0.2);
+    --shadow-secondary: 0 8px 32px rgba(185, 28, 28, 0.18);
+    --shadow-accent: 0 8px 32px rgba(251, 146, 60, 0.2);
+    --shadow-glow: 0 0 40px rgba(239, 68, 68, 0.15);
 
-    /* Badge colors yang lebih seimbang */
-    --badge-kegiatan: 356 75% 53%;
-    --badge-berita: 211 85% 50%;
-    --badge-event: 207 90% 54%;
-    --badge-uncategorized: 0 0% 50%;
+    /* Badge colors dengan gradasi merah */
+    --badge-kegiatan: 0 84% 60%;
+    --badge-berita: 0 72% 45%;
+    --badge-event: 14 90% 60%;
+    --badge-uncategorized: 0 0% 55%;
 
-    /* Transition */
+    /* Modern transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-spring: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   .dark {
-    --background: 0 0% 8%;
+    --background: 0 0% 6%;
     --foreground: 0 0% 98%;
 
-    --card: 0 0% 12%;
+    --card: 0 0% 10%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 12%;
+    --popover: 0 0% 10%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 356 75% 58%;
+    --primary: 0 84% 65%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 211 85% 55%;
+    --secondary: 0 72% 50%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 16%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 207 90% 60%;
+    --accent: 14 90% 65%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 356 75% 58%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 84% 65%;
 
-    --gradient-card: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0.3) 100%);
+    --gradient-card: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.4) 100%);
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(0 84% 65% / 0.1) 0px, transparent 50%),
+                     radial-gradient(at 80% 80%, hsl(14 90% 65% / 0.08) 0px, transparent 50%);
   }
 }
 
