@@ -3,7 +3,6 @@ import { Layout } from '@/components/Layout';
 import { Card, CardContent } from '@/components/ui/card';
 import { supabase } from '@/integrations/supabase/client';
 import { Users, Target, Eye, Megaphone, FileText, Radio, Briefcase, ClipboardList, Users2, Handshake } from 'lucide-react';
-import { OrganizationChart } from '@/components/OrganizationChart';
 
 interface OrgMember {
   id: string;
@@ -268,7 +267,35 @@ const ProfilUkkpk = () => {
       {/* Struktur Organisasi */}
       <section className="py-16 px-4 bg-muted/30">
         <div className="container mx-auto">
-          <OrganizationChart />
+          <h2 className="text-3xl font-bold mb-12 text-center">Struktur Organisasi</h2>
+          {members.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {members.map((member) => (
+                <Card key={member.id} className="group hover:shadow-lg transition-all duration-300">
+                  <CardContent className="pt-6 text-center">
+                    <div className="mb-4 mx-auto w-24 h-24 rounded-full overflow-hidden bg-muted group-hover:scale-105 transition-transform">
+                      {member.photo_url ? (
+                        <img src={member.photo_url} alt={member.name} className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <Users className="h-12 w-12 text-muted-foreground" />
+                        </div>
+                      )}
+                    </div>
+                    <h3 className="font-semibold mb-1">{member.name}</h3>
+                    <p className="text-sm text-muted-foreground">{member.position}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-muted-foreground">
+              Struktur organisasi DPH Dan Pengurus UKKPK 2025
+              <div className="mt-8 max-w-4xl mx-auto">
+                <img src="/images/struktur.jpg" alt="Struktur Organisasi UKKPK 2025" className="w-full h-auto rounded-lg shadow-lg" />
+              </div>
+            </p>
+          )}
         </div>
       </section>
 
