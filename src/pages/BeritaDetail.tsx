@@ -237,7 +237,7 @@ const BeritaDetail = () => {
                     }}
                   >
                     <Copy className="h-4 w-4" />
-                    Salin Link
+                    Salin URL
                   </Button>
                 </div>
               </div>
