@@ -160,17 +160,6 @@ const Radio = () => {
             </div>
           )}
         </div>
-
-        {/* CTA Section */}
-        <div className="bg-gradient-to-br from-red-500/10 via-red-500/5 to-transparent rounded-2xl p-8 md:p-12 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ingin Jadi Penyiar?</h2>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Bergabunglah dengan tim radio UKKPK dan wujudkan impian menjadi penyiar radio profesional
-          </p>
-          <Button size="lg" className="bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800">
-            Daftar Sekarang
-          </Button>
-        </div>
       </div>
     </Layout>
   );
