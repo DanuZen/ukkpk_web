@@ -12,17 +12,34 @@ interface OrgMember {
   order_index: number | null;
 }
 
+interface ProfileSettings {
+  id: string;
+  banner_url: string | null;
+  description: string | null;
+}
+
 const ProfilUkkpk = () => {
   const [members, setMembers] = useState<OrgMember[]>([]);
+  const [profile, setProfile] = useState<ProfileSettings | null>(null);
 
   useEffect(() => {
     fetchMembers();
+    fetchProfile();
   }, []);
 
   const fetchMembers = async () => {
     const { data } = await supabase.from('organization').select('*').order('order_index', { ascending: true });
-
     if (data) setMembers(data);
+  };
+
+  const fetchProfile = async () => {
+    const { data } = await supabase
+      .from('profile_settings')
+      .select('*')
+      .limit(1)
+      .maybeSingle();
+    
+    if (data) setProfile(data);
   };
 
   const features = [
@@ -83,14 +100,33 @@ const ProfilUkkpk = () => {
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative py-20 px-4 bg-gradient-to-br from-primary/20 via-background to-secondary/20">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d')] opacity-5 bg-cover bg-center"></div>
-        <div className="container mx-auto text-center relative z-10">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">Profil UKKPK</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Unit Kegiatan Komunikasi dan Penyiaran Kampus</p>
-        </div>
-      </section>
+      {/* Banner Section */}
+      {profile?.banner_url && (
+        <section className="relative w-full h-64 md:h-96 overflow-hidden">
+          <img 
+            src={profile.banner_url} 
+            alt="UKKPK Banner" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80"></div>
+          <div className="absolute bottom-8 left-0 right-0 text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
+              Profil UKKPK
+            </h1>
+          </div>
+        </section>
+      )}
+
+      {/* Hero Section (if no banner) */}
+      {!profile?.banner_url && (
+        <section className="relative py-20 px-4 bg-gradient-to-br from-primary/20 via-background to-secondary/20">
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d')] opacity-5 bg-cover bg-center"></div>
+          <div className="container mx-auto text-center relative z-10">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">Profil UKKPK</h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Unit Kegiatan Komunikasi dan Penyiaran Kampus</p>
+          </div>
+        </section>
+      )}
 
       {/* Tentang UKKPK */}
       <section className="py-16 px-4 bg-background">
@@ -98,8 +134,7 @@ const ProfilUkkpk = () => {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6 text-center">Tentang UKKPK</h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              Unit Kegiatan Komunikasi dan Penyiaran Kampus (UKKPK) adalah organisasi mahasiswa yang fokus pada pengembangan keterampilan komunikasi, jurnalistik, dan penyiaran. Kami berkomitmen untuk menghasilkan komunikator handal dan
-              profesional yang siap berkontribusi dalam dunia media dan komunikasi.
+              {profile?.description || 'Unit Kegiatan Komunikasi dan Penyiaran Kampus (UKKPK) adalah organisasi mahasiswa yang fokus pada pengembangan keterampilan komunikasi, jurnalistik, dan penyiaran. Kami berkomitmen untuk menghasilkan komunikator handal dan profesional yang siap berkontribusi dalam dunia media dan komunikasi.'}
             </p>
 
             {/* Visi & Misi */}

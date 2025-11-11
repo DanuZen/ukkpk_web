@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 
 interface ArticleCardProps {
-  id: string;
+  id?: string;
   title: string;
   category: string;
   image?: string;
-  link: string;
+  link?: string;
+  excerpt?: string;
+  date?: string;
 }
 
 const categoryColors: Record<string, string> = {
@@ -16,7 +18,7 @@ const categoryColors: Record<string, string> = {
   UNCATEGORIZED: "bg-[hsl(var(--badge-uncategorized))] hover:bg-[hsl(var(--badge-uncategorized))]/90",
 };
 
-export const ArticleCard = ({ title, category, image, link }: ArticleCardProps) => {
+export const ArticleCard = ({ title, category, image, link = "#", excerpt, date }: ArticleCardProps) => {
   return (
     <Link to={link} className="group">
       <div className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-2 transition-all duration-500 h-full flex flex-col animate-fade-up">
@@ -49,10 +51,16 @@ export const ArticleCard = ({ title, category, image, link }: ArticleCardProps) 
         </div>
 
         {/* Content */}
-        <div className="p-6 flex-1 flex items-center bg-gradient-to-b from-card to-card/50">
-          <h3 className="text-lg font-bold text-card-foreground group-hover:text-primary transition-colors duration-300 line-clamp-3 leading-relaxed">
+        <div className="p-6 flex-1 flex flex-col bg-gradient-to-b from-card to-card/50">
+          <h3 className="text-lg font-bold text-card-foreground group-hover:text-primary transition-colors duration-300 line-clamp-2 leading-relaxed mb-2">
             {title}
           </h3>
+          {excerpt && (
+            <p className="text-sm text-muted-foreground line-clamp-2 mb-2">{excerpt}</p>
+          )}
+          {date && (
+            <p className="text-xs text-muted-foreground mt-auto">{date}</p>
+          )}
         </div>
 
         {/* Hover effect line */}

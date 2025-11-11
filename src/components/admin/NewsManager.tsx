@@ -24,6 +24,8 @@ export const NewsManager = () => {
     content: "",
     image_url: "",
   });
+  const [uploading, setUploading] = useState(false);
+  const [imageFile, setImageFile] = useState<File | null>(null);
 
   useEffect(() => {
     fetchNews();
@@ -42,8 +44,42 @@ export const NewsManager = () => {
     setNews(data || []);
   };
 
+  const handleImageUpload = async (file: File) => {
+    setUploading(true);
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Math.random()}.${fileExt}`;
+      const filePath = `news/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('uploads')
+        .upload(filePath, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('uploads')
+        .getPublicUrl(filePath);
+
+      setFormData(prev => ({ ...prev, image_url: publicUrl }));
+      toast.success("Gambar berhasil diupload");
+    } catch (error) {
+      toast.error("Gagal upload gambar");
+      console.error(error);
+    } finally {
+      setUploading(false);
+      setImageFile(null);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Upload image if selected
+    if (imageFile) {
+      await handleImageUpload(imageFile);
+      return;
+    }
 
     try {
       if (editingId) {
@@ -63,6 +99,7 @@ export const NewsManager = () => {
 
       setFormData({ title: "", content: "", image_url: "" });
       setEditingId(null);
+      setImageFile(null);
       fetchNews();
     } catch (error: any) {
       toast.error(error.message || "Terjadi kesalahan");
@@ -113,15 +150,30 @@ export const NewsManager = () => {
                 required
               />
             </div>
-            <div>
-              <Label htmlFor="image_url">URL Gambar</Label>
-              <Input
-                id="image_url"
-                value={formData.image_url}
-                onChange={(e) =>
-                  setFormData({ ...formData, image_url: e.target.value })
-                }
-              />
+            <div className="space-y-2">
+              <Label htmlFor="news-image-upload">Upload Gambar</Label>
+              <div className="flex gap-2">
+                <Input
+                  id="news-image-upload"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+                  disabled={uploading}
+                />
+                {formData.image_url && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setFormData({ ...formData, image_url: "" })}
+                  >
+                    Hapus
+                  </Button>
+                )}
+              </div>
+              {formData.image_url && (
+                <img src={formData.image_url} alt="Preview" className="w-32 h-32 object-cover rounded" />
+              )}
             </div>
             <div>
               <Label htmlFor="content">Konten</Label>
@@ -136,8 +188,8 @@ export const NewsManager = () => {
               />
             </div>
             <div className="flex gap-2">
-              <Button type="submit">
-                {editingId ? "Update" : "Tambah"}
+              <Button type="submit" disabled={uploading}>
+                {uploading ? "Uploading..." : editingId ? "Update" : "Tambah"}
               </Button>
               {editingId && (
                 <Button
@@ -145,6 +197,7 @@ export const NewsManager = () => {
                   variant="outline"
                   onClick={() => {
                     setEditingId(null);
+                    setImageFile(null);
                     setFormData({ title: "", content: "", image_url: "" });
                   }}
                 >

@@ -13,7 +13,7 @@ import logoUkkpk from "@/assets/logo-ukkpk.png";
 const navItems = [
   { name: "HOME", path: "/" },
   { name: "ARTIKEL", path: "/artikel" },
-  { name: "EVENT", path: "/event" },
+  { name: "BERITA", path: "/berita" },
   { name: "RADIO", path: "/radio" },
   { name: "PROFIL UKKPK", path: "/profil-ukkpk" },
 ];
