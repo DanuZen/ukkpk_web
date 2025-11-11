@@ -161,6 +161,23 @@ const BeritaDetail = () => {
                 </div>
               </div>
 
+              {/* News Content */}
+              <div className="prose prose-lg max-w-none mb-8">
+                <div 
+                  className="text-foreground/90 leading-relaxed article-content"
+                  dangerouslySetInnerHTML={{ __html: news.content }}
+                />
+              </div>
+
+              {/* Editor Info */}
+              {news.editor && (
+                <div className="mb-6 pb-4 border-b border-border">
+                  <p className="text-sm text-muted-foreground">
+                    Penyunting: <span className="font-medium text-foreground">{news.editor}</span>
+                  </p>
+                </div>
+              )}
+
               {/* Share Buttons */}
               <div className="mb-6 pb-4 border-b border-border">
                 <div className="flex items-center gap-2 mb-3">
@@ -208,23 +225,6 @@ const BeritaDetail = () => {
                   </Button>
                 </div>
               </div>
-
-              {/* News Content */}
-              <div className="prose prose-lg max-w-none mb-8">
-                <div 
-                  className="text-foreground/90 leading-relaxed article-content"
-                  dangerouslySetInnerHTML={{ __html: news.content }}
-                />
-              </div>
-
-              {/* Editor Info */}
-              {news.editor && (
-                <div className="mb-6 pb-4 border-b border-border">
-                  <p className="text-sm text-muted-foreground">
-                    Penyunting: <span className="font-medium text-foreground">{news.editor}</span>
-                  </p>
-                </div>
-              )}
 
               {/* Bottom Navigation */}
               <div className="mt-8 pt-6 border-t border-border">
