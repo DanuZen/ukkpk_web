@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Layout } from '@/components/Layout';
-import { ArticleCard } from '@/components/ArticleCard';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
@@ -57,45 +58,83 @@ const Berita = () => {
 
   return (
     <Layout>
-      <section className="py-16 px-4 bg-gradient-to-br from-red-50/50 via-background to-red-50/30">
-        <div className="container mx-auto">
-          <h1 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent">
-            Berita Terkini
-          </h1>
-
-          {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-12">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Cari berita berdasarkan judul atau isi..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 py-6 text-base"
-              />
-            </div>
+      {/* Hero Section */}
+      <section className="relative py-20 bg-gradient-to-br from-primary/20 via-background to-secondary/20 overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-in">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              Berita Terkini
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground">
+              Informasi dan berita terbaru seputar UKKPK dan kegiatan kampus
+            </p>
           </div>
+        </div>
+      </section>
 
-          {/* News Grid */}
-          {filteredNews.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground text-lg">
-                {searchQuery ? 'Tidak ada berita yang cocok dengan pencarian.' : 'Belum ada berita.'}
-              </p>
+      {/* Search Section */}
+      <section className="py-8 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto relative">
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
+            <Input
+              type="text"
+              placeholder="Cari berita berdasarkan judul atau konten..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-12 py-6 text-lg shadow-lg"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* News Grid */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          {filteredNews.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredNews.map((item) => (
+                <Card 
+                  key={item.id} 
+                  className="overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+                >
+                  {item.image_url && (
+                    <div className="relative overflow-hidden h-56">
+                      <img
+                        src={item.image_url}
+                        alt={item.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                  )}
+                  <CardHeader className="space-y-3">
+                    <div className="flex items-center justify-between gap-2">
+                      <Badge className="bg-primary/10 text-primary hover:bg-primary/20">
+                        Berita
+                      </Badge>
+                      <span className="text-xs text-muted-foreground">
+                        {formatDate(item.created_at)}
+                      </span>
+                    </div>
+                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-xl">
+                      {item.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground line-clamp-4 leading-relaxed">
+                      {item.content}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredNews.map((item) => (
-                <ArticleCard
-                  key={item.id}
-                  title={item.title}
-                  excerpt={item.content.substring(0, 150) + '...'}
-                  image={item.image_url || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c'}
-                  category="Berita"
-                  date={formatDate(item.created_at)}
-                />
-              ))}
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">
+                {searchQuery ? 'Berita tidak ditemukan' : 'Belum ada berita'}
+              </p>
             </div>
           )}
         </div>
