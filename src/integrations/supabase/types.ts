@@ -106,27 +106,36 @@ export type Database = {
       }
       news: {
         Row: {
+          author: string | null
           author_id: string | null
+          cameraman: string | null
           content: string
           created_at: string
+          editor: string | null
           id: string
           image_url: string | null
           title: string
           updated_at: string
         }
         Insert: {
+          author?: string | null
           author_id?: string | null
+          cameraman?: string | null
           content: string
           created_at?: string
+          editor?: string | null
           id?: string
           image_url?: string | null
           title: string
           updated_at?: string
         }
         Update: {
+          author?: string | null
           author_id?: string | null
+          cameraman?: string | null
           content?: string
           created_at?: string
+          editor?: string | null
           id?: string
           image_url?: string | null
           title?: string
@@ -136,8 +145,10 @@ export type Database = {
       }
       organization: {
         Row: {
+          category: string | null
           created_at: string
           id: string
+          level: number | null
           name: string
           order_index: number | null
           photo_url: string | null
@@ -145,8 +156,10 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          category?: string | null
           created_at?: string
           id?: string
+          level?: number | null
           name: string
           order_index?: number | null
           photo_url?: string | null
@@ -154,8 +167,10 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          category?: string | null
           created_at?: string
           id?: string
+          level?: number | null
           name?: string
           order_index?: number | null
           photo_url?: string | null
