@@ -5,8 +5,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RichTextEditor } from "@/components/admin/RichTextEditor";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil, Trash2, Eye, Edit3 } from "lucide-react";
 
 interface News {
   id: string;
@@ -217,11 +219,79 @@ export const NewsManager = () => {
             </div>
             <div>
               <Label htmlFor="content">Konten</Label>
-              <RichTextEditor
-                content={formData.content}
-                onChange={(html) => setFormData({ ...formData, content: html })}
-                placeholder="Tulis isi berita di sini..."
-              />
+              <Tabs defaultValue="edit" className="w-full mt-2">
+                <TabsList className="grid w-full grid-cols-2 max-w-[400px]">
+                  <TabsTrigger value="edit" className="flex items-center gap-2">
+                    <Edit3 className="h-4 w-4" />
+                    Edit
+                  </TabsTrigger>
+                  <TabsTrigger value="preview" className="flex items-center gap-2">
+                    <Eye className="h-4 w-4" />
+                    Preview
+                  </TabsTrigger>
+                </TabsList>
+                <TabsContent value="edit" className="mt-4">
+                  <RichTextEditor
+                    content={formData.content}
+                    onChange={(html) => setFormData({ ...formData, content: html })}
+                    placeholder="Tulis isi berita di sini..."
+                  />
+                </TabsContent>
+                <TabsContent value="preview" className="mt-4">
+                  <Card>
+                    <CardContent className="pt-6">
+                      {/* Preview Header */}
+                      <div className="mb-6">
+                        <h1 className="text-3xl font-bold mb-4 text-primary">
+                          {formData.title || "Judul Berita"}
+                        </h1>
+                        
+                        {formData.image_url && (
+                          <div className="mb-4">
+                            <img 
+                              src={formData.image_url} 
+                              alt={formData.title} 
+                              className="w-full h-[400px] object-cover rounded-lg"
+                            />
+                          </div>
+                        )}
+
+                        <div className="flex items-center justify-between mb-6 pb-4 border-b">
+                          <div className="flex flex-col gap-2 text-sm text-muted-foreground">
+                            <span>{new Date().toLocaleDateString('id-ID', {
+                              day: 'numeric',
+                              month: 'long',
+                              year: 'numeric'
+                            })}</span>
+                            <div className="flex flex-wrap gap-2">
+                              {formData.author && <span>Penulis: {formData.author}</span>}
+                              {formData.editor && <span>• Penyunting: {formData.editor}</span>}
+                              {formData.cameraman && <span>• Kameramen: {formData.cameraman}</span>}
+                            </div>
+                          </div>
+                          <Badge variant="secondary" className="bg-primary/10 text-primary">
+                            BERITA
+                          </Badge>
+                        </div>
+                      </div>
+
+                      {/* Preview Content */}
+                      <div className="prose prose-lg max-w-none">
+                        {formData.content ? (
+                          <div 
+                            className="text-foreground/90 leading-relaxed article-content"
+                            dangerouslySetInnerHTML={{ __html: formData.content }}
+                          />
+                        ) : (
+                          <p className="text-muted-foreground italic">
+                            Konten berita akan ditampilkan di sini...
+                          </p>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+              </Tabs>
             </div>
             <div className="flex gap-2">
               <Button type="submit" disabled={uploading}>
