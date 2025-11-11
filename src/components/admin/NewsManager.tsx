@@ -23,6 +23,7 @@ export const NewsManager = () => {
     title: "",
     content: "",
     author: "",
+    cameraman: "",
     image_url: "",
   });
   const [uploading, setUploading] = useState(false);
@@ -98,7 +99,7 @@ export const NewsManager = () => {
         toast.success("Berita berhasil ditambahkan");
       }
 
-      setFormData({ title: "", content: "", author: "", image_url: "" });
+      setFormData({ title: "", content: "", author: "", cameraman: "", image_url: "" });
       setEditingId(null);
       setImageFile(null);
       fetchNews();
@@ -113,6 +114,7 @@ export const NewsManager = () => {
       title: item.title,
       content: item.content,
       author: "",
+      cameraman: "",
       image_url: item.image_url || "",
     });
   };
@@ -164,6 +166,17 @@ export const NewsManager = () => {
                 placeholder="Nama penulis"
               />
             </div>
+            <div>
+              <Label htmlFor="cameraman">Kameramen</Label>
+              <Input
+                id="cameraman"
+                value={formData.cameraman}
+                onChange={(e) =>
+                  setFormData({ ...formData, cameraman: e.target.value })
+                }
+                placeholder="Nama kameramen"
+              />
+            </div>
             <div className="space-y-2">
               <Label htmlFor="news-image-upload">Upload Gambar</Label>
               <div className="flex gap-2">
@@ -213,7 +226,7 @@ export const NewsManager = () => {
                   onClick={() => {
                     setEditingId(null);
                     setImageFile(null);
-                    setFormData({ title: "", content: "", author: "", image_url: "" });
+                    setFormData({ title: "", content: "", author: "", cameraman: "", image_url: "" });
                   }}
                 >
                   Batal
