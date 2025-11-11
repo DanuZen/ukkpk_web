@@ -162,7 +162,7 @@ const BeritaDetail = () => {
 
             {/* Sidebar - Related News */}
             <div className="lg:col-span-1">
-              <div className="sticky top-24">
+              <div>
                 <h3 className="text-lg font-bold mb-4 pb-2 border-b border-border">
                   Berita Terpopuler
                 </h3>
