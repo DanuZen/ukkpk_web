@@ -31,6 +31,11 @@ export const Footer = () => {
                   Artikel
                 </Link>
               </li>
+              <li>
+                <Link to="/berita" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-block">
+                  Berita
+                </Link>
+              </li>
             </ul>
           </div>
 
