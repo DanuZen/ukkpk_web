@@ -45,7 +45,7 @@ export const Footer = () => {
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-3 text-foreground/70 hover:text-primary transition-colors group">
                 <Mail className="h-4 w-4 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                <span>ukkpk@example.com</span>
+                <span>Ukkpk.office@gmail.com</span>
               </li>
               <li className="flex items-center gap-3 text-foreground/70 hover:text-primary transition-colors group">
                 <Phone className="h-4 w-4 flex-shrink-0 group-hover:scale-110 transition-transform" />
