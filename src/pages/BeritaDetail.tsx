@@ -140,23 +140,23 @@ const BeritaDetail = () => {
               )}
 
               {/* News Metadata */}
-              <div className="mb-6 pb-4 border-b border-border space-y-3">
+              <div className="mb-6 pb-4 border-b border-border space-y-2">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Calendar className="h-4 w-4" />
                   <span>{formatDate(news.created_at)}</span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                <div className="text-sm space-y-1">
                   {news.author && (
-                    <div className="flex flex-col">
-                      <span className="text-muted-foreground">Reporter:</span>
+                    <p>
+                      <span className="text-muted-foreground">Reporter : </span>
                       <span className="font-medium text-foreground">{news.author}</span>
-                    </div>
+                    </p>
                   )}
                   {news.cameraman && (
-                    <div className="flex flex-col">
-                      <span className="text-muted-foreground">Kameramen:</span>
+                    <p>
+                      <span className="text-muted-foreground">Kameraman : </span>
                       <span className="font-medium text-foreground">{news.cameraman}</span>
-                    </div>
+                    </p>
                   )}
                 </div>
               </div>
