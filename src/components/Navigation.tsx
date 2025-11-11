@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, Search, User, LogOut, LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,18 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
-import { Badge } from "@/components/ui/badge";
+import { SearchDialog } from "@/components/SearchDialog";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
-
-interface SearchResult {
-  id: string;
-  title: string;
-  type: "article" | "news" | "event";
-  category?: string;
-  date?: string;
-  location?: string;
-}
 
 const navItems = [
   { name: "HOME", path: "/" },
@@ -32,9 +22,6 @@ export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
-  const [searchLoading, setSearchLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -67,70 +54,6 @@ export const Navigation = () => {
     navigate("/");
   };
 
-  useEffect(() => {
-    const searchContent = async () => {
-      if (!searchQuery.trim()) {
-        setSearchResults([]);
-        return;
-      }
-
-      setSearchLoading(true);
-      try {
-        const searchTerm = `%${searchQuery}%`;
-
-        const { data: articles } = await supabase
-          .from("articles")
-          .select("id, title, category, created_at")
-          .or(`title.ilike.${searchTerm},content.ilike.${searchTerm}`)
-          .limit(5);
-
-        const { data: news } = await supabase
-          .from("news")
-          .select("id, title, created_at")
-          .or(`title.ilike.${searchTerm},content.ilike.${searchTerm}`)
-          .limit(5);
-
-        const { data: events } = await supabase
-          .from("events")
-          .select("id, name, event_date, location")
-          .or(`name.ilike.${searchTerm},description.ilike.${searchTerm}`)
-          .limit(5);
-
-        const allResults: SearchResult[] = [
-          ...(articles || []).map((a) => ({
-            id: a.id,
-            title: a.title,
-            type: "article" as const,
-            category: a.category,
-            date: a.created_at,
-          })),
-          ...(news || []).map((n) => ({
-            id: n.id,
-            title: n.title,
-            type: "news" as const,
-            date: n.created_at,
-          })),
-          ...(events || []).map((e) => ({
-            id: e.id,
-            title: e.name,
-            type: "event" as const,
-            date: e.event_date,
-            location: e.location,
-          })),
-        ];
-
-        setSearchResults(allResults);
-      } catch (error) {
-        console.error("Search error:", error);
-      } finally {
-        setSearchLoading(false);
-      }
-    };
-
-    const debounce = setTimeout(searchContent, 300);
-    return () => clearTimeout(debounce);
-  }, [searchQuery]);
-
   return (
     <nav className="bg-background/80 backdrop-blur-md border-b border-border sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4">
@@ -148,117 +71,34 @@ export const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1 flex-1">
-            {!isSearchOpen ? (
-              <>
-                {navItems.map((item) => {
-                  const isActive = location.pathname === item.path;
-                  return (
-                    <Link
-                      key={item.name}
-                      to={item.path}
-                      className={`px-4 py-5 text-sm font-medium transition-all duration-300 relative overflow-hidden group ${
-                        isActive 
-                          ? "bg-gradient-primary text-primary-foreground shadow-primary" 
-                          : "text-foreground hover:text-primary"
-                      }`}
-                    >
-                      <span className="relative z-10">{item.name}</span>
-                      {!isActive && (
-                        <span className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-                      )}
-                    </Link>
-                  );
-                })}
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  className="ml-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
-                  onClick={() => setIsSearchOpen(true)}
+          <div className="hidden md:flex items-center gap-1">
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.path;
+              return (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className={`px-4 py-5 text-sm font-medium transition-all duration-300 relative overflow-hidden group ${
+                    isActive 
+                      ? "bg-gradient-primary text-primary-foreground shadow-primary" 
+                      : "text-foreground hover:text-primary"
+                  }`}
                 >
-                  <Search className="h-5 w-5" />
-                </Button>
-              </>
-            ) : (
-              <div className="flex items-center gap-2 flex-1 relative">
-                <div className="relative flex-1 max-w-xl">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    placeholder="Cari artikel, berita, atau event..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10 pr-4"
-                    autoFocus
-                  />
-                  {searchQuery && (
-                    <div className="absolute top-full left-0 right-0 mt-2 bg-background border border-border rounded-lg shadow-lg max-h-96 overflow-y-auto z-50">
-                      {searchLoading && (
-                        <p className="text-center text-muted-foreground py-8">Mencari...</p>
-                      )}
-                      
-                      {!searchLoading && searchResults.length === 0 && (
-                        <p className="text-center text-muted-foreground py-8">
-                          Tidak ada hasil ditemukan
-                        </p>
-                      )}
-
-                      {!searchLoading && searchResults.length > 0 && (
-                        <div className="p-2 space-y-1">
-                          {searchResults.map((result) => (
-                            <Link
-                              key={`${result.type}-${result.id}`}
-                              to={result.type === "event" ? "/berita" : result.type === "news" ? "/berita" : "/artikel"}
-                              onClick={() => {
-                                setIsSearchOpen(false);
-                                setSearchQuery("");
-                              }}
-                              className="block p-3 rounded-lg hover:bg-accent transition-colors"
-                            >
-                              <div className="flex items-start justify-between gap-3">
-                                <div className="flex-1">
-                                  <h3 className="font-medium text-sm line-clamp-2">{result.title}</h3>
-                                  {result.date && (
-                                    <p className="text-xs text-muted-foreground mt-1">
-                                      {new Date(result.date).toLocaleDateString("id-ID", {
-                                        year: "numeric",
-                                        month: "long",
-                                        day: "numeric",
-                                      })}
-                                    </p>
-                                  )}
-                                </div>
-                                <Badge 
-                                  variant={
-                                    result.type === "article" ? "default" : 
-                                    result.type === "event" ? "destructive" : "secondary"
-                                  }
-                                  className="text-xs"
-                                >
-                                  {result.type === "article" ? "Artikel" : 
-                                   result.type === "event" ? "Event" : "Berita"}
-                                </Badge>
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+                  <span className="relative z-10">{item.name}</span>
+                  {!isActive && (
+                    <span className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
                   )}
-                </div>
-                <Button 
-                  variant="ghost" 
-                  size="icon"
-                  onClick={() => {
-                    setIsSearchOpen(false);
-                    setSearchQuery("");
-                    setSearchResults([]);
-                  }}
-                  className="hover:bg-primary/10 hover:text-primary transition-all duration-300"
-                >
-                  <X className="h-5 w-5" />
-                </Button>
-              </div>
-            )}
+                </Link>
+              );
+            })}
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="ml-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+              onClick={() => setIsSearchOpen(true)}
+            >
+              <Search className="h-5 w-5" />
+            </Button>
             
             {/* Profile Icon with Login/Logout */}
             <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
@@ -370,6 +210,8 @@ export const Navigation = () => {
         )}
       </div>
 
+      {/* Search Dialog */}
+      <SearchDialog open={isSearchOpen} onOpenChange={setIsSearchOpen} />
     </nav>
   );
 };
