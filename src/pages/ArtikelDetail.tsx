@@ -6,7 +6,6 @@ import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 import { toast } from 'sonner';
-
 interface Article {
   id: string;
   title: string;
@@ -15,42 +14,38 @@ interface Article {
   image_url: string | null;
   created_at: string;
 }
-
 const ArtikelDetail = () => {
-  const { id } = useParams<{ id: string }>();
+  const {
+    id
+  } = useParams<{
+    id: string;
+  }>();
   const navigate = useNavigate();
   const [article, setArticle] = useState<Article | null>(null);
   const [relatedArticles, setRelatedArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     if (id) {
       fetchArticle();
     }
   }, [id]);
-
   useEffect(() => {
     if (article) {
       fetchRelatedArticles();
     }
   }, [article]);
-
   const fetchArticle = async () => {
     try {
-      const { data, error } = await supabase
-        .from('articles')
-        .select('*')
-        .eq('id', id)
-        .maybeSingle();
-
+      const {
+        data,
+        error
+      } = await supabase.from('articles').select('*').eq('id', id).maybeSingle();
       if (error) throw error;
-
       if (!data) {
         toast.error('Artikel tidak ditemukan');
         navigate('/artikel');
         return;
       }
-
       setArticle(data);
     } catch (error) {
       console.error('Error fetching article:', error);
@@ -59,55 +54,43 @@ const ArtikelDetail = () => {
       setLoading(false);
     }
   };
-
   const fetchRelatedArticles = async () => {
     try {
-      const { data, error } = await supabase
-        .from('news')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .limit(5);
-
+      const {
+        data,
+        error
+      } = await supabase.from('news').select('*').order('created_at', {
+        ascending: false
+      }).limit(5);
       if (error) throw error;
       setRelatedArticles(data || []);
     } catch (error) {
       console.error('Error fetching related articles:', error);
     }
   };
-
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('id-ID', {
       day: 'numeric',
       month: 'long',
-      year: 'numeric',
+      year: 'numeric'
     });
   };
-
   if (loading) {
-    return (
-      <Layout>
+    return <Layout>
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-muted-foreground">Memuat artikel...</p>
           </div>
         </div>
-      </Layout>
-    );
+      </Layout>;
   }
-
   if (!article) {
     return null;
   }
-
-  return (
-    <Layout>
+  return <Layout>
       <article className="py-8 px-4">
         <div className="container mx-auto max-w-7xl">
-          <Button
-            variant="ghost"
-            className="mb-6"
-            onClick={() => navigate(-1)}
-          >
+          <Button variant="ghost" className="mb-6" onClick={() => navigate(-1)}>
             <ArrowLeft className="mr-2 h-4 w-4" />
             Kembali
           </Button>
@@ -121,26 +104,20 @@ const ArtikelDetail = () => {
               </h1>
 
               {/* Featured Image */}
-              {article.image_url && (
-                <div className="mb-4">
+              {article.image_url && <div className="mb-4">
                   <div className="relative w-full h-[400px] mb-2 overflow-hidden">
-                    <img
-                      src={article.image_url}
-                      alt={article.title}
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={article.image_url} alt={article.title} className="w-full h-full object-cover" />
                   </div>
                   <p className="text-sm text-muted-foreground italic mb-4">
                     {article.title}
                   </p>
-                </div>
-              )}
+                </div>}
 
               {/* Article Metadata */}
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-border">
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
                   <span>{formatDate(article.created_at)}</span>
-                  <span>Reporter: Redaksi</span>
+                  <span>Penulis: Redaksi</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Badge variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">
@@ -170,18 +147,13 @@ const ArtikelDetail = () => {
                   <p className="font-semibold text-foreground">
                     <span className="text-primary">Ganto.co</span> - {article.content.split('\n\n')[0]}
                   </p>
-                  {article.content.split('\n\n').slice(1).map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
-                  ))}
+                  {article.content.split('\n\n').slice(1).map((paragraph, index) => <p key={index}>{paragraph}</p>)}
                 </div>
               </div>
 
               {/* Bottom Navigation */}
               <div className="mt-8 pt-6 border-t border-border">
-                <Button
-                  variant="outline"
-                  onClick={() => navigate('/artikel')}
-                >
+                <Button variant="outline" onClick={() => navigate('/artikel')}>
                   Lihat Artikel Lainnya
                 </Button>
               </div>
@@ -194,25 +166,14 @@ const ArtikelDetail = () => {
                   Berita Terpopuler
                 </h3>
                 <div className="space-y-4">
-                  {relatedArticles.map((relatedArticle) => (
-                    <div
-                      key={relatedArticle.id}
-                      className="group cursor-pointer"
-                      onClick={() => {
-                        navigate(`/berita/${relatedArticle.id}`);
-                        window.scrollTo(0, 0);
-                      }}
-                    >
+                  {relatedArticles.map(relatedArticle => <div key={relatedArticle.id} className="group cursor-pointer" onClick={() => {
+                  navigate(`/berita/${relatedArticle.id}`);
+                  window.scrollTo(0, 0);
+                }}>
                       <div className="flex gap-3">
-                        {relatedArticle.image_url && (
-                          <div className="w-20 h-20 flex-shrink-0 rounded overflow-hidden">
-                            <img
-                              src={relatedArticle.image_url}
-                              alt={relatedArticle.title}
-                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                            />
-                          </div>
-                        )}
+                        {relatedArticle.image_url && <div className="w-20 h-20 flex-shrink-0 rounded overflow-hidden">
+                            <img src={relatedArticle.image_url} alt={relatedArticle.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                          </div>}
                         <div className="flex-1 min-w-0">
                           <h4 className="text-sm font-semibold line-clamp-2 group-hover:text-primary transition-colors mb-1">
                             {relatedArticle.title}
@@ -222,16 +183,13 @@ const ArtikelDetail = () => {
                           </p>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </article>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default ArtikelDetail;
