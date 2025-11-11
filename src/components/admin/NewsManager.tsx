@@ -23,6 +23,7 @@ export const NewsManager = () => {
     title: "",
     content: "",
     author: "",
+    editor: "",
     cameraman: "",
     image_url: "",
   });
@@ -99,7 +100,7 @@ export const NewsManager = () => {
         toast.success("Berita berhasil ditambahkan");
       }
 
-      setFormData({ title: "", content: "", author: "", cameraman: "", image_url: "" });
+      setFormData({ title: "", content: "", author: "", editor: "", cameraman: "", image_url: "" });
       setEditingId(null);
       setImageFile(null);
       fetchNews();
@@ -114,6 +115,7 @@ export const NewsManager = () => {
       title: item.title,
       content: item.content,
       author: "",
+      editor: "",
       cameraman: "",
       image_url: item.image_url || "",
     });
@@ -164,6 +166,17 @@ export const NewsManager = () => {
                   setFormData({ ...formData, author: e.target.value })
                 }
                 placeholder="Nama penulis"
+              />
+            </div>
+            <div>
+              <Label htmlFor="editor">Penyunting</Label>
+              <Input
+                id="editor"
+                value={formData.editor}
+                onChange={(e) =>
+                  setFormData({ ...formData, editor: e.target.value })
+                }
+                placeholder="Nama penyunting"
               />
             </div>
             <div>
@@ -226,7 +239,7 @@ export const NewsManager = () => {
                   onClick={() => {
                     setEditingId(null);
                     setImageFile(null);
-                    setFormData({ title: "", content: "", author: "", cameraman: "", image_url: "" });
+                    setFormData({ title: "", content: "", author: "", editor: "", cameraman: "", image_url: "" });
                   }}
                 >
                   Batal
