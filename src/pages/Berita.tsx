@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
+import { stripHtml } from '@/lib/utils';
 
 interface News {
   id: string;
@@ -129,7 +130,7 @@ const Berita = () => {
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground line-clamp-4 leading-relaxed">
-                      {item.content}
+                      {stripHtml(item.content)}
                     </p>
                   </CardContent>
                 </Card>

@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { HomeSlideshow } from '@/components/HomeSlideshow';
+import { stripHtml } from '@/lib/utils';
 
 interface Article {
   id: string;
@@ -93,7 +94,7 @@ const Index = () => {
                     <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">{article.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground line-clamp-3 text-sm">{article.content}</p>
+                    <p className="text-muted-foreground line-clamp-3 text-sm">{stripHtml(article.content)}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -120,7 +121,7 @@ const Index = () => {
                     <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">{item.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground line-clamp-3 text-sm">{item.content}</p>
+                    <p className="text-muted-foreground line-clamp-3 text-sm">{stripHtml(item.content)}</p>
                   </CardContent>
                 </Card>
               ))}

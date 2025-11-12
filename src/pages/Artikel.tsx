@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { Search, Calendar } from "lucide-react";
+import { stripHtml } from "@/lib/utils";
 
 interface Article {
   id: string;
@@ -130,7 +131,7 @@ const Artikel = () => {
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground line-clamp-4 leading-relaxed">
-                      {article.content}
+                      {stripHtml(article.content)}
                     </p>
                   </CardContent>
                 </Card>
