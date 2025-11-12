@@ -13,6 +13,7 @@ interface OrgMember {
   position: string;
   photo_url: string | null;
   order_index: number | null;
+  year: number;
 }
 
 export const OrganizationManager = () => {
@@ -23,6 +24,7 @@ export const OrganizationManager = () => {
     position: "",
     photo_url: "",
     order_index: 0,
+    year: new Date().getFullYear(),
   });
 
   useEffect(() => {
@@ -33,6 +35,7 @@ export const OrganizationManager = () => {
     const { data, error } = await supabase
       .from("organization")
       .select("*")
+      .order("year", { ascending: false })
       .order("order_index", { ascending: true });
 
     if (error) {
@@ -61,7 +64,7 @@ export const OrganizationManager = () => {
         toast.success("Data berhasil ditambahkan");
       }
 
-      setFormData({ name: "", position: "", photo_url: "", order_index: 0 });
+      setFormData({ name: "", position: "", photo_url: "", order_index: 0, year: new Date().getFullYear() });
       setEditingId(null);
       fetchMembers();
     } catch (error: any) {
@@ -76,6 +79,7 @@ export const OrganizationManager = () => {
       position: member.position,
       photo_url: member.photo_url || "",
       order_index: member.order_index || 0,
+      year: member.year,
     });
   };
 
@@ -149,6 +153,21 @@ export const OrganizationManager = () => {
                 }
               />
             </div>
+            <div>
+              <Label htmlFor="year">Tahun</Label>
+              <Input
+                id="year"
+                type="number"
+                value={formData.year}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    year: parseInt(e.target.value),
+                  })
+                }
+                placeholder="2025"
+              />
+            </div>
             <div className="flex gap-2">
               <Button type="submit">
                 {editingId ? "Update" : "Tambah"}
@@ -159,19 +178,20 @@ export const OrganizationManager = () => {
                   variant="outline"
                   onClick={() => {
                     setEditingId(null);
-                    setFormData({
-                      name: "",
-                      position: "",
-                      photo_url: "",
-                      order_index: 0,
-                    });
-                  }}
-                >
-                  Batal
-                </Button>
-              )}
-            </div>
-          </form>
+                  setFormData({
+                    name: "",
+                    position: "",
+                    photo_url: "",
+                    order_index: 0,
+                    year: new Date().getFullYear(),
+                  });
+                }}
+              >
+                Batal
+              </Button>
+            )}
+          </div>
+        </form>
         </CardContent>
       </Card>
 
@@ -187,10 +207,15 @@ export const OrganizationManager = () => {
                     className="w-24 h-24 rounded-full object-cover"
                   />
                 )}
-                <h3 className="font-semibold">{member.name}</h3>
-                <p className="text-sm text-muted-foreground">
-                  {member.position}
-                </p>
+                      <div>
+                        <p className="font-medium">{member.name}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {member.position}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          Tahun: {member.year}
+                        </p>
+                      </div>
                 <div className="flex gap-2 mt-4">
                   <Button
                     size="sm"
