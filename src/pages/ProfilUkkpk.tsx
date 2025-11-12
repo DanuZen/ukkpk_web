@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Layout } from '@/components/Layout';
 import { Card, CardContent } from '@/components/ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { supabase } from '@/integrations/supabase/client';
 import { Users, Target, Eye, Megaphone, FileText, Radio, Briefcase, ClipboardList, Users2, Handshake } from 'lucide-react';
 
@@ -11,7 +10,6 @@ interface OrgMember {
   position: string;
   photo_url: string | null;
   order_index: number | null;
-  year: number;
 }
 
 interface ProfileSettings {
@@ -21,53 +19,29 @@ interface ProfileSettings {
   organization_image_url: string | null;
 }
 
-interface DivisionLogo {
-  id: string;
-  division_name: string;
-  logo_url: string;
-  order_index: number | null;
-}
-
 const ProfilUkkpk = () => {
   const [members, setMembers] = useState<OrgMember[]>([]);
   const [profile, setProfile] = useState<ProfileSettings | null>(null);
-  const [logos, setLogos] = useState<DivisionLogo[]>([]);
-  const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear());
-  const [availableYears, setAvailableYears] = useState<number[]>([]);
+
+  // Logo bidang hardcoded
+  const divisionLogos = [
+    { name: 'Jurnalistik', image: '/placeholder.svg' },
+    { name: 'Penyiaran', image: '/placeholder.svg' },
+    { name: 'Kreatif Media', image: '/placeholder.svg' },
+    { name: 'MICU', image: '/placeholder.svg' },
+  ];
 
   useEffect(() => {
     fetchMembers();
     fetchProfile();
-    fetchLogos();
-    fetchAvailableYears();
   }, []);
-
-  useEffect(() => {
-    fetchMembers();
-  }, [selectedYear]);
 
   const fetchMembers = async () => {
     const { data } = await supabase
       .from('organization')
       .select('*')
-      .eq('year', selectedYear)
       .order('order_index', { ascending: true });
     if (data) setMembers(data);
-  };
-
-  const fetchAvailableYears = async () => {
-    const { data } = await supabase
-      .from('organization')
-      .select('year')
-      .order('year', { ascending: false });
-    
-    if (data) {
-      const uniqueYears = [...new Set(data.map(item => item.year))].filter(Boolean) as number[];
-      setAvailableYears(uniqueYears);
-      if (uniqueYears.length > 0) {
-        setSelectedYear(uniqueYears[0]);
-      }
-    }
   };
 
   const fetchProfile = async () => {
@@ -80,14 +54,6 @@ const ProfilUkkpk = () => {
     if (data) setProfile(data);
   };
 
-  const fetchLogos = async () => {
-    const { data } = await supabase
-      .from('division_logos')
-      .select('*')
-      .order('order_index', { ascending: true });
-    
-    if (data) setLogos(data);
-  };
 
   const features = [
     {
@@ -295,27 +261,25 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Logo Bidang & MICU */}
-      {logos.length > 0 && (
-        <section className="py-16 px-4 bg-background">
-          <div className="container mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Bidang & Unit</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-              {logos.map((logo) => (
-                <div key={logo.id} className="flex flex-col items-center group">
-                  <div className="w-32 h-32 mb-4 rounded-lg overflow-hidden bg-muted/50 p-4 hover:shadow-xl transition-all duration-300 hover:scale-110 hover:rotate-3">
-                    <img
-                      src={logo.logo_url}
-                      alt={logo.division_name}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  <p className="text-sm font-medium text-center">{logo.division_name}</p>
+      <section className="py-16 px-4 bg-background">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold mb-12 text-center">Bidang & Unit</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+            {divisionLogos.map((logo, index) => (
+              <div key={index} className="flex flex-col items-center group">
+                <div className="w-32 h-32 mb-4 rounded-lg overflow-hidden bg-muted/50 p-4 hover:shadow-xl transition-all duration-300 hover:scale-110 hover:rotate-3">
+                  <img
+                    src={logo.image}
+                    alt={logo.name}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
-              ))}
-            </div>
+                <p className="text-sm font-medium text-center">{logo.name}</p>
+              </div>
+            ))}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* Nilai-Nilai */}
       <section className="py-16 px-4 bg-background">
@@ -338,26 +302,7 @@ const ProfilUkkpk = () => {
       {/* Struktur Organisasi */}
       <section className="py-16 px-4 bg-muted/30">
         <div className="container mx-auto">
-          <div className="flex flex-col items-center mb-12">
-            <h2 className="text-3xl font-bold mb-6 text-center">Struktur Organisasi</h2>
-            {availableYears.length > 0 && (
-              <div className="flex items-center gap-4">
-                <span className="text-sm font-medium">Tahun:</span>
-                <Select value={selectedYear.toString()} onValueChange={(value) => setSelectedYear(parseInt(value))}>
-                  <SelectTrigger className="w-32">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {availableYears.map((year) => (
-                      <SelectItem key={year} value={year.toString()}>
-                        {year}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
-          </div>
+          <h2 className="text-3xl font-bold mb-12 text-center">Struktur Organisasi</h2>
           {members.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {members.map((member) => (
