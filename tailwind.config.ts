@@ -100,6 +100,15 @@ export default {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-10px)" },
         },
+        "wave-pulse": {
+          "0%, 100%": { opacity: "0.3", transform: "scale(1)" },
+          "50%": { opacity: "0.6", transform: "scale(1.1)" },
+        },
+        "broadcast-signal": {
+          "0%": { opacity: "0.2", transform: "scale(0.95)" },
+          "50%": { opacity: "0.5", transform: "scale(1.05)" },
+          "100%": { opacity: "0.2", transform: "scale(0.95)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -111,6 +120,8 @@ export default {
         "slide-in-right": "slide-in-right 0.3s ease-out",
         shimmer: "shimmer 2s infinite linear",
         float: "float 3s ease-in-out infinite",
+        "wave-pulse": "wave-pulse 3s ease-in-out infinite",
+        "broadcast-signal": "broadcast-signal 4s ease-in-out infinite",
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
