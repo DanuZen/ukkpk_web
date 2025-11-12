@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { HomeSlideshow } from '@/components/HomeSlideshow';
+import { GoogleMap } from '@/components/GoogleMap';
 import { stripHtml } from '@/lib/utils';
 
 interface Article {
@@ -129,6 +130,9 @@ const Index = () => {
           )}
         </div>
       </section>
+
+      {/* Google Map Section */}
+      <GoogleMap />
 
       {/* CTA Section */}
       <section className="py-12 sm:py-16 px-4 bg-gradient-to-br from-primary/10 to-secondary/10 animate-fade-in">
