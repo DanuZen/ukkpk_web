@@ -17,12 +17,12 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 5%;
 
-    /* Merah modern sebagai warna utama */
-    --primary: 0 84% 60%;
+    /* Merah UKKPK sebagai warna utama */
+    --primary: 348 89% 43%;
     --primary-foreground: 0 0% 100%;
 
-    /* Merah gelap untuk variasi */
-    --secondary: 0 72% 45%;
+    /* Biru UKKPK sebagai warna sekunder */
+    --secondary: 210 100% 20%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 97%;
@@ -37,27 +37,35 @@ All colors MUST be HSL.
 
     --border: 0 0% 92%;
     --input: 0 0% 94%;
-    --ring: 0 84% 60%;
+    --ring: 348 89% 43%;
 
     --radius: 0.875rem;
 
-    /* Modern gradients dengan gradasi merah sophisticated */
-    --gradient-primary: linear-gradient(135deg, hsl(0 84% 60%) 0%, hsl(0 72% 45%) 100%);
-    --gradient-secondary: linear-gradient(135deg, hsl(0 72% 45%) 0%, hsl(0 60% 35%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(14 90% 60%) 0%, hsl(0 84% 60%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(0 84% 60% / 0.95) 0%, hsl(0 60% 35% / 0.9) 100%);
+    /* Modern gradients dengan merah dan biru UKKPK */
+    --gradient-primary: linear-gradient(135deg, hsl(348 89% 43%) 0%, hsl(210 100% 20%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(210 100% 20%) 0%, hsl(348 89% 43%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(14 90% 60%) 0%, hsl(348 89% 43%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(348 89% 43% / 0.95) 0%, hsl(210 100% 20% / 0.9) 100%);
     --gradient-card: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.02) 100%);
-    --gradient-mesh: radial-gradient(at 40% 20%, hsl(0 84% 60% / 0.15) 0px, transparent 50%),
-                     radial-gradient(at 80% 80%, hsl(14 90% 60% / 0.1) 0px, transparent 50%);
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(348 89% 43% / 0.08) 0px, transparent 50%),
+                     radial-gradient(at 80% 80%, hsl(210 100% 20% / 0.06) 0px, transparent 50%);
     
-    /* Modern shadows dengan red glow */
+    /* Background pattern untuk seluruh website */
+    --bg-pattern: 
+      radial-gradient(circle at 10% 20%, hsl(348 89% 43% / 0.05) 0%, transparent 30%),
+      radial-gradient(circle at 90% 80%, hsl(210 100% 20% / 0.05) 0%, transparent 30%),
+      radial-gradient(circle at 50% 50%, hsl(348 89% 43% / 0.03) 0%, transparent 40%),
+      linear-gradient(135deg, transparent 0%, hsl(348 89% 43% / 0.02) 50%, transparent 100%),
+      linear-gradient(225deg, transparent 0%, hsl(210 100% 20% / 0.02) 50%, transparent 100%);
+    
+    /* Modern shadows dengan merah dan biru UKKPK */
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
     --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.1);
-    --shadow-primary: 0 8px 32px rgba(239, 68, 68, 0.2);
-    --shadow-secondary: 0 8px 32px rgba(185, 28, 28, 0.18);
+    --shadow-primary: 0 8px 32px rgba(200, 16, 46, 0.2);
+    --shadow-secondary: 0 8px 32px rgba(0, 51, 102, 0.18);
     --shadow-accent: 0 8px 32px rgba(251, 146, 60, 0.2);
-    --shadow-glow: 0 0 40px rgba(239, 68, 68, 0.15);
+    --shadow-glow: 0 0 40px rgba(200, 16, 46, 0.15);
 
     /* Badge colors dengan gradasi merah */
     --badge-kegiatan: 0 84% 60%;
@@ -81,10 +89,10 @@ All colors MUST be HSL.
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 0 84% 65%;
+    --primary: 348 89% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 72% 50%;
+    --secondary: 210 100% 30%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 15%;
@@ -98,11 +106,18 @@ All colors MUST be HSL.
 
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 0 84% 65%;
+    --ring: 348 89% 50%;
 
     --gradient-card: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.4) 100%);
-    --gradient-mesh: radial-gradient(at 40% 20%, hsl(0 84% 65% / 0.1) 0px, transparent 50%),
-                     radial-gradient(at 80% 80%, hsl(14 90% 65% / 0.08) 0px, transparent 50%);
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(348 89% 50% / 0.1) 0px, transparent 50%),
+                     radial-gradient(at 80% 80%, hsl(210 100% 30% / 0.08) 0px, transparent 50%);
+    
+    --bg-pattern: 
+      radial-gradient(circle at 10% 20%, hsl(348 89% 50% / 0.08) 0%, transparent 30%),
+      radial-gradient(circle at 90% 80%, hsl(210 100% 30% / 0.08) 0%, transparent 30%),
+      radial-gradient(circle at 50% 50%, hsl(348 89% 50% / 0.05) 0%, transparent 40%),
+      linear-gradient(135deg, transparent 0%, hsl(348 89% 50% / 0.03) 50%, transparent 100%),
+      linear-gradient(225deg, transparent 0%, hsl(210 100% 30% / 0.03) 50%, transparent 100%);
   }
 }
 
@@ -113,6 +128,9 @@ All colors MUST be HSL.
   
   body {
     @apply bg-background text-foreground;
+    background-image: var(--bg-pattern);
+    background-attachment: fixed;
+    background-size: cover;
   }
 
   /* Rich Text Editor Styles */
