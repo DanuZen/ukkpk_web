@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Layout } from '@/components/Layout';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { Users, Target, Eye, Megaphone, FileText, Radio, Briefcase, ClipboardList, Users2, Handshake } from 'lucide-react';
 import logoReporter from '@/assets/logo-reporter.png';
@@ -273,7 +274,7 @@ const ProfilUkkpk = () => {
       {/* Struktur Organisasi */}
       <section className="py-16 px-4 bg-muted/30">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">Struktur Organisasi</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center">Struktur Organisasi UKKPK</h2>
           {members.length > 0 ? <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {members.map(member => <Card key={member.id} className="group hover:shadow-lg transition-all duration-300">
                   <CardContent className="pt-6 text-center">
@@ -296,6 +297,80 @@ const ProfilUkkpk = () => {
             </div>}
         </div>
       </section>
+      
+      {/* DPH & Pengurus per Tahun */}
+      <StrukturOrganisasiSection />
     </Layout>;
 };
+
+// Component untuk menampilkan struktur organisasi per tahun
+const StrukturOrganisasiSection = () => {
+  const [structures, setStructures] = useState<Array<{
+    id: string;
+    angkatan: string;
+    foto_url: string;
+  }>>([]);
+  const [selectedYear, setSelectedYear] = useState<string>("");
+
+  useEffect(() => {
+    fetchStructures();
+  }, []);
+
+  const fetchStructures = async () => {
+    const { data } = await supabase
+      .from('struktur_organisasi')
+      .select('*')
+      .order('angkatan', { ascending: true });
+    
+    if (data && data.length > 0) {
+      setStructures(data);
+      setSelectedYear(data[0].angkatan);
+    }
+  };
+
+  if (structures.length === 0) return null;
+
+  const selectedStructure = structures.find(s => s.angkatan === selectedYear);
+
+  return (
+    <section className="py-16 px-4 bg-background">
+      <div className="container mx-auto">
+        <h2 className="text-3xl font-bold mb-8 text-center">DPH & Pengurus UKKPK</h2>
+        
+        {structures.length > 1 && (
+          <div className="flex justify-center mb-8">
+            <div className="flex gap-2 flex-wrap justify-center">
+              {structures.map((structure) => (
+                <Button
+                  key={structure.id}
+                  variant={selectedYear === structure.angkatan ? "default" : "outline"}
+                  onClick={() => setSelectedYear(structure.angkatan)}
+                  className="min-w-[150px]"
+                >
+                  {structure.angkatan}
+                </Button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {selectedStructure && (
+          <div className="max-w-5xl mx-auto animate-fade-in">
+            <h3 className="text-2xl font-semibold mb-6 text-center text-primary">
+              {selectedStructure.angkatan}
+            </h3>
+            <div className="rounded-lg overflow-hidden shadow-xl">
+              <img 
+                src={selectedStructure.foto_url} 
+                alt={`Struktur ${selectedStructure.angkatan}`}
+                className="w-full h-auto"
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
+
 export default ProfilUkkpk;

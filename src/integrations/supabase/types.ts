@@ -56,6 +56,33 @@ export type Database = {
         }
         Relationships: []
       }
+      division_logos: {
+        Row: {
+          created_at: string | null
+          division_name: string
+          id: string
+          logo_url: string
+          order_index: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          division_name: string
+          id?: string
+          logo_url: string
+          order_index?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          division_name?: string
+          id?: string
+          logo_url?: string
+          order_index?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       events: {
         Row: {
           created_at: string
@@ -113,6 +140,33 @@ export type Database = {
         }
         Relationships: []
       }
+      map_settings: {
+        Row: {
+          embed_url: string | null
+          id: string
+          latitude: number | null
+          location_name: string | null
+          longitude: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          embed_url?: string | null
+          id?: string
+          latitude?: number | null
+          location_name?: string | null
+          longitude?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          embed_url?: string | null
+          id?: string
+          latitude?: number | null
+          location_name?: string | null
+          longitude?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       news: {
         Row: {
           author: string | null
@@ -166,6 +220,7 @@ export type Database = {
           photo_url: string | null
           position: string
           updated_at: string
+          year: number | null
         }
         Insert: {
           category?: string | null
@@ -177,6 +232,7 @@ export type Database = {
           photo_url?: string | null
           position: string
           updated_at?: string
+          year?: number | null
         }
         Update: {
           category?: string | null
@@ -188,6 +244,7 @@ export type Database = {
           photo_url?: string | null
           position?: string
           updated_at?: string
+          year?: number | null
         }
         Relationships: []
       }
@@ -292,6 +349,57 @@ export type Database = {
         Update: {
           id?: string
           streaming_url?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      social_media_links: {
+        Row: {
+          created_at: string | null
+          id: string
+          organization: string
+          platform: string
+          updated_at: string | null
+          url: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          organization: string
+          platform: string
+          updated_at?: string | null
+          url: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          organization?: string
+          platform?: string
+          updated_at?: string | null
+          url?: string
+        }
+        Relationships: []
+      }
+      struktur_organisasi: {
+        Row: {
+          angkatan: string
+          created_at: string
+          foto_url: string
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          angkatan: string
+          created_at?: string
+          foto_url: string
+          id?: string
+          updated_at?: string
+        }
+        Update: {
+          angkatan?: string
+          created_at?: string
+          foto_url?: string
+          id?: string
           updated_at?: string
         }
         Relationships: []
