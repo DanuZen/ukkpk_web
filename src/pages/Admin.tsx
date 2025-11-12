@@ -13,9 +13,6 @@ import { RadioManager } from "@/components/admin/RadioManager";
 import { ProfileManager } from "@/components/admin/ProfileManager";
 import { HomeSlideshowManager } from "@/components/admin/HomeSlideshowManager";
 import { OrganizationManager } from "@/components/admin/OrganizationManager";
-import { SocialMediaManager } from "@/components/admin/SocialMediaManager";
-import { MapManager } from "@/components/admin/MapManager";
-import { DivisionLogosManager } from "@/components/admin/DivisionLogosManager";
 
 const Admin = () => {
   const { user, signOut } = useAuth();
@@ -63,16 +60,13 @@ const Admin = () => {
         </div>
 
         <Tabs defaultValue="articles" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-9 gap-2">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-6 gap-2">
             <TabsTrigger value="articles">Artikel</TabsTrigger>
             <TabsTrigger value="news">Berita</TabsTrigger>
             <TabsTrigger value="radio">Radio</TabsTrigger>
             <TabsTrigger value="profile">Profil</TabsTrigger>
             <TabsTrigger value="slideshow">Slideshow</TabsTrigger>
             <TabsTrigger value="organization">Organisasi</TabsTrigger>
-            <TabsTrigger value="social">Media Sosial</TabsTrigger>
-            <TabsTrigger value="map">Map</TabsTrigger>
-            <TabsTrigger value="logos">Logo Bidang</TabsTrigger>
           </TabsList>
 
           <TabsContent value="articles">
@@ -97,18 +91,6 @@ const Admin = () => {
 
           <TabsContent value="organization">
             <OrganizationManager />
-          </TabsContent>
-
-          <TabsContent value="social">
-            <SocialMediaManager />
-          </TabsContent>
-
-          <TabsContent value="map">
-            <MapManager />
-          </TabsContent>
-
-          <TabsContent value="logos">
-            <DivisionLogosManager />
           </TabsContent>
         </Tabs>
       </div>

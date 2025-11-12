@@ -1,61 +1,20 @@
 import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Music2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { supabase } from '@/integrations/supabase/client';
-
-interface SocialLink {
-  id: string;
-  platform: string;
-  organization: string;
-  url: string;
-}
 
 export const Footer = () => {
-  const [socialLinks, setSocialLinks] = useState<SocialLink[]>([]);
-
-  useEffect(() => {
-    fetchSocialLinks();
-  }, []);
-
-  const fetchSocialLinks = async () => {
-    const { data, error } = await supabase
-      .from('social_media_links')
-      .select('*')
-      .order('organization', { ascending: true })
-      .order('platform', { ascending: true });
-
-    if (!error && data) {
-      setSocialLinks(data);
-    }
-  };
-
-  const getPlatformIcon = (platform: string) => {
-    switch (platform) {
-      case 'instagram':
-        return Instagram;
-      case 'youtube':
-        return Youtube;
-      case 'facebook':
-        return Facebook;
-      case 'tiktok':
-        return Music2;
-      default:
-        return null;
-    }
-  };
-
-  const getPlatformColor = (platform: string) => {
-    switch (platform) {
-      case 'instagram':
-        return 'hover:text-pink-500';
-      case 'youtube':
-        return 'hover:text-red-500';
-      case 'facebook':
-        return 'hover:text-blue-500';
-      case 'tiktok':
-        return 'hover:text-foreground';
-      default:
-        return 'hover:text-primary';
+  // Hardcoded social media links
+  const socialLinks = {
+    ukkpk: {
+      facebook: "https://web.facebook.com/p/UKKPK-UNP-100063495233989/",
+      instagram: "https://www.instagram.com/ukkpk_unp/",
+      youtube: "https://www.youtube.com/@UKKPKUNP",
+      tiktok: "#"
+    },
+    sigma: {
+      facebook: "#",
+      instagram: "#",
+      youtube: "#",
+      tiktok: "#"
     }
   };
   return (
@@ -122,23 +81,18 @@ export const Footer = () => {
             <div className="space-y-3">
               <p className="text-sm font-medium text-foreground/80">UKKPK</p>
               <div className="flex gap-3 flex-wrap">
-                {socialLinks
-                  .filter(link => link.organization === 'UKKPK')
-                  .map((link) => {
-                    const Icon = getPlatformIcon(link.platform);
-                    if (!Icon) return null;
-                    return (
-                      <a
-                        key={link.id}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`p-3 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-300 hover:scale-110 ${getPlatformColor(link.platform)}`}
-                      >
-                        <Icon className="h-5 w-5" />
-                      </a>
-                    );
-                  })}
+                <a href={socialLinks.ukkpk.facebook} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-300 hover:scale-110 hover:text-blue-500">
+                  <Facebook className="h-5 w-5" />
+                </a>
+                <a href={socialLinks.ukkpk.instagram} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-300 hover:scale-110 hover:text-pink-500">
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a href={socialLinks.ukkpk.youtube} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-300 hover:scale-110 hover:text-red-500">
+                  <Youtube className="h-5 w-5" />
+                </a>
+                <a href={socialLinks.ukkpk.tiktok} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-300 hover:scale-110">
+                  <Music2 className="h-5 w-5" />
+                </a>
               </div>
             </div>
 
@@ -146,23 +100,18 @@ export const Footer = () => {
             <div className="space-y-3 mt-6">
               <p className="text-sm font-medium text-foreground/80">SIGMA</p>
               <div className="flex gap-3 flex-wrap">
-                {socialLinks
-                  .filter(link => link.organization === 'SIGMA')
-                  .map((link) => {
-                    const Icon = getPlatformIcon(link.platform);
-                    if (!Icon) return null;
-                    return (
-                      <a
-                        key={link.id}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`p-3 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-300 hover:scale-110 ${getPlatformColor(link.platform)}`}
-                      >
-                        <Icon className="h-5 w-5" />
-                      </a>
-                    );
-                  })}
+                <a href={socialLinks.sigma.facebook} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-300 hover:scale-110 hover:text-blue-500">
+                  <Facebook className="h-5 w-5" />
+                </a>
+                <a href={socialLinks.sigma.instagram} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-300 hover:scale-110 hover:text-pink-500">
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a href={socialLinks.sigma.youtube} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-300 hover:scale-110 hover:text-red-500">
+                  <Youtube className="h-5 w-5" />
+                </a>
+                <a href={socialLinks.sigma.tiktok} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-300 hover:scale-110">
+                  <Music2 className="h-5 w-5" />
+                </a>
               </div>
             </div>
           </div>
