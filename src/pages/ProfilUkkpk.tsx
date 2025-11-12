@@ -214,7 +214,7 @@ const ProfilUkkpk = () => {
             </div>
             
             {/* Baris kedua: 3 card centered */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16">
               {features.slice(4, 7).map((feature, index) => <Card key={index + 4} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                   <CardContent className="pt-6 text-center flex flex-col items-center">
                     <div className="inline-flex p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
@@ -227,33 +227,28 @@ const ProfilUkkpk = () => {
                   </CardContent>
                 </Card>)}
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Logo Bidang & MICU */}
-      <section className="py-16 px-4 bg-background">
-        <div className="container mx-auto">
-          
-          <div className="max-w-4xl mx-auto">
-            {/* Logo MICU - Centered and Larger */}
-            <div className="flex justify-center mb-12">
-              <div className="flex flex-col items-center group">
-                <div className="w-80 h-80 mb-4 rounded-lg overflow-hidden bg-muted/50 p-10 hover:shadow-xl transition-all duration-300 hover:scale-110">
-                  <img src={logoMicu} alt="MICU" className="w-full h-full object-contain" />
-                </div>
-                <p className="text-lg font-semibold text-center">MICU</p>
-              </div>
-            </div>
-
-            {/* 3 Logo Bidang - Grid 3 Columns */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
-              {divisionLogos.map((logo, index) => <div key={index} className="flex flex-col items-center group">
-                  <div className="w-32 h-32 mb-4 rounded-lg overflow-hidden bg-muted/50 p-4 hover:shadow-xl transition-all duration-300 hover:scale-110 hover:rotate-3">
-                    <img src={logo.image} alt={logo.name} className="w-full h-full object-contain" />
+            {/* Logo MICU & Bidang */}
+            <div className="max-w-4xl mx-auto mt-8">
+              {/* Logo MICU - Centered and Larger */}
+              <div className="flex justify-center mb-12">
+                <div className="flex flex-col items-center group">
+                  <div className="w-80 h-80 mb-4 rounded-lg overflow-hidden bg-muted/50 p-10 hover:shadow-xl transition-all duration-300 hover:scale-110">
+                    <img src={logoMicu} alt="MICU" className="w-full h-full object-contain" />
                   </div>
-                  <p className="text-sm font-medium text-center">{logo.name}</p>
-                </div>)}
+                  <p className="text-lg font-semibold text-center">MICU</p>
+                </div>
+              </div>
+
+              {/* 3 Logo Bidang - Grid 3 Columns */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+                {divisionLogos.map((logo, index) => <div key={index} className="flex flex-col items-center group">
+                    <div className="w-32 h-32 mb-4 rounded-lg overflow-hidden bg-muted/50 p-4 hover:shadow-xl transition-all duration-300 hover:scale-110 hover:rotate-3">
+                      <img src={logo.image} alt={logo.name} className="w-full h-full object-contain" />
+                    </div>
+                    <p className="text-sm font-medium text-center">{logo.name}</p>
+                  </div>)}
+              </div>
             </div>
           </div>
         </div>
