@@ -198,38 +198,8 @@ const ProfilUkkpk = () => {
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center">Bidang Kegiatan</h2>
           <div className="max-w-7xl mx-auto">
-            {/* Baris pertama: 4 card */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-              {features.slice(0, 4).map((feature, index) => <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                  <CardContent className="pt-6 text-center flex flex-col items-center">
-                    <div className="inline-flex p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
-                      {feature.icon}
-                    </div>
-                    <h3 className="text-lg font-semibold mb-3 min-h-[3rem] flex items-center justify-center">
-                      {feature.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">{feature.description}</p>
-                  </CardContent>
-                </Card>)}
-            </div>
-            
-            {/* Baris kedua: 3 card centered */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16">
-              {features.slice(4, 7).map((feature, index) => <Card key={index + 4} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                  <CardContent className="pt-6 text-center flex flex-col items-center">
-                    <div className="inline-flex p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
-                      {feature.icon}
-                    </div>
-                    <h3 className="text-lg font-semibold mb-3 min-h-[3rem] flex items-center justify-center">
-                      {feature.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">{feature.description}</p>
-                  </CardContent>
-                </Card>)}
-            </div>
-
             {/* Logo MICU & Bidang */}
-            <div className="max-w-4xl mx-auto mt-8">
+            <div className="max-w-4xl mx-auto mb-16">
               {/* Logo MICU - Centered and Larger */}
               <div className="flex justify-center mb-12">
                 <div className="flex flex-col items-center group">
@@ -249,6 +219,36 @@ const ProfilUkkpk = () => {
                     <p className="text-sm font-medium text-center">{logo.name}</p>
                   </div>)}
               </div>
+            </div>
+
+            {/* Baris pertama: 4 card */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+              {features.slice(0, 4).map((feature, index) => <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                  <CardContent className="pt-6 text-center flex flex-col items-center">
+                    <div className="inline-flex p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-lg font-semibold mb-3 min-h-[3rem] flex items-center justify-center">
+                      {feature.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">{feature.description}</p>
+                  </CardContent>
+                </Card>)}
+            </div>
+            
+            {/* Baris kedua: 3 card centered */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {features.slice(4, 7).map((feature, index) => <Card key={index + 4} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                  <CardContent className="pt-6 text-center flex flex-col items-center">
+                    <div className="inline-flex p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-lg font-semibold mb-3 min-h-[3rem] flex items-center justify-center">
+                      {feature.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">{feature.description}</p>
+                  </CardContent>
+                </Card>)}
             </div>
           </div>
         </div>
