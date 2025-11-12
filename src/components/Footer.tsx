@@ -23,13 +23,13 @@ export const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12">
           {/* About */}
           <div className="space-y-4">
-            <h3 className="font-bold text-xl mb-3 bg-gradient-primary bg-clip-text text-transparent">UKKPK</h3>
+            <h3 className="font-bold text-xl mb-3 bg-gradient-primary bg-clip-text text-transparent">UKKPK UNP</h3>
             <p className="text-sm text-foreground/70 leading-relaxed">Unit Kegiatan Komunikasi dan Penyiaran Kampus</p>
           </div>
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
+            <h4 className="font-semibold mb-4 bg-gradient-primary bg-clip-text text-transparent">Quick Links</h4>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link to="/" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-block">
@@ -56,7 +56,7 @@ export const Footer = () => {
 
           {/* Contact */}
           <div className="space-y-4">
-            <h4 className="font-semibold text-foreground mb-4">Contact</h4>
+            <h4 className="font-semibold mb-4 bg-gradient-primary bg-clip-text text-transparent">Contact</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-3 text-foreground/70 hover:text-primary transition-colors group">
                 <Mail className="h-4 w-4 flex-shrink-0 group-hover:scale-110 transition-transform" />
@@ -75,7 +75,7 @@ export const Footer = () => {
 
           {/* Social Media */}
           <div className="space-y-4">
-            <h4 className="font-semibold text-foreground mb-4">Follow Us</h4>
+            <h4 className="font-semibold mb-4 bg-gradient-primary bg-clip-text text-transparent">Follow Us</h4>
             
             {/* UKKPK Social Media */}
             <div className="space-y-3">
