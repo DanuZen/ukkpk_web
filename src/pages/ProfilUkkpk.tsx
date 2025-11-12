@@ -271,33 +271,6 @@ const ProfilUkkpk = () => {
         </div>
       </section>
 
-      {/* Struktur Organisasi */}
-      <section className="py-16 px-4 bg-muted/30">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">Struktur Organisasi UKKPK</h2>
-          {members.length > 0 ? <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {members.map(member => <Card key={member.id} className="group hover:shadow-lg transition-all duration-300">
-                  <CardContent className="pt-6 text-center">
-                    <div className="mb-4 mx-auto w-24 h-24 rounded-full overflow-hidden bg-muted group-hover:scale-105 transition-transform">
-                      {member.photo_url ? <img src={member.photo_url} alt={member.name} className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center">
-                          <Users className="h-12 w-12 text-muted-foreground" />
-                        </div>}
-                    </div>
-                    <h3 className="font-semibold mb-1">{member.name}</h3>
-                    <p className="text-sm text-muted-foreground">{member.position}</p>
-                  </CardContent>
-                </Card>)}
-            </div> : <div className="text-center">
-              <p className="text-muted-foreground mb-8">
-                Struktur organisasi DPH Dan Pengurus UKKPK 2025
-              </p>
-              <div className="max-w-4xl mx-auto">
-                <img src={profile?.organization_image_url || "/images/struktur.jpg"} alt="Struktur Organisasi UKKPK 2025" className="w-full h-auto rounded-lg shadow-lg" />
-              </div>
-            </div>}
-        </div>
-      </section>
-      
       {/* DPH & Pengurus per Tahun */}
       <StrukturOrganisasiSection />
     </Layout>;
