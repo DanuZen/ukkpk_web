@@ -7,7 +7,6 @@ import logoReporter from '@/assets/logo-reporter.png';
 import logoMicu from '@/assets/logo-micu.png';
 import logoMc from '@/assets/logo-mc.png';
 import logoSigmaRadio from '@/assets/logo-sigma-radio.png';
-
 interface OrgMember {
   id: string;
   name: string;
@@ -15,135 +14,108 @@ interface OrgMember {
   photo_url: string | null;
   order_index: number | null;
 }
-
 interface ProfileSettings {
   id: string;
   banner_url: string | null;
   description: string | null;
   organization_image_url: string | null;
 }
-
 const ProfilUkkpk = () => {
   const [members, setMembers] = useState<OrgMember[]>([]);
   const [profile, setProfile] = useState<ProfileSettings | null>(null);
 
   // Logo bidang hardcoded
-  const divisionLogos = [
-    { name: 'Jurnalistik', image: logoReporter },
-    { name: 'Penyiaran', image: logoSigmaRadio },
-    { name: 'Kreatif Media', image: logoMc },
-  ];
-
+  const divisionLogos = [{
+    name: 'Jurnalistik',
+    image: logoReporter
+  }, {
+    name: 'Penyiaran',
+    image: logoSigmaRadio
+  }, {
+    name: 'Kreatif Media',
+    image: logoMc
+  }];
   useEffect(() => {
     fetchMembers();
     fetchProfile();
   }, []);
-
   const fetchMembers = async () => {
-    const { data } = await supabase
-      .from('organization')
-      .select('*')
-      .order('order_index', { ascending: true });
+    const {
+      data
+    } = await supabase.from('organization').select('*').order('order_index', {
+      ascending: true
+    });
     if (data) setMembers(data);
   };
-
   const fetchProfile = async () => {
-    const { data } = await supabase
-      .from('profile_settings')
-      .select('*')
-      .limit(1)
-      .maybeSingle();
-    
+    const {
+      data
+    } = await supabase.from('profile_settings').select('*').limit(1).maybeSingle();
     if (data) setProfile(data);
   };
-
-
-  const features = [
-    {
-      icon: <Megaphone className="h-8 w-8" />,
-      title: 'MC & Public Speaking',
-      description: 'Membina keterampilan berbicara di depan umum dan menjadi pembawa acara profesional',
-    },
-    {
-      icon: <FileText className="h-8 w-8" />,
-      title: 'Jurnalistik',
-      description: 'Mengembangkan kemampuan menulis berita, artikel, dan liputan mendalam',
-    },
-    {
-      icon: <Radio className="h-8 w-8" />,
-      title: 'Penyiaran Radio',
-      description: 'Melatih kemampuan penyiaran, produksi audio, dan manajemen program radio',
-    },
-    {
-      icon: <Briefcase className="h-8 w-8" />,
-      title: 'Kewirausahaan',
-      description: 'Mengembangkan jiwa entrepreneurship dan keterampilan bisnis di bidang komunikasi',
-    },
-    {
-      icon: <ClipboardList className="h-8 w-8" />,
-      title: 'Kesekretariatan',
-      description: 'Melatih kemampuan administrasi, manajemen dokumen, dan koordinasi organisasi',
-    },
-    {
-      icon: <Users2 className="h-8 w-8" />,
-      title: 'Human Resource Development',
-      description: 'Mengembangkan potensi SDM melalui pelatihan dan pengembangan anggota',
-    },
-    {
-      icon: <Handshake className="h-8 w-8" />,
-      title: 'Public Relation',
-      description: 'Membangun dan memelihara hubungan baik dengan stakeholder internal maupun eksternal',
-    },
-  ];
-
-  const values = [
-    {
-      icon: <Users className="h-6 w-6" />,
-      title: 'Kekeluargaan',
-      description: 'Membangun solidaritas dan kebersamaan antar anggota',
-    },
-    {
-      icon: <Target className="h-6 w-6" />,
-      title: 'Profesionalisme',
-      description: 'Mengutamakan kualitas dan dedikasi dalam setiap karya',
-    },
-    {
-      icon: <Eye className="h-6 w-6" />,
-      title: 'Kreativitas',
-      description: 'Mendorong inovasi dan ide-ide segar dalam komunikasi',
-    },
-  ];
-
-  return (
-    <Layout>
+  const features = [{
+    icon: <Megaphone className="h-8 w-8" />,
+    title: 'MC & Public Speaking',
+    description: 'Membina keterampilan berbicara di depan umum dan menjadi pembawa acara profesional'
+  }, {
+    icon: <FileText className="h-8 w-8" />,
+    title: 'Jurnalistik',
+    description: 'Mengembangkan kemampuan menulis berita, artikel, dan liputan mendalam'
+  }, {
+    icon: <Radio className="h-8 w-8" />,
+    title: 'Penyiaran Radio',
+    description: 'Melatih kemampuan penyiaran, produksi audio, dan manajemen program radio'
+  }, {
+    icon: <Briefcase className="h-8 w-8" />,
+    title: 'Kewirausahaan',
+    description: 'Mengembangkan jiwa entrepreneurship dan keterampilan bisnis di bidang komunikasi'
+  }, {
+    icon: <ClipboardList className="h-8 w-8" />,
+    title: 'Kesekretariatan',
+    description: 'Melatih kemampuan administrasi, manajemen dokumen, dan koordinasi organisasi'
+  }, {
+    icon: <Users2 className="h-8 w-8" />,
+    title: 'Human Resource Development',
+    description: 'Mengembangkan potensi SDM melalui pelatihan dan pengembangan anggota'
+  }, {
+    icon: <Handshake className="h-8 w-8" />,
+    title: 'Public Relation',
+    description: 'Membangun dan memelihara hubungan baik dengan stakeholder internal maupun eksternal'
+  }];
+  const values = [{
+    icon: <Users className="h-6 w-6" />,
+    title: 'Kekeluargaan',
+    description: 'Membangun solidaritas dan kebersamaan antar anggota'
+  }, {
+    icon: <Target className="h-6 w-6" />,
+    title: 'Profesionalisme',
+    description: 'Mengutamakan kualitas dan dedikasi dalam setiap karya'
+  }, {
+    icon: <Eye className="h-6 w-6" />,
+    title: 'Kreativitas',
+    description: 'Mendorong inovasi dan ide-ide segar dalam komunikasi'
+  }];
+  return <Layout>
       {/* Banner Section */}
-      {profile?.banner_url && (
-        <section className="relative w-full h-64 md:h-96 overflow-hidden">
-          <img 
-            src={profile.banner_url} 
-            alt="UKKPK Banner" 
-            className="w-full h-full object-cover"
-          />
+      {profile?.banner_url && <section className="relative w-full h-64 md:h-96 overflow-hidden">
+          <img src={profile.banner_url} alt="UKKPK Banner" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80"></div>
           <div className="absolute bottom-8 left-0 right-0 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
               Profil UKKPK
             </h1>
           </div>
-        </section>
-      )}
+        </section>}
 
       {/* Hero Section (if no banner) */}
-      {!profile?.banner_url && (
-        <section className="relative py-20 px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
+      {!profile?.banner_url && <section className="relative py-20 px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d')] opacity-5 bg-cover bg-center"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background"></div>
           <div className="container mx-auto text-center relative z-10">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">Profil UKKPK</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Unit Kegiatan Komunikasi dan Penyiaran Kampus</p>
           </div>
-        </section>
-      )}
+        </section>}
 
       {/* Tentang UKKPK */}
       <section className="py-16 px-4 bg-background">
@@ -228,8 +200,7 @@ const ProfilUkkpk = () => {
           <div className="max-w-7xl mx-auto">
             {/* Baris pertama: 4 card */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-              {features.slice(0, 4).map((feature, index) => (
-                <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              {features.slice(0, 4).map((feature, index) => <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                   <CardContent className="pt-6 text-center flex flex-col items-center">
                     <div className="inline-flex p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
                       {feature.icon}
@@ -239,14 +210,12 @@ const ProfilUkkpk = () => {
                     </h3>
                     <p className="text-sm text-muted-foreground">{feature.description}</p>
                   </CardContent>
-                </Card>
-              ))}
+                </Card>)}
             </div>
             
             {/* Baris kedua: 3 card centered */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {features.slice(4, 7).map((feature, index) => (
-                <Card key={index + 4} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              {features.slice(4, 7).map((feature, index) => <Card key={index + 4} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                   <CardContent className="pt-6 text-center flex flex-col items-center">
                     <div className="inline-flex p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
                       {feature.icon}
@@ -256,8 +225,7 @@ const ProfilUkkpk = () => {
                     </h3>
                     <p className="text-sm text-muted-foreground">{feature.description}</p>
                   </CardContent>
-                </Card>
-              ))}
+                </Card>)}
             </div>
           </div>
         </div>
@@ -266,17 +234,13 @@ const ProfilUkkpk = () => {
       {/* Logo Bidang & MICU */}
       <section className="py-16 px-4 bg-background">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">Bidang & Unit</h2>
+          
           <div className="max-w-4xl mx-auto">
             {/* Logo MICU - Centered and Larger */}
             <div className="flex justify-center mb-12">
               <div className="flex flex-col items-center group">
                 <div className="w-80 h-80 mb-4 rounded-lg overflow-hidden bg-muted/50 p-10 hover:shadow-xl transition-all duration-300 hover:scale-110">
-                  <img
-                    src={logoMicu}
-                    alt="MICU"
-                    className="w-full h-full object-contain"
-                  />
+                  <img src={logoMicu} alt="MICU" className="w-full h-full object-contain" />
                 </div>
                 <p className="text-lg font-semibold text-center">MICU</p>
               </div>
@@ -284,18 +248,12 @@ const ProfilUkkpk = () => {
 
             {/* 3 Logo Bidang - Grid 3 Columns */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
-              {divisionLogos.map((logo, index) => (
-                <div key={index} className="flex flex-col items-center group">
+              {divisionLogos.map((logo, index) => <div key={index} className="flex flex-col items-center group">
                   <div className="w-32 h-32 mb-4 rounded-lg overflow-hidden bg-muted/50 p-4 hover:shadow-xl transition-all duration-300 hover:scale-110 hover:rotate-3">
-                    <img
-                      src={logo.image}
-                      alt={logo.name}
-                      className="w-full h-full object-contain"
-                    />
+                    <img src={logo.image} alt={logo.name} className="w-full h-full object-contain" />
                   </div>
                   <p className="text-sm font-medium text-center">{logo.name}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -306,15 +264,13 @@ const ProfilUkkpk = () => {
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center">Nilai-Nilai Kami</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {values.map((value, index) => (
-              <Card key={index} className="text-center hover:shadow-md transition-shadow">
+            {values.map((value, index) => <Card key={index} className="text-center hover:shadow-md transition-shadow">
                 <CardContent className="pt-6">
                   <div className="inline-flex p-3 rounded-full bg-primary/10 text-primary mb-3">{value.icon}</div>
                   <h3 className="text-lg font-semibold mb-2">{value.title}</h3>
                   <p className="text-sm text-muted-foreground">{value.description}</p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -323,44 +279,28 @@ const ProfilUkkpk = () => {
       <section className="py-16 px-4 bg-muted/30">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center">Struktur Organisasi</h2>
-          {members.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {members.map((member) => (
-                <Card key={member.id} className="group hover:shadow-lg transition-all duration-300">
+          {members.length > 0 ? <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {members.map(member => <Card key={member.id} className="group hover:shadow-lg transition-all duration-300">
                   <CardContent className="pt-6 text-center">
                     <div className="mb-4 mx-auto w-24 h-24 rounded-full overflow-hidden bg-muted group-hover:scale-105 transition-transform">
-                      {member.photo_url ? (
-                        <img src={member.photo_url} alt={member.name} className="w-full h-full object-cover" />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center">
+                      {member.photo_url ? <img src={member.photo_url} alt={member.name} className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center">
                           <Users className="h-12 w-12 text-muted-foreground" />
-                        </div>
-                      )}
+                        </div>}
                     </div>
                     <h3 className="font-semibold mb-1">{member.name}</h3>
                     <p className="text-sm text-muted-foreground">{member.position}</p>
                   </CardContent>
-                </Card>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center">
+                </Card>)}
+            </div> : <div className="text-center">
               <p className="text-muted-foreground mb-8">
                 Struktur organisasi DPH Dan Pengurus UKKPK 2025
               </p>
               <div className="max-w-4xl mx-auto">
-                <img 
-                  src={profile?.organization_image_url || "/images/struktur.jpg"} 
-                  alt="Struktur Organisasi UKKPK 2025" 
-                  className="w-full h-auto rounded-lg shadow-lg" 
-                />
+                <img src={profile?.organization_image_url || "/images/struktur.jpg"} alt="Struktur Organisasi UKKPK 2025" className="w-full h-auto rounded-lg shadow-lg" />
               </div>
-            </div>
-          )}
+            </div>}
         </div>
       </section>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default ProfilUkkpk;
