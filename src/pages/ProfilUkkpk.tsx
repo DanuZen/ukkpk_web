@@ -3,6 +3,10 @@ import { Layout } from '@/components/Layout';
 import { Card, CardContent } from '@/components/ui/card';
 import { supabase } from '@/integrations/supabase/client';
 import { Users, Target, Eye, Megaphone, FileText, Radio, Briefcase, ClipboardList, Users2, Handshake } from 'lucide-react';
+import logoReporter from '@/assets/logo-reporter.png';
+import logoMicu from '@/assets/logo-micu.png';
+import logoMc from '@/assets/logo-mc.png';
+import logoSigmaRadio from '@/assets/logo-sigma-radio.png';
 
 interface OrgMember {
   id: string;
@@ -25,10 +29,10 @@ const ProfilUkkpk = () => {
 
   // Logo bidang hardcoded
   const divisionLogos = [
-    { name: 'Jurnalistik', image: '/placeholder.svg' },
-    { name: 'Penyiaran', image: '/placeholder.svg' },
-    { name: 'Kreatif Media', image: '/placeholder.svg' },
-    { name: 'MICU', image: '/placeholder.svg' },
+    { name: 'Reporter/Jurnalistik', image: logoReporter },
+    { name: 'SIGMA Radio', image: logoSigmaRadio },
+    { name: 'MC Team', image: logoMc },
+    { name: 'MICU', image: logoMicu },
   ];
 
   useEffect(() => {
