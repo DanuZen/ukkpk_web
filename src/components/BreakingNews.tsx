@@ -12,28 +12,28 @@ export const BreakingNews = () => {
           .from("articles")
           .select("title")
           .order("created_at", { ascending: false })
-          .limit(3);
+          .limit(5);
 
         // Fetch latest news
         const { data: news } = await supabase
           .from("news")
           .select("title")
           .order("created_at", { ascending: false })
-          .limit(3);
+          .limit(5);
 
+        // Always include UKKPK text as the first item
+        const defaultText = "UKKPK UNP : Unit Kegiatan Komunikasi Dan Penyiaran Kampus";
+        
         const allHeadlines = [
+          defaultText,
           ...(articles || []).map((a) => a.title),
           ...(news || []).map((n) => n.title),
         ];
 
-        if (allHeadlines.length > 0) {
-          setHeadlines(allHeadlines);
-        } else {
-          setHeadlines(["UKKPK : Unit Kegiatan Komunikasi dan Penyiaran Kampus"]);
-        }
+        setHeadlines(allHeadlines);
       } catch (error) {
         console.error("Error fetching headlines:", error);
-        setHeadlines(["UKKPK : Unit Kegiatan Komunikasi dan Penyiaran Kampus"]);
+        setHeadlines(["UKKPK UNP : Unit Kegiatan Komunikasi Dan Penyiaran Kampus"]);
       }
     };
 
