@@ -306,22 +306,6 @@ const ProfilUkkpk = () => {
           )}
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="py-16 px-4 bg-gradient-to-br from-primary/10 to-secondary/10">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Bergabung Bersama Kami</h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">Kembangkan potensimu di bidang komunikasi dan penyiaran bersama UKKPK</p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <a href="/berita" className="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
-              Lihat Berita
-            </a>
-            <a href="/artikel" className="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors">
-              Baca Artikel
-            </a>
-          </div>
-        </div>
-      </section>
     </Layout>
   );
 };
