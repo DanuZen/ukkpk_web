@@ -271,7 +271,7 @@ const ProfilUkkpk = () => {
             {/* Logo MICU - Centered and Larger */}
             <div className="flex justify-center mb-12">
               <div className="flex flex-col items-center group">
-                <div className="w-64 h-64 mb-4 rounded-lg overflow-hidden bg-muted/50 p-8 hover:shadow-xl transition-all duration-300 hover:scale-110">
+                <div className="w-80 h-80 mb-4 rounded-lg overflow-hidden bg-muted/50 p-10 hover:shadow-xl transition-all duration-300 hover:scale-110">
                   <img
                     src={logoMicu}
                     alt="MICU"
