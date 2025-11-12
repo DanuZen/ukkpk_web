@@ -29,10 +29,9 @@ const ProfilUkkpk = () => {
 
   // Logo bidang hardcoded
   const divisionLogos = [
-    { name: 'Reporter/Jurnalistik', image: logoReporter },
-    { name: 'SIGMA Radio', image: logoSigmaRadio },
-    { name: 'MC Team', image: logoMc },
-    { name: 'MICU', image: logoMicu },
+    { name: 'Jurnalistik', image: logoReporter },
+    { name: 'Penyiaran', image: logoSigmaRadio },
+    { name: 'Kreatif Media', image: logoMc },
   ];
 
   useEffect(() => {
@@ -268,19 +267,36 @@ const ProfilUkkpk = () => {
       <section className="py-16 px-4 bg-background">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center">Bidang & Unit</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-            {divisionLogos.map((logo, index) => (
-              <div key={index} className="flex flex-col items-center group">
-                <div className="w-32 h-32 mb-4 rounded-lg overflow-hidden bg-muted/50 p-4 hover:shadow-xl transition-all duration-300 hover:scale-110 hover:rotate-3">
+          <div className="max-w-4xl mx-auto">
+            {/* Logo MICU - Centered and Larger */}
+            <div className="flex justify-center mb-12">
+              <div className="flex flex-col items-center group">
+                <div className="w-48 h-48 mb-4 rounded-lg overflow-hidden bg-muted/50 p-6 hover:shadow-xl transition-all duration-300 hover:scale-110">
                   <img
-                    src={logo.image}
-                    alt={logo.name}
+                    src={logoMicu}
+                    alt="MICU"
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <p className="text-sm font-medium text-center">{logo.name}</p>
+                <p className="text-lg font-semibold text-center">MICU</p>
               </div>
-            ))}
+            </div>
+
+            {/* 3 Logo Bidang - Grid 3 Columns */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+              {divisionLogos.map((logo, index) => (
+                <div key={index} className="flex flex-col items-center group">
+                  <div className="w-32 h-32 mb-4 rounded-lg overflow-hidden bg-muted/50 p-4 hover:shadow-xl transition-all duration-300 hover:scale-110 hover:rotate-3">
+                    <img
+                      src={logo.image}
+                      alt={logo.name}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <p className="text-sm font-medium text-center">{logo.name}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
