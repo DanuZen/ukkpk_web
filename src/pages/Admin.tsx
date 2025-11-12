@@ -10,8 +10,6 @@ import { toast } from "sonner";
 import { ArticlesManager } from "@/components/admin/ArticlesManager";
 import { NewsManager } from "@/components/admin/NewsManager";
 import { RadioManager } from "@/components/admin/RadioManager";
-import { ProfileManager } from "@/components/admin/ProfileManager";
-import { OrganizationManager } from "@/components/admin/OrganizationManager";
 
 const Admin = () => {
   const { user, signOut } = useAuth();
@@ -59,12 +57,10 @@ const Admin = () => {
         </div>
 
         <Tabs defaultValue="articles" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 gap-2">
+          <TabsList className="grid w-full grid-cols-3 gap-2">
             <TabsTrigger value="articles">Artikel</TabsTrigger>
             <TabsTrigger value="news">Berita</TabsTrigger>
             <TabsTrigger value="radio">Radio</TabsTrigger>
-            <TabsTrigger value="profile">Profil</TabsTrigger>
-            <TabsTrigger value="organization">Organisasi</TabsTrigger>
           </TabsList>
 
           <TabsContent value="articles">
@@ -77,14 +73,6 @@ const Admin = () => {
 
           <TabsContent value="radio">
             <RadioManager />
-          </TabsContent>
-
-          <TabsContent value="profile">
-            <ProfileManager />
-          </TabsContent>
-
-          <TabsContent value="organization">
-            <OrganizationManager />
           </TabsContent>
         </Tabs>
       </div>
