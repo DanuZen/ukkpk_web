@@ -63,38 +63,38 @@ const Index = () => {
       <HomeSlideshow />
 
       {/* Artikel & Berita Section - Gabungan */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center bg-gradient-primary bg-clip-text text-transparent">Artikel & Berita Terbaru</h2>
+      <section className="py-8 sm:py-12 md:py-16 bg-background">
+        <div className="container mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-10 md:mb-12 text-center bg-gradient-primary bg-clip-text text-transparent animate-fade-in">Artikel & Berita Terbaru</h2>
 
           {articles.length === 0 && news.length === 0 ? (
             <p className="text-center text-muted-foreground">Belum ada konten tersedia.</p>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {/* Artikel Cards */}
               {articles.map((article) => (
                 <Card 
                   key={`article-${article.id}`} 
-                  className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                  className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer animate-fade-in"
                   onClick={() => navigate(`/artikel/${article.id}`)}
                 >
                   {article.image_url && (
-                    <div className="relative overflow-hidden">
-                      <img src={article.image_url} alt={article.title} className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110" />
-                      <div className="absolute top-3 left-3">
-                        <Badge className="bg-primary text-primary-foreground shadow-lg">Artikel</Badge>
+                    <div className="relative overflow-hidden h-40 sm:h-48">
+                      <img src={article.image_url} alt={article.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+                      <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
+                        <Badge className="bg-primary text-primary-foreground shadow-lg text-xs">Artikel</Badge>
                       </div>
                     </div>
                   )}
-                  <CardHeader>
-                    <div className="flex items-center gap-2 mb-2">
-                      <Badge variant="secondary">{article.category}</Badge>
+                  <CardHeader className="p-4 sm:p-6">
+                    <div className="flex items-center gap-2 mb-2 flex-wrap">
+                      <Badge variant="secondary" className="text-xs">{article.category}</Badge>
                       <span className="text-xs text-muted-foreground">{formatDate(article.published_at || article.created_at)}</span>
                     </div>
-                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">{article.title}</CardTitle>
+                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-base sm:text-lg">{article.title}</CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground line-clamp-3 text-sm">{stripHtml(article.content)}</p>
+                  <CardContent className="p-4 pt-0 sm:p-6 sm:pt-0">
+                    <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed">{stripHtml(article.content)}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -103,25 +103,25 @@ const Index = () => {
               {news.map((item) => (
                 <Card 
                   key={`news-${item.id}`} 
-                  className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                  className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer animate-fade-in"
                   onClick={() => navigate(`/berita/${item.id}`)}
                 >
                   {item.image_url && (
-                    <div className="relative overflow-hidden">
-                      <img src={item.image_url} alt={item.title} className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110" />
-                      <div className="absolute top-3 left-3">
-                        <Badge className="bg-secondary text-secondary-foreground shadow-lg">Berita</Badge>
+                    <div className="relative overflow-hidden h-40 sm:h-48">
+                      <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+                      <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
+                        <Badge className="bg-secondary text-secondary-foreground shadow-lg text-xs">Berita</Badge>
                       </div>
                     </div>
                   )}
-                  <CardHeader>
+                  <CardHeader className="p-4 sm:p-6">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-xs text-muted-foreground">{formatDate(item.published_at || item.created_at)}</span>
                     </div>
-                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">{item.title}</CardTitle>
+                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-base sm:text-lg">{item.title}</CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground line-clamp-3 text-sm">{stripHtml(item.content)}</p>
+                  <CardContent className="p-4 pt-0 sm:p-6 sm:pt-0">
+                    <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed">{stripHtml(item.content)}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -131,15 +131,15 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4 bg-gradient-to-br from-primary/10 to-secondary/10">
+      <section className="py-12 sm:py-16 px-4 bg-gradient-to-br from-primary/10 to-secondary/10 animate-fade-in">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Bergabung Bersama Kami</h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">Kembangkan potensimu di bidang komunikasi dan penyiaran bersama UKKPK</p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <a href="/berita" className="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Bergabung Bersama Kami</h2>
+          <p className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 max-w-2xl mx-auto px-4">Kembangkan potensimu di bidang komunikasi dan penyiaran bersama UKKPK</p>
+          <div className="flex gap-3 sm:gap-4 justify-center flex-wrap px-4">
+            <a href="/berita" className="px-5 sm:px-6 py-2.5 sm:py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg text-sm sm:text-base w-full sm:w-auto max-w-[200px]">
               Lihat Berita
             </a>
-            <a href="/artikel" className="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors">
+            <a href="/artikel" className="px-5 sm:px-6 py-2.5 sm:py-3 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-all duration-300 hover:scale-105 shadow-lg text-sm sm:text-base w-full sm:w-auto max-w-[200px]">
               Baca Artikel
             </a>
           </div>

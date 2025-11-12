@@ -39,12 +39,12 @@ export const HomeSlideshow = () => {
   if (images.length === 0) {
     return (
       <section className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-primary/20 via-background to-secondary/20">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center z-10">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+        <div className="absolute inset-0 flex items-center justify-center px-4">
+          <div className="text-center z-10 animate-fade-in">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
               Selamat Datang di UKKPK
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
               Unit Kegiatan Komunikasi dan Penyiaran Kampus
             </p>
           </div>
@@ -76,11 +76,11 @@ export const HomeSlideshow = () => {
 
       {/* Overlay Text */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-center z-10 px-4">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
+        <div className="text-center z-10 px-4 sm:px-6 animate-fade-in">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white drop-shadow-2xl">
             Selamat Datang di UKKPK
           </h1>
-          <p className="text-xl text-white/90 drop-shadow-md max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-white/90 drop-shadow-lg max-w-2xl mx-auto px-4">
             Unit Kegiatan Komunikasi dan Penyiaran Kampus
           </p>
         </div>
@@ -93,32 +93,32 @@ export const HomeSlideshow = () => {
             variant="ghost"
             size="icon"
             onClick={goToPrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white opacity-70 sm:opacity-0 group-hover:opacity-100 transition-opacity h-10 w-10 sm:h-12 sm:w-12"
           >
-            <ChevronLeft className="h-8 w-8" />
+            <ChevronLeft className="h-6 w-6 sm:h-8 sm:w-8" />
           </Button>
           <Button
             variant="ghost"
             size="icon"
             onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white opacity-70 sm:opacity-0 group-hover:opacity-100 transition-opacity h-10 w-10 sm:h-12 sm:w-12"
           >
-            <ChevronRight className="h-8 w-8" />
+            <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8" />
           </Button>
         </>
       )}
 
       {/* Dots Indicator */}
       {images.length > 1 && (
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-1.5 sm:gap-2">
           {images.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all ${
+              className={`h-2 rounded-full transition-all ${
                 index === currentIndex
-                  ? 'bg-white w-8'
-                  : 'bg-white/50 hover:bg-white/75'
+                  ? 'bg-white w-6 sm:w-8'
+                  : 'bg-white/50 hover:bg-white/75 w-2'
               }`}
             />
           ))}
