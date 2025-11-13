@@ -141,6 +141,16 @@ export const HomeSlideshow = () => {
               className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-8 py-6 text-base"
               asChild
             >
+              <a href="/berita">
+                Lihat Berita
+              </a>
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-8 py-6 text-base"
+              asChild
+            >
               <a href="/radio">
                 <Play className="h-5 w-5 mr-2" />
                 Dengar Radio
