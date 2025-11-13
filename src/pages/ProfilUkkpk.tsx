@@ -177,8 +177,7 @@ const ProfilUkkpk = () => {
             </div>
 
             {/* Description Card */}
-            <Card className="mb-16 bg-white border-primary/20 shadow-xl overflow-hidden group hover:shadow-2xl hover:border-primary/40 transition-all duration-500 animate-fade-in">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <Card className="mb-16 bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in">
               <CardContent className="pt-8 pb-8 relative">
                 <p className="text-lg text-muted-foreground leading-relaxed text-center max-w-4xl mx-auto">
                   {profile?.description || 'Unit Kegiatan Komunikasi dan Penyiaran Kampus (UKKPK) adalah organisasi mahasiswa yang fokus pada pengembangan keterampilan komunikasi, jurnalistik, dan penyiaran. Kami berkomitmen untuk menghasilkan komunikator handal dan profesional yang siap berkontribusi dalam dunia media dan komunikasi.'}
@@ -188,9 +187,7 @@ const ProfilUkkpk = () => {
 
             {/* Visi & Misi */}
             <div className="grid md:grid-cols-2 gap-8 mb-24">
-              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:shadow-2xl hover:border-primary/40 transition-all duration-500 animate-fade-in">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in">
                 <CardContent className="pt-8 pb-8 relative">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
@@ -205,9 +202,7 @@ const ProfilUkkpk = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:shadow-2xl hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '100ms' }}>
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '100ms' }}>
                 <CardContent className="pt-8 pb-8 relative">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
@@ -375,7 +370,7 @@ const ProfilUkkpk = () => {
               {/* Logo MICU - Centered and Larger */}
               <div className="flex justify-center mb-12">
                 <div className="flex flex-col items-center group">
-                  <div className="w-80 h-80 mb-4 rounded-lg overflow-hidden bg-muted/50 p-10 hover:shadow-xl transition-all duration-300 hover:scale-110">
+                  <div className="w-80 h-80 mb-4 rounded-lg overflow-hidden bg-muted/50 p-10 transition-all duration-300 hover:scale-110">
                     <img src={logoMicu} alt="MICU" className="w-full h-full object-contain" />
                   </div>
                   <p className="text-lg font-semibold text-center">MICU</p>
@@ -385,7 +380,7 @@ const ProfilUkkpk = () => {
               {/* 3 Logo Bidang - Grid 3 Columns */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
                 {divisionLogos.map((logo, index) => <div key={index} className="flex flex-col items-center group">
-                    <div className="w-32 h-32 mb-4 rounded-lg overflow-hidden bg-muted/50 p-4 hover:shadow-xl transition-all duration-300 hover:scale-110 hover:rotate-3">
+                    <div className="w-32 h-32 mb-4 rounded-lg overflow-hidden bg-muted/50 p-4 transition-all duration-300 hover:scale-110 hover:rotate-3">
                       <img src={logo.image} alt={logo.name} className="w-full h-full object-contain" />
                     </div>
                     <p className="text-sm font-medium text-center">{logo.name}</p>
@@ -395,7 +390,7 @@ const ProfilUkkpk = () => {
 
             {/* Baris pertama: 4 card */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-              {features.slice(0, 4).map((feature, index) => <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              {features.slice(0, 4).map((feature, index) => <Card key={index} className="group transition-all duration-300 hover:-translate-y-1">
                   <CardContent className="pt-6 text-center flex flex-col items-center">
                     <div className="inline-flex p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
                       {feature.icon}
@@ -410,7 +405,7 @@ const ProfilUkkpk = () => {
             
             {/* Baris kedua: 3 card centered */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {features.slice(4, 7).map((feature, index) => <Card key={index + 4} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              {features.slice(4, 7).map((feature, index) => <Card key={index + 4} className="group transition-all duration-300 hover:-translate-y-1">
                   <CardContent className="pt-6 text-center flex flex-col items-center">
                     <div className="inline-flex p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
                       {feature.icon}
@@ -452,7 +447,7 @@ const ProfilUkkpk = () => {
         <div className="container mx-auto relative z-10">
           <h2 className="text-3xl font-bold mb-12 text-center">Nilai-Nilai Kami</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {values.map((value, index) => <Card key={index} className="text-center hover:shadow-md transition-shadow">
+            {values.map((value, index) => <Card key={index} className="text-center transition-shadow">
                 <CardContent className="pt-6">
                   <div className="inline-flex p-3 rounded-full bg-primary/10 text-primary mb-3">{value.icon}</div>
                   <h3 className="text-lg font-semibold mb-2">{value.title}</h3>
