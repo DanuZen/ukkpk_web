@@ -5,6 +5,7 @@ export const GoogleMap = () => {
 
   return (
     <div className="h-full flex flex-col">
+      <h2 className="text-2xl font-bold mb-6 text-center">Lokasi UKKPK UNP</h2>
       <div className="relative w-full h-[450px] rounded-lg overflow-hidden shadow-md border border-border/50">
         <iframe
           src={embedUrl}
