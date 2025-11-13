@@ -79,69 +79,43 @@ const Radio = () => {
   };
   return (
     <Layout>
-      {/* Hero Section - HostPro Style */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
-        {/* Background Image with Dark Overlay */}
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070')] bg-cover bg-center"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl animate-fade-in">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-2 rounded-full mb-6">
-              <RadioIcon className="h-4 w-4" />
-              <span className="text-sm font-medium">Radio #1 Kampus UNP</span>
-            </div>
-            
-            {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight">
-              SIGMA RADIO
-              <br />
-              UKKPK UNP
-            </h1>
-            
-            {/* Subtitle */}
-            <p className="text-white/90 text-lg md:text-xl max-w-2xl mb-8 leading-relaxed">
-              Platform radio kampus yang menghubungkan Anda dengan berbagai program menarik, 
-              berita terkini, dan hiburan berkualitas dari UKKPK UNP.
-            </p>
+      <div className="container mx-auto px-4 py-12">
+        {/* Header Section */}
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+            <span className="text-sm text-primary font-medium">LIVE NOW</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
+            SIGMA RADIO UKKPK
+          </h1>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Dengarkan siaran langsung radio kampus kami
+          </p>
+        </div>
 
-            {/* Buttons */}
-            <div className="flex flex-wrap gap-4 mb-8">
+        {/* Now Playing Card */}
+        {currentProgram && (
+          <Card className="max-w-2xl mx-auto mb-12 border-border/50">
+            <CardContent className="p-8 text-center">
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <RadioIcon className="h-5 w-5 text-primary" />
+                <span className="font-semibold">Now Playing: {currentProgram.name}</span>
+              </div>
+              <p className="text-sm text-muted-foreground mb-6">
+                Hosted by {currentProgram.host}
+              </p>
               <Button 
                 size="lg" 
-                className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-base"
+                className="bg-primary hover:bg-primary/90 text-white"
                 onClick={handleListen}
               >
                 <Play className="h-5 w-5 mr-2" />
-                Dengar Sekarang
+                Dengarkan Sekarang
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-8 py-6 text-base"
-              >
-                <Clock className="h-5 w-5 mr-2" />
-                Lihat Jadwal
-              </Button>
-            </div>
-
-            {/* Current Program Info */}
-            {currentProgram && (
-              <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 px-6 py-3 rounded-lg">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-white/90 text-sm">LIVE NOW:</span>
-                </div>
-                <span className="text-white font-medium">{currentProgram.name}</span>
-                <span className="text-white/60 text-sm">• {currentProgram.host}</span>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      <div className="container mx-auto px-4 py-12">
+            </CardContent>
+          </Card>
+        )}
 
         {/* Schedule */}
         <div className="mb-12">
