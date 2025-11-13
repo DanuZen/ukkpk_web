@@ -79,47 +79,64 @@ const Radio = () => {
   };
   return (
     <Layout>
-      {/* Hero Section with Gradient */}
-      <section className="relative py-20 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d')] opacity-5 bg-cover bg-center"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background"></div>
+      {/* Hero Section - HostPro Style */}
+      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+        {/* Background Image with Dark Overlay */}
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070')] bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
+        
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-12 animate-fade-in">
-            <div className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-full mb-4">
-              <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
-              <span className="text-sm font-medium">LIVE NOW</span>
+          <div className="max-w-3xl animate-fade-in">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-2 rounded-full mb-6">
+              <RadioIcon className="h-4 w-4" />
+              <span className="text-sm font-medium">Radio #1 Kampus UNP</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
-              SIGMA RADIO UKKPK
+            
+            {/* Main Heading */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight">
+              SIGMA RADIO
+              <br />
+              UKKPK UNP
             </h1>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8">
-              Dengarkan siaran langsung radio kampus kami
+            
+            {/* Subtitle */}
+            <p className="text-white/90 text-lg md:text-xl max-w-2xl mb-8 leading-relaxed">
+              Platform radio kampus yang menghubungkan Anda dengan berbagai program menarik, 
+              berita terkini, dan hiburan berkualitas dari UKKPK UNP.
             </p>
 
-            {/* Live Player Card */}
-            <Card className="max-w-2xl mx-auto border-primary/50">
-              <CardHeader>
-                <div className="flex items-center justify-center gap-3 mb-2">
-                  <RadioIcon className="h-6 w-6 text-primary" />
-                  <CardTitle className="text-2xl">
-                    Now Playing: {currentProgram?.name || "Off Air"}
-                  </CardTitle>
+            {/* Buttons */}
+            <div className="flex flex-wrap gap-4 mb-8">
+              <Button 
+                size="lg" 
+                className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-base"
+                onClick={handleListen}
+              >
+                <Play className="h-5 w-5 mr-2" />
+                Dengar Sekarang
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-8 py-6 text-base"
+              >
+                <Clock className="h-5 w-5 mr-2" />
+                Lihat Jadwal
+              </Button>
+            </div>
+
+            {/* Current Program Info */}
+            {currentProgram && (
+              <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 px-6 py-3 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  <span className="text-white/90 text-sm">LIVE NOW:</span>
                 </div>
-                {currentProgram && (
-                  <CardDescription>Hosted by {currentProgram.host}</CardDescription>
-                )}
-              </CardHeader>
-              <CardContent>
-                <Button 
-                  size="lg" 
-                  className="w-full max-w-xs mx-auto"
-                  onClick={handleListen}
-                >
-                  <Play className="h-5 w-5 mr-2" />
-                  Dengarkan Sekarang
-                </Button>
-              </CardContent>
-            </Card>
+                <span className="text-white font-medium">{currentProgram.name}</span>
+                <span className="text-white/60 text-sm">• {currentProgram.host}</span>
+              </div>
+            )}
           </div>
         </div>
       </section>
