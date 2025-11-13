@@ -97,6 +97,79 @@ const ProfilUkkpk = () => {
     description: 'Mendorong inovasi dan ide-ide segar dalam komunikasi'
   }];
   return <Layout>
+      {/* Global Background Pattern - Satu kesatuan untuk seluruh halaman */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        {/* Large curved shapes */}
+        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full border-[50px] border-gray-100/70" />
+        <div className="absolute top-[20%] -right-32 w-96 h-96 rounded-full border-[35px] border-gray-50" />
+        <div className="absolute top-[40%] left-1/4 w-[600px] h-[600px] rounded-full border-[70px] border-gray-100/50" />
+        <div className="absolute top-[60%] right-1/4 w-96 h-96 rounded-full border-[40px] border-gray-100/70" />
+        <div className="absolute top-[80%] -left-24 w-80 h-80 rounded-full border-[30px] border-gray-50" />
+        <div className="absolute bottom-0 right-1/3 w-[500px] h-[500px] rounded-full border-[60px] border-gray-100/50" />
+        
+        {/* Small accent circles */}
+        <div className="absolute top-[15%] right-1/4 w-32 h-32 rounded-full border-[15px] border-primary/10" />
+        <div className="absolute top-[35%] left-1/4 w-28 h-28 rounded-full border-[12px] border-primary/10" />
+        <div className="absolute top-[55%] right-1/3 w-24 h-24 rounded-full border-[10px] border-primary/10" />
+        <div className="absolute top-[75%] left-1/3 w-28 h-28 rounded-full border-[12px] border-primary/10" />
+        
+        {/* Dotted mesh patterns */}
+        <div className="absolute top-0 right-0 w-1/3 h-[30%] opacity-30">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
+            backgroundSize: '20px 20px'
+          }} />
+        </div>
+        <div className="absolute top-[25%] left-1/4 w-1/4 h-[20%] opacity-20">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle, #d1d5db 1px, transparent 1px)',
+            backgroundSize: '15px 15px'
+          }} />
+        </div>
+        <div className="absolute top-[50%] left-0 w-1/4 h-[25%] opacity-25">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
+            backgroundSize: '18px 18px'
+          }} />
+        </div>
+        <div className="absolute top-[75%] right-0 w-1/4 h-[20%] opacity-25">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
+            backgroundSize: '18px 18px'
+          }} />
+        </div>
+        
+        {/* Curved wave lines */}
+        <div className="absolute top-[20%] left-0 w-80 h-80">
+          <svg viewBox="0 0 200 200" className="w-full h-full opacity-20">
+            <path d="M 0,80 Q 50,40 100,80 T 200,80" stroke="#dc2626" strokeWidth="2" fill="none" />
+            <path d="M 0,100 Q 50,60 100,100 T 200,100" stroke="#dc2626" strokeWidth="2" fill="none" />
+            <path d="M 0,120 Q 50,80 100,120 T 200,120" stroke="#dc2626" strokeWidth="2" fill="none" />
+            <path d="M 0,140 Q 50,100 100,140 T 200,140" stroke="#dc2626" strokeWidth="1.5" fill="none" />
+          </svg>
+        </div>
+        <div className="absolute top-[45%] right-10 w-64 h-64 rotate-180">
+          <svg viewBox="0 0 200 200" className="w-full h-full opacity-15">
+            <path d="M 0,100 Q 50,50 100,100 T 200,100" stroke="#dc2626" strokeWidth="2" fill="none" />
+            <path d="M 0,120 Q 50,70 100,120 T 200,120" stroke="#dc2626" strokeWidth="2" fill="none" />
+          </svg>
+        </div>
+        <div className="absolute top-[70%] right-0 w-72 h-72">
+          <svg viewBox="0 0 200 200" className="w-full h-full opacity-20">
+            <path d="M 0,90 Q 50,50 100,90 T 200,90" stroke="#dc2626" strokeWidth="2" fill="none" />
+            <path d="M 0,110 Q 50,70 100,110 T 200,110" stroke="#dc2626" strokeWidth="2" fill="none" />
+          </svg>
+        </div>
+        <div className="absolute bottom-[10%] left-0 w-64 h-64">
+          <svg viewBox="0 0 200 200" className="w-full h-full opacity-20">
+            <path d="M 0,90 Q 50,50 100,90 T 200,90" stroke="#dc2626" strokeWidth="2" fill="none" />
+            <path d="M 0,110 Q 50,70 100,110 T 200,110" stroke="#dc2626" strokeWidth="2" fill="none" />
+          </svg>
+        </div>
+      </div>
+
+      {/* Content with relative positioning */}
+      <div className="relative z-10">
       {/* Banner Section */}
       {profile?.banner_url && <section className="relative w-full h-64 md:h-96 overflow-hidden">
           <img src={profile.banner_url} alt="UKKPK Banner" className="w-full h-full object-cover" />
@@ -120,48 +193,6 @@ const ProfilUkkpk = () => {
 
       {/* Tentang UKKPK */}
       <section className="py-20 px-4 relative overflow-hidden bg-white">
-        {/* Curved geometric background patterns */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Large curved shapes */}
-          <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full border-[50px] border-gray-100/70" />
-          <div className="absolute top-1/4 -right-32 w-96 h-96 rounded-full border-[35px] border-gray-50" />
-          <div className="absolute -bottom-32 left-1/4 w-[600px] h-[600px] rounded-full border-[70px] border-gray-100/50" />
-          
-          {/* Small accent circles */}
-          <div className="absolute top-20 right-1/4 w-32 h-32 rounded-full border-[15px] border-primary/10" />
-          <div className="absolute bottom-40 right-20 w-24 h-24 rounded-full border-[12px] border-primary/8" />
-          
-          {/* Dotted mesh patterns - multiple areas */}
-          <div className="absolute top-0 right-0 w-1/3 h-1/2 opacity-30">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
-              backgroundSize: '20px 20px'
-            }} />
-          </div>
-          <div className="absolute bottom-0 left-1/4 w-1/4 h-1/3 opacity-20">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle, #d1d5db 1px, transparent 1px)',
-              backgroundSize: '15px 15px'
-            }} />
-          </div>
-          
-          {/* Curved wave lines - multiple positions */}
-          <div className="absolute top-1/4 left-0 w-80 h-80">
-            <svg viewBox="0 0 200 200" className="w-full h-full opacity-20">
-              <path d="M 0,80 Q 50,40 100,80 T 200,80" stroke="#dc2626" strokeWidth="2" fill="none" />
-              <path d="M 0,100 Q 50,60 100,100 T 200,100" stroke="#dc2626" strokeWidth="2" fill="none" />
-              <path d="M 0,120 Q 50,80 100,120 T 200,120" stroke="#dc2626" strokeWidth="2" fill="none" />
-              <path d="M 0,140 Q 50,100 100,140 T 200,140" stroke="#dc2626" strokeWidth="1.5" fill="none" />
-            </svg>
-          </div>
-          <div className="absolute bottom-1/4 right-10 w-64 h-64 rotate-180">
-            <svg viewBox="0 0 200 200" className="w-full h-full opacity-15">
-              <path d="M 0,100 Q 50,50 100,100 T 200,100" stroke="#dc2626" strokeWidth="2" fill="none" />
-              <path d="M 0,120 Q 50,70 100,120 T 200,120" stroke="#dc2626" strokeWidth="2" fill="none" />
-            </svg>
-          </div>
-        </div>
-        
         <div className="container mx-auto relative z-10">
           <div className="max-w-5xl mx-auto">
             {/* Section Header */}
@@ -341,27 +372,6 @@ const ProfilUkkpk = () => {
 
       {/* Bidang Kegiatan */}
       <section className="py-16 px-4 bg-white relative overflow-hidden">
-        {/* Curved geometric background patterns */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-32 right-1/4 w-96 h-96 rounded-full border-[40px] border-gray-100/70" />
-          <div className="absolute top-1/3 -left-24 w-80 h-80 rounded-full border-[30px] border-gray-50" />
-          <div className="absolute -bottom-20 right-1/3 w-[500px] h-[500px] rounded-full border-[60px] border-gray-100/50" />
-          <div className="absolute top-40 left-1/4 w-28 h-28 rounded-full border-[12px] border-primary/10" />
-          
-          <div className="absolute top-0 left-0 w-1/4 h-1/2 opacity-25">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
-              backgroundSize: '18px 18px'
-            }} />
-          </div>
-          
-          <div className="absolute bottom-1/4 right-0 w-72 h-72">
-            <svg viewBox="0 0 200 200" className="w-full h-full opacity-20">
-              <path d="M 0,90 Q 50,50 100,90 T 200,90" stroke="#dc2626" strokeWidth="2" fill="none" />
-              <path d="M 0,110 Q 50,70 100,110 T 200,110" stroke="#dc2626" strokeWidth="2" fill="none" />
-            </svg>
-          </div>
-        </div>
         <div className="container mx-auto relative z-10">
           <h2 className="text-3xl font-bold mb-12 text-center">Bidang Kegiatan</h2>
           <div className="max-w-7xl mx-auto">
@@ -423,27 +433,6 @@ const ProfilUkkpk = () => {
 
       {/* Nilai-Nilai */}
       <section className="py-16 px-4 bg-background relative overflow-hidden">
-        {/* Curved geometric background patterns */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full border-[35px] border-gray-100/60" />
-          <div className="absolute top-1/4 -right-20 w-72 h-72 rounded-full border-[28px] border-gray-50" />
-          <div className="absolute bottom-0 left-1/3 w-96 h-96 rounded-full border-[45px] border-gray-100/50" />
-          <div className="absolute top-32 right-1/3 w-24 h-24 rounded-full border-[10px] border-primary/10" />
-          
-          <div className="absolute top-0 right-0 w-1/4 h-1/3 opacity-25">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
-              backgroundSize: '18px 18px'
-            }} />
-          </div>
-          
-          <div className="absolute bottom-1/3 left-0 w-64 h-64">
-            <svg viewBox="0 0 200 200" className="w-full h-full opacity-20">
-              <path d="M 0,90 Q 50,50 100,90 T 200,90" stroke="#dc2626" strokeWidth="2" fill="none" />
-              <path d="M 0,110 Q 50,70 100,110 T 200,110" stroke="#dc2626" strokeWidth="2" fill="none" />
-            </svg>
-          </div>
-        </div>
         <div className="container mx-auto relative z-10">
           <h2 className="text-3xl font-bold mb-12 text-center">Nilai-Nilai Kami</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
@@ -460,6 +449,7 @@ const ProfilUkkpk = () => {
 
       {/* DPH & Pengurus per Tahun */}
       <StrukturOrganisasiSection />
+      </div>
     </Layout>;
 };
 
@@ -494,28 +484,6 @@ const StrukturOrganisasiSection = () => {
 
   return (
     <section className="py-16 px-4 bg-background relative overflow-hidden">
-      {/* Curved geometric background patterns */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full border-[40px] border-gray-100/60" />
-        <div className="absolute top-1/3 -left-24 w-80 h-80 rounded-full border-[30px] border-gray-50" />
-        <div className="absolute -bottom-20 right-1/4 w-[500px] h-[500px] rounded-full border-[60px] border-gray-100/50" />
-        <div className="absolute top-20 left-1/3 w-28 h-28 rounded-full border-[12px] border-primary/10" />
-        
-        <div className="absolute top-0 left-0 w-1/4 h-1/2 opacity-25">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
-            backgroundSize: '18px 18px'
-          }} />
-        </div>
-        
-        <div className="absolute bottom-1/4 right-0 w-72 h-72">
-          <svg viewBox="0 0 200 200" className="w-full h-full opacity-20">
-            <path d="M 0,90 Q 50,50 100,90 T 200,90" stroke="#dc2626" strokeWidth="2" fill="none" />
-            <path d="M 0,110 Q 50,70 100,110 T 200,110" stroke="#dc2626" strokeWidth="2" fill="none" />
-          </svg>
-        </div>
-      </div>
-      
       <div className="container mx-auto relative z-10">
         <h2 className="text-3xl font-bold mb-8 text-center">DPH & Pengurus UKKPK</h2>
         
