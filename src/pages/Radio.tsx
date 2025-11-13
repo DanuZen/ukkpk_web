@@ -106,8 +106,46 @@ const Radio = () => {
               berita terkini, dan hiburan berkualitas dari UKKPK UNP.
             </p>
 
+            {/* Current Program Info - Prominent Display */}
+            {currentProgram ? (
+              <div className="mb-8 p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center animate-pulse">
+                      <RadioIcon className="h-6 w-6 text-white" />
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                      <span className="text-white/90 text-sm font-medium uppercase tracking-wide">SEDANG TAYANG</span>
+                    </div>
+                    <h3 className="text-white text-2xl font-bold mb-1">{currentProgram.name}</h3>
+                    <p className="text-white/80 text-sm mb-2">{currentProgram.description}</p>
+                    <div className="flex items-center gap-4 text-white/70 text-sm">
+                      <div className="flex items-center gap-2">
+                        <Mic className="h-4 w-4" />
+                        <span>Host: {currentProgram.host}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Clock className="h-4 w-4" />
+                        <span>{DAYS[currentProgram.day_of_week]} • {currentProgram.air_time}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="mb-8 p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl">
+                <div className="flex items-center gap-3">
+                  <RadioIcon className="h-6 w-6 text-white/50" />
+                  <span className="text-white/70 text-sm">Tidak ada program yang sedang tayang saat ini</span>
+                </div>
+              </div>
+            )}
+
             {/* Buttons */}
-            <div className="flex flex-wrap gap-4 mb-8">
+            <div className="flex flex-wrap gap-4">
               <Button 
                 size="lg" 
                 className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-base"
@@ -125,18 +163,6 @@ const Radio = () => {
                 Lihat Jadwal
               </Button>
             </div>
-
-            {/* Current Program Info */}
-            {currentProgram && (
-              <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 px-6 py-3 rounded-lg">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-white/90 text-sm">LIVE NOW:</span>
-                </div>
-                <span className="text-white font-medium">{currentProgram.name}</span>
-                <span className="text-white/60 text-sm">• {currentProgram.host}</span>
-              </div>
-            )}
           </div>
         </div>
       </section>
