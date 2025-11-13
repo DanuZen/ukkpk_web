@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Music2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import logoUkkpk from "@/assets/logo-ukkpk.png";
 
 export const Footer = () => {
   // Hardcoded social media links
@@ -23,7 +24,10 @@ export const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12">
           {/* About */}
           <div className="space-y-4">
-            <h3 className="font-bold text-xl mb-3 bg-gradient-primary bg-clip-text text-transparent">UKKPK UNP</h3>
+            <div className="flex items-center gap-3 mb-3">
+              <img src={logoUkkpk} alt="Logo UKKPK" className="h-12 w-12" />
+              <h3 className="font-bold text-xl bg-gradient-primary bg-clip-text text-transparent">UKKPK UNP</h3>
+            </div>
             <p className="text-sm text-foreground/70 leading-relaxed">Unit Kegiatan Komunikasi dan Penyiaran Kampus</p>
           </div>
 
