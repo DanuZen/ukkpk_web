@@ -521,7 +521,7 @@ const StrukturOrganisasiSection = () => {
   const selectedStructure = structures.find(s => s.angkatan === selectedYear);
 
   return (
-    <section className="py-16 px-4 bg-background relative overflow-hidden">
+    <section className="py-16 px-4 bg-white relative overflow-hidden">
       <div className="container mx-auto relative z-10">
         <h2 className="text-3xl font-bold mb-8 text-center">DPH & Pengurus UKKPK</h2>
         
