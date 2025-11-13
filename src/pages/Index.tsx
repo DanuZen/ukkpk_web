@@ -109,11 +109,18 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <ContactSection />
-
-      {/* Google Map Section */}
-      <GoogleMap />
+      {/* Contact & Map Section */}
+      <section className="py-16 px-4 bg-muted/20">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
+            {/* Contact Form */}
+            <ContactSection />
+            
+            {/* Google Map */}
+            <GoogleMap />
+          </div>
+        </div>
+      </section>
 
       {/* CTA Section */}
       
