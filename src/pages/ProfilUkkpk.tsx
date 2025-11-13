@@ -121,27 +121,43 @@ const ProfilUkkpk = () => {
       {/* Tentang UKKPK */}
       <section className="py-20 px-4 relative overflow-hidden bg-white">
         {/* Curved geometric background patterns */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Large curved shape - top left */}
-          <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full border-[40px] border-gray-100/60" />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Large curved shapes */}
+          <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full border-[50px] border-gray-100/70" />
+          <div className="absolute top-1/4 -right-32 w-96 h-96 rounded-full border-[35px] border-gray-50" />
+          <div className="absolute -bottom-32 left-1/4 w-[600px] h-[600px] rounded-full border-[70px] border-gray-100/50" />
           
-          {/* Medium curved shape - bottom right */}
-          <div className="absolute -bottom-20 -right-20 w-[600px] h-[600px] rounded-full border-[60px] border-gray-50" />
+          {/* Small accent circles */}
+          <div className="absolute top-20 right-1/4 w-32 h-32 rounded-full border-[15px] border-primary/10" />
+          <div className="absolute bottom-40 right-20 w-24 h-24 rounded-full border-[12px] border-primary/8" />
           
-          {/* Dotted mesh pattern - right side */}
-          <div className="absolute top-0 right-0 w-1/3 h-full opacity-30">
+          {/* Dotted mesh patterns - multiple areas */}
+          <div className="absolute top-0 right-0 w-1/3 h-1/2 opacity-30">
             <div className="absolute inset-0" style={{
               backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
               backgroundSize: '20px 20px'
             }} />
           </div>
+          <div className="absolute bottom-0 left-1/4 w-1/4 h-1/3 opacity-20">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'radial-gradient(circle, #d1d5db 1px, transparent 1px)',
+              backgroundSize: '15px 15px'
+            }} />
+          </div>
           
-          {/* Curved lines - left side */}
-          <div className="absolute top-1/4 left-0 w-64 h-64">
+          {/* Curved wave lines - multiple positions */}
+          <div className="absolute top-1/4 left-0 w-80 h-80">
             <svg viewBox="0 0 200 200" className="w-full h-full opacity-20">
+              <path d="M 0,80 Q 50,40 100,80 T 200,80" stroke="#dc2626" strokeWidth="2" fill="none" />
+              <path d="M 0,100 Q 50,60 100,100 T 200,100" stroke="#dc2626" strokeWidth="2" fill="none" />
+              <path d="M 0,120 Q 50,80 100,120 T 200,120" stroke="#dc2626" strokeWidth="2" fill="none" />
+              <path d="M 0,140 Q 50,100 100,140 T 200,140" stroke="#dc2626" strokeWidth="1.5" fill="none" />
+            </svg>
+          </div>
+          <div className="absolute bottom-1/4 right-10 w-64 h-64 rotate-180">
+            <svg viewBox="0 0 200 200" className="w-full h-full opacity-15">
               <path d="M 0,100 Q 50,50 100,100 T 200,100" stroke="#dc2626" strokeWidth="2" fill="none" />
               <path d="M 0,120 Q 50,70 100,120 T 200,120" stroke="#dc2626" strokeWidth="2" fill="none" />
-              <path d="M 0,140 Q 50,90 100,140 T 200,140" stroke="#dc2626" strokeWidth="2" fill="none" />
             </svg>
           </div>
         </div>

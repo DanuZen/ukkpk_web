@@ -167,7 +167,28 @@ const Radio = () => {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12 relative">
+        {/* Curved geometric background patterns */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-20 -left-20 w-80 h-80 rounded-full border-[35px] border-gray-100/60" />
+          <div className="absolute top-1/4 -right-20 w-72 h-72 rounded-full border-[28px] border-gray-50" />
+          <div className="absolute bottom-0 left-1/3 w-96 h-96 rounded-full border-[45px] border-gray-100/50" />
+          <div className="absolute top-40 right-1/4 w-24 h-24 rounded-full border-[10px] border-primary/10" />
+          
+          <div className="absolute top-0 right-0 w-1/4 h-1/3 opacity-25">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
+              backgroundSize: '18px 18px'
+            }} />
+          </div>
+          
+          <div className="absolute bottom-1/3 left-0 w-64 h-64">
+            <svg viewBox="0 0 200 200" className="w-full h-full opacity-20">
+              <path d="M 0,90 Q 50,50 100,90 T 200,90" stroke="#dc2626" strokeWidth="2" fill="none" />
+              <path d="M 0,110 Q 50,70 100,110 T 200,110" stroke="#dc2626" strokeWidth="2" fill="none" />
+            </svg>
+          </div>
+        </div>
 
         {/* Schedule */}
         <div className="mb-12 relative">
