@@ -119,34 +119,34 @@ const ProfilUkkpk = () => {
         </section>}
 
       {/* Tentang UKKPK */}
-      <section className="py-20 px-4 relative overflow-hidden bg-gradient-to-br from-slate-900 via-primary/10 to-slate-800">
+      <section className="py-20 px-4 relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-100">
         {/* Background Image with Overlay */}
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?q=80&w=2070')] bg-cover bg-center opacity-10" />
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-primary/20 to-slate-800/95 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?q=80&w=2070')] bg-cover bg-center opacity-5" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-gray-50/90 to-white/80 backdrop-blur-sm" />
         
         {/* Decorative elements */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
         
         <div className="container mx-auto relative z-10">
           <div className="max-w-5xl mx-auto">
             {/* Section Header */}
             <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6 animate-fade-in">
-                <Users className="h-4 w-4 text-white" />
-                <span className="text-sm font-medium text-white">Tentang Kami</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 animate-fade-in">
+                <Users className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-primary">Tentang Kami</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-lg">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
                 Unit Kegiatan Komunikasi dan Penyiaran Kampus
               </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-white to-transparent mx-auto mb-8" />
+              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-8" />
             </div>
 
             {/* Description Card */}
-            <Card className="mb-16 bg-white/5 backdrop-blur-md border-white/20 shadow-2xl overflow-hidden group hover:shadow-primary/20 hover:bg-white/10 transition-all duration-500 animate-fade-in">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <Card className="mb-16 bg-white border-primary/20 shadow-xl overflow-hidden group hover:shadow-2xl hover:border-primary/40 transition-all duration-500 animate-fade-in">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <CardContent className="pt-8 pb-8 relative">
-                <p className="text-lg text-white/90 leading-relaxed text-center max-w-4xl mx-auto">
+                <p className="text-lg text-muted-foreground leading-relaxed text-center max-w-4xl mx-auto">
                   {profile?.description || 'Unit Kegiatan Komunikasi dan Penyiaran Kampus (UKKPK) adalah organisasi mahasiswa yang fokus pada pengembangan keterampilan komunikasi, jurnalistik, dan penyiaran. Kami berkomitmen untuk menghasilkan komunikator handal dan profesional yang siap berkontribusi dalam dunia media dan komunikasi.'}
                 </p>
               </CardContent>
@@ -154,34 +154,34 @@ const ProfilUkkpk = () => {
 
             {/* Visi & Misi */}
             <div className="grid md:grid-cols-2 gap-8 mb-24">
-              <Card className="bg-white/5 backdrop-blur-md border-white/20 shadow-2xl overflow-hidden group hover:shadow-primary/20 hover:bg-white/10 hover:border-primary/40 transition-all duration-500 animate-fade-in">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:shadow-2xl hover:border-primary/40 transition-all duration-500 animate-fade-in">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <CardContent className="pt-8 pb-8 relative">
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/30 to-secondary/30 backdrop-blur-sm flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 border border-white/10">
-                      <Eye className="h-7 w-7 text-white" />
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <Eye className="h-7 w-7 text-primary" />
                     </div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">Visi</h3>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Visi</h3>
                   </div>
-                  <p className="text-white/80 leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed">
                     UKKPK UNP dibentuk untuk membina, mendidik mental, spiritual, dan intelektual dalam rangka membentuk pribadi yang jujur, berani, disiplin, pantang menyerah, bertanggung jawab, dan mendarmabaktikan diri serta kemampuan
                     untuk kemajuan dan keberhasilan bangsa dan negara sesuai dengan Tri Darma Perguruan Tinggi.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/5 backdrop-blur-md border-white/20 shadow-2xl overflow-hidden group hover:shadow-primary/20 hover:bg-white/10 hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '100ms' }}>
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:shadow-2xl hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '100ms' }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <CardContent className="pt-8 pb-8 relative">
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/30 to-secondary/30 backdrop-blur-sm flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 border border-white/10">
-                      <Target className="h-7 w-7 text-white" />
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <Target className="h-7 w-7 text-primary" />
                     </div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">Misi</h3>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Misi</h3>
                   </div>
-                  <p className="text-white/80 leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed">
                     UKKPK UNP membekali keterampilan komunikasi untuk meningkatkan intelektualitas, kepemimpinan, penalaran, minat, kegemaran, dan kesejahteraan untuk mahasiswa UNP dan umum, terutama anggota UKKPK UNP.
                   </p>
                 </CardContent>
@@ -190,30 +190,30 @@ const ProfilUkkpk = () => {
 
             {/* Sejarah Section */}
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6 animate-fade-in">
-                <FileText className="h-4 w-4 text-white" />
-                <span className="text-sm font-medium text-white">Perjalanan Kami</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 animate-fade-in">
+                <FileText className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-primary">Perjalanan Kami</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-lg">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
                 Sejarah UKKPK
               </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-white to-transparent mx-auto" />
+              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
             </div>
 
             {/* Timeline Cards */}
             <div className="space-y-8">
-              <Card className="bg-white/5 backdrop-blur-md border-white/20 shadow-2xl overflow-hidden group hover:shadow-primary/20 hover:bg-white/10 transition-all duration-500 animate-fade-in">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:shadow-2xl hover:border-primary/40 transition-all duration-500 animate-fade-in">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-xl border border-white/20">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">
                         1
                       </div>
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-lg font-bold text-white mb-3">Awal Terbentuk (1993)</h4>
-                      <p className="text-white/80 leading-relaxed">
+                      <h4 className="text-lg font-bold text-primary mb-3">Awal Terbentuk (1993)</h4>
+                      <p className="text-muted-foreground leading-relaxed">
                         UKKPK (Unit Kegiatan Komunikasi dan Penyiaran Kampus) merupakan salah satu unit kegiatan mahasiswa (UKM) yang ada di Universitas Negeri Padang (UNP). UKM ini merupakan fusi tiga UKM, yaitu UK MC, UK Radio, dan UK Penerbitan
                         Kampus, yang telah ada sebelumnya di IKIP Padang. Pada tahun 1993 ketiga tersebut bergabung dan membentuk satu kesatuan dengan nama Unit Kegiatan Komunikasi dan Penerbitan Kampus (UKKPK) IKIP Padang. Namun seiring
                         perkembangan dan kondisi waktu, pada tahun 2000 dalam MUBES III UKKPK UNP berganti nama menjadi Unit Kegiatan Komunikasi dan Penyiaran Kampus namun tetap menggunakan akronim UKKPK.
@@ -223,18 +223,18 @@ const ProfilUkkpk = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/5 backdrop-blur-md border-white/20 shadow-2xl overflow-hidden group hover:shadow-primary/20 hover:bg-white/10 transition-all duration-500 animate-fade-in" style={{ animationDelay: '100ms' }}>
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:shadow-2xl hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '100ms' }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-xl border border-white/20">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">
                         2
                       </div>
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-lg font-bold text-white mb-3">Fokus Komunikasi & Penyiaran</h4>
-                      <p className="text-white/80 leading-relaxed">
+                      <h4 className="text-lg font-bold text-primary mb-3">Fokus Komunikasi & Penyiaran</h4>
+                      <p className="text-muted-foreground leading-relaxed">
                         Pergantian nama ini mengingat UKKPK bukanlah UKM yang bergerak dibidang penerbitan, karena sudah ada Lembaga Pers Mahasiswa (LPM) yang menerbitkan SKK Ganto, tapi UKKPK adalah UKM yang melahirkan insan-insan yang aktif dalam
                         kegiatan yang berhubungan dengan komunikasi (jurnalis, penulis, MC/pewara, presenter, penyiar dan juga humas/PR. Lebih lanjut, sejak tahun 1999 UKKPK telah kembali mengaktifkan radio kampus sebagai satu-satunya lembaga
                         penyiaran kampus yang ada di UNP, Kiara AM. Seiring perkembangan teknologi frekuensinya digeser ke gelombang FM dan berganti nama menjadi RKM FM (Radio Komunikasi Mahasiswa). Oleh sebab itu, UKKPK lebih memfokuskan diri pada
@@ -245,18 +245,18 @@ const ProfilUkkpk = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/5 backdrop-blur-md border-white/20 shadow-2xl overflow-hidden group hover:shadow-primary/20 hover:bg-white/10 transition-all duration-500 animate-fade-in" style={{ animationDelay: '200ms' }}>
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:shadow-2xl hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '200ms' }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-xl border border-white/20">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">
                         3
                       </div>
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-lg font-bold text-white mb-3">Lahirnya SIGMA FM</h4>
-                      <p className="text-white/80 leading-relaxed">
+                      <h4 className="text-lg font-bold text-primary mb-3">Lahirnya SIGMA FM</h4>
+                      <p className="text-muted-foreground leading-relaxed">
                         Selanjutnya dalam perkembangannya radio kampus ini terus bergerak maju. Dari hanya bermodalkan sebuah tape tua hingga akhirnya memiliki tip yang cukup bagus dan dengan 'dibidani' teknisi radio yang sangat ulet, Joni Mariko,
                         RKM bisa mengudara dengan kekuatan range yang cukup luas hingga akhirnya juga memanfaatkan komputer. Seiring pergantian nama UKKPK, RKM FM juga sempat diganti menjadi Rama FM (Radio Mahasiswa) saat TM Deska K menjadi
                         koordinator radio, tapi nama ini tidak bertahan lama karena mirip dengan nama radio lain di Kota Padang. Dalam suatu rapat anggota salah seorang anggota (Havid Ardi) yang berikutnya menjadi Ketua Umum UKKPK mengusulkan nama
@@ -268,18 +268,18 @@ const ProfilUkkpk = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/5 backdrop-blur-md border-white/20 shadow-2xl overflow-hidden group hover:shadow-primary/20 hover:bg-white/10 transition-all duration-500 animate-fade-in" style={{ animationDelay: '300ms' }}>
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:shadow-2xl hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '300ms' }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-xl border border-white/20">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">
                         4
                       </div>
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-lg font-bold text-white mb-3">Menghadapi Tantangan</h4>
-                      <p className="text-white/80 leading-relaxed">
+                      <h4 className="text-lg font-bold text-primary mb-3">Menghadapi Tantangan</h4>
+                      <p className="text-muted-foreground leading-relaxed">
                         Sebagai organisasi mahasiswa UKKPK tak luput dari pasang surut dan tantangan. Seiring hadirnya zaman reformasi, pada tahun 1998 UKKPK juga mengalami dampak langsung. Pengaruh dan perubahan juga terjadi karena banyaknya
                         aktivis reformasi lahir dari UKKPK, salah satu diantaranya Gun Sugianto, mantan ketua UKKPK (berikutnya menjadi anggota DPRD Kota Padang setelah era reformasi). Namun karena hampir semua anggota juga ikut terjun dalam
                         memperjuangkan reformasi kegiatan dan kaderisasi di UKKPK juga sempat mengalami kemandegan. Pasang surut anggota, pengurus, kegiatan dan juga tantangan yang berhubungan dengan kebijakan pemerintah yang belum mengakomodir
@@ -291,18 +291,18 @@ const ProfilUkkpk = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/5 backdrop-blur-md border-white/20 shadow-2xl overflow-hidden group hover:shadow-primary/20 hover:bg-white/10 transition-all duration-500 animate-fade-in" style={{ animationDelay: '400ms' }}>
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:shadow-2xl hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '400ms' }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-xl border border-white/20">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">
                         5
                       </div>
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-lg font-bold text-white mb-3">Menuju Masa Depan</h4>
-                      <p className="text-white/80 leading-relaxed">
+                      <h4 className="text-lg font-bold text-primary mb-3">Menuju Masa Depan</h4>
+                      <p className="text-muted-foreground leading-relaxed">
                         UKKPK terus mengalami pendewasaan baik keanggotaan, kepengurusan, dan juga kegiatan yang disesuaikan dengan perkembangan zaman. Diharapkan kedepan UKKPK dapat ikut aktif dalam era teknologi informasi. Sehingga UKKPK dapat
                         melahirkan komunikator sejati yang mampu berkomunikasi dengan baik dan menguasai teknologi.
                       </p>
