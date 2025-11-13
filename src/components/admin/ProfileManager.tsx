@@ -47,9 +47,12 @@ const SlideshowSection = () => {
   const [images, setImages] = useState<SlideshowImage[]>([]);
   const [uploading, setUploading] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [autoPlaySpeed, setAutoPlaySpeed] = useState(5000);
+  const [updating, setUpdating] = useState(false);
 
   useEffect(() => {
     fetchImages();
+    fetchSettings();
   }, []);
 
   const fetchImages = async () => {
@@ -59,6 +62,52 @@ const SlideshowSection = () => {
       .order('order_index', { ascending: true });
     
     if (data) setImages(data);
+  };
+
+  const fetchSettings = async () => {
+    const { data } = await supabase
+      .from('slideshow_settings')
+      .select('auto_play_speed')
+      .maybeSingle();
+    
+    if (data) setAutoPlaySpeed(data.auto_play_speed);
+  };
+
+  const handleUpdateSpeed = async () => {
+    if (autoPlaySpeed < 1000 || autoPlaySpeed > 30000) {
+      toast.error('Kecepatan harus antara 1000ms (1 detik) hingga 30000ms (30 detik)');
+      return;
+    }
+
+    setUpdating(true);
+    try {
+      const { data: existing } = await supabase
+        .from('slideshow_settings')
+        .select('id')
+        .maybeSingle();
+
+      if (existing) {
+        const { error } = await supabase
+          .from('slideshow_settings')
+          .update({ auto_play_speed: autoPlaySpeed })
+          .eq('id', existing.id);
+        
+        if (error) throw error;
+      } else {
+        const { error } = await supabase
+          .from('slideshow_settings')
+          .insert([{ auto_play_speed: autoPlaySpeed }]);
+        
+        if (error) throw error;
+      }
+
+      toast.success('Kecepatan slideshow berhasil diubah');
+    } catch (error) {
+      toast.error('Gagal mengubah kecepatan slideshow');
+      console.error(error);
+    } finally {
+      setUpdating(false);
+    }
   };
 
   const handleUpload = async () => {
@@ -139,6 +188,38 @@ const SlideshowSection = () => {
         <CardTitle>Kelola Slideshow Home</CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
+        {/* Speed Control Section */}
+        <div className="space-y-4 p-4 bg-muted/30 rounded-lg border border-border">
+          <div className="space-y-2">
+            <Label htmlFor="speed">Kecepatan Auto-Rotation (milliseconds)</Label>
+            <p className="text-sm text-muted-foreground">
+              Atur berapa lama setiap foto ditampilkan sebelum berganti otomatis (1000ms = 1 detik)
+            </p>
+            <div className="flex gap-2">
+              <Input
+                id="speed"
+                type="number"
+                min="1000"
+                max="30000"
+                step="500"
+                value={autoPlaySpeed}
+                onChange={(e) => setAutoPlaySpeed(Number(e.target.value))}
+                className="max-w-xs"
+              />
+              <Button 
+                onClick={handleUpdateSpeed} 
+                disabled={updating}
+                variant="outline"
+              >
+                {updating ? 'Menyimpan...' : 'Simpan'}
+              </Button>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Rekomendasi: 3000-7000ms untuk pengalaman terbaik
+            </p>
+          </div>
+        </div>
+
         {/* Upload Section */}
         <div className="space-y-4">
           <ImageUpload

@@ -9,13 +9,30 @@ interface SlideshowImage {
   order_index: number | null;
 }
 
+interface SlideshowSettings {
+  auto_play_speed: number;
+}
+
 export const HomeSlideshow = () => {
   const [images, setImages] = useState<SlideshowImage[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [autoPlaySpeed, setAutoPlaySpeed] = useState(5000);
 
   useEffect(() => {
     fetchImages();
+    fetchSettings();
   }, []);
+
+  // Auto-rotation effect
+  useEffect(() => {
+    if (images.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    }, autoPlaySpeed);
+
+    return () => clearInterval(interval);
+  }, [images.length, autoPlaySpeed]);
 
   const fetchImages = async () => {
     const { data } = await supabase
@@ -25,6 +42,17 @@ export const HomeSlideshow = () => {
     
     if (data && data.length > 0) {
       setImages(data);
+    }
+  };
+
+  const fetchSettings = async () => {
+    const { data } = await supabase
+      .from('slideshow_settings')
+      .select('auto_play_speed')
+      .maybeSingle();
+    
+    if (data) {
+      setAutoPlaySpeed(data.auto_play_speed);
     }
   };
 
@@ -39,7 +67,7 @@ export const HomeSlideshow = () => {
   if (images.length === 0) {
     return (
       <section className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-primary/20 via-background to-secondary/20">
-        <div className="absolute inset-0 flex items-center justify-center px-4">
+        <div className="absolute inset-0 flex items-center justify-center px-4 pt-16">
           <div className="text-center z-10 animate-fade-in">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
               Selamat Datang di UKKPK
@@ -60,7 +88,7 @@ export const HomeSlideshow = () => {
         {images.map((image, index) => (
           <div
             key={image.id}
-            className={`absolute inset-0 transition-opacity duration-700 ${
+            className={`absolute inset-0 transition-opacity duration-1000 ${
               index === currentIndex ? 'opacity-100' : 'opacity-0'
             }`}
           >
@@ -69,15 +97,15 @@ export const HomeSlideshow = () => {
               alt={`Slide ${index + 1}`}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/60"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/60"></div>
           </div>
         ))}
       </div>
 
       {/* Overlay Text */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center pt-16">
         <div className="text-center z-10 px-4 sm:px-6 animate-fade-in">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white drop-shadow-2xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 text-white drop-shadow-2xl">
             Selamat Datang di UKKPK
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-white/90 drop-shadow-lg max-w-2xl mx-auto px-4">

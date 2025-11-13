@@ -353,6 +353,27 @@ export type Database = {
         }
         Relationships: []
       }
+      slideshow_settings: {
+        Row: {
+          auto_play_speed: number
+          created_at: string | null
+          id: string
+          updated_at: string | null
+        }
+        Insert: {
+          auto_play_speed?: number
+          created_at?: string | null
+          id?: string
+          updated_at?: string | null
+        }
+        Update: {
+          auto_play_speed?: number
+          created_at?: string | null
+          id?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       social_media_links: {
         Row: {
           created_at: string | null
