@@ -119,77 +119,193 @@ const ProfilUkkpk = () => {
         </section>}
 
       {/* Tentang UKKPK */}
-      <section className="py-16 px-4 bg-background">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6 text-center">Tentang UKKPK</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8 text-justify">
-              {profile?.description || 'Unit Kegiatan Komunikasi dan Penyiaran Kampus (UKKPK) adalah organisasi mahasiswa yang fokus pada pengembangan keterampilan komunikasi, jurnalistik, dan penyiaran. Kami berkomitmen untuk menghasilkan komunikator handal dan profesional yang siap berkontribusi dalam dunia media dan komunikasi.'}
-            </p>
+      <section className="py-20 px-4 bg-background relative overflow-hidden">
+        {/* Decorative background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 pointer-events-none" />
+        
+        <div className="container mx-auto relative z-10">
+          <div className="max-w-5xl mx-auto">
+            {/* Section Header */}
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 animate-fade-in">
+                <Users className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-primary">Tentang Kami</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+                Unit Kegiatan Komunikasi dan Penyiaran Kampus
+              </h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-8" />
+            </div>
+
+            {/* Description Card */}
+            <Card className="mb-16 border-primary/20 shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-500 animate-fade-in">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <CardContent className="pt-8 pb-8 relative">
+                <p className="text-lg text-muted-foreground leading-relaxed text-center max-w-4xl mx-auto">
+                  {profile?.description || 'Unit Kegiatan Komunikasi dan Penyiaran Kampus (UKKPK) adalah organisasi mahasiswa yang fokus pada pengembangan keterampilan komunikasi, jurnalistik, dan penyiaran. Kami berkomitmen untuk menghasilkan komunikator handal dan profesional yang siap berkontribusi dalam dunia media dan komunikasi.'}
+                </p>
+              </CardContent>
+            </Card>
 
             {/* Visi & Misi */}
-            <div className="grid md:grid-cols-2 gap-8 mt-12">
-              <Card className="border-primary/20">
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Eye className="h-8 w-8 text-primary" />
-                    <h3 className="text-2xl font-bold">Visi</h3>
+            <div className="grid md:grid-cols-2 gap-8 mb-24">
+              <Card className="border-primary/20 shadow-lg overflow-hidden group hover:shadow-xl hover:border-primary/40 transition-all duration-500 animate-fade-in">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardContent className="pt-8 pb-8 relative">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <Eye className="h-7 w-7 text-primary" />
+                    </div>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Visi</h3>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed text-justify">
+                  <p className="text-muted-foreground leading-relaxed">
                     UKKPK UNP dibentuk untuk membina, mendidik mental, spiritual, dan intelektual dalam rangka membentuk pribadi yang jujur, berani, disiplin, pantang menyerah, bertanggung jawab, dan mendarmabaktikan diri serta kemampuan
                     untuk kemajuan dan keberhasilan bangsa dan negara sesuai dengan Tri Darma Perguruan Tinggi.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-primary/20">
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Target className="h-8 w-8 text-primary" />
-                    <h3 className="text-2xl font-bold">Misi</h3>
+              <Card className="border-primary/20 shadow-lg overflow-hidden group hover:shadow-xl hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '100ms' }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardContent className="pt-8 pb-8 relative">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <Target className="h-7 w-7 text-primary" />
+                    </div>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Misi</h3>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed text-justify">
+                  <p className="text-muted-foreground leading-relaxed">
                     UKKPK UNP membekali keterampilan komunikasi untuk meningkatkan intelektualitas, kepemimpinan, penalaran, minat, kegemaran, dan kesejahteraan untuk mahasiswa UNP dan umum, terutama anggota UKKPK UNP.
                   </p>
                 </CardContent>
               </Card>
             </div>
-            <h2 className="text-3xl font-bold mb-6 text-center mt-20">Sejarah UKKPK</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8 text-justify">
-              <p className="mb-4">
-                UKKPK (Unit Kegiatan Komunikasi dan Penyiaran Kampus) merupakan salah satu unit kegiatan mahasiswa (UKM) yang ada di Universitas Negeri Padang (UNP). UKM ini merupakan fusi tiga UKM, yaitu UK MC, UK Radio, dan UK Penerbitan
-                Kampus, yang telah ada sebelumnya di IKIP Padang. Pada tahun 1993 ketiga tersebut bergabung dan membentuk satu kesatuan dengan nama Unit Kegiatan Komunikasi dan Penerbitan Kampus (UKKPK) IKIP Padang. Namun seiring
-                perkembangan dan kondisi waktu, pada tahun 2000 dalam MUBES III UKKPK UNP berganti nama menjadi Unit Kegiatan Komunikasi dan Penyiaran Kampus namun tetap menggunakan akronim UKKPK.
-              </p>
 
-              <p className="mb-4">
-                Pergantian nama ini mengingat UKKPK bukanlah UKM yang bergerak dibidang penerbitan, karena sudah ada Lembaga Pers Mahasiswa (LPM) yang menerbitkan SKK Ganto, tapi UKKPK adalah UKM yang melahirkan insan-insan yang aktif dalam
-                kegiatan yang berhubungan dengan komunikasi (jurnalis, penulis, MC/pewara, presenter, penyiar dan juga humas/PR. Lebih lanjut, sejak tahun 1999 UKKPK telah kembali mengaktifkan radio kampus sebagai satu-satunya lembaga
-                penyiaran kampus yang ada di UNP, Kiara AM. Seiring perkembangan teknologi frekuensinya digeser ke gelombang FM dan berganti nama menjadi RKM FM (Radio Komunikasi Mahasiswa). Oleh sebab itu, UKKPK lebih memfokuskan diri pada
-                pengembangan anggota dan pengaplikasian keterampilan yang berhungan dengan komunikasi dan bidang penyiaran.
-              </p>
+            {/* Sejarah Section */}
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 animate-fade-in">
+                <FileText className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-primary">Perjalanan Kami</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+                Sejarah UKKPK
+              </h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
+            </div>
 
-              <p className="mb-4">
-                Selanjutnya dalam perkembangannya radio kampus ini terus bergerak maju. Dari hanya bermodalkan sebuah tape tua hingga akhirnya memiliki tip yang cukup bagus dan dengan 'dibidani' teknisi radio yang sangat ulet, Joni Mariko,
-                RKM bisa mengudara dengan kekuatan range yang cukup luas hingga akhirnya juga memanfaatkan komputer. Seiring pergantian nama UKKPK, RKM FM juga sempat diganti menjadi Rama FM (Radio Mahasiswa) saat TM Deska K menjadi
-                koordinator radio, tapi nama ini tidak bertahan lama karena mirip dengan nama radio lain di Kota Padang. Dalam suatu rapat anggota salah seorang anggota (Havid Ardi) yang berikutnya menjadi Ketua Umum UKKPK mengusulkan nama
-                SIGMA FM. Akhirnya dalam MUBES III UKKPK, nama radio akhirnya ditetapkan menjadi SIGMA FM (Suara Intelektual Gema Mahasiswa). Nama ini tidak langsung muncul begitu saja tentunya juga mendapat saran, perbaikan, dan masukan
-                dari anggota lainnya. Awalnya Havid mengusulkan Suara Indah Gema Mahasiswa, namun diperbaiki oleh Dulfendra menjadi Suara Intelektual Gema Mahasiswa.
-              </p>
+            {/* Timeline Cards */}
+            <div className="space-y-8">
+              <Card className="border-primary/20 shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-500 animate-fade-in">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardContent className="pt-6 pb-6 relative">
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">
+                        1
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-primary mb-3">Awal Terbentuk (1993)</h4>
+                      <p className="text-muted-foreground leading-relaxed">
+                        UKKPK (Unit Kegiatan Komunikasi dan Penyiaran Kampus) merupakan salah satu unit kegiatan mahasiswa (UKM) yang ada di Universitas Negeri Padang (UNP). UKM ini merupakan fusi tiga UKM, yaitu UK MC, UK Radio, dan UK Penerbitan
+                        Kampus, yang telah ada sebelumnya di IKIP Padang. Pada tahun 1993 ketiga tersebut bergabung dan membentuk satu kesatuan dengan nama Unit Kegiatan Komunikasi dan Penerbitan Kampus (UKKPK) IKIP Padang. Namun seiring
+                        perkembangan dan kondisi waktu, pada tahun 2000 dalam MUBES III UKKPK UNP berganti nama menjadi Unit Kegiatan Komunikasi dan Penyiaran Kampus namun tetap menggunakan akronim UKKPK.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
 
-              <p className="mb-4">
-                Sebagai organisasi mahasiswa UKKPK tak luput dari pasang surut dan tantangan. Seiring hadirnya zaman reformasi, pada tahun 1998 UKKPK juga mengalami dampak langsung. Pengaruh dan perubahan juga terjadi karena banyaknya
-                aktivis reformasi lahir dari UKKPK, salah satu diantaranya Gun Sugianto, mantan ketua UKKPK (berikutnya menjadi anggota DPRD Kota Padang setelah era reformasi). Namun karena hampir semua anggota juga ikut terjun dalam
-                memperjuangkan reformasi kegiatan dan kaderisasi di UKKPK juga sempat mengalami kemandegan. Pasang surut anggota, pengurus, kegiatan dan juga tantangan yang berhubungan dengan kebijakan pemerintah yang belum mengakomodir
-                radio komunitas pada saat awal berdirinya. Tak urung, pada tahun 2000 perangkat siar radio juga sempat disita aparat dengan dalih menggangu frekuensi publik. Perangkat ini sempat tertahan di tangan aparat sehingga
-                menimbulkan kevakuman di UKKPK.
-              </p>
+              <Card className="border-primary/20 shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-500 animate-fade-in" style={{ animationDelay: '100ms' }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardContent className="pt-6 pb-6 relative">
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">
+                        2
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-primary mb-3">Fokus Komunikasi & Penyiaran</h4>
+                      <p className="text-muted-foreground leading-relaxed">
+                        Pergantian nama ini mengingat UKKPK bukanlah UKM yang bergerak dibidang penerbitan, karena sudah ada Lembaga Pers Mahasiswa (LPM) yang menerbitkan SKK Ganto, tapi UKKPK adalah UKM yang melahirkan insan-insan yang aktif dalam
+                        kegiatan yang berhubungan dengan komunikasi (jurnalis, penulis, MC/pewara, presenter, penyiar dan juga humas/PR. Lebih lanjut, sejak tahun 1999 UKKPK telah kembali mengaktifkan radio kampus sebagai satu-satunya lembaga
+                        penyiaran kampus yang ada di UNP, Kiara AM. Seiring perkembangan teknologi frekuensinya digeser ke gelombang FM dan berganti nama menjadi RKM FM (Radio Komunikasi Mahasiswa). Oleh sebab itu, UKKPK lebih memfokuskan diri pada
+                        pengembangan anggota dan pengaplikasian keterampilan yang berhungan dengan komunikasi dan bidang penyiaran.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
 
-              <p className="mb-4">
-                UKKPK terus mengalami pendewasaan baik keanggotaan, kepengurusan, dan juga kegiatan yang disesuaikan dengan perkembangan zaman. Diharapkan kedepan UKKPK dapat ikut aktif dalam era teknologi informasi. Sehingga UKKPK dapat
-                melahir komunikator sejati yang mampu berkomunikasi dengan baik dan menguasai teknologi.
-              </p>
-            </p>
+              <Card className="border-primary/20 shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-500 animate-fade-in" style={{ animationDelay: '200ms' }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardContent className="pt-6 pb-6 relative">
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">
+                        3
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-primary mb-3">Lahirnya SIGMA FM</h4>
+                      <p className="text-muted-foreground leading-relaxed">
+                        Selanjutnya dalam perkembangannya radio kampus ini terus bergerak maju. Dari hanya bermodalkan sebuah tape tua hingga akhirnya memiliki tip yang cukup bagus dan dengan 'dibidani' teknisi radio yang sangat ulet, Joni Mariko,
+                        RKM bisa mengudara dengan kekuatan range yang cukup luas hingga akhirnya juga memanfaatkan komputer. Seiring pergantian nama UKKPK, RKM FM juga sempat diganti menjadi Rama FM (Radio Mahasiswa) saat TM Deska K menjadi
+                        koordinator radio, tapi nama ini tidak bertahan lama karena mirip dengan nama radio lain di Kota Padang. Dalam suatu rapat anggota salah seorang anggota (Havid Ardi) yang berikutnya menjadi Ketua Umum UKKPK mengusulkan nama
+                        SIGMA FM. Akhirnya dalam MUBES III UKKPK, nama radio akhirnya ditetapkan menjadi SIGMA FM (Suara Intelektual Gema Mahasiswa). Nama ini tidak langsung muncul begitu saja tentunya juga mendapat saran, perbaikan, dan masukan
+                        dari anggota lainnya. Awalnya Havid mengusulkan Suara Indah Gema Mahasiswa, namun diperbaiki oleh Dulfendra menjadi Suara Intelektual Gema Mahasiswa.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-primary/20 shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-500 animate-fade-in" style={{ animationDelay: '300ms' }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardContent className="pt-6 pb-6 relative">
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">
+                        4
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-primary mb-3">Menghadapi Tantangan</h4>
+                      <p className="text-muted-foreground leading-relaxed">
+                        Sebagai organisasi mahasiswa UKKPK tak luput dari pasang surut dan tantangan. Seiring hadirnya zaman reformasi, pada tahun 1998 UKKPK juga mengalami dampak langsung. Pengaruh dan perubahan juga terjadi karena banyaknya
+                        aktivis reformasi lahir dari UKKPK, salah satu diantaranya Gun Sugianto, mantan ketua UKKPK (berikutnya menjadi anggota DPRD Kota Padang setelah era reformasi). Namun karena hampir semua anggota juga ikut terjun dalam
+                        memperjuangkan reformasi kegiatan dan kaderisasi di UKKPK juga sempat mengalami kemandegan. Pasang surut anggota, pengurus, kegiatan dan juga tantangan yang berhubungan dengan kebijakan pemerintah yang belum mengakomodir
+                        radio komunitas pada saat awal berdirinya. Tak urung, pada tahun 2000 perangkat siar radio juga sempat disita aparat dengan dalih menggangu frekuensi publik. Perangkat ini sempat tertahan di tangan aparat sehingga
+                        menimbulkan kevakuman di UKKPK.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-primary/20 shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-500 animate-fade-in" style={{ animationDelay: '400ms' }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardContent className="pt-6 pb-6 relative">
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">
+                        5
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-primary mb-3">Menuju Masa Depan</h4>
+                      <p className="text-muted-foreground leading-relaxed">
+                        UKKPK terus mengalami pendewasaan baik keanggotaan, kepengurusan, dan juga kegiatan yang disesuaikan dengan perkembangan zaman. Diharapkan kedepan UKKPK dapat ikut aktif dalam era teknologi informasi. Sehingga UKKPK dapat
+                        melahirkan komunikator sejati yang mampu berkomunikasi dengan baik dan menguasai teknologi.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
