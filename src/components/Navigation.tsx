@@ -35,9 +35,22 @@ export const Navigation = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { user, signIn, signOut } = useAuth();
+
+  // Scroll listener for navbar background change
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      // Change navbar when scrolled past 80vh (most of slideshow)
+      setIsScrolled(scrollPosition > window.innerHeight * 0.8);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const searchContent = async () => {
@@ -110,13 +123,14 @@ export const Navigation = () => {
   };
 
   const isHomePage = location.pathname === "/";
+  const showTransparentNav = isHomePage && !isScrolled;
 
   return (
     <nav className={`${
-      isHomePage 
+      showTransparentNav
         ? "bg-white/10 backdrop-blur-md border-b border-white/20" 
         : "bg-background/80 backdrop-blur-md border-b border-border"
-    } sticky top-0 z-50 shadow-sm`}>
+    } sticky top-0 z-50 shadow-sm transition-all duration-300`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -127,7 +141,7 @@ export const Navigation = () => {
               className="h-10 w-10 transition-all duration-300 group-hover:scale-105"
             />
             <div className={`text-2xl font-bold transition-all duration-300 group-hover:scale-105 ${
-              isHomePage ? "text-white" : "text-primary"
+              showTransparentNav ? "text-white" : "text-primary"
             }`}>
               UKKPK
             </div>
@@ -146,7 +160,7 @@ export const Navigation = () => {
                       className={`px-4 py-5 text-sm font-medium transition-all duration-300 relative overflow-hidden group ${
                         isActive 
                           ? "bg-primary text-primary-foreground shadow-primary" 
-                          : isHomePage
+                          : showTransparentNav
                           ? "text-white hover:text-white/80"
                           : "text-foreground hover:text-primary"
                       }`}
@@ -154,7 +168,7 @@ export const Navigation = () => {
                       <span className="relative z-10">{item.name}</span>
                       {!isActive && (
                         <span className={`absolute inset-0 ${
-                          isHomePage ? "bg-white" : "bg-primary"
+                          showTransparentNav ? "bg-white" : "bg-primary"
                         } opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
                       )}
                     </Link>
@@ -164,7 +178,7 @@ export const Navigation = () => {
                   variant="ghost" 
                   size="icon" 
                   className={`ml-2 transition-all duration-300 ${
-                    isHomePage 
+                    showTransparentNav
                       ? "text-white hover:bg-white/10 hover:text-white" 
                       : "hover:bg-primary/10 hover:text-primary"
                   }`}
@@ -226,12 +240,12 @@ export const Navigation = () => {
                   variant="ghost" 
                   size="icon" 
                   className={`ml-2 transition-all duration-300 ${
-                    isHomePage 
+                    showTransparentNav
                       ? "text-white hover:bg-white/10 hover:text-white" 
                       : "hover:bg-primary/10 hover:text-primary"
                   }`}
                 >
-                  <User className={`h-5 w-5 ${user ? (isHomePage ? "fill-white" : "fill-primary") : ""}`} />
+                  <User className={`h-5 w-5 ${user ? (showTransparentNav ? "fill-white" : "fill-primary") : ""}`} />
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-80" align="end">
