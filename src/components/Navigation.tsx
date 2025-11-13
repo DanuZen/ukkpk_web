@@ -109,8 +109,14 @@ export const Navigation = () => {
     navigate("/");
   };
 
+  const isHomePage = location.pathname === "/";
+
   return (
-    <nav className="bg-background/80 backdrop-blur-md border-b border-border sticky top-0 z-50 shadow-sm">
+    <nav className={`${
+      isHomePage 
+        ? "bg-white/10 backdrop-blur-md border-b border-white/20" 
+        : "bg-background/80 backdrop-blur-md border-b border-border"
+    } sticky top-0 z-50 shadow-sm`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -120,7 +126,9 @@ export const Navigation = () => {
               alt="Logo UKKPK" 
               className="h-10 w-10 transition-all duration-300 group-hover:scale-105"
             />
-            <div className="text-2xl font-bold text-primary transition-all duration-300 group-hover:scale-105">
+            <div className={`text-2xl font-bold transition-all duration-300 group-hover:scale-105 ${
+              isHomePage ? "text-white" : "text-primary"
+            }`}>
               UKKPK
             </div>
           </Link>
@@ -138,12 +146,16 @@ export const Navigation = () => {
                       className={`px-4 py-5 text-sm font-medium transition-all duration-300 relative overflow-hidden group ${
                         isActive 
                           ? "bg-primary text-primary-foreground shadow-primary" 
+                          : isHomePage
+                          ? "text-white hover:text-white/80"
                           : "text-foreground hover:text-primary"
                       }`}
                     >
                       <span className="relative z-10">{item.name}</span>
                       {!isActive && (
-                        <span className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+                        <span className={`absolute inset-0 ${
+                          isHomePage ? "bg-white" : "bg-primary"
+                        } opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
                       )}
                     </Link>
                   );
@@ -151,7 +163,11 @@ export const Navigation = () => {
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className="ml-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                  className={`ml-2 transition-all duration-300 ${
+                    isHomePage 
+                      ? "text-white hover:bg-white/10 hover:text-white" 
+                      : "hover:bg-primary/10 hover:text-primary"
+                  }`}
                   onClick={() => setIsSearchOpen(true)}
                 >
                   <Search className="h-5 w-5" />
@@ -209,9 +225,13 @@ export const Navigation = () => {
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className="ml-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                  className={`ml-2 transition-all duration-300 ${
+                    isHomePage 
+                      ? "text-white hover:bg-white/10 hover:text-white" 
+                      : "hover:bg-primary/10 hover:text-primary"
+                  }`}
                 >
-                  <User className={`h-5 w-5 ${user ? "fill-primary" : ""}`} />
+                  <User className={`h-5 w-5 ${user ? (isHomePage ? "fill-white" : "fill-primary") : ""}`} />
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-80" align="end">
