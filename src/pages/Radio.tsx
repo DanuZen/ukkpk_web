@@ -170,35 +170,85 @@ const Radio = () => {
       <div className="container mx-auto px-4 py-12">
 
         {/* Schedule */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-center mb-8">Jadwal Program</h2>
+        <div className="mb-12 relative">
+          {/* Decorative Elements */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-12 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0" />
+          
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
+              <RadioIcon className="h-4 w-4 text-primary animate-pulse" />
+              <span className="text-sm font-medium text-primary">Program Kami</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+              Jadwal Program
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
+          </div>
+          
           {programs.length === 0 ? (
-            <p className="text-center text-muted-foreground">Belum ada jadwal program</p>
+            <div className="text-center py-12">
+              <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mx-auto mb-4">
+                <RadioIcon className="h-8 w-8 text-muted-foreground" />
+              </div>
+              <p className="text-muted-foreground">Belum ada jadwal program</p>
+            </div>
           ) : (
             <div className="grid md:grid-cols-2 gap-6">
-              {programs.map((program) => (
+              {programs.map((program, index) => (
                 <Card
                   key={program.id}
-                  className="hover-scale border-border/50 hover:border-secondary/50 transition-all duration-300"
+                  className="group relative overflow-hidden border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:shadow-primary/5 animate-fade-in"
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <CardHeader>
+                  {/* Gradient Background on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  {/* Animated Border Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 -z-10" />
+                  
+                  <CardHeader className="relative">
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                        <Mic className="h-6 w-6 text-secondary" />
+                      <div className="relative">
+                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                          <Mic className="h-7 w-7 text-primary group-hover:animate-pulse" />
+                        </div>
+                        {/* Live indicator if it's the current program */}
+                        {currentProgram?.id === program.id && (
+                          <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-background animate-pulse">
+                            <div className="absolute inset-0 bg-green-500 rounded-full animate-ping" />
+                          </div>
+                        )}
                       </div>
                       <div className="flex-1">
-                        <CardTitle className="text-xl mb-1">{program.name}</CardTitle>
+                        <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors duration-300">
+                          {program.name}
+                        </CardTitle>
                         <CardDescription className="flex items-center gap-2">
                           <Clock className="h-4 w-4" />
-                          {DAYS[program.day_of_week]} • {program.air_time}
+                          <span className="font-medium">{DAYS[program.day_of_week]}</span>
+                          <span className="text-xs">•</span>
+                          <span>{program.air_time}</span>
                         </CardDescription>
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground mb-2">{program.description}</p>
-                    <p className="text-sm font-medium">Host: {program.host}</p>
+                  <CardContent className="relative">
+                    <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                      {program.description}
+                    </p>
+                    <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-muted/50 group-hover:bg-primary/10 transition-colors duration-300">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center flex-shrink-0">
+                        <span className="text-xs font-bold text-primary">{program.host.charAt(0)}</span>
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground">Host</p>
+                        <p className="text-sm font-medium">{program.host}</p>
+                      </div>
+                    </div>
                   </CardContent>
+                  
+                  {/* Corner Decoration */}
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-primary/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </Card>
               ))}
             </div>
