@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { HomeSlideshow } from '@/components/HomeSlideshow';
 import { GoogleMap } from '@/components/GoogleMap';
+import { ContactSection } from '@/components/ContactSection';
 import { stripHtml } from '@/lib/utils';
 interface Article {
   id: string;
@@ -107,6 +108,9 @@ const Index = () => {
             </div>}
         </div>
       </section>
+
+      {/* Contact Section */}
+      <ContactSection />
 
       {/* Google Map Section */}
       <GoogleMap />
