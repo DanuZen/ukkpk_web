@@ -129,7 +129,7 @@ export const Navigation = () => {
     <nav className={`${
       showTransparentNav
         ? "bg-white/10 backdrop-blur-md border-b border-white/20" 
-        : "bg-background/80 backdrop-blur-md border-b border-border"
+        : "bg-background backdrop-blur-md border-b border-border"
     } sticky top-0 z-50 shadow-sm transition-all duration-300`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
