@@ -24,6 +24,7 @@ const BeritaDetail = () => {
   const navigate = useNavigate();
   const [news, setNews] = useState<News | null>(null);
   const [relatedNews, setRelatedNews] = useState<News[]>([]);
+  const [otherNews, setOtherNews] = useState<News[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -70,10 +71,13 @@ const BeritaDetail = () => {
         .select('*')
         .neq('id', id)
         .order('created_at', { ascending: false })
-        .limit(5);
+        .limit(8);
 
       if (error) throw error;
-      setRelatedNews(data || []);
+      
+      // First 3 for bottom section, rest for sidebar
+      setOtherNews((data || []).slice(0, 3));
+      setRelatedNews((data || []).slice(3, 8));
     } catch (error) {
       console.error('Error fetching related news:', error);
     }
@@ -242,6 +246,44 @@ const BeritaDetail = () => {
                   </Button>
                 </div>
               </div>
+
+              {/* Other News Section */}
+              {otherNews.length > 0 && (
+                <div className="mt-12 pt-8 border-t border-border">
+                  <h3 className="text-2xl font-bold mb-6">Berita Lainnya</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {otherNews.map((item) => (
+                      <div
+                        key={item.id}
+                        className="group cursor-pointer bg-card rounded-lg overflow-hidden border border-border hover:shadow-lg transition-all duration-300"
+                        onClick={() => {
+                          navigate(`/berita/${item.id}`);
+                          window.scrollTo(0, 0);
+                        }}
+                      >
+                        {item.image_url && (
+                          <div className="relative w-full h-40 overflow-hidden">
+                            <img
+                              src={item.image_url}
+                              alt={item.title}
+                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                            />
+                          </div>
+                        )}
+                        <div className="p-4">
+                          <h4 className="font-semibold line-clamp-2 group-hover:text-primary transition-colors mb-2">
+                            {item.title}
+                          </h4>
+                          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <Calendar className="h-3 w-3" />
+                            <span>{formatDate(item.published_at || item.created_at)}</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Bottom Navigation */}
               <div className="mt-8 pt-6 border-t border-border">
