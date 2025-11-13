@@ -109,7 +109,7 @@ export const ContactSection = () => {
         })} rows={5} required />
         </div>
 
-        <Button type="submit" className="w-full bg-[#4285F4] hover:bg-[#3367D6] text-white font-semibold py-6">
+        <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6">
           Submit Now
         </Button>
       </form>
