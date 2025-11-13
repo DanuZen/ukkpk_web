@@ -236,7 +236,7 @@ const ProfilUkkpk = () => {
 
             {/* Timeline Cards */}
             <div className="space-y-8">
-              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:shadow-2xl hover:border-primary/40 transition-all duration-500 animate-fade-in">
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
@@ -257,7 +257,7 @@ const ProfilUkkpk = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:shadow-2xl hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '100ms' }}>
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '100ms' }}>
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
@@ -279,7 +279,7 @@ const ProfilUkkpk = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:shadow-2xl hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '200ms' }}>
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '200ms' }}>
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
@@ -302,7 +302,7 @@ const ProfilUkkpk = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:shadow-2xl hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '300ms' }}>
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '300ms' }}>
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
@@ -325,7 +325,7 @@ const ProfilUkkpk = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:shadow-2xl hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '400ms' }}>
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '400ms' }}>
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
