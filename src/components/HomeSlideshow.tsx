@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Radio as RadioIcon, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface SlideshowImage {
@@ -104,13 +104,60 @@ export const HomeSlideshow = () => {
 
       {/* Overlay Text */}
       <div className="absolute inset-0 flex items-center justify-center pt-16">
-        <div className="text-center z-10 px-4 sm:px-6 animate-fade-in">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 text-white drop-shadow-2xl">
-            Selamat Datang di UKKPK
+        <div className="max-w-3xl text-left z-10 px-4 sm:px-6 animate-fade-in">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-2 rounded-full mb-6">
+            <RadioIcon className="h-4 w-4" />
+            <span className="text-sm font-medium">Unit Kegiatan Komunikasi & Penyiaran Kampus</span>
+          </div>
+          
+          {/* Main Heading */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white drop-shadow-2xl leading-tight">
+            Media Kampus
+            <br />
+            Profesional dari UNP
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-white/90 drop-shadow-lg max-w-2xl mx-auto px-4">
-            Unit Kegiatan Komunikasi dan Penyiaran Kampus
+          
+          {/* Subtitle */}
+          <p className="text-base sm:text-lg md:text-xl text-white/90 drop-shadow-lg max-w-2xl mb-8 leading-relaxed">
+            Platform media kampus yang menghubungkan Anda dengan berita terkini, 
+            artikel berkualitas, dan siaran radio kampus dari UKKPK UNP.
           </p>
+
+          {/* Buttons */}
+          <div className="flex flex-wrap gap-4 mb-8">
+            <Button 
+              size="lg" 
+              className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-base"
+              asChild
+            >
+              <a href="/artikel">
+                Baca Artikel →
+              </a>
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-8 py-6 text-base"
+              asChild
+            >
+              <a href="/radio">
+                <Play className="h-5 w-5 mr-2" />
+                Dengar Radio
+              </a>
+            </Button>
+          </div>
+
+          {/* Rating */}
+          <div className="inline-flex items-center gap-2 bg-black/30 backdrop-blur-sm px-4 py-2 rounded-lg">
+            <div className="flex gap-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <span key={star} className="text-yellow-400 text-lg">⭐</span>
+              ))}
+            </div>
+            <span className="text-white font-semibold">5.0</span>
+            <span className="text-white/80 text-sm">Dari 1000+ Pengunjung</span>
+          </div>
         </div>
       </div>
 
