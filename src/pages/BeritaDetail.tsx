@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { ArrowLeft, Calendar, Share2, Facebook, Twitter, MessageCircle, Copy } from 'lucide-react';
 import { toast } from 'sonner';
+import { sanitizeHtml } from '@/lib/sanitize';
 
 interface News {
   id: string;
@@ -170,7 +171,7 @@ const BeritaDetail = () => {
               <div className="prose prose-lg max-w-none mb-8">
                 <div 
                   className="text-foreground/90 leading-relaxed article-content"
-                  dangerouslySetInnerHTML={{ __html: news.content }}
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(news.content) }}
                 />
               </div>
 

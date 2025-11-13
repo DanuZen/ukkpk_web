@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Pencil, Trash2, Plus, Eye, Edit3 } from "lucide-react";
+import { sanitizeHtml } from "@/lib/sanitize";
 
 interface Article {
   id: string;
@@ -299,7 +300,7 @@ export const ArticlesManager = () => {
                         {formData.content ? (
                           <div 
                             className="text-foreground/90 leading-relaxed article-content"
-                            dangerouslySetInnerHTML={{ __html: formData.content }}
+                            dangerouslySetInnerHTML={{ __html: sanitizeHtml(formData.content) }}
                           />
                         ) : (
                           <p className="text-muted-foreground italic">
