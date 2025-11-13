@@ -187,10 +187,10 @@ const ProfilUkkpk = () => {
 
             {/* Visi & Misi */}
             <div className="grid md:grid-cols-2 gap-8 mb-24">
-              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in">
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500 animate-fade-in">
                 <CardContent className="pt-8 pb-8 relative">
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center flex-shrink-0">
                       <Eye className="h-7 w-7 text-primary" />
                     </div>
                     <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Visi</h3>
@@ -202,10 +202,10 @@ const ProfilUkkpk = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '100ms' }}>
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500 animate-fade-in" style={{ animationDelay: '100ms' }}>
                 <CardContent className="pt-8 pb-8 relative">
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center flex-shrink-0">
                       <Target className="h-7 w-7 text-primary" />
                     </div>
                     <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Misi</h3>
