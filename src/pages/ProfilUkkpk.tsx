@@ -350,8 +350,29 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Bidang Kegiatan */}
-      <section className="py-16 px-4 bg-muted/30">
-        <div className="container mx-auto">
+      <section className="py-16 px-4 bg-muted/30 relative overflow-hidden">
+        {/* Curved geometric background patterns */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-32 right-1/4 w-96 h-96 rounded-full border-[40px] border-white/60" />
+          <div className="absolute top-1/3 -left-24 w-80 h-80 rounded-full border-[30px] border-white/40" />
+          <div className="absolute -bottom-20 right-1/3 w-[500px] h-[500px] rounded-full border-[60px] border-white/50" />
+          <div className="absolute top-40 left-1/4 w-28 h-28 rounded-full border-[12px] border-primary/10" />
+          
+          <div className="absolute top-0 left-0 w-1/4 h-1/2 opacity-20">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)',
+              backgroundSize: '18px 18px'
+            }} />
+          </div>
+          
+          <div className="absolute bottom-1/4 right-0 w-72 h-72">
+            <svg viewBox="0 0 200 200" className="w-full h-full opacity-15">
+              <path d="M 0,90 Q 50,50 100,90 T 200,90" stroke="#dc2626" strokeWidth="2" fill="none" />
+              <path d="M 0,110 Q 50,70 100,110 T 200,110" stroke="#dc2626" strokeWidth="2" fill="none" />
+            </svg>
+          </div>
+        </div>
+        <div className="container mx-auto relative z-10">
           <h2 className="text-3xl font-bold mb-12 text-center">Bidang Kegiatan</h2>
           <div className="max-w-7xl mx-auto">
             {/* Logo MICU & Bidang */}
@@ -411,8 +432,29 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Nilai-Nilai */}
-      <section className="py-16 px-4 bg-background">
-        <div className="container mx-auto">
+      <section className="py-16 px-4 bg-background relative overflow-hidden">
+        {/* Curved geometric background patterns */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full border-[35px] border-gray-100/60" />
+          <div className="absolute top-1/4 -right-20 w-72 h-72 rounded-full border-[28px] border-gray-50" />
+          <div className="absolute bottom-0 left-1/3 w-96 h-96 rounded-full border-[45px] border-gray-100/50" />
+          <div className="absolute top-32 right-1/3 w-24 h-24 rounded-full border-[10px] border-primary/10" />
+          
+          <div className="absolute top-0 right-0 w-1/4 h-1/3 opacity-25">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
+              backgroundSize: '18px 18px'
+            }} />
+          </div>
+          
+          <div className="absolute bottom-1/3 left-0 w-64 h-64">
+            <svg viewBox="0 0 200 200" className="w-full h-full opacity-20">
+              <path d="M 0,90 Q 50,50 100,90 T 200,90" stroke="#dc2626" strokeWidth="2" fill="none" />
+              <path d="M 0,110 Q 50,70 100,110 T 200,110" stroke="#dc2626" strokeWidth="2" fill="none" />
+            </svg>
+          </div>
+        </div>
+        <div className="container mx-auto relative z-10">
           <h2 className="text-3xl font-bold mb-12 text-center">Nilai-Nilai Kami</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {values.map((value, index) => <Card key={index} className="text-center hover:shadow-md transition-shadow">
@@ -461,8 +503,30 @@ const StrukturOrganisasiSection = () => {
   const selectedStructure = structures.find(s => s.angkatan === selectedYear);
 
   return (
-    <section className="py-16 px-4 bg-background">
-      <div className="container mx-auto">
+    <section className="py-16 px-4 bg-background relative overflow-hidden">
+      {/* Curved geometric background patterns */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full border-[40px] border-gray-100/60" />
+        <div className="absolute top-1/3 -left-24 w-80 h-80 rounded-full border-[30px] border-gray-50" />
+        <div className="absolute -bottom-20 right-1/4 w-[500px] h-[500px] rounded-full border-[60px] border-gray-100/50" />
+        <div className="absolute top-20 left-1/3 w-28 h-28 rounded-full border-[12px] border-primary/10" />
+        
+        <div className="absolute top-0 left-0 w-1/4 h-1/2 opacity-25">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
+            backgroundSize: '18px 18px'
+          }} />
+        </div>
+        
+        <div className="absolute bottom-1/4 right-0 w-72 h-72">
+          <svg viewBox="0 0 200 200" className="w-full h-full opacity-20">
+            <path d="M 0,90 Q 50,50 100,90 T 200,90" stroke="#dc2626" strokeWidth="2" fill="none" />
+            <path d="M 0,110 Q 50,70 100,110 T 200,110" stroke="#dc2626" strokeWidth="2" fill="none" />
+          </svg>
+        </div>
+      </div>
+      
+      <div className="container mx-auto relative z-10">
         <h2 className="text-3xl font-bold mb-8 text-center">DPH & Pengurus UKKPK</h2>
         
         {structures.length > 1 && (
