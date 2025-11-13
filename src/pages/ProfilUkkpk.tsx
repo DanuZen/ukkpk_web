@@ -164,7 +164,45 @@ const ProfilUkkpk = () => {
           <svg viewBox="0 0 200 200" className="w-full h-full opacity-20">
             <path d="M 0,90 Q 50,50 100,90 T 200,90" stroke="#dc2626" strokeWidth="2" fill="none" />
             <path d="M 0,110 Q 50,70 100,110 T 200,110" stroke="#dc2626" strokeWidth="2" fill="none" />
+            <path d="M 0,130 Q 50,90 100,130 T 200,130" stroke="#dc2626" strokeWidth="1.5" fill="none" />
           </svg>
+        </div>
+        
+        {/* Microphone and Camera Icons with Animation */}
+        <div className="absolute top-[10%] left-[15%] w-16 h-16 opacity-10 animate-pulse">
+          <svg viewBox="0 0 24 24" fill="none" className="w-full h-full">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" stroke="#dc2626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8" stroke="#dc2626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+        <div className="absolute top-[30%] right-[10%] w-20 h-20 opacity-10 animate-pulse" style={{animationDelay: '1s'}}>
+          <svg viewBox="0 0 24 24" fill="none" className="w-full h-full">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <circle cx="12" cy="13" r="4" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+        <div className="absolute top-[55%] left-[20%] w-14 h-14 opacity-10 animate-pulse" style={{animationDelay: '2s'}}>
+          <svg viewBox="0 0 24 24" fill="none" className="w-full h-full">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" stroke="#dc2626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8" stroke="#dc2626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+        <div className="absolute top-[85%] right-[25%] w-18 h-18 opacity-10 animate-pulse" style={{animationDelay: '1.5s'}}>
+          <svg viewBox="0 0 24 24" fill="none" className="w-full h-full">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <circle cx="12" cy="13" r="4" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+        
+        {/* Broadcast signal waves - animated concentric circles */}
+        <div className="absolute top-[25%] left-[45%] w-32 h-32 opacity-20">
+          <div className="absolute inset-0 rounded-full border-2 border-primary animate-ping" style={{animationDuration: '3s'}} />
+          <div className="absolute inset-2 rounded-full border-2 border-primary animate-ping" style={{animationDuration: '3s', animationDelay: '0.5s'}} />
+          <div className="absolute inset-4 rounded-full border-2 border-primary animate-ping" style={{animationDuration: '3s', animationDelay: '1s'}} />
+        </div>
+        <div className="absolute top-[65%] right-[40%] w-28 h-28 opacity-15">
+          <div className="absolute inset-0 rounded-full border-2 border-primary animate-ping" style={{animationDuration: '4s'}} />
+          <div className="absolute inset-2 rounded-full border-2 border-primary animate-ping" style={{animationDuration: '4s', animationDelay: '0.7s'}} />
         </div>
       </div>
 
