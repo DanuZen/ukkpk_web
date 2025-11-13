@@ -145,12 +145,7 @@ const Radio = () => {
 
         {/* Schedule */}
         <div className="mb-12">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-3">Jadwal Program</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Jelajahi berbagai program menarik Sigma Radio UKKPK. Dari musik pagi yang ceria hingga diskusi malam yang mendalam, selalu ada yang bisa Anda nikmati.
-            </p>
-          </div>
+          <h2 className="text-3xl font-bold text-center mb-8">Jadwal Program</h2>
           {programs.length === 0 ? (
             <p className="text-center text-muted-foreground">Belum ada jadwal program</p>
           ) : (
