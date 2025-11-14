@@ -11,6 +11,7 @@ import { ArticlesManager } from "@/components/admin/ArticlesManager";
 import { NewsManager } from "@/components/admin/NewsManager";
 import { RadioManager } from "@/components/admin/RadioManager";
 import { ProfileManager } from "@/components/admin/ProfileManager";
+import { MapManager } from "@/components/admin/MapManager";
 
 const Admin = () => {
   const { user, signOut } = useAuth();
@@ -58,11 +59,12 @@ const Admin = () => {
         </div>
 
         <Tabs defaultValue="articles" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 gap-2">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 gap-2">
             <TabsTrigger value="articles">Artikel</TabsTrigger>
             <TabsTrigger value="news">Berita</TabsTrigger>
             <TabsTrigger value="radio">Radio</TabsTrigger>
             <TabsTrigger value="profile">Profil</TabsTrigger>
+            <TabsTrigger value="maps">Peta</TabsTrigger>
           </TabsList>
 
           <TabsContent value="articles">
@@ -79,6 +81,10 @@ const Admin = () => {
 
           <TabsContent value="profile">
             <ProfileManager />
+          </TabsContent>
+
+          <TabsContent value="maps">
+            <MapManager />
           </TabsContent>
         </Tabs>
       </div>
