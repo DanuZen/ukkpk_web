@@ -3,6 +3,10 @@ import { Upload, X, Image as ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
+
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
 
 interface ImageUploadProps {
   id: string;
@@ -23,6 +27,29 @@ export const ImageUpload = ({
 }: ImageUploadProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { toast } = useToast();
+
+  const validateFile = (file: File): boolean => {
+    if (file.size > MAX_FILE_SIZE) {
+      toast({
+        title: "Error",
+        description: "File must be less than 5MB",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      toast({
+        title: "Error",
+        description: "Only JPG, PNG, WEBP, and GIF files are allowed",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    return true;
+  };
 
   const handleDragEnter = (e: React.DragEvent) => {
     e.preventDefault();
@@ -53,7 +80,7 @@ export const ImageUpload = ({
     const files = e.dataTransfer.files;
     if (files && files[0]) {
       const file = files[0];
-      if (file.type.startsWith("image/")) {
+      if (validateFile(file)) {
         onFileSelect(file);
       }
     }
@@ -62,8 +89,12 @@ export const ImageUpload = ({
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files && files[0]) {
-      onFileSelect(files[0]);
+      if (validateFile(files[0])) {
+        onFileSelect(files[0]);
+      }
     }
+    // Reset input value to allow selecting the same file again after error
+    e.target.value = '';
   };
 
   const handleClick = () => {
