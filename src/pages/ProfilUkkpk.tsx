@@ -134,15 +134,15 @@ const ProfilUkkpk = () => {
           {/* Dotted mesh patterns - multiple areas */}
           <div className="absolute top-0 right-0 w-1/3 h-1/2 opacity-30">
             <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
-              backgroundSize: '20px 20px'
-            }} />
+            backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
+            backgroundSize: '20px 20px'
+          }} />
           </div>
           <div className="absolute bottom-0 left-1/4 w-1/4 h-1/3 opacity-20">
             <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle, #d1d5db 1px, transparent 1px)',
-              backgroundSize: '15px 15px'
-            }} />
+            backgroundImage: 'radial-gradient(circle, #d1d5db 1px, transparent 1px)',
+            backgroundSize: '15px 15px'
+          }} />
           </div>
           
           {/* Curved wave lines - multiple positions */}
@@ -170,10 +170,8 @@ const ProfilUkkpk = () => {
                 <Users className="h-4 w-4 text-primary" />
                 <span className="text-sm font-medium text-primary">Tentang Kami</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
-                Unit Kegiatan Komunikasi dan Penyiaran Kampus
-              </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-8" />
+              
+              
             </div>
 
             {/* Description Card */}
@@ -202,7 +200,9 @@ const ProfilUkkpk = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500 animate-fade-in" style={{ animationDelay: '100ms' }}>
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500 animate-fade-in" style={{
+              animationDelay: '100ms'
+            }}>
                 <CardContent className="pt-8 pb-8 relative">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center flex-shrink-0">
@@ -251,7 +251,9 @@ const ProfilUkkpk = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '100ms' }}>
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{
+              animationDelay: '100ms'
+            }}>
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0">
@@ -272,7 +274,9 @@ const ProfilUkkpk = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '200ms' }}>
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{
+              animationDelay: '200ms'
+            }}>
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0">
@@ -294,7 +298,9 @@ const ProfilUkkpk = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '300ms' }}>
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{
+              animationDelay: '300ms'
+            }}>
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0">
@@ -316,7 +322,9 @@ const ProfilUkkpk = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{ animationDelay: '400ms' }}>
+              <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 animate-fade-in" style={{
+              animationDelay: '400ms'
+            }}>
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0">
@@ -350,9 +358,9 @@ const ProfilUkkpk = () => {
           
           <div className="absolute top-0 left-0 w-1/4 h-1/2 opacity-25">
             <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
-              backgroundSize: '18px 18px'
-            }} />
+            backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
+            backgroundSize: '18px 18px'
+          }} />
           </div>
           
           <div className="absolute bottom-1/4 right-0 w-72 h-72">
@@ -432,9 +440,9 @@ const ProfilUkkpk = () => {
           
           <div className="absolute top-0 right-0 w-1/4 h-1/3 opacity-25">
             <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
-              backgroundSize: '18px 18px'
-            }} />
+            backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
+            backgroundSize: '18px 18px'
+          }} />
           </div>
           
           <div className="absolute bottom-1/3 left-0 w-64 h-64">
@@ -471,29 +479,23 @@ const StrukturOrganisasiSection = () => {
     foto_url: string;
   }>>([]);
   const [selectedYear, setSelectedYear] = useState<string>("");
-
   useEffect(() => {
     fetchStructures();
   }, []);
-
   const fetchStructures = async () => {
-    const { data } = await supabase
-      .from('struktur_organisasi')
-      .select('*')
-      .order('angkatan', { ascending: true });
-    
+    const {
+      data
+    } = await supabase.from('struktur_organisasi').select('*').order('angkatan', {
+      ascending: true
+    });
     if (data && data.length > 0) {
       setStructures(data);
       setSelectedYear(data[0].angkatan);
     }
   };
-
   if (structures.length === 0) return null;
-
   const selectedStructure = structures.find(s => s.angkatan === selectedYear);
-
-  return (
-    <section className="py-16 px-4 bg-background relative overflow-hidden">
+  return <section className="py-16 px-4 bg-background relative overflow-hidden">
       {/* Curved geometric background patterns */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full border-[40px] border-gray-100/60" />
@@ -503,9 +505,9 @@ const StrukturOrganisasiSection = () => {
         
         <div className="absolute top-0 left-0 w-1/4 h-1/2 opacity-25">
           <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
-            backgroundSize: '18px 18px'
-          }} />
+          backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
+          backgroundSize: '18px 18px'
+        }} />
         </div>
         
         <div className="absolute bottom-1/4 right-0 w-72 h-72">
@@ -519,40 +521,23 @@ const StrukturOrganisasiSection = () => {
       <div className="container mx-auto relative z-10">
         <h2 className="text-3xl font-bold mb-8 text-center">DPH & Pengurus UKKPK</h2>
         
-        {structures.length > 1 && (
-          <div className="flex justify-center mb-8">
+        {structures.length > 1 && <div className="flex justify-center mb-8">
             <div className="flex gap-2 flex-wrap justify-center">
-              {structures.map((structure) => (
-                <Button
-                  key={structure.id}
-                  variant={selectedYear === structure.angkatan ? "default" : "outline"}
-                  onClick={() => setSelectedYear(structure.angkatan)}
-                  className="min-w-[150px]"
-                >
+              {structures.map(structure => <Button key={structure.id} variant={selectedYear === structure.angkatan ? "default" : "outline"} onClick={() => setSelectedYear(structure.angkatan)} className="min-w-[150px]">
                   {structure.angkatan}
-                </Button>
-              ))}
+                </Button>)}
             </div>
-          </div>
-        )}
+          </div>}
 
-        {selectedStructure && (
-          <div className="max-w-5xl mx-auto animate-fade-in">
+        {selectedStructure && <div className="max-w-5xl mx-auto animate-fade-in">
             <h3 className="text-2xl font-semibold mb-6 text-center text-primary">
               {selectedStructure.angkatan}
             </h3>
             <div className="rounded-lg overflow-hidden shadow-xl">
-              <img 
-                src={selectedStructure.foto_url} 
-                alt={`Struktur ${selectedStructure.angkatan}`}
-                className="w-full h-auto"
-              />
+              <img src={selectedStructure.foto_url} alt={`Struktur ${selectedStructure.angkatan}`} className="w-full h-auto" />
             </div>
-          </div>
-        )}
+          </div>}
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ProfilUkkpk;
