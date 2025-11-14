@@ -118,8 +118,10 @@ const ProfilUkkpk = () => {
           </div>
         </section>}
 
-      {/* Tentang UKKPK */}
-      <section className="py-20 px-4 relative overflow-hidden bg-white">
+      {/* Section Gabungan: Tentang Kami - Struktur Organisasi */}
+      <section className="relative overflow-hidden bg-white">
+        {/* Tentang UKKPK */}
+        <div className="py-20 px-4 relative">
         {/* Curved geometric background patterns */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Large curved shapes */}
@@ -345,10 +347,10 @@ const ProfilUkkpk = () => {
             </div>
           </div>
         </div>
-      </section>
+        </div>
 
-      {/* Bidang Kegiatan */}
-      <section className="py-16 px-4 bg-white relative overflow-hidden">
+        {/* Bidang Kegiatan */}
+        <div className="py-16 px-4 relative">
         {/* Curved geometric background patterns */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-32 right-1/4 w-96 h-96 rounded-full border-[40px] border-gray-100/70" />
@@ -429,10 +431,10 @@ const ProfilUkkpk = () => {
             </div>
           </div>
         </div>
-      </section>
+        </div>
 
-      {/* Nilai-Nilai */}
-      <section className="py-16 px-4 bg-background relative overflow-hidden">
+        {/* Nilai-Nilai */}
+        <div className="py-16 px-4 bg-background relative">
         {/* Curved geometric background patterns */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full border-[35px] border-gray-100/60" />
@@ -466,10 +468,13 @@ const ProfilUkkpk = () => {
               </Card>)}
           </div>
         </div>
-      </section>
+        </div>
 
-      {/* DPH & Pengurus per Tahun */}
-      <StrukturOrganisasiSection />
+        {/* DPH & Pengurus per Tahun */}
+        <div className="py-16 px-4 relative">
+          <StrukturOrganisasiSection />
+        </div>
+      </section>
     </Layout>;
 };
 
