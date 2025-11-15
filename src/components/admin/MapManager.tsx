@@ -80,9 +80,20 @@ export const MapManager = () => {
       return;
     }
 
-    try {
-      const cleanEmbedUrl = extractEmbedUrl(embedUrl);
+    // Clean and validate the embed URL
+    const cleanEmbedUrl = extractEmbedUrl(embedUrl);
+    
+    // Validate it's actually an embed URL, not a share link
+    if (cleanEmbedUrl.includes('maps.app.goo.gl') || !cleanEmbedUrl.includes('google.com/maps/embed')) {
+      toast({
+        title: "Error",
+        description: "URL harus berupa embed URL dari Google Maps, bukan share link. Ikuti petunjuk untuk mendapatkan embed URL yang benar.",
+        variant: "destructive",
+      });
+      return;
+    }
 
+    try {
       if (settings?.id) {
         const { error } = await supabase
           .from("map_settings")
@@ -148,9 +159,20 @@ export const MapManager = () => {
                 placeholder='Paste embed URL atau iframe code dari Google Maps'
                 className="w-full min-h-[100px] p-3 rounded-md border border-input bg-background"
               />
-              <p className="text-sm text-muted-foreground">
-                Cara mendapatkan: Buka Google Maps → Cari lokasi → Klik "Share" → Pilih tab "Embed a map" → Copy code
-              </p>
+              <div className="space-y-1 text-sm text-muted-foreground">
+                <p className="font-medium">⚠️ PENTING: Gunakan EMBED URL, bukan share link!</p>
+                <p>Cara mendapatkan embed URL yang benar:</p>
+                <ol className="list-decimal list-inside space-y-1 ml-2">
+                  <li>Buka Google Maps di browser</li>
+                  <li>Cari dan pilih lokasi yang diinginkan</li>
+                  <li>Klik tombol "Share" (Bagikan)</li>
+                  <li>Pilih tab <strong>"Embed a map"</strong></li>
+                  <li>Copy kode HTML yang muncul</li>
+                  <li>Paste di sini</li>
+                </ol>
+                <p className="text-destructive mt-2">❌ Jangan gunakan link seperti: maps.app.goo.gl/...</p>
+                <p className="text-green-600">✅ URL harus berisi: google.com/maps/embed</p>
+              </div>
             </div>
 
             <div className="space-y-2">
