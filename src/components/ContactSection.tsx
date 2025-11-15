@@ -4,6 +4,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { useToast } from './ui/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 import { z } from 'zod';
 const contactSchema = z.object({
   nama: z.string().trim().min(1, "Nama wajib diisi").max(100, "Nama maksimal 100 karakter"),
@@ -26,7 +27,7 @@ export const ContactSection = () => {
     subject: '',
     message: ''
   });
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validate with Zod schema
@@ -43,21 +44,36 @@ export const ContactSection = () => {
       }
     }
 
-    // Here you would typically send the data to a backend
-    toast({
-      title: "Berhasil!",
-      description: "Pesan Anda telah terkirim. Terima kasih!"
-    });
+    // Save to database
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([formData]);
 
-    // Reset form
-    setFormData({
-      nama: '',
-      program: '',
-      phone: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
+      if (error) throw error;
+
+      toast({
+        title: "Berhasil!",
+        description: "Pesan Anda telah terkirim. Terima kasih!"
+      });
+
+      // Reset form
+      setFormData({
+        nama: '',
+        program: '',
+        phone: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      toast({
+        title: "Gagal mengirim",
+        description: "Terjadi kesalahan. Silakan coba lagi.",
+        variant: "destructive"
+      });
+    }
   };
   const socialLinks = {
     facebook: "https://web.facebook.com/p/UKKPK-UNP-100063495233989/",

@@ -12,21 +12,32 @@ export const GoogleMap = () => {
         const { data, error } = await supabase
           .from("map_settings")
           .select("*")
-          .single();
+          .maybeSingle();
 
-        if (error && error.code !== "PGRST116") throw error;
+        if (error) throw error;
         
-        if (data) {
-          setEmbedUrl(data.embed_url || "");
+        if (data && data.embed_url) {
+          // Check if it's already an embed URL or needs conversion
+          let finalEmbedUrl = data.embed_url;
+          
+          // If it's a share link (maps.app.goo.gl), we can't directly convert it
+          // Admin needs to provide proper embed URL from Google Maps
+          if (data.embed_url.includes('maps.app.goo.gl') || 
+              !data.embed_url.includes('google.com/maps/embed')) {
+            console.warn('Invalid map URL format. Please set proper embed URL in admin panel.');
+            finalEmbedUrl = "";
+          }
+          
+          setEmbedUrl(finalEmbedUrl);
           setLocationName(data.location_name || "Lokasi UKKPK UNP");
         } else {
-          // Default fallback
-          setEmbedUrl("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.304715644741!2d100.3540397!3d-0.9139400000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd4b7f1f1c8e5e5%3A0x8f5c9e5e5e5e5e5e!2sUKKPK%20UNP!5e0!3m2!1sen!2sid!4v1234567890123");
+          // No data, use empty
+          setEmbedUrl("");
+          setLocationName("Lokasi UKKPK UNP");
         }
       } catch (error) {
         console.error("Error fetching map settings:", error);
-        // Use default on error
-        setEmbedUrl("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.304715644741!2d100.3540397!3d-0.9139400000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd4b7f1f1c8e5e5%3A0x8f5c9e5e5e5e5e5e!2sUKKPK%20UNP!5e0!3m2!1sen!2sid!4v1234567890123");
+        setEmbedUrl("");
       }
     };
 
