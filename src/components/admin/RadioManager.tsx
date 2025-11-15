@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { Pencil, Trash2 } from "lucide-react";
+import { ImageUpload } from "./ImageUpload";
 
 interface RadioProgram {
   id: string;
@@ -22,6 +23,7 @@ interface RadioProgram {
 interface RadioSettings {
   id: string;
   streaming_url: string;
+  banner_image_url?: string;
 }
 
 const DAYS = [
@@ -33,6 +35,8 @@ export const RadioManager = () => {
   const [settings, setSettings] = useState<RadioSettings | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [streamingUrl, setStreamingUrl] = useState("");
+  const [bannerImage, setBannerImage] = useState<File | null>(null);
+  const [bannerImageUrl, setBannerImageUrl] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -72,6 +76,7 @@ export const RadioManager = () => {
       if (error) throw error;
       setSettings(data);
       setStreamingUrl(data.streaming_url);
+      setBannerImageUrl(data.banner_image_url || "");
     } catch (error) {
       console.error("Error fetching settings:", error);
     }
@@ -125,13 +130,36 @@ export const RadioManager = () => {
     }
 
     try {
+      let uploadedImageUrl = bannerImageUrl;
+
+      // Upload banner image if selected
+      if (bannerImage) {
+        const fileExt = bannerImage.name.split(".").pop();
+        const fileName = `radio-banner-${Date.now()}.${fileExt}`;
+        const { error: uploadError, data } = await supabase.storage
+          .from("uploads")
+          .upload(fileName, bannerImage);
+
+        if (uploadError) throw uploadError;
+        
+        const { data: { publicUrl } } = supabase.storage
+          .from("uploads")
+          .getPublicUrl(fileName);
+        
+        uploadedImageUrl = publicUrl;
+      }
+
       const { error } = await supabase
         .from("radio_settings")
-        .update({ streaming_url: streamingUrl })
+        .update({ 
+          streaming_url: streamingUrl,
+          banner_image_url: uploadedImageUrl 
+        })
         .eq("id", settings?.id);
 
       if (error) throw error;
       toast.success("Pengaturan berhasil diperbarui");
+      setBannerImage(null);
       fetchSettings();
     } catch (error) {
       console.error("Error updating settings:", error);
@@ -175,15 +203,32 @@ export const RadioManager = () => {
         <CardHeader>
           <CardTitle>Pengaturan Radio Streaming</CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="flex gap-2">
-            <Input
-              value={streamingUrl}
-              onChange={(e) => setStreamingUrl(e.target.value)}
-              placeholder="https://radio.ukkpk.id/stream"
-            />
-            <Button onClick={handleUpdateSettings}>Simpan URL</Button>
+        <CardContent className="space-y-4">
+          <div>
+            <label className="text-sm font-medium mb-2 block">URL Streaming</label>
+            <div className="flex gap-2">
+              <Input
+                value={streamingUrl}
+                onChange={(e) => setStreamingUrl(e.target.value)}
+                placeholder="https://radio.ukkpk.id/stream"
+              />
+            </div>
           </div>
+
+          <div>
+            <ImageUpload
+              id="radio-banner"
+              label="Banner Radio (Hero Image)"
+              currentImageUrl={bannerImageUrl}
+              onFileSelect={(file) => setBannerImage(file)}
+              onRemove={() => {
+                setBannerImage(null);
+                setBannerImageUrl("");
+              }}
+            />
+          </div>
+
+          <Button onClick={handleUpdateSettings}>Simpan Pengaturan</Button>
         </CardContent>
       </Card>
 

@@ -16,6 +16,7 @@ interface RadioProgram {
 
 interface RadioSettings {
   streaming_url: string;
+  banner_image_url?: string;
 }
 
 const DAYS = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
@@ -46,7 +47,7 @@ const Radio = () => {
 
         const { data: settingsData } = await supabase
           .from("radio_settings")
-          .select("streaming_url")
+          .select("streaming_url, banner_image_url")
           .single();
 
         setPrograms(programsData || []);
@@ -82,7 +83,12 @@ const Radio = () => {
       {/* Hero Section - HostPro Style */}
       <section className="relative min-h-[85vh] flex items-center overflow-hidden">
         {/* Background Image with Dark Overlay */}
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070')] bg-cover bg-center"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${settings?.banner_image_url || 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070'})`
+          }}
+        ></div>
         <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
         
         <div className="container mx-auto px-4 relative z-10">

@@ -337,16 +337,19 @@ export type Database = {
       }
       radio_settings: {
         Row: {
+          banner_image_url: string | null
           id: string
           streaming_url: string
           updated_at: string
         }
         Insert: {
+          banner_image_url?: string | null
           id?: string
           streaming_url: string
           updated_at?: string
         }
         Update: {
+          banner_image_url?: string | null
           id?: string
           streaming_url?: string
           updated_at?: string
