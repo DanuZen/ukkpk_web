@@ -1,6 +1,29 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
+const extractEmbedUrl = (input: string): string => {
+  if (!input) return "";
+  
+  // If it's a full iframe tag, extract src
+  const iframeMatch = input.match(/src=["']([^"']+)["']/);
+  if (iframeMatch) {
+    return iframeMatch[1];
+  }
+  
+  // If it's already an embed URL, return it
+  if (input.includes('google.com/maps/embed')) {
+    return input;
+  }
+  
+  // If it's a share link, return empty (can't convert automatically)
+  if (input.includes('maps.app.goo.gl') || input.includes('goo.gl/maps')) {
+    console.warn('Share links not supported. Please use embed URL from Google Maps.');
+    return "";
+  }
+  
+  return input;
+};
+
 export const GoogleMap = () => {
   const [embedUrl, setEmbedUrl] = useState("");
   const [locationName, setLocationName] = useState("Lokasi UKKPK UNP");
@@ -17,21 +40,10 @@ export const GoogleMap = () => {
         if (error) throw error;
         
         if (data && data.embed_url) {
-          // Check if it's already an embed URL or needs conversion
-          let finalEmbedUrl = data.embed_url;
-          
-          // If it's a share link (maps.app.goo.gl), we can't directly convert it
-          // Admin needs to provide proper embed URL from Google Maps
-          if (data.embed_url.includes('maps.app.goo.gl') || 
-              !data.embed_url.includes('google.com/maps/embed')) {
-            console.warn('Invalid map URL format. Please set proper embed URL in admin panel.');
-            finalEmbedUrl = "";
-          }
-          
-          setEmbedUrl(finalEmbedUrl);
+          const cleanUrl = extractEmbedUrl(data.embed_url);
+          setEmbedUrl(cleanUrl);
           setLocationName(data.location_name || "Lokasi UKKPK UNP");
         } else {
-          // No data, use empty
           setEmbedUrl("");
           setLocationName("Lokasi UKKPK UNP");
         }
