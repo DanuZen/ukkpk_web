@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { ChevronLeft, ChevronRight, Radio as RadioIcon, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -99,20 +100,20 @@ export const HomeSlideshow = () => {
           {/* Buttons */}
           <div className="flex flex-wrap gap-4 mb-8">
             <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-base" asChild>
-              <a href="/artikel">
+              <Link to="/artikel">
                 Baca Artikel →
-              </a>
+              </Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-8 py-6 text-base" asChild>
-              <a href="/berita">
+              <Link to="/berita">
                 Lihat Berita
-              </a>
+              </Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-8 py-6 text-base" asChild>
-              <a href="/radio">
+              <Link to="/radio">
                 <Play className="h-5 w-5 mr-2" />
                 Dengar Radio
-              </a>
+              </Link>
             </Button>
           </div>
 
