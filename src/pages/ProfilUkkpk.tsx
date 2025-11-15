@@ -3,7 +3,7 @@ import { Layout } from '@/components/Layout';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
-import { Users, Target, Eye, Megaphone, FileText, Radio, Briefcase, ClipboardList, Users2, Handshake } from 'lucide-react';
+import { Users, Target, Eye, Megaphone, FileText, Radio, Briefcase, ClipboardList, Users2, Handshake, Sparkles, Waves, Shield, Rocket, Mic } from 'lucide-react';
 import logoReporter from '@/assets/logo-reporter.png';
 import logoMicu from '@/assets/logo-micu.png';
 import logoMc from '@/assets/logo-mc.png';
@@ -235,8 +235,8 @@ const ProfilUkkpk = () => {
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">
-                        1
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white shadow-xl">
+                        <Sparkles className="h-7 w-7" />
                       </div>
                     </div>
                     <div className="flex-1">
@@ -257,8 +257,8 @@ const ProfilUkkpk = () => {
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">
-                        2
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white shadow-xl">
+                        <Mic className="h-7 w-7" />
                       </div>
                     </div>
                     <div className="flex-1">
@@ -280,8 +280,8 @@ const ProfilUkkpk = () => {
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">
-                        3
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-xl">
+                        <Waves className="h-7 w-7" />
                       </div>
                     </div>
                     <div className="flex-1">
@@ -304,8 +304,8 @@ const ProfilUkkpk = () => {
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">
-                        4
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white shadow-xl">
+                        <Shield className="h-7 w-7" />
                       </div>
                     </div>
                     <div className="flex-1">
@@ -328,8 +328,8 @@ const ProfilUkkpk = () => {
                 <CardContent className="pt-6 pb-6 relative">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">
-                        5
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-500 flex items-center justify-center text-white shadow-xl">
+                        <Rocket className="h-7 w-7" />
                       </div>
                     </div>
                     <div className="flex-1">
