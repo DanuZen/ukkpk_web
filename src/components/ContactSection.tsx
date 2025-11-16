@@ -82,18 +82,6 @@ export const ContactSection = () => {
     tiktok: "#"
   };
   return <div className="bg-card rounded-lg shadow-lg p-6 lg:p-8 h-full">
-      <div className="text-center mb-6">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-          <MessageSquare className="h-4 w-4 text-primary" />
-          <span className="text-sm font-medium text-primary">
-            Hubungi Kami
-          </span>
-        </div>
-        <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
-          Kritik dan Saran
-        </h2>
-        <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
-      </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
