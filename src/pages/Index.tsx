@@ -9,7 +9,7 @@ import { HomeSlideshow } from '@/components/HomeSlideshow';
 import { GoogleMap } from '@/components/GoogleMap';
 import { ContactSection } from '@/components/ContactSection';
 import { stripHtml } from '@/lib/utils';
-import { FileText } from 'lucide-react';
+import { FileText, MessageSquare } from 'lucide-react';
 interface Article {
   id: string;
   title: string;
@@ -143,8 +143,26 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Contact & Map Heading */}
+      <section className="py-8 px-4 bg-muted/20">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+              <MessageSquare className="h-4 w-4 text-primary" />
+              <span className="text-sm font-medium text-primary">
+                Hubungi Kami
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+              Kritik dan Saran
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
+          </div>
+        </div>
+      </section>
+
       {/* Contact & Map Section */}
-      <section className="py-16 px-4 bg-muted/20">
+      <section className="py-8 px-4 bg-muted/20">
         <div className="container mx-auto max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-8 items-start">
             {/* Contact Form */}
