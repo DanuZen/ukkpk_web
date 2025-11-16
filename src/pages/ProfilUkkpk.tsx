@@ -183,7 +183,7 @@ const ProfilUkkpk = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background"></div>
           <div className="container mx-auto text-center relative z-10">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              Unit Kegiatan Komunikasi dan Penyiaran Kampus
+              UKKPK UNP
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Unit Kegiatan Komunikasi dan Penyiaran Kampus
