@@ -193,78 +193,36 @@ const ProfilUkkpk = () => {
       )}
 
       {/* Tentang UKKPK */}
-      <section className="py-20 px-4 relative overflow-hidden bg-white">
-        {/* Curved geometric background patterns */}
+      <section className="py-20 px-4 relative overflow-hidden">
+        {/* Modern Gradient Background with Mesh Effect */}
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 to-secondary/5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(at 20% 30%, hsl(348 89% 43% / 0.12) 0px, transparent 50%), radial-gradient(at 80% 70%, hsl(237 98% 38% / 0.10) 0px, transparent 50%), radial-gradient(at 50% 50%, hsl(14 90% 60% / 0.08) 0px, transparent 50%)'
+          }} />
+        </div>
+        
+        {/* Animated Gradient Orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full border-[50px] border-gray-100/70" />
-          <div className="absolute top-1/4 -right-32 w-96 h-96 rounded-full border-[35px] border-gray-50" />
-          <div className="absolute -bottom-32 left-1/4 w-[600px] h-[600px] rounded-full border-[70px] border-gray-100/50" />
-          <div className="absolute top-20 right-1/4 w-32 h-32 rounded-full border-[15px] border-primary/10" />
-          <div className="absolute bottom-40 right-20 w-24 h-24 rounded-full border-[12px] border-primary/8" />
-          <div className="absolute top-0 right-0 w-1/3 h-1/2 opacity-30">
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage:
-                  'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
-                backgroundSize: '20px 20px',
-              }}
-            />
-          </div>
-          <div className="absolute bottom-0 left-1/4 w-1/4 h-1/3 opacity-20">
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage:
-                  'radial-gradient(circle, #d1d5db 1px, transparent 1px)',
-                backgroundSize: '15px 15px',
-              }}
-            />
-          </div>
-          <div className="absolute top-1/4 left-0 w-80 h-80">
-            <svg viewBox="0 0 200 200" className="w-full h-full opacity-20">
-              <path
-                d="M 0,80 Q 50,40 100,80 T 200,80"
-                stroke="#dc2626"
-                strokeWidth="2"
-                fill="none"
-              />
-              <path
-                d="M 0,100 Q 50,60 100,100 T 200,100"
-                stroke="#dc2626"
-                strokeWidth="2"
-                fill="none"
-              />
-              <path
-                d="M 0,120 Q 50,80 100,120 T 200,120"
-                stroke="#dc2626"
-                strokeWidth="2"
-                fill="none"
-              />
-              <path
-                d="M 0,140 Q 50,100 100,140 T 200,140"
-                stroke="#dc2626"
-                strokeWidth="1.5"
-                fill="none"
-              />
-            </svg>
-          </div>
-          <div className="absolute bottom-1/4 right-10 w-64 h-64 rotate-180">
-            <svg viewBox="0 0 200 200" className="w-full h-full opacity-15">
-              <path
-                d="M 0,100 Q 50,50 100,100 T 200,100"
-                stroke="#dc2626"
-                strokeWidth="2"
-                fill="none"
-              />
-              <path
-                d="M 0,120 Q 50,70 100,120 T 200,120"
-                stroke="#dc2626"
-                strokeWidth="2"
-                fill="none"
-              />
-            </svg>
-          </div>
+          <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-secondary/20 to-transparent rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-accent/10 to-transparent rounded-full blur-3xl animate-wave-pulse" />
+        </div>
+        
+        {/* Modern Geometric Patterns */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
+          <svg className="absolute top-10 left-10 w-32 h-32 text-primary/20" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="2" />
+            <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="1.5" />
+            <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" strokeWidth="1" />
+          </svg>
+          <svg className="absolute bottom-20 right-20 w-40 h-40 text-secondary/20" viewBox="0 0 100 100">
+            <polygon points="50,10 90,90 10,90" fill="none" stroke="currentColor" strokeWidth="2" />
+            <polygon points="50,25 75,75 25,75" fill="none" stroke="currentColor" strokeWidth="1.5" />
+          </svg>
+          <svg className="absolute top-1/3 right-1/4 w-24 h-24 text-accent/20" viewBox="0 0 100 100">
+            <rect x="10" y="10" width="80" height="80" rx="8" fill="none" stroke="currentColor" strokeWidth="2" />
+            <rect x="25" y="25" width="50" height="50" rx="5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+          </svg>
         </div>
 
         <div className="container mx-auto relative z-10">
@@ -520,8 +478,15 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Bidang Kegiatan */}
-      <section className="py-20 px-4 bg-gradient-to-b from-background to-muted/20 relative overflow-hidden">
-        {/* Curved geometric background patterns */}
+      <section className="py-20 px-4 relative overflow-hidden">
+        {/* Dynamic Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/8 via-background to-primary/8">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(at 70% 20%, hsl(237 98% 38% / 0.15) 0px, transparent 50%), radial-gradient(at 30% 80%, hsl(348 89% 43% / 0.12) 0px, transparent 50%)'
+          }} />
+        </div>
+        
+        {/* Floating Gradient Shapes */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full border-[40px] border-gray-100/60" />
           <div className="absolute top-1/3 -right-24 w-80 h-80 rounded-full border-[30px] border-gray-50" />
@@ -664,39 +629,28 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Nilai-Nilai */}
-      <section className="py-16 px-4 bg-background relative overflow-hidden">
-        {/* Curved geometric background patterns */}
+      <section className="py-16 px-4 relative overflow-hidden">
+        {/* Soft Gradient Background with Pattern */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-background via-accent/5 to-background">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(at 30% 40%, hsl(14 90% 60% / 0.08) 0px, transparent 50%), radial-gradient(at 80% 60%, hsl(348 89% 43% / 0.06) 0px, transparent 50%)'
+          }} />
+        </div>
+        
+        {/* Subtle Animated Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full border-[35px] border-gray-100/60" />
-          <div className="absolute top-1/4 -right-20 w-72 h-72 rounded-full border-[28px] border-gray-50" />
-          <div className="absolute bottom-0 left-1/3 w-96 h-96 rounded-full border-[45px] border-gray-100/50" />
-          <div className="absolute top-32 right-1/3 w-24 h-24 rounded-full border-[10px] border-primary/10" />
-          <div className="absolute bottom-0 right-0 w-1/4 h-1/3 opacity-25">
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage:
-                  'radial-gradient(circle, #d1d5db 1px, transparent 1px)',
-                backgroundSize: '16px 16px',
-              }}
-            />
-          </div>
-          <div className="absolute top-1/3 right-1/4 w-64 h-64">
-            <svg viewBox="0 0 200 200" className="w-full h-full opacity-15">
-              <path
-                d="M 0,80 Q 50,40 100,80 T 200,80"
-                stroke="#dc2626"
-                strokeWidth="2"
-                fill="none"
-              />
-              <path
-                d="M 0,100 Q 50,60 100,100 T 200,100"
-                stroke="#dc2626"
-                strokeWidth="2"
-                fill="none"
-              />
-            </svg>
-          </div>
+          <div className="absolute top-10 right-20 w-72 h-72 bg-gradient-to-br from-primary/15 to-transparent rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+          <div className="absolute bottom-10 left-20 w-80 h-80 bg-gradient-to-br from-accent/15 to-transparent rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }} />
+        </div>
+        
+        {/* Pattern Overlay */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <svg className="absolute top-10 left-1/4 w-28 h-28 text-primary/15" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="5,5" />
+          </svg>
+          <svg className="absolute bottom-20 right-1/4 w-32 h-32 text-secondary/15" viewBox="0 0 100 100">
+            <rect x="10" y="10" width="80" height="80" rx="10" fill="none" stroke="currentColor" strokeWidth="2" />
+          </svg>
         </div>
 
         <div className="container mx-auto relative z-10">
@@ -732,7 +686,30 @@ const ProfilUkkpk = () => {
 
       {/* Struktur Organisasi */}
       {members.length > 0 && (
-        <section className="py-20 px-4 bg-muted/30 relative overflow-hidden">
+        <section className="py-20 px-4 relative overflow-hidden">
+          {/* Elegant Gradient Background */}
+          <div className="absolute inset-0 bg-gradient-to-bl from-primary/6 via-background to-secondary/6">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'radial-gradient(at 50% 30%, hsl(348 89% 43% / 0.10) 0px, transparent 50%), radial-gradient(at 50% 70%, hsl(237 98% 38% / 0.08) 0px, transparent 50%)'
+            }} />
+          </div>
+          
+          {/* Floating Elements */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-1/4 left-10 w-64 h-64 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl animate-float" style={{ animationDelay: '0.5s' }} />
+            <div className="absolute bottom-1/4 right-10 w-72 h-72 bg-gradient-to-br from-secondary/10 to-transparent rounded-full blur-3xl animate-float" style={{ animationDelay: '2.5s' }} />
+          </div>
+          
+          {/* Decorative Shapes */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
+            <svg className="absolute top-20 right-1/4 w-36 h-36 text-primary/20" viewBox="0 0 100 100">
+              <path d="M50,10 L90,50 L50,90 L10,50 Z" fill="none" stroke="currentColor" strokeWidth="2" />
+            </svg>
+            <svg className="absolute bottom-20 left-1/4 w-32 h-32 text-secondary/20" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="8,4" />
+            </svg>
+          </div>
+          
           <div className="container mx-auto relative z-10">
             <AnimatedSection animation="fade-up">
               <h2 className="text-3xl font-bold mb-12 text-center">
