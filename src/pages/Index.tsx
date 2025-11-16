@@ -9,6 +9,7 @@ import { HomeSlideshow } from '@/components/HomeSlideshow';
 import { GoogleMap } from '@/components/GoogleMap';
 import { ContactSection } from '@/components/ContactSection';
 import { stripHtml } from '@/lib/utils';
+import { FileText } from 'lucide-react';
 interface Article {
   id: string;
   title: string;
@@ -86,7 +87,18 @@ const Index = () => {
           </div>
         </div>
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-10 md:mb-12 text-center bg-gradient-primary bg-clip-text text-transparent animate-fade-in">Artikel & Berita Terbaru</h2>
+          <div className="text-center mb-8 sm:mb-10 md:mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+              <FileText className="h-4 w-4 text-primary" />
+              <span className="text-sm font-medium text-primary">
+                Konten Terbaru
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+              Artikel & Berita Terbaru
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
+          </div>
 
           {articles.length === 0 && news.length === 0 ? <p className="text-center text-muted-foreground">Belum ada konten tersedia.</p> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {/* Artikel Cards */}

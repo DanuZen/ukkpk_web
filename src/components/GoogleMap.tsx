@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { MapPin } from "lucide-react";
 
 const extractEmbedUrl = (input: string): string => {
   if (!input) return "";
@@ -62,7 +63,18 @@ export const GoogleMap = () => {
 
   return (
     <div className="h-full flex flex-col">
-      <h2 className="text-2xl font-bold mb-6 text-center">{locationName}</h2>
+      <div className="text-center mb-6">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+          <MapPin className="h-4 w-4 text-primary" />
+          <span className="text-sm font-medium text-primary">
+            Lokasi Kami
+          </span>
+        </div>
+        <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+          Sekretariatan UKKPK UNP
+        </h2>
+        <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
+      </div>
       <div className="relative w-full h-[450px] rounded-lg overflow-hidden shadow-md border border-border/50">
         <iframe
           src={embedUrl}
