@@ -122,7 +122,7 @@ export const Navigation = () => {
   };
   const isHomePage = location.pathname === "/";
   const showTransparentNav = isHomePage && !isScrolled;
-  return <nav className={`${showTransparentNav ? "bg-white/10 backdrop-blur-md border-b border-white/20" : "bg-background backdrop-blur-md border-b border-border"} sticky top-0 z-50 shadow-sm transition-all duration-300`}>
+  return <nav className={`${showTransparentNav ? "bg-transparent" : "bg-white border-b border-border shadow-sm"} sticky top-0 z-50 transition-all duration-300`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -138,9 +138,8 @@ export const Navigation = () => {
             {!isSearchOpen ? <>
                 {navItems.map(item => {
               const isActive = location.pathname === item.path;
-              return <Link key={item.name} to={item.path} className={`px-4 py-5 text-sm font-medium transition-all duration-300 relative overflow-hidden group ${isActive ? "bg-primary text-primary-foreground shadow-primary" : showTransparentNav ? "text-white hover:text-white/80" : "text-foreground hover:text-primary"}`}>
-                      <span className="relative z-10">{item.name}</span>
-                      {!isActive && <span className={`absolute inset-0 ${showTransparentNav ? "bg-white" : "bg-primary"} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />}
+              return <Link key={item.name} to={item.path} className={`px-4 py-5 text-sm transition-all duration-300 relative ${isActive ? (showTransparentNav ? "font-semibold text-white border-b-2 border-white" : "font-semibold text-primary border-b-2 border-primary") : (showTransparentNav ? "font-medium text-white hover:border-b-2 hover:border-white/50" : "font-medium text-foreground hover:text-primary hover:border-b-2 hover:border-primary/50")}`}>
+                      {item.name}
                     </Link>;
             })}
                 <Button variant="ghost" size="icon" className={`ml-2 transition-all duration-300 ${showTransparentNav ? "text-white hover:bg-white/10 hover:text-white" : "hover:bg-primary/10 hover:text-primary"}`} onClick={() => setIsSearchOpen(true)}>
