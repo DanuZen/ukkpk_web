@@ -162,8 +162,37 @@ const Index = () => {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-8 px-4 bg-muted/20">
-        <div className="container mx-auto max-w-5xl">
+      <section className="relative py-8 px-4 bg-muted/20 overflow-hidden">
+        {/* Blue/Teal Background Pattern */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Large Circle - Top Right */}
+          <div className="absolute -top-32 -right-32 w-96 h-96 border-[3px] border-blue-100/50 rounded-full" />
+          
+          {/* Dots Pattern - Bottom Left */}
+          <div className="absolute bottom-0 left-0 w-64 h-64 opacity-20">
+            <div className="grid grid-cols-8 gap-4 p-8">
+              {[...Array(64)].map((_, i) => (
+                <div key={i} className="w-1.5 h-1.5 rounded-full bg-blue-300" />
+              ))}
+            </div>
+          </div>
+
+          {/* Geometric Shapes */}
+          <div className="absolute top-1/4 left-10 w-16 h-16 border-2 border-cyan-200/30 rounded-lg rotate-12" />
+          <div className="absolute bottom-1/4 right-20 w-12 h-12 bg-blue-100/20 rounded-full" />
+
+          {/* Wave SVG - Blue */}
+          <svg
+            className="absolute bottom-0 left-0 w-full h-32 text-blue-50/30"
+            viewBox="0 0 1440 320"
+            preserveAspectRatio="none"
+            fill="currentColor"
+          >
+            <path d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" />
+          </svg>
+        </div>
+        
+        <div className="relative z-10 container mx-auto max-w-5xl">
           <ContactSection />
         </div>
       </section>
@@ -187,8 +216,52 @@ const Index = () => {
       </section>
 
       {/* Map Section */}
-      <section className="py-8 px-4 bg-muted/20">
-        <div className="container mx-auto max-w-5xl">
+      <section className="relative py-8 px-4 bg-muted/20 overflow-hidden">
+        {/* Green/Emerald Background Pattern */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Large Circle - Top Left */}
+          <div className="absolute -top-40 -left-40 w-96 h-96 border-[3px] border-green-100/50 rounded-full" />
+          
+          {/* Grid Pattern - Right Side */}
+          <div className="absolute top-0 right-0 w-80 h-80 opacity-15">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#10b981" strokeWidth="0.5"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+          </div>
+
+          {/* Map Pin Shapes */}
+          <div className="absolute top-20 right-1/4 w-8 h-8 opacity-20">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div className="absolute bottom-32 left-1/4 w-6 h-6 opacity-15">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+
+          {/* Curved Lines */}
+          <svg
+            className="absolute top-1/2 left-0 w-64 h-64 text-emerald-100/25 -translate-y-1/2"
+            viewBox="0 0 200 200"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path d="M0,100 Q50,50 100,100 T200,100" />
+            <path d="M0,120 Q50,70 100,120 T200,120" />
+          </svg>
+        </div>
+        
+        <div className="relative z-10 container mx-auto max-w-5xl">
           <GoogleMap />
         </div>
       </section>
