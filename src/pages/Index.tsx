@@ -164,6 +164,7 @@ const Index = () => {
       {/* Contact Form Section */}
       <section className="relative py-8 px-4 bg-muted/20 overflow-hidden">
         {/* Blue/Teal Background Pattern */}
+        <AnimatedSection animation="fade-in">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Large Circle - Top Right */}
           <div className="absolute -top-32 -right-32 w-96 h-96 border-[3px] border-blue-100/50 rounded-full" />
@@ -191,6 +192,7 @@ const Index = () => {
             <path d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" />
           </svg>
         </div>
+        </AnimatedSection>
         
         <div className="relative z-10 container mx-auto max-w-5xl">
           <ContactSection />
@@ -218,6 +220,7 @@ const Index = () => {
       {/* Map Section */}
       <section className="relative py-8 px-4 bg-muted/20 overflow-hidden">
         {/* Green/Emerald Background Pattern */}
+        <AnimatedSection animation="fade-in">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Large Circle - Top Left */}
           <div className="absolute -top-40 -left-40 w-96 h-96 border-[3px] border-green-100/50 rounded-full" />
@@ -260,6 +263,7 @@ const Index = () => {
             <path d="M0,120 Q50,70 100,120 T200,120" />
           </svg>
         </div>
+        </AnimatedSection>
         
         <div className="relative z-10 container mx-auto max-w-5xl">
           <GoogleMap />
