@@ -8,6 +8,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { HomeSlideshow } from '@/components/HomeSlideshow';
 import { GoogleMap } from '@/components/GoogleMap';
 import { ContactSection } from '@/components/ContactSection';
+import { AnimatedSection } from '@/components/AnimatedSection';
 import { stripHtml } from '@/lib/utils';
 import { FileText, MessageSquare, MapPin } from 'lucide-react';
 interface Article {
