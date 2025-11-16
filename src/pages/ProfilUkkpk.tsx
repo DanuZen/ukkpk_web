@@ -186,7 +186,7 @@ const ProfilUkkpk = () => {
               UKKPK UNP
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Unit Kegiatan Komunikasi dan Penyiaran Kampus
+              Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang
             </p>
           </div>
         </section>
