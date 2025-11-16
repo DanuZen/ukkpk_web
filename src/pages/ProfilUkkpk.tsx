@@ -250,8 +250,8 @@ const ProfilUkkpk = () => {
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 relative">
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center flex-shrink-0">
-                        <Eye className="h-7 w-7 text-primary" />
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
+                        <Sparkles className="h-7 w-7" />
                       </div>
                       <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                         Visi
@@ -271,8 +271,8 @@ const ProfilUkkpk = () => {
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 relative">
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center flex-shrink-0">
-                        <Target className="h-7 w-7 text-primary" />
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
+                        <Rocket className="h-7 w-7" />
                       </div>
                       <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                         Misi
