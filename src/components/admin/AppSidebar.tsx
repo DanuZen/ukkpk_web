@@ -1,4 +1,4 @@
-import { Home, FileText, Newspaper, Radio, Settings, Users, Map, MessageSquare } from "lucide-react";
+import { Home, FileText, Newspaper, Radio, Settings, Users, Map, MessageSquare, TrendingUp } from "lucide-react";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
 import {
   Sidebar,
@@ -23,6 +23,7 @@ const menuItems = [
     group: "DASHBOARD",
     items: [
       { id: "dashboard", title: "Dashboard Utama", icon: Home },
+      { id: "analytics", title: "Analytics", icon: TrendingUp },
     ],
   },
   {

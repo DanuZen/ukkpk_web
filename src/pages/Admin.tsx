@@ -7,6 +7,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/admin/AppSidebar";
 import { DashboardHeader } from "@/components/admin/DashboardHeader";
 import { DashboardOverview } from "@/components/admin/DashboardOverview";
+import { AnalyticsDashboard } from "@/components/admin/AnalyticsDashboard";
 import { toast } from "sonner";
 import { ArticlesManager } from "@/components/admin/ArticlesManager";
 import { NewsManager } from "@/components/admin/NewsManager";
@@ -39,6 +40,7 @@ const Admin = () => {
   const getPageTitle = (page: string) => {
     const titles: Record<string, string> = {
       dashboard: "Dashboard Utama",
+      analytics: "Analytics & Statistik",
       articles: "Kelola Artikel",
       news: "Kelola Berita",
       radio: "Kelola Radio",
@@ -79,6 +81,7 @@ const Admin = () => {
             
             <div className="flex-1 p-6">
               {activePage === "dashboard" && <DashboardOverview />}
+              {activePage === "analytics" && <AnalyticsDashboard />}
               {activePage === "articles" && <ArticlesManager />}
               {activePage === "news" && <NewsManager />}
               {activePage === "radio" && <RadioManager />}
