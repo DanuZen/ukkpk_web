@@ -88,77 +88,97 @@ const Index = () => {
           </div>
         </div>
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="text-center mb-8 sm:mb-10 md:mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-              <FileText className="h-4 w-4 text-primary" />
-              <span className="text-sm font-medium text-primary">
-                Konten Terbaru
-              </span>
+          <AnimatedSection animation="fade-up">
+            <div className="text-center mb-8 sm:mb-10 md:mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <FileText className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-primary">
+                  Konten Terbaru
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+                Artikel & Berita Terbaru
+              </h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
-              Artikel & Berita Terbaru
-            </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
-          </div>
+          </AnimatedSection>
 
-          {articles.length === 0 && news.length === 0 ? <p className="text-center text-muted-foreground">Belum ada konten tersedia.</p> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {articles.length === 0 && news.length === 0 ? (
+            <p className="text-center text-muted-foreground">Belum ada konten tersedia.</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {/* Artikel Cards */}
-              {articles.map(article => <Card key={`article-${article.id}`} className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer animate-fade-in" onClick={() => navigate(`/artikel/${article.id}`)}>
-                  {article.image_url && <div className="relative overflow-hidden h-40 sm:h-48">
-                      <img src={article.image_url} alt={article.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
-                      <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
-                        <Badge className="bg-primary text-primary-foreground shadow-lg text-xs">Artikel</Badge>
+              {articles.map((article, index) => (
+                <AnimatedSection key={`article-${article.id}`} animation="fade-up" delay={index * 100}>
+                  <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/artikel/${article.id}`)}>
+                    {article.image_url && (
+                      <div className="relative overflow-hidden h-40 sm:h-48">
+                        <img src={article.image_url} alt={article.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+                        <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
+                          <Badge className="bg-primary text-primary-foreground shadow-lg text-xs">Artikel</Badge>
+                        </div>
                       </div>
-                    </div>}
-                  <CardHeader className="p-4 sm:p-6">
-                    <div className="flex items-center gap-2 mb-2 flex-wrap">
-                      <Badge variant="secondary" className="text-xs">{article.category}</Badge>
-                      <span className="text-xs text-muted-foreground">{formatDate(article.published_at || article.created_at)}</span>
-                    </div>
-                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-base sm:text-lg">{article.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4 pt-0 sm:p-6 sm:pt-0">
-                    <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed">{stripHtml(article.content)}</p>
-                  </CardContent>
-                </Card>)}
+                    )}
+                    <CardHeader className="p-4 sm:p-6">
+                      <div className="flex items-center gap-2 mb-2 flex-wrap">
+                        <Badge variant="secondary" className="text-xs">{article.category}</Badge>
+                        <span className="text-xs text-muted-foreground">{formatDate(article.published_at || article.created_at)}</span>
+                      </div>
+                      <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-base sm:text-lg">{article.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-4 pt-0 sm:p-6 sm:pt-0">
+                      <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed">{stripHtml(article.content)}</p>
+                    </CardContent>
+                  </Card>
+                </AnimatedSection>
+              ))}
 
               {/* News Cards */}
-              {news.map(item => <Card key={`news-${item.id}`} className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer animate-fade-in" onClick={() => navigate(`/berita/${item.id}`)}>
-                  {item.image_url && <div className="relative overflow-hidden h-40 sm:h-48">
-                      <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
-                      <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
-                        <Badge className="bg-secondary text-secondary-foreground shadow-lg text-xs">Berita</Badge>
+              {news.map((item, newsIndex) => (
+                <AnimatedSection key={`news-${item.id}`} animation="fade-up" delay={(articles.length + newsIndex) * 100}>
+                  <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/berita/${item.id}`)}>
+                    {item.image_url && (
+                      <div className="relative overflow-hidden h-40 sm:h-48">
+                        <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+                        <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
+                          <Badge className="bg-secondary text-secondary-foreground shadow-lg text-xs">Berita</Badge>
+                        </div>
                       </div>
-                    </div>}
-                  <CardHeader className="p-4 sm:p-6">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs text-muted-foreground">{formatDate(item.published_at || item.created_at)}</span>
-                    </div>
-                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-base sm:text-lg">{item.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4 pt-0 sm:p-6 sm:pt-0">
-                    <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed">{stripHtml(item.content)}</p>
-                  </CardContent>
-                </Card>)}
-            </div>}
+                    )}
+                    <CardHeader className="p-4 sm:p-6">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-xs text-muted-foreground">{formatDate(item.published_at || item.created_at)}</span>
+                      </div>
+                      <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-base sm:text-lg">{item.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-4 pt-0 sm:p-6 sm:pt-0">
+                      <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed">{stripHtml(item.content)}</p>
+                    </CardContent>
+                  </Card>
+                </AnimatedSection>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
       {/* Contact Section Heading */}
       <section className="py-8 px-4 bg-muted/20">
         <div className="container mx-auto max-w-5xl">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-              <MessageSquare className="h-4 w-4 text-primary" />
-              <span className="text-sm font-medium text-primary">
-                Hubungi Kami
-              </span>
+          <AnimatedSection animation="fade-up">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <MessageSquare className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-primary">
+                  Hubungi Kami
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+                Kritik dan Saran
+              </h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
-              Kritik dan Saran
-            </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
@@ -196,25 +216,29 @@ const Index = () => {
         </AnimatedSection>
         
         <div className="relative z-10 container mx-auto max-w-5xl">
-          <ContactSection />
+          <AnimatedSection animation="scale-in" delay={100}>
+            <ContactSection />
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Map Section Heading */}
       <section className="py-8 px-4 bg-muted/20">
         <div className="container mx-auto max-w-5xl">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-              <MapPin className="h-4 w-4 text-primary" />
-              <span className="text-sm font-medium text-primary">
-                Lokasi Kami
-              </span>
+          <AnimatedSection animation="fade-up">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <MapPin className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-primary">
+                  Lokasi Kami
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+                Lokasi Sekretariatan UKKPK
+              </h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
-              Lokasi Sekretariatan UKKPK
-            </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
@@ -267,7 +291,9 @@ const Index = () => {
         </AnimatedSection>
         
         <div className="relative z-10 container mx-auto max-w-5xl">
-          <GoogleMap />
+          <AnimatedSection animation="scale-in" delay={100}>
+            <GoogleMap />
+          </AnimatedSection>
         </div>
       </section>
 
