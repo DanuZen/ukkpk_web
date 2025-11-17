@@ -345,7 +345,7 @@ const Index = () => {
       </section>
 
       {/* Contact Form Section */}
-      <section className="relative py-8 px-4 bg-gray-100 overflow-hidden">
+      <section className="relative pb-0 px-4 bg-gray-100 overflow-hidden">
         {/* Blue/Teal Background Pattern */}
         <AnimatedSection animation="fade-in">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -370,7 +370,7 @@ const Index = () => {
         </div>
         </AnimatedSection>
         
-        <div id="contact" className="relative z-10 container mx-auto max-w-5xl">
+        <div id="contact" className="relative z-10 container mx-auto">
           <AnimatedSection animation="scale-in" delay={100}>
             <ContactSection />
           </AnimatedSection>
