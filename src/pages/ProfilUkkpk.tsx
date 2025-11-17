@@ -614,36 +614,36 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Struktur Organisasi */}
-      {members.length > 0 && (
-        <section className="py-20 px-4 relative overflow-hidden bg-background">
-          <div className="container mx-auto relative z-10">
-            <AnimatedSection animation="fade-up">
-              <div className="text-center mb-12">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                  <Users2 className="h-4 w-4 text-primary" />
-                  <span className="text-sm font-medium text-primary">
-                    Tim Kami
-                  </span>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
-                  Struktur Organisasi
-                </h2>
-                <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
+      <section className="py-20 px-4 relative overflow-hidden bg-background">
+        <div className="container mx-auto relative z-10">
+          <AnimatedSection animation="fade-up">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <Users2 className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-primary">
+                  Tim Kami
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+                Struktur Organisasi
+              </h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
+            </div>
+          </AnimatedSection>
+
+          {profile?.organization_image_url && (
+            <AnimatedSection animation="scale-in" delay={100}>
+              <div className="max-w-4xl mx-auto mb-12">
+                <img
+                  src={profile.organization_image_url}
+                  alt="Struktur Organisasi UKKPK"
+                  className="w-full rounded-lg shadow-xl"
+                />
               </div>
             </AnimatedSection>
+          )}
 
-            {profile?.organization_image_url && (
-              <AnimatedSection animation="scale-in" delay={100}>
-                <div className="max-w-4xl mx-auto mb-12">
-                  <img
-                    src={profile.organization_image_url}
-                    alt="Struktur Organisasi UKKPK"
-                    className="w-full rounded-lg shadow-xl"
-                  />
-                </div>
-              </AnimatedSection>
-            )}
-
+          {members.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
               {members.map((member, index) => (
                 <AnimatedSection
@@ -669,9 +669,20 @@ const ProfilUkkpk = () => {
                 </AnimatedSection>
               ))}
             </div>
-          </div>
-        </section>
-      )}
+          ) : (
+            <AnimatedSection animation="fade-in" delay={100}>
+              <div className="text-center py-12">
+                <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mx-auto mb-4">
+                  <Users2 className="h-8 w-8 text-muted-foreground" />
+                </div>
+                <p className="text-muted-foreground">
+                  Belum ada data struktur organisasi
+                </p>
+              </div>
+            </AnimatedSection>
+          )}
+        </div>
+      </section>
     </Layout>
   );
 };
