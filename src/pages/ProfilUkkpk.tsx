@@ -523,7 +523,7 @@ const ProfilUkkpk = () => {
                   animation="fade-up"
                   delay={100 + index * 100}
                 >
-                  <Card className="group transition-all duration-300 hover:-translate-y-1">
+                  <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg">
                     <CardContent className="pt-6 text-center flex flex-col items-center">
                       <div className="inline-flex p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
                         {feature.icon}
@@ -548,7 +548,7 @@ const ProfilUkkpk = () => {
                   animation="fade-up"
                   delay={500 + index * 100}
                 >
-                  <Card className="group transition-all duration-300 hover:-translate-y-1">
+                  <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg">
                     <CardContent className="pt-6 text-center flex flex-col items-center">
                       <div className="inline-flex p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
                         {feature.icon}
