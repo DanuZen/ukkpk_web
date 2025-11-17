@@ -295,7 +295,7 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Sejarah Section */}
-      <section className="min-h-screen flex items-center scroll-mt-20 py-32 md:py-40 px-4">
+      <section className="min-h-screen flex items-center scroll-mt-20 py-32 md:py-40 px-4 bg-gray-50">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <AnimatedSection animation="fade-up" delay={100}>
