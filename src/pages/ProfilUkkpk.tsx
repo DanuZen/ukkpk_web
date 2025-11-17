@@ -115,7 +115,7 @@ const ProfilUkkpk = () => {
     },
     {
       icon: <Briefcase className="h-8 w-8" />,
-      title: 'Kewirausahaan',
+      title: 'Biro Kewirausahaan',
       description:
         'Mengembangkan jiwa entrepreneurship dan keterampilan bisnis di bidang komunikasi',
     },
