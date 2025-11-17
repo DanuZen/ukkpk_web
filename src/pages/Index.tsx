@@ -263,10 +263,8 @@ const Index = () => {
                   <div>
                     <h3 className="font-semibold text-lg mb-2">Alamat Lengkap</h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      Gedung Radio Kementerian Komunikasi dan Informatika<br />
-                      Jl. Merdeka Barat No. 9<br />
-                      Jakarta Pusat 10110<br />
-                      DKI Jakarta, Indonesia
+                      Gedung PKM Pusat Universitas Negeri Padang<br />
+                      Jl. Air Tawar Barat, Kec. Padang Utara, Kota Padang, Sumatera Barat
                     </p>
                   </div>
 
