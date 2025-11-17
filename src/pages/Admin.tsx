@@ -14,7 +14,6 @@ import { RadioManager } from "@/components/admin/RadioManager";
 import { ProfileManager } from "@/components/admin/ProfileManager";
 import { MapManager } from "@/components/admin/MapManager";
 import { ContactSubmissionsManager } from "@/components/admin/ContactSubmissionsManager";
-import { OrganizationManager } from "@/components/admin/OrganizationManager";
 
 const Admin = () => {
   const { user, signOut } = useAuth();
@@ -43,8 +42,8 @@ const Admin = () => {
       articles: "Kelola Artikel",
       news: "Kelola Berita",
       radio: "Kelola Radio",
-      profile: "Profil & Slideshow",
-      organization: "Struktur Organisasi",
+      slideshow: "Slideshow Home",
+      structure: "Struktur Organisasi",
       maps: "Peta Lokasi",
       contact: "Saran Masuk",
     };
@@ -83,8 +82,8 @@ const Admin = () => {
               {activePage === "articles" && <ArticlesManager />}
               {activePage === "news" && <NewsManager />}
               {activePage === "radio" && <RadioManager />}
-              {activePage === "profile" && <ProfileManager />}
-              {activePage === "organization" && <OrganizationManager />}
+              {activePage === "slideshow" && <ProfileManager activeTab="slideshow" />}
+              {activePage === "structure" && <ProfileManager activeTab="structure" />}
               {activePage === "maps" && <MapManager />}
               {activePage === "contact" && <ContactSubmissionsManager />}
             </div>

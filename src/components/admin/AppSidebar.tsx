@@ -36,8 +36,8 @@ const menuItems = [
   {
     group: "PENGATURAN",
     items: [
-      { id: "profile", title: "Profil & Slideshow", icon: Settings },
-      { id: "organization", title: "Struktur Organisasi", icon: Users },
+      { id: "slideshow", title: "Slideshow Home", icon: Settings },
+      { id: "structure", title: "Struktur Organisasi", icon: Users },
       { id: "maps", title: "Peta Lokasi", icon: Map },
       { id: "contact", title: "Saran Masuk", icon: MessageSquare },
     ],
