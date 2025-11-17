@@ -11,6 +11,15 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Pencil, Trash2, Plus, Eye, Edit3 } from "lucide-react";
 import { sanitizeHtml } from "@/lib/sanitize";
+import { z } from "zod";
+
+const articleSchema = z.object({
+  title: z.string().trim().min(1, "Judul harus diisi").max(200, "Judul maksimal 200 karakter"),
+  content: z.string().trim().min(1, "Konten harus diisi").max(50000, "Konten maksimal 50000 karakter"),
+  category: z.string().trim().max(50, "Kategori maksimal 50 karakter").optional(),
+  author: z.string().trim().max(100, "Nama author maksimal 100 karakter").optional(),
+  editor: z.string().trim().max(100, "Nama editor maksimal 100 karakter").optional(),
+});
 
 interface Article {
   id: string;
@@ -56,6 +65,23 @@ export const ArticlesManager = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate form data
+    try {
+      articleSchema.parse({
+        title: formData.title,
+        content: formData.content,
+        category: formData.category || undefined,
+        author: formData.author || undefined,
+        editor: formData.editor || undefined,
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast.error(error.errors[0].message);
+        return;
+      }
+    }
+
     setUploading(true);
 
     try {
@@ -89,11 +115,11 @@ export const ArticlesManager = () => {
       }
 
       const dataToSave = { 
-        title: formData.title,
-        content: formData.content,
-        category: formData.category,
-        author: formData.author,
-        editor: formData.editor,
+        title: formData.title.trim(),
+        content: formData.content.trim(),
+        category: formData.category.trim() || null,
+        author: formData.author.trim() || null,
+        editor: formData.editor.trim() || null,
         image_url: imageUrl,
         published_at: publishedAt
       };

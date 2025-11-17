@@ -11,6 +11,15 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Pencil, Trash2, Eye, Edit3 } from "lucide-react";
 import { sanitizeHtml } from "@/lib/sanitize";
+import { z } from "zod";
+
+const newsSchema = z.object({
+  title: z.string().trim().min(1, "Judul harus diisi").max(200, "Judul maksimal 200 karakter"),
+  content: z.string().trim().min(1, "Konten harus diisi").max(50000, "Konten maksimal 50000 karakter"),
+  author: z.string().trim().max(100, "Nama author maksimal 100 karakter").optional(),
+  editor: z.string().trim().max(100, "Nama editor maksimal 100 karakter").optional(),
+  cameraman: z.string().trim().max(100, "Nama cameraman maksimal 100 karakter").optional(),
+});
 
 interface News {
   id: string;
@@ -55,6 +64,23 @@ export const NewsManager = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate form data
+    try {
+      newsSchema.parse({
+        title: formData.title,
+        content: formData.content,
+        author: formData.author || undefined,
+        editor: formData.editor || undefined,
+        cameraman: formData.cameraman || undefined,
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast.error(error.errors[0].message);
+        return;
+      }
+    }
+
     setUploading(true);
 
     try {
@@ -88,11 +114,11 @@ export const NewsManager = () => {
       }
 
       const dataToSave = { 
-        title: formData.title,
-        content: formData.content,
-        author: formData.author,
-        editor: formData.editor,
-        cameraman: formData.cameraman,
+        title: formData.title.trim(),
+        content: formData.content.trim(),
+        author: formData.author.trim() || null,
+        editor: formData.editor.trim() || null,
+        cameraman: formData.cameraman.trim() || null,
         image_url: imageUrl,
         published_at: publishedAt
       };

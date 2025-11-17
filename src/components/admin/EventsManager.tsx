@@ -6,6 +6,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Pencil, Trash2 } from "lucide-react";
+import { z } from "zod";
+
+const eventSchema = z.object({
+  name: z.string().trim().min(1, "Nama event harus diisi").max(200, "Nama event maksimal 200 karakter"),
+  description: z.string().trim().min(1, "Deskripsi harus diisi").max(2000, "Deskripsi maksimal 2000 karakter"),
+  event_date: z.string().min(1, "Tanggal event harus diisi"),
+  event_time: z.string().min(1, "Waktu event harus diisi"),
+  location: z.string().trim().min(1, "Lokasi harus diisi").max(200, "Lokasi maksimal 200 karakter"),
+});
 
 interface Event {
   id: string;
@@ -50,16 +59,28 @@ export const EventsManager = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.description || !formData.event_date || !formData.event_time || !formData.location) {
-      toast.error("Semua field harus diisi");
-      return;
+    // Validate form data
+    try {
+      eventSchema.parse(formData);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast.error(error.errors[0].message);
+        return;
+      }
     }
 
     try {
+      const dataToSave = {
+        name: formData.name.trim(),
+        description: formData.description.trim(),
+        event_date: formData.event_date,
+        event_time: formData.event_time,
+        location: formData.location.trim(),
+      };
       if (editingId) {
         const { error } = await supabase
           .from("events")
-          .update(formData)
+          .update(dataToSave)
           .eq("id", editingId);
 
         if (error) throw error;
@@ -67,7 +88,7 @@ export const EventsManager = () => {
       } else {
         const { error } = await supabase
           .from("events")
-          .insert([formData]);
+          .insert([dataToSave]);
 
         if (error) throw error;
         toast.success("Event berhasil ditambahkan");
@@ -131,6 +152,7 @@ export const EventsManager = () => {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Masukkan nama event"
+                maxLength={200}
               />
             </div>
 
@@ -141,6 +163,7 @@ export const EventsManager = () => {
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 placeholder="Masukkan deskripsi event"
                 rows={4}
+                maxLength={2000}
               />
             </div>
 
@@ -170,6 +193,7 @@ export const EventsManager = () => {
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                 placeholder="Masukkan lokasi event"
+                maxLength={200}
               />
             </div>
 
