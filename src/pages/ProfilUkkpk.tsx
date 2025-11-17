@@ -121,7 +121,7 @@ const ProfilUkkpk = () => {
     },
     {
       icon: <ClipboardList className="h-8 w-8" />,
-      title: 'Kesekretariatan',
+      title: 'Biro Kesekretariatan',
       description:
         'Melatih kemampuan administrasi, manajemen dokumen, dan koordinasi organisasi',
     },
