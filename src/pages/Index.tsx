@@ -325,7 +325,7 @@ const Index = () => {
       </section>
 
       {/* Contact Section Heading */}
-      <section className="py-8 px-4 bg-muted/20">
+      <section className="py-8 px-4 bg-gray-100">
         <div className="container mx-auto max-w-5xl">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-8">
@@ -345,7 +345,7 @@ const Index = () => {
       </section>
 
       {/* Contact Form Section */}
-      <section className="relative py-8 px-4 bg-muted/20 overflow-hidden">
+      <section className="relative py-8 px-4 bg-gray-100 overflow-hidden">
         {/* Blue/Teal Background Pattern */}
         <AnimatedSection animation="fade-in">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
