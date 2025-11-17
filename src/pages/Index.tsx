@@ -260,7 +260,7 @@ const Index = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col h-full">
-                  <div className="space-y-6 flex-1">
+                  <div className="space-y-4 flex-1">
                     <div>
                       <h3 className="font-semibold text-lg mb-2">Alamat Lengkap</h3>
                       <p className="text-muted-foreground leading-relaxed">
@@ -288,7 +288,7 @@ const Index = () => {
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t">
+                  <div className="pt-3 mt-2 border-t">
                     <a href="https://maps.app.goo.gl/EdRi73gdkcyNDZy88" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-md font-medium w-full justify-center">
                       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
