@@ -30,6 +30,11 @@ interface OverallStats {
   totalNewsLikes: number;
   totalViews: number;
   totalLikes: number;
+  avgArticleViews: number;
+  avgNewsViews: number;
+  avgArticleLikes: number;
+  avgNewsLikes: number;
+  engagementRate: number;
 }
 
 const COLORS = ['#dc2626', '#ea580c', '#f59e0b', '#84cc16', '#22c55e', '#06b6d4'];
@@ -46,6 +51,11 @@ export const AnalyticsDashboard = () => {
     totalNewsLikes: 0,
     totalViews: 0,
     totalLikes: 0,
+    avgArticleViews: 0,
+    avgNewsViews: 0,
+    avgArticleLikes: 0,
+    avgNewsLikes: 0,
+    engagementRate: 0,
   });
   const [loading, setLoading] = useState(true);
 
@@ -80,15 +90,33 @@ export const AnalyticsDashboard = () => {
       const totalNewsViews = (newsData || []).reduce((sum, n) => sum + (n.view_count || 0), 0);
       const totalNewsLikes = (newsData || []).reduce((sum, n) => sum + (n.likes_count || 0), 0);
 
+      const totalArticles = articlesData?.length || 0;
+      const totalNews = newsData?.length || 0;
+      const totalContent = totalArticles + totalNews;
+      const totalViews = totalArticleViews + totalNewsViews;
+      const totalLikes = totalArticleLikes + totalNewsLikes;
+      
+      const avgArticleViews = totalArticles > 0 ? Math.round(totalArticleViews / totalArticles) : 0;
+      const avgNewsViews = totalNews > 0 ? Math.round(totalNewsViews / totalNews) : 0;
+      const avgArticleLikes = totalArticles > 0 ? Math.round(totalArticleLikes / totalArticles) : 0;
+      const avgNewsLikes = totalNews > 0 ? Math.round(totalNewsLikes / totalNews) : 0;
+      
+      const engagementRate = totalViews > 0 ? ((totalLikes / totalViews) * 100) : 0;
+
       setOverallStats({
-        totalArticles: articlesData?.length || 0,
-        totalNews: newsData?.length || 0,
+        totalArticles,
+        totalNews,
         totalArticleViews,
         totalNewsViews,
         totalArticleLikes,
         totalNewsLikes,
-        totalViews: totalArticleViews + totalNewsViews,
-        totalLikes: totalArticleLikes + totalNewsLikes,
+        totalViews,
+        totalLikes,
+        avgArticleViews,
+        avgNewsViews,
+        avgArticleLikes,
+        avgNewsLikes,
+        engagementRate,
       });
     } catch (error) {
       console.error('Error fetching analytics:', error);
@@ -158,6 +186,62 @@ export const AnalyticsDashboard = () => {
   return (
     <div className="space-y-6">
       {/* Overview Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card className="bg-gradient-to-br from-purple-50 to-purple-100/50 border-purple-200">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Engagement Rate</CardTitle>
+            <TrendingUp className="h-4 w-4 text-purple-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-purple-600">{overallStats.engagementRate.toFixed(2)}%</div>
+            <p className="text-xs text-muted-foreground">
+              Likes per View
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-amber-50 to-amber-100/50 border-amber-200">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Avg Views/Artikel</CardTitle>
+            <Eye className="h-4 w-4 text-amber-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-amber-600">{overallStats.avgArticleViews.toLocaleString()}</div>
+            <p className="text-xs text-muted-foreground">
+              Per artikel
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-cyan-50 to-cyan-100/50 border-cyan-200">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Avg Views/Berita</CardTitle>
+            <Eye className="h-4 w-4 text-cyan-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-cyan-600">{overallStats.avgNewsViews.toLocaleString()}</div>
+            <p className="text-xs text-muted-foreground">
+              Per berita
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-pink-50 to-pink-100/50 border-pink-200">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Avg Engagement</CardTitle>
+            <Heart className="h-4 w-4 text-pink-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-pink-600">
+              {Math.round((overallStats.avgArticleLikes + overallStats.avgNewsLikes) / 2).toLocaleString()}
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Likes rata-rata
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
