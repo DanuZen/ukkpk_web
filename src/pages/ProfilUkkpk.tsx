@@ -479,7 +479,7 @@ const ProfilUkkpk = () => {
 
           <div className="max-w-7xl mx-auto">
             {/* Logo MICU & Bidang */}
-            <div className="max-w-4xl mx-auto mb-16 p-8 rounded-2xl bg-white/50 backdrop-blur-sm shadow-2xl">
+            <div className="max-w-4xl mx-auto mb-16">
               {/* Logo MICU - Centered and Larger */}
               <AnimatedSection animation="scale-in" delay={100}>
                 <div className="flex justify-center mb-12">
@@ -487,7 +487,7 @@ const ProfilUkkpk = () => {
                     <img
                       src={logoMicu}
                       alt="MICU"
-                      className="w-80 h-80 mb-4 object-contain transition-all duration-300 hover:scale-110 hover:rotate-3 bg-transparent"
+                      className="w-80 h-80 mb-4 object-contain transition-all duration-300 hover:scale-110 hover:rotate-3 bg-transparent drop-shadow-2xl"
                     />
                   </div>
                 </div>
@@ -506,7 +506,7 @@ const ProfilUkkpk = () => {
                         <img
                           src={logo.image}
                           alt={logo.name}
-                          className="w-full h-full object-contain"
+                          className="w-full h-full object-contain drop-shadow-xl"
                         />
                       </div>
                     </div>
