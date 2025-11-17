@@ -24,9 +24,11 @@ export type Database = {
           editor: string | null
           id: string
           image_url: string | null
+          likes_count: number
           published_at: string | null
           title: string
           updated_at: string
+          view_count: number
         }
         Insert: {
           author?: string | null
@@ -37,9 +39,11 @@ export type Database = {
           editor?: string | null
           id?: string
           image_url?: string | null
+          likes_count?: number
           published_at?: string | null
           title: string
           updated_at?: string
+          view_count?: number
         }
         Update: {
           author?: string | null
@@ -50,9 +54,11 @@ export type Database = {
           editor?: string | null
           id?: string
           image_url?: string | null
+          likes_count?: number
           published_at?: string | null
           title?: string
           updated_at?: string
+          view_count?: number
         }
         Relationships: []
       }
@@ -89,6 +95,30 @@ export type Database = {
           program?: string | null
           subject?: string | null
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      content_likes: {
+        Row: {
+          content_id: string
+          content_type: string
+          created_at: string
+          id: string
+          user_identifier: string
+        }
+        Insert: {
+          content_id: string
+          content_type: string
+          created_at?: string
+          id?: string
+          user_identifier: string
+        }
+        Update: {
+          content_id?: string
+          content_type?: string
+          created_at?: string
+          id?: string
+          user_identifier?: string
         }
         Relationships: []
       }
@@ -213,9 +243,11 @@ export type Database = {
           editor: string | null
           id: string
           image_url: string | null
+          likes_count: number
           published_at: string | null
           title: string
           updated_at: string
+          view_count: number
         }
         Insert: {
           author?: string | null
@@ -226,9 +258,11 @@ export type Database = {
           editor?: string | null
           id?: string
           image_url?: string | null
+          likes_count?: number
           published_at?: string | null
           title: string
           updated_at?: string
+          view_count?: number
         }
         Update: {
           author?: string | null
@@ -239,9 +273,11 @@ export type Database = {
           editor?: string | null
           id?: string
           image_url?: string | null
+          likes_count?: number
           published_at?: string | null
           title?: string
           updated_at?: string
+          view_count?: number
         }
         Relationships: []
       }

@@ -4,7 +4,7 @@ import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
-import { ArrowLeft, Calendar, Share2, Facebook, Twitter, MessageCircle, Copy } from 'lucide-react';
+import { ArrowLeft, Calendar, Share2, Facebook, Twitter, MessageCircle, Copy, Eye, Heart } from 'lucide-react';
 import { toast } from 'sonner';
 import { sanitizeHtml } from '@/lib/sanitize';
 
@@ -18,6 +18,8 @@ interface News {
   author: string | null;
   editor: string | null;
   cameraman: string | null;
+  view_count: number;
+  likes_count: number;
 }
 
 const BeritaDetail = () => {
@@ -27,16 +29,20 @@ const BeritaDetail = () => {
   const [relatedNews, setRelatedNews] = useState<News[]>([]);
   const [otherNews, setOtherNews] = useState<News[]>([]);
   const [loading, setLoading] = useState(true);
+  const [hasLiked, setHasLiked] = useState(false);
+  const [isLiking, setIsLiking] = useState(false);
 
   useEffect(() => {
     if (id) {
       fetchNews();
+      incrementViewCount();
     }
   }, [id]);
 
   useEffect(() => {
     if (news) {
       fetchRelatedNews();
+      checkIfLiked();
     }
   }, [news]);
 
@@ -81,6 +87,102 @@ const BeritaDetail = () => {
       setRelatedNews((data || []).slice(3, 8));
     } catch (error) {
       console.error('Error fetching related news:', error);
+    }
+  };
+
+  const getUserIdentifier = () => {
+    let identifier = localStorage.getItem('user_identifier');
+    if (!identifier) {
+      identifier = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      localStorage.setItem('user_identifier', identifier);
+    }
+    return identifier;
+  };
+
+  const incrementViewCount = async () => {
+    try {
+      const { data: currentData } = await supabase
+        .from('news')
+        .select('view_count')
+        .eq('id', id)
+        .single();
+      
+      if (currentData) {
+        await supabase
+          .from('news')
+          .update({ view_count: (currentData.view_count || 0) + 1 })
+          .eq('id', id);
+      }
+    } catch (error) {
+      console.error('Error incrementing view count:', error);
+    }
+  };
+
+  const checkIfLiked = async () => {
+    if (!news) return;
+    
+    try {
+      const userIdentifier = getUserIdentifier();
+      const { data } = await supabase
+        .from('content_likes')
+        .select('id')
+        .eq('content_id', news.id)
+        .eq('content_type', 'news')
+        .eq('user_identifier', userIdentifier)
+        .maybeSingle();
+      
+      setHasLiked(!!data);
+    } catch (error) {
+      console.error('Error checking like status:', error);
+    }
+  };
+
+  const handleLike = async () => {
+    if (!news || isLiking) return;
+    
+    setIsLiking(true);
+    try {
+      const userIdentifier = getUserIdentifier();
+      
+      if (hasLiked) {
+        // Unlike
+        await supabase
+          .from('content_likes')
+          .delete()
+          .eq('content_id', news.id)
+          .eq('content_type', 'news')
+          .eq('user_identifier', userIdentifier);
+        
+        await supabase
+          .from('news')
+          .update({ likes_count: Math.max(0, news.likes_count - 1) })
+          .eq('id', news.id);
+        
+        setNews({ ...news, likes_count: Math.max(0, news.likes_count - 1) });
+        setHasLiked(false);
+      } else {
+        // Like
+        await supabase
+          .from('content_likes')
+          .insert({
+            content_id: news.id,
+            content_type: 'news',
+            user_identifier: userIdentifier
+          });
+        
+        await supabase
+          .from('news')
+          .update({ likes_count: news.likes_count + 1 })
+          .eq('id', news.id);
+        
+        setNews({ ...news, likes_count: news.likes_count + 1 });
+        setHasLiked(true);
+      }
+    } catch (error) {
+      console.error('Error toggling like:', error);
+      toast.error('Gagal memproses like');
+    } finally {
+      setIsLiking(false);
     }
   };
 
@@ -147,9 +249,27 @@ const BeritaDetail = () => {
 
               {/* News Metadata */}
               <div className="mb-6 pb-4 border-b border-border space-y-2">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Calendar className="h-4 w-4" />
-                  <span>{formatDate(news.published_at || news.created_at)}</span>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Calendar className="h-4 w-4" />
+                    <span>{formatDate(news.published_at || news.created_at)}</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <Eye className="h-4 w-4" />
+                      <span>{news.view_count || 0}</span>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={handleLike}
+                      disabled={isLiking}
+                      className={`flex items-center gap-1 ${hasLiked ? 'text-primary' : 'text-muted-foreground'} hover:text-primary transition-colors`}
+                    >
+                      <Heart className={`h-4 w-4 ${hasLiked ? 'fill-current' : ''}`} />
+                      <span>{news.likes_count || 0}</span>
+                    </Button>
+                  </div>
                 </div>
                 <div className="text-sm space-y-1">
                   {news.author && (
