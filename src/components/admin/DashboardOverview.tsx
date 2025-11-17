@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, Newspaper, MessageSquare, Radio, Eye, Heart } from "lucide-react";
+import { FileText, Newspaper, MessageSquare, Radio, Eye, Heart, TrendingUp, Calendar } from "lucide-react";
+import { format } from "date-fns";
+import { id } from "date-fns/locale";
 
 interface ArticleStats {
   id: string;
@@ -9,6 +11,7 @@ interface ArticleStats {
   view_count: number;
   likes_count: number;
   category: string | null;
+  published_at: string | null;
 }
 
 interface NewsStats {
@@ -16,6 +19,14 @@ interface NewsStats {
   title: string;
   view_count: number;
   likes_count: number;
+  published_at: string | null;
+}
+
+interface RecentActivity {
+  id: string;
+  title: string;
+  type: 'article' | 'news';
+  created_at: string;
 }
 
 export const DashboardOverview = () => {
@@ -24,24 +35,34 @@ export const DashboardOverview = () => {
     news: 0,
     submissions: 0,
     programs: 0,
+    totalViews: 0,
+    totalLikes: 0,
   });
   const [topArticles, setTopArticles] = useState<ArticleStats[]>([]);
   const [topNews, setTopNews] = useState<NewsStats[]>([]);
+  const [recentActivity, setRecentActivity] = useState<RecentActivity[]>([]);
 
   useEffect(() => {
     const fetchStats = async () => {
       const [articlesRes, newsRes, submissionsRes, programsRes] = await Promise.all([
-        supabase.from("articles").select("id", { count: "exact", head: true }),
-        supabase.from("news").select("id", { count: "exact", head: true }),
+        supabase.from("articles").select("id, view_count, likes_count", { count: "exact" }),
+        supabase.from("news").select("id, view_count, likes_count", { count: "exact" }),
         supabase.from("contact_submissions").select("id", { count: "exact", head: true }),
         supabase.from("radio_programs").select("id", { count: "exact", head: true }),
       ]);
+
+      const totalArticleViews = (articlesRes.data || []).reduce((sum, a) => sum + (a.view_count || 0), 0);
+      const totalArticleLikes = (articlesRes.data || []).reduce((sum, a) => sum + (a.likes_count || 0), 0);
+      const totalNewsViews = (newsRes.data || []).reduce((sum, n) => sum + (n.view_count || 0), 0);
+      const totalNewsLikes = (newsRes.data || []).reduce((sum, n) => sum + (n.likes_count || 0), 0);
 
       setStats({
         articles: articlesRes.count || 0,
         news: newsRes.count || 0,
         submissions: submissionsRes.count || 0,
         programs: programsRes.count || 0,
+        totalViews: totalArticleViews + totalNewsViews,
+        totalLikes: totalArticleLikes + totalNewsLikes,
       });
     };
 
@@ -49,13 +70,13 @@ export const DashboardOverview = () => {
       try {
         const { data: articlesData } = await supabase
           .from('articles')
-          .select('id, title, view_count, likes_count, category')
+          .select('id, title, view_count, likes_count, category, published_at')
           .order('view_count', { ascending: false })
           .limit(5);
 
         const { data: newsData } = await supabase
           .from('news')
-          .select('id, title, view_count, likes_count')
+          .select('id, title, view_count, likes_count, published_at')
           .order('view_count', { ascending: false })
           .limit(5);
 
@@ -66,17 +87,61 @@ export const DashboardOverview = () => {
       }
     };
 
+    const fetchRecentActivity = async () => {
+      try {
+        const { data: recentArticles } = await supabase
+          .from('articles')
+          .select('id, title, created_at')
+          .order('created_at', { ascending: false })
+          .limit(3);
+
+        const { data: recentNews } = await supabase
+          .from('news')
+          .select('id, title, created_at')
+          .order('created_at', { ascending: false })
+          .limit(3);
+
+        const combined: RecentActivity[] = [
+          ...(recentArticles || []).map(a => ({ ...a, type: 'article' as const })),
+          ...(recentNews || []).map(n => ({ ...n, type: 'news' as const }))
+        ].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+          .slice(0, 5);
+
+        setRecentActivity(combined);
+      } catch (error) {
+        console.error('Error fetching recent activity:', error);
+      }
+    };
+
     fetchStats();
     fetchTopContent();
+    fetchRecentActivity();
   }, []);
 
   const statCards = [
+    {
+      title: "Total Views",
+      value: stats.totalViews.toLocaleString(),
+      icon: Eye,
+      color: "text-primary",
+      bgColor: "bg-primary/10",
+      description: "Total tampilan konten"
+    },
+    {
+      title: "Total Likes",
+      value: stats.totalLikes.toLocaleString(),
+      icon: Heart,
+      color: "text-red-600",
+      bgColor: "bg-red-50",
+      description: "Total suka konten"
+    },
     {
       title: "Total Artikel",
       value: stats.articles,
       icon: FileText,
       color: "text-green-600",
       bgColor: "bg-green-50",
+      description: `${stats.articles} artikel tersedia`
     },
     {
       title: "Total Berita",
@@ -84,6 +149,7 @@ export const DashboardOverview = () => {
       icon: Newspaper,
       color: "text-blue-600",
       bgColor: "bg-blue-50",
+      description: `${stats.news} berita tersedia`
     },
     {
       title: "Program Radio",
@@ -91,6 +157,7 @@ export const DashboardOverview = () => {
       icon: Radio,
       color: "text-purple-600",
       bgColor: "bg-purple-50",
+      description: "Program aktif"
     },
     {
       title: "Saran Masuk",
@@ -98,6 +165,7 @@ export const DashboardOverview = () => {
       icon: MessageSquare,
       color: "text-orange-600",
       bgColor: "bg-orange-50",
+      description: "Menunggu review"
     },
   ];
 
@@ -108,9 +176,9 @@ export const DashboardOverview = () => {
         <p className="text-gray-600">Ringkasan aktivitas dashboard UKKPK UNP</p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {statCards.map((stat) => (
-          <Card key={stat.title}>
+          <Card key={stat.title} className="hover:shadow-lg transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium text-gray-600">
                 {stat.title}
@@ -121,17 +189,54 @@ export const DashboardOverview = () => {
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-gray-900">{stat.value}</div>
+              <p className="text-xs text-muted-foreground mt-1">{stat.description}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
+      {/* Recent Activity */}
       <Card>
         <CardHeader>
-          <CardTitle>Quick Actions</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <TrendingUp className="h-5 w-5 text-primary" />
+            Aktivitas Terbaru
+          </CardTitle>
+          <CardDescription>Konten yang baru saja ditambahkan</CardDescription>
         </CardHeader>
-        <CardContent className="text-gray-600">
-          <p>Gunakan menu di sidebar untuk mengelola konten website UKKPK UNP.</p>
+        <CardContent>
+          <div className="space-y-4">
+            {recentActivity.map((activity) => (
+              <div key={activity.id} className="flex items-start gap-3 p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div className={`p-2 rounded-lg ${activity.type === 'article' ? 'bg-green-50' : 'bg-blue-50'}`}>
+                  {activity.type === 'article' ? (
+                    <FileText className="h-4 w-4 text-green-600" />
+                  ) : (
+                    <Newspaper className="h-4 w-4 text-blue-600" />
+                  )}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-foreground truncate">
+                    {activity.title}
+                  </p>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
+                    <Calendar className="h-3 w-3" />
+                    <span>{format(new Date(activity.created_at), "dd MMM yyyy, HH:mm", { locale: id })}</span>
+                    <span className={`px-2 py-0.5 rounded-full ${
+                      activity.type === 'article' 
+                        ? 'bg-green-100 text-green-700' 
+                        : 'bg-blue-100 text-blue-700'
+                    }`}>
+                      {activity.type === 'article' ? 'Artikel' : 'Berita'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+            {recentActivity.length === 0 && (
+              <p className="text-center text-muted-foreground py-8">Belum ada aktivitas</p>
+            )}
+          </div>
         </CardContent>
       </Card>
 
