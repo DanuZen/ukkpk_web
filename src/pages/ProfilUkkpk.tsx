@@ -489,7 +489,6 @@ const ProfilUkkpk = () => {
                       alt="MICU"
                       className="w-80 h-80 mb-4 object-contain transition-all duration-300 hover:scale-110 hover:rotate-3"
                     />
-                    <p className="text-lg font-semibold text-center">MICU</p>
                   </div>
                 </div>
               </AnimatedSection>
@@ -510,9 +509,6 @@ const ProfilUkkpk = () => {
                           className="w-full h-full object-contain"
                         />
                       </div>
-                      <p className="text-sm font-medium text-center">
-                        {logo.name}
-                      </p>
                     </div>
                   </AnimatedSection>
                 ))}
