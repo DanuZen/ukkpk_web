@@ -158,7 +158,7 @@ export const ContactSection = () => {
         <div>
           <label className="text-sm font-medium mb-1 block">Message</label>
           <Textarea 
-            placeholder="Tulis kritikan maupun saran untuk BEM PPNS Kabinet Nakhoda Akselerasi Ex. &quot;Tetap Semangat !!&quot;" 
+            placeholder="Tuliskan Kritikan maupun saran anda untuk UKKPK UNP"
             value={formData.message} 
             onChange={e => setFormData({
               ...formData,
