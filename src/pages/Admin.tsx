@@ -1,11 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdmin } from "@/hooks/useAdmin";
-import { Layout } from "@/components/Layout";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-import { LogOut } from "lucide-react";
+import { AdminLayout } from "@/components/admin/AdminLayout";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/admin/AppSidebar";
+import { DashboardHeader } from "@/components/admin/DashboardHeader";
+import { DashboardOverview } from "@/components/admin/DashboardOverview";
 import { toast } from "sonner";
 import { ArticlesManager } from "@/components/admin/ArticlesManager";
 import { NewsManager } from "@/components/admin/NewsManager";
@@ -13,11 +14,13 @@ import { RadioManager } from "@/components/admin/RadioManager";
 import { ProfileManager } from "@/components/admin/ProfileManager";
 import { MapManager } from "@/components/admin/MapManager";
 import { ContactSubmissionsManager } from "@/components/admin/ContactSubmissionsManager";
+import { OrganizationManager } from "@/components/admin/OrganizationManager";
 
 const Admin = () => {
   const { user, signOut } = useAuth();
   const { isAdmin, loading } = useAdmin();
   const navigate = useNavigate();
+  const [activePage, setActivePage] = useState("dashboard");
 
   useEffect(() => {
     if (!loading && !user) {
@@ -34,13 +37,27 @@ const Admin = () => {
     navigate("/");
   };
 
+  const getPageTitle = (page: string) => {
+    const titles: Record<string, string> = {
+      dashboard: "Dashboard Utama",
+      articles: "Kelola Artikel",
+      news: "Kelola Berita",
+      radio: "Kelola Radio",
+      profile: "Profil & Slideshow",
+      organization: "Struktur Organisasi",
+      maps: "Peta Lokasi",
+      contact: "Saran Masuk",
+    };
+    return titles[page] || "Dashboard";
+  };
+
   if (loading) {
     return (
-      <Layout>
-        <div className="container mx-auto py-12 text-center">
-          <p>Memuat...</p>
+      <AdminLayout>
+        <div className="flex h-screen items-center justify-center">
+          <p className="text-gray-600">Memuat...</p>
         </div>
-      </Layout>
+      </AdminLayout>
     );
   }
 
@@ -49,52 +66,32 @@ const Admin = () => {
   }
 
   return (
-    <Layout>
-      <div className="container mx-auto py-12 px-4">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Dashboard Admin</h1>
-          <Button onClick={handleSignOut} variant="outline">
-            <LogOut className="mr-2 h-4 w-4" />
-            Logout
-          </Button>
+    <AdminLayout>
+      <SidebarProvider defaultOpen={true}>
+        <div className="flex min-h-screen w-full">
+          <AppSidebar activePage={activePage} onNavigate={setActivePage} />
+          
+          <main className="flex-1 flex flex-col">
+            <DashboardHeader 
+              title={getPageTitle(activePage)} 
+              user={user}
+              onSignOut={handleSignOut}
+            />
+            
+            <div className="flex-1 p-6">
+              {activePage === "dashboard" && <DashboardOverview />}
+              {activePage === "articles" && <ArticlesManager />}
+              {activePage === "news" && <NewsManager />}
+              {activePage === "radio" && <RadioManager />}
+              {activePage === "profile" && <ProfileManager />}
+              {activePage === "organization" && <OrganizationManager />}
+              {activePage === "maps" && <MapManager />}
+              {activePage === "contact" && <ContactSubmissionsManager />}
+            </div>
+          </main>
         </div>
-
-        <Tabs defaultValue="articles" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-6 gap-2">
-            <TabsTrigger value="articles">Artikel</TabsTrigger>
-            <TabsTrigger value="news">Berita</TabsTrigger>
-            <TabsTrigger value="radio">Radio</TabsTrigger>
-            <TabsTrigger value="profile">Profil</TabsTrigger>
-            <TabsTrigger value="maps">Peta</TabsTrigger>
-            <TabsTrigger value="contact">Saran</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="articles">
-            <ArticlesManager />
-          </TabsContent>
-
-          <TabsContent value="news">
-            <NewsManager />
-          </TabsContent>
-
-          <TabsContent value="radio">
-            <RadioManager />
-          </TabsContent>
-
-          <TabsContent value="profile">
-            <ProfileManager />
-          </TabsContent>
-
-          <TabsContent value="maps">
-            <MapManager />
-          </TabsContent>
-
-          <TabsContent value="contact">
-            <ContactSubmissionsManager />
-          </TabsContent>
-        </Tabs>
-      </div>
-    </Layout>
+      </SidebarProvider>
+    </AdminLayout>
   );
 };
 
