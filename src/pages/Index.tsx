@@ -162,6 +162,57 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Thank You Section */}
+      <section className="relative py-20 px-4 bg-gradient-to-b from-primary/90 via-primary to-primary/90 overflow-hidden">
+        {/* Top gradient fade */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent z-0" />
+        
+        {/* Bottom gradient fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-0" />
+
+        <div className="container mx-auto relative z-10 text-center max-w-4xl">
+          <AnimatedSection animation="fade-up">
+            <div className="mb-8">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
+                Terima Kasih Telah Mengunjungi
+              </h2>
+              
+              <div className="w-32 h-1 bg-white/50 mx-auto mb-8" />
+              
+              <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
+                Kami sangat menghargai kunjungan Anda. Semoga informasi yang kami sajikan bermanfaat 
+                untuk Anda. Jangan ragu untuk menghubungi kami jika ada pertanyaan atau saran.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection animation="scale-in" delay={200}>
+            <div className="flex flex-wrap justify-center gap-4 mt-12">
+              <Button
+                size="lg"
+                onClick={() => navigate('/profil-ukkpk')}
+                className="bg-white text-primary hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                Tentang Kami
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => {
+                  const contactSection = document.querySelector('#contact');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="border-2 border-white text-white hover:bg-white/10"
+              >
+                Hubungi Kami
+              </Button>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* Contact Section Heading */}
       <section className="py-8 px-4 bg-muted/20">
         <div className="container mx-auto max-w-5xl">
@@ -297,75 +348,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Thank You Section */}
-      <section className="py-20 px-4 relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-secondary/5">
-        {/* Decorative Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-24 -left-24 w-64 h-64 rounded-full border-[30px] border-primary/10" />
-          <div className="absolute top-1/2 -right-20 w-72 h-72 rounded-full border-[40px] border-secondary/10" />
-          <div className="absolute bottom-0 left-1/3 w-96 h-96 rounded-full border-[50px] border-primary/5" />
-          
-          {/* Dot pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)',
-                backgroundSize: '24px 24px',
-              }}
-            />
-          </div>
-        </div>
-
-        <div className="container mx-auto relative z-10 text-center max-w-4xl">
-          <AnimatedSection animation="fade-up">
-            <div className="mb-8">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 mb-6">
-                <span className="text-base font-semibold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Terima Kasih
-                </span>
-              </div>
-              
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
-                Terima Kasih Telah Mengunjungi
-              </h2>
-              
-              <div className="w-32 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-8" />
-              
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Kami sangat menghargai kunjungan Anda. Semoga informasi yang kami sajikan bermanfaat 
-                untuk Anda. Jangan ragu untuk menghubungi kami jika ada pertanyaan atau saran.
-              </p>
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection animation="scale-in" delay={200}>
-            <div className="flex flex-wrap justify-center gap-4 mt-12">
-              <Button
-                size="lg"
-                onClick={() => navigate('/profil-ukkpk')}
-                className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Tentang Kami
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => {
-                  const contactSection = document.querySelector('#contact');
-                  if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-                className="border-2 hover:bg-primary/5"
-              >
-                Hubungi Kami
-              </Button>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-      
     </Layout>;
 };
 export default Index;
