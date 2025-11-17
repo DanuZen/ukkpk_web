@@ -24,6 +24,7 @@ const menuItems = [
     items: [
       { id: "dashboard", title: "Dashboard Utama", icon: Home },
       { id: "analytics", title: "Analytics", icon: TrendingUp },
+      { id: "contact", title: "Saran Masuk", icon: MessageSquare },
     ],
   },
   {
@@ -40,7 +41,6 @@ const menuItems = [
       { id: "slideshow", title: "Slideshow Home", icon: Settings },
       { id: "structure", title: "Struktur Organisasi", icon: Users },
       { id: "maps", title: "Peta Lokasi", icon: Map },
-      { id: "contact", title: "Saran Masuk", icon: MessageSquare },
     ],
   },
 ];
