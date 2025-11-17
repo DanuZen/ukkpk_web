@@ -153,7 +153,7 @@ const Radio = () => {
             )}
 
             {/* Buttons */}
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex flex-col gap-4 justify-center items-center">
               <Button 
                 size="lg" 
                 className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-base"
