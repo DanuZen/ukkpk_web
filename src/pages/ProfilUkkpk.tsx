@@ -569,9 +569,9 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Nilai-Nilai */}
-      <section className="min-h-[85vh] flex items-center py-32 md:py-40 px-4 relative overflow-hidden scroll-mt-20">
+      <section className="min-h-[85vh] flex items-center py-32 md:py-40 px-4 relative overflow-hidden scroll-mt-20 bg-gray-100">
         {/* Light gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-background to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-transparent" />
 
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
