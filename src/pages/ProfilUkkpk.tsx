@@ -109,7 +109,7 @@ const ProfilUkkpk = () => {
     },
     {
       icon: <Radio className="h-8 w-8" />,
-      title: 'Penyiaran Radio',
+      title: 'Radio & Penyiaran',
       description:
         'Melatih kemampuan penyiaran, produksi audio, dan manajemen program radio',
     },
