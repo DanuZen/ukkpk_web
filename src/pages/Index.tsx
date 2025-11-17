@@ -11,7 +11,6 @@ import { ContactSection } from '@/components/ContactSection';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import { stripHtml } from '@/lib/utils';
 import { FileText, MessageSquare, MapPin } from 'lucide-react';
-
 interface Article {
   id: string;
   title: string;
@@ -21,7 +20,6 @@ interface Article {
   created_at: string;
   published_at: string | null;
 }
-
 interface News {
   id: string;
   title: string;
@@ -30,37 +28,30 @@ interface News {
   created_at: string;
   published_at: string | null;
 }
-
 const Index = () => {
   const navigate = useNavigate();
   const [articles, setArticles] = useState<Article[]>([]);
   const [news, setNews] = useState<News[]>([]);
-
   useEffect(() => {
     fetchArticles();
     fetchNews();
   }, []);
-
   const fetchArticles = async () => {
-    const { data } = await supabase
-      .from('articles')
-      .select('*')
-      .order('created_at', { ascending: false })
-      .limit(6);
-    
+    const {
+      data
+    } = await supabase.from('articles').select('*').order('created_at', {
+      ascending: false
+    }).limit(6);
     if (data) setArticles(data);
   };
-
   const fetchNews = async () => {
-    const { data } = await supabase
-      .from('news')
-      .select('*')
-      .order('created_at', { ascending: false })
-      .limit(6);
-    
+    const {
+      data
+    } = await supabase.from('news').select('*').order('created_at', {
+      ascending: false
+    }).limit(6);
     if (data) setNews(data);
   };
-
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('id-ID', {
       day: 'numeric',
@@ -68,9 +59,7 @@ const Index = () => {
       year: 'numeric'
     });
   };
-
-  return (
-    <Layout>
+  return <Layout>
       {/* Hero Slideshow Section */}
       <HomeSlideshow />
 
@@ -85,9 +74,9 @@ const Index = () => {
           
           <div className="absolute top-0 right-0 w-1/4 h-1/2 opacity-25">
             <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
-              backgroundSize: '18px 18px'
-            }} />
+            backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
+            backgroundSize: '18px 18px'
+          }} />
           </div>
           
           <div className="absolute bottom-1/4 left-0 w-72 h-72">
@@ -115,22 +104,16 @@ const Index = () => {
             </div>
           </AnimatedSection>
 
-          {articles.length === 0 && news.length === 0 ? (
-            <p className="text-center text-muted-foreground">Belum ada konten tersedia.</p>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {articles.length === 0 && news.length === 0 ? <p className="text-center text-muted-foreground">Belum ada konten tersedia.</p> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {/* Artikel Cards */}
-              {articles.map((article, index) => (
-                <AnimatedSection key={`article-${article.id}`} animation="fade-up" delay={index * 100}>
+              {articles.map((article, index) => <AnimatedSection key={`article-${article.id}`} animation="fade-up" delay={index * 100}>
                   <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/artikel/${article.id}`)}>
-                    {article.image_url && (
-                      <div className="relative overflow-hidden h-40 sm:h-48">
+                    {article.image_url && <div className="relative overflow-hidden h-40 sm:h-48">
                         <img src={article.image_url} alt={article.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
                         <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
                           <Badge className="bg-primary text-primary-foreground shadow-lg text-xs">Artikel</Badge>
                         </div>
-                      </div>
-                    )}
+                      </div>}
                     <CardHeader className="p-4 sm:p-6">
                       <div className="flex items-center gap-2 mb-2 flex-wrap">
                         <Badge variant="secondary" className="text-xs">{article.category}</Badge>
@@ -142,21 +125,17 @@ const Index = () => {
                       <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed">{stripHtml(article.content)}</p>
                     </CardContent>
                   </Card>
-                </AnimatedSection>
-              ))}
+                </AnimatedSection>)}
 
               {/* News Cards */}
-              {news.map((item, newsIndex) => (
-                <AnimatedSection key={`news-${item.id}`} animation="fade-up" delay={(articles.length + newsIndex) * 100}>
+              {news.map((item, newsIndex) => <AnimatedSection key={`news-${item.id}`} animation="fade-up" delay={(articles.length + newsIndex) * 100}>
                   <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/berita/${item.id}`)}>
-                    {item.image_url && (
-                      <div className="relative overflow-hidden h-40 sm:h-48">
+                    {item.image_url && <div className="relative overflow-hidden h-40 sm:h-48">
                         <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
                         <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
                           <Badge className="bg-secondary text-secondary-foreground shadow-lg text-xs">Berita</Badge>
                         </div>
-                      </div>
-                    )}
+                      </div>}
                     <CardHeader className="p-4 sm:p-6">
                       <div className="flex items-center gap-2 mb-2">
                         <span className="text-xs text-muted-foreground">{formatDate(item.published_at || item.created_at)}</span>
@@ -167,10 +146,8 @@ const Index = () => {
                       <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed">{stripHtml(item.content)}</p>
                     </CardContent>
                   </Card>
-                </AnimatedSection>
-              ))}
-            </div>
-          )}
+                </AnimatedSection>)}
+            </div>}
         </div>
       </section>
 
@@ -200,26 +177,10 @@ const Index = () => {
 
           <AnimatedSection animation="scale-in" delay={200}>
             <div className="flex flex-wrap justify-center gap-4 mt-12">
-              <Button
-                size="lg"
-                onClick={() => navigate('/profil-ukkpk')}
-                className="bg-white text-primary hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
+              <Button size="lg" onClick={() => navigate('/profil-ukkpk')} className="bg-white text-primary hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300">
                 Tentang Kami
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => {
-                  const contactSection = document.querySelector('#contact');
-                  if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-                className="border-2 border-white text-white hover:bg-white/10"
-              >
-                Hubungi Kami
-              </Button>
+              
             </div>
           </AnimatedSection>
         </div>
@@ -258,7 +219,7 @@ const Index = () => {
             <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#10b981" strokeWidth="0.5"/>
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#10b981" strokeWidth="0.5" />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#grid)" />
@@ -268,25 +229,19 @@ const Index = () => {
           {/* Map Pin Shapes */}
           <div className="absolute top-20 right-1/4 w-8 h-8 opacity-20">
             <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-              <circle cx="12" cy="10" r="3"/>
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
             </svg>
           </div>
           <div className="absolute bottom-32 left-1/4 w-6 h-6 opacity-15">
             <svg viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-              <circle cx="12" cy="10" r="3"/>
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
             </svg>
           </div>
 
           {/* Curved Lines */}
-          <svg
-            className="absolute top-1/2 left-0 w-64 h-64 text-emerald-100/25 -translate-y-1/2"
-            viewBox="0 0 200 200"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
+          <svg className="absolute top-1/2 left-0 w-64 h-64 text-emerald-100/25 -translate-y-1/2" viewBox="0 0 200 200" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M0,100 Q50,50 100,100 T200,100" />
             <path d="M0,120 Q50,70 100,120 T200,120" />
           </svg>
@@ -331,9 +286,7 @@ const Index = () => {
           {/* Dots Pattern - Bottom Left */}
           <div className="absolute bottom-0 left-0 w-64 h-64 opacity-20">
             <div className="grid grid-cols-8 gap-4 p-8">
-              {[...Array(64)].map((_, i) => (
-                <div key={i} className="w-1.5 h-1.5 rounded-full bg-blue-300" />
-              ))}
+              {[...Array(64)].map((_, i) => <div key={i} className="w-1.5 h-1.5 rounded-full bg-blue-300" />)}
             </div>
           </div>
 
@@ -342,12 +295,7 @@ const Index = () => {
           <div className="absolute bottom-1/4 right-20 w-12 h-12 bg-blue-100/20 rounded-full" />
 
           {/* Wave SVG - Blue */}
-          <svg
-            className="absolute bottom-0 left-0 w-full h-32 text-blue-50/30"
-            viewBox="0 0 1440 320"
-            preserveAspectRatio="none"
-            fill="currentColor"
-          >
+          <svg className="absolute bottom-0 left-0 w-full h-32 text-blue-50/30" viewBox="0 0 1440 320" preserveAspectRatio="none" fill="currentColor">
             <path d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" />
           </svg>
         </div>
@@ -360,8 +308,6 @@ const Index = () => {
         </div>
       </section>
 
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default Index;
