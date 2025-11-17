@@ -71,6 +71,11 @@ All colors MUST be HSL.
     --shadow-accent: 0 8px 32px rgba(251, 146, 60, 0.2);
     --shadow-glow: 0 0 40px rgba(200, 16, 46, 0.15);
 
+    /* Modern scrollbar colors */
+    --scrollbar-track: 0 0% 96%;
+    --scrollbar-thumb: 348 89% 43%;
+    --scrollbar-thumb-hover: 348 89% 35%;
+
     /* Badge colors dengan gradasi merah */
     --badge-kegiatan: 0 84% 60%;
     --badge-berita: 0 72% 45%;
@@ -126,6 +131,11 @@ All colors MUST be HSL.
       radial-gradient(circle at 50% 50%, hsl(348 89% 50% / 0.06) 0%, transparent 35%),
       linear-gradient(135deg, transparent 0%, hsl(348 89% 50% / 0.025) 50%, transparent 100%),
       linear-gradient(225deg, transparent 0%, hsl(237 98% 48% / 0.025) 50%, transparent 100%);
+
+    /* Dark mode scrollbar colors */
+    --scrollbar-track: 0 0% 15%;
+    --scrollbar-thumb: 348 89% 50%;
+    --scrollbar-thumb-hover: 348 89% 60%;
   }
 }
 
@@ -141,6 +151,33 @@ All colors MUST be HSL.
     background-size: cover;
     position: relative;
     overflow-x: hidden;
+  }
+
+  /* Modern Custom Scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--scrollbar-thumb)) hsl(var(--scrollbar-track));
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: hsl(var(--scrollbar-track));
+    border-radius: 10px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: hsl(var(--scrollbar-thumb));
+    border-radius: 10px;
+    border: 2px solid hsl(var(--scrollbar-track));
+    transition: background 0.2s ease;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--scrollbar-thumb-hover));
   }
 
   /* Animated broadcast waves - CSS Gradients */
