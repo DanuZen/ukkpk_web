@@ -82,7 +82,7 @@ const Radio = () => {
   return (
     <Layout>
       {/* Hero Section - HostPro Style */}
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background Image with Dark Overlay */}
         <div 
           className="absolute inset-0 bg-cover bg-center"
