@@ -15,9 +15,17 @@ export const HomeSlideshow = () => {
   const [images, setImages] = useState<SlideshowImage[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [autoPlaySpeed, setAutoPlaySpeed] = useState(5000);
+  const [scrollY, setScrollY] = useState(0);
   useEffect(() => {
     fetchImages();
     fetchSettings();
+  }, []);
+
+  // Scroll tracking for blur effect
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Auto-rotation effect
@@ -66,6 +74,11 @@ export const HomeSlideshow = () => {
         </div>
       </section>;
   }
+
+  // Calculate blur and opacity based on scroll
+  const blurAmount = Math.min(scrollY / 300, 1); // 0 to 1
+  const opacity = Math.max(1 - (scrollY / 400), 0); // 1 to 0
+
   return <section className="relative w-full h-screen overflow-hidden group -mt-16">
       {/* Slideshow Images */}
       <div className="relative w-full h-full">
@@ -77,7 +90,13 @@ export const HomeSlideshow = () => {
 
       {/* Overlay Text */}
       <div className="absolute inset-0 flex items-center justify-center pt-16">
-        <div className="max-w-3xl text-left z-10 px-4 sm:px-6 animate-fade-in">
+        <div 
+          className="max-w-3xl text-left z-10 px-4 sm:px-6 animate-fade-in transition-all duration-300"
+          style={{
+            filter: `blur(${blurAmount * 8}px)`,
+            opacity: opacity,
+          }}
+        >
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-2 rounded-full mb-6">
             <RadioIcon className="h-4 w-4" />
