@@ -1,5 +1,6 @@
 import { User } from "@supabase/supabase-js";
-import { Search, Bell, Grid3x3, LogOut } from "lucide-react";
+import { Search, Bell, Grid3x3, LogOut, ExternalLink } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,6 +21,8 @@ interface DashboardHeaderProps {
 }
 
 export const DashboardHeader = ({ title, user, onSignOut }: DashboardHeaderProps) => {
+  const navigate = useNavigate();
+  
   const getInitials = (email: string) => {
     return email.substring(0, 2).toUpperCase();
   };
@@ -31,6 +34,15 @@ export const DashboardHeader = ({ title, user, onSignOut }: DashboardHeaderProps
       <h1 className="text-xl font-bold text-gray-900">{title}</h1>
 
       <div className="ml-auto flex items-center gap-3">
+        <Button 
+          variant="outline" 
+          onClick={() => navigate("/")}
+          className="hidden sm:flex items-center gap-2"
+        >
+          <ExternalLink className="h-4 w-4" />
+          Kembali ke Website
+        </Button>
+
         <div className="relative hidden md:block">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
           <Input
