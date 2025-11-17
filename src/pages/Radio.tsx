@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Radio as RadioIcon, Play, Clock, Mic } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { AnimatedSection } from "@/components/AnimatedSection";
 
 interface RadioProgram {
   id: string;
@@ -92,25 +93,26 @@ const Radio = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl animate-fade-in">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-2 rounded-full mb-6">
-              <RadioIcon className="h-4 w-4" />
-              <span className="text-sm font-medium">Radio #1 Kampus UNP</span>
-            </div>
-            
-            {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight">
-              SIGMA RADIO
-              <br />
-              UKKPK UNP
-            </h1>
-            
-            {/* Subtitle */}
-            <p className="text-white/90 text-lg md:text-xl max-w-2xl mb-8 leading-relaxed">
-              Platform radio kampus yang menghubungkan Anda dengan berbagai program menarik, 
-              berita terkini, dan hiburan berkualitas dari UKKPK UNP.
-            </p>
+          <AnimatedSection animation="fade-up">
+            <div className="max-w-3xl">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-2 rounded-full mb-6">
+                <RadioIcon className="h-4 w-4" />
+                <span className="text-sm font-medium">Radio #1 Kampus UNP</span>
+              </div>
+              
+              {/* Main Heading */}
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight">
+                SIGMA RADIO
+                <br />
+                UKKPK UNP
+              </h1>
+              
+              {/* Subtitle */}
+              <p className="text-white/90 text-lg md:text-xl max-w-2xl mb-8 leading-relaxed">
+                Platform radio kampus yang menghubungkan Anda dengan berbagai program menarik, 
+                berita terkini, dan hiburan berkualitas dari UKKPK UNP.
+              </p>
 
             {/* Current Program Info - Prominent Display */}
             {currentProgram ? (
@@ -169,7 +171,8 @@ const Radio = () => {
                 Lihat Jadwal
               </Button>
             </div>
-          </div>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
@@ -201,16 +204,18 @@ const Radio = () => {
           {/* Decorative Elements */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-12 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0" />
           
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
-              <RadioIcon className="h-4 w-4 text-primary animate-pulse" />
-              <span className="text-sm font-medium text-primary">Program Kami</span>
+          <AnimatedSection animation="fade-up">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
+                <RadioIcon className="h-4 w-4 text-primary animate-pulse" />
+                <span className="text-sm font-medium text-primary">Program Kami</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+                Jadwal Program
+              </h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
-              Jadwal Program
-            </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
-          </div>
+          </AnimatedSection>
           
           {programs.length === 0 ? (
             <div className="text-center py-12">
@@ -222,11 +227,10 @@ const Radio = () => {
           ) : (
             <div className="grid md:grid-cols-2 gap-6">
               {programs.map((program, index) => (
-                <Card
-                  key={program.id}
-                  className="group relative overflow-hidden border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:shadow-primary/5 animate-fade-in"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
+                <AnimatedSection key={program.id} animation="fade-up" delay={index * 100}>
+                  <Card
+                    className="group relative overflow-hidden border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:shadow-primary/5"
+                  >
                   {/* Gradient Background on Hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
@@ -277,6 +281,7 @@ const Radio = () => {
                   {/* Corner Decoration */}
                   <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-primary/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </Card>
+                </AnimatedSection>
               ))}
             </div>
           )}

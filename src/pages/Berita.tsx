@@ -7,6 +7,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
 import { stripHtml } from '@/lib/utils';
+import { AnimatedSection } from '@/components/AnimatedSection';
 
 interface News {
   id: string;
@@ -67,30 +68,34 @@ const Berita = () => {
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d')] opacity-5 bg-cover bg-center"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-in">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
-              Berita Terkini
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground">
-              Informasi dan berita terbaru seputar UKKPK dan kegiatan kampus
-            </p>
-          </div>
+          <AnimatedSection animation="fade-up">
+            <div className="max-w-3xl mx-auto text-center space-y-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
+                Berita Terkini
+              </h1>
+              <p className="text-lg md:text-xl text-muted-foreground">
+                Informasi dan berita terbaru seputar UKKPK dan kegiatan kampus
+              </p>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Search Section */}
       <section className="py-8 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
-            <Input
-              type="text"
-              placeholder="Cari berita berdasarkan judul atau konten..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-12 py-6 text-lg shadow-lg"
-            />
-          </div>
+          <AnimatedSection animation="scale-in" delay={100}>
+            <div className="max-w-2xl mx-auto relative">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
+              <Input
+                type="text"
+                placeholder="Cari berita berdasarkan judul atau konten..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-12 py-6 text-lg shadow-lg"
+              />
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
@@ -121,12 +126,12 @@ const Berita = () => {
         <div className="container mx-auto px-4 relative z-10">
           {filteredNews.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredNews.map((item) => (
-                <Card 
-                  key={item.id} 
-                  className="overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
-                  onClick={() => navigate(`/berita/${item.id}`)}
-                >
+              {filteredNews.map((item, index) => (
+                <AnimatedSection key={item.id} animation="fade-up" delay={index * 100}>
+                  <Card 
+                    className="overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+                    onClick={() => navigate(`/berita/${item.id}`)}
+                  >
                   {item.image_url && (
                     <div className="relative overflow-hidden h-56">
                       <img
@@ -156,6 +161,7 @@ const Berita = () => {
                     </p>
                   </CardContent>
                 </Card>
+                </AnimatedSection>
               ))}
             </div>
           ) : (
