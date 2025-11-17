@@ -479,7 +479,7 @@ const ProfilUkkpk = () => {
 
           <div className="max-w-7xl mx-auto">
             {/* Logo MICU & Bidang */}
-            <div className="max-w-4xl mx-auto mb-16">
+            <div className="max-w-4xl mx-auto mb-16 p-8 rounded-2xl bg-white/50 backdrop-blur-sm shadow-2xl">
               {/* Logo MICU - Centered and Larger */}
               <AnimatedSection animation="scale-in" delay={100}>
                 <div className="flex justify-center mb-12">
