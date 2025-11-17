@@ -596,7 +596,7 @@ const ProfilUkkpk = () => {
                 animation="scale-in"
                 delay={100 + index * 150}
               >
-                <Card className="text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                <Card className="text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 shadow-lg">
                   <CardContent className="pt-6">
                     <div className="inline-flex p-3 rounded-full bg-primary/10 text-primary mb-4">
                       {value.icon}
