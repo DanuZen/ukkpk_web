@@ -161,11 +161,11 @@ const ProfilUkkpk = () => {
     <Layout>
       {/* Banner Section */}
       {profile?.banner_url && (
-        <section className="relative w-full h-64 md:h-96 overflow-hidden">
+        <section className="relative w-full min-h-[60vh] overflow-hidden flex items-center">
           <img
             src={profile.banner_url}
             alt="UKKPK Banner"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover absolute inset-0"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80"></div>
           <div className="absolute bottom-8 left-0 right-0 text-center">

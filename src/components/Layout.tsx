@@ -18,7 +18,7 @@ export const Layout = ({ children }: LayoutProps) => {
       <ScrollToTop />
       <Navigation />
       {!isHomePage && <BreakingNews />}
-      <main className="flex-1 min-h-[calc(100vh-4rem)]">{children}</main>
+      <main className="flex-1 min-h-[calc(100vh-12rem)]">{children}</main>
       <Footer />
     </div>
   );
