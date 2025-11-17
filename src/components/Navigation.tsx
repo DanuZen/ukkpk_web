@@ -55,7 +55,7 @@ export const Navigation = () => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       // Change navbar when scrolled past the text content and buttons in slideshow
-      const textAreaEnd = window.innerHeight * 0.8; // 80% of viewport to fully pass the text area
+      const textAreaEnd = window.innerHeight; // Full viewport height - change after passing slideshow
       setIsScrolled(scrollPosition > textAreaEnd);
     };
     window.addEventListener('scroll', handleScroll);
