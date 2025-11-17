@@ -148,7 +148,7 @@ export const Navigation = () => {
                 </Button>
               </> : <div className="flex items-center gap-2 animate-fade-in flex-1 max-w-md relative">
                 <Input type="text" placeholder="Cari artikel, berita, atau event..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="flex-1" autoFocus />
-                <Button variant="ghost" size="icon" className="hover:text-primary transition-colors" onClick={() => {
+                <Button variant="ghost" size="icon" className="hover:bg-primary hover:text-white transition-colors" onClick={() => {
               setIsSearchOpen(false);
               setSearchQuery("");
               setSearchResults([]);
