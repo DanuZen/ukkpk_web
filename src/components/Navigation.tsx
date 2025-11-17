@@ -3,7 +3,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, Search, User, LogOut, LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
@@ -38,15 +37,11 @@ export const Navigation = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [searchLoading, setSearchLoading] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const {
     user,
-    signIn,
     signOut
   } = useAuth();
 
@@ -96,25 +91,6 @@ export const Navigation = () => {
     const debounce = setTimeout(searchContent, 300);
     return () => clearTimeout(debounce);
   }, [searchQuery]);
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const {
-        error
-      } = await signIn(email, password);
-      if (error) throw error;
-      toast.success("Login berhasil!");
-      setIsPopoverOpen(false);
-      setEmail("");
-      setPassword("");
-      navigate("/admin");
-    } catch (error: any) {
-      toast.error(error.message || "Email atau password salah");
-    } finally {
-      setLoading(false);
-    }
-  };
   const handleLogout = async () => {
     await signOut();
     toast.success("Berhasil logout");
@@ -178,25 +154,28 @@ export const Navigation = () => {
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-80" align="end">
-                {!user ? <form onSubmit={handleLogin} className="space-y-4">
+                {!user ? <div className="space-y-4">
                     <div className="space-y-2">
-                      <h3 className="font-semibold text-lg">Login Admin</h3>
+                      <h3 className="font-semibold text-lg">Akun Admin</h3>
                       <p className="text-sm text-muted-foreground">
-                        Masukkan email dan password Anda
+                        Login untuk mengakses dashboard admin UKKPK
                       </p>
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
-                      <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="admin@ukkpk.com" required />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="password">Password</Label>
-                      <Input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="••••••••" required />
-                    </div>
-                    <Button type="submit" className="w-full" disabled={loading}>
-                      {loading ? "Memproses..." : "Login"}
+                    <Button 
+                      className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary" 
+                      onClick={() => {
+                        navigate("/auth");
+                        setIsPopoverOpen(false);
+                      }}
+                    >
+                      Login Sekarang
                     </Button>
-                  </form> : <div className="space-y-2">
+                    <div className="pt-2 border-t border-border">
+                      <p className="text-xs text-muted-foreground text-center">
+                        Hanya untuk admin UKKPK UNP
+                      </p>
+                    </div>
+                  </div> : <div className="space-y-2">
                     <div className="pb-2 border-b border-border">
                       <p className="text-sm font-medium">{user.email}</p>
                       <p className="text-xs text-muted-foreground">Admin</p>
