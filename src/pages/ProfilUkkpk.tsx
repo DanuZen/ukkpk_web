@@ -487,7 +487,7 @@ const ProfilUkkpk = () => {
                     <img
                       src={logoMicu}
                       alt="MICU"
-                      className="w-80 h-80 mb-4 object-contain transition-all duration-300 hover:scale-110 hover:rotate-3"
+                      className="w-80 h-80 mb-4 object-contain transition-all duration-300 hover:scale-110 hover:rotate-3 bg-transparent"
                     />
                   </div>
                 </div>
@@ -502,7 +502,7 @@ const ProfilUkkpk = () => {
                     delay={200 + index * 100}
                   >
                     <div className="flex flex-col items-center group">
-                      <div className="w-32 h-32 mb-4 rounded-lg overflow-hidden bg-muted/50 p-4 transition-all duration-300 hover:scale-110 hover:rotate-3">
+                      <div className="w-32 h-32 mb-4 rounded-lg overflow-hidden p-4 transition-all duration-300 hover:scale-110 hover:rotate-3 bg-transparent">
                         <img
                           src={logo.image}
                           alt={logo.name}
