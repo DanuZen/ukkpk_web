@@ -23,23 +23,16 @@ interface StrukturOrganisasi {
   created_at: string;
 }
 
-export const ProfileManager = () => {
-  return (
-    <Tabs defaultValue="slideshow" className="w-full">
-      <TabsList className="grid w-full grid-cols-2 mb-6">
-        <TabsTrigger value="slideshow">Slideshow Home</TabsTrigger>
-        <TabsTrigger value="structure">Struktur Organisasi</TabsTrigger>
-      </TabsList>
+interface ProfileManagerProps {
+  activeTab?: "slideshow" | "structure";
+}
 
-      <TabsContent value="slideshow">
-        <SlideshowSection />
-      </TabsContent>
-
-      <TabsContent value="structure">
-        <StructureSection />
-      </TabsContent>
-    </Tabs>
-  );
+export const ProfileManager = ({ activeTab = "slideshow" }: ProfileManagerProps) => {
+  if (activeTab === "slideshow") {
+    return <SlideshowSection />;
+  }
+  
+  return <StructureSection />;
 };
 
 // Slideshow Section
