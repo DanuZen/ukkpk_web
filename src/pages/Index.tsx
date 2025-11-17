@@ -271,7 +271,7 @@ const Index = () => {
                   <div>
                     <h3 className="font-semibold text-lg mb-2">Kontak</h3>
                     <div className="space-y-3 text-muted-foreground">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center justify-between">
                         <p>Telepon: +6282388235091</p>
                         <a 
                           href="https://wa.me/6282388235091" 
@@ -285,7 +285,7 @@ const Index = () => {
                           </svg>
                         </a>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center justify-between">
                         <p>Email: Ukkpk.office@gmail.com</p>
                         <a 
                           href="mailto:Ukkpk.office@gmail.com"
