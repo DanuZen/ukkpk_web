@@ -64,7 +64,7 @@ const Index = () => {
       <HomeSlideshow />
 
       {/* Artikel & Berita Section - Gabungan */}
-      <section className="py-8 sm:py-12 md:py-16 bg-background relative overflow-hidden">
+      <section className="py-12 bg-background relative overflow-hidden">
         {/* Curved geometric background patterns */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full border-[40px] border-gray-100/60" />

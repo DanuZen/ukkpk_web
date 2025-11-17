@@ -82,7 +82,7 @@ const Radio = () => {
   return (
     <Layout>
       {/* Hero Section - HostPro Style */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-center overflow-hidden">
         {/* Background Image with Dark Overlay */}
         <div 
           className="absolute inset-0 bg-cover bg-center"
@@ -92,7 +92,7 @@ const Radio = () => {
         ></div>
         <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
         
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 relative z-10 py-16">
           <AnimatedSection animation="fade-up">
             <div className="max-w-3xl">
               {/* Badge */}
