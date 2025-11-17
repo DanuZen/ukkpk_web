@@ -97,7 +97,7 @@ const ProfilUkkpk = () => {
   const features = [
     {
       icon: <Megaphone className="h-8 w-8" />,
-      title: 'MC & Public Speaking',
+      title: 'MC Dan Keprotokolan',
       description:
         'Membina keterampilan berbicara di depan umum dan menjadi pembawa acara profesional',
     },
