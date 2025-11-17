@@ -271,13 +271,13 @@ const Index = () => {
                   <div>
                     <h3 className="font-semibold text-lg mb-2">Kontak</h3>
                     <div className="space-y-3 text-muted-foreground">
-                      <div className="flex items-center justify-between">
-                        <p>Telepon: +6282388235091</p>
+                      <div className="flex items-center gap-3">
+                        <p className="flex-1">Telepon: +6282388235091</p>
                         <a 
                           href="https://wa.me/6282388235091" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-500 text-white hover:bg-green-600 transition-colors"
+                          className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-500 text-white hover:bg-green-600 transition-colors"
                           aria-label="WhatsApp"
                         >
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -285,11 +285,11 @@ const Index = () => {
                           </svg>
                         </a>
                       </div>
-                      <div className="flex items-center justify-between">
-                        <p>Email: Ukkpk.office@gmail.com</p>
+                      <div className="flex items-center gap-3">
+                        <p className="flex-1">Email: Ukkpk.office@gmail.com</p>
                         <a 
                           href="mailto:Ukkpk.office@gmail.com"
-                          className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                          className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
                           aria-label="Email"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
