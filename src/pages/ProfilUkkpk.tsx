@@ -105,7 +105,7 @@ const ProfilUkkpk = () => {
       icon: <FileText className="h-8 w-8" />,
       title: 'Jurnalistik',
       description:
-        'Mengembangkan kemampuan menulis berita, artikel, dan liputan mendalam',
+        'Mengembangkan kemampuan menulis berita, artikel, dan melakukan liputan yang mendalam',
     },
     {
       icon: <Radio className="h-8 w-8" />,
