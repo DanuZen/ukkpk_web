@@ -6,7 +6,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { Users, Target, Eye, Megaphone, FileText, Radio, Briefcase, ClipboardList, Users2, Handshake, Sparkles, Waves, Shield, Rocket, Mic } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import logoReporter from '@/assets/logo-reporter.png';
-import logoMicu from '@/assets/logo-micu.png';
+import logoMicu from '@/assets/logo-micu-new.png';
 import logoMc from '@/assets/logo-mc.png';
 import logoSigmaRadio from '@/assets/logo-sigma-radio.png';
 
