@@ -159,7 +159,8 @@ const ProfilUkkpk = () => {
 
   return (
     <Layout>
-      {/* Banner Section */}
+      <div className="scroll-smooth">
+        {/* Banner Section */}
       {profile?.banner_url && (
         <section className="relative w-full min-h-[60vh] overflow-hidden flex items-center">
           <img
@@ -195,7 +196,7 @@ const ProfilUkkpk = () => {
       )}
 
       {/* Tentang UKKPK */}
-      <section className="py-20 px-4 relative overflow-hidden bg-background">
+      <section className="min-h-[85vh] flex items-center py-32 md:py-40 px-4 relative overflow-hidden bg-background scroll-mt-20">
 
         <div className="container mx-auto relative z-10">
           <div className="max-w-5xl mx-auto">
@@ -289,8 +290,14 @@ const ProfilUkkpk = () => {
                 </Card>
               </AnimatedSection>
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Sejarah Section */}
+      {/* Sejarah Section */}
+      <section className="min-h-screen flex items-center scroll-mt-20 py-32 md:py-40 px-4">
+        <div className="container mx-auto">
+          <div className="max-w-6xl mx-auto">
             <AnimatedSection animation="fade-up" delay={100}>
               <div className="text-center mb-12">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
@@ -453,7 +460,7 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Bidang Kegiatan */}
-      <section className="py-20 px-4 relative overflow-hidden bg-background">
+      <section className="min-h-screen flex items-center py-32 md:py-40 px-4 relative overflow-hidden bg-background scroll-mt-20">
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
@@ -566,7 +573,7 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Nilai-Nilai */}
-      <section className="py-16 px-4 relative overflow-hidden">
+      <section className="min-h-[85vh] flex items-center py-32 md:py-40 px-4 relative overflow-hidden scroll-mt-20">
         {/* Light gradient background */}
         <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-background to-background" />
 
@@ -682,6 +689,7 @@ const ProfilUkkpk = () => {
           )}
         </div>
       </section>
+      </div>
     </Layout>
   );
 };
