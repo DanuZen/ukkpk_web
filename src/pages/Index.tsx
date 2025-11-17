@@ -11,6 +11,7 @@ import { ContactSection } from '@/components/ContactSection';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import { stripHtml } from '@/lib/utils';
 import { FileText, MessageSquare, MapPin } from 'lucide-react';
+
 interface Article {
   id: string;
   title: string;
@@ -20,6 +21,7 @@ interface Article {
   created_at: string;
   published_at: string | null;
 }
+
 interface News {
   id: string;
   title: string;
@@ -28,30 +30,37 @@ interface News {
   created_at: string;
   published_at: string | null;
 }
+
 const Index = () => {
   const navigate = useNavigate();
   const [articles, setArticles] = useState<Article[]>([]);
   const [news, setNews] = useState<News[]>([]);
+
   useEffect(() => {
     fetchArticles();
     fetchNews();
   }, []);
+
   const fetchArticles = async () => {
-    const {
-      data
-    } = await supabase.from('articles').select('*').order('created_at', {
-      ascending: false
-    }).limit(6);
+    const { data } = await supabase
+      .from('articles')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(6);
+    
     if (data) setArticles(data);
   };
+
   const fetchNews = async () => {
-    const {
-      data
-    } = await supabase.from('news').select('*').order('created_at', {
-      ascending: false
-    }).limit(6);
+    const { data } = await supabase
+      .from('news')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(6);
+    
     if (data) setNews(data);
   };
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('id-ID', {
       day: 'numeric',
@@ -59,7 +68,9 @@ const Index = () => {
       year: 'numeric'
     });
   };
-  return <Layout>
+
+  return (
+    <Layout>
       {/* Hero Slideshow Section */}
       <HomeSlideshow />
 
@@ -87,6 +98,7 @@ const Index = () => {
             </svg>
           </div>
         </div>
+        
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-8 sm:mb-10 md:mb-12">
@@ -213,66 +225,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Contact Section Heading */}
-      <section className="py-8 px-4 bg-muted/20">
-        <div className="container mx-auto max-w-5xl">
-          <AnimatedSection animation="fade-up">
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                <MessageSquare className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium text-primary">
-                  Hubungi Kami
-                </span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
-                Kritik dan Saran
-              </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Contact Form Section */}
-      <section className="relative py-8 px-4 bg-muted/20 overflow-hidden">
-        {/* Blue/Teal Background Pattern */}
-        <AnimatedSection animation="fade-in">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Large Circle - Top Right */}
-          <div className="absolute -top-32 -right-32 w-96 h-96 border-[3px] border-blue-100/50 rounded-full" />
-          
-          {/* Dots Pattern - Bottom Left */}
-          <div className="absolute bottom-0 left-0 w-64 h-64 opacity-20">
-            <div className="grid grid-cols-8 gap-4 p-8">
-              {[...Array(64)].map((_, i) => (
-                <div key={i} className="w-1.5 h-1.5 rounded-full bg-blue-300" />
-              ))}
-            </div>
-          </div>
-
-          {/* Geometric Shapes */}
-          <div className="absolute top-1/4 left-10 w-16 h-16 border-2 border-cyan-200/30 rounded-lg rotate-12" />
-          <div className="absolute bottom-1/4 right-20 w-12 h-12 bg-blue-100/20 rounded-full" />
-
-          {/* Wave SVG - Blue */}
-          <svg
-            className="absolute bottom-0 left-0 w-full h-32 text-blue-50/30"
-            viewBox="0 0 1440 320"
-            preserveAspectRatio="none"
-            fill="currentColor"
-          >
-            <path d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" />
-          </svg>
-        </div>
-        </AnimatedSection>
-        
-        <div id="contact" className="relative z-10 container mx-auto max-w-5xl">
-          <AnimatedSection animation="scale-in" delay={100}>
-            <ContactSection />
-          </AnimatedSection>
-        </div>
-      </section>
-
       {/* Map Section Heading */}
       <section className="py-8 px-4 bg-muted/20">
         <div className="container mx-auto max-w-5xl">
@@ -348,6 +300,68 @@ const Index = () => {
         </div>
       </section>
 
-    </Layout>;
+      {/* Contact Section Heading */}
+      <section className="py-8 px-4 bg-muted/20">
+        <div className="container mx-auto max-w-5xl">
+          <AnimatedSection animation="fade-up">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <MessageSquare className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-primary">
+                  Hubungi Kami
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+                Kritik dan Saran
+              </h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="relative py-8 px-4 bg-muted/20 overflow-hidden">
+        {/* Blue/Teal Background Pattern */}
+        <AnimatedSection animation="fade-in">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Large Circle - Top Right */}
+          <div className="absolute -top-32 -right-32 w-96 h-96 border-[3px] border-blue-100/50 rounded-full" />
+          
+          {/* Dots Pattern - Bottom Left */}
+          <div className="absolute bottom-0 left-0 w-64 h-64 opacity-20">
+            <div className="grid grid-cols-8 gap-4 p-8">
+              {[...Array(64)].map((_, i) => (
+                <div key={i} className="w-1.5 h-1.5 rounded-full bg-blue-300" />
+              ))}
+            </div>
+          </div>
+
+          {/* Geometric Shapes */}
+          <div className="absolute top-1/4 left-10 w-16 h-16 border-2 border-cyan-200/30 rounded-lg rotate-12" />
+          <div className="absolute bottom-1/4 right-20 w-12 h-12 bg-blue-100/20 rounded-full" />
+
+          {/* Wave SVG - Blue */}
+          <svg
+            className="absolute bottom-0 left-0 w-full h-32 text-blue-50/30"
+            viewBox="0 0 1440 320"
+            preserveAspectRatio="none"
+            fill="currentColor"
+          >
+            <path d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" />
+          </svg>
+        </div>
+        </AnimatedSection>
+        
+        <div id="contact" className="relative z-10 container mx-auto max-w-5xl">
+          <AnimatedSection animation="scale-in" delay={100}>
+            <ContactSection />
+          </AnimatedSection>
+        </div>
+      </section>
+
+    </Layout>
+  );
 };
+
 export default Index;
