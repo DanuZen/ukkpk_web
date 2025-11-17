@@ -186,28 +186,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Map Section Heading */}
-      <section className="py-8 px-4 bg-muted/20">
-        <div className="container mx-auto max-w-5xl">
-          <AnimatedSection animation="fade-up">
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                <MapPin className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium text-primary">
-                  Lokasi Kami
-                </span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
-                Lokasi Sekretariatan UKKPK
-              </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Map Section */}
-      <section className="relative py-8 px-4 bg-muted/20 overflow-hidden">
+      {/* Map Section with Location Details */}
+      <section className="relative py-12 px-4 bg-muted/20 overflow-hidden">
         {/* Green/Emerald Background Pattern */}
         <AnimatedSection animation="fade-in">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -248,10 +228,76 @@ const Index = () => {
         </div>
         </AnimatedSection>
         
-        <div className="relative z-10 container mx-auto max-w-5xl">
-          <AnimatedSection animation="scale-in" delay={100}>
-            <GoogleMap />
+        <div className="relative z-10 container mx-auto max-w-7xl">
+          <AnimatedSection animation="fade-up">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <MapPin className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-primary">
+                  Lokasi Kami
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+                Lokasi Sekretariatan UKKPK
+              </h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
+            </div>
           </AnimatedSection>
+
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
+            {/* Map */}
+            <AnimatedSection animation="scale-in" delay={100}>
+              <GoogleMap />
+            </AnimatedSection>
+
+            {/* Location Details */}
+            <AnimatedSection animation="fade-up" delay={200}>
+              <Card className="h-full">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <MapPin className="h-5 w-5 text-primary" />
+                    Informasi Lokasi
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Alamat Lengkap</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Gedung Radio Kementerian Komunikasi dan Informatika<br />
+                      Jl. Merdeka Barat No. 9<br />
+                      Jakarta Pusat 10110<br />
+                      DKI Jakarta, Indonesia
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Kontak</h3>
+                    <div className="space-y-2 text-muted-foreground">
+                      <p>Telepon: (021) 3456789</p>
+                      <p>Email: sekretariat@ukkpk.go.id</p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Jam Operasional</h3>
+                    <div className="space-y-1 text-muted-foreground">
+                      <p>Senin - Jumat: 08:00 - 17:00 WIB</p>
+                      <p>Sabtu - Minggu: Tutup</p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Akses Transportasi</h3>
+                    <ul className="space-y-1 text-muted-foreground list-disc list-inside">
+                      <li>TransJakarta: Halte Monas</li>
+                      <li>MRT: Stasiun Bundaran HI</li>
+                      <li>KRL: Stasiun Gambir</li>
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+          </div>
         </div>
       </section>
 
