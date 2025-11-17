@@ -54,8 +54,8 @@ export const Navigation = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      // Change navbar when scrolled past the text content and buttons in slideshow
-      const textAreaEnd = window.innerHeight; // Full viewport height - change after passing slideshow
+      // Change navbar after completely passing the slideshow (add small offset)
+      const textAreaEnd = window.innerHeight - 100; // Change slightly before end of slideshow
       setIsScrolled(scrollPosition > textAreaEnd);
     };
     window.addEventListener('scroll', handleScroll);
