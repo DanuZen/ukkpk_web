@@ -34,15 +34,6 @@ export const DashboardHeader = ({ title, user, onSignOut }: DashboardHeaderProps
       <h1 className="text-xl font-bold text-gray-900">{title}</h1>
 
       <div className="ml-auto flex items-center gap-3">
-        <Button 
-          variant="outline" 
-          onClick={() => navigate("/")}
-          className="hidden sm:flex items-center gap-2"
-        >
-          <ExternalLink className="h-4 w-4" />
-          Kembali ke Website
-        </Button>
-
         <div className="relative hidden md:block">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
           <Input
@@ -50,6 +41,16 @@ export const DashboardHeader = ({ title, user, onSignOut }: DashboardHeaderProps
             className="w-64 pl-9 bg-gray-50 border-gray-200"
           />
         </div>
+
+        <Button 
+          variant="ghost" 
+          size="icon"
+          onClick={() => navigate("/")}
+          className="text-gray-600"
+          title="Kembali ke Website"
+        >
+          <ExternalLink className="h-5 w-5" />
+        </Button>
 
         <Button variant="ghost" size="icon" className="text-gray-600">
           <Bell className="h-5 w-5" />
