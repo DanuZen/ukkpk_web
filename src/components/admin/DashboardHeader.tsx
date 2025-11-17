@@ -46,17 +46,17 @@ export const DashboardHeader = ({ title, user, onSignOut }: DashboardHeaderProps
           variant="ghost" 
           size="icon"
           onClick={() => navigate("/")}
-          className="text-gray-600"
+          className="text-gray-600 hover:bg-primary hover:text-white transition-colors"
           title="Kembali ke Website"
         >
           <ExternalLink className="h-5 w-5" />
         </Button>
 
-        <Button variant="ghost" size="icon" className="text-gray-600">
+        <Button variant="ghost" size="icon" className="text-gray-600 hover:bg-primary hover:text-white transition-colors">
           <Bell className="h-5 w-5" />
         </Button>
 
-        <Button variant="ghost" size="icon" className="text-gray-600">
+        <Button variant="ghost" size="icon" className="text-gray-600 hover:bg-primary hover:text-white transition-colors">
           <Grid3x3 className="h-5 w-5" />
         </Button>
 
