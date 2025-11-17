@@ -103,7 +103,7 @@ const ProfilUkkpk = () => {
     },
     {
       icon: <FileText className="h-8 w-8" />,
-      title: 'Jurnalistik',
+      title: 'Jurnalistik & Penyiaran',
       description:
         'Mengembangkan kemampuan menulis berita, artikel, dan melakukan liputan yang mendalam',
     },
