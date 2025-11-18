@@ -1,7 +1,6 @@
 import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Music2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logoUkkpk from "@/assets/logo-ukkpk.png";
-
 export const Footer = () => {
   // Hardcoded social media links
   const socialLinks = {
@@ -18,8 +17,7 @@ export const Footer = () => {
       tiktok: "#"
     }
   };
-  return (
-    <footer className="bg-gradient-to-b from-primary/95 to-primary border-t border-primary-foreground/20 mt-16 text-primary-foreground text-sm">
+  return <footer className="bg-gradient-to-b from-primary/95 to-primary border-t border-primary-foreground/20 mt-16 text-primary-foreground text-sm">
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-10">
           {/* About */}
@@ -28,7 +26,7 @@ export const Footer = () => {
               <img src={logoUkkpk} alt="Logo UKKPK" className="h-12 w-12" />
               <h3 className="font-bold text-xl text-white">UKKPK UNP</h3>
             </div>
-            <p className="text-sm text-primary-foreground/80 leading-relaxed">Unit Kegiatan Komunikasi dan Penyiaran Kampus</p>
+            <p className="text-sm text-primary-foreground/80 leading-relaxed">Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang                    </p>
           </div>
 
           {/* Quick Links */}
@@ -125,6 +123,5 @@ export const Footer = () => {
           <p className="text-sm text-white/90">&copy; {new Date().getFullYear()} UKKPK. All rights reserved.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
