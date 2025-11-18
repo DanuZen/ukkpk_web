@@ -32,6 +32,24 @@ export const Footer = () => {
             <p className="text-sm text-white/80 leading-relaxed">
               Platform media kampus untuk pengembangan jasa komunikasi dan penyiaran yang dikembangkan dengan semangat kreatif mahasiswa UKKPK UNP.
             </p>
+            
+            {/* Social Media Icons */}
+            <div className="pt-4">
+              <div className="flex gap-2 flex-wrap">
+                <a href={socialLinks.ukkpk.facebook} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
+                  <Facebook className="h-5 w-5" />
+                </a>
+                <a href={socialLinks.ukkpk.instagram} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a href={socialLinks.ukkpk.youtube} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
+                  <Youtube className="h-5 w-5" />
+                </a>
+                <a href={socialLinks.ukkpk.tiktok} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
+                  <Music2 className="h-5 w-5" />
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Layanan Kami */}
@@ -123,24 +141,6 @@ export const Footer = () => {
                 </div>
               </li>
             </ul>
-
-            {/* Social Media Icons */}
-            <div className="pt-4">
-              <div className="flex gap-2 flex-wrap">
-                <a href={socialLinks.ukkpk.facebook} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
-                  <Facebook className="h-5 w-5" />
-                </a>
-                <a href={socialLinks.ukkpk.instagram} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
-                  <Instagram className="h-5 w-5" />
-                </a>
-                <a href={socialLinks.ukkpk.youtube} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
-                  <Youtube className="h-5 w-5" />
-                </a>
-                <a href={socialLinks.ukkpk.tiktok} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
-                  <Music2 className="h-5 w-5" />
-                </a>
-              </div>
-            </div>
           </div>
         </div>
 
