@@ -107,7 +107,7 @@ const Auth = () => {
 
         {/* Welcome Text */}
         <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 text-center text-white z-10">
-          <h2 className="text-3xl font-bold mb-2 drop-shadow-lg">Selamat Datang Admin!</h2>
+          <h2 className="text-3xl font-bold mb-2 drop-shadow-lg">Selamat Datang !</h2>
           <p className="text-lg opacity-90 drop-shadow">Unit Kegiatan Komunikasi & Penyiaran Kampus</p>
         </div>
       </div>
