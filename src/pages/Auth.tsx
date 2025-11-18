@@ -115,6 +115,10 @@ const Auth = () => {
             src={logoMicuMascot} 
             alt="MICU Mascot" 
             className="h-64 w-auto mx-auto mb-6 animate-fade-in drop-shadow-2xl"
+            style={{
+              animation: 'float 3s ease-in-out infinite',
+              filter: 'drop-shadow(0 0 40px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 80px rgba(255, 255, 255, 0.4))'
+            }}
           />
           <h2 className="text-3xl font-bold mb-2 drop-shadow-lg">Selamat Datang Intelektual Muda!</h2>
           <p className="text-lg opacity-90 drop-shadow">Unit Kegiatan Komunikasi & Penyiaran Kampus</p>
