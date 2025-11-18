@@ -3,7 +3,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { supabase } from '@/integrations/supabase/client';
 import { Eye, Heart, FileText, Newspaper, TrendingUp, Users } from 'lucide-react';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-
 interface ArticleStats {
   id: string;
   title: string;
@@ -12,7 +11,6 @@ interface ArticleStats {
   category: string | null;
   published_at: string | null;
 }
-
 interface NewsStats {
   id: string;
   title: string;
@@ -20,7 +18,6 @@ interface NewsStats {
   likes_count: number;
   published_at: string | null;
 }
-
 interface OverallStats {
   totalArticles: number;
   totalNews: number;
@@ -36,9 +33,7 @@ interface OverallStats {
   avgNewsLikes: number;
   engagementRate: number;
 }
-
 const COLORS = ['#dc2626', '#ea580c', '#f59e0b', '#84cc16', '#22c55e', '#06b6d4'];
-
 export const AnalyticsDashboard = () => {
   const [articles, setArticles] = useState<ArticleStats[]>([]);
   const [news, setNews] = useState<NewsStats[]>([]);
@@ -55,32 +50,31 @@ export const AnalyticsDashboard = () => {
     avgNewsViews: 0,
     avgArticleLikes: 0,
     avgNewsLikes: 0,
-    engagementRate: 0,
+    engagementRate: 0
   });
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     fetchAnalytics();
   }, []);
-
   const fetchAnalytics = async () => {
     try {
       // Fetch articles with views and likes
-      const { data: articlesData, error: articlesError } = await supabase
-        .from('articles')
-        .select('id, title, view_count, likes_count, category, published_at')
-        .order('view_count', { ascending: false });
-
+      const {
+        data: articlesData,
+        error: articlesError
+      } = await supabase.from('articles').select('id, title, view_count, likes_count, category, published_at').order('view_count', {
+        ascending: false
+      });
       if (articlesError) throw articlesError;
 
       // Fetch news with views and likes
-      const { data: newsData, error: newsError } = await supabase
-        .from('news')
-        .select('id, title, view_count, likes_count, published_at')
-        .order('view_count', { ascending: false });
-
+      const {
+        data: newsData,
+        error: newsError
+      } = await supabase.from('news').select('id, title, view_count, likes_count, published_at').order('view_count', {
+        ascending: false
+      });
       if (newsError) throw newsError;
-
       setArticles(articlesData || []);
       setNews(newsData || []);
 
@@ -89,20 +83,16 @@ export const AnalyticsDashboard = () => {
       const totalArticleLikes = (articlesData || []).reduce((sum, a) => sum + (a.likes_count || 0), 0);
       const totalNewsViews = (newsData || []).reduce((sum, n) => sum + (n.view_count || 0), 0);
       const totalNewsLikes = (newsData || []).reduce((sum, n) => sum + (n.likes_count || 0), 0);
-
       const totalArticles = articlesData?.length || 0;
       const totalNews = newsData?.length || 0;
       const totalContent = totalArticles + totalNews;
       const totalViews = totalArticleViews + totalNewsViews;
       const totalLikes = totalArticleLikes + totalNewsLikes;
-      
       const avgArticleViews = totalArticles > 0 ? Math.round(totalArticleViews / totalArticles) : 0;
       const avgNewsViews = totalNews > 0 ? Math.round(totalNewsViews / totalNews) : 0;
       const avgArticleLikes = totalArticles > 0 ? Math.round(totalArticleLikes / totalArticles) : 0;
       const avgNewsLikes = totalNews > 0 ? Math.round(totalNewsLikes / totalNews) : 0;
-      
-      const engagementRate = totalViews > 0 ? ((totalLikes / totalViews) * 100) : 0;
-
+      const engagementRate = totalViews > 0 ? totalLikes / totalViews * 100 : 0;
       setOverallStats({
         totalArticles,
         totalNews,
@@ -116,7 +106,7 @@ export const AnalyticsDashboard = () => {
         avgNewsViews,
         avgArticleLikes,
         avgNewsLikes,
-        engagementRate,
+        engagementRate
       });
     } catch (error) {
       console.error('Error fetching analytics:', error);
@@ -124,67 +114,55 @@ export const AnalyticsDashboard = () => {
       setLoading(false);
     }
   };
-
   const topArticles = articles.slice(0, 5);
   const topNews = news.slice(0, 5);
 
   // Prepare data for comparison chart
-  const comparisonData = [
-    {
-      name: 'Total Views',
-      Artikel: overallStats.totalArticleViews,
-      Berita: overallStats.totalNewsViews,
-    },
-    {
-      name: 'Total Likes',
-      Artikel: overallStats.totalArticleLikes,
-      Berita: overallStats.totalNewsLikes,
-    },
-    {
-      name: 'Total Konten',
-      Artikel: overallStats.totalArticles,
-      Berita: overallStats.totalNews,
-    },
-  ];
+  const comparisonData = [{
+    name: 'Total Views',
+    Artikel: overallStats.totalArticleViews,
+    Berita: overallStats.totalNewsViews
+  }, {
+    name: 'Total Likes',
+    Artikel: overallStats.totalArticleLikes,
+    Berita: overallStats.totalNewsLikes
+  }, {
+    name: 'Total Konten',
+    Artikel: overallStats.totalArticles,
+    Berita: overallStats.totalNews
+  }];
 
   // Prepare data for category distribution (articles only)
-  const categoryData = articles.reduce((acc: { [key: string]: number }, article) => {
+  const categoryData = articles.reduce((acc: {
+    [key: string]: number;
+  }, article) => {
     const category = article.category || 'Tanpa Kategori';
     acc[category] = (acc[category] || 0) + 1;
     return acc;
   }, {});
-
   const categoryChartData = Object.entries(categoryData).map(([name, value]) => ({
     name,
-    value,
+    value
   }));
 
   // Prepare top content data for bar chart
-  const topContentData = [
-    ...topArticles.map(a => ({
-      title: a.title.length > 30 ? a.title.substring(0, 30) + '...' : a.title,
-      views: a.view_count || 0,
-      likes: a.likes_count || 0,
-      type: 'Artikel',
-    })),
-    ...topNews.slice(0, 3).map(n => ({
-      title: n.title.length > 30 ? n.title.substring(0, 30) + '...' : n.title,
-      views: n.view_count || 0,
-      likes: n.likes_count || 0,
-      type: 'Berita',
-    })),
-  ].sort((a, b) => b.views - a.views).slice(0, 8);
-
+  const topContentData = [...topArticles.map(a => ({
+    title: a.title.length > 30 ? a.title.substring(0, 30) + '...' : a.title,
+    views: a.view_count || 0,
+    likes: a.likes_count || 0,
+    type: 'Artikel'
+  })), ...topNews.slice(0, 3).map(n => ({
+    title: n.title.length > 30 ? n.title.substring(0, 30) + '...' : n.title,
+    views: n.view_count || 0,
+    likes: n.likes_count || 0,
+    type: 'Berita'
+  }))].sort((a, b) => b.views - a.views).slice(0, 8);
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-64">
+    return <div className="flex items-center justify-center h-64">
         <p className="text-muted-foreground">Memuat data analytics...</p>
-      </div>
-    );
+      </div>;
   }
-
-  return (
-    <div className="space-y-6">
+  return <div className="space-y-6">
       {/* Overview Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="bg-gradient-to-br from-purple-50 to-purple-100/50 border-purple-200">
@@ -323,36 +301,7 @@ export const AnalyticsDashboard = () => {
         </Card>
 
         {/* Category Distribution */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Users className="h-5 w-5 text-primary" />
-              Distribusi Kategori Artikel
-            </CardTitle>
-            <CardDescription>Jumlah artikel per kategori</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
-                  data={categoryChartData}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                  outerRadius={80}
-                  fill="#8884d8"
-                  dataKey="value"
-                >
-                  {categoryChartData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
+        
       </div>
 
       {/* Top Content Chart */}
@@ -378,6 +327,5 @@ export const AnalyticsDashboard = () => {
           </ResponsiveContainer>
         </CardContent>
       </Card>
-    </div>
-  );
+    </div>;
 };
