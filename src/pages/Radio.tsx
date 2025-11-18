@@ -244,7 +244,7 @@ const Radio = () => {
                     <div className="flex items-start gap-4">
                       <div className="relative">
                         <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 border border-primary/20">
-                          <img src={logoSigmaRadio} alt="SIGMA Radio" className="h-9 w-9 object-contain group-hover:scale-110 transition-transform duration-300" />
+                          <RadioIcon className="h-8 w-8 text-primary group-hover:scale-110 transition-transform duration-300" />
                         </div>
                         {/* Live indicator if it's the current program */}
                         {currentProgram?.id === program.id && (
