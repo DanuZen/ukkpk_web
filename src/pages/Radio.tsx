@@ -98,7 +98,7 @@ const Radio = () => {
             <div className="max-w-3xl mx-auto text-center">
               {/* Badge */}
               <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-5 py-2.5 rounded-full mb-6">
-                <img src={logoSigmaRadio} alt="SIGMA Radio" className="h-6 w-6 object-contain" />
+                <RadioIcon className="h-6 w-6 text-white" />
                 <span className="text-sm font-medium">Radio #1 Kampus UNP</span>
               </div>
               
