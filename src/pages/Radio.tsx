@@ -167,6 +167,7 @@ const Radio = () => {
                 size="lg" 
                 variant="outline"
                 className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-8 py-6 text-base"
+                onClick={() => document.getElementById('jadwal-program')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
               >
                 <Clock className="h-5 w-5 mr-2" />
                 Lihat Jadwal
@@ -201,7 +202,7 @@ const Radio = () => {
         </div>
 
         {/* Schedule */}
-        <div className="mb-12 relative">
+        <div id="jadwal-program" className="mb-12 relative">
           {/* Decorative Elements */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-12 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0" />
           
