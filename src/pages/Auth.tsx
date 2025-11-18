@@ -54,7 +54,7 @@ const Auth = () => {
           <AnimatedSection animation="fade-up" delay={200}>
             <div className="mb-8 text-center">
               <h1 className="text-4xl font-bold text-foreground mb-2">Login</h1>
-              <p className="text-muted-foreground">Masuk ke Dashboard Admin UKKPK</p>
+              <p className="text-muted-foreground">Masuk ke Dashboard Admin UKKPK UNP</p>
             </div>
           </AnimatedSection>
 
