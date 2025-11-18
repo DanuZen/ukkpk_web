@@ -177,8 +177,8 @@ const Radio = () => {
           </AnimatedSection>
         </div>
       </section>
-
-      <div className="container mx-auto px-4 py-12 relative">
+      {/* Now Playing & Schedule Section */}
+      <section className="min-h-screen flex items-center py-32 md:py-40 scroll-mt-20 relative bg-background overflow-hidden">
         {/* Curved geometric background patterns */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-20 -left-20 w-80 h-80 rounded-full border-[35px] border-gray-100/60" />
@@ -201,10 +201,41 @@ const Radio = () => {
           </div>
         </div>
 
-        {/* Schedule */}
-        <div id="jadwal-program" className="mb-12 relative">
-          {/* Decorative Elements */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-12 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0" />
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Now Playing Info */}
+          <AnimatedSection animation="fade-up">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20 mb-4">
+                <Play className="h-5 w-5 text-primary" />
+                <span className="text-sm font-medium text-primary">Sedang Tayang</span>
+              </div>
+              {currentProgram ? (
+                <div className="max-w-2xl mx-auto">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+                    {currentProgram.name}
+                  </h2>
+                  <p className="text-muted-foreground mb-2">{currentProgram.description}</p>
+                  <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
+                    <span className="flex items-center gap-1">
+                      <Clock className="h-4 w-4" />
+                      {currentProgram.air_time}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Mic className="h-4 w-4" />
+                      {currentProgram.host}
+                    </span>
+                  </div>
+                </div>
+              ) : (
+                <p className="text-muted-foreground">Tidak ada program yang sedang tayang</p>
+              )}
+            </div>
+          </AnimatedSection>
+
+          {/* Schedule */}
+          <div id="jadwal-program" className="relative scroll-mt-20">
+            {/* Decorative Elements */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-12 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0" />
           
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
@@ -281,13 +312,14 @@ const Radio = () => {
                   
                   {/* Corner Decoration */}
                   <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-primary/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </Card>
-                </AnimatedSection>
-              ))}
-            </div>
-          )}
+              </Card>
+            </AnimatedSection>
+          ))}
         </div>
-      </div>
+      )}
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };
