@@ -26,7 +26,10 @@ export const Footer = () => {
               <img src={logoUkkpk} alt="Logo UKKPK" className="h-12 w-12" />
               <h3 className="font-bold text-xl text-white">UKKPK UNP</h3>
             </div>
-            <p className="text-sm text-primary-foreground/80 leading-relaxed">Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang                    </p>
+            <p className="text-sm text-primary-foreground/80 leading-relaxed">
+              Unit Kegiatan Komunikasi dan Penyiaran Kampus<br />
+              Universitas Negeri Padang
+            </p>
           </div>
 
           {/* Quick Links */}
@@ -120,7 +123,10 @@ export const Footer = () => {
         </div>
 
         <div className="border-t border-primary-foreground/20 mt-8 pt-6 text-center">
-          <p className="text-sm text-white/90">&copy; {new Date().getFullYear()} UKKPK. All rights reserved.</p>
+          <p className="text-sm text-white/90">
+            Unit Kegiatan Komunikasi dan Penyiaran Kampus<br />
+            Universitas Negeri Padang
+          </p>
         </div>
       </div>
     </footer>;
