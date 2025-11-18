@@ -300,32 +300,29 @@ export const AnalyticsDashboard = () => {
           </CardContent>
         </Card>
 
-        {/* Category Distribution */}
-        
+        {/* Top Content Chart */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <TrendingUp className="h-5 w-5 text-primary" />
+              Konten Paling Populer
+            </CardTitle>
+            <CardDescription>Top 8 artikel dan berita berdasarkan views dan likes</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={topContentData} layout="vertical">
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis type="number" />
+                <YAxis dataKey="title" type="category" width={150} />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="views" fill="#dc2626" name="Views" />
+                <Bar dataKey="likes" fill="#f43f5e" name="Likes" />
+              </BarChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
       </div>
-
-      {/* Top Content Chart */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-primary" />
-            Konten Paling Populer
-          </CardTitle>
-          <CardDescription>Top 8 artikel dan berita berdasarkan views dan likes</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ResponsiveContainer width="100%" height={400}>
-            <BarChart data={topContentData} layout="vertical">
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis type="number" />
-              <YAxis dataKey="title" type="category" width={150} />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="views" fill="#dc2626" name="Views" />
-              <Bar dataKey="likes" fill="#f43f5e" name="Likes" />
-            </BarChart>
-          </ResponsiveContainer>
-        </CardContent>
-      </Card>
     </div>;
 };
