@@ -153,17 +153,12 @@ export const Navigation = () => {
                   <User className={`h-5 w-5 ${user ? showTransparentNav ? "fill-white" : "fill-primary" : ""}`} />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-80 p-0" align="end">
-                {!user ? <div className="relative overflow-hidden">
-                    {/* Decorative Background */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-primary/10 to-transparent"></div>
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-16 translate-x-16"></div>
-                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/5 rounded-full translate-y-12 -translate-x-12"></div>
-                    
-                    <div className="relative p-6 space-y-5">
+              <PopoverContent className="w-80 p-0 bg-white" align="end">
+                {!user ? <div className="bg-white">
+                    <div className="p-6 space-y-5">
                       {/* Icon & Header */}
                       <div className="flex items-center gap-3">
-                        <div className="p-2.5 bg-gradient-to-br from-primary to-primary/80 rounded-lg shadow-md">
+                        <div className="p-2.5 bg-gradient-to-br from-primary to-primary/80 rounded-lg shadow-sm">
                           <User className="h-5 w-5 text-white" />
                         </div>
                         <div>
@@ -197,15 +192,12 @@ export const Navigation = () => {
                         </p>
                       </div>
                     </div>
-                  </div> : <div className="relative overflow-hidden">
-                    {/* Decorative Background for logged in state */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
-                    
-                    <div className="relative p-4 space-y-3">
+                  </div> : <div className="bg-white">
+                    <div className="p-4 space-y-3">
                       {/* User Info */}
                       <div className="pb-3 border-b border-border/50">
                         <div className="flex items-center gap-3">
-                          <div className="p-2 bg-gradient-to-br from-primary to-primary/80 rounded-lg">
+                          <div className="p-2 bg-gradient-to-br from-primary to-primary/80 rounded-lg shadow-sm">
                             <User className="h-4 w-4 text-white" />
                           </div>
                           <div className="flex-1 min-w-0">
