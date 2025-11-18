@@ -114,7 +114,7 @@ const Auth = () => {
           <img 
             src={logoMicuMascot} 
             alt="MICU Mascot" 
-            className="h-32 w-auto mx-auto mb-6 animate-fade-in drop-shadow-2xl"
+            className="h-64 w-auto mx-auto mb-6 animate-fade-in drop-shadow-2xl"
           />
           <h2 className="text-3xl font-bold mb-2 drop-shadow-lg">Selamat Datang Intelektual Muda!</h2>
           <p className="text-lg opacity-90 drop-shadow">Unit Kegiatan Komunikasi & Penyiaran Kampus</p>
