@@ -230,7 +230,7 @@ const Radio = () => {
               {programs.map((program, index) => (
                 <AnimatedSection key={program.id} animation="fade-up" delay={index * 100}>
                   <Card
-                    className="group relative overflow-hidden border-border/40 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 bg-white dark:bg-gray-900"
+                    className="group relative overflow-hidden border-border/40 hover:border-primary/40 transition-all duration-500 shadow-lg hover:shadow-2xl hover:shadow-primary/10 bg-white dark:bg-gray-900"
                   >
                   {/* Gradient Background on Hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
