@@ -9,7 +9,6 @@ import logoReporter from '@/assets/logo-reporter.png';
 import logoMicu from '@/assets/logo-micu-new.png';
 import logoMc from '@/assets/logo-mc.png';
 import logoSigmaRadio from '@/assets/logo-sigma-radio.png';
-import logoUkkpk from '@/assets/logo-ukkpk.png';
 
 interface OrgMember {
   id: string;
@@ -204,8 +203,8 @@ const ProfilUkkpk = () => {
             {/* Section Header */}
             <AnimatedSection animation="fade-up">
               <div className="text-center mb-12">
-                <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                  <img src={logoUkkpk} alt="UKKPK" className="h-5 w-5 object-contain" />
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                  <Users className="h-4 w-4 text-primary" />
                   <span className="text-sm font-medium text-primary">
                     Tentang Kami
                   </span>
@@ -235,8 +234,8 @@ const ProfilUkkpk = () => {
             {/* Visi & Misi */}
             <AnimatedSection animation="fade-up" delay={150}>
               <div className="text-center mb-12">
-                <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                  <img src={logoUkkpk} alt="UKKPK" className="h-5 w-5 object-contain" />
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                  <Eye className="h-4 w-4 text-primary" />
                   <span className="text-sm font-medium text-primary">
                     Visi & Misi
                   </span>
@@ -253,8 +252,8 @@ const ProfilUkkpk = () => {
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 relative">
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center flex-shrink-0 border border-primary/20 shadow-lg">
-                        <img src={logoUkkpk} alt="UKKPK" className="h-9 w-9 object-contain" />
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
+                        <Sparkles className="h-7 w-7" />
                       </div>
                       <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                         Visi
@@ -274,8 +273,8 @@ const ProfilUkkpk = () => {
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 relative">
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center flex-shrink-0 border border-primary/20 shadow-lg">
-                        <img src={logoUkkpk} alt="UKKPK" className="h-9 w-9 object-contain" />
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
+                        <Rocket className="h-7 w-7" />
                       </div>
                       <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                         Misi
@@ -321,8 +320,8 @@ const ProfilUkkpk = () => {
                   <CardContent className="pt-6 pb-6 relative">
                     <div className="flex gap-4">
                       <div className="flex-shrink-0">
-                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center border border-primary/20 shadow-lg">
-                          <img src={logoUkkpk} alt="UKKPK" className="h-9 w-9 object-contain" />
+                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white shadow-xl">
+                          <Sparkles className="h-7 w-7" />
                         </div>
                       </div>
                       <div className="flex-1">
@@ -354,8 +353,8 @@ const ProfilUkkpk = () => {
                   <CardContent className="pt-6 pb-6 relative">
                     <div className="flex gap-4">
                       <div className="flex-shrink-0">
-                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center border border-primary/20 shadow-lg">
-                          <img src={logoUkkpk} alt="UKKPK" className="h-9 w-9 object-contain" />
+                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white shadow-xl">
+                          <Mic className="h-7 w-7" />
                         </div>
                       </div>
                       <div className="flex-1">
@@ -380,8 +379,8 @@ const ProfilUkkpk = () => {
                   <CardContent className="pt-6 pb-6 relative">
                     <div className="flex gap-4">
                       <div className="flex-shrink-0">
-                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center border border-primary/20 shadow-lg">
-                          <img src={logoUkkpk} alt="UKKPK" className="h-9 w-9 object-contain" />
+                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-xl">
+                          <Waves className="h-7 w-7" />
                         </div>
                       </div>
                       <div className="flex-1">
@@ -407,8 +406,8 @@ const ProfilUkkpk = () => {
                   <CardContent className="pt-6 pb-6 relative">
                     <div className="flex gap-4">
                       <div className="flex-shrink-0">
-                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center border border-primary/20 shadow-lg">
-                          <img src={logoUkkpk} alt="UKKPK" className="h-9 w-9 object-contain" />
+                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white shadow-xl">
+                          <Shield className="h-7 w-7" />
                         </div>
                       </div>
                       <div className="flex-1">
@@ -434,8 +433,8 @@ const ProfilUkkpk = () => {
                   <CardContent className="pt-6 pb-6 relative">
                     <div className="flex gap-4">
                       <div className="flex-shrink-0">
-                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center border border-primary/20 shadow-lg">
-                          <img src={logoUkkpk} alt="UKKPK" className="h-9 w-9 object-contain" />
+                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-500 flex items-center justify-center text-white shadow-xl">
+                          <Rocket className="h-7 w-7" />
                         </div>
                       </div>
                       <div className="flex-1">
@@ -465,8 +464,8 @@ const ProfilUkkpk = () => {
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                <img src={logoUkkpk} alt="UKKPK" className="h-5 w-5 object-contain" />
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <Briefcase className="h-4 w-4 text-primary" />
                 <span className="text-sm font-medium text-primary">
                   Program Kami
                 </span>
@@ -577,8 +576,8 @@ const ProfilUkkpk = () => {
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                <img src={logoUkkpk} alt="UKKPK" className="h-5 w-5 object-contain" />
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <Sparkles className="h-4 w-4 text-primary" />
                 <span className="text-sm font-medium text-primary">
                   Nilai Kami
                 </span>
@@ -621,8 +620,8 @@ const ProfilUkkpk = () => {
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                <img src={logoUkkpk} alt="UKKPK" className="h-5 w-5 object-contain" />
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <Users2 className="h-4 w-4 text-primary" />
                 <span className="text-sm font-medium text-primary">
                   Tim Kami
                 </span>
