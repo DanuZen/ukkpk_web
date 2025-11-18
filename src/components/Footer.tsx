@@ -1,6 +1,7 @@
 import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Music2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logoUkkpk from "@/assets/logo-ukkpk.png";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export const Footer = () => {
   // Hardcoded social media links
@@ -35,20 +36,64 @@ export const Footer = () => {
             
             {/* Social Media Icons */}
             <div className="pt-4">
-              <div className="flex gap-2 flex-wrap">
-                <a href={socialLinks.ukkpk.facebook} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
-                  <Facebook className="h-5 w-5" />
-                </a>
-                <a href={socialLinks.ukkpk.instagram} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
-                  <Instagram className="h-5 w-5" />
-                </a>
-                <a href={socialLinks.ukkpk.youtube} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
-                  <Youtube className="h-5 w-5" />
-                </a>
-                <a href={socialLinks.ukkpk.tiktok} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
-                  <Music2 className="h-5 w-5" />
-                </a>
-              </div>
+              <TooltipProvider>
+                <div className="flex gap-2 flex-wrap">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a href={socialLinks.ukkpk.facebook} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
+                        <Facebook className="h-5 w-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Facebook UKKPK UNP</p>
+                    </TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a href={socialLinks.ukkpk.instagram} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
+                        <Instagram className="h-5 w-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Instagram UKKPK UNP</p>
+                    </TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a href={socialLinks.sigma.instagram} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
+                        <Instagram className="h-5 w-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Instagram SIGMA Radio</p>
+                    </TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a href={socialLinks.ukkpk.youtube} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
+                        <Youtube className="h-5 w-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>YouTube UKKPK UNP</p>
+                    </TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a href={socialLinks.ukkpk.tiktok} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
+                        <Music2 className="h-5 w-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>TikTok UKKPK UNP</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+              </TooltipProvider>
             </div>
           </div>
 
