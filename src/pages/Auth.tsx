@@ -117,7 +117,7 @@ const Auth = () => {
       </div>
 
       {/* Right Side - Illustration */}
-      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 relative overflow-hidden">
+      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 relative overflow-hidden items-center justify-center">
         {/* Animated Stars */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-20 w-2 h-2 bg-white rounded-full animate-pulse"></div>
@@ -126,34 +126,59 @@ const Auth = () => {
           <div className="absolute top-1/3 left-1/4 w-1 h-1 bg-white rounded-full animate-pulse delay-300"></div>
         </div>
 
-        {/* Mountains */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1200 400" className="w-full h-auto">
-            <path d="M0,300 L200,100 L400,250 L600,150 L800,280 L1000,200 L1200,320 L1200,400 L0,400 Z" 
-                  fill="rgba(0,0,0,0.1)" />
-            <path d="M0,350 L150,200 L350,300 L550,220 L750,320 L950,260 L1200,350 L1200,400 L0,400 Z" 
-                  fill="rgba(0,0,0,0.15)" />
-          </svg>
-        </div>
-
         {/* Clouds */}
         <div className="absolute top-20 left-10 w-32 h-16 bg-white/20 rounded-full blur-xl animate-float"></div>
         <div className="absolute top-40 right-20 w-40 h-20 bg-white/20 rounded-full blur-xl animate-float delay-200"></div>
-        <div className="absolute top-60 left-1/3 w-36 h-18 bg-white/20 rounded-full blur-xl animate-float delay-100"></div>
 
-        {/* Rocket */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-float-slow">
-          <svg width="120" height="120" viewBox="0 0 24 24" fill="none" className="drop-shadow-2xl">
-            <path d="M12 2L4 10L8 10L8 22L16 22L16 10L20 10L12 2Z" fill="white" opacity="0.9"/>
-            <circle cx="12" cy="14" r="2" fill="#dc2626"/>
-            <path d="M8 22L6 24L10 24L8 22Z" fill="#f87171"/>
-            <path d="M16 22L14 24L18 24L16 22Z" fill="#f87171"/>
+        {/* Person Working at Desk Illustration */}
+        <div className="relative z-10 animate-float-slow">
+          <svg width="400" height="400" viewBox="0 0 400 400" fill="none" className="drop-shadow-2xl">
+            {/* Desk */}
+            <rect x="80" y="240" width="240" height="12" rx="6" fill="white" opacity="0.9"/>
+            <rect x="90" y="252" width="8" height="80" rx="4" fill="white" opacity="0.8"/>
+            <rect x="302" y="252" width="8" height="80" rx="4" fill="white" opacity="0.8"/>
+            
+            {/* Laptop */}
+            <rect x="150" y="200" width="100" height="70" rx="4" fill="#334155" opacity="0.9"/>
+            <rect x="155" y="205" width="90" height="50" fill="#60a5fa" opacity="0.8"/>
+            <rect x="145" y="270" width="110" height="4" rx="2" fill="#334155" opacity="0.9"/>
+            
+            {/* Person - Body */}
+            <ellipse cx="200" cy="140" rx="30" ry="35" fill="#dc2626" opacity="0.9"/>
+            
+            {/* Person - Head */}
+            <circle cx="200" cy="100" r="25" fill="#fbbf24" opacity="0.9"/>
+            <path d="M185 95 Q200 85 215 95" stroke="#334155" strokeWidth="2" fill="none"/>
+            <circle cx="192" cy="100" r="3" fill="#334155"/>
+            <circle cx="208" cy="100" r="3" fill="#334155"/>
+            <path d="M195 110 Q200 113 205 110" stroke="#334155" strokeWidth="2" fill="none"/>
+            
+            {/* Person - Arms */}
+            <path d="M175 150 L160 180 L165 185" stroke="white" strokeWidth="8" strokeLinecap="round" fill="none" opacity="0.9"/>
+            <path d="M225 150 L240 180 L235 185" stroke="white" strokeWidth="8" strokeLinecap="round" fill="none" opacity="0.9"/>
+            
+            {/* Hands on keyboard */}
+            <ellipse cx="165" cy="220" rx="12" ry="8" fill="#fbbf24" opacity="0.9"/>
+            <ellipse cx="235" cy="220" rx="12" ry="8" fill="#fbbf24" opacity="0.9"/>
+            
+            {/* Plant Pot */}
+            <path d="M290 220 L310 220 L315 250 L285 250 Z" fill="#dc2626" opacity="0.8"/>
+            
+            {/* Plant Leaves */}
+            <ellipse cx="295" cy="200" rx="8" ry="15" fill="#10b981" opacity="0.9" transform="rotate(-20 295 200)"/>
+            <ellipse cx="305" cy="200" rx="8" ry="15" fill="#10b981" opacity="0.9" transform="rotate(20 305 200)"/>
+            <ellipse cx="300" cy="190" rx="8" ry="15" fill="#059669" opacity="0.9"/>
+            
+            {/* Coffee Cup */}
+            <rect x="110" y="220" width="20" height="25" rx="2" fill="white" opacity="0.9"/>
+            <ellipse cx="120" cy="220" rx="10" ry="3" fill="white" opacity="0.9"/>
+            <path d="M130 225 Q138 225 138 232 Q138 239 130 239" stroke="white" strokeWidth="2" fill="none" opacity="0.8"/>
+            
+            {/* Decorative Elements - Floating Icons */}
+            <circle cx="80" cy="120" r="6" fill="white" opacity="0.6" className="animate-pulse"/>
+            <circle cx="320" cy="160" r="8" fill="white" opacity="0.5" className="animate-pulse delay-100"/>
           </svg>
         </div>
-
-        {/* Shooting Stars */}
-        <div className="absolute top-1/4 right-1/4 w-16 h-0.5 bg-white/60 rounded-full animate-shooting-star"></div>
-        <div className="absolute top-2/3 left-1/3 w-12 h-0.5 bg-white/60 rounded-full animate-shooting-star delay-300"></div>
 
         {/* Welcome Text */}
         <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 text-center text-white z-10">
