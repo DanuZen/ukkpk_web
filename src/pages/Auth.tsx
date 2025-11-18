@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
+import logoMicuMascot from "@/assets/logo-micu-mascot.png";
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -108,8 +109,13 @@ const Auth = () => {
           
         </div>
 
-        {/* Welcome Text */}
+        {/* MICU Logo & Welcome Text */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white z-10">
+          <img 
+            src={logoMicuMascot} 
+            alt="MICU Mascot" 
+            className="h-32 w-auto mx-auto mb-6 animate-fade-in drop-shadow-2xl"
+          />
           <h2 className="text-3xl font-bold mb-2 drop-shadow-lg">Selamat Datang Intelektual Muda!</h2>
           <p className="text-lg opacity-90 drop-shadow">Unit Kegiatan Komunikasi & Penyiaran Kampus</p>
         </div>
