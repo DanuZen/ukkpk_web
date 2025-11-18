@@ -49,7 +49,7 @@ const Index = () => {
       data
     } = await supabase.from('news').select('*').order('created_at', {
       ascending: false
-    }).limit(6);
+    }).limit(15);
     if (data) setNews(data);
   };
   const formatDate = (dateString: string) => {
