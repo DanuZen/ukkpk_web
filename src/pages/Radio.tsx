@@ -208,7 +208,7 @@ const Radio = () => {
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20 mb-4">
-                <img src={logoSigmaRadio} alt="SIGMA Radio" className="h-5 w-5 object-contain animate-pulse" />
+                <RadioIcon className="h-5 w-5 text-primary animate-pulse" />
                 <span className="text-sm font-medium text-primary">Program Kami</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
