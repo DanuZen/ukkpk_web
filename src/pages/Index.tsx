@@ -64,7 +64,7 @@ const Index = () => {
       <HomeSlideshow />
 
       {/* Artikel & Berita Section - Gabungan */}
-      <section className="py-12 bg-background relative overflow-hidden">
+      <section className="min-h-screen flex items-center py-32 md:py-40 scroll-mt-20 bg-background relative overflow-hidden">
         {/* Curved geometric background patterns */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full border-[40px] border-gray-100/60" />
@@ -152,7 +152,7 @@ const Index = () => {
       </section>
 
       {/* Thank You Section */}
-      <section className="relative py-40 px-4 bg-gradient-to-b from-primary/90 via-primary to-primary/90 overflow-hidden">
+      <section className="min-h-[85vh] flex items-center py-32 md:py-40 scroll-mt-20 relative px-4 bg-gradient-to-b from-primary/90 via-primary to-primary/90 overflow-hidden">
         {/* Top gradient fade */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent z-0" />
         
@@ -187,7 +187,7 @@ const Index = () => {
       </section>
 
       {/* Map Section with Location Details */}
-      <section className="relative py-12 px-4 bg-muted/20 overflow-hidden">
+      <section className="min-h-screen flex items-center py-32 md:py-40 scroll-mt-20 relative px-4 bg-muted/20 overflow-hidden">
         {/* Green/Emerald Background Pattern */}
         <AnimatedSection animation="fade-in">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -324,28 +324,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Contact Section Heading */}
-      <section className="py-8 px-4 bg-gray-100">
-        <div className="container mx-auto max-w-5xl">
-          <AnimatedSection animation="fade-up">
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                <MessageSquare className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium text-primary">
-                  Hubungi Kami
-                </span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
-                Kritik dan Saran
-              </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Contact Form Section */}
-      <section className="relative py-8 px-4 bg-gray-100 overflow-hidden">
+      {/* Contact Section - Kritik dan Saran */}
+      <section className="min-h-[85vh] flex items-center py-32 md:py-40 scroll-mt-20 relative px-4 bg-gray-100 overflow-hidden">
         {/* Blue/Teal Background Pattern */}
         <AnimatedSection animation="fade-in">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -371,6 +351,21 @@ const Index = () => {
         </AnimatedSection>
         
         <div id="contact" className="relative z-10 container mx-auto max-w-5xl">
+          <AnimatedSection animation="fade-up">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <MessageSquare className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-primary">
+                  Hubungi Kami
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+                Kritik dan Saran
+              </h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
+            </div>
+          </AnimatedSection>
+          
           <AnimatedSection animation="scale-in" delay={100}>
             <ContactSection />
           </AnimatedSection>
