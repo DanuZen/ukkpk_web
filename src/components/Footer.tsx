@@ -21,8 +21,32 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-primary via-primary to-black/90 mt-16 text-white text-sm">
-      <div className="container mx-auto px-4 py-16">
+    <footer className="bg-gradient-to-br from-primary via-primary to-black/90 mt-16 text-white text-sm relative overflow-hidden">
+      {/* Animated Wave Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-0 w-full h-full">
+          <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="wave-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                <path d="M0 50 Q 25 25, 50 50 T 100 50" stroke="white" strokeWidth="0.5" fill="none" opacity="0.3">
+                  <animate attributeName="d" 
+                    values="M0 50 Q 25 25, 50 50 T 100 50;M0 50 Q 25 75, 50 50 T 100 50;M0 50 Q 25 25, 50 50 T 100 50" 
+                    dur="8s" 
+                    repeatCount="indefinite"/>
+                </path>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#wave-pattern)"/>
+          </svg>
+        </div>
+        
+        {/* Floating Circles */}
+        <div className="absolute top-10 left-10 w-32 h-32 rounded-full border border-white/10 animate-[pulse_4s_ease-in-out_infinite]"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 rounded-full border border-white/10 animate-[pulse_6s_ease-in-out_infinite]"></div>
+        <div className="absolute top-1/2 right-1/3 w-24 h-24 rounded-full border border-white/10 animate-[pulse_5s_ease-in-out_infinite]"></div>
+      </div>
+
+      <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid md:grid-cols-4 gap-12">
           {/* About / Company Info */}
           <div className="space-y-4">
