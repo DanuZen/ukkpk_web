@@ -6,21 +6,22 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
-
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { signIn } = useAuth();
+  const {
+    signIn
+  } = useAuth();
   const navigate = useNavigate();
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
     try {
-      const { error } = await signIn(email, password);
+      const {
+        error
+      } = await signIn(email, password);
       if (error) throw error;
       toast.success("Login berhasil!");
       navigate("/admin");
@@ -30,9 +31,7 @@ const Auth = () => {
       setLoading(false);
     }
   };
-
-  return (
-    <div className="min-h-screen flex">
+  return <div className="min-h-screen flex">
       {/* Left Side - Login Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-background relative overflow-hidden">
         {/* Subtle Background Pattern */}
@@ -56,55 +55,26 @@ const Auth = () => {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <Input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                placeholder="Email Address"
-                className="h-12 text-base"
-              />
+              <Input type="email" value={email} onChange={e => setEmail(e.target.value)} required placeholder="Email Address" className="h-12 text-base" />
             </div>
 
             <div className="space-y-2">
-              <Input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                placeholder="Password"
-                className="h-12 text-base"
-              />
+              <Input type="password" value={password} onChange={e => setPassword(e.target.value)} required placeholder="Password" className="h-12 text-base" />
             </div>
 
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
-                <Checkbox 
-                  id="remember" 
-                  checked={rememberMe}
-                  onCheckedChange={(checked) => setRememberMe(checked as boolean)}
-                />
-                <label
-                  htmlFor="remember"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
-                >
+                <Checkbox id="remember" checked={rememberMe} onCheckedChange={checked => setRememberMe(checked as boolean)} />
+                <label htmlFor="remember" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer">
                   Remember Me
                 </label>
               </div>
-              <button
-                type="button"
-                className="text-sm text-primary hover:underline"
-                onClick={() => toast.info("Hubungi administrator untuk reset password")}
-              >
+              <button type="button" className="text-sm text-primary hover:underline" onClick={() => toast.info("Hubungi administrator untuk reset password")}>
                 Forgot Your Password?
               </button>
             </div>
 
-            <Button 
-              type="submit" 
-              className="w-full h-12 text-base bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary" 
-              disabled={loading}
-            >
+            <Button type="submit" className="w-full h-12 text-base bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary" disabled={loading}>
               {loading ? "Memproses..." : "Log In"}
             </Button>
           </form>
@@ -132,52 +102,7 @@ const Auth = () => {
 
         {/* Person Working at Desk Illustration */}
         <div className="relative z-10 animate-float-slow">
-          <svg width="400" height="400" viewBox="0 0 400 400" fill="none" className="drop-shadow-2xl">
-            {/* Desk */}
-            <rect x="80" y="240" width="240" height="12" rx="6" fill="white" opacity="0.9"/>
-            <rect x="90" y="252" width="8" height="80" rx="4" fill="white" opacity="0.8"/>
-            <rect x="302" y="252" width="8" height="80" rx="4" fill="white" opacity="0.8"/>
-            
-            {/* Laptop */}
-            <rect x="150" y="200" width="100" height="70" rx="4" fill="#334155" opacity="0.9"/>
-            <rect x="155" y="205" width="90" height="50" fill="#60a5fa" opacity="0.8"/>
-            <rect x="145" y="270" width="110" height="4" rx="2" fill="#334155" opacity="0.9"/>
-            
-            {/* Person - Body */}
-            <ellipse cx="200" cy="140" rx="30" ry="35" fill="#dc2626" opacity="0.9"/>
-            
-            {/* Person - Head */}
-            <circle cx="200" cy="100" r="25" fill="#fbbf24" opacity="0.9"/>
-            <path d="M185 95 Q200 85 215 95" stroke="#334155" strokeWidth="2" fill="none"/>
-            <circle cx="192" cy="100" r="3" fill="#334155"/>
-            <circle cx="208" cy="100" r="3" fill="#334155"/>
-            <path d="M195 110 Q200 113 205 110" stroke="#334155" strokeWidth="2" fill="none"/>
-            
-            {/* Person - Arms */}
-            <path d="M175 150 L160 180 L165 185" stroke="white" strokeWidth="8" strokeLinecap="round" fill="none" opacity="0.9"/>
-            <path d="M225 150 L240 180 L235 185" stroke="white" strokeWidth="8" strokeLinecap="round" fill="none" opacity="0.9"/>
-            
-            {/* Hands on keyboard */}
-            <ellipse cx="165" cy="220" rx="12" ry="8" fill="#fbbf24" opacity="0.9"/>
-            <ellipse cx="235" cy="220" rx="12" ry="8" fill="#fbbf24" opacity="0.9"/>
-            
-            {/* Plant Pot */}
-            <path d="M290 220 L310 220 L315 250 L285 250 Z" fill="#dc2626" opacity="0.8"/>
-            
-            {/* Plant Leaves */}
-            <ellipse cx="295" cy="200" rx="8" ry="15" fill="#10b981" opacity="0.9" transform="rotate(-20 295 200)"/>
-            <ellipse cx="305" cy="200" rx="8" ry="15" fill="#10b981" opacity="0.9" transform="rotate(20 305 200)"/>
-            <ellipse cx="300" cy="190" rx="8" ry="15" fill="#059669" opacity="0.9"/>
-            
-            {/* Coffee Cup */}
-            <rect x="110" y="220" width="20" height="25" rx="2" fill="white" opacity="0.9"/>
-            <ellipse cx="120" cy="220" rx="10" ry="3" fill="white" opacity="0.9"/>
-            <path d="M130 225 Q138 225 138 232 Q138 239 130 239" stroke="white" strokeWidth="2" fill="none" opacity="0.8"/>
-            
-            {/* Decorative Elements - Floating Icons */}
-            <circle cx="80" cy="120" r="6" fill="white" opacity="0.6" className="animate-pulse"/>
-            <circle cx="320" cy="160" r="8" fill="white" opacity="0.5" className="animate-pulse delay-100"/>
-          </svg>
+          
         </div>
 
         {/* Welcome Text */}
@@ -213,8 +138,6 @@ const Auth = () => {
         .delay-200 { animation-delay: 0.2s; }
         .delay-300 { animation-delay: 0.3s; }
       `}</style>
-    </div>
-  );
+    </div>;
 };
-
 export default Auth;
