@@ -153,44 +153,91 @@ export const Navigation = () => {
                   <User className={`h-5 w-5 ${user ? showTransparentNav ? "fill-white" : "fill-primary" : ""}`} />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-80" align="end">
-                {!user ? <div className="space-y-4">
-                    <div className="space-y-2">
-                      <h3 className="font-semibold text-lg">Akun Admin</h3>
-                      <p className="text-sm text-muted-foreground">
-                        Login untuk mengakses dashboard admin UKKPK
+              <PopoverContent className="w-80 p-0" align="end">
+                {!user ? <div className="relative overflow-hidden">
+                    {/* Decorative Background */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-primary/10 to-transparent"></div>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-16 translate-x-16"></div>
+                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/5 rounded-full translate-y-12 -translate-x-12"></div>
+                    
+                    <div className="relative p-6 space-y-5">
+                      {/* Icon & Header */}
+                      <div className="flex items-center gap-3">
+                        <div className="p-2.5 bg-gradient-to-br from-primary to-primary/80 rounded-lg shadow-md">
+                          <User className="h-5 w-5 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-lg text-foreground">Akun Admin</h3>
+                          <p className="text-xs text-muted-foreground">UKKPK UNP</p>
+                        </div>
+                      </div>
+                      
+                      {/* Description */}
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Login untuk mengakses dashboard admin dan mengelola konten website UKKPK
                       </p>
+                      
+                      {/* Login Button */}
+                      <Button 
+                        className="w-full h-11 bg-gradient-to-r from-primary via-primary to-primary/90 hover:from-primary/90 hover:via-primary/80 hover:to-primary/70 shadow-md hover:shadow-lg transition-all duration-300 font-semibold" 
+                        onClick={() => {
+                          navigate("/auth");
+                          setIsPopoverOpen(false);
+                        }}
+                      >
+                        <LayoutDashboard className="mr-2 h-4 w-4" />
+                        Login Sekarang
+                      </Button>
+                      
+                      {/* Footer Note */}
+                      <div className="pt-3 border-t border-border/50">
+                        <p className="text-xs text-muted-foreground text-center flex items-center justify-center gap-1.5">
+                          <span className="inline-block w-1.5 h-1.5 bg-primary/60 rounded-full"></span>
+                          Hanya untuk admin UKKPK UNP
+                        </p>
+                      </div>
                     </div>
-                    <Button 
-                      className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary" 
-                      onClick={() => {
-                        navigate("/auth");
-                        setIsPopoverOpen(false);
-                      }}
-                    >
-                      Login Sekarang
-                    </Button>
-                    <div className="pt-2 border-t border-border">
-                      <p className="text-xs text-muted-foreground text-center">
-                        Hanya untuk admin UKKPK UNP
-                      </p>
+                  </div> : <div className="relative overflow-hidden">
+                    {/* Decorative Background for logged in state */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+                    
+                    <div className="relative p-4 space-y-3">
+                      {/* User Info */}
+                      <div className="pb-3 border-b border-border/50">
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 bg-gradient-to-br from-primary to-primary/80 rounded-lg">
+                            <User className="h-4 w-4 text-white" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold truncate">{user.email}</p>
+                            <p className="text-xs text-muted-foreground">Administrator</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Action Buttons */}
+                      <div className="space-y-1">
+                        <Button 
+                          variant="ghost" 
+                          className="w-full justify-start hover:bg-primary/10 hover:text-primary transition-colors" 
+                          onClick={() => {
+                            navigate("/admin");
+                            setIsPopoverOpen(false);
+                          }}
+                        >
+                          <LayoutDashboard className="mr-2 h-4 w-4" />
+                          Dashboard Admin
+                        </Button>
+                        <Button 
+                          variant="ghost" 
+                          className="w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10 transition-colors" 
+                          onClick={handleLogout}
+                        >
+                          <LogOut className="mr-2 h-4 w-4" />
+                          Logout
+                        </Button>
+                      </div>
                     </div>
-                  </div> : <div className="space-y-2">
-                    <div className="pb-2 border-b border-border">
-                      <p className="text-sm font-medium">{user.email}</p>
-                      <p className="text-xs text-muted-foreground">Admin</p>
-                    </div>
-                    <Button variant="ghost" className="w-full justify-start" onClick={() => {
-                  navigate("/admin");
-                  setIsPopoverOpen(false);
-                }}>
-                      <LayoutDashboard className="mr-2 h-4 w-4" />
-                      Dashboard Admin
-                    </Button>
-                    <Button variant="ghost" className="w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10" onClick={handleLogout}>
-                      <LogOut className="mr-2 h-4 w-4" />
-                      Logout
-                    </Button>
                   </div>}
               </PopoverContent>
             </Popover>
