@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
+import { AnimatedSection } from "@/components/AnimatedSection";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
 import logoMicuMascot from "@/assets/logo-micu-mascot.png";
 const Auth = () => {
@@ -43,18 +44,23 @@ const Auth = () => {
 
         <div className="w-full max-w-md relative z-10">
           {/* Logo */}
-          <div className="mb-8 flex justify-center">
-            <img src={logoUkkpk} alt="UKKPK Logo" className="h-16 w-auto" />
-          </div>
+          <AnimatedSection animation="fade-in" delay={100}>
+            <div className="mb-8 flex justify-center">
+              <img src={logoUkkpk} alt="UKKPK Logo" className="h-16 w-auto" />
+            </div>
+          </AnimatedSection>
 
           {/* Title */}
-          <div className="mb-8 text-center">
-            <h1 className="text-4xl font-bold text-foreground mb-2">Login</h1>
-            <p className="text-muted-foreground">Masuk ke Dashboard Admin UKKPK</p>
-          </div>
+          <AnimatedSection animation="fade-up" delay={200}>
+            <div className="mb-8 text-center">
+              <h1 className="text-4xl font-bold text-foreground mb-2">Login</h1>
+              <p className="text-muted-foreground">Masuk ke Dashboard Admin UKKPK</p>
+            </div>
+          </AnimatedSection>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <AnimatedSection animation="fade-up" delay={300}>
+            <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <Input type="email" value={email} onChange={e => setEmail(e.target.value)} required placeholder="Email Address" className="h-12 text-base" />
             </div>
@@ -78,17 +84,20 @@ const Auth = () => {
             <Button type="submit" className="w-full h-12 text-base bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary" disabled={loading}>
               {loading ? "Memproses..." : "Log In"}
             </Button>
-          </form>
+            </form>
+          </AnimatedSection>
 
           {/* Footer Note */}
-          <div className="mt-8 text-center text-sm text-muted-foreground">
-            <p>Hanya untuk Admin UKKPK UNP</p>
-          </div>
+          <AnimatedSection animation="fade-in" delay={400}>
+            <div className="mt-8 text-center text-sm text-muted-foreground">
+              <p>Hanya untuk Admin UKKPK UNP</p>
+            </div>
+          </AnimatedSection>
         </div>
       </div>
 
       {/* Right Side - Illustration */}
-      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-primary via-primary/90 to-primary/70 relative overflow-hidden items-center justify-center">
+      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-primary via-primary/90 to-primary/70 relative overflow-hidden items-center justify-center animate-fade-in">
         {/* Decorative Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-20 w-3 h-3 bg-white/80 rounded-full animate-pulse shadow-lg"></div>
