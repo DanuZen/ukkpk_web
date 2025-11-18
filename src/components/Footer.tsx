@@ -1,6 +1,7 @@
 import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Music2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logoUkkpk from "@/assets/logo-ukkpk.png";
+
 export const Footer = () => {
   // Hardcoded social media links
   const socialLinks = {
@@ -17,101 +18,125 @@ export const Footer = () => {
       tiktok: "#"
     }
   };
-  return <footer className="bg-gradient-to-b from-primary/95 to-primary border-t border-primary-foreground/20 mt-16 text-primary-foreground text-sm">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-4 gap-10">
-          {/* About */}
+
+  return (
+    <footer className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 mt-16 text-white text-sm">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid md:grid-cols-4 gap-12">
+          {/* About / Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3 mb-3">
-              <img src={logoUkkpk} alt="Logo UKKPK" className="h-12 w-12" />
+            <div className="flex items-center gap-3 mb-4">
+              <img src={logoUkkpk} alt="Logo UKKPK" className="h-14 w-14" />
               <h3 className="font-bold text-xl text-white">UKKPK UNP</h3>
             </div>
-            <p className="text-sm text-primary-foreground/80 leading-relaxed">Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang                    </p>
+            <p className="text-sm text-white/80 leading-relaxed">
+              Platform media kampus untuk pengembangan jasa komunikasi dan penyiaran yang dikembangkan dengan semangat kreatif mahasiswa UKKPK UNP.
+            </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Layanan Kami */}
           <div className="space-y-4">
-            <h4 className="font-semibold mb-4 text-white">Quick Links</h4>
+            <h4 className="font-semibold text-lg mb-4 text-white">Layanan Kami</h4>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-center gap-2">
+                <Music2 className="h-4 w-4 flex-shrink-0" />
+                <Link to="/radio" className="text-white/80 hover:text-white transition-colors">
+                  Radio & Penyiaran
+                </Link>
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail className="h-4 w-4 flex-shrink-0" />
+                <Link to="/berita" className="text-white/80 hover:text-white transition-colors">
+                  Jurnalistik
+                </Link>
+              </li>
+              <li className="flex items-center gap-2">
+                <Phone className="h-4 w-4 flex-shrink-0" />
+                <span className="text-white/80">MC & Event</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail className="h-4 w-4 flex-shrink-0" />
+                <span className="text-white/80">Konsultasi Media</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Menu Cepat */}
+          <div className="space-y-4">
+            <h4 className="font-semibold text-lg mb-4 text-white">Menu Cepat</h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link to="/" className="text-primary-foreground/80 hover:text-white transition-all duration-300 hover:translate-x-1 inline-block">
-                  Home
+                <Link to="/" className="text-white/80 hover:text-white transition-colors">
+                  Beranda
                 </Link>
               </li>
               <li>
-                <Link to="/profil-ukkpk" className="text-primary-foreground/80 hover:text-white transition-all duration-300 hover:translate-x-1 inline-block">
-                  Profil UKKPK
+                <Link to="/profil-ukkpk" className="text-white/80 hover:text-white transition-colors">
+                  Tentang Kami
                 </Link>
               </li>
               <li>
-                <Link to="/artikel" className="text-primary-foreground/80 hover:text-white transition-all duration-300 hover:translate-x-1 inline-block">
+                <Link to="/artikel" className="text-white/80 hover:text-white transition-colors">
                   Artikel
                 </Link>
               </li>
               <li>
-                <Link to="/berita" className="text-primary-foreground/80 hover:text-white transition-all duration-300 hover:translate-x-1 inline-block">
+                <Link to="/berita" className="text-white/80 hover:text-white transition-colors">
                   Berita
+                </Link>
+              </li>
+              <li>
+                <Link to="/radio" className="text-white/80 hover:text-white transition-colors">
+                  Radio
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Kontak */}
           <div className="space-y-4">
-            <h4 className="font-semibold mb-4 text-white">Contact</h4>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-center gap-3 text-primary-foreground/80 hover:text-white transition-colors group">
-                <Mail className="h-4 w-4 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                <span>Ukkpk.office@gmail.com</span>
+            <h4 className="font-semibold text-lg mb-4 text-white">Kontak</h4>
+            <ul className="space-y-4 text-sm">
+              <li className="flex items-start gap-3 text-white/90">
+                <Mail className="h-5 w-5 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-white mb-1">Email</p>
+                  <a href="mailto:Ukkpk.office@gmail.com" className="text-white/80 hover:text-white transition-colors">
+                    Ukkpk.office@gmail.com
+                  </a>
+                </div>
               </li>
-              <li className="flex items-center gap-3 text-primary-foreground/80 hover:text-white transition-colors group">
-                <Phone className="h-4 w-4 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                <span>+6282388235091</span>
+              <li className="flex items-start gap-3 text-white/90">
+                <Phone className="h-5 w-5 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-white mb-1">Telepon</p>
+                  <a href="tel:+6282388235091" className="text-white/80 hover:text-white transition-colors">
+                    +62 823 8823 5091
+                  </a>
+                </div>
               </li>
-              <li className="flex items-center gap-3 text-primary-foreground/80 hover:text-white transition-colors group">
-                <MapPin className="h-4 w-4 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                <span>Kampus Utama UNP</span>
+              <li className="flex items-start gap-3 text-white/90">
+                <MapPin className="h-5 w-5 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-white mb-1">Alamat</p>
+                  <span className="text-white/80">Kampus Utama UNP</span>
+                </div>
               </li>
             </ul>
-          </div>
 
-          {/* Social Media */}
-          <div className="space-y-4">
-            <h4 className="font-semibold mb-4 text-white">Follow Us</h4>
-            
-            {/* UKKPK Social Media */}
-            <div className="space-y-3">
-              <p className="text-sm font-medium text-primary-foreground/90">UKKPK</p>
-              <div className="flex gap-3 flex-wrap">
-                <a href={socialLinks.ukkpk.facebook} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all duration-300 hover:scale-110">
+            {/* Social Media Icons */}
+            <div className="pt-4">
+              <div className="flex gap-2 flex-wrap">
+                <a href={socialLinks.ukkpk.facebook} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
                   <Facebook className="h-5 w-5" />
                 </a>
-                <a href={socialLinks.ukkpk.instagram} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all duration-300 hover:scale-110">
+                <a href={socialLinks.ukkpk.instagram} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
                   <Instagram className="h-5 w-5" />
                 </a>
-                <a href={socialLinks.ukkpk.youtube} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all duration-300 hover:scale-110">
+                <a href={socialLinks.ukkpk.youtube} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
                   <Youtube className="h-5 w-5" />
                 </a>
-                <a href={socialLinks.ukkpk.tiktok} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all duration-300 hover:scale-110">
-                  <Music2 className="h-5 w-5" />
-                </a>
-              </div>
-            </div>
-
-            {/* SIGMA Social Media */}
-            <div className="space-y-3 mt-6">
-              <p className="text-sm font-medium text-primary-foreground/90">SIGMA</p>
-              <div className="flex gap-3 flex-wrap">
-                <a href={socialLinks.sigma.facebook} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all duration-300 hover:scale-110">
-                  <Facebook className="h-5 w-5" />
-                </a>
-                <a href={socialLinks.sigma.instagram} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all duration-300 hover:scale-110">
-                  <Instagram className="h-5 w-5" />
-                </a>
-                <a href={socialLinks.sigma.youtube} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all duration-300 hover:scale-110">
-                  <Youtube className="h-5 w-5" />
-                </a>
-                <a href={socialLinks.sigma.tiktok} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all duration-300 hover:scale-110">
+                <a href={socialLinks.ukkpk.tiktok} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
                   <Music2 className="h-5 w-5" />
                 </a>
               </div>
@@ -119,9 +144,21 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/20 mt-8 pt-6 text-center">
-          <p className="text-sm text-white/90">&copy; {new Date().getFullYear()} UKKPK. All rights reserved.</p>
+        {/* Bottom Bar */}
+        <div className="border-t border-white/20 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-white/90">
+            © {new Date().getFullYear()} UKKPK UNP. Semua hak dilindungi.
+          </p>
+          <div className="flex gap-6 text-sm">
+            <span className="text-white/80 hover:text-white transition-colors cursor-pointer">
+              Kebijakan Privasi
+            </span>
+            <span className="text-white/80 hover:text-white transition-colors cursor-pointer">
+              Syarat & Ketentuan
+            </span>
+          </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
