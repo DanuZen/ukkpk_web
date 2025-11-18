@@ -19,9 +19,9 @@ export const Footer = () => {
     }
   };
   return (
-    <footer className="bg-gradient-to-b from-primary/95 to-primary border-t border-primary-foreground/20 mt-20 text-primary-foreground">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-4 gap-12">
+    <footer className="bg-gradient-to-b from-primary/95 to-primary border-t border-primary-foreground/20 mt-16 text-primary-foreground text-sm">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid md:grid-cols-4 gap-10">
           {/* About */}
           <div className="space-y-4">
             <div className="flex items-center gap-3 mb-3">
