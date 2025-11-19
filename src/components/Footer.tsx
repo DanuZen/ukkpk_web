@@ -116,7 +116,7 @@ export const Footer = () => {
           </div>
 
           {/* Layanan Kami */}
-          <div className="space-y-4">
+          <div className="hidden md:block space-y-4">
             <h4 className="font-semibold text-lg mb-4 text-white">Layanan Kami</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
@@ -143,7 +143,7 @@ export const Footer = () => {
           </div>
 
           {/* Menu Cepat */}
-          <div className="space-y-4">
+          <div className="hidden md:block space-y-4">
             <h4 className="font-semibold text-lg mb-4 text-white">Menu Cepat</h4>
             <ul className="space-y-3 text-sm">
               <li>
