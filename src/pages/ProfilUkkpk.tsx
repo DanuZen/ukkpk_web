@@ -683,7 +683,7 @@ const ProfilUkkpk = () => {
             </AnimatedSection>
           ) : null}
 
-          {members.length > 0 ? (
+          {members.length > 0 && (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
               {members.map((member, index) => (
                 <AnimatedSection
@@ -709,17 +709,6 @@ const ProfilUkkpk = () => {
                 </AnimatedSection>
               ))}
             </div>
-          ) : (
-            <AnimatedSection animation="fade-in" delay={100}>
-              <div className="text-center py-12">
-                <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mx-auto mb-4">
-                  <Users2 className="h-8 w-8 text-muted-foreground" />
-                </div>
-                <p className="text-muted-foreground">
-                  Belum ada data struktur organisasi
-                </p>
-              </div>
-            </AnimatedSection>
           )}
         </div>
       </section>
