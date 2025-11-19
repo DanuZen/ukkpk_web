@@ -62,7 +62,7 @@ export const GoogleMap = () => {
   }
 
   return (
-    <div className="relative w-full h-[600px] rounded-lg overflow-hidden shadow-md border border-border/50">
+    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden shadow-md border border-border/50">
       <iframe
         src={embedUrl}
         width="100%"
