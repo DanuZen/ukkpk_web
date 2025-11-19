@@ -49,7 +49,7 @@ export const Footer = () => {
               <h3 className="font-bold text-xl text-white">UKKPK UNP</h3>
             </div>
             <p className="text-sm text-white/80 leading-relaxed">
-              Organisasi Dan Platform Media kampus untuk pengembangan Ilmu di bidang komunikasi dan penyiaran yang dikembangkan o UKKPK UNP.
+              Organisasi Dan Platform Media kampus untuk pengembangan Ilmu di bidang komunikasi dan penyiaran yang dikembangkan oleh Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang.
             </p>
             
             {/* Social Media Icons */}
