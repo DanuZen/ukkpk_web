@@ -228,7 +228,7 @@ const ProfilUkkpk = () => {
                     Tentang Kami
                   </span>
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                   Profil UKKPK
                 </h2>
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
@@ -259,7 +259,7 @@ const ProfilUkkpk = () => {
                     Visi & Misi
                   </span>
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                   Arah & Tujuan
                 </h2>
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
@@ -325,7 +325,7 @@ const ProfilUkkpk = () => {
                     Perjalanan Kami
                   </span>
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                   Sejarah UKKPK
                 </h2>
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
@@ -489,7 +489,7 @@ const ProfilUkkpk = () => {
                   Program Kami
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Bidang Kegiatan
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
@@ -601,7 +601,7 @@ const ProfilUkkpk = () => {
                   Nilai Kami
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Nilai-Nilai
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
@@ -645,7 +645,7 @@ const ProfilUkkpk = () => {
                   Tim Kami
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Struktur Organisasi
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />

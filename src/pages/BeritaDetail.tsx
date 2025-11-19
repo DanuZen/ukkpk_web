@@ -227,7 +227,7 @@ const BeritaDetail = () => {
             {/* Main Content */}
             <div className="lg:col-span-2">
               {/* News Title */}
-              <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-tight text-primary">
+              <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-tight bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 {news.title}
               </h1>
 
