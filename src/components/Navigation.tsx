@@ -245,7 +245,7 @@ export const Navigation = () => {
         {isOpen && <div className="absolute top-full left-0 right-0 lg:hidden py-4 bg-background border-t border-border space-y-2 shadow-lg z-50 animate-in slide-in-from-top duration-300">
             {navItems.map(item => {
           const isActive = location.pathname === item.path;
-          return <Link key={item.name} to={item.path} className={`block mx-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground shadow-md" : "text-foreground hover:bg-secondary"}`} onClick={() => setIsOpen(false)}>
+          return <Link key={item.name} to={item.path} className={`block mx-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground shadow-md" : "text-foreground hover:bg-gray-100"}`} onClick={() => setIsOpen(false)}>
                   {item.name}
                 </Link>;
         })}
@@ -270,7 +270,7 @@ export const Navigation = () => {
                   {/* Admin Actions */}
                   <Link 
                     to="/admin"
-                    className="flex items-center gap-2 mx-2 px-4 py-3 text-sm font-medium rounded-lg text-foreground hover:bg-secondary transition-all duration-300"
+                    className="flex items-center gap-2 mx-2 px-4 py-3 text-sm font-medium rounded-lg text-foreground hover:bg-gray-100 transition-all duration-300"
                     onClick={() => setIsOpen(false)}
                   >
                     <LayoutDashboard className="h-4 w-4" />
