@@ -431,7 +431,7 @@ const Index = () => {
       </section>
 
       {/* Contact Section - Kritik dan Saran */}
-      <section className="min-h-screen flex items-center py-16 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 relative px-4 bg-gray-100 overflow-hidden">
+      <section className="min-h-[60vh] md:min-h-screen flex items-center py-12 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 relative px-4 bg-gray-100 overflow-hidden">
         {/* Blue/Teal Background Pattern */}
         <AnimatedSection animation="fade-in">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -458,17 +458,17 @@ const Index = () => {
         
         <div id="contact" className="relative z-10 container mx-auto max-w-5xl">
           <AnimatedSection animation="fade-up">
-            <div className="text-center mb-8 sm:mb-10 md:mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4 sm:mb-6">
-                <MessageSquare className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium text-primary">
+            <div className="text-center mb-6 sm:mb-8 md:mb-10">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-3 sm:mb-4 md:mb-6">
+                <MessageSquare className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
+                <span className="text-xs sm:text-sm font-medium text-primary">
                   Hubungi Kami
                 </span>
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Kritik dan Saran
               </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
+              <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
             </div>
           </AnimatedSection>
           
