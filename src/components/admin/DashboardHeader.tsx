@@ -120,20 +120,14 @@ export const DashboardHeader = ({
         </SheetContent>
       </Sheet>
       
-      <h1 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 truncate">{title}</h1>
+      <h1 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 truncate flex-1 min-w-0">{title}</h1>
 
-      <div className="ml-auto flex items-center gap-1 sm:gap-2 md:gap-3">
-        {/* Desktop Search Bar */}
-        <div className="relative hidden lg:block">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-          <Input placeholder="Search..." className="w-48 xl:w-64 pl-9 bg-gray-50 border-gray-200" />
-        </div>
-
+      <div className="ml-auto flex items-center gap-1 sm:gap-2">
         {/* Mobile/Tablet Search Dialog */}
         <Dialog open={searchOpen} onOpenChange={setSearchOpen}>
           <DialogTrigger asChild>
-            <Button variant="ghost" size="icon" className="lg:hidden text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9 sm:h-10 sm:w-10">
-              <Search className="h-4 w-4 sm:h-5 sm:w-5" />
+            <Button variant="ghost" size="icon" className="lg:hidden text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9">
+              <Search className="h-4 w-4" />
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
@@ -147,29 +141,35 @@ export const DashboardHeader = ({
           </DialogContent>
         </Dialog>
 
+        {/* Desktop Search Bar */}
+        <div className="relative hidden lg:block">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+          <Input placeholder="Search..." className="w-48 xl:w-64 pl-9 bg-gray-50 border-gray-200" />
+        </div>
+
         <Button 
           variant="ghost" 
           size="icon" 
           onClick={() => navigate("/")} 
-          className="text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9 sm:h-10 sm:w-10" 
+          className="text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9" 
           title="Kembali ke Website"
         >
-          <ExternalLink className="h-4 w-4 sm:h-5 sm:w-5" />
+          <ExternalLink className="h-4 w-4" />
         </Button>
 
         <Button 
           variant="ghost" 
           size="icon" 
-          className="hidden sm:flex text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9 sm:h-10 sm:w-10"
+          className="hidden sm:flex text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9"
         >
           <Bell className="h-4 w-4 sm:h-5 sm:w-5" />
         </Button>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="relative h-9 w-9 sm:h-10 sm:w-10 rounded-full">
-              <Avatar className="h-9 w-9 sm:h-10 sm:w-10">
-                <AvatarFallback className="bg-primary text-white text-xs sm:text-sm">
+            <Button variant="ghost" className="relative h-8 w-8 sm:h-9 sm:w-9 rounded-full flex-shrink-0">
+              <Avatar className="h-8 w-8 sm:h-9 sm:w-9">
+                <AvatarFallback className="bg-primary text-white text-xs">
                   {user?.email ? getInitials(user.email) : "AD"}
                 </AvatarFallback>
               </Avatar>
