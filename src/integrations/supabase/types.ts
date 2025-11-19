@@ -237,7 +237,8 @@ export type Database = {
         Row: {
           author: string | null
           author_id: string | null
-          cameraman: string | null
+          cameraman: string[] | null
+          category: string | null
           content: string
           created_at: string
           editor: string | null
@@ -252,7 +253,8 @@ export type Database = {
         Insert: {
           author?: string | null
           author_id?: string | null
-          cameraman?: string | null
+          cameraman?: string[] | null
+          category?: string | null
           content: string
           created_at?: string
           editor?: string | null
@@ -267,7 +269,8 @@ export type Database = {
         Update: {
           author?: string | null
           author_id?: string | null
-          cameraman?: string | null
+          cameraman?: string[] | null
+          category?: string | null
           content?: string
           created_at?: string
           editor?: string | null

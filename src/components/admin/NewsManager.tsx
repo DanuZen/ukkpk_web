@@ -8,8 +8,9 @@ import { ImageUpload } from "@/components/admin/ImageUpload";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Pencil, Trash2, Eye, Edit3 } from "lucide-react";
+import { Pencil, Trash2, Eye, Edit3, Plus, X } from "lucide-react";
 import { sanitizeHtml } from "@/lib/sanitize";
 import { z } from "zod";
 
@@ -27,6 +28,8 @@ interface News {
   content: string;
   image_url: string | null;
   created_at: string;
+  cameraman: string[] | null;
+  category: string | null;
 }
 
 export const NewsManager = () => {
@@ -37,11 +40,13 @@ export const NewsManager = () => {
     content: "",
     author: "",
     editor: "",
-    cameraman: "",
+    category: "",
     image_url: "",
     publish_date: "",
     publish_time: "",
   });
+  const [cameramen, setCameramen] = useState<string[]>([]);
+  const [currentCameraman, setCurrentCameraman] = useState("");
   const [uploading, setUploading] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
 
@@ -72,7 +77,6 @@ export const NewsManager = () => {
         content: formData.content,
         author: formData.author || undefined,
         editor: formData.editor || undefined,
-        cameraman: formData.cameraman || undefined,
       });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -118,7 +122,8 @@ export const NewsManager = () => {
         content: formData.content.trim(),
         author: formData.author.trim() || null,
         editor: formData.editor.trim() || null,
-        cameraman: formData.cameraman.trim() || null,
+        category: formData.category.trim() || null,
+        cameraman: cameramen.length > 0 ? cameramen : null,
         image_url: imageUrl,
         published_at: publishedAt
       };
@@ -138,7 +143,9 @@ export const NewsManager = () => {
         toast.success("Berita berhasil ditambahkan");
       }
 
-      setFormData({ title: "", content: "", author: "", editor: "", cameraman: "", image_url: "", publish_date: "", publish_time: "" });
+      setFormData({ title: "", content: "", author: "", editor: "", category: "", image_url: "", publish_date: "", publish_time: "" });
+      setCameramen([]);
+      setCurrentCameraman("");
       setEditingId(null);
       setImageFile(null);
       fetchNews();
@@ -149,18 +156,30 @@ export const NewsManager = () => {
     }
   };
 
-  const handleEdit = (item: News) => {
+  const handleEdit = (item: any) => {
     setEditingId(item.id);
     setFormData({
       title: item.title,
       content: item.content,
-      author: "",
-      editor: "",
-      cameraman: "",
+      author: item.author || "",
+      editor: item.editor || "",
+      category: item.category || "",
       image_url: item.image_url || "",
       publish_date: "",
       publish_time: "",
     });
+    setCameramen(Array.isArray(item.cameraman) ? item.cameraman : []);
+  };
+
+  const handleAddCameraman = () => {
+    if (currentCameraman.trim()) {
+      setCameramen([...cameramen, currentCameraman.trim()]);
+      setCurrentCameraman("");
+    }
+  };
+
+  const handleRemoveCameraman = (index: number) => {
+    setCameramen(cameramen.filter((_, i) => i !== index));
   };
 
   const handleDelete = async (id: string) => {
@@ -222,15 +241,62 @@ export const NewsManager = () => {
               />
             </div>
             <div>
-              <Label htmlFor="cameraman">Kameramen</Label>
-              <Input
-                id="cameraman"
-                value={formData.cameraman}
-                onChange={(e) =>
-                  setFormData({ ...formData, cameraman: e.target.value })
+              <Label htmlFor="category">Kategori</Label>
+              <Select
+                value={formData.category}
+                onValueChange={(value) =>
+                  setFormData({ ...formData, category: value })
                 }
-                placeholder="Nama kameramen"
-              />
+              >
+                <SelectTrigger id="category">
+                  <SelectValue placeholder="Pilih kategori berita" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="kampus">Kampus</SelectItem>
+                  <SelectItem value="organisasi">Organisasi</SelectItem>
+                  <SelectItem value="mahasiswa">Mahasiswa</SelectItem>
+                  <SelectItem value="event">Event</SelectItem>
+                  <SelectItem value="umum">Umum</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label htmlFor="cameraman">Kameramen</Label>
+              <div className="space-y-2">
+                <div className="flex gap-2">
+                  <Input
+                    id="cameraman"
+                    value={currentCameraman}
+                    onChange={(e) => setCurrentCameraman(e.target.value)}
+                    onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddCameraman())}
+                    placeholder="Nama kameramen"
+                  />
+                  <Button
+                    type="button"
+                    onClick={handleAddCameraman}
+                    variant="outline"
+                    size="icon"
+                  >
+                    <Plus className="h-4 w-4" />
+                  </Button>
+                </div>
+                {cameramen.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {cameramen.map((name, index) => (
+                      <Badge key={index} variant="secondary" className="gap-1">
+                        {name}
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveCameraman(index)}
+                          className="ml-1 hover:text-destructive"
+                        >
+                          <X className="h-3 w-3" />
+                        </button>
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
@@ -313,8 +379,13 @@ export const NewsManager = () => {
                             <div className="flex flex-wrap gap-2">
                               {formData.author && <span>Penulis: {formData.author}</span>}
                               {formData.editor && <span>• Penyunting: {formData.editor}</span>}
-                              {formData.cameraman && <span>• Kameramen: {formData.cameraman}</span>}
+                              {cameramen.length > 0 && <span>• Kameramen: {cameramen.join(", ")}</span>}
                             </div>
+                            {formData.category && (
+                              <Badge variant="outline" className="mt-2">
+                                {formData.category}
+                              </Badge>
+                            )}
                           </div>
                           <Badge variant="secondary" className="bg-primary/10 text-primary">
                             BERITA
@@ -351,7 +422,9 @@ export const NewsManager = () => {
                   onClick={() => {
                     setEditingId(null);
                     setImageFile(null);
-                    setFormData({ title: "", content: "", author: "", editor: "", cameraman: "", image_url: "", publish_date: "", publish_time: "" });
+                    setCameramen([]);
+                    setCurrentCameraman("");
+                    setFormData({ title: "", content: "", author: "", editor: "", category: "", image_url: "", publish_date: "", publish_time: "" });
                   }}
                 >
                   Batal
