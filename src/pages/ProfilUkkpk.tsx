@@ -656,13 +656,14 @@ const ProfilUkkpk = () => {
             <AnimatedSection animation="fade-in" delay={100}>
               <div className="max-w-5xl mx-auto mb-8">
                 {strukturData.length > 1 && (
-                  <div className="flex justify-center gap-2 mb-6">
+                  <div className="flex justify-center gap-3 mb-8">
                     {strukturData.map((struktur, index) => (
                       <Button
                         key={struktur.id}
                         variant={selectedYear === index ? "default" : "outline"}
                         onClick={() => setSelectedYear(index)}
-                        className="min-w-[120px]"
+                        className="min-w-[140px] transition-all duration-300 hover:scale-105"
+                        size="lg"
                       >
                         {struktur.angkatan}
                       </Button>
@@ -674,11 +675,13 @@ const ProfilUkkpk = () => {
                     {strukturData[selectedYear]?.angkatan}
                   </h3>
                 </div>
-                <img
-                  src={strukturData[selectedYear]?.foto_url}
-                  alt={`Struktur Organisasi ${strukturData[selectedYear]?.angkatan}`}
-                  className="w-full rounded-lg shadow-xl"
-                />
+                <div className="transition-opacity duration-300">
+                  <img
+                    src={strukturData[selectedYear]?.foto_url}
+                    alt={`Struktur Organisasi ${strukturData[selectedYear]?.angkatan}`}
+                    className="w-full rounded-lg shadow-xl"
+                  />
+                </div>
               </div>
             </AnimatedSection>
           ) : null}
