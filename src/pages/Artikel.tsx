@@ -69,7 +69,7 @@ const Artikel = () => {
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="max-w-3xl mx-auto text-center space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Artikel UKKPK
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground">

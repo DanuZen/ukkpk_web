@@ -227,7 +227,7 @@ const Radio = () => {
                 <RadioIcon className="h-5 w-5 text-primary animate-pulse" />
                 <span className="text-sm font-medium text-primary">Program Kami</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Jadwal Program
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-8" />
