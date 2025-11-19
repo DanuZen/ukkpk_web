@@ -335,143 +335,123 @@ const ProfilUkkpk = () => {
             </AnimatedSection>
 
             {/* Timeline Cards */}
-            <div className="space-y-8">
-              <AnimatedSection animation="fade-up" delay={150}>
-                <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500">
-                  <CardContent className="pt-6 pb-6 relative">
-                    <div className="flex gap-4">
-                      <div className="flex-shrink-0">
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white shadow-xl">
-                          <Sparkles className="h-6 w-6 sm:h-7 sm:w-7" />
-                        </div>
+            <div className="grid md:grid-cols-2 gap-8 mb-16">
+              <AnimatedSection animation="slide-right" delay={150}>
+                <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
+                  <CardContent className="pt-8 pb-8 relative">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
+                        <Sparkles className="h-6 w-6 sm:h-7 sm:w-7" />
                       </div>
-                      <div className="flex-1">
-                        <h4 className="text-sm sm:text-base md:text-lg font-bold text-primary mb-3">
-                          Awal Terbentuk (1993)
-                        </h4>
-                        <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
-                          UKKPK (Unit Kegiatan Komunikasi dan Penyiaran Kampus)
-                          merupakan salah satu unit kegiatan mahasiswa (UKM) yang
-                          ada di Universitas Negeri Padang (UNP). UKM ini
-                          merupakan fusi tiga UKM, yaitu UK MC, UK Radio, dan UK
-                          Penerbitan Kampus, yang telah ada sebelumnya di IKIP
-                          Padang. Pada tahun 1993 ketiga tersebut bergabung dan
-                          membentuk satu kesatuan dengan nama Unit Kegiatan
-                          Komunikasi dan Penerbitan Kampus (UKKPK) IKIP Padang.
-                          Namun seiring perkembangan dan kondisi waktu, pada tahun
-                          2000 dalam MUBES III UKKPK UNP berganti nama menjadi
-                          Unit Kegiatan Komunikasi dan Penyiaran Kampus namun
-                          tetap menggunakan akronim UKKPK.
-                        </p>
-                      </div>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                        Awal Terbentuk (1993)
+                      </h3>
                     </div>
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
+                      UKKPK (Unit Kegiatan Komunikasi dan Penyiaran Kampus)
+                      merupakan salah satu unit kegiatan mahasiswa (UKM) yang
+                      ada di Universitas Negeri Padang (UNP). UKM ini
+                      merupakan fusi tiga UKM, yaitu UK MC, UK Radio, dan UK
+                      Penerbitan Kampus, yang telah ada sebelumnya di IKIP
+                      Padang. Pada tahun 1993 ketiga tersebut bergabung dan
+                      membentuk satu kesatuan dengan nama Unit Kegiatan
+                      Komunikasi dan Penerbitan Kampus (UKKPK) IKIP Padang.
+                      Namun seiring perkembangan dan kondisi waktu, pada tahun
+                      2000 dalam MUBES III UKKPK UNP berganti nama menjadi
+                      Unit Kegiatan Komunikasi dan Penyiaran Kampus namun
+                      tetap menggunakan akronim UKKPK.
+                    </p>
                   </CardContent>
                 </Card>
               </AnimatedSection>
 
-              <AnimatedSection animation="fade-up" delay={250}>
-                <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500">
-                  <CardContent className="pt-6 pb-6 relative">
-                    <div className="flex gap-4">
-                      <div className="flex-shrink-0">
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white shadow-xl">
-                          <Mic className="h-6 w-6 sm:h-7 sm:w-7" />
-                        </div>
+              <AnimatedSection animation="slide-left" delay={200}>
+                <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
+                  <CardContent className="pt-8 pb-8 relative">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
+                        <Mic className="h-6 w-6 sm:h-7 sm:w-7" />
                       </div>
-                      <div className="flex-1">
-                        <h4 className="text-sm sm:text-base md:text-lg font-bold text-primary mb-3">
-                          Perkembangan Organisasi (1993-2000)
-                        </h4>
-                        <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
-                          Pada masa awal berdirinya, UKKPK fokus mengembangkan
-                          tiga bidang utama: MC dan Public Speaking, Penerbitan
-                          Kampus, dan Penyiaran Radio. Ketiga bidang ini menjadi
-                          fondasi kuat bagi pengembangan keterampilan komunikasi
-                          mahasiswa UNP dalam berbagai aspek.
-                        </p>
-                      </div>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                        Perkembangan Organisasi (1993-2000)
+                      </h3>
                     </div>
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
+                      Pada masa awal berdirinya, UKKPK fokus mengembangkan tiga
+                      bidang utama: MC dan Public Speaking, Penerbitan Kampus,
+                      dan Penyiaran Radio. Ketiga bidang ini menjadi fondasi
+                      kuat bagi pengembangan keterampilan komunikasi mahasiswa
+                      UNP dalam berbagai aspek.
+                    </p>
                   </CardContent>
                 </Card>
               </AnimatedSection>
 
-              <AnimatedSection animation="fade-up" delay={350}>
-                <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500">
-                  <CardContent className="pt-6 pb-6 relative">
-                    <div className="flex gap-4">
-                      <div className="flex-shrink-0">
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-xl">
-                          <Waves className="h-6 w-6 sm:h-7 sm:w-7" />
-                        </div>
+              <AnimatedSection animation="slide-right" delay={250}>
+                <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
+                  <CardContent className="pt-8 pb-8 relative">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
+                        <Waves className="h-6 w-6 sm:h-7 sm:w-7" />
                       </div>
-                      <div className="flex-1">
-                        <h4 className="text-sm sm:text-base md:text-lg font-bold text-primary mb-3">
-                          Transformasi Modern (2000-2015)
-                        </h4>
-                        <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
-                          Memasuki era digital, UKKPK mulai mengadaptasi teknologi
-                          modern dalam kegiatan penyiaran dan jurnalistik. Bidang
-                          penerbitan bertransformasi menjadi jurnalistik digital,
-                          dan radio kampus mulai mengadopsi teknologi streaming
-                          online. Perubahan ini menandai era baru UKKPK dalam
-                          menghadapi perkembangan zaman.
-                        </p>
-                      </div>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                        Transformasi Modern (2000-2015)
+                      </h3>
                     </div>
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
+                      Memasuki era digital, UKKPK mulai mengadaptasi teknologi
+                      modern dalam kegiatan penyiaran dan jurnalistik. Bidang
+                      penerbitan bertransformasi menjadi jurnalistik digital,
+                      dan radio kampus mulai mengadopsi teknologi streaming
+                      online. Perubahan ini menandai era baru UKKPK dalam
+                      menghadapi perkembangan zaman.
+                    </p>
                   </CardContent>
                 </Card>
               </AnimatedSection>
 
-              <AnimatedSection animation="fade-up" delay={450}>
-                <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500">
-                  <CardContent className="pt-6 pb-6 relative">
-                    <div className="flex gap-4">
-                      <div className="flex-shrink-0">
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white shadow-xl">
-                          <Shield className="h-6 w-6 sm:h-7 sm:w-7" />
-                        </div>
+              <AnimatedSection animation="slide-left" delay={300}>
+                <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
+                  <CardContent className="pt-8 pb-8 relative">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
+                        <Rocket className="h-6 w-6 sm:h-7 sm:w-7" />
                       </div>
-                      <div className="flex-1">
-                        <h4 className="text-sm sm:text-base md:text-lg font-bold text-primary mb-3">
-                          Ekspansi Bidang (2015-2020)
-                        </h4>
-                        <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
-                          UKKPK terus berkembang dengan menambah berbagai bidang
-                          baru seperti Kewirausahaan, Kesekretariatan, Human
-                          Resource Development, dan Public Relations. Ekspansi ini
-                          bertujuan untuk memberikan pengalaman yang lebih
-                          komprehensif kepada anggota dalam berbagai aspek
-                          komunikasi dan organisasi.
-                        </p>
-                      </div>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                        Ekspansi Bidang (2015-2020)
+                      </h3>
                     </div>
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
+                      UKKPK terus berkembang dengan menambah berbagai bidang
+                      baru seperti Kewirausahaan, Kesekretariatan, Human
+                      Resource Development, dan Public Relations. Ekspansi ini
+                      bertujuan untuk memberikan pengalaman yang lebih
+                      komprehensif kepada anggota dalam berbagai aspek
+                      komunikasi dan organisasi.
+                    </p>
                   </CardContent>
                 </Card>
               </AnimatedSection>
 
-              <AnimatedSection animation="fade-up" delay={550}>
-                <Card className="bg-white border-primary/20 shadow-xl overflow-hidden group hover:border-primary/40 transition-all duration-500">
-                  <CardContent className="pt-6 pb-6 relative">
-                    <div className="flex gap-4">
-                      <div className="flex-shrink-0">
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-500 flex items-center justify-center text-white shadow-xl">
-                          <Rocket className="h-6 w-6 sm:h-7 sm:w-7" />
-                        </div>
+              <AnimatedSection animation="slide-right" delay={350}>
+                <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500 md:col-span-2">
+                  <CardContent className="pt-8 pb-8 relative">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
+                        <Shield className="h-6 w-6 sm:h-7 sm:w-7" />
                       </div>
-                      <div className="flex-1">
-                        <h4 className="text-sm sm:text-base md:text-lg font-bold text-primary mb-3">
-                          Era Digital & Inovasi (2020-Sekarang)
-                        </h4>
-                        <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
-                          Di era pandemi dan pasca pandemi, UKKPK semakin
-                          memperkuat kehadiran digitalnya. Berbagai inovasi
-                          seperti webinar, podcast, konten media sosial, dan
-                          kolaborasi lintas platform menjadi fokus utama. UKKPK
-                          terus beradaptasi dan berinovasi untuk tetap relevan di
-                          tengah perkembangan teknologi komunikasi yang pesat.
-                        </p>
-                      </div>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                        Era Digital & Inovasi (2020-Sekarang)
+                      </h3>
                     </div>
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
+                      Di era pandemi dan pasca pandemi, UKKPK semakin memperkuat
+                      kehadiran digitalnya. Berbagai inovasi seperti webinar,
+                      podcast, konten media sosial, dan kolaborasi lintas
+                      platform menjadi fokus utama. UKKPK terus beradaptasi dan
+                      berinovasi untuk tetap relevan di tengah perkembangan
+                      teknologi komunikasi yang pesat.
+                    </p>
                   </CardContent>
                 </Card>
               </AnimatedSection>
