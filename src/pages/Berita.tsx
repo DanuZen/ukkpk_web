@@ -91,7 +91,7 @@ const Berita = () => {
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
               <Input
                 type="text"
-                placeholder="Cari berita berdasarkan judul atau konten..."
+                placeholder="Cari Berita"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 sm:pl-12 py-4 sm:py-6 text-base sm:text-lg shadow-lg"
