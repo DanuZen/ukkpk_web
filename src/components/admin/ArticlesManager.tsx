@@ -284,34 +284,34 @@ export const ArticlesManager = () => {
                     Preview
                   </TabsTrigger>
                 </TabsList>
-                <TabsContent value="edit" className="mt-4">
+                <TabsContent value="edit" className="mt-1.5 sm:mt-2 md:mt-4">
                   <RichTextEditor
                     content={formData.content}
                     onChange={(html) => setFormData({ ...formData, content: html })}
                     placeholder="Tulis isi artikel di sini..."
                   />
                 </TabsContent>
-                <TabsContent value="preview" className="mt-4">
+                <TabsContent value="preview" className="mt-1.5 sm:mt-2 md:mt-4">
                   <Card>
-                    <CardContent className="pt-6">
+                    <CardContent className="p-2 sm:p-3 md:p-6">
                       {/* Preview Header */}
-                      <div className="mb-6">
-                        <h1 className="text-3xl font-bold mb-4 text-primary">
+                      <div className="mb-2 sm:mb-3 md:mb-6">
+                        <h1 className="text-base sm:text-xl md:text-3xl font-bold mb-1.5 sm:mb-2 md:mb-4 text-primary line-clamp-2">
                           {formData.title || "Judul Artikel"}
                         </h1>
                         
                         {formData.image_url && (
-                          <div className="mb-4">
+                          <div className="mb-1.5 sm:mb-2 md:mb-4">
                             <img 
                               src={formData.image_url} 
                               alt={formData.title} 
-                              className="w-full h-[400px] object-cover rounded-lg"
+                              className="w-full h-[150px] sm:h-[250px] md:h-[400px] object-cover rounded-lg"
                             />
                           </div>
                         )}
 
-                        <div className="flex items-center justify-between mb-6 pb-4 border-b">
-                          <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                        <div className="flex items-center justify-between mb-2 sm:mb-3 md:mb-6 pb-1.5 sm:pb-2 md:pb-4 border-b">
+                          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 text-[10px] sm:text-xs md:text-sm text-muted-foreground">
                             <span>{new Date().toLocaleDateString('id-ID', {
                               day: 'numeric',
                               month: 'long',
@@ -320,7 +320,7 @@ export const ArticlesManager = () => {
                             {formData.author && <span>Penulis: {formData.author}</span>}
                           </div>
                           {formData.category && (
-                            <Badge variant="secondary" className="bg-primary/10 text-primary">
+                            <Badge variant="secondary" className="bg-primary/10 text-primary text-[10px] sm:text-xs">
                               {formData.category}
                             </Badge>
                           )}
@@ -328,14 +328,14 @@ export const ArticlesManager = () => {
                       </div>
 
                       {/* Preview Content */}
-                      <div className="prose prose-lg max-w-none">
+                      <div className="prose prose-sm sm:prose md:prose-lg max-w-none">
                         {formData.content ? (
                           <div 
-                            className="text-foreground/90 leading-relaxed article-content"
+                            className="text-foreground/90 leading-relaxed article-content text-xs sm:text-sm md:text-base"
                             dangerouslySetInnerHTML={{ __html: sanitizeHtml(formData.content) }}
                           />
                         ) : (
-                          <p className="text-muted-foreground italic">
+                          <p className="text-muted-foreground italic text-xs sm:text-sm md:text-base">
                             Konten artikel akan ditampilkan di sini...
                           </p>
                         )}
@@ -345,8 +345,8 @@ export const ArticlesManager = () => {
                 </TabsContent>
               </Tabs>
             </div>
-            <div className="flex gap-2">
-              <Button type="submit" disabled={uploading}>
+            <div className="flex gap-1 sm:gap-2">
+              <Button type="submit" disabled={uploading} className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm flex-1">
                 {uploading ? "Uploading..." : editingId ? "Update" : "Tambah"}
               </Button>
               {editingId && (
@@ -367,6 +367,7 @@ export const ArticlesManager = () => {
                       publish_time: "",
                     });
                   }}
+                  className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
                 >
                   Batal
                 </Button>
@@ -376,21 +377,21 @@ export const ArticlesManager = () => {
         </CardContent>
       </Card>
 
-      <div className="space-y-4">
+      <div className="space-y-1.5 sm:space-y-2 md:space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold">Daftar Artikel yang Terupload</h3>
-          <Badge variant="secondary">{articles.length} Artikel</Badge>
+          <h3 className="text-sm sm:text-base md:text-xl font-semibold">Daftar Artikel yang Terupload</h3>
+          <Badge variant="secondary" className="text-[10px] sm:text-xs">{articles.length} Artikel</Badge>
         </div>
         
         {articles.length === 0 ? (
           <Card>
-            <CardContent className="pt-6">
-              <div className="text-center py-8">
-                <div className="mx-auto w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4">
-                  <Plus className="h-8 w-8 text-muted-foreground" />
+            <CardContent className="p-3 sm:p-4 md:p-6">
+              <div className="text-center py-4 sm:py-6 md:py-8">
+                <div className="mx-auto w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-muted rounded-full flex items-center justify-center mb-2 sm:mb-3 md:mb-4">
+                  <Plus className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-muted-foreground" />
                 </div>
-                <h4 className="text-lg font-semibold mb-2">Belum Ada Artikel</h4>
-                <p className="text-muted-foreground">
+                <h4 className="text-sm sm:text-base md:text-lg font-semibold mb-1 sm:mb-1.5 md:mb-2">Belum Ada Artikel</h4>
+                <p className="text-xs sm:text-sm md:text-base text-muted-foreground">
                   Mulai tambahkan artikel pertama Anda menggunakan form di atas
                 </p>
               </div>
@@ -399,31 +400,33 @@ export const ArticlesManager = () => {
         ) : (
           articles.map((article) => (
             <Card key={article.id}>
-              <CardContent className="pt-6">
-                <div className="flex justify-between items-start">
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-lg">{article.title}</h3>
+              <CardContent className="p-1.5 sm:p-2 md:p-6">
+                <div className="flex justify-between items-start gap-1.5 sm:gap-2 md:gap-4">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-xs sm:text-sm md:text-lg line-clamp-2">{article.title}</h3>
                     {article.category && (
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">
                         {article.category}
                       </p>
                     )}
-                    <p className="mt-2 text-sm line-clamp-2">{article.content}</p>
+                    <p className="mt-0.5 sm:mt-1 md:mt-2 text-[10px] sm:text-xs md:text-sm line-clamp-2">{article.content}</p>
                   </div>
-                  <div className="flex gap-2 ml-4">
+                  <div className="flex gap-0.5 sm:gap-1 md:gap-2 flex-shrink-0">
                     <Button
                       size="sm"
                       variant="outline"
                       onClick={() => handleEdit(article)}
+                      className="h-6 w-6 sm:h-7 sm:w-7 md:h-9 md:w-9 p-0"
                     >
-                      <Pencil className="h-4 w-4" />
+                      <Pencil className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4" />
                     </Button>
                     <Button
                       size="sm"
                       variant="destructive"
                       onClick={() => handleDelete(article.id)}
+                      className="h-6 w-6 sm:h-7 sm:w-7 md:h-9 md:w-9 p-0"
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <Trash2 className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4" />
                     </Button>
                   </div>
                 </div>
