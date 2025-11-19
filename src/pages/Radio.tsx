@@ -141,27 +141,39 @@ const Radio = () => {
               </div>
               
               <div className="overflow-hidden inline-block max-w-full">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white whitespace-nowrap pr-1 inline-block drop-shadow-2xl" style={{ animation: 'typewriter 2s steps(11) 0.5s both, blink-cursor 0.75s step-end 2.5s 3, remove-cursor 0s 5s forwards' }}>
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white whitespace-nowrap inline-block drop-shadow-2xl typewriter-text">
                   SIGMA RADIO
                 </h1>
               </div>
               <style>{`
-                @keyframes typewriter {
-                  from { 
-                    width: 0;
-                    border-right: 4px solid white;
-                  }
-                  to { 
-                    width: 100%;
-                    border-right: 4px solid white;
-                  }
+                .typewriter-text {
+                  width: 0;
+                  overflow: hidden;
+                  border-right: 4px solid white;
+                  animation: 
+                    typing 2s steps(11) 0.5s forwards,
+                    blink 0.75s step-end infinite;
+                  animation-delay: 0.5s, 0.5s;
                 }
-                @keyframes blink-cursor {
-                  from, to { border-right-color: transparent; }
-                  50% { border-right-color: white; }
+                
+                @keyframes typing {
+                  from { width: 0; }
+                  to { width: 100%; }
                 }
-                @keyframes remove-cursor {
-                  to { border-right: none; }
+                
+                @keyframes blink {
+                  50% { border-color: transparent; }
+                }
+                
+                .typewriter-text {
+                  animation: 
+                    typing 2s steps(11) 0.5s forwards,
+                    blink 0.75s step-end 0.5s 4,
+                    remove-border 0.01s 3.5s forwards;
+                }
+                
+                @keyframes remove-border {
+                  to { border-right-color: transparent; }
                 }
               `}</style>
               
