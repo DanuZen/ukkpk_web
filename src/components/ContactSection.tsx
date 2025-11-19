@@ -95,7 +95,8 @@ export const ContactSection = () => {
                 nama: e.target.value
               })} 
               maxLength={100}
-              required 
+              required
+              className="text-xs sm:text-sm"
             />
           </div>
           <div>
@@ -108,6 +109,7 @@ export const ContactSection = () => {
                 program: e.target.value
               })} 
               maxLength={100}
+              className="text-xs sm:text-sm"
             />
           </div>
         </div>
@@ -124,6 +126,7 @@ export const ContactSection = () => {
                 phone: e.target.value
               })} 
               maxLength={20}
+              className="text-xs sm:text-sm"
             />
           </div>
           <div>
@@ -137,7 +140,8 @@ export const ContactSection = () => {
                 email: e.target.value
               })} 
               maxLength={255}
-              required 
+              required
+              className="text-xs sm:text-sm"
             />
           </div>
         </div>
@@ -152,6 +156,7 @@ export const ContactSection = () => {
               subject: e.target.value
             })} 
             maxLength={200}
+            className="text-xs sm:text-sm"
           />
         </div>
 
@@ -166,7 +171,8 @@ export const ContactSection = () => {
             })} 
             rows={5} 
             maxLength={1000}
-            required 
+            required
+            className="text-xs sm:text-sm"
           />
         </div>
 
