@@ -229,11 +229,11 @@ const Radio = () => {
           
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20 mb-4">
-                <RadioIcon className="h-5 w-5 sm:h-6 sm:w-6 text-primary animate-pulse" />
-                <span className="text-sm font-medium text-primary">Program Kami</span>
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <RadioIcon className="h-3 w-3 sm:h-4 sm:w-4 text-primary animate-pulse" />
+                <span className="text-[10px] sm:text-sm font-medium text-primary">Program Kami</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Jadwal Program
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-8" />
