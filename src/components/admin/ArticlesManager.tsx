@@ -31,6 +31,13 @@ interface Article {
 }
 
 export const ArticlesManager = () => {
+  // Strip HTML tags for preview
+  const stripHtml = (html: string) => {
+    const tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
+  };
+
   const [articles, setArticles] = useState<Article[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -409,7 +416,7 @@ export const ArticlesManager = () => {
                         {article.category}
                       </p>
                     )}
-                    <p className="mt-0.5 sm:mt-1 md:mt-2 text-[10px] sm:text-xs md:text-sm line-clamp-2">{article.content}</p>
+                    <p className="mt-0.5 sm:mt-1 md:mt-2 text-[10px] sm:text-xs md:text-sm line-clamp-2">{stripHtml(article.content)}</p>
                   </div>
                   <div className="flex gap-0.5 sm:gap-1 md:gap-2 flex-shrink-0">
                     <Button

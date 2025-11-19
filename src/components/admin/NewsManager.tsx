@@ -33,6 +33,13 @@ interface News {
 }
 
 export const NewsManager = () => {
+  // Strip HTML tags for preview
+  const stripHtml = (html: string) => {
+    const tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
+  };
+
   const [news, setNews] = useState<News[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -470,7 +477,7 @@ export const NewsManager = () => {
                 <div className="flex justify-between items-start gap-1.5 sm:gap-2 md:gap-4">
                   <div className="flex-1 min-w-0">
                     <h3 className="font-semibold text-xs sm:text-sm md:text-lg line-clamp-2">{item.title}</h3>
-                    <p className="mt-0.5 sm:mt-1 md:mt-2 text-[10px] sm:text-xs md:text-sm line-clamp-2">{item.content}</p>
+                    <p className="mt-0.5 sm:mt-1 md:mt-2 text-[10px] sm:text-xs md:text-sm line-clamp-2">{stripHtml(item.content)}</p>
                   </div>
                   <div className="flex gap-0.5 sm:gap-1 md:gap-2 flex-shrink-0">
                     <Button
