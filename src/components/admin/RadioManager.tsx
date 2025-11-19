@@ -235,9 +235,26 @@ export const RadioManager = () => {
   };
 
   const getProgramsForSlot = (day: number, hour: string) => {
-    return programs.filter(
-      (p) => p.day_of_week === day && p.air_time.startsWith(hour)
-    );
+    return programs.filter((p) => {
+      if (p.day_of_week !== day) return false;
+      
+      const slotHour = parseInt(hour);
+      const startHour = parseInt(p.air_time.split(':')[0]);
+      
+      // If program has end_time, check if slot is within the range
+      if (p.end_time) {
+        const endHour = parseInt(p.end_time.split(':')[0]);
+        const endMinute = parseInt(p.end_time.split(':')[1]);
+        
+        // Include the end hour if end minute is > 0
+        const actualEndHour = endMinute > 0 ? endHour : endHour - 1;
+        
+        return slotHour >= startHour && slotHour <= actualEndHour;
+      }
+      
+      // Fallback to old logic if no end_time
+      return p.air_time.startsWith(hour);
+    });
   };
 
   return (
@@ -330,46 +347,69 @@ export const RadioManager = () => {
                             </div>
                           ) : (
                             <div className="space-y-1">
-                              {programsInSlot.map((program) => (
-                                <div
-                                  key={program.id}
-                                  className="bg-white rounded p-2 shadow-sm border border-primary/20 group relative"
-                                >
-                                  <div className="text-xs font-semibold text-gray-900 truncate">
-                                    {program.name}
+                              {programsInSlot.map((program) => {
+                                const slotHour = parseInt(time.split(":")[0]);
+                                const startHour = parseInt(program.air_time.split(':')[0]);
+                                const isFirstSlot = slotHour === startHour;
+                                
+                                return (
+                                  <div
+                                    key={program.id}
+                                    className="bg-white rounded p-2 shadow-sm border border-primary/20 group relative"
+                                  >
+                                    {isFirstSlot ? (
+                                      <>
+                                        <div className="text-xs font-semibold text-gray-900 truncate">
+                                          {program.name}
+                                        </div>
+                                        <div className="text-xs text-gray-600 truncate">
+                                          {program.air_time}{program.end_time ? ` - ${program.end_time}` : ''}
+                                        </div>
+                                        <div className="text-xs text-gray-500 truncate">
+                                          Host: {program.host}
+                                        </div>
+                                      </>
+                                    ) : (
+                                      <div className="flex items-center justify-center h-full">
+                                        <div className="text-center">
+                                          <div className="text-xs font-medium text-gray-700 truncate mb-0.5">
+                                            {program.name}
+                                          </div>
+                                          <div className="text-[10px] text-gray-500">
+                                            (berlangsung)
+                                          </div>
+                                        </div>
+                                      </div>
+                                    )}
+                                    {isFirstSlot && (
+                                      <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
+                                        <Button
+                                          size="icon"
+                                          variant="ghost"
+                                          className="h-6 w-6"
+                                          onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleEdit(program);
+                                          }}
+                                        >
+                                          <Pencil className="h-3 w-3" />
+                                        </Button>
+                                        <Button
+                                          size="icon"
+                                          variant="ghost"
+                                          className="h-6 w-6 text-red-600"
+                                          onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleDelete(program.id);
+                                          }}
+                                        >
+                                          <Trash2 className="h-3 w-3" />
+                                        </Button>
+                                      </div>
+                                    )}
                                   </div>
-                                  <div className="text-xs text-gray-600 truncate">
-                                    {program.air_time}{program.end_time ? ` - ${program.end_time}` : ''}
-                                  </div>
-                                  <div className="text-xs text-gray-500 truncate">
-                                    Host: {program.host}
-                                  </div>
-                                  <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
-                                    <Button
-                                      size="icon"
-                                      variant="ghost"
-                                      className="h-6 w-6"
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleEdit(program);
-                                      }}
-                                    >
-                                      <Pencil className="h-3 w-3" />
-                                    </Button>
-                                    <Button
-                                      size="icon"
-                                      variant="ghost"
-                                      className="h-6 w-6 text-red-600"
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleDelete(program.id);
-                                      }}
-                                    >
-                                      <Trash2 className="h-3 w-3" />
-                                    </Button>
-                                  </div>
-                                </div>
-                              ))}
+                                );
+                              })}
                             </div>
                           )}
                         </div>
