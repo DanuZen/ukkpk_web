@@ -38,6 +38,21 @@ const Radio = () => {
   const [settings, setSettings] = useState<RadioSettings | null>(null);
   const [currentProgram, setCurrentProgram] = useState<RadioProgram | null>(null);
   const [timeRemaining, setTimeRemaining] = useState<string>("");
+  const [selectedDay, setSelectedDay] = useState<number>(new Date().getDay());
+
+  const filteredPrograms = programs.filter(p => p.day_of_week === selectedDay);
+
+  const handlePreviousDay = () => {
+    setSelectedDay((prev) => (prev === 0 ? 6 : prev - 1));
+  };
+
+  const handleNextDay = () => {
+    setSelectedDay((prev) => (prev === 6 ? 0 : prev + 1));
+  };
+
+  const handleToday = () => {
+    setSelectedDay(new Date().getDay());
+  };
 
   const calculateTimeRemaining = (airTime: string) => {
     const now = new Date();
@@ -253,11 +268,51 @@ const Radio = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
                 Jadwal Program
               </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
+              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-8" />
+              
+              {/* Day Navigation */}
+              <div className="flex items-center justify-center gap-4 mb-8">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handlePreviousDay}
+                  className="flex items-center gap-2"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                  Sebelumnya
+                </Button>
+                
+                <div className="px-6 py-2 bg-primary/10 border border-primary/20 rounded-lg">
+                  <span className="text-lg font-semibold text-primary">{DAYS[selectedDay]}</span>
+                </div>
+                
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleToday}
+                  className="font-medium"
+                >
+                  Hari Ini
+                </Button>
+                
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleNextDay}
+                  className="flex items-center gap-2"
+                >
+                  Berikutnya
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </Button>
+              </div>
             </div>
           </AnimatedSection>
           
-          {programs.length === 0 ? (
+          {filteredPrograms.length === 0 ? (
             <div className="text-center py-12">
               <div className="w-20 h-20 rounded-2xl bg-primary/5 border border-primary/10 flex items-center justify-center mx-auto mb-4">
                 <img src={logoSigmaRadio} alt="SIGMA Radio" className="h-12 w-12 object-contain opacity-50" />
@@ -266,7 +321,7 @@ const Radio = () => {
             </div>
           ) : (
             <div className="grid md:grid-cols-2 gap-6">
-              {programs.map((program, index) => (
+              {filteredPrograms.map((program, index) => (
                 <AnimatedSection key={program.id} animation="fade-up" delay={index * 100}>
                   <Card
                     className="group relative overflow-hidden border-border/40 hover:border-primary/40 transition-all duration-500 shadow-lg hover:shadow-2xl hover:shadow-primary/10 bg-white dark:bg-gray-900"
