@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Music2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Music2, Mic, Shield, Camera } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logoUkkpk from "@/assets/logo-ukkpk.png";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -120,11 +120,11 @@ export const Footer = () => {
             <h4 className="font-semibold text-lg mb-4 text-white">Layanan Kami</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 flex-shrink-0" />
+                <Mic className="h-4 w-4 flex-shrink-0" />
                 <span className="text-white/80">Master Of Ceremony</span>
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 flex-shrink-0" />
+                <Shield className="h-4 w-4 flex-shrink-0" />
                 <span className="text-white/80">Keprotokolan</span>
               </li>
               <li className="flex items-center gap-2">
@@ -140,7 +140,7 @@ export const Footer = () => {
                 </Link>
               </li>
               <li className="flex items-center gap-2">
-                <Music2 className="h-4 w-4 flex-shrink-0" />
+                <Camera className="h-4 w-4 flex-shrink-0" />
                 <span className="text-white/80">Penyiaran</span>
               </li>
             </ul>
