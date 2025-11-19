@@ -85,13 +85,22 @@ const Artikel = () => {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="scale-in" delay={100}>
             <div className="max-w-2xl mx-auto relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5 z-10" />
+              {/* Mobile placeholder */}
               <Input
                 type="text"
                 placeholder="Cari Artikel"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 sm:pl-12 py-2 sm:py-4 md:py-6 text-sm sm:text-base md:text-lg shadow-lg"
+                className="sm:hidden pl-10 py-2 text-sm shadow-lg"
+              />
+              {/* Tablet & Desktop placeholder */}
+              <Input
+                type="text"
+                placeholder="Cari artikel berdasarkan judul, kategori, atau konten..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="hidden sm:block pl-12 py-4 md:py-6 text-base md:text-lg shadow-lg"
               />
             </div>
           </AnimatedSection>
