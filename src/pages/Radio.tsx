@@ -135,7 +135,7 @@ const Radio = () => {
           <AnimatedSection animation="fade-up">
             <div className="max-w-3xl mx-auto text-center space-y-4 sm:space-y-6">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full mb-6">
+              <div className="inline-flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full mb-4 md:mb-3 lg:mb-6">
                 <RadioIcon className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-white" />
                 <span className="text-xs sm:text-sm font-medium">Radio #1 Kampus UNP</span>
               </div>
