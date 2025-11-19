@@ -280,7 +280,7 @@ const ProfilUkkpk = () => {
                         Visi
                       </h3>
                     </div>
-                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed text-justify">
                       Menjadikan UKKPK UNP sebagai wadah yang disiplin, inovatif,
                       dan kreatif dalam mewujudkan mahasiswa yang berintelektual
                       dan berkompeten di bidang komunikasi dan penyiaran yang
@@ -301,7 +301,7 @@ const ProfilUkkpk = () => {
                         Misi
                       </h3>
                     </div>
-                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed text-justify">
                       UKKPK UNP membekali keterampilan komunikasi untuk
                       meningkatkan intelektualitas, kepemimpinan, penalaran,
                       minat, kegemaran, dan kesejahteraan untuk mahasiswa UNP dan
