@@ -181,11 +181,11 @@ const Radio = () => {
 
             {/* Buttons */}
             <div className="flex flex-col gap-4 justify-center items-center">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-base" onClick={handleListen}>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 text-xs sm:text-sm md:text-base" onClick={handleListen}>
                 <Play className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                 Dengar Sekarang
               </Button>
-              <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-8 py-6 text-base" onClick={() => document.getElementById('jadwal-program')?.scrollIntoView({
+              <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 text-xs sm:text-sm md:text-base" onClick={() => document.getElementById('jadwal-program')?.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
               })}>
