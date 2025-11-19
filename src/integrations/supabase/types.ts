@@ -383,6 +383,7 @@ export type Database = {
           created_at: string
           day_of_week: number
           description: string
+          end_time: string | null
           host: string
           id: string
           name: string
@@ -393,6 +394,7 @@ export type Database = {
           created_at?: string
           day_of_week: number
           description: string
+          end_time?: string | null
           host: string
           id?: string
           name: string
@@ -403,6 +405,7 @@ export type Database = {
           created_at?: string
           day_of_week?: number
           description?: string
+          end_time?: string | null
           host?: string
           id?: string
           name?: string
