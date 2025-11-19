@@ -2,7 +2,6 @@ import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Music2 } from 'lucid
 import { Link } from 'react-router-dom';
 import logoUkkpk from "@/assets/logo-ukkpk.png";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-
 export const Footer = () => {
   // Hardcoded social media links
   const socialLinks = {
@@ -19,9 +18,7 @@ export const Footer = () => {
       tiktok: "#"
     }
   };
-
-  return (
-    <footer className="bg-gradient-to-br from-primary via-primary to-black/90 mt-16 text-white text-sm relative overflow-hidden">
+  return <footer className="bg-gradient-to-br from-primary via-primary to-black/90 mt-16 text-white text-sm relative overflow-hidden">
       {/* Animated Wave Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-full h-full">
@@ -29,14 +26,11 @@ export const Footer = () => {
             <defs>
               <pattern id="wave-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
                 <path d="M0 50 Q 25 25, 50 50 T 100 50" stroke="white" strokeWidth="0.5" fill="none" opacity="0.3">
-                  <animate attributeName="d" 
-                    values="M0 50 Q 25 25, 50 50 T 100 50;M0 50 Q 25 75, 50 50 T 100 50;M0 50 Q 25 25, 50 50 T 100 50" 
-                    dur="8s" 
-                    repeatCount="indefinite"/>
+                  <animate attributeName="d" values="M0 50 Q 25 25, 50 50 T 100 50;M0 50 Q 25 75, 50 50 T 100 50;M0 50 Q 25 25, 50 50 T 100 50" dur="8s" repeatCount="indefinite" />
                 </path>
               </pattern>
             </defs>
-            <rect width="100%" height="100%" fill="url(#wave-pattern)"/>
+            <rect width="100%" height="100%" fill="url(#wave-pattern)" />
           </svg>
         </div>
         
@@ -55,7 +49,7 @@ export const Footer = () => {
               <h3 className="font-bold text-xl text-white">UKKPK UNP</h3>
             </div>
             <p className="text-sm text-white/80 leading-relaxed">
-              Platform media kampus untuk pengembangan jasa komunikasi dan penyiaran yang dikembangkan dengan semangat kreatif mahasiswa UKKPK UNP.
+              Organisasi Dan Platform Media kampus untuk pengembangan Ilmu di bidang komunikasi dan penyiaran yang dikembangkan o UKKPK UNP.
             </p>
             
             {/* Social Media Icons */}
@@ -228,6 +222,5 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
