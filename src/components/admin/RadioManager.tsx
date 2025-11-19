@@ -15,6 +15,7 @@ interface RadioProgram {
   name: string;
   description: string;
   air_time: string;
+  end_time?: string;
   day_of_week: number;
   host: string;
   created_at: string;
@@ -47,6 +48,7 @@ export const RadioManager = () => {
     name: "",
     description: "",
     air_time: "",
+    end_time: "",
     day_of_week: 0,
     host: "",
   });
@@ -91,7 +93,7 @@ export const RadioManager = () => {
   const handleSubmitProgram = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.description || !formData.air_time || !formData.host) {
+    if (!formData.name || !formData.description || !formData.air_time || !formData.end_time || !formData.host) {
       toast.error("Semua field harus diisi");
       return;
     }
@@ -118,6 +120,7 @@ export const RadioManager = () => {
         name: "",
         description: "",
         air_time: "",
+        end_time: "",
         day_of_week: 0,
         host: "",
       });
@@ -192,6 +195,7 @@ export const RadioManager = () => {
       name: program.name,
       description: program.description,
       air_time: program.air_time,
+      end_time: program.end_time || "",
       day_of_week: program.day_of_week,
       host: program.host,
     });
@@ -223,6 +227,7 @@ export const RadioManager = () => {
       name: "",
       description: "",
       air_time: time,
+      end_time: "",
       day_of_week: day,
       host: "",
     });
@@ -334,7 +339,7 @@ export const RadioManager = () => {
                                     {program.name}
                                   </div>
                                   <div className="text-xs text-gray-600 truncate">
-                                    {program.air_time}
+                                    {program.air_time}{program.end_time ? ` - ${program.end_time}` : ''}
                                   </div>
                                   <div className="text-xs text-gray-500 truncate">
                                     Host: {program.host}
@@ -426,13 +431,21 @@ export const RadioManager = () => {
                 </Select>
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Waktu Tayang</label>
+                <label className="block text-sm font-medium mb-2">Waktu Mulai</label>
                 <Input
                   type="time"
                   value={formData.air_time}
                   onChange={(e) => setFormData({ ...formData, air_time: e.target.value })}
                 />
               </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Waktu Selesai</label>
+              <Input
+                type="time"
+                value={formData.end_time}
+                onChange={(e) => setFormData({ ...formData, end_time: e.target.value })}
+              />
             </div>
             <div>
               <label className="block text-sm font-medium mb-2">Host/Penyiar</label>

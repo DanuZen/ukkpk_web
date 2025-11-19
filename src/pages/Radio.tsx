@@ -11,6 +11,7 @@ interface RadioProgram {
   name: string;
   description: string;
   air_time: string;
+  end_time?: string;
   day_of_week: number;
   host: string;
 }
@@ -41,14 +42,19 @@ const Radio = () => {
   const handleToday = () => {
     setSelectedDay(new Date().getDay());
   };
-  const calculateTimeRemaining = (airTime: string) => {
+  const calculateTimeRemaining = (program: RadioProgram) => {
     const now = new Date();
-    const [hours, minutes] = airTime.split(':').map(Number);
-
-    // Assume each program is 1 hour long
-    const endHour = (hours + 1) % 24;
-    const endTime = new Date();
-    endTime.setHours(endHour, minutes, 0, 0);
+    
+    // If program has end_time, use it; otherwise assume 1 hour duration
+    let endTime = new Date();
+    if (program.end_time) {
+      const [endHours, endMinutes] = program.end_time.split(':').map(Number);
+      endTime.setHours(endHours, endMinutes, 0, 0);
+    } else {
+      const [hours, minutes] = program.air_time.split(':').map(Number);
+      const endHour = (hours + 1) % 24;
+      endTime.setHours(endHour, minutes, 0, 0);
+    }
 
     // If end time is before current time, it means program has ended
     if (endTime < now) {
@@ -67,11 +73,11 @@ const Radio = () => {
     if (currentProgram) {
       // Update countdown every second
       const countdownInterval = setInterval(() => {
-        setTimeRemaining(calculateTimeRemaining(currentProgram.air_time));
+        setTimeRemaining(calculateTimeRemaining(currentProgram));
       }, 1000);
 
       // Initial calculation
-      setTimeRemaining(calculateTimeRemaining(currentProgram.air_time));
+      setTimeRemaining(calculateTimeRemaining(currentProgram));
       return () => clearInterval(countdownInterval);
     }
   }, [currentProgram]);
@@ -288,7 +294,7 @@ const Radio = () => {
                           <Clock className="h-3.5 w-3.5" />
                           <span className="font-semibold">{DAYS[program.day_of_week]}</span>
                           <span className="text-xs">•</span>
-                          <span className="font-medium">{program.air_time}</span>
+                          <span className="font-medium">{program.air_time}{program.end_time ? ` - ${program.end_time}` : ''}</span>
                         </CardDescription>
                       </div>
                     </div>
