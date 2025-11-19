@@ -71,7 +71,7 @@ export const DashboardHeader = ({
       {/* Mobile/Tablet Menu */}
       <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="icon" className="lg:hidden text-gray-700">
+          <Button variant="ghost" size="icon" className="lg:hidden text-gray-700 hover:text-primary hover:bg-primary/10">
             <Menu className="h-5 w-5" />
           </Button>
         </SheetTrigger>
