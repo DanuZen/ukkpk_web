@@ -236,7 +236,7 @@ export const Navigation = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden p-2 rounded-md hover:bg-secondary">
+          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden p-2 rounded-md text-white hover:text-primary transition-colors">
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
