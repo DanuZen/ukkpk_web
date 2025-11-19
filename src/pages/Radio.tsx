@@ -140,9 +140,27 @@ const Radio = () => {
                 <span className="text-xs sm:text-sm font-medium">Radio #1 Kampus UNP</span>
               </div>
               
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
-                SIGMA RADIO
-              </h1>
+              <div className="overflow-hidden inline-block max-w-full">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent whitespace-nowrap pr-1 inline-block" style={{ animation: 'typewriter 2s steps(11) 1s both, blink 0.75s step-end infinite' }}>
+                  SIGMA RADIO
+                </h1>
+              </div>
+              <style>{`
+                @keyframes typewriter {
+                  from { 
+                    width: 0;
+                    border-right: 4px solid hsl(var(--primary));
+                  }
+                  to { 
+                    width: 100%;
+                    border-right: 4px solid hsl(var(--primary));
+                  }
+                }
+                @keyframes blink {
+                  from, to { border-right-color: transparent; }
+                  50% { border-right-color: hsl(var(--primary)); }
+                }
+              `}</style>
               
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-muted-foreground px-4">
                 Platform radio kampus yang menghubungkan Anda dengan berbagai program menarik, 
