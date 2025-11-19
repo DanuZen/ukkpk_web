@@ -100,7 +100,7 @@ export const Navigation = () => {
   const isHomePage = location.pathname === "/";
   const showTransparentNav = isHomePage && !isScrolled;
   return <nav className={`${showTransparentNav ? "bg-transparent" : "bg-white border-b border-border shadow-sm"} sticky top-0 z-50 transition-all duration-300`}>
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
@@ -242,7 +242,7 @@ export const Navigation = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && <div className="md:hidden py-4 border-t border-border space-y-2">
+        {isOpen && <div className="absolute top-full left-0 right-0 md:hidden py-4 bg-background border-t border-border space-y-2 shadow-lg z-50">
             {navItems.map(item => {
           const isActive = location.pathname === item.path;
           return <Link key={item.name} to={item.path} className={`block mx-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground shadow-md" : "text-foreground hover:bg-secondary"}`} onClick={() => setIsOpen(false)}>
