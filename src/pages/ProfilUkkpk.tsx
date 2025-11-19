@@ -340,8 +340,8 @@ const ProfilUkkpk = () => {
             </AnimatedSection>
 
             {/* Timeline Cards */}
-            <div className="grid md:grid-cols-2 gap-8 mb-16">
-              <AnimatedSection animation="slide-right" delay={150}>
+            <div className="flex flex-col gap-8 mb-16 max-w-4xl mx-auto">
+              <AnimatedSection animation="fade-up" delay={150}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 relative">
                     <div className="flex items-center gap-4 mb-6">
@@ -370,7 +370,7 @@ const ProfilUkkpk = () => {
                 </Card>
               </AnimatedSection>
 
-              <AnimatedSection animation="slide-left" delay={200}>
+              <AnimatedSection animation="fade-up" delay={200}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 relative">
                     <div className="flex items-center gap-4 mb-6">
@@ -392,7 +392,7 @@ const ProfilUkkpk = () => {
                 </Card>
               </AnimatedSection>
 
-              <AnimatedSection animation="slide-right" delay={250}>
+              <AnimatedSection animation="fade-up" delay={250}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 relative">
                     <div className="flex items-center gap-4 mb-6">
@@ -415,7 +415,7 @@ const ProfilUkkpk = () => {
                 </Card>
               </AnimatedSection>
 
-              <AnimatedSection animation="slide-left" delay={300}>
+              <AnimatedSection animation="fade-up" delay={300}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 relative">
                     <div className="flex items-center gap-4 mb-6">
@@ -438,8 +438,8 @@ const ProfilUkkpk = () => {
                 </Card>
               </AnimatedSection>
 
-              <AnimatedSection animation="slide-right" delay={350}>
-                <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500 md:col-span-2">
+              <AnimatedSection animation="fade-up" delay={350}>
+                <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 relative">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
