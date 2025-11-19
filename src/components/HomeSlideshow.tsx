@@ -121,17 +121,17 @@ export const HomeSlideshow = () => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8 animate-fade-up" style={{ animationDelay: '0.4s' }}>
             <Link to="/artikel" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto bg-white text-primary hover:bg-white/90 shadow-lg hover:shadow-xl transition-all">
+              <Button size="lg" className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
                 Baca Artikel
               </Button>
             </Link>
             <Link to="/berita" className="w-full sm:w-auto">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white/20 shadow-lg hover:shadow-xl transition-all">
+              <Button size="lg" className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
                 Lihat Berita
               </Button>
             </Link>
             <Link to="/radio" className="w-full sm:w-auto">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white/20 shadow-lg hover:shadow-xl transition-all">
+              <Button size="lg" className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
                 Dengar Radio
               </Button>
             </Link>
