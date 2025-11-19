@@ -84,7 +84,7 @@ const Admin = () => {
               onNavigate={setActivePage}
             />
             
-            <div className="flex-1 p-3 sm:p-4 lg:p-6">
+            <div className="flex-1 p-2 sm:p-3 md:p-4 lg:p-6">
               {activePage === "dashboard" && <DashboardOverview />}
               {activePage === "analytics" && <AnalyticsDashboard />}
               {activePage === "articles" && <ArticlesManager />}
