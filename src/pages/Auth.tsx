@@ -46,7 +46,13 @@ const Auth = () => {
           {/* Logo */}
           <AnimatedSection animation="fade-in" delay={100}>
             <div className="mb-8 flex justify-center">
-              <img src={logoUkkpk} alt="UKKPK Logo" className="h-16 w-auto" />
+              <img 
+                src={logoUkkpk} 
+                alt="UKKPK Logo" 
+                className="h-16 w-auto animate-scale-in"
+                loading="eager"
+                fetchPriority="high"
+              />
             </div>
           </AnimatedSection>
 
