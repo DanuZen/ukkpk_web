@@ -1,5 +1,5 @@
 import { User } from "@supabase/supabase-js";
-import { Search, Bell, LogOut, ExternalLink, Menu, X as CloseIcon } from "lucide-react";
+import { Search, Bell, LogOut, ExternalLink, Menu, X as CloseIcon, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
@@ -120,26 +120,37 @@ export const DashboardHeader = ({
         </SheetContent>
       </Sheet>
       
-      <h1 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 truncate flex-1 min-w-0">{title}</h1>
+      {/* Title - Hidden when search is open on mobile */}
+      <h1 className={`text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 truncate flex-1 min-w-0 ${searchOpen ? 'hidden lg:block' : ''}`}>{title}</h1>
 
       <div className="ml-auto flex items-center gap-1 sm:gap-2">
-        {/* Mobile/Tablet Search Dialog */}
-        <Dialog open={searchOpen} onOpenChange={setSearchOpen}>
-          <DialogTrigger asChild>
-            <Button variant="ghost" size="icon" className="lg:hidden text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9">
-              <Search className="h-4 w-4" />
+        {/* Mobile/Tablet Search Toggle Button */}
+        {!searchOpen && (
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={() => setSearchOpen(true)}
+            className="lg:hidden text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9"
+          >
+            <Search className="h-4 w-4" />
+          </Button>
+        )}
+
+        {/* Mobile/Tablet Search Input - Inline */}
+        {searchOpen && (
+          <div className="relative flex-1 lg:hidden flex items-center gap-2">
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+            <Input placeholder="Search..." className="w-full pl-9 pr-2 h-8 sm:h-9 text-xs sm:text-sm bg-gray-50 border-gray-200" />
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={() => setSearchOpen(false)}
+              className="text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9 flex-shrink-0"
+            >
+              <X className="h-4 w-4" />
             </Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-md">
-            <DialogHeader>
-              <DialogTitle>Search Dashboard</DialogTitle>
-            </DialogHeader>
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-              <Input placeholder="Search..." className="pl-9 bg-gray-50 border-gray-200" />
-            </div>
-          </DialogContent>
-        </Dialog>
+          </div>
+        )}
 
         {/* Desktop Search Bar - Always Visible */}
         <div className="relative hidden lg:block">
@@ -147,23 +158,27 @@ export const DashboardHeader = ({
           <Input placeholder="Search..." className="w-48 xl:w-64 pl-9 bg-gray-50 border-gray-200" />
         </div>
 
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          onClick={() => navigate("/")} 
-          className="text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9" 
-          title="Kembali ke Website"
-        >
-          <ExternalLink className="h-4 w-4" />
-        </Button>
+        {!searchOpen && (
+          <>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={() => navigate("/")} 
+              className="text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9" 
+              title="Kembali ke Website"
+            >
+              <ExternalLink className="h-4 w-4" />
+            </Button>
 
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          className="hidden sm:flex text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9"
-        >
-          <Bell className="h-4 w-4 sm:h-5 sm:w-5" />
-        </Button>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="hidden sm:flex text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9"
+            >
+              <Bell className="h-4 w-4 sm:h-5 sm:w-5" />
+            </Button>
+          </>
+        )}
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
