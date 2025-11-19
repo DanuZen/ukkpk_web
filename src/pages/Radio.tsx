@@ -241,10 +241,6 @@ const Radio = () => {
                   Sebelumnya
                 </Button>
                 
-                <div className="px-6 py-2 bg-primary/10 border border-primary/20 rounded-lg">
-                  <span className="text-lg font-semibold text-primary">{DAYS[selectedDay]}</span>
-                </div>
-                
                 <Button variant="outline" size="sm" onClick={handleToday} className="font-medium">
                   Hari Ini
                 </Button>
