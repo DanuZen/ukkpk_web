@@ -147,7 +147,7 @@ const Radio = () => {
             ) : (
               <div className="mb-8 p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl">
                 <div className="flex items-center gap-3">
-                  <img src={logoSigmaRadio} alt="SIGMA Radio" className="h-6 w-6 object-contain opacity-50 brightness-0 invert" />
+                  <RadioIcon className="h-6 w-6 text-white/50" />
                   <span className="text-white/70 text-sm">Tidak ada program yang sedang tayang saat ini</span>
                 </div>
               </div>
