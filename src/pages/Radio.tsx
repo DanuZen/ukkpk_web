@@ -135,16 +135,16 @@ const Radio = () => {
           <AnimatedSection animation="fade-up">
             <div className="max-w-3xl mx-auto text-center space-y-4 sm:space-y-6">
               {/* Badge */}
-              <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-5 py-2.5 rounded-full mb-6">
-                <RadioIcon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
-                <span className="text-sm font-medium">Radio #1 Kampus UNP</span>
+              <div className="inline-flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full mb-6">
+                <RadioIcon className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-white" />
+                <span className="text-xs sm:text-sm font-medium">Radio #1 Kampus UNP</span>
               </div>
               
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 SIGMA RADIO
               </h1>
               
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground px-4">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-muted-foreground px-4">
                 Platform radio kampus yang menghubungkan Anda dengan berbagai program menarik, 
                 berita terkini, dan hiburan berkualitas dari UKKPK UNP.
               </p>
@@ -162,20 +162,20 @@ const Radio = () => {
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                       <span className="text-white/90 text-sm font-medium uppercase tracking-wide">SEDANG TAYANG</span>
                     </div>
-                    <h3 className="text-base sm:text-lg md:text-2xl font-bold mb-2">
+                    <h3 className="text-sm sm:text-base md:text-lg lg:text-2xl font-bold mb-2">
                       {currentProgram.name} <span className="text-white/80 font-normal">By</span> {currentProgram.host}
                     </h3>
                     {/* Countdown Timer */}
-                    <div className="flex items-center gap-2 mt-3 bg-white/5 rounded-lg px-3 py-2 w-fit">
-                      <Clock className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white/70" />
-                      <span className="text-white/90 text-sm font-medium">{timeRemaining}</span>
+                    <div className="flex items-center gap-2 mt-3 bg-white/5 rounded-lg px-2 py-1.5 sm:px-3 sm:py-2 w-fit">
+                      <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 text-white/70" />
+                      <span className="text-white/90 text-xs sm:text-sm font-medium">{timeRemaining}</span>
                     </div>
                   </div>
                 </div>
               </div> : <div className="mb-8 p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl">
                 <div className="flex items-center gap-3">
-                  <RadioIcon className="h-5 w-5 sm:h-6 sm:w-6 text-white/50" />
-                  <span className="text-white/70 text-sm">Tidak ada program yang sedang tayang saat ini</span>
+                  <RadioIcon className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-white/50" />
+                  <span className="text-white/70 text-xs sm:text-sm">Tidak ada program yang sedang tayang saat ini</span>
                 </div>
               </div>}
 
