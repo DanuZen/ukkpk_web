@@ -119,32 +119,28 @@ const Radio = () => {
     }
   };
   return <Layout>
-      {/* Hero Section - HostPro Style */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
         {/* Background Image with Dark Overlay */}
         <div className="absolute inset-0 bg-cover bg-center" style={{
         backgroundImage: `url(${settings?.banner_image_url || 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070'})`
       }}></div>
         <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
         
-        <div className="container mx-auto px-4 relative z-10 py-16">
+        <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
-            <div className="max-w-3xl mx-auto text-center">
+            <div className="max-w-3xl mx-auto text-center space-y-4 sm:space-y-6">
               {/* Badge */}
               <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-5 py-2.5 rounded-full mb-6">
                 <RadioIcon className="h-6 w-6 text-white" />
                 <span className="text-sm font-medium">Radio #1 Kampus UNP</span>
               </div>
               
-              {/* Main Heading */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 SIGMA RADIO
-                <br />
-                UKKPK UNP
               </h1>
               
-              {/* Subtitle */}
-              <p className="text-white/90 text-lg md:text-xl max-w-2xl mb-8 leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground px-4">
                 Platform radio kampus yang menghubungkan Anda dengan berbagai program menarik, 
                 berita terkini, dan hiburan berkualitas dari UKKPK UNP.
               </p>

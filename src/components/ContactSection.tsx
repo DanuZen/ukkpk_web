@@ -84,7 +84,7 @@ export const ContactSection = () => {
   return <div className="bg-card rounded-lg shadow-lg p-6 lg:p-8 h-full">
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="text-sm font-medium mb-1 block">Nama</label>
             <Input 
@@ -112,7 +112,7 @@ export const ContactSection = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="text-sm font-medium mb-1 block">Nomor Telepon</label>
             <Input 

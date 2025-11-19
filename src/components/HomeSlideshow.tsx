@@ -98,9 +98,11 @@ export const HomeSlideshow = () => {
           }}
         >
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-2 rounded-full mb-6">
-            <RadioIcon className="h-4 w-4" />
-            <span className="text-sm font-medium">Unit Kegiatan Komunikasi & Penyiaran Kampus</span>
+          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-4 sm:mb-6">
+            <RadioIcon className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+            <span className="text-xs sm:text-sm font-medium text-white">
+              Unit Kegiatan Komunikasi & Penyiaran Kampus
+            </span>
           </div>
           
           {/* Main Heading */}
@@ -111,29 +113,28 @@ export const HomeSlideshow = () => {
           </h1>
           
           {/* Subtitle */}
-          <p className="text-base sm:text-lg md:text-xl text-white/90 drop-shadow-lg max-w-2xl mb-8 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 mb-6 sm:mb-8 leading-relaxed max-w-2xl animate-fade-up" style={{ animationDelay: '0.2s' }}>
             Platform media kampus yang menghubungkan Anda dengan berita terkini, 
             artikel berkualitas, dan siaran radio kampus dari UKKPK UNP.
           </p>
 
-          {/* Buttons */}
-          <div className="flex flex-wrap gap-4 mb-8">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-base" asChild>
-              <Link to="/artikel">
-                Baca Artikel →
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-8 py-6 text-base" asChild>
-              <Link to="/berita">
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+            <Link to="/artikel" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto bg-white text-primary hover:bg-white/90 shadow-lg hover:shadow-xl transition-all">
+                Baca Artikel
+              </Button>
+            </Link>
+            <Link to="/berita" className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white/20 shadow-lg hover:shadow-xl transition-all">
                 Lihat Berita
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-8 py-6 text-base" asChild>
-              <Link to="/radio">
-                <Play className="h-5 w-5 mr-2" />
+              </Button>
+            </Link>
+            <Link to="/radio" className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white/20 shadow-lg hover:shadow-xl transition-all">
                 Dengar Radio
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
 
           {/* Rating */}

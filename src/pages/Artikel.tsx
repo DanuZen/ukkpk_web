@@ -63,16 +63,16 @@ const Artikel = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative py-20 px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
+      <section className="relative py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d')] opacity-5 bg-cover bg-center"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background"></div>
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
-            <div className="max-w-3xl mx-auto text-center space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+            <div className="max-w-3xl mx-auto text-center space-y-4 sm:space-y-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Artikel UKKPK
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground px-4">
                 Kumpulan artikel, berita, dan informasi terkini seputar kegiatan kampus
               </p>
             </div>
@@ -81,7 +81,7 @@ const Artikel = () => {
       </section>
 
       {/* Search Section */}
-      <section className="py-8 bg-muted/30">
+      <section className="py-6 sm:py-8 bg-muted/30">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="scale-in" delay={100}>
             <div className="max-w-2xl mx-auto relative">
@@ -91,7 +91,7 @@ const Artikel = () => {
                 placeholder="Cari artikel berdasarkan judul, kategori, atau konten..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-12 py-6 text-lg shadow-lg"
+                className="pl-10 sm:pl-12 py-4 sm:py-6 text-base sm:text-lg shadow-lg"
               />
             </div>
           </AnimatedSection>
@@ -99,7 +99,7 @@ const Artikel = () => {
       </section>
 
       {/* Articles Grid */}
-      <section className="py-16 bg-background relative overflow-hidden">
+      <section className="py-8 sm:py-12 md:py-16 bg-background relative overflow-hidden">
         {/* Curved geometric background patterns */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full border-[40px] border-gray-100/60" />
