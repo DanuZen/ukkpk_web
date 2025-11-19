@@ -241,7 +241,7 @@ const Index = () => {
               
               <div className="w-32 h-1 bg-white/50 mx-auto mb-6 sm:mb-8" />
               
-              <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed hidden sm:block">
                 Kami sangat menghargai kunjungan Anda. Semoga informasi yang kami sajikan bermanfaat 
                 untuk Anda. Jangan ragu untuk menghubungi kami jika ada pertanyaan atau saran.
               </p>
