@@ -111,7 +111,7 @@ export const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1 flex-1 justify-end">
+          <div className="hidden lg:flex items-center gap-1 flex-1 justify-end">
             {!isSearchOpen ? <>
                 {navItems.map(item => {
               const isActive = location.pathname === item.path;
@@ -236,13 +236,13 @@ export const Navigation = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button onClick={() => setIsOpen(!isOpen)} className={`md:hidden p-2 rounded-md transition-colors ${showTransparentNav ? "text-white hover:text-white/80" : "text-primary hover:text-primary/80"}`}>
+          <button onClick={() => setIsOpen(!isOpen)} className={`lg:hidden p-2 rounded-md transition-colors ${showTransparentNav ? "text-white hover:text-white/80" : "text-primary hover:text-primary/80"}`}>
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && <div className="absolute top-full left-0 right-0 md:hidden py-4 bg-background border-t border-border space-y-2 shadow-lg z-50 animate-in slide-in-from-top duration-300">
+        {isOpen && <div className="absolute top-full left-0 right-0 lg:hidden py-4 bg-background border-t border-border space-y-2 shadow-lg z-50 animate-in slide-in-from-top duration-300">
             {navItems.map(item => {
           const isActive = location.pathname === item.path;
           return <Link key={item.name} to={item.path} className={`block mx-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground shadow-md" : "text-foreground hover:bg-secondary"}`} onClick={() => setIsOpen(false)}>
