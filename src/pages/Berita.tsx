@@ -94,7 +94,7 @@ const Berita = () => {
                 placeholder="Cari Berita"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 sm:pl-12 py-4 sm:py-6 text-base sm:text-lg shadow-lg"
+                className="pl-10 sm:pl-12 py-2 sm:py-4 md:py-6 text-sm sm:text-base md:text-lg shadow-lg"
               />
             </div>
           </AnimatedSection>
