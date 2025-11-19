@@ -139,66 +139,71 @@ export const EventsManager = () => {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-2 sm:space-y-3 md:space-y-8">
       <Card>
-        <CardHeader>
-          <CardTitle>{editingId ? "Edit Event" : "Tambah Event Baru"}</CardTitle>
+        <CardHeader className="p-2 sm:p-3 md:p-6">
+          <CardTitle className="text-sm sm:text-base md:text-2xl">{editingId ? "Edit Event" : "Tambah Event Baru"}</CardTitle>
         </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="text-sm font-medium mb-2 block">Nama Event</label>
+        <CardContent className="p-2 sm:p-3 md:p-6">
+          <form onSubmit={handleSubmit} className="space-y-1.5 sm:space-y-2 md:space-y-4">
+            <div className="space-y-0.5 sm:space-y-1">
+              <label className="text-xs sm:text-sm font-medium block">Nama Event</label>
               <Input
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Masukkan nama event"
                 maxLength={200}
+                className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
               />
             </div>
 
-            <div>
-              <label className="text-sm font-medium mb-2 block">Deskripsi</label>
+            <div className="space-y-0.5 sm:space-y-1">
+              <label className="text-xs sm:text-sm font-medium block">Deskripsi</label>
               <Textarea
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 placeholder="Masukkan deskripsi event"
-                rows={4}
+                rows={3}
                 maxLength={2000}
+                className="text-xs sm:text-sm min-h-[60px] sm:min-h-[80px]"
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="text-sm font-medium mb-2 block">Tanggal</label>
+            <div className="grid grid-cols-2 gap-1.5 sm:gap-2 md:gap-4">
+              <div className="space-y-0.5 sm:space-y-1">
+                <label className="text-xs sm:text-sm font-medium block">Tanggal</label>
                 <Input
                   type="date"
                   value={formData.event_date}
                   onChange={(e) => setFormData({ ...formData, event_date: e.target.value })}
+                  className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
                 />
               </div>
 
-              <div>
-                <label className="text-sm font-medium mb-2 block">Waktu</label>
+              <div className="space-y-0.5 sm:space-y-1">
+                <label className="text-xs sm:text-sm font-medium block">Waktu</label>
                 <Input
                   type="time"
                   value={formData.event_time}
                   onChange={(e) => setFormData({ ...formData, event_time: e.target.value })}
+                  className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
                 />
               </div>
             </div>
 
-            <div>
-              <label className="text-sm font-medium mb-2 block">Lokasi</label>
+            <div className="space-y-0.5 sm:space-y-1">
+              <label className="text-xs sm:text-sm font-medium block">Lokasi</label>
               <Input
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                 placeholder="Masukkan lokasi event"
                 maxLength={200}
+                className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
               />
             </div>
 
-            <div className="flex gap-2">
-              <Button type="submit">
+            <div className="flex gap-1 sm:gap-2">
+              <Button type="submit" className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm flex-1">
                 {editingId ? "Update Event" : "Tambah Event"}
               </Button>
               {editingId && (
