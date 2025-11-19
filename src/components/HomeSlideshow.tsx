@@ -144,11 +144,11 @@ export const HomeSlideshow = () => {
 
       {/* Navigation Arrows */}
       {images.length > 1 && <>
-          <Button variant="ghost" size="icon" onClick={goToPrevious} className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white opacity-70 sm:opacity-0 group-hover:opacity-100 transition-opacity h-10 w-10 sm:h-12 sm:w-12">
-            <ChevronLeft className="h-6 w-6 sm:h-8 sm:w-8" />
+          <Button variant="ghost" size="icon" onClick={goToPrevious} className="hidden md:flex absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity h-12 w-12">
+            <ChevronLeft className="h-8 w-8" />
           </Button>
-          <Button variant="ghost" size="icon" onClick={goToNext} className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white opacity-70 sm:opacity-0 group-hover:opacity-100 transition-opacity h-10 w-10 sm:h-12 sm:w-12">
-            <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8" />
+          <Button variant="ghost" size="icon" onClick={goToNext} className="hidden md:flex absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity h-12 w-12">
+            <ChevronRight className="h-8 w-8" />
           </Button>
         </>}
 
