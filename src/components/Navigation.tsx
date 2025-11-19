@@ -98,7 +98,7 @@ export const Navigation = () => {
     navigate("/");
   };
   const isHomePage = location.pathname === "/";
-  const showTransparentNav = isHomePage && !isScrolled;
+  const showTransparentNav = isHomePage && !isScrolled && !isOpen;
   return <nav className={`${showTransparentNav ? "bg-transparent" : "bg-white border-b border-border shadow-sm"} sticky top-0 z-50 transition-all duration-300`}>
       <div className="container mx-auto px-4 relative">
         <div className="flex items-center justify-between h-16">
