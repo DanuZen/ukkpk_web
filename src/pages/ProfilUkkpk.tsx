@@ -25,6 +25,13 @@ interface ProfileSettings {
   organization_image_url: string | null;
 }
 
+interface StrukturOrganisasi {
+  id: string;
+  angkatan: string;
+  foto_url: string;
+  created_at: string;
+}
+
 // Animated Section Wrapper Component
 const AnimatedSection: React.FC<{
   children: React.ReactNode;
@@ -62,6 +69,8 @@ const AnimatedSection: React.FC<{
 const ProfilUkkpk = () => {
   const [members, setMembers] = useState<OrgMember[]>([]);
   const [profile, setProfile] = useState<ProfileSettings | null>(null);
+  const [strukturData, setStrukturData] = useState<StrukturOrganisasi[]>([]);
+  const [selectedYear, setSelectedYear] = useState(0);
 
   // Logo bidang hardcoded
   const divisionLogos = [
@@ -73,6 +82,7 @@ const ProfilUkkpk = () => {
   useEffect(() => {
     fetchMembers();
     fetchProfile();
+    fetchStrukturOrganisasi();
   }, []);
 
   const fetchMembers = async () => {
@@ -92,6 +102,15 @@ const ProfilUkkpk = () => {
       .maybeSingle();
 
     if (data) setProfile(data);
+  };
+
+  const fetchStrukturOrganisasi = async () => {
+    const { data } = await supabase
+      .from('struktur_organisasi')
+      .select('*')
+      .order('created_at', { ascending: true });
+
+    if (data) setStrukturData(data);
   };
 
   const features = [
@@ -633,17 +652,36 @@ const ProfilUkkpk = () => {
             </div>
           </AnimatedSection>
 
-          {profile?.organization_image_url && (
-            <AnimatedSection animation="scale-in" delay={100}>
-              <div className="max-w-4xl mx-auto mb-12">
+          {strukturData.length > 0 ? (
+            <AnimatedSection animation="fade-in" delay={100}>
+              <div className="max-w-5xl mx-auto mb-8">
+                {strukturData.length > 1 && (
+                  <div className="flex justify-center gap-2 mb-6">
+                    {strukturData.map((struktur, index) => (
+                      <Button
+                        key={struktur.id}
+                        variant={selectedYear === index ? "default" : "outline"}
+                        onClick={() => setSelectedYear(index)}
+                        className="min-w-[120px]"
+                      >
+                        {struktur.angkatan}
+                      </Button>
+                    ))}
+                  </div>
+                )}
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold text-primary">
+                    {strukturData[selectedYear]?.angkatan}
+                  </h3>
+                </div>
                 <img
-                  src={profile.organization_image_url}
-                  alt="Struktur Organisasi UKKPK"
+                  src={strukturData[selectedYear]?.foto_url}
+                  alt={`Struktur Organisasi ${strukturData[selectedYear]?.angkatan}`}
                   className="w-full rounded-lg shadow-xl"
                 />
               </div>
             </AnimatedSection>
-          )}
+          ) : null}
 
           {members.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
