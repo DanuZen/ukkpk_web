@@ -201,14 +201,16 @@ const ProfilUkkpk = () => {
         <section className="relative py-20 px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d')] opacity-5 bg-cover bg-center"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background"></div>
-          <div className="container mx-auto text-center relative z-10">
+          <div className="container mx-auto relative z-10">
             <AnimatedSection animation="fade-up">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                UKKPK UNP
-              </h1>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang
-              </p>
+              <div className="max-w-3xl mx-auto text-center space-y-6">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+                  UKKPK UNP
+                </h1>
+                <p className="text-lg md:text-xl text-muted-foreground">
+                  Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang
+                </p>
+              </div>
             </AnimatedSection>
           </div>
         </section>
