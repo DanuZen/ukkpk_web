@@ -132,7 +132,7 @@ const Radio = () => {
             <div className="max-w-3xl mx-auto text-center space-y-4 sm:space-y-6">
               {/* Badge */}
               <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-5 py-2.5 rounded-full mb-6">
-                <RadioIcon className="h-6 w-6 text-white" />
+                <RadioIcon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                 <span className="text-sm font-medium">Radio #1 Kampus UNP</span>
               </div>
               
@@ -163,14 +163,14 @@ const Radio = () => {
                     </h3>
                     {/* Countdown Timer */}
                     <div className="flex items-center gap-2 mt-3 bg-white/5 rounded-lg px-3 py-2 w-fit">
-                      <Clock className="h-4 w-4 text-white/70" />
+                      <Clock className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white/70" />
                       <span className="text-white/90 text-sm font-medium">{timeRemaining}</span>
                     </div>
                   </div>
                 </div>
               </div> : <div className="mb-8 p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl">
                 <div className="flex items-center gap-3">
-                  <RadioIcon className="h-6 w-6 text-white/50" />
+                  <RadioIcon className="h-5 w-5 sm:h-6 sm:w-6 text-white/50" />
                   <span className="text-white/70 text-sm">Tidak ada program yang sedang tayang saat ini</span>
                 </div>
               </div>}
@@ -178,14 +178,14 @@ const Radio = () => {
             {/* Buttons */}
             <div className="flex flex-col gap-4 justify-center items-center">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-base" onClick={handleListen}>
-                <Play className="h-5 w-5 mr-2" />
+                <Play className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                 Dengar Sekarang
               </Button>
               <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-8 py-6 text-base" onClick={() => document.getElementById('jadwal-program')?.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
               })}>
-                <Clock className="h-5 w-5 mr-2" />
+                <Clock className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                 Lihat Jadwal
               </Button>
             </div>
@@ -226,7 +226,7 @@ const Radio = () => {
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20 mb-4">
-                <RadioIcon className="h-5 w-5 text-primary animate-pulse" />
+                <RadioIcon className="h-5 w-5 sm:h-6 sm:w-6 text-primary animate-pulse" />
                 <span className="text-sm font-medium text-primary">Program Kami</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
@@ -274,8 +274,8 @@ const Radio = () => {
                   <CardHeader className="relative">
                     <div className="flex items-start gap-4">
                       <div className="relative">
-                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 border border-primary/20">
-                          <RadioIcon className="h-8 w-8 text-primary group-hover:scale-110 transition-transform duration-300" />
+                        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 border border-primary/20">
+                          <RadioIcon className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-primary group-hover:scale-110 transition-transform duration-300" />
                         </div>
                         {/* Live indicator if it's the current program */}
                         {currentProgram?.id === program.id && <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-background animate-pulse">
@@ -287,7 +287,7 @@ const Radio = () => {
                           {program.name}
                         </CardTitle>
                         <CardDescription className="flex items-center gap-2 text-sm">
-                          <Clock className="h-3.5 w-3.5" />
+                          <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                           <span className="font-semibold">{DAYS[program.day_of_week]}</span>
                           <span className="text-xs">•</span>
                           <span className="font-medium">{program.air_time}{program.end_time ? ` - ${program.end_time}` : ''}</span>

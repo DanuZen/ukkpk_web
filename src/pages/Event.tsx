@@ -96,7 +96,7 @@ const Event = () => {
                     <CardContent className="space-y-3">
                       <div className="flex items-center gap-3 text-sm">
                         <div className="p-2 rounded-lg bg-red-500/10 text-red-600">
-                          <Calendar className="h-4 w-4" />
+                          <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
                         </div>
                         <span className="font-medium">
                           {new Date(event.event_date).toLocaleDateString("id-ID", {
@@ -108,13 +108,13 @@ const Event = () => {
                       </div>
                       <div className="flex items-center gap-3 text-sm">
                         <div className="p-2 rounded-lg bg-red-500/10 text-red-600">
-                          <Clock className="h-4 w-4" />
+                          <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
                         </div>
                         <span className="font-medium">{event.event_time}</span>
                       </div>
                       <div className="flex items-center gap-3 text-sm">
                         <div className="p-2 rounded-lg bg-red-500/10 text-red-600">
-                          <MapPin className="h-4 w-4" />
+                          <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
                         </div>
                         <span className="font-medium">{event.location}</span>
                       </div>
