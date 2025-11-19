@@ -258,30 +258,32 @@ export const RadioManager = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
+    <div className="space-y-3 sm:space-y-4 md:space-y-6">
+      <div className="flex justify-between items-start gap-2">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Jadwal Program Radio</h2>
-          <p className="text-gray-600">Kelola jadwal program radio mingguan</p>
+          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">Jadwal Program Radio</h2>
+          <p className="text-xs sm:text-sm text-gray-600">Kelola jadwal program radio mingguan</p>
         </div>
         <Dialog open={showSettingsDialog} onOpenChange={setShowSettingsDialog}>
           <DialogTrigger asChild>
-            <Button variant="outline">
-              <SettingsIcon className="h-4 w-4 mr-2" />
-              Pengaturan Radio
+            <Button variant="outline" className="h-8 px-2 sm:h-9 sm:px-3 md:h-10 md:px-4 text-xs sm:text-sm">
+              <SettingsIcon className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+              <span className="hidden xs:inline">Pengaturan Radio</span>
+              <span className="xs:hidden">Pengaturan</span>
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-md">
+          <DialogContent className="max-w-md p-3 sm:p-4 md:p-6">
             <DialogHeader>
-              <DialogTitle>Pengaturan Radio</DialogTitle>
+              <DialogTitle className="text-sm sm:text-base md:text-lg">Pengaturan Radio</DialogTitle>
             </DialogHeader>
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-2">URL Streaming</label>
+                <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">URL Streaming</label>
                 <Input
                   value={streamingUrl}
                   onChange={(e) => setStreamingUrl(e.target.value)}
                   placeholder="https://streaming-url.com"
+                  className="h-8 sm:h-9 md:h-10 text-xs sm:text-sm"
                 />
               </div>
               <div>
@@ -292,7 +294,7 @@ export const RadioManager = () => {
                   onFileSelect={setBannerImage}
                 />
               </div>
-              <Button onClick={handleUpdateSettings} className="w-full">
+              <Button onClick={handleUpdateSettings} className="w-full h-8 sm:h-9 md:h-10 text-xs sm:text-sm">
                 Simpan Pengaturan
               </Button>
             </div>
@@ -302,18 +304,18 @@ export const RadioManager = () => {
 
       {/* Calendar Grid */}
       <Card>
-        <CardContent className="p-4">
+        <CardContent className="p-2 sm:p-3 md:p-4">
           <div className="overflow-x-auto">
-            <div className="min-w-[1000px]">
+            <div className="min-w-[700px] sm:min-w-[900px] md:min-w-[1000px]">
               {/* Header with Days */}
-              <div className="grid grid-cols-8 gap-1 mb-2">
-                <div className="p-2 text-center font-semibold text-gray-500 text-sm">
+              <div className="grid grid-cols-8 gap-0.5 sm:gap-1 mb-1 sm:mb-2">
+                <div className="p-1.5 sm:p-2 text-center font-semibold text-gray-500 text-[10px] sm:text-xs md:text-sm">
                   Waktu
                 </div>
                 {DAYS.map((day, index) => (
                   <div
                     key={index}
-                    className="p-2 text-center font-semibold bg-gradient-to-r from-primary to-primary/80 text-white rounded-t-lg"
+                    className="py-1.5 sm:py-2 px-1.5 sm:px-2 text-center font-semibold bg-gradient-to-r from-primary to-primary/80 text-white rounded-t-lg text-[10px] sm:text-xs md:text-sm"
                   >
                     {day}
                   </div>
@@ -321,10 +323,10 @@ export const RadioManager = () => {
               </div>
 
               {/* Time Slots Grid */}
-              <div className="space-y-1">
+              <div className="space-y-0.5 sm:space-y-1">
                 {TIME_SLOTS.map((time) => (
-                  <div key={time} className="grid grid-cols-8 gap-1">
-                    <div className="p-2 text-center text-sm font-medium text-gray-600 bg-gray-50 rounded-lg flex items-center justify-center">
+                  <div key={time} className="grid grid-cols-8 gap-0.5 sm:gap-1">
+                    <div className="p-1.5 sm:p-2 text-center text-[11px] sm:text-xs md:text-sm font-medium text-gray-600 bg-gray-50 rounded-lg flex items-center justify-center">
                       {time}
                     </div>
                     {DAYS.map((_, dayIndex) => {
@@ -334,7 +336,7 @@ export const RadioManager = () => {
                       return (
                         <div
                           key={`${dayIndex}-${time}`}
-                          className={`min-h-[80px] p-2 rounded-lg border-2 transition-all ${
+                          className={`min-h-[56px] sm:min-h-[72px] md:min-h-[80px] p-1.5 sm:p-2 rounded-lg border-2 transition-all ${
                             isEmpty
                               ? "border-dashed border-gray-200 hover:border-primary/50 hover:bg-primary/5 cursor-pointer"
                               : "border-primary/20 bg-primary/5"
