@@ -214,7 +214,7 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-white/20 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs sm:text-sm md:text-base text-white/90">
-            © {new Date().getFullYear()} UKKPK UNP. Semua hak dilindungi.
+            © {new Date().getFullYear()} UKKPK UNP.
           </p>
           <div className="flex gap-6 text-xs sm:text-sm md:text-base">
             <span className="text-white/80 hover:text-white transition-colors cursor-pointer">
