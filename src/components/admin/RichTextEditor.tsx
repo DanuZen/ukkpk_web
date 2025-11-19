@@ -27,6 +27,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 interface RichTextEditorProps {
   content: string;
@@ -37,8 +39,39 @@ interface RichTextEditorProps {
 export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEditorProps) => {
   const [showLinkDialog, setShowLinkDialog] = useState(false);
   const [linkUrl, setLinkUrl] = useState('');
-  const [showImageDialog, setShowImageDialog] = useState(false);
-  const [imageUrl, setImageUrl] = useState('');
+  const [uploading, setUploading] = useState(false);
+  const { toast } = useToast();
+
+  const uploadImage = async (file: File): Promise<string | null> => {
+    try {
+      setUploading(true);
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Math.random()}.${fileExt}`;
+      const filePath = `${fileName}`;
+
+      const { error: uploadError, data } = await supabase.storage
+        .from('uploads')
+        .upload(filePath, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('uploads')
+        .getPublicUrl(filePath);
+
+      return publicUrl;
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      toast({
+        title: "Error",
+        description: "Gagal mengupload gambar",
+        variant: "destructive",
+      });
+      return null;
+    } finally {
+      setUploading(false);
+    }
+  };
 
   const editor = useEditor({
     extensions: [
@@ -63,6 +96,60 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
     editorProps: {
       attributes: {
         class: 'prose prose-sm max-w-none focus:outline-none min-h-[300px] p-4',
+      },
+      handleDrop: (view, event, slice, moved) => {
+        if (!moved && event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0]) {
+          const file = event.dataTransfer.files[0];
+          
+          // Check if the dropped file is an image
+          if (!file.type.startsWith('image/')) {
+            toast({
+              title: "Error",
+              description: "Hanya file gambar yang diperbolehkan",
+              variant: "destructive",
+            });
+            return true;
+          }
+
+          // Upload and insert image
+          uploadImage(file).then((url) => {
+            if (url) {
+              const { schema } = view.state;
+              const coordinates = view.posAtCoords({ left: event.clientX, top: event.clientY });
+              
+              if (coordinates) {
+                const node = schema.nodes.image.create({ src: url });
+                const transaction = view.state.tr.insert(coordinates.pos, node);
+                view.dispatch(transaction);
+              }
+            }
+          });
+
+          return true; // Handled the drop
+        }
+        return false; // Let the editor handle other drops
+      },
+      handlePaste: (view, event) => {
+        const items = event.clipboardData?.items;
+        if (!items) return false;
+
+        for (let i = 0; i < items.length; i++) {
+          if (items[i].type.startsWith('image/')) {
+            const file = items[i].getAsFile();
+            if (file) {
+              event.preventDefault();
+              
+              uploadImage(file).then((url) => {
+                if (url) {
+                  editor?.chain().focus().setImage({ src: url }).run();
+                }
+              });
+
+              return true;
+            }
+          }
+        }
+        return false;
       },
     },
   });
@@ -108,11 +195,22 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
     }
   };
 
-  const addImage = () => {
-    if (imageUrl) {
-      editor.chain().focus().setImage({ src: imageUrl }).run();
-      setImageUrl('');
-      setShowImageDialog(false);
+  const handleImageFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      toast({
+        title: "Error",
+        description: "Hanya file gambar yang diperbolehkan",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const url = await uploadImage(file);
+    if (url) {
+      editor.chain().focus().setImage({ src: url }).run();
     }
   };
 
@@ -211,12 +309,23 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
           >
             <Link2 className="h-4 w-4" />
           </ToolbarButton>
-          <ToolbarButton
-            onClick={() => setShowImageDialog(!showImageDialog)}
-            title="Insert Image"
-          >
-            <ImageIcon className="h-4 w-4" />
-          </ToolbarButton>
+          <div className="relative">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageFileUpload}
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              disabled={uploading}
+              title="Upload Image (or drag & drop into editor)"
+            />
+            <ToolbarButton
+              onClick={() => {}}
+              title="Upload Image (or drag & drop into editor)"
+              disabled={uploading}
+            >
+              <ImageIcon className={cn("h-4 w-4", uploading && "animate-pulse")} />
+            </ToolbarButton>
+          </div>
         </div>
 
         {/* Undo/Redo */}
@@ -274,33 +383,18 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
         </div>
       )}
 
-      {/* Image Dialog */}
-      {showImageDialog && (
-        <div className="p-3 border-b border-border bg-muted/20">
-          <div className="flex gap-2 items-end">
-            <div className="flex-1">
-              <Label htmlFor="image-url" className="text-xs">URL Gambar</Label>
-              <Input
-                id="image-url"
-                type="url"
-                placeholder="https://example.com/image.jpg"
-                value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && addImage()}
-              />
-            </div>
-            <Button type="button" size="sm" onClick={addImage}>
-              Tambah
-            </Button>
-            <Button type="button" size="sm" variant="outline" onClick={() => setShowImageDialog(false)}>
-              Batal
-            </Button>
-          </div>
-        </div>
-      )}
-
       {/* Editor Content */}
-      <EditorContent editor={editor} className="prose-p:my-2 prose-headings:my-3" />
+      <div className="relative">
+        <EditorContent editor={editor} className="prose-p:my-2 prose-headings:my-3" />
+        {uploading && (
+          <div className="absolute inset-0 bg-background/50 flex items-center justify-center">
+            <div className="text-sm text-muted-foreground">Mengupload gambar...</div>
+          </div>
+        )}
+      </div>
+      <div className="px-4 py-2 text-xs text-muted-foreground border-t border-border bg-muted/10">
+        💡 Tips: Drag & drop gambar langsung ke editor atau paste dari clipboard
+      </div>
     </div>
   );
 };
