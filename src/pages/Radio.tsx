@@ -140,7 +140,7 @@ const Radio = () => {
                 <span className="text-xs sm:text-sm font-medium">Radio #1 Kampus UNP</span>
               </div>
               
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 SIGMA RADIO
               </h1>
               
