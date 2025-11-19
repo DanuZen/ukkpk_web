@@ -231,7 +231,7 @@ const Radio = () => {
         </div>
       </section>
       {/* Now Playing & Schedule Section */}
-      <section className="min-h-screen flex items-center py-16 md:py-32 lg:py-40 scroll-mt-20 relative bg-background overflow-hidden">
+      <section className="flex items-center py-8 md:py-32 lg:py-40 scroll-mt-20 relative bg-background overflow-hidden">
         {/* Curved geometric background patterns */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-20 -left-20 w-80 h-80 rounded-full border-[35px] border-gray-100/60" />
