@@ -112,10 +112,10 @@ const Index = () => {
                   Konten Terbaru
                 </span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3 sm:mb-4">
+              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3 sm:mb-4">
                 Artikel & Berita Terbaru
               </h2>
-              <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
+              <p className="text-xs sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
                 Temukan informasi terbaru dan artikel menarik dari UKKPK
               </p>
             </div>
@@ -235,7 +235,7 @@ const Index = () => {
         <div className="container mx-auto relative z-10 text-center max-w-4xl">
           <AnimatedSection animation="fade-up">
             <div className="mb-6 sm:mb-8">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white">
                 Terima Kasih Telah Mengunjungi
               </h2>
               
@@ -310,7 +310,7 @@ const Index = () => {
                   Lokasi Kami
                 </span>
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+              <h2 className="text-xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Lokasi Sekretariatan UKKPK
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
@@ -465,7 +465,7 @@ const Index = () => {
                   Hubungi Kami
                 </span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Kritik dan Saran
               </h2>
               <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
