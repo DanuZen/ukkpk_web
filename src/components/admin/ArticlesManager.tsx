@@ -187,9 +187,9 @@ export const ArticlesManager = () => {
           </CardTitle>
         </CardHeader>
         <CardContent className="p-3 sm:p-4 md:p-6">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <Label htmlFor="title">Judul</Label>
+          <form onSubmit={handleSubmit} className="space-y-1.5 sm:space-y-2 md:space-y-4">
+            <div className="space-y-0.5 sm:space-y-1">
+              <Label htmlFor="title" className="text-xs sm:text-sm">Judul</Label>
               <Input
                 id="title"
                 value={formData.title}
@@ -197,22 +197,24 @@ export const ArticlesManager = () => {
                   setFormData({ ...formData, title: e.target.value })
                 }
                 placeholder="Masukkan judul artikel"
+                className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
                 required
               />
             </div>
-            <div>
-              <Label htmlFor="category">Kategori</Label>
+            <div className="space-y-0.5 sm:space-y-1">
+              <Label htmlFor="category" className="text-xs sm:text-sm">Kategori</Label>
               <Input
                 id="category"
                 value={formData.category}
                 onChange={(e) =>
                   setFormData({ ...formData, category: e.target.value })
                 }
-                placeholder="Contoh: Teknologi, Olahraga, Pendidikan"
+                placeholder="Contoh: Teknologi"
+                className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
               />
             </div>
-            <div>
-              <Label htmlFor="author">Penulis</Label>
+            <div className="space-y-0.5 sm:space-y-1">
+              <Label htmlFor="author" className="text-xs sm:text-sm">Penulis</Label>
               <Input
                 id="author"
                 value={formData.author}
@@ -220,10 +222,11 @@ export const ArticlesManager = () => {
                   setFormData({ ...formData, author: e.target.value })
                 }
                 placeholder="Nama penulis"
+                className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
               />
             </div>
-            <div>
-              <Label htmlFor="editor">Penyunting</Label>
+            <div className="space-y-0.5 sm:space-y-1">
+              <Label htmlFor="editor" className="text-xs sm:text-sm">Penyunting</Label>
               <Input
                 id="editor"
                 value={formData.editor}
@@ -231,11 +234,12 @@ export const ArticlesManager = () => {
                   setFormData({ ...formData, editor: e.target.value })
                 }
                 placeholder="Nama penyunting"
+                className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="publish_date">Tanggal Publikasi</Label>
+            <div className="grid grid-cols-2 gap-1.5 sm:gap-2 md:gap-4">
+              <div className="space-y-0.5 sm:space-y-1">
+                <Label htmlFor="publish_date" className="text-xs sm:text-sm">Tanggal</Label>
                 <Input
                   id="publish_date"
                   type="date"
@@ -243,10 +247,11 @@ export const ArticlesManager = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, publish_date: e.target.value })
                   }
+                  className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
                 />
               </div>
-              <div>
-                <Label htmlFor="publish_time">Waktu Publikasi</Label>
+              <div className="space-y-0.5 sm:space-y-1">
+                <Label htmlFor="publish_time" className="text-xs sm:text-sm">Waktu</Label>
                 <Input
                   id="publish_time"
                   type="time"
@@ -254,6 +259,7 @@ export const ArticlesManager = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, publish_time: e.target.value })
                   }
+                  className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
                 />
               </div>
             </div>
@@ -265,16 +271,16 @@ export const ArticlesManager = () => {
               onRemove={() => setFormData({ ...formData, image_url: "" })}
               disabled={uploading}
             />
-            <div>
-              <Label htmlFor="content">Konten</Label>
-              <Tabs defaultValue="edit" className="w-full mt-2">
-                <TabsList className="grid w-full grid-cols-2 max-w-[400px]">
-                  <TabsTrigger value="edit" className="flex items-center gap-2">
-                    <Edit3 className="h-4 w-4" />
+            <div className="space-y-0.5 sm:space-y-1">
+              <Label htmlFor="content" className="text-xs sm:text-sm">Konten</Label>
+              <Tabs defaultValue="edit" className="w-full mt-1 sm:mt-2">
+                <TabsList className="grid w-full grid-cols-2 h-7 sm:h-8 md:h-10 text-xs sm:text-sm">
+                  <TabsTrigger value="edit" className="flex items-center gap-1 text-xs sm:text-sm">
+                    <Edit3 className="h-3 w-3 sm:h-4 sm:w-4" />
                     Edit
                   </TabsTrigger>
-                  <TabsTrigger value="preview" className="flex items-center gap-2">
-                    <Eye className="h-4 w-4" />
+                  <TabsTrigger value="preview" className="flex items-center gap-1 text-xs sm:text-sm">
+                    <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
                     Preview
                   </TabsTrigger>
                 </TabsList>
