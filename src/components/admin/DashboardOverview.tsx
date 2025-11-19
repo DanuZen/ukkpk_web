@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { FileText, Newspaper, MessageSquare, Radio, Eye, Heart, TrendingUp, Calendar } from "lucide-react";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
@@ -170,26 +171,26 @@ export const DashboardOverview = () => {
   ];
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Selamat Datang, Admin!</h2>
-        <p className="text-gray-600">Ringkasan aktivitas dashboard UKKPK UNP</p>
+    <div className="space-y-3 sm:space-y-4 md:space-y-6">
+      <div className="px-1">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1">Selamat Datang, Admin!</h2>
+        <p className="text-xs sm:text-sm md:text-base text-gray-600">Ringkasan aktivitas dashboard UKKPK UNP</p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-2 sm:gap-3 md:gap-4 lg:gap-6 grid-cols-2 lg:grid-cols-3">
         {statCards.map((stat) => (
           <Card key={stat.title} className="hover:shadow-lg transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600">
+            <CardHeader className="flex flex-row items-center justify-between pb-1 sm:pb-2 space-y-0 p-3 sm:p-4 md:p-6">
+              <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-600 leading-tight">
                 {stat.title}
               </CardTitle>
-              <div className={`p-2 rounded-lg ${stat.bgColor}`}>
-                <stat.icon className={`h-5 w-5 ${stat.color}`} />
+              <div className={`p-1 sm:p-1.5 md:p-2 rounded-lg ${stat.bgColor} flex-shrink-0`}>
+                <stat.icon className={`h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 ${stat.color}`} />
               </div>
             </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold text-gray-900">{stat.value}</div>
-              <p className="text-xs text-muted-foreground mt-1">{stat.description}</p>
+            <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">{stat.value}</div>
+              <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5 sm:mt-1 leading-tight">{stat.description}</p>
             </CardContent>
           </Card>
         ))}
@@ -197,131 +198,111 @@ export const DashboardOverview = () => {
 
       {/* Recent Activity */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-primary" />
-            Aktivitas Terbaru
-          </CardTitle>
-          <CardDescription>Konten yang baru saja ditambahkan</CardDescription>
+        <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
+          <CardTitle className="text-sm sm:text-base md:text-xl font-semibold">Aktivitas Terbaru</CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {recentActivity.map((activity) => (
-              <div key={activity.id} className="flex items-start gap-3 p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
-                <div className={`p-2 rounded-lg ${activity.type === 'article' ? 'bg-green-50' : 'bg-blue-50'}`}>
-                  {activity.type === 'article' ? (
-                    <FileText className="h-4 w-4 text-green-600" />
-                  ) : (
-                    <Newspaper className="h-4 w-4 text-blue-600" />
-                  )}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-foreground truncate">
-                    {activity.title}
-                  </p>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
-                    <Calendar className="h-3 w-3" />
-                    <span>{format(new Date(activity.created_at), "dd MMM yyyy, HH:mm", { locale: id })}</span>
-                    <span className={`px-2 py-0.5 rounded-full ${
-                      activity.type === 'article' 
-                        ? 'bg-green-100 text-green-700' 
-                        : 'bg-blue-100 text-blue-700'
-                    }`}>
+        <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
+          <div className="space-y-2 sm:space-y-3 md:space-y-4">
+            {recentActivity.length === 0 ? (
+              <p className="text-center text-gray-500 py-4 sm:py-6 md:py-8 text-xs sm:text-sm">Belum ada aktivitas</p>
+            ) : (
+              recentActivity.map((activity) => (
+                <div key={`${activity.type}-${activity.id}`} className="flex items-start gap-2 sm:gap-3 md:gap-4 pb-2 sm:pb-3 md:pb-4 border-b last:border-0">
+                  <div className="flex-shrink-0">
+                    <Badge variant={activity.type === 'article' ? 'default' : 'secondary'} className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5">
                       {activity.type === 'article' ? 'Artikel' : 'Berita'}
-                    </span>
+                    </Badge>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-medium text-gray-900 text-xs sm:text-sm md:text-base line-clamp-2">{activity.title}</h4>
+                    <p className="text-[10px] sm:text-xs md:text-sm text-gray-500 mt-0.5">
+                      {format(new Date(activity.created_at), "d MMM yyyy, HH:mm", { locale: id })}
+                    </p>
                   </div>
                 </div>
-              </div>
-            ))}
-            {recentActivity.length === 0 && (
-              <p className="text-center text-muted-foreground py-8">Belum ada aktivitas</p>
+              ))
             )}
           </div>
         </CardContent>
       </Card>
 
       {/* Top Articles and News */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Top Articles */}
+      <div className="grid gap-3 sm:gap-4 md:gap-6 lg:grid-cols-2">
+        {/* Top 5 Articles */}
         <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <FileText className="h-5 w-5 text-blue-500" />
-              Top 5 Artikel
+          <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
+            <CardTitle className="text-sm sm:text-base md:text-xl font-semibold flex items-center gap-1.5 sm:gap-2">
+              <FileText className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5 text-primary flex-shrink-0" />
+              <span>Top 5 Artikel</span>
             </CardTitle>
-            <CardDescription>Artikel dengan views tertinggi</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {topArticles.map((article, index) => (
-                <div key={article.id} className="flex items-start gap-3 p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">
-                    {index + 1}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-foreground truncate mb-1">
-                      {article.title}
-                    </p>
-                    <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                      <span className="flex items-center gap-1">
-                        <Eye className="h-3 w-3" />
-                        {article.view_count || 0}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Heart className="h-3 w-3" />
-                        {article.likes_count || 0}
-                      </span>
-                      {article.category && (
-                        <span className="px-2 py-0.5 bg-primary/10 text-primary rounded-full">
-                          {article.category}
-                        </span>
-                      )}
+          <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
+            <div className="space-y-2 sm:space-y-3 md:space-y-4">
+              {topArticles.length === 0 ? (
+                <p className="text-center text-gray-500 py-4 sm:py-6 md:py-8 text-xs sm:text-sm">Belum ada artikel</p>
+              ) : (
+                topArticles.map((article, index) => (
+                  <div key={article.id} className="flex items-start gap-2 sm:gap-3 md:gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                        <span className="text-[10px] sm:text-xs md:text-sm font-bold text-primary">{index + 1}</span>
+                      </div>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-medium text-gray-900 text-xs sm:text-sm md:text-base line-clamp-2">{article.title}</h4>
+                      <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mt-0.5 sm:mt-1">
+                        <div className="flex items-center gap-0.5 sm:gap-1 text-[10px] sm:text-xs md:text-sm text-gray-500">
+                          <Eye className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4 flex-shrink-0" />
+                          <span>{article.view_count}</span>
+                        </div>
+                        <div className="flex items-center gap-0.5 sm:gap-1 text-[10px] sm:text-xs md:text-sm text-gray-500">
+                          <Heart className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4 flex-shrink-0" />
+                          <span>{article.likes_count}</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-              {topArticles.length === 0 && (
-                <p className="text-center text-muted-foreground py-8">Belum ada artikel</p>
+                ))
               )}
             </div>
           </CardContent>
         </Card>
 
-        {/* Top News */}
+        {/* Top 5 News */}
         <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Newspaper className="h-5 w-5 text-green-500" />
-              Top 5 Berita
+          <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
+            <CardTitle className="text-sm sm:text-base md:text-xl font-semibold flex items-center gap-1.5 sm:gap-2">
+              <Newspaper className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5 text-primary flex-shrink-0" />
+              <span>Top 5 Berita</span>
             </CardTitle>
-            <CardDescription>Berita dengan views tertinggi</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {topNews.map((newsItem, index) => (
-                <div key={newsItem.id} className="flex items-start gap-3 p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center font-bold">
-                    {index + 1}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-foreground truncate mb-1">
-                      {newsItem.title}
-                    </p>
-                    <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                      <span className="flex items-center gap-1">
-                        <Eye className="h-3 w-3" />
-                        {newsItem.view_count || 0}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Heart className="h-3 w-3" />
-                        {newsItem.likes_count || 0}
-                      </span>
+          <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
+            <div className="space-y-2 sm:space-y-3 md:space-y-4">
+              {topNews.length === 0 ? (
+                <p className="text-center text-gray-500 py-4 sm:py-6 md:py-8 text-xs sm:text-sm">Belum ada berita</p>
+              ) : (
+                topNews.map((newsItem, index) => (
+                  <div key={newsItem.id} className="flex items-start gap-2 sm:gap-3 md:gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                        <span className="text-[10px] sm:text-xs md:text-sm font-bold text-primary">{index + 1}</span>
+                      </div>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-medium text-gray-900 text-xs sm:text-sm md:text-base line-clamp-2">{newsItem.title}</h4>
+                      <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mt-0.5 sm:mt-1">
+                        <div className="flex items-center gap-0.5 sm:gap-1 text-[10px] sm:text-xs md:text-sm text-gray-500">
+                          <Eye className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4 flex-shrink-0" />
+                          <span>{newsItem.view_count}</span>
+                        </div>
+                        <div className="flex items-center gap-0.5 sm:gap-1 text-[10px] sm:text-xs md:text-sm text-gray-500">
+                          <Heart className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4 flex-shrink-0" />
+                          <span>{newsItem.likes_count}</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-              {topNews.length === 0 && (
-                <p className="text-center text-muted-foreground py-8">Belum ada berita</p>
+                ))
               )}
             </div>
           </CardContent>

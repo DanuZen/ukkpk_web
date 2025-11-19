@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Music2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Music2, Mic, Shield, Camera } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logoUkkpk from "@/assets/logo-ukkpk.png";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -41,14 +41,14 @@ export const Footer = () => {
       </div>
 
       <div className="container mx-auto px-4 py-16 relative z-10">
-        <div className="grid md:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-20">
           {/* About / Company Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3 mb-4">
               <img src={logoUkkpk} alt="Logo UKKPK" className="h-14 w-14" />
               <h3 className="font-bold text-xl text-white">UKKPK UNP</h3>
             </div>
-            <p className="text-sm text-white/80 leading-relaxed text-justify">
+            <p className="text-xs sm:text-sm md:text-base text-white/80 leading-relaxed text-justify">
               Organisasi Dan Platform Media kampus untuk pengembangan Ilmu di bidang komunikasi dan penyiaran yang dikembangkan oleh Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang.
             </p>
             
@@ -116,14 +116,16 @@ export const Footer = () => {
           </div>
 
           {/* Layanan Kami */}
-          <div className="space-y-4">
+          <div className="space-y-4 hidden md:block">
             <h4 className="font-semibold text-lg mb-4 text-white">Layanan Kami</h4>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-3 text-xs sm:text-sm md:text-base">
               <li className="flex items-center gap-2">
-                <Music2 className="h-4 w-4 flex-shrink-0" />
-                <Link to="/radio" className="text-white/80 hover:text-white transition-colors">
-                  Radio & Penyiaran
-                </Link>
+                <Mic className="h-4 w-4 flex-shrink-0" />
+                <span className="text-white/80">Master Of Ceremony</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Shield className="h-4 w-4 flex-shrink-0" />
+                <span className="text-white/80">Keprotokolan</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 flex-shrink-0" />
@@ -132,20 +134,22 @@ export const Footer = () => {
                 </Link>
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 flex-shrink-0" />
-                <span className="text-white/80">MC & Event</span>
+                <Music2 className="h-4 w-4 flex-shrink-0" />
+                <Link to="/radio" className="text-white/80 hover:text-white transition-colors">
+                  Radio
+                </Link>
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 flex-shrink-0" />
-                <span className="text-white/80">Konsultasi Media</span>
+                <Camera className="h-4 w-4 flex-shrink-0" />
+                <span className="text-white/80">Penyiaran</span>
               </li>
             </ul>
           </div>
 
           {/* Menu Cepat */}
-          <div className="space-y-4">
+          <div className="space-y-4 hidden md:block">
             <h4 className="font-semibold text-lg mb-4 text-white">Menu Cepat</h4>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-3 text-xs sm:text-sm md:text-base">
               <li>
                 <Link to="/" className="text-white/80 hover:text-white transition-colors">
                   Beranda
@@ -177,7 +181,7 @@ export const Footer = () => {
           {/* Kontak */}
           <div className="space-y-4">
             <h4 className="font-semibold text-lg mb-4 text-white">Kontak</h4>
-            <ul className="space-y-4 text-sm">
+            <ul className="space-y-4 text-xs sm:text-sm md:text-base">
               <li className="flex items-start gap-3 text-white/90">
                 <Mail className="h-5 w-5 flex-shrink-0 mt-0.5" />
                 <div>
@@ -209,16 +213,24 @@ export const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/20 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-white/90">
-            © {new Date().getFullYear()} UKKPK UNP. Semua hak dilindungi.
+          <p className="text-xs sm:text-sm md:text-base text-white/90">
+            © {new Date().getFullYear()} UKKPK UNP.
           </p>
-          <div className="flex gap-6 text-sm">
+          <div className="flex gap-6 text-xs sm:text-sm md:text-base">
             <span className="text-white/80 hover:text-white transition-colors cursor-pointer">
               Kebijakan Privasi
             </span>
             <span className="text-white/80 hover:text-white transition-colors cursor-pointer">
               Syarat & Ketentuan
             </span>
+            <a 
+              href="https://www.instagram.com/daann.u/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white/80 hover:text-white transition-colors cursor-pointer"
+            >
+              Create by
+            </a>
           </div>
         </div>
       </div>

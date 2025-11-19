@@ -159,168 +159,231 @@ export const AnalyticsDashboard = () => {
   }))].sort((a, b) => b.views - a.views).slice(0, 8);
   if (loading) {
     return <div className="flex items-center justify-center h-64">
-        <p className="text-muted-foreground">Memuat data analytics...</p>
+        <p className="text-muted-foreground text-xs sm:text-sm">Memuat data analytics...</p>
       </div>;
   }
-  return <div className="space-y-6">
-      {/* Overview Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+  return <div className="space-y-3 sm:space-y-4 md:space-y-6">
+      <div className="px-1">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1">Analytics & Statistik</h2>
+        <p className="text-xs sm:text-sm md:text-base text-gray-600">Data performa konten website UKKPK</p>
+      </div>
+
+      {/* Overview Stats - First Row */}
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
         <Card className="bg-gradient-to-br from-purple-50 to-purple-100/50 border-purple-200">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Engagement Rate</CardTitle>
-            <TrendingUp className="h-4 w-4 text-purple-500" />
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
+            <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Engagement Rate</CardTitle>
+            <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 text-purple-500 flex-shrink-0" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-purple-600">{overallStats.engagementRate.toFixed(2)}%</div>
-            <p className="text-xs text-muted-foreground">
+          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
+            <div className="text-xl sm:text-2xl font-bold text-purple-600">{overallStats.engagementRate.toFixed(2)}%</div>
+            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
               Likes per View
             </p>
           </CardContent>
         </Card>
 
         <Card className="bg-gradient-to-br from-amber-50 to-amber-100/50 border-amber-200">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Avg Views/Artikel</CardTitle>
-            <Eye className="h-4 w-4 text-amber-500" />
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
+            <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Avg Views/Artikel</CardTitle>
+            <Eye className="h-3 w-3 sm:h-4 sm:w-4 text-amber-500 flex-shrink-0" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-amber-600">{overallStats.avgArticleViews.toLocaleString()}</div>
-            <p className="text-xs text-muted-foreground">
+          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
+            <div className="text-xl sm:text-2xl font-bold text-amber-600">{overallStats.avgArticleViews.toLocaleString()}</div>
+            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
               Per artikel
             </p>
           </CardContent>
         </Card>
 
         <Card className="bg-gradient-to-br from-cyan-50 to-cyan-100/50 border-cyan-200">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Avg Views/Berita</CardTitle>
-            <Eye className="h-4 w-4 text-cyan-500" />
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
+            <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Avg Views/Berita</CardTitle>
+            <Eye className="h-3 w-3 sm:h-4 sm:w-4 text-cyan-500 flex-shrink-0" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-cyan-600">{overallStats.avgNewsViews.toLocaleString()}</div>
-            <p className="text-xs text-muted-foreground">
+          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
+            <div className="text-xl sm:text-2xl font-bold text-cyan-600">{overallStats.avgNewsViews.toLocaleString()}</div>
+            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
               Per berita
             </p>
           </CardContent>
         </Card>
 
         <Card className="bg-gradient-to-br from-pink-50 to-pink-100/50 border-pink-200">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Avg Engagement</CardTitle>
-            <Heart className="h-4 w-4 text-pink-500" />
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
+            <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Avg Engagement</CardTitle>
+            <Heart className="h-3 w-3 sm:h-4 sm:w-4 text-pink-500 flex-shrink-0" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-pink-600">
+          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
+            <div className="text-xl sm:text-2xl font-bold text-pink-600">
               {Math.round((overallStats.avgArticleLikes + overallStats.avgNewsLikes) / 2).toLocaleString()}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
               Likes rata-rata
             </p>
           </CardContent>
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* Overview Stats - Second Row */}
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
         <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Views</CardTitle>
-            <Eye className="h-4 w-4 text-primary" />
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
+            <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Total Views</CardTitle>
+            <Eye className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-primary">{overallStats.totalViews.toLocaleString()}</div>
-            <p className="text-xs text-muted-foreground">
-              Artikel: {overallStats.totalArticleViews.toLocaleString()} | Berita: {overallStats.totalNewsViews.toLocaleString()}
+          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
+            <div className="text-xl sm:text-2xl font-bold text-primary">{overallStats.totalViews.toLocaleString()}</div>
+            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
+              A: {overallStats.totalArticleViews.toLocaleString()} | B: {overallStats.totalNewsViews.toLocaleString()}
             </p>
           </CardContent>
         </Card>
 
         <Card className="bg-gradient-to-br from-red-50 to-red-100/50 border-red-200">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Likes</CardTitle>
-            <Heart className="h-4 w-4 text-red-500" />
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
+            <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Total Likes</CardTitle>
+            <Heart className="h-3 w-3 sm:h-4 sm:w-4 text-red-500 flex-shrink-0" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-red-600">{overallStats.totalLikes.toLocaleString()}</div>
-            <p className="text-xs text-muted-foreground">
-              Artikel: {overallStats.totalArticleLikes.toLocaleString()} | Berita: {overallStats.totalNewsLikes.toLocaleString()}
+          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
+            <div className="text-xl sm:text-2xl font-bold text-red-600">{overallStats.totalLikes.toLocaleString()}</div>
+            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
+              A: {overallStats.totalArticleLikes.toLocaleString()} | B: {overallStats.totalNewsLikes.toLocaleString()}
             </p>
           </CardContent>
         </Card>
 
         <Card className="bg-gradient-to-br from-blue-50 to-blue-100/50 border-blue-200">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Artikel</CardTitle>
-            <FileText className="h-4 w-4 text-blue-500" />
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
+            <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Total Artikel</CardTitle>
+            <FileText className="h-3 w-3 sm:h-4 sm:w-4 text-blue-500 flex-shrink-0" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-blue-600">{overallStats.totalArticles}</div>
-            <p className="text-xs text-muted-foreground">
-              Views: {overallStats.totalArticleViews.toLocaleString()}
+          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
+            <div className="text-xl sm:text-2xl font-bold text-blue-600">{overallStats.totalArticles.toLocaleString()}</div>
+            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
+              Artikel dipublikasi
             </p>
           </CardContent>
         </Card>
 
         <Card className="bg-gradient-to-br from-green-50 to-green-100/50 border-green-200">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Berita</CardTitle>
-            <Newspaper className="h-4 w-4 text-green-500" />
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
+            <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Total Berita</CardTitle>
+            <Newspaper className="h-3 w-3 sm:h-4 sm:w-4 text-green-500 flex-shrink-0" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-green-600">{overallStats.totalNews}</div>
-            <p className="text-xs text-muted-foreground">
-              Views: {overallStats.totalNewsViews.toLocaleString()}
+          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
+            <div className="text-xl sm:text-2xl font-bold text-green-600">{overallStats.totalNews.toLocaleString()}</div>
+            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
+              Berita dipublikasi
             </p>
           </CardContent>
         </Card>
       </div>
 
-      {/* Charts Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Comparison Chart */}
+      {/* Charts */}
+      <div className="grid gap-3 sm:gap-4 md:gap-6 lg:grid-cols-2">
         <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="h-5 w-5 text-primary" />
-              Perbandingan Artikel vs Berita
-            </CardTitle>
-            <CardDescription>Statistik views, likes, dan jumlah konten</CardDescription>
+          <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
+            <CardTitle className="text-sm sm:text-base md:text-xl">Perbandingan Artikel vs Berita</CardTitle>
           </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
+          <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
+            <ResponsiveContainer width="100%" height={200}>
               <BarChart data={comparisonData}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
+                <XAxis dataKey="name" tick={{ fontSize: 9 }} />
+                <YAxis tick={{ fontSize: 9 }} />
                 <Tooltip />
-                <Legend />
+                <Legend wrapperStyle={{ fontSize: '10px' }} />
                 <Bar dataKey="Artikel" fill="#dc2626" />
-                <Bar dataKey="Berita" fill="#22c55e" />
+                <Bar dataKey="Berita" fill="#3b82f6" />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
 
-        {/* Top Content Chart */}
         <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="h-5 w-5 text-primary" />
-              Konten Paling Populer
-            </CardTitle>
-            <CardDescription>Top 8 artikel dan berita berdasarkan views dan likes</CardDescription>
+          <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
+            <CardTitle className="text-sm sm:text-base md:text-xl">Top 8 Konten Terpopuler</CardTitle>
           </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={topContentData} layout="vertical">
+          <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
+            <ResponsiveContainer width="100%" height={200}>
+              <BarChart data={topContentData} layout="horizontal">
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis type="number" />
-                <YAxis dataKey="title" type="category" width={150} />
+                <XAxis type="number" tick={{ fontSize: 9 }} />
+                <YAxis dataKey="title" type="category" width={60} tick={{ fontSize: 8 }} />
                 <Tooltip />
-                <Legend />
+                <Legend wrapperStyle={{ fontSize: '10px' }} />
                 <Bar dataKey="views" fill="#dc2626" name="Views" />
-                <Bar dataKey="likes" fill="#f43f5e" name="Likes" />
+                <Bar dataKey="likes" fill="#f59e0b" name="Likes" />
               </BarChart>
             </ResponsiveContainer>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Detailed Lists */}
+      <div className="grid gap-3 sm:gap-4 md:gap-6 lg:grid-cols-2">
+        <Card>
+          <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
+            <CardTitle className="text-sm sm:text-base md:text-xl">Top 10 Artikel</CardTitle>
+          </CardHeader>
+          <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
+            <div className="space-y-2 sm:space-y-3 md:space-y-4">
+              {articles.slice(0, 10).map((article, index) => (
+                <div key={article.id} className="flex items-start gap-2 sm:gap-3 md:gap-4 pb-2 sm:pb-3 md:pb-4 border-b last:border-0">
+                  <div className="flex-shrink-0">
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                      <span className="text-[10px] sm:text-xs md:text-sm font-bold text-primary">{index + 1}</span>
+                    </div>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-medium text-gray-900 text-xs sm:text-sm md:text-base line-clamp-2">{article.title}</h4>
+                    <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mt-0.5 sm:mt-1">
+                      <div className="flex items-center gap-0.5 sm:gap-1 text-[10px] sm:text-xs md:text-sm text-gray-500">
+                        <Eye className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4 flex-shrink-0" />
+                        <span>{article.view_count}</span>
+                      </div>
+                      <div className="flex items-center gap-0.5 sm:gap-1 text-[10px] sm:text-xs md:text-sm text-gray-500">
+                        <Heart className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4 flex-shrink-0" />
+                        <span>{article.likes_count}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
+            <CardTitle className="text-sm sm:text-base md:text-xl">Top 10 Berita</CardTitle>
+          </CardHeader>
+          <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
+            <div className="space-y-2 sm:space-y-3 md:space-y-4">
+              {news.slice(0, 10).map((newsItem, index) => (
+                <div key={newsItem.id} className="flex items-start gap-2 sm:gap-3 md:gap-4 pb-2 sm:pb-3 md:pb-4 border-b last:border-0">
+                  <div className="flex-shrink-0">
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                      <span className="text-[10px] sm:text-xs md:text-sm font-bold text-primary">{index + 1}</span>
+                    </div>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-medium text-gray-900 text-xs sm:text-sm md:text-base line-clamp-2">{newsItem.title}</h4>
+                    <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mt-0.5 sm:mt-1">
+                      <div className="flex items-center gap-0.5 sm:gap-1 text-[10px] sm:text-xs md:text-sm text-gray-500">
+                        <Eye className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4 flex-shrink-0" />
+                        <span>{newsItem.view_count}</span>
+                      </div>
+                      <div className="flex items-center gap-0.5 sm:gap-1 text-[10px] sm:text-xs md:text-sm text-gray-500">
+                        <Heart className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4 flex-shrink-0" />
+                        <span>{newsItem.likes_count}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </CardContent>
         </Card>
       </div>

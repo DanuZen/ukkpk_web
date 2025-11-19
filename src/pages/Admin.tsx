@@ -70,16 +70,21 @@ const Admin = () => {
     <AdminLayout>
       <SidebarProvider defaultOpen={true}>
         <div className="flex min-h-screen w-full">
-          <AppSidebar activePage={activePage} onNavigate={setActivePage} />
+          {/* Desktop Sidebar */}
+          <div className="hidden lg:block">
+            <AppSidebar activePage={activePage} onNavigate={setActivePage} />
+          </div>
           
           <main className="flex-1 flex flex-col">
             <DashboardHeader 
               title={getPageTitle(activePage)} 
               user={user}
               onSignOut={handleSignOut}
+              activePage={activePage}
+              onNavigate={setActivePage}
             />
             
-            <div className="flex-1 p-6">
+            <div className="flex-1 p-2 sm:p-3 md:p-4 lg:p-6">
               {activePage === "dashboard" && <DashboardOverview />}
               {activePage === "analytics" && <AnalyticsDashboard />}
               {activePage === "articles" && <ArticlesManager />}

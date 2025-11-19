@@ -98,9 +98,9 @@ export const Navigation = () => {
     navigate("/");
   };
   const isHomePage = location.pathname === "/";
-  const showTransparentNav = isHomePage && !isScrolled;
+  const showTransparentNav = isHomePage && !isScrolled && !isOpen;
   return <nav className={`${showTransparentNav ? "bg-transparent" : "bg-white border-b border-border shadow-sm"} sticky top-0 z-50 transition-all duration-300`}>
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
@@ -111,7 +111,7 @@ export const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1 flex-1 justify-end">
+          <div className="hidden lg:flex items-center gap-1 flex-1 justify-end">
             {!isSearchOpen ? <>
                 {navItems.map(item => {
               const isActive = location.pathname === item.path;
@@ -236,19 +236,69 @@ export const Navigation = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden p-2 rounded-md hover:bg-secondary">
+          <button onClick={() => setIsOpen(!isOpen)} className={`lg:hidden p-2 rounded-md transition-colors ${showTransparentNav ? "text-white hover:text-white/80" : "text-primary hover:text-primary/80"}`}>
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && <div className="md:hidden py-4 border-t border-border space-y-2">
+        {isOpen && <div className="absolute top-full left-0 right-0 lg:hidden py-4 bg-background border-t border-border space-y-2 shadow-lg z-50 animate-in slide-in-from-top duration-300">
             {navItems.map(item => {
           const isActive = location.pathname === item.path;
-          return <Link key={item.name} to={item.path} className={`block mx-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground shadow-md" : "text-foreground hover:bg-secondary"}`} onClick={() => setIsOpen(false)}>
+          return <Link key={item.name} to={item.path} className={`block mx-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground shadow-md" : "text-foreground hover:bg-gray-100"}`} onClick={() => setIsOpen(false)}>
                   {item.name}
                 </Link>;
         })}
+            
+            {/* Account Section */}
+            <div className="border-t border-border mt-2 pt-2">
+              {user ? (
+                <>
+                  {/* User Info */}
+                  <div className="mx-2 px-4 py-3 mb-2 bg-gray-100 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-gradient-to-br from-primary to-primary/80 rounded-lg shadow-sm">
+                        <User className="h-4 w-4 text-white" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold truncate">{user.email}</p>
+                        <p className="text-xs text-muted-foreground">Administrator</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Admin Actions */}
+                  <Link 
+                    to="/admin"
+                    className="flex items-center gap-2 mx-2 px-4 py-3 text-sm font-medium rounded-lg text-foreground hover:bg-gray-100 transition-all duration-300"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <LayoutDashboard className="h-4 w-4" />
+                    Dashboard Admin
+                  </Link>
+                  
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      setIsOpen(false);
+                    }}
+                    className="flex items-center gap-2 mx-2 px-4 py-3 text-sm font-medium rounded-lg text-destructive hover:bg-destructive/10 transition-all duration-300 w-full"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <Link 
+                  to="/auth"
+                  className="flex items-center justify-center gap-2 mx-2 px-4 py-3 text-sm font-medium rounded-lg bg-primary text-white hover:bg-primary/90 transition-all duration-300"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <User className="h-4 w-4" />
+                  Login Sekarang
+                </Link>
+              )}
+            </div>
           </div>}
       </div>
     </nav>;

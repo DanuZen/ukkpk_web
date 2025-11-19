@@ -98,9 +98,11 @@ export const HomeSlideshow = () => {
           }}
         >
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-2 rounded-full mb-6">
-            <RadioIcon className="h-4 w-4" />
-            <span className="text-sm font-medium">Unit Kegiatan Komunikasi & Penyiaran Kampus</span>
+          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-4 sm:mb-6">
+            <RadioIcon className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+            <span className="text-xs sm:text-sm font-medium text-white">
+              Unit Kegiatan Komunikasi & Penyiaran Kampus
+            </span>
           </div>
           
           {/* Main Heading */}
@@ -111,29 +113,28 @@ export const HomeSlideshow = () => {
           </h1>
           
           {/* Subtitle */}
-          <p className="text-base sm:text-lg md:text-xl text-white/90 drop-shadow-lg max-w-2xl mb-8 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 mb-6 sm:mb-8 leading-relaxed max-w-2xl animate-fade-up" style={{ animationDelay: '0.2s' }}>
             Platform media kampus yang menghubungkan Anda dengan berita terkini, 
             artikel berkualitas, dan siaran radio kampus dari UKKPK UNP.
           </p>
 
-          {/* Buttons */}
-          <div className="flex flex-wrap gap-4 mb-8">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-base" asChild>
-              <Link to="/artikel">
-                Baca Artikel →
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-8 py-6 text-base" asChild>
-              <Link to="/berita">
+          {/* CTA Buttons */}
+          <div className="flex flex-row flex-wrap gap-2 sm:gap-4 mb-6 sm:mb-8 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+            <Link to="/artikel">
+              <Button size="sm" className="text-xs sm:text-base px-4 sm:px-6 py-2 sm:py-5 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
+                Baca Artikel
+              </Button>
+            </Link>
+            <Link to="/berita">
+              <Button size="sm" className="text-xs sm:text-base px-4 sm:px-6 py-2 sm:py-5 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
                 Lihat Berita
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-8 py-6 text-base" asChild>
-              <Link to="/radio">
-                <Play className="h-5 w-5 mr-2" />
+              </Button>
+            </Link>
+            <Link to="/radio">
+              <Button size="sm" className="text-xs sm:text-base px-4 sm:px-6 py-2 sm:py-5 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
                 Dengar Radio
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
 
           {/* Rating */}
@@ -143,11 +144,11 @@ export const HomeSlideshow = () => {
 
       {/* Navigation Arrows */}
       {images.length > 1 && <>
-          <Button variant="ghost" size="icon" onClick={goToPrevious} className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white opacity-70 sm:opacity-0 group-hover:opacity-100 transition-opacity h-10 w-10 sm:h-12 sm:w-12">
-            <ChevronLeft className="h-6 w-6 sm:h-8 sm:w-8" />
+          <Button variant="ghost" size="icon" onClick={goToPrevious} className="hidden md:flex absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity h-12 w-12">
+            <ChevronLeft className="h-8 w-8" />
           </Button>
-          <Button variant="ghost" size="icon" onClick={goToNext} className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white opacity-70 sm:opacity-0 group-hover:opacity-100 transition-opacity h-10 w-10 sm:h-12 sm:w-12">
-            <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8" />
+          <Button variant="ghost" size="icon" onClick={goToNext} className="hidden md:flex absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity h-12 w-12">
+            <ChevronRight className="h-8 w-8" />
           </Button>
         </>}
 
