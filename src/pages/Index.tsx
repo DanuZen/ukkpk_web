@@ -66,7 +66,7 @@ const Index = () => {
       <HomeSlideshow />
 
       {/* Artikel & Berita Section - Gabungan */}
-      <section className="min-h-[60vh] md:min-h-screen flex items-center py-12 sm:py-20 md:py-32 lg:py-40 scroll-mt-20 bg-background relative overflow-hidden">
+      <section className="min-h-[50vh] md:min-h-screen flex items-center py-8 sm:py-16 md:py-32 lg:py-40 scroll-mt-20 bg-background relative overflow-hidden">
         {/* Curved geometric background patterns */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full border-[40px] border-gray-100/60" />
@@ -158,7 +158,7 @@ const Index = () => {
       </section>
 
       {/* Thank You Section */}
-      <section className="min-h-[85vh] flex items-center py-32 md:py-40 scroll-mt-20 relative px-4 bg-gradient-to-b from-primary/90 via-primary to-primary/90 overflow-hidden">
+      <section className="min-h-[70vh] md:min-h-[85vh] flex items-center py-12 sm:py-20 md:py-32 lg:py-40 scroll-mt-20 relative px-4 bg-gradient-to-b from-primary/90 via-primary to-primary/90 overflow-hidden">
         {/* Top gradient fade */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent z-0" />
         
@@ -167,14 +167,14 @@ const Index = () => {
 
         <div className="container mx-auto relative z-10 text-center max-w-4xl">
           <AnimatedSection animation="fade-up">
-            <div className="mb-8">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
+            <div className="mb-6 sm:mb-8">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white">
                 Terima Kasih Telah Mengunjungi
               </h2>
               
-              <div className="w-32 h-1 bg-white/50 mx-auto mb-8" />
+              <div className="w-32 h-1 bg-white/50 mx-auto mb-6 sm:mb-8" />
               
-              <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
                 Kami sangat menghargai kunjungan Anda. Semoga informasi yang kami sajikan bermanfaat 
                 untuk Anda. Jangan ragu untuk menghubungi kami jika ada pertanyaan atau saran.
               </p>
@@ -182,7 +182,7 @@ const Index = () => {
           </AnimatedSection>
 
           <AnimatedSection animation="scale-in" delay={200}>
-            <div className="flex flex-wrap justify-center gap-4 mt-12">
+            <div className="flex flex-wrap justify-center gap-4 mt-8 sm:mt-10 md:mt-12">
               <Button size="lg" onClick={() => navigate('/profil-ukkpk')} className="bg-white text-primary hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300">
                 Tentang Kami
               </Button>
@@ -193,7 +193,7 @@ const Index = () => {
       </section>
 
       {/* Map Section with Location Details */}
-      <section className="min-h-screen flex items-center py-32 md:py-40 scroll-mt-20 relative px-4 bg-muted/20 overflow-hidden">
+      <section className="min-h-[70vh] md:min-h-screen flex items-center py-12 sm:py-20 md:py-32 lg:py-40 scroll-mt-20 relative px-4 bg-muted/20 overflow-hidden">
         {/* Green/Emerald Background Pattern */}
         <AnimatedSection animation="fade-in">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -236,14 +236,14 @@ const Index = () => {
         
         <div className="relative z-10 container mx-auto max-w-7xl">
           <AnimatedSection animation="fade-up">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+            <div className="text-center mb-8 sm:mb-10 md:mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4 sm:mb-6">
                 <MapPin className="h-4 w-4 text-primary" />
                 <span className="text-sm font-medium text-primary">
                   Lokasi Kami
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Lokasi Sekretariatan UKKPK
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
@@ -331,7 +331,7 @@ const Index = () => {
       </section>
 
       {/* Contact Section - Kritik dan Saran */}
-      <section className="min-h-[85vh] flex items-center py-32 md:py-40 scroll-mt-20 relative px-4 bg-gray-100 overflow-hidden">
+      <section className="min-h-[70vh] md:min-h-[85vh] flex items-center py-12 sm:py-20 md:py-32 lg:py-40 scroll-mt-20 relative px-4 bg-gray-100 overflow-hidden">
         {/* Blue/Teal Background Pattern */}
         <AnimatedSection animation="fade-in">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -358,14 +358,14 @@ const Index = () => {
         
         <div id="contact" className="relative z-10 container mx-auto max-w-5xl">
           <AnimatedSection animation="fade-up">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+            <div className="text-center mb-8 sm:mb-10 md:mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4 sm:mb-6">
                 <MessageSquare className="h-4 w-4 text-primary" />
                 <span className="text-sm font-medium text-primary">
                   Hubungi Kami
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Kritik dan Saran
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
