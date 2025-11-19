@@ -141,7 +141,7 @@ const Radio = () => {
               </div>
               
               <div className="overflow-hidden inline-block max-w-full">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent whitespace-nowrap pr-1 inline-block" style={{ animation: 'typewriter 2s steps(11) 1s both, blink 0.75s step-end infinite' }}>
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white whitespace-nowrap pr-1 inline-block drop-shadow-2xl" style={{ animation: 'typewriter 2s steps(11) 0.5s both, blink-cursor 0.75s step-end 2.5s 4' }}>
                   SIGMA RADIO
                 </h1>
               </div>
@@ -149,16 +149,16 @@ const Radio = () => {
                 @keyframes typewriter {
                   from { 
                     width: 0;
-                    border-right: 4px solid hsl(var(--primary));
+                    border-right: 4px solid white;
                   }
                   to { 
                     width: 100%;
-                    border-right: 4px solid hsl(var(--primary));
+                    border-right: 4px solid white;
                   }
                 }
-                @keyframes blink {
+                @keyframes blink-cursor {
                   from, to { border-right-color: transparent; }
-                  50% { border-right-color: hsl(var(--primary)); }
+                  50% { border-right-color: white; }
                 }
               `}</style>
               
