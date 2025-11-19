@@ -202,36 +202,6 @@ const Radio = () => {
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          {/* Now Playing Info */}
-          <AnimatedSection animation="fade-up">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20 mb-4">
-                <Play className="h-5 w-5 text-primary" />
-                <span className="text-sm font-medium text-primary">Sedang Tayang</span>
-              </div>
-              {currentProgram ? (
-                <div className="max-w-2xl mx-auto">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
-                    {currentProgram.name}
-                  </h2>
-                  <p className="text-muted-foreground mb-2">{currentProgram.description}</p>
-                  <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                      <Clock className="h-4 w-4" />
-                      {currentProgram.air_time}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Mic className="h-4 w-4" />
-                      {currentProgram.host}
-                    </span>
-                  </div>
-                </div>
-              ) : (
-                <p className="text-muted-foreground">Tidak ada program yang sedang tayang</p>
-              )}
-            </div>
-          </AnimatedSection>
-
           {/* Schedule */}
           <div id="jadwal-program" className="relative scroll-mt-20">
             {/* Decorative Elements */}
