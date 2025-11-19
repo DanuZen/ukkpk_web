@@ -6,7 +6,6 @@ import { Radio as RadioIcon, Play, Clock, Mic } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import logoSigmaRadio from "@/assets/logo-sigma-radio.png";
-
 interface RadioProgram {
   id: string;
   name: string;
@@ -15,71 +14,55 @@ interface RadioProgram {
   day_of_week: number;
   host: string;
 }
-
 interface RadioSettings {
   streaming_url: string;
   banner_image_url?: string;
 }
-
 const DAYS = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-
 const getCurrentProgram = (programs: RadioProgram[]) => {
   const now = new Date();
   const currentDay = now.getDay();
   const currentTime = now.toTimeString().slice(0, 5);
-
-  return programs.find(
-    (p) => p.day_of_week === currentDay && p.air_time <= currentTime
-  );
+  return programs.find(p => p.day_of_week === currentDay && p.air_time <= currentTime);
 };
-
 const Radio = () => {
   const [programs, setPrograms] = useState<RadioProgram[]>([]);
   const [settings, setSettings] = useState<RadioSettings | null>(null);
   const [currentProgram, setCurrentProgram] = useState<RadioProgram | null>(null);
   const [timeRemaining, setTimeRemaining] = useState<string>("");
   const [selectedDay, setSelectedDay] = useState<number>(new Date().getDay());
-
   const filteredPrograms = programs.filter(p => p.day_of_week === selectedDay);
-
   const handlePreviousDay = () => {
-    setSelectedDay((prev) => (prev === 0 ? 6 : prev - 1));
+    setSelectedDay(prev => prev === 0 ? 6 : prev - 1);
   };
-
   const handleNextDay = () => {
-    setSelectedDay((prev) => (prev === 6 ? 0 : prev + 1));
+    setSelectedDay(prev => prev === 6 ? 0 : prev + 1);
   };
-
   const handleToday = () => {
     setSelectedDay(new Date().getDay());
   };
-
   const calculateTimeRemaining = (airTime: string) => {
     const now = new Date();
     const [hours, minutes] = airTime.split(':').map(Number);
-    
+
     // Assume each program is 1 hour long
     const endHour = (hours + 1) % 24;
-    
     const endTime = new Date();
     endTime.setHours(endHour, minutes, 0, 0);
-    
+
     // If end time is before current time, it means program has ended
     if (endTime < now) {
       return "Program telah berakhir";
     }
-    
     const diff = endTime.getTime() - now.getTime();
     const minutesLeft = Math.floor(diff / 60000);
-    const secondsLeft = Math.floor((diff % 60000) / 1000);
-    
+    const secondsLeft = Math.floor(diff % 60000 / 1000);
     if (minutesLeft > 0) {
       return `${minutesLeft} menit ${secondsLeft} detik tersisa`;
     } else {
       return `${secondsLeft} detik tersisa`;
     }
   };
-
   useEffect(() => {
     if (currentProgram) {
       // Update countdown every second
@@ -89,28 +72,24 @@ const Radio = () => {
 
       // Initial calculation
       setTimeRemaining(calculateTimeRemaining(currentProgram.air_time));
-
       return () => clearInterval(countdownInterval);
     }
   }, [currentProgram]);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data: programsData } = await supabase
-          .from("radio_programs")
-          .select("*")
-          .order("day_of_week", { ascending: true })
-          .order("air_time", { ascending: true });
-
-        const { data: settingsData } = await supabase
-          .from("radio_settings")
-          .select("streaming_url, banner_image_url")
-          .single();
-
+        const {
+          data: programsData
+        } = await supabase.from("radio_programs").select("*").order("day_of_week", {
+          ascending: true
+        }).order("air_time", {
+          ascending: true
+        });
+        const {
+          data: settingsData
+        } = await supabase.from("radio_settings").select("streaming_url, banner_image_url").single();
         setPrograms(programsData || []);
         setSettings(settingsData);
-
         if (programsData) {
           setCurrentProgram(getCurrentProgram(programsData));
         }
@@ -118,7 +97,6 @@ const Radio = () => {
         console.error("Error fetching radio data:", error);
       }
     };
-
     fetchData();
 
     // Update current program every minute
@@ -127,26 +105,20 @@ const Radio = () => {
         setCurrentProgram(getCurrentProgram(programs));
       }
     }, 60000);
-
     return () => clearInterval(interval);
   }, [programs]);
-
   const handleListen = () => {
     if (settings?.streaming_url) {
       window.open(settings.streaming_url, "_blank");
     }
   };
-  return (
-    <Layout>
+  return <Layout>
       {/* Hero Section - HostPro Style */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background Image with Dark Overlay */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${settings?.banner_image_url || 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070'})`
-          }}
-        ></div>
+        <div className="absolute inset-0 bg-cover bg-center" style={{
+        backgroundImage: `url(${settings?.banner_image_url || 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070'})`
+      }}></div>
         <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
         
         <div className="container mx-auto px-4 relative z-10 py-16">
@@ -172,8 +144,7 @@ const Radio = () => {
               </p>
 
             {/* Current Program Info - Prominent Display */}
-            {currentProgram ? (
-              <div className="mb-8 p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl">
+            {currentProgram ? <div className="mb-8 p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0">
                     <div className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center animate-pulse shadow-lg shadow-green-500/50">
@@ -195,32 +166,23 @@ const Radio = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            ) : (
-              <div className="mb-8 p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl">
+              </div> : <div className="mb-8 p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl">
                 <div className="flex items-center gap-3">
                   <RadioIcon className="h-6 w-6 text-white/50" />
                   <span className="text-white/70 text-sm">Tidak ada program yang sedang tayang saat ini</span>
                 </div>
-              </div>
-            )}
+              </div>}
 
             {/* Buttons */}
             <div className="flex flex-col gap-4 justify-center items-center">
-              <Button 
-                size="lg" 
-                className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-base"
-                onClick={handleListen}
-              >
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-base" onClick={handleListen}>
                 <Play className="h-5 w-5 mr-2" />
                 Dengar Sekarang
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-8 py-6 text-base"
-                onClick={() => document.getElementById('jadwal-program')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-              >
+              <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-8 py-6 text-base" onClick={() => document.getElementById('jadwal-program')?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              })}>
                 <Clock className="h-5 w-5 mr-2" />
                 Lihat Jadwal
               </Button>
@@ -240,9 +202,9 @@ const Radio = () => {
           
           <div className="absolute top-0 right-0 w-1/4 h-1/3 opacity-25">
             <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
-              backgroundSize: '18px 18px'
-            }} />
+            backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
+            backgroundSize: '18px 18px'
+          }} />
           </div>
           
           <div className="absolute bottom-1/3 left-0 w-64 h-64">
@@ -272,12 +234,7 @@ const Radio = () => {
               
               {/* Day Navigation */}
               <div className="flex items-center justify-center gap-4 mb-8">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handlePreviousDay}
-                  className="flex items-center gap-2"
-                >
+                <Button variant="outline" size="sm" onClick={handlePreviousDay} className="flex items-center gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="15 18 9 12 15 6"></polyline>
                   </svg>
@@ -288,21 +245,11 @@ const Radio = () => {
                   <span className="text-lg font-semibold text-primary">{DAYS[selectedDay]}</span>
                 </div>
                 
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleToday}
-                  className="font-medium"
-                >
+                <Button variant="outline" size="sm" onClick={handleToday} className="font-medium">
                   Hari Ini
                 </Button>
                 
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleNextDay}
-                  className="flex items-center gap-2"
-                >
+                <Button variant="outline" size="sm" onClick={handleNextDay} className="flex items-center gap-2">
                   Berikutnya
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="9 18 15 12 9 6"></polyline>
@@ -312,20 +259,12 @@ const Radio = () => {
             </div>
           </AnimatedSection>
           
-          {filteredPrograms.length === 0 ? (
-            <div className="text-center py-12">
-              <div className="w-20 h-20 rounded-2xl bg-primary/5 border border-primary/10 flex items-center justify-center mx-auto mb-4">
-                <img src={logoSigmaRadio} alt="SIGMA Radio" className="h-12 w-12 object-contain opacity-50" />
-              </div>
+          {filteredPrograms.length === 0 ? <div className="text-center py-12">
+              
               <p className="text-muted-foreground">Belum ada jadwal program</p>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-2 gap-6">
-              {filteredPrograms.map((program, index) => (
-                <AnimatedSection key={program.id} animation="fade-up" delay={index * 100}>
-                  <Card
-                    className="group relative overflow-hidden border-border/40 hover:border-primary/40 transition-all duration-500 shadow-lg hover:shadow-2xl hover:shadow-primary/10 bg-white dark:bg-gray-900"
-                  >
+            </div> : <div className="grid md:grid-cols-2 gap-6">
+              {filteredPrograms.map((program, index) => <AnimatedSection key={program.id} animation="fade-up" delay={index * 100}>
+                  <Card className="group relative overflow-hidden border-border/40 hover:border-primary/40 transition-all duration-500 shadow-lg hover:shadow-2xl hover:shadow-primary/10 bg-white dark:bg-gray-900">
                   {/* Gradient Background on Hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
@@ -341,11 +280,9 @@ const Radio = () => {
                           <RadioIcon className="h-8 w-8 text-primary group-hover:scale-110 transition-transform duration-300" />
                         </div>
                         {/* Live indicator if it's the current program */}
-                        {currentProgram?.id === program.id && (
-                          <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-background animate-pulse">
+                        {currentProgram?.id === program.id && <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-background animate-pulse">
                             <div className="absolute inset-0 bg-green-500 rounded-full animate-ping" />
-                          </div>
-                        )}
+                          </div>}
                       </div>
                       <div className="flex-1">
                         <CardTitle className="text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-300">
@@ -375,15 +312,11 @@ const Radio = () => {
                   {/* Corner Decoration */}
                   <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-primary/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </Card>
-            </AnimatedSection>
-          ))}
-        </div>
-      )}
+            </AnimatedSection>)}
+        </div>}
           </div>
         </div>
       </section>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default Radio;
