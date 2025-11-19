@@ -459,9 +459,9 @@ const Index = () => {
         <div id="contact" className="relative z-10 container mx-auto max-w-5xl">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-6 sm:mb-8 md:mb-10">
-              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-3 sm:mb-4 md:mb-6">
-                <MessageSquare className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
-                <span className="text-xs sm:text-sm font-medium text-primary">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-3 sm:mb-4 md:mb-6">
+                <MessageSquare className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
+                <span className="text-[10px] sm:text-sm font-medium text-primary">
                   Hubungi Kami
                 </span>
               </div>
