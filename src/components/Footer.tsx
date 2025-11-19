@@ -41,21 +41,21 @@ export const Footer = () => {
       </div>
 
       <div className="container mx-auto px-4 py-16 relative z-10">
-        <div className="flex flex-col gap-12 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* About / Company Info */}
-          <div className="space-y-4 text-center">
-            <div className="flex items-center justify-center gap-3 mb-4">
+          <div className="space-y-4">
+            <div className="flex items-center gap-3 mb-4">
               <img src={logoUkkpk} alt="Logo UKKPK" className="h-14 w-14" />
               <h3 className="font-bold text-xl text-white">UKKPK UNP</h3>
             </div>
-            <p className="text-xs sm:text-sm md:text-base text-white/80 leading-relaxed text-center max-w-3xl mx-auto">
+            <p className="text-xs sm:text-sm md:text-base text-white/80 leading-relaxed">
               Organisasi Dan Platform Media kampus untuk pengembangan Ilmu di bidang komunikasi dan penyiaran yang dikembangkan oleh Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang.
             </p>
             
             {/* Social Media Icons */}
             <div className="pt-4">
               <TooltipProvider>
-                <div className="flex gap-2 flex-wrap justify-center">
+                <div className="flex gap-2 flex-wrap">
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <a href={socialLinks.ukkpk.facebook} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300">
@@ -116,9 +116,9 @@ export const Footer = () => {
           </div>
 
           {/* Layanan Kami */}
-          <div className="space-y-4 text-center">
+          <div className="space-y-4">
             <h4 className="font-semibold text-lg mb-4 text-white">Layanan Kami</h4>
-            <ul className="space-y-3 text-xs sm:text-sm md:text-base flex flex-col items-center">
+            <ul className="space-y-3 text-xs sm:text-sm md:text-base">
               <li className="flex items-center gap-2">
                 <Mic className="h-4 w-4 flex-shrink-0" />
                 <span className="text-white/80">Master Of Ceremony</span>
@@ -147,9 +147,9 @@ export const Footer = () => {
           </div>
 
           {/* Menu Cepat */}
-          <div className="space-y-4 text-center">
+          <div className="space-y-4">
             <h4 className="font-semibold text-lg mb-4 text-white">Menu Cepat</h4>
-            <ul className="space-y-3 text-xs sm:text-sm md:text-base flex flex-col items-center">
+            <ul className="space-y-3 text-xs sm:text-sm md:text-base">
               <li>
                 <Link to="/" className="text-white/80 hover:text-white transition-colors">
                   Beranda
@@ -179,9 +179,9 @@ export const Footer = () => {
           </div>
 
           {/* Kontak */}
-          <div className="space-y-4 text-center">
+          <div className="space-y-4">
             <h4 className="font-semibold text-lg mb-4 text-white">Kontak</h4>
-            <ul className="space-y-4 text-xs sm:text-sm md:text-base flex flex-col items-center">
+            <ul className="space-y-4 text-xs sm:text-sm md:text-base">
               <li className="flex items-start gap-3 text-white/90">
                 <Mail className="h-5 w-5 flex-shrink-0 mt-0.5" />
                 <div>
