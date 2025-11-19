@@ -115,43 +115,43 @@ const ProfilUkkpk = () => {
 
   const features = [
     {
-      icon: <Megaphone className="h-8 w-8" />,
+      icon: <Megaphone className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
       title: 'MC Dan Keprotokolan',
       description:
         'Membina keterampilan berbicara di depan umum dan menjadi pembawa acara profesional',
     },
     {
-      icon: <FileText className="h-8 w-8" />,
+      icon: <FileText className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
       title: 'Jurnalistik & Penyiaran',
       description:
         'Mengembangkan kemampuan menulis berita, artikel, dan melakukan liputan yang mendalam',
     },
     {
-      icon: <Radio className="h-8 w-8" />,
+      icon: <Radio className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
       title: 'Radio & Penyiaran',
       description:
         'Melatih kemampuan penyiaran, produksi audio, dan manajemen program radio',
     },
     {
-      icon: <Briefcase className="h-8 w-8" />,
+      icon: <Briefcase className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
       title: 'Biro Kewirausahaan',
       description:
         'Mengembangkan jiwa entrepreneurship dan keterampilan bisnis di bidang komunikasi',
     },
     {
-      icon: <ClipboardList className="h-8 w-8" />,
+      icon: <ClipboardList className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
       title: 'Biro Kesekretariatan',
       description:
         'Melatih kemampuan administrasi, manajemen dokumen, dan koordinasi organisasi',
     },
     {
-      icon: <Users2 className="h-8 w-8" />,
+      icon: <Users2 className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
       title: 'Human Resource Development',
       description:
         'Mengembangkan potensi SDM melalui pelatihan dan pengembangan anggota',
     },
     {
-      icon: <Handshake className="h-8 w-8" />,
+      icon: <Handshake className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
       title: 'Public Relation',
       description:
         'Membangun dan memelihara hubungan baik dengan stakeholder internal maupun eksternal',
@@ -160,17 +160,17 @@ const ProfilUkkpk = () => {
 
   const values = [
     {
-      icon: <Users className="h-6 w-6" />,
+      icon: <Users className="h-5 w-5 sm:h-6 sm:w-6" />,
       title: 'Kekeluargaan',
       description: 'Membangun solidaritas dan kebersamaan antar anggota',
     },
     {
-      icon: <Target className="h-6 w-6" />,
+      icon: <Target className="h-5 w-5 sm:h-6 sm:w-6" />,
       title: 'Profesionalisme',
       description: 'Mengutamakan kualitas dan dedikasi dalam setiap karya',
     },
     {
-      icon: <Eye className="h-6 w-6" />,
+      icon: <Eye className="h-5 w-5 sm:h-6 sm:w-6" />,
       title: 'Kreativitas',
       description: 'Mendorong inovasi dan ide-ide segar dalam komunikasi',
     },
@@ -273,8 +273,8 @@ const ProfilUkkpk = () => {
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 relative">
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
-                        <Sparkles className="h-7 w-7" />
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
+                        <Sparkles className="h-6 w-6 sm:h-7 sm:w-7" />
                       </div>
                       <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                         Visi
@@ -294,8 +294,8 @@ const ProfilUkkpk = () => {
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 relative">
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
-                        <Rocket className="h-7 w-7" />
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
+                        <Rocket className="h-6 w-6 sm:h-7 sm:w-7" />
                       </div>
                       <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                         Misi
@@ -341,8 +341,8 @@ const ProfilUkkpk = () => {
                   <CardContent className="pt-6 pb-6 relative">
                     <div className="flex gap-4">
                       <div className="flex-shrink-0">
-                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white shadow-xl">
-                          <Sparkles className="h-7 w-7" />
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white shadow-xl">
+                          <Sparkles className="h-6 w-6 sm:h-7 sm:w-7" />
                         </div>
                       </div>
                       <div className="flex-1">
@@ -374,8 +374,8 @@ const ProfilUkkpk = () => {
                   <CardContent className="pt-6 pb-6 relative">
                     <div className="flex gap-4">
                       <div className="flex-shrink-0">
-                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white shadow-xl">
-                          <Mic className="h-7 w-7" />
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white shadow-xl">
+                          <Mic className="h-6 w-6 sm:h-7 sm:w-7" />
                         </div>
                       </div>
                       <div className="flex-1">
@@ -400,8 +400,8 @@ const ProfilUkkpk = () => {
                   <CardContent className="pt-6 pb-6 relative">
                     <div className="flex gap-4">
                       <div className="flex-shrink-0">
-                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-xl">
-                          <Waves className="h-7 w-7" />
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-xl">
+                          <Waves className="h-6 w-6 sm:h-7 sm:w-7" />
                         </div>
                       </div>
                       <div className="flex-1">
@@ -427,8 +427,8 @@ const ProfilUkkpk = () => {
                   <CardContent className="pt-6 pb-6 relative">
                     <div className="flex gap-4">
                       <div className="flex-shrink-0">
-                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white shadow-xl">
-                          <Shield className="h-7 w-7" />
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white shadow-xl">
+                          <Shield className="h-6 w-6 sm:h-7 sm:w-7" />
                         </div>
                       </div>
                       <div className="flex-1">
@@ -454,8 +454,8 @@ const ProfilUkkpk = () => {
                   <CardContent className="pt-6 pb-6 relative">
                     <div className="flex gap-4">
                       <div className="flex-shrink-0">
-                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-500 flex items-center justify-center text-white shadow-xl">
-                          <Rocket className="h-7 w-7" />
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-500 flex items-center justify-center text-white shadow-xl">
+                          <Rocket className="h-6 w-6 sm:h-7 sm:w-7" />
                         </div>
                       </div>
                       <div className="flex-1">
@@ -546,7 +546,7 @@ const ProfilUkkpk = () => {
                 >
                   <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg">
                     <CardContent className="pt-6 text-center flex flex-col items-center">
-                      <div className="inline-flex p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
+                      <div className="inline-flex p-3 sm:p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
                         {feature.icon}
                       </div>
                       <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-3 min-h-[3rem] flex items-center justify-center">
@@ -571,7 +571,7 @@ const ProfilUkkpk = () => {
                 >
                   <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg">
                     <CardContent className="pt-6 text-center flex flex-col items-center">
-                      <div className="inline-flex p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
+                      <div className="inline-flex p-3 sm:p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
                         {feature.icon}
                       </div>
                       <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-3 min-h-[3rem] flex items-center justify-center">
@@ -617,11 +617,11 @@ const ProfilUkkpk = () => {
                 animation="scale-in"
                 delay={100 + index * 150}
               >
-                <Card className="text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                  <CardContent className="pt-6">
-                    <div className="inline-flex p-3 rounded-full bg-primary/10 text-primary mb-4">
-                      {value.icon}
-                    </div>
+                  <Card className="text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 shadow-lg">
+                    <CardContent className="pt-6">
+                      <div className="inline-flex p-2.5 sm:p-3 rounded-full bg-primary/10 text-primary mb-4">
+                        {value.icon}
+                      </div>
                     <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2">
                       {value.title}
                     </h3>
