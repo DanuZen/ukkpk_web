@@ -51,8 +51,8 @@ export const BreakingNews = () => {
     <div className="sticky top-0 z-40 bg-gradient-to-r from-primary via-primary to-black/90 text-white border-b border-black/30 shadow-lg shadow-black/20 h-12">
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center gap-3 overflow-hidden h-full">
-          <span className="font-bold text-xs whitespace-nowrap pl-2 pr-4 py-1.5 bg-black/30 rounded-full backdrop-blur-sm animate-pulse flex items-center gap-2">
-            <Radio className="h-3.5 w-3.5 animate-pulse" />
+          <span className="font-bold text-[10px] whitespace-nowrap pl-2 pr-3 py-1 bg-black/30 rounded-full backdrop-blur-sm animate-pulse flex items-center gap-1.5">
+            <Radio className="h-3 w-3 animate-pulse" />
             BREAKING NEWS
           </span>
           <div className="flex-1 overflow-hidden">
