@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { Radio } from "lucide-react";
 
 export const BreakingNews = () => {
   const [headlines, setHeadlines] = useState<string[]>([]);
@@ -44,8 +45,9 @@ export const BreakingNews = () => {
     <div className="sticky top-0 z-40 bg-gradient-to-r from-primary via-primary to-black/90 text-white border-b border-black/30 shadow-lg shadow-black/20 h-12">
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center gap-3 overflow-hidden h-full">
-          <span className="font-bold text-xs whitespace-nowrap px-3 py-0.5 bg-black/30 rounded-full backdrop-blur-sm animate-pulse">
-            🔥 BREAKING NEWS
+          <span className="font-bold text-xs whitespace-nowrap px-4 py-1.5 bg-black/30 rounded-full backdrop-blur-sm animate-pulse flex items-center gap-2">
+            <Radio className="h-3.5 w-3.5 animate-pulse" />
+            BREAKING NEWS
           </span>
           <div className="flex-1 overflow-hidden">
             <div className="animate-marquee whitespace-nowrap">
