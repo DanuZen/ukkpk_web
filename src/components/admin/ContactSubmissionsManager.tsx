@@ -108,40 +108,41 @@ export const ContactSubmissionsManager = () => {
   return (
     <>
       <Card>
-        <CardHeader>
-          <CardTitle>Saran & Masukan</CardTitle>
-          <CardDescription>
+        <CardHeader className="pb-3 sm:pb-6">
+          <CardTitle className="text-base sm:text-xl">Saran & Masukan</CardTitle>
+          <CardDescription className="text-xs sm:text-sm">
             Total: {submissions.length} saran masuk
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <div className="mb-4">
+        <CardContent className="pt-0">
+          <div className="mb-3 sm:mb-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Cari berdasarkan nama, email, atau pesan..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
+                className="pl-10 h-9 sm:h-10 text-sm"
               />
             </div>
           </div>
 
-          <div className="rounded-md border overflow-x-auto">
+          {/* Desktop Table */}
+          <div className="hidden md:block rounded-md border overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Nama</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Subject</TableHead>
-                  <TableHead>Tanggal</TableHead>
-                  <TableHead className="text-right">Aksi</TableHead>
+                  <TableHead className="text-xs">Nama</TableHead>
+                  <TableHead className="text-xs">Email</TableHead>
+                  <TableHead className="text-xs">Subject</TableHead>
+                  <TableHead className="text-xs">Tanggal</TableHead>
+                  <TableHead className="text-right text-xs">Aksi</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {filteredSubmissions.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={5} className="text-center py-8">
+                    <TableCell colSpan={5} className="text-center py-8 text-sm">
                       {searchQuery
                         ? "Tidak ada hasil yang ditemukan"
                         : "Belum ada saran masuk"}
@@ -150,10 +151,10 @@ export const ContactSubmissionsManager = () => {
                 ) : (
                   filteredSubmissions.map((submission) => (
                     <TableRow key={submission.id}>
-                      <TableCell className="font-medium">{submission.nama}</TableCell>
-                      <TableCell>{submission.email}</TableCell>
-                      <TableCell>{submission.subject || "-"}</TableCell>
-                      <TableCell>
+                      <TableCell className="font-medium text-sm">{submission.nama}</TableCell>
+                      <TableCell className="text-sm">{submission.email}</TableCell>
+                      <TableCell className="text-sm">{submission.subject || "-"}</TableCell>
+                      <TableCell className="text-sm">
                         {format(new Date(submission.created_at), "dd MMM yyyy, HH:mm", {
                           locale: idLocale,
                         })}
@@ -181,6 +182,56 @@ export const ContactSubmissionsManager = () => {
                 )}
               </TableBody>
             </Table>
+          </div>
+
+          {/* Mobile Cards */}
+          <div className="md:hidden space-y-3">
+            {filteredSubmissions.length === 0 ? (
+              <div className="text-center py-8 text-sm text-gray-500">
+                {searchQuery
+                  ? "Tidak ada hasil yang ditemukan"
+                  : "Belum ada saran masuk"}
+              </div>
+            ) : (
+              filteredSubmissions.map((submission) => (
+                <Card key={submission.id} className="p-3 sm:p-4">
+                  <div className="space-y-2">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-semibold text-sm truncate">{submission.nama}</h4>
+                        <p className="text-xs text-gray-600 truncate">{submission.email}</p>
+                      </div>
+                      <div className="flex gap-1 flex-shrink-0">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-8 w-8 p-0"
+                          onClick={() => handleViewDetail(submission)}
+                        >
+                          <Eye className="h-3.5 w-3.5" />
+                        </Button>
+                        <Button
+                          variant="destructive"
+                          size="sm"
+                          className="h-8 w-8 p-0"
+                          onClick={() => handleDelete(submission.id)}
+                        >
+                          <Trash2 className="h-3.5 w-3.5" />
+                        </Button>
+                      </div>
+                    </div>
+                    {submission.subject && (
+                      <p className="text-xs font-medium text-gray-700">{submission.subject}</p>
+                    )}
+                    <p className="text-xs text-gray-500">
+                      {format(new Date(submission.created_at), "dd MMM yyyy, HH:mm", {
+                        locale: idLocale,
+                      })}
+                    </p>
+                  </div>
+                </Card>
+              ))
+            )}
           </div>
         </CardContent>
       </Card>
