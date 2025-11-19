@@ -225,7 +225,7 @@ const Index = () => {
       </section>
 
       {/* Thank You Section */}
-      <section className="min-h-screen flex items-center py-16 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 relative px-4 bg-gradient-to-b from-primary/90 via-primary to-primary/90 overflow-hidden">
+      <section className="min-h-[60vh] md:min-h-[70vh] flex items-center py-12 sm:py-16 md:py-20 lg:py-24 scroll-mt-20 relative px-4 bg-gradient-to-b from-primary/90 via-primary to-primary/90 overflow-hidden">
         {/* Top gradient fade */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent z-0" />
         
