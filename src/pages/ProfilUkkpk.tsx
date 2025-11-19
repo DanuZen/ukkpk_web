@@ -488,7 +488,7 @@ const ProfilUkkpk = () => {
             <div className="max-w-4xl mx-auto mb-16">
               {/* Logo MICU - Centered and Larger */}
               <AnimatedSection animation="scale-in" delay={100}>
-                <div className="flex justify-center mb-12">
+                <div className="flex justify-center mb-4">
                   <div className="flex flex-col items-center group">
                     <img
                       src={logoMicu}
