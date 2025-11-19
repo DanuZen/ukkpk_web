@@ -189,7 +189,7 @@ const ProfilUkkpk = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80"></div>
           <div className="absolute bottom-8 left-0 right-0 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
               Profil UKKPK
             </h1>
           </div>
@@ -204,10 +204,10 @@ const ProfilUkkpk = () => {
           <div className="container mx-auto relative z-10">
             <AnimatedSection animation="fade-up">
               <div className="max-w-3xl mx-auto text-center space-y-6">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                   UKKPK UNP
                 </h1>
-                <p className="text-lg md:text-xl text-muted-foreground">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground">
                   Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang
                 </p>
               </div>
@@ -224,13 +224,13 @@ const ProfilUkkpk = () => {
             {/* Section Header */}
             <AnimatedSection animation="fade-up">
               <div className="text-center mb-12">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                  <Users className="h-4 w-4 text-primary" />
-                  <span className="text-sm font-medium text-primary">
-                    Tentang Kami
-                  </span>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <Users className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
+                <span className="text-[10px] sm:text-sm font-medium text-primary">
+                  Tentang Kami
+                </span>
+              </div>
+                <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                   Profil UKKPK
                 </h2>
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
@@ -255,13 +255,13 @@ const ProfilUkkpk = () => {
             {/* Visi & Misi */}
             <AnimatedSection animation="fade-up" delay={150}>
               <div className="text-center mb-12">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                  <Eye className="h-4 w-4 text-primary" />
-                  <span className="text-sm font-medium text-primary">
+                <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                  <Eye className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
+                  <span className="text-[10px] sm:text-sm font-medium text-primary">
                     Visi & Misi
                   </span>
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+                <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                   Arah & Tujuan
                 </h2>
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
@@ -321,13 +321,13 @@ const ProfilUkkpk = () => {
           <div className="max-w-6xl mx-auto">
             <AnimatedSection animation="fade-up" delay={100}>
               <div className="text-center mb-12">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                  <FileText className="h-4 w-4 text-primary" />
-                  <span className="text-sm font-medium text-primary">
+                <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                  <FileText className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
+                  <span className="text-[10px] sm:text-sm font-medium text-primary">
                     Perjalanan Kami
                   </span>
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+                <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                   Sejarah UKKPK
                 </h2>
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
@@ -485,13 +485,13 @@ const ProfilUkkpk = () => {
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                <Briefcase className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium text-primary">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <Briefcase className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
+                <span className="text-[10px] sm:text-sm font-medium text-primary">
                   Program Kami
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Bidang Kegiatan
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
@@ -597,13 +597,13 @@ const ProfilUkkpk = () => {
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                <Sparkles className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium text-primary">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
+                <span className="text-[10px] sm:text-sm font-medium text-primary">
                   Nilai Kami
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Nilai-Nilai
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
@@ -641,13 +641,13 @@ const ProfilUkkpk = () => {
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                <Users2 className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium text-primary">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <Users2 className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
+                <span className="text-[10px] sm:text-sm font-medium text-primary">
                   Tim Kami
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Struktur Organisasi
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
