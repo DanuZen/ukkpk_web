@@ -500,7 +500,7 @@ const ProfilUkkpk = () => {
               </AnimatedSection>
 
               {/* 3 Logo Bidang - Grid 3 Columns */}
-              <div className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-3xl mx-auto">
+              <div className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-8 max-w-3xl mx-auto">
                 {divisionLogos.map((logo, index) => (
                   <AnimatedSection
                     key={index}
