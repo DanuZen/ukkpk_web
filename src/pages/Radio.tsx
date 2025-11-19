@@ -120,7 +120,7 @@ const Radio = () => {
   };
   return <Layout>
       {/* Hero Section */}
-      <section className="relative py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
+      <section className="relative min-h-screen flex items-center px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
         {/* Background Image with Dark Overlay */}
         <div className="absolute inset-0 bg-cover bg-center" style={{
         backgroundImage: `url(${settings?.banner_image_url || 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070'})`
