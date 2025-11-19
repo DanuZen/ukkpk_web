@@ -48,7 +48,7 @@ export const Footer = () => {
               <img src={logoUkkpk} alt="Logo UKKPK" className="h-14 w-14" />
               <h3 className="font-bold text-xl text-white">UKKPK UNP</h3>
             </div>
-            <p className="text-sm text-white/80 leading-relaxed text-justify">
+            <p className="text-xs sm:text-sm md:text-base text-white/80 leading-relaxed text-justify">
               Organisasi Dan Platform Media kampus untuk pengembangan Ilmu di bidang komunikasi dan penyiaran yang dikembangkan oleh Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang.
             </p>
             
@@ -118,7 +118,7 @@ export const Footer = () => {
           {/* Layanan Kami */}
           <div className="space-y-4">
             <h4 className="font-semibold text-lg mb-4 text-white">Layanan Kami</h4>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-3 text-xs sm:text-sm md:text-base">
               <li className="flex items-center gap-2">
                 <Mic className="h-4 w-4 flex-shrink-0" />
                 <span className="text-white/80">Master Of Ceremony</span>
@@ -149,7 +149,7 @@ export const Footer = () => {
           {/* Menu Cepat */}
           <div className="space-y-4">
             <h4 className="font-semibold text-lg mb-4 text-white">Menu Cepat</h4>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-3 text-xs sm:text-sm md:text-base">
               <li>
                 <Link to="/" className="text-white/80 hover:text-white transition-colors">
                   Beranda
@@ -181,7 +181,7 @@ export const Footer = () => {
           {/* Kontak */}
           <div className="space-y-4">
             <h4 className="font-semibold text-lg mb-4 text-white">Kontak</h4>
-            <ul className="space-y-4 text-sm">
+            <ul className="space-y-4 text-xs sm:text-sm md:text-base">
               <li className="flex items-start gap-3 text-white/90">
                 <Mail className="h-5 w-5 flex-shrink-0 mt-0.5" />
                 <div>
@@ -213,10 +213,10 @@ export const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/20 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-white/90">
+          <p className="text-xs sm:text-sm md:text-base text-white/90">
             © {new Date().getFullYear()} UKKPK UNP. Semua hak dilindungi.
           </p>
-          <div className="flex gap-6 text-sm">
+          <div className="flex gap-6 text-xs sm:text-sm md:text-base">
             <span className="text-white/80 hover:text-white transition-colors cursor-pointer">
               Kebijakan Privasi
             </span>
