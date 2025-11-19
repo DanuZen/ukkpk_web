@@ -410,10 +410,10 @@ const Index = () => {
                     </div>
                   </div>
 
-                  <div className="h-px bg-border/50 hidden md:block" />
+                  <div className="h-px bg-border/50 hidden lg:block" />
 
-                  {/* Contact - Hidden on mobile */}
-                  <div className="space-y-2.5 sm:space-y-3 hidden md:block">
+                  {/* Contact - Hidden on mobile and tablet */}
+                  <div className="space-y-2.5 sm:space-y-3 hidden lg:block">
                     <div className="flex items-center gap-2.5 sm:gap-3">
                       <div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-green-500/10 flex items-center justify-center">
                         <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
