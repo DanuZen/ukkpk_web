@@ -409,27 +409,27 @@ export const RadioManager = () => {
                 rows={3}
               />
             </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Hari</label>
+              <Select
+                value={formData.day_of_week.toString()}
+                onValueChange={(value) =>
+                  setFormData({ ...formData, day_of_week: parseInt(value) })
+                }
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {DAYS.map((day, index) => (
+                    <SelectItem key={index} value={index.toString()}>
+                      {day}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
             <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium mb-2">Hari</label>
-                <Select
-                  value={formData.day_of_week.toString()}
-                  onValueChange={(value) =>
-                    setFormData({ ...formData, day_of_week: parseInt(value) })
-                  }
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {DAYS.map((day, index) => (
-                      <SelectItem key={index} value={index.toString()}>
-                        {day}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
               <div>
                 <label className="block text-sm font-medium mb-2">Waktu Mulai</label>
                 <Input
@@ -438,14 +438,14 @@ export const RadioManager = () => {
                   onChange={(e) => setFormData({ ...formData, air_time: e.target.value })}
                 />
               </div>
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">Waktu Selesai</label>
-              <Input
-                type="time"
-                value={formData.end_time}
-                onChange={(e) => setFormData({ ...formData, end_time: e.target.value })}
-              />
+              <div>
+                <label className="block text-sm font-medium mb-2">Waktu Selesai</label>
+                <Input
+                  type="time"
+                  value={formData.end_time}
+                  onChange={(e) => setFormData({ ...formData, end_time: e.target.value })}
+                />
+              </div>
             </div>
             <div>
               <label className="block text-sm font-medium mb-2">Host/Penyiar</label>
