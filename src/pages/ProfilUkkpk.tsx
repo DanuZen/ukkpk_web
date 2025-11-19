@@ -244,7 +244,7 @@ const ProfilUkkpk = () => {
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
                   <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                   <div className="relative z-10">
-                    <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-center">
+                    <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed text-center">
                       Unit Kegiatan Komunikasi dan Penyiaran Kampus (UKKPK) adalah organisasi mahasiswa yang bergerak dalam pengembangan bidang komunikasi dan media di lingkungan kampus. UKKPK memiliki tiga bidang utama, yaitu Jurnalistik, Master of Ceremony (MC), dan Radio. Melalui bidang Jurnalistik, UKKPK melakukan peliputan dan penyajian informasi kampus secara akurat serta kreatif. Bidang MC berfokus pada peningkatan kemampuan public speaking dan pembawa acara, sehingga anggota mampu tampil profesional dalam berbagai kegiatan kampus. Sementara itu, bidang Radio menghadirkan program siaran, podcast, serta konten audio yang informatif dan menghibur. Ketiga bidang ini saling melengkapi untuk menjadikan UKKPK sebagai wadah pengembangan bakat mahasiswa dalam dunia komunikasi dan penyiaran.
                     </p>
                   </div>
@@ -276,11 +276,11 @@ const ProfilUkkpk = () => {
                       <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
                         <Sparkles className="h-7 w-7" />
                       </div>
-                      <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                         Visi
                       </h3>
                     </div>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
                       Menjadikan UKKPK UNP sebagai wadah yang disiplin, inovatif,
                       dan kreatif dalam mewujudkan mahasiswa yang berintelektual
                       dan berkompeten di bidang komunikasi dan penyiaran yang
@@ -297,11 +297,11 @@ const ProfilUkkpk = () => {
                       <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
                         <Rocket className="h-7 w-7" />
                       </div>
-                      <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                         Misi
                       </h3>
                     </div>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
                       UKKPK UNP membekali keterampilan komunikasi untuk
                       meningkatkan intelektualitas, kepemimpinan, penalaran,
                       minat, kegemaran, dan kesejahteraan untuk mahasiswa UNP dan
@@ -346,10 +346,10 @@ const ProfilUkkpk = () => {
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h4 className="text-lg font-bold text-primary mb-3">
+                        <h4 className="text-sm sm:text-base md:text-lg font-bold text-primary mb-3">
                           Awal Terbentuk (1993)
                         </h4>
-                        <p className="text-muted-foreground leading-relaxed">
+                        <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
                           UKKPK (Unit Kegiatan Komunikasi dan Penyiaran Kampus)
                           merupakan salah satu unit kegiatan mahasiswa (UKM) yang
                           ada di Universitas Negeri Padang (UNP). UKM ini
@@ -379,10 +379,10 @@ const ProfilUkkpk = () => {
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h4 className="text-lg font-bold text-primary mb-3">
+                        <h4 className="text-sm sm:text-base md:text-lg font-bold text-primary mb-3">
                           Perkembangan Organisasi (1993-2000)
                         </h4>
-                        <p className="text-muted-foreground leading-relaxed">
+                        <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
                           Pada masa awal berdirinya, UKKPK fokus mengembangkan
                           tiga bidang utama: MC dan Public Speaking, Penerbitan
                           Kampus, dan Penyiaran Radio. Ketiga bidang ini menjadi
@@ -405,10 +405,10 @@ const ProfilUkkpk = () => {
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h4 className="text-lg font-bold text-primary mb-3">
+                        <h4 className="text-sm sm:text-base md:text-lg font-bold text-primary mb-3">
                           Transformasi Modern (2000-2015)
                         </h4>
-                        <p className="text-muted-foreground leading-relaxed">
+                        <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
                           Memasuki era digital, UKKPK mulai mengadaptasi teknologi
                           modern dalam kegiatan penyiaran dan jurnalistik. Bidang
                           penerbitan bertransformasi menjadi jurnalistik digital,
@@ -432,10 +432,10 @@ const ProfilUkkpk = () => {
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h4 className="text-lg font-bold text-primary mb-3">
+                        <h4 className="text-sm sm:text-base md:text-lg font-bold text-primary mb-3">
                           Ekspansi Bidang (2015-2020)
                         </h4>
-                        <p className="text-muted-foreground leading-relaxed">
+                        <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
                           UKKPK terus berkembang dengan menambah berbagai bidang
                           baru seperti Kewirausahaan, Kesekretariatan, Human
                           Resource Development, dan Public Relations. Ekspansi ini
@@ -459,10 +459,10 @@ const ProfilUkkpk = () => {
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h4 className="text-lg font-bold text-primary mb-3">
+                        <h4 className="text-sm sm:text-base md:text-lg font-bold text-primary mb-3">
                           Era Digital & Inovasi (2020-Sekarang)
                         </h4>
-                        <p className="text-muted-foreground leading-relaxed">
+                        <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
                           Di era pandemi dan pasca pandemi, UKKPK semakin
                           memperkuat kehadiran digitalnya. Berbagai inovasi
                           seperti webinar, podcast, konten media sosial, dan
@@ -549,10 +549,10 @@ const ProfilUkkpk = () => {
                       <div className="inline-flex p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
                         {feature.icon}
                       </div>
-                      <h3 className="text-lg font-semibold mb-3 min-h-[3rem] flex items-center justify-center">
+                      <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-3 min-h-[3rem] flex items-center justify-center">
                         {feature.title}
                       </h3>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-xs sm:text-sm md:text-base text-muted-foreground text-center leading-relaxed">
                         {feature.description}
                       </p>
                     </CardContent>
@@ -574,10 +574,10 @@ const ProfilUkkpk = () => {
                       <div className="inline-flex p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
                         {feature.icon}
                       </div>
-                      <h3 className="text-lg font-semibold mb-3 min-h-[3rem] flex items-center justify-center">
+                      <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-3 min-h-[3rem] flex items-center justify-center">
                         {feature.title}
                       </h3>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-xs sm:text-sm md:text-base text-muted-foreground text-center leading-relaxed">
                         {feature.description}
                       </p>
                     </CardContent>
@@ -622,10 +622,10 @@ const ProfilUkkpk = () => {
                     <div className="inline-flex p-3 rounded-full bg-primary/10 text-primary mb-4">
                       {value.icon}
                     </div>
-                    <h3 className="text-xl font-semibold mb-2">
+                    <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2">
                       {value.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground text-center leading-relaxed">
                       {value.description}
                     </p>
                   </CardContent>
@@ -673,7 +673,7 @@ const ProfilUkkpk = () => {
                   </div>
                 )}
                 <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-primary">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
                     {strukturData[selectedYear]?.angkatan}
                   </h3>
                 </div>
@@ -705,10 +705,10 @@ const ProfilUkkpk = () => {
                           className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
                         />
                       )}
-                      <h3 className="text-lg font-semibold mb-1">
+                      <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-1">
                         {member.name}
                       </h3>
-                      <p className="text-sm text-primary">{member.position}</p>
+                      <p className="text-xs sm:text-sm text-primary">{member.position}</p>
                     </CardContent>
                   </Card>
                 </AnimatedSection>

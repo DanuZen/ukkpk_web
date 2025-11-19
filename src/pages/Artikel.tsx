@@ -152,12 +152,12 @@ const Artikel = () => {
                         {formatDate(article.published_at || article.created_at)}
                       </span>
                     </div>
-                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-xl">
+                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-base sm:text-lg md:text-xl">
                       {article.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground line-clamp-4 leading-relaxed">
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground line-clamp-4 leading-relaxed">
                       {stripHtml(article.content)}
                     </p>
                   </CardContent>

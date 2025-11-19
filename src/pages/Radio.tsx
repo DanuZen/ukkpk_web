@@ -158,7 +158,7 @@ const Radio = () => {
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                       <span className="text-white/90 text-sm font-medium uppercase tracking-wide">SEDANG TAYANG</span>
                     </div>
-                    <h3 className="text-white text-2xl font-bold mb-2">
+                    <h3 className="text-base sm:text-lg md:text-2xl font-bold mb-2">
                       {currentProgram.name} <span className="text-white/80 font-normal">By</span> {currentProgram.host}
                     </h3>
                     {/* Countdown Timer */}
@@ -283,7 +283,7 @@ const Radio = () => {
                           </div>}
                       </div>
                       <div className="flex-1">
-                        <CardTitle className="text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-300">
+                        <CardTitle className="text-base sm:text-lg md:text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-300">
                           {program.name}
                         </CardTitle>
                         <CardDescription className="flex items-center gap-2 text-sm">
