@@ -218,7 +218,6 @@ const ProfilUkkpk = () => {
 
       {/* Tentang UKKPK */}
       <section className="min-h-[85vh] flex items-center py-32 md:py-40 px-4 relative overflow-hidden bg-background scroll-mt-20">
-
         <div className="container mx-auto relative z-10">
           <div className="max-w-5xl mx-auto">
             {/* Section Header */}
@@ -239,7 +238,7 @@ const ProfilUkkpk = () => {
 
             {/* Description Card */}
             <AnimatedSection animation="scale-in" delay={100}>
-              <Card className="mb-16 bg-white border-primary/20 shadow-2xl overflow-hidden">
+              <Card className="bg-white border-primary/20 shadow-2xl overflow-hidden">
                 <CardContent className="pt-10 pb-10 px-8 md:px-12 relative">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
                   <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
@@ -251,9 +250,15 @@ const ProfilUkkpk = () => {
                 </CardContent>
               </Card>
             </AnimatedSection>
+          </div>
+        </div>
+      </section>
 
-            {/* Visi & Misi */}
-            <AnimatedSection animation="fade-up" delay={150}>
+      {/* Visi & Misi */}
+      <section className="min-h-[85vh] flex items-center py-32 md:py-40 px-4 relative overflow-hidden bg-background scroll-mt-20">
+        <div className="container mx-auto relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <AnimatedSection animation="fade-up">
               <div className="text-center mb-12">
                 <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
                   <Eye className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
