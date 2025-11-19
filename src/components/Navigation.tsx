@@ -242,13 +242,63 @@ export const Navigation = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && <div className="absolute top-full left-0 right-0 md:hidden py-4 bg-background border-t border-border space-y-2 shadow-lg z-50">
+        {isOpen && <div className="absolute top-full left-0 right-0 md:hidden py-4 bg-background border-t border-border space-y-2 shadow-lg z-50 animate-in slide-in-from-top duration-300">
             {navItems.map(item => {
           const isActive = location.pathname === item.path;
           return <Link key={item.name} to={item.path} className={`block mx-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground shadow-md" : "text-foreground hover:bg-secondary"}`} onClick={() => setIsOpen(false)}>
                   {item.name}
                 </Link>;
         })}
+            
+            {/* Account Section */}
+            <div className="border-t border-border mt-2 pt-2">
+              {user ? (
+                <>
+                  {/* User Info */}
+                  <div className="mx-2 px-4 py-3 mb-2 bg-secondary/50 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-gradient-to-br from-primary to-primary/80 rounded-lg shadow-sm">
+                        <User className="h-4 w-4 text-white" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold truncate">{user.email}</p>
+                        <p className="text-xs text-muted-foreground">Administrator</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Admin Actions */}
+                  <Link 
+                    to="/admin"
+                    className="flex items-center gap-2 mx-2 px-4 py-3 text-sm font-medium rounded-lg text-foreground hover:bg-secondary transition-all duration-300"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <LayoutDashboard className="h-4 w-4" />
+                    Dashboard Admin
+                  </Link>
+                  
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      setIsOpen(false);
+                    }}
+                    className="flex items-center gap-2 mx-2 px-4 py-3 text-sm font-medium rounded-lg text-destructive hover:bg-destructive/10 transition-all duration-300 w-full"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <Link 
+                  to="/auth"
+                  className="flex items-center justify-center gap-2 mx-2 px-4 py-3 text-sm font-medium rounded-lg bg-primary text-white hover:bg-primary/90 transition-all duration-300"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <User className="h-4 w-4" />
+                  Login Sekarang
+                </Link>
+              )}
+            </div>
           </div>}
       </div>
     </nav>;
