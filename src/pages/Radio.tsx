@@ -37,6 +37,47 @@ const Radio = () => {
   const [programs, setPrograms] = useState<RadioProgram[]>([]);
   const [settings, setSettings] = useState<RadioSettings | null>(null);
   const [currentProgram, setCurrentProgram] = useState<RadioProgram | null>(null);
+  const [timeRemaining, setTimeRemaining] = useState<string>("");
+
+  const calculateTimeRemaining = (airTime: string) => {
+    const now = new Date();
+    const [hours, minutes] = airTime.split(':').map(Number);
+    
+    // Assume each program is 1 hour long
+    const endHour = (hours + 1) % 24;
+    
+    const endTime = new Date();
+    endTime.setHours(endHour, minutes, 0, 0);
+    
+    // If end time is before current time, it means program has ended
+    if (endTime < now) {
+      return "Program telah berakhir";
+    }
+    
+    const diff = endTime.getTime() - now.getTime();
+    const minutesLeft = Math.floor(diff / 60000);
+    const secondsLeft = Math.floor((diff % 60000) / 1000);
+    
+    if (minutesLeft > 0) {
+      return `${minutesLeft} menit ${secondsLeft} detik tersisa`;
+    } else {
+      return `${secondsLeft} detik tersisa`;
+    }
+  };
+
+  useEffect(() => {
+    if (currentProgram) {
+      // Update countdown every second
+      const countdownInterval = setInterval(() => {
+        setTimeRemaining(calculateTimeRemaining(currentProgram.air_time));
+      }, 1000);
+
+      // Initial calculation
+      setTimeRemaining(calculateTimeRemaining(currentProgram.air_time));
+
+      return () => clearInterval(countdownInterval);
+    }
+  }, [currentProgram]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -129,9 +170,14 @@ const Radio = () => {
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                       <span className="text-white/90 text-sm font-medium uppercase tracking-wide">SEDANG TAYANG</span>
                     </div>
-                    <h3 className="text-white text-2xl font-bold">
+                    <h3 className="text-white text-2xl font-bold mb-2">
                       {currentProgram.name} <span className="text-white/80 font-normal">By</span> {currentProgram.host}
                     </h3>
+                    {/* Countdown Timer */}
+                    <div className="flex items-center gap-2 mt-3 bg-white/5 rounded-lg px-3 py-2 w-fit">
+                      <Clock className="h-4 w-4 text-white/70" />
+                      <span className="text-white/90 text-sm font-medium">{timeRemaining}</span>
+                    </div>
                   </div>
                 </div>
               </div>
