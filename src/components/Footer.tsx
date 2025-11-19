@@ -41,7 +41,7 @@ export const Footer = () => {
       </div>
 
       <div className="container mx-auto px-4 py-16 relative z-10">
-        <div className="grid md:grid-cols-4 gap-12">
+        <div className="flex flex-col gap-12">
           {/* About / Company Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3 mb-4">
@@ -116,7 +116,7 @@ export const Footer = () => {
           </div>
 
           {/* Layanan Kami */}
-          <div className="hidden md:block space-y-4">
+          <div className="space-y-4">
             <h4 className="font-semibold text-lg mb-4 text-white">Layanan Kami</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
@@ -147,7 +147,7 @@ export const Footer = () => {
           </div>
 
           {/* Menu Cepat */}
-          <div className="hidden md:block space-y-4">
+          <div className="space-y-4">
             <h4 className="font-semibold text-lg mb-4 text-white">Menu Cepat</h4>
             <ul className="space-y-3 text-sm">
               <li>
