@@ -250,7 +250,7 @@ const Index = () => {
             </div>
           </AnimatedSection>
 
-          <div className="grid lg:grid-cols-2 gap-8 items-stretch">
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:gap-8 items-stretch">
             {/* Map */}
             <AnimatedSection animation="scale-in" delay={100}>
               <GoogleMap />
