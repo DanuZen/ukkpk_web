@@ -120,10 +120,12 @@ export const Footer = () => {
             <h4 className="font-semibold text-lg mb-4 text-white">Layanan Kami</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
-                <Music2 className="h-4 w-4 flex-shrink-0" />
-                <Link to="/radio" className="text-white/80 hover:text-white transition-colors">
-                  Radio & Penyiaran
-                </Link>
+                <Phone className="h-4 w-4 flex-shrink-0" />
+                <span className="text-white/80">Master Of Ceremony</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Phone className="h-4 w-4 flex-shrink-0" />
+                <span className="text-white/80">Keprotokolan</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 flex-shrink-0" />
@@ -132,12 +134,14 @@ export const Footer = () => {
                 </Link>
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 flex-shrink-0" />
-                <span className="text-white/80">MC & Event</span>
+                <Music2 className="h-4 w-4 flex-shrink-0" />
+                <Link to="/radio" className="text-white/80 hover:text-white transition-colors">
+                  Radio
+                </Link>
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 flex-shrink-0" />
-                <span className="text-white/80">Konsultasi Media</span>
+                <Music2 className="h-4 w-4 flex-shrink-0" />
+                <span className="text-white/80">Penyiaran</span>
               </li>
             </ul>
           </div>
