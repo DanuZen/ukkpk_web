@@ -129,18 +129,9 @@ const Radio = () => {
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                       <span className="text-white/90 text-sm font-medium uppercase tracking-wide">SEDANG TAYANG</span>
                     </div>
-                    <h3 className="text-white text-2xl font-bold mb-1">{currentProgram.name}</h3>
-                    <p className="text-white/80 text-sm mb-2">{currentProgram.description}</p>
-                    <div className="flex items-center gap-4 text-white/70 text-sm">
-                      <div className="flex items-center gap-2">
-                        <Mic className="h-4 w-4" />
-                        <span>Host: {currentProgram.host}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Clock className="h-4 w-4" />
-                        <span>{DAYS[currentProgram.day_of_week]} • {currentProgram.air_time}</span>
-                      </div>
-                    </div>
+                    <h3 className="text-white text-2xl font-bold">
+                      {currentProgram.name} <span className="text-white/80 font-normal">By</span> {currentProgram.host}
+                    </h3>
                   </div>
                 </div>
               </div>
