@@ -123,7 +123,8 @@ const Index = () => {
 
           <AnimatedSection animation="fade-up" delay={100}>
             {articles.length === 0 && news.length === 0 ? <p className="text-center text-muted-foreground">Belum ada konten tersedia.</p> : <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {/* Desktop: Show all items in 3 columns */}
+              <div className="hidden lg:grid grid-cols-3 gap-4 sm:gap-6">
                 {/* Artikel Cards */}
                 {articles.map((article, index) => <AnimatedSection key={`article-${article.id}`} animation="fade-up" delay={index * 100}>
                     <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/artikel/${article.id}`)}>
@@ -146,31 +147,86 @@ const Index = () => {
                     </Card>
                   </AnimatedSection>)}
 
-                {/* News Cards - Desktop: Show all, Mobile: Show paginated */}
-                <div className="hidden sm:contents">
-                  {news.map((item, newsIndex) => <AnimatedSection key={`news-${item.id}`} animation="fade-up" delay={(articles.length + newsIndex) * 100}>
-                      <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/berita/${item.id}`)}>
-                        {item.image_url && <div className="relative overflow-hidden h-32 sm:h-40 md:h-48 lg:h-56">
+                {/* News Cards - Desktop */}
+                {news.map((item, newsIndex) => <AnimatedSection key={`news-${item.id}`} animation="fade-up" delay={(articles.length + newsIndex) * 100}>
+                    <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/berita/${item.id}`)}>
+                      {item.image_url && <div className="relative overflow-hidden h-32 sm:h-40 md:h-48 lg:h-56">
+                          <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+                          <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
+                            <Badge className="bg-secondary text-secondary-foreground shadow-lg text-[10px] sm:text-xs">Berita</Badge>
+                          </div>
+                        </div>}
+                      <CardHeader className="p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-2.5 md:space-y-3">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-[10px] sm:text-xs text-muted-foreground">{formatDate(item.published_at || item.created_at)}</span>
+                        </div>
+                        <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg lg:text-xl">{item.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
+                        <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(item.content)}</p>
+                      </CardContent>
+                    </Card>
+                  </AnimatedSection>)}
+              </div>
+
+              {/* Tablet: Show only 6 items in 2 columns (3 rows) */}
+              <div className="hidden md:grid lg:hidden grid-cols-2 gap-4 sm:gap-6">
+                {[...articles, ...news].slice(0, 6).map((item, index) => {
+                  const isArticle = 'category' in item && item.category !== null;
+                  return (
+                    <AnimatedSection key={`${isArticle ? 'article' : 'news'}-${item.id}`} animation="fade-up" delay={index * 100}>
+                      <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/${isArticle ? 'artikel' : 'berita'}/${item.id}`)}>
+                        {item.image_url && <div className="relative overflow-hidden h-32 sm:h-40 md:h-48">
                             <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
                             <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
-                              <Badge className="bg-secondary text-secondary-foreground shadow-lg text-[10px] sm:text-xs">Berita</Badge>
+                              <Badge className={`${isArticle ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground'} shadow-lg text-[10px] sm:text-xs`}>
+                                {isArticle ? 'Artikel' : 'Berita'}
+                              </Badge>
                             </div>
                           </div>}
                         <CardHeader className="p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-2.5 md:space-y-3">
-                          <div className="flex items-center gap-2 mb-2">
+                          <div className="flex items-center gap-2 mb-2 flex-wrap">
+                            {isArticle && 'category' in item && <Badge variant="secondary" className="text-[10px] sm:text-xs">{item.category}</Badge>}
                             <span className="text-[10px] sm:text-xs text-muted-foreground">{formatDate(item.published_at || item.created_at)}</span>
                           </div>
-                          <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg lg:text-xl">{item.title}</CardTitle>
+                          <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg">{item.title}</CardTitle>
                         </CardHeader>
                         <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
                           <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(item.content)}</p>
                         </CardContent>
                       </Card>
-                    </AnimatedSection>)}
-                </div>
+                    </AnimatedSection>
+                  );
+                })}
+              </div>
+
+              {/* Mobile: Show carousel */}
+              <div className="md:hidden">
+                <div className="grid grid-cols-1 gap-4">
+                {/* Artikel Cards */}
+                {articles.map((article, index) => <AnimatedSection key={`article-${article.id}`} animation="fade-up" delay={index * 100}>
+                    <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/artikel/${article.id}`)}>
+                      {article.image_url && <div className="relative overflow-hidden h-32 sm:h-40 md:h-48 lg:h-56">
+                          <img src={article.image_url} alt={article.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+                          <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
+                            <Badge className="bg-primary text-primary-foreground shadow-lg text-[10px] sm:text-xs">Artikel</Badge>
+                          </div>
+                        </div>}
+                      <CardHeader className="p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-2.5 md:space-y-3">
+                        <div className="flex items-center gap-2 mb-2 flex-wrap">
+                          <Badge variant="secondary" className="text-[10px] sm:text-xs">{article.category}</Badge>
+                          <span className="text-[10px] sm:text-xs text-muted-foreground">{formatDate(article.published_at || article.created_at)}</span>
+                        </div>
+                        <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg lg:text-xl">{article.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
+                        <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(article.content)}</p>
+                      </CardContent>
+                    </Card>
+                  </AnimatedSection>)}
 
                 {/* News Cards Mobile Only - Paginated */}
-                <div className="contents sm:hidden">
+                <div className="contents">
                   {displayedNews.map((item, newsIndex) => <AnimatedSection key={`news-mobile-${item.id}`} animation="fade-up" delay={(articles.length + newsIndex) * 100}>
                       <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/berita/${item.id}`)}>
                         {item.image_url && <div className="relative overflow-hidden h-32 sm:h-40 md:h-48 lg:h-56">
@@ -192,10 +248,11 @@ const Index = () => {
                     </AnimatedSection>)}
                 </div>
               </div>
+              </div>
 
               {/* Mobile Navigation Arrows for News */}
               {news.length > newsPerPage && (
-                <div className="flex justify-center items-center gap-4 mt-6 sm:hidden">
+                <div className="flex justify-center items-center gap-4 mt-6 md:hidden">
                   <Button
                     variant="outline"
                     size="icon"
