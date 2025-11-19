@@ -48,7 +48,7 @@ export const Footer = () => {
               <img src={logoUkkpk} alt="Logo UKKPK" className="h-14 w-14" />
               <h3 className="font-bold text-xl text-white">UKKPK UNP</h3>
             </div>
-            <p className="text-xs sm:text-sm md:text-base text-white/80 leading-relaxed">
+            <p className="text-xs sm:text-sm md:text-base text-white/80 leading-relaxed text-justify">
               Organisasi Dan Platform Media kampus untuk pengembangan Ilmu di bidang komunikasi dan penyiaran yang dikembangkan oleh Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang.
             </p>
             
