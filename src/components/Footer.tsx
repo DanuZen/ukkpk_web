@@ -223,6 +223,14 @@ export const Footer = () => {
             <span className="text-white/80 hover:text-white transition-colors cursor-pointer">
               Syarat & Ketentuan
             </span>
+            <a 
+              href="https://www.instagram.com/daann.u/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white/80 hover:text-white transition-colors cursor-pointer"
+            >
+              Create by
+            </a>
           </div>
         </div>
       </div>
