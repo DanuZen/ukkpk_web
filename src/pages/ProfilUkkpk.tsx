@@ -347,7 +347,7 @@ const ProfilUkkpk = () => {
                         Awal Terbentuk (1993)
                       </h3>
                     </div>
-                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed text-justify">
                       UKKPK (Unit Kegiatan Komunikasi dan Penyiaran Kampus)
                       merupakan salah satu unit kegiatan mahasiswa (UKM) yang
                       ada di Universitas Negeri Padang (UNP). UKM ini
@@ -376,7 +376,7 @@ const ProfilUkkpk = () => {
                         Perkembangan Organisasi (1993-2000)
                       </h3>
                     </div>
-                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed text-justify">
                       Pada masa awal berdirinya, UKKPK fokus mengembangkan tiga
                       bidang utama: MC dan Public Speaking, Penerbitan Kampus,
                       dan Penyiaran Radio. Ketiga bidang ini menjadi fondasi
@@ -398,7 +398,7 @@ const ProfilUkkpk = () => {
                         Transformasi Modern (2000-2015)
                       </h3>
                     </div>
-                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed text-justify">
                       Memasuki era digital, UKKPK mulai mengadaptasi teknologi
                       modern dalam kegiatan penyiaran dan jurnalistik. Bidang
                       penerbitan bertransformasi menjadi jurnalistik digital,
@@ -421,7 +421,7 @@ const ProfilUkkpk = () => {
                         Ekspansi Bidang (2015-2020)
                       </h3>
                     </div>
-                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed text-justify">
                       UKKPK terus berkembang dengan menambah berbagai bidang
                       baru seperti Kewirausahaan, Kesekretariatan, Human
                       Resource Development, dan Public Relations. Ekspansi ini
@@ -444,7 +444,7 @@ const ProfilUkkpk = () => {
                         Era Digital & Inovasi (2020-Sekarang)
                       </h3>
                     </div>
-                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed text-justify">
                       Di era pandemi dan pasca pandemi, UKKPK semakin memperkuat
                       kehadiran digitalnya. Berbagai inovasi seperti webinar,
                       podcast, konten media sosial, dan kolaborasi lintas
