@@ -255,7 +255,7 @@ export const Navigation = () => {
               {user ? (
                 <>
                   {/* User Info */}
-                  <div className="mx-2 px-4 py-3 mb-2 bg-secondary/50 rounded-lg">
+                  <div className="mx-2 px-4 py-3 mb-2 bg-gray-100 rounded-lg">
                     <div className="flex items-center gap-3">
                       <div className="p-2 bg-gradient-to-br from-primary to-primary/80 rounded-lg shadow-sm">
                         <User className="h-4 w-4 text-white" />
