@@ -54,6 +54,7 @@ export const DashboardHeader = ({
   onNavigate
 }: DashboardHeaderProps) => {
   const navigate = useNavigate();
+  const [searchOpen, setSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   const getInitials = (email: string) => {
@@ -122,10 +123,28 @@ export const DashboardHeader = ({
       <h1 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 truncate flex-1 min-w-0">{title}</h1>
 
       <div className="ml-auto flex items-center gap-1 sm:gap-2">
-        {/* Search Bar - Always Visible */}
-        <div className="relative flex-1 sm:flex-initial">
-          <Search className="absolute left-2 sm:left-3 top-1/2 h-3 w-3 sm:h-4 sm:w-4 -translate-y-1/2 text-gray-400" />
-          <Input placeholder="Search..." className="w-full sm:w-32 md:w-48 lg:w-48 xl:w-64 pl-7 sm:pl-9 pr-2 h-8 sm:h-9 text-xs sm:text-sm bg-gray-50 border-gray-200" />
+        {/* Mobile/Tablet Search Dialog */}
+        <Dialog open={searchOpen} onOpenChange={setSearchOpen}>
+          <DialogTrigger asChild>
+            <Button variant="ghost" size="icon" className="lg:hidden text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9">
+              <Search className="h-4 w-4" />
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle>Search Dashboard</DialogTitle>
+            </DialogHeader>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+              <Input placeholder="Search..." className="pl-9 bg-gray-50 border-gray-200" />
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* Desktop Search Bar - Always Visible */}
+        <div className="relative hidden lg:block">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+          <Input placeholder="Search..." className="w-48 xl:w-64 pl-9 bg-gray-50 border-gray-200" />
         </div>
 
         <Button 
