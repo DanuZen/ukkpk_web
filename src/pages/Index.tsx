@@ -66,7 +66,7 @@ const Index = () => {
       <HomeSlideshow />
 
       {/* Artikel & Berita Section - Gabungan */}
-      <section className="min-h-screen flex items-center py-32 md:py-40 scroll-mt-20 bg-background relative overflow-hidden">
+      <section className="min-h-[60vh] md:min-h-screen flex items-center py-12 sm:py-20 md:py-32 lg:py-40 scroll-mt-20 bg-background relative overflow-hidden">
         {/* Curved geometric background patterns */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full border-[40px] border-gray-100/60" />
@@ -92,21 +92,24 @@ const Index = () => {
         
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <AnimatedSection animation="fade-up">
-            <div className="text-center mb-8 sm:mb-10 md:mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+            <div className="text-center mb-6 sm:mb-8 md:mb-10">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-4 sm:mb-6">
                 <FileText className="h-4 w-4 text-primary" />
                 <span className="text-sm font-medium text-primary">
                   Konten Terbaru
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3 sm:mb-4">
                 Artikel & Berita Terbaru
               </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
+              <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
+                Temukan informasi terbaru dan artikel menarik dari UKKPK
+              </p>
             </div>
           </AnimatedSection>
 
-          {articles.length === 0 && news.length === 0 ? <p className="text-center text-muted-foreground">Belum ada konten tersedia.</p> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <AnimatedSection animation="fade-up" delay={100}>
+            {articles.length === 0 && news.length === 0 ? <p className="text-center text-muted-foreground">Belum ada konten tersedia.</p> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {/* Artikel Cards */}
               {articles.map((article, index) => <AnimatedSection key={`article-${article.id}`} animation="fade-up" delay={index * 100}>
                   <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/artikel/${article.id}`)}>
@@ -150,6 +153,7 @@ const Index = () => {
                   </Card>
                 </AnimatedSection>)}
             </div>}
+          </AnimatedSection>
         </div>
       </section>
 
