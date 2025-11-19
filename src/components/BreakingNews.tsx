@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Radio } from "lucide-react";
+import { subDays } from "date-fns";
 
 export const BreakingNews = () => {
   const [headlines, setHeadlines] = useState<string[]>([]);
@@ -8,17 +9,22 @@ export const BreakingNews = () => {
   useEffect(() => {
     const fetchLatestContent = async () => {
       try {
-        // Fetch latest articles
+        // Calculate date 7 days ago
+        const oneWeekAgo = subDays(new Date(), 7).toISOString();
+        
+        // Fetch latest articles from the last week
         const { data: articles } = await supabase
           .from("articles")
           .select("title")
+          .gte("created_at", oneWeekAgo)
           .order("created_at", { ascending: false })
           .limit(5);
 
-        // Fetch latest news
+        // Fetch latest news from the last week
         const { data: news } = await supabase
           .from("news")
           .select("title")
+          .gte("created_at", oneWeekAgo)
           .order("created_at", { ascending: false })
           .limit(5);
 
