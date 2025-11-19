@@ -121,11 +121,15 @@ const Radio = () => {
   return <Layout>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
-        {/* Background Image with Dark Overlay */}
-        <div className="absolute inset-0 bg-cover bg-center" style={{
-        backgroundImage: `url(${settings?.banner_image_url || 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070'})`
-      }}></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
+        {/* Background Image with Dark Overlay - Only if set by admin */}
+        {settings?.banner_image_url && (
+          <>
+            <div className="absolute inset-0 bg-cover bg-center" style={{
+              backgroundImage: `url(${settings.banner_image_url})`
+            }}></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
+          </>
+        )}
         
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
