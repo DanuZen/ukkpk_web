@@ -317,7 +317,7 @@ const Index = () => {
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6 lg:gap-8 items-stretch">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-3 sm:gap-6 lg:gap-8 items-stretch">
             {/* Map */}
             <AnimatedSection animation="scale-in" delay={100}>
               <GoogleMap />
@@ -353,10 +353,10 @@ const Index = () => {
                     </div>
                   </div>
 
-                  <div className="h-px bg-border/50" />
+                  <div className="h-px bg-border/50 hidden md:block" />
 
-                  {/* Contact */}
-                  <div className="space-y-2.5 sm:space-y-3">
+                  {/* Contact - Hidden on mobile */}
+                  <div className="space-y-2.5 sm:space-y-3 hidden md:block">
                     <div className="flex items-center gap-2.5 sm:gap-3">
                       <div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-green-500/10 flex items-center justify-center">
                         <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
@@ -388,10 +388,10 @@ const Index = () => {
                     </div>
                   </div>
 
-                  <div className="h-px bg-border/50" />
+                  <div className="h-px bg-border/50 hidden md:block" />
 
-                  {/* Operating Hours */}
-                  <div className="flex gap-2.5 sm:gap-3">
+                  {/* Operating Hours - Hidden on mobile */}
+                  <div className="flex gap-2.5 sm:gap-3 hidden md:block">
                     <div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-blue-500/10 flex items-center justify-center">
                       <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                         <circle cx="12" cy="12" r="10" />
@@ -413,7 +413,7 @@ const Index = () => {
                     </div>
                   </div>
 
-                  <div className="h-px bg-border/50" />
+                  <div className="h-px bg-border/50 hidden md:block" />
 
                   {/* View Maps Button */}
                   <a href="https://maps.app.goo.gl/EdRi73gdkcyNDZy88" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full px-4 py-2.5 sm:py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all duration-300 hover:scale-[1.02] shadow-md font-medium text-xs sm:text-sm">
