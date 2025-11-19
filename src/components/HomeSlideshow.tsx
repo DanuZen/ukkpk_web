@@ -119,19 +119,19 @@ export const HomeSlideshow = () => {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-4 mb-6 sm:mb-8 animate-fade-up" style={{ animationDelay: '0.4s' }}>
             <Link to="/artikel" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
+              <Button size="sm" className="w-full sm:w-auto sm:text-base sm:px-6 sm:py-5 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
                 Baca Artikel
               </Button>
             </Link>
             <Link to="/berita" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
+              <Button size="sm" className="w-full sm:w-auto sm:text-base sm:px-6 sm:py-5 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
                 Lihat Berita
               </Button>
             </Link>
             <Link to="/radio" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
+              <Button size="sm" className="w-full sm:w-auto sm:text-base sm:px-6 sm:py-5 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
                 Dengar Radio
               </Button>
             </Link>
