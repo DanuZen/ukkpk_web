@@ -17,7 +17,8 @@ interface News {
   published_at: string | null;
   author: string | null;
   editor: string | null;
-  cameraman: string | null;
+  cameraman: string[] | null;
+  category: string | null;
   view_count: number;
   likes_count: number;
 }
@@ -227,9 +228,16 @@ const BeritaDetail = () => {
             {/* Main Content */}
             <div className="lg:col-span-2">
               {/* News Title */}
-              <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-tight bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
-                {news.title}
-              </h1>
+              <div className="mb-6">
+                <h1 className="text-3xl md:text-4xl font-bold mb-3 leading-tight bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+                  {news.title}
+                </h1>
+                {news.category && (
+                  <Badge variant="secondary" className="bg-primary/10 text-primary">
+                    {news.category.toUpperCase()}
+                  </Badge>
+                )}
+              </div>
 
               {/* Featured Image */}
               {news.image_url && (
@@ -278,10 +286,10 @@ const BeritaDetail = () => {
                       <span className="font-medium text-foreground">{news.author}</span>
                     </p>
                   )}
-                  {news.cameraman && (
+                  {news.cameraman && news.cameraman.length > 0 && (
                     <p>
                       <span className="text-muted-foreground">Kameraman : </span>
-                      <span className="font-medium text-foreground">{news.cameraman}</span>
+                      <span className="font-medium text-foreground">{news.cameraman.join(", ")}</span>
                     </p>
                   )}
                 </div>

@@ -27,6 +27,8 @@ interface News {
   image_url: string | null;
   created_at: string;
   published_at: string | null;
+  cameraman: string[] | null;
+  category: string | null;
 }
 const Index = () => {
   const navigate = useNavigate();
