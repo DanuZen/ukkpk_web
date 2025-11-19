@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,10 @@ import { toast } from "sonner";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
 import logoMicuMascot from "@/assets/logo-micu-mascot.png";
+
+const REMEMBER_ME_KEY = 'ukkpk_remember_me';
+const SAVED_EMAIL_KEY = 'ukkpk_saved_email';
+
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +21,17 @@ const Auth = () => {
     signIn
   } = useAuth();
   const navigate = useNavigate();
+
+  // Load saved credentials on mount
+  useEffect(() => {
+    const savedRememberMe = localStorage.getItem(REMEMBER_ME_KEY);
+    const savedEmail = localStorage.getItem(SAVED_EMAIL_KEY);
+    
+    if (savedRememberMe === 'true' && savedEmail) {
+      setRememberMe(true);
+      setEmail(savedEmail);
+    }
+  }, []);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -25,6 +40,16 @@ const Auth = () => {
         error
       } = await signIn(email, password);
       if (error) throw error;
+      
+      // Save or clear credentials based on rememberMe
+      if (rememberMe) {
+        localStorage.setItem(REMEMBER_ME_KEY, 'true');
+        localStorage.setItem(SAVED_EMAIL_KEY, email);
+      } else {
+        localStorage.removeItem(REMEMBER_ME_KEY);
+        localStorage.removeItem(SAVED_EMAIL_KEY);
+      }
+      
       toast.success("Login berhasil!");
       navigate("/admin");
     } catch (error: any) {
