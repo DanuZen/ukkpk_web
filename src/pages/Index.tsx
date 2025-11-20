@@ -62,17 +62,14 @@ const Index = () => {
       year: 'numeric'
     });
   };
-
   const newsPerPage = 3;
   const displayedNews = news.slice(newsPage * newsPerPage, (newsPage + 1) * newsPerPage);
   const totalNewsPages = Math.ceil(news.length / newsPerPage);
-
   const handlePrevNews = () => {
-    setNewsPage((prev) => Math.max(0, prev - 1));
+    setNewsPage(prev => Math.max(0, prev - 1));
   };
-
   const handleNextNews = () => {
-    setNewsPage((prev) => Math.min(totalNewsPages - 1, prev + 1));
+    setNewsPage(prev => Math.min(totalNewsPages - 1, prev + 1));
   };
   return <Layout>
       {/* Hero Slideshow Section */}
@@ -150,9 +147,8 @@ const Index = () => {
               {/* Tablet: Show only 6 items in 2 columns (3 rows) */}
               <div className="hidden md:grid lg:hidden grid-cols-2 gap-4 sm:gap-6">
                 {[...articles, ...news].slice(0, 6).map((item, index) => {
-                  const isArticle = 'category' in item && item.category !== null;
-                  return (
-                    <AnimatedSection key={`${isArticle ? 'article' : 'news'}-${item.id}`} animation="fade-up" delay={index * 100}>
+                const isArticle = 'category' in item && item.category !== null;
+                return <AnimatedSection key={`${isArticle ? 'article' : 'news'}-${item.id}`} animation="fade-up" delay={index * 100}>
                       <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/${isArticle ? 'artikel' : 'berita'}/${item.id}`)}>
                         {item.image_url && <div className="relative overflow-hidden h-32 sm:h-40 md:h-48">
                             <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
@@ -173,9 +169,8 @@ const Index = () => {
                           <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(item.content)}</p>
                         </CardContent>
                       </Card>
-                    </AnimatedSection>
-                  );
-                })}
+                    </AnimatedSection>;
+              })}
               </div>
 
               {/* Mobile: Show carousel */}
@@ -229,31 +224,17 @@ const Index = () => {
               </div>
 
               {/* Mobile Navigation Arrows for News */}
-              {news.length > newsPerPage && (
-                <div className="flex justify-center items-center gap-4 mt-6 md:hidden">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={handlePrevNews}
-                    disabled={newsPage === 0}
-                    className="h-10 w-10 rounded-full"
-                  >
+              {news.length > newsPerPage && <div className="flex justify-center items-center gap-4 mt-6 md:hidden">
+                  <Button variant="outline" size="icon" onClick={handlePrevNews} disabled={newsPage === 0} className="h-10 w-10 rounded-full">
                     <ChevronLeft className="h-5 w-5" />
                   </Button>
                   <span className="text-sm text-muted-foreground">
                     {newsPage + 1} / {totalNewsPages}
                   </span>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={handleNextNews}
-                    disabled={newsPage >= totalNewsPages - 1}
-                    className="h-10 w-10 rounded-full"
-                  >
+                  <Button variant="outline" size="icon" onClick={handleNextNews} disabled={newsPage >= totalNewsPages - 1} className="h-10 w-10 rounded-full">
                     <ChevronRight className="h-5 w-5" />
                   </Button>
-                </div>
-              )}
+                </div>}
             </>}
           </AnimatedSection>
         </div>
@@ -315,7 +296,7 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6 lg:gap-8 items-stretch">
             {/* Map */}
-            <AnimatedSection animation="scale-in" delay={100}>
+            <AnimatedSection animation="scale-in" delay={100} className="my-[8px]">
               <GoogleMap />
             </AnimatedSection>
 
