@@ -198,27 +198,70 @@ const ProfilUkkpk = () => {
 
       {/* Hero Section (if no banner) */}
       {!profile?.banner_url && (
-        <section className="relative py-20 px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d')] opacity-5 bg-cover bg-center"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background"></div>
+        <section className="relative min-h-screen flex items-center px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
+          {/* Background Image with Dark Overlay */}
+          <div className="absolute inset-0 bg-cover bg-center" style={{
+            backgroundImage: `url(https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d)`
+          }}></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
+          
           <div className="container mx-auto relative z-10">
             <AnimatedSection animation="fade-up">
               <div className="max-w-3xl mx-auto text-center space-y-4 sm:space-y-6">
-                <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 mb-4">
-                  <span className="text-xs sm:text-sm uppercase font-semibold text-primary flex items-center gap-2">
-                    <Building2 className="w-4 h-4 animate-pulse" />
-                    Profil Organisasi
-                  </span>
+                {/* Badge */}
+                <div className="flex justify-center mb-4 md:mb-6">
+                  <div className="inline-flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-3 py-1.5 sm:px-5 sm:py-2.5 md:px-5 md:py-2.5 lg:px-5 lg:py-2.5 rounded-full">
+                    <Building2 className="h-4 w-4 sm:h-5 sm:w-5 md:h-5 md:w-5 text-white" />
+                    <span className="text-xs sm:text-sm md:text-sm lg:text-sm font-medium">Unit Kegiatan Kampus UNP</span>
+                  </div>
                 </div>
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-                  UKKPK <span className="text-primary">UNP</span>
-                </h1>
+                
+                {/* Heading with Typewriter Animation */}
+                <div className="overflow-hidden inline-block max-w-full">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white whitespace-nowrap inline-block drop-shadow-2xl typewriter-text-profil">
+                    UKKPK UNP
+                  </h1>
+                </div>
+                <style>{`
+                  .typewriter-text-profil {
+                    width: 0;
+                    overflow: hidden;
+                    border-right: 4px solid white;
+                    animation: 
+                      typing-profil 2s steps(9) 0.5s forwards,
+                      blink-profil 0.75s step-end infinite;
+                    animation-delay: 0.5s, 0.5s;
+                  }
+                  
+                  @keyframes typing-profil {
+                    from { width: 0; }
+                    to { width: 100%; }
+                  }
+                  
+                  @keyframes blink-profil {
+                    50% { border-color: transparent; }
+                  }
+                  
+                  .typewriter-text-profil {
+                    animation: 
+                      typing-profil 2s steps(9) 0.5s forwards,
+                      blink-profil 0.75s step-end 0.5s 4,
+                      remove-border-profil 0.01s 3.5s forwards;
+                  }
+                  
+                  @keyframes remove-border-profil {
+                    to { border-right-color: transparent; }
+                  }
+                `}</style>
+                
+                {/* Subtitle */}
                 <AnimatedSection animation="fade-up" delay={50}>
-                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground px-4">
+                  <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-white/80 px-4">
                     Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang
                   </p>
                 </AnimatedSection>
-                <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mt-6" />
+
+                <div className="w-20 h-1 bg-gradient-to-r from-transparent via-white to-transparent mx-auto mt-6" />
               </div>
             </AnimatedSection>
           </div>
