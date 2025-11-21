@@ -102,7 +102,7 @@ const Index = () => {
               <div className="hidden lg:grid grid-cols-3 gap-4 sm:gap-6">
                 {/* Artikel Cards */}
                 {articles.map((article, index) => <AnimatedSection key={`article-${article.id}`} animation="fade-up" delay={index * 100}>
-                    <Card className="overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/artikel/${article.id}`)}>
+                    <Card className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/artikel/${article.id}`)}>
                       {article.image_url && <div className="relative overflow-hidden h-32 sm:h-40 md:h-48 lg:h-56">
                           <img src={article.image_url} alt={article.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
                           <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
@@ -124,7 +124,7 @@ const Index = () => {
 
                 {/* News Cards - Desktop */}
                 {news.map((item, newsIndex) => <AnimatedSection key={`news-${item.id}`} animation="fade-up" delay={(articles.length + newsIndex) * 100}>
-                    <Card className="overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/berita/${item.id}`)}>
+                    <Card className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/berita/${item.id}`)}>
                       {item.image_url && <div className="relative overflow-hidden h-32 sm:h-40 md:h-48 lg:h-56">
                           <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
                           <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
@@ -149,7 +149,7 @@ const Index = () => {
                 {[...articles, ...news].slice(0, 6).map((item, index) => {
                 const isArticle = 'category' in item && item.category !== null;
                 return <AnimatedSection key={`${isArticle ? 'article' : 'news'}-${item.id}`} animation="fade-up" delay={index * 100}>
-                      <Card className="overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/${isArticle ? 'artikel' : 'berita'}/${item.id}`)}>
+                      <Card className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/${isArticle ? 'artikel' : 'berita'}/${item.id}`)}>
                         {item.image_url && <div className="relative overflow-hidden h-32 sm:h-40 md:h-48">
                             <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
                             <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
@@ -178,7 +178,7 @@ const Index = () => {
                 <div className="grid grid-cols-1 gap-4">
                 {/* Artikel Cards */}
                 {articles.map((article, index) => <AnimatedSection key={`article-${article.id}`} animation="fade-up" delay={index * 100}>
-                    <Card className="overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/artikel/${article.id}`)}>
+                    <Card className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/artikel/${article.id}`)}>
                       {article.image_url && <div className="relative overflow-hidden h-32 sm:h-40 md:h-48 lg:h-56">
                           <img src={article.image_url} alt={article.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
                           <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
@@ -201,7 +201,7 @@ const Index = () => {
                 {/* News Cards Mobile Only - Paginated */}
                 <div className="contents">
                   {displayedNews.map((item, newsIndex) => <AnimatedSection key={`news-mobile-${item.id}`} animation="fade-up" delay={(articles.length + newsIndex) * 100}>
-                      <Card className="overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/berita/${item.id}`)}>
+                      <Card className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/berita/${item.id}`)}>
                         {item.image_url && <div className="relative overflow-hidden h-32 sm:h-40 md:h-48 lg:h-56">
                             <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
                             <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
