@@ -77,40 +77,39 @@ export const ContactSection = () => {
   };
   return <div className="bg-card rounded-lg shadow-xl p-4 sm:p-6 lg:p-8 h-full">
 
-      <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-          <div>
-            <label className="text-xs sm:text-sm font-medium mb-1 block">Nama</label>
-            <Input 
-              placeholder="Nama kamu" 
-              value={formData.nama} 
-              onChange={e => setFormData({
-                ...formData,
-                nama: e.target.value
-              })} 
-              maxLength={100}
-              required
-              className="text-xs sm:text-sm"
-            />
-          </div>
-          <div>
-            <label className="text-xs sm:text-sm font-medium mb-1 block">Nomor Telepon</label>
-            <Input 
-              type="tel" 
-              placeholder="Phone Number" 
-              value={formData.phone} 
-              onChange={e => setFormData({
-                ...formData,
-                phone: e.target.value
-              })} 
-              maxLength={20}
-              className="text-xs sm:text-sm"
-            />
-          </div>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="text-sm font-medium mb-1 block">Nama</label>
+          <Input 
+            placeholder="Nama kamu" 
+            value={formData.nama} 
+            onChange={e => setFormData({
+              ...formData,
+              nama: e.target.value
+            })} 
+            maxLength={100}
+            required
+            className="text-sm"
+          />
         </div>
 
         <div>
-          <label className="text-xs sm:text-sm font-medium mb-1 block">Email</label>
+          <label className="text-sm font-medium mb-1 block">Nomor Telepon</label>
+          <Input 
+            type="tel" 
+            placeholder="Phone Number" 
+            value={formData.phone} 
+            onChange={e => setFormData({
+              ...formData,
+              phone: e.target.value
+            })} 
+            maxLength={20}
+            className="text-sm"
+          />
+        </div>
+
+        <div>
+          <label className="text-sm font-medium mb-1 block">Email</label>
           <Input 
             type="email" 
             placeholder="Email Address" 
@@ -121,12 +120,12 @@ export const ContactSection = () => {
             })} 
             maxLength={255}
             required
-            className="text-xs sm:text-sm"
+            className="text-sm"
           />
         </div>
 
         <div>
-          <label className="text-xs sm:text-sm font-medium mb-1 block">Pesan</label>
+          <label className="text-sm font-medium mb-1 block">Pesan</label>
           <Textarea 
             placeholder="Tuliskan Kritikan maupun saran anda untuk UKKPK UNP"
             value={formData.message} 
@@ -137,11 +136,11 @@ export const ContactSection = () => {
             rows={5} 
             maxLength={1000}
             required
-            className="text-xs sm:text-sm"
+            className="text-sm"
           />
         </div>
 
-        <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-5 sm:py-6 text-sm sm:text-base">
+        <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 text-base">
           Kirim Pesan
         </Button>
       </form>
