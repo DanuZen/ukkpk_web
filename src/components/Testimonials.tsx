@@ -148,33 +148,33 @@ export const Testimonials = () => {
           {/* Testimonial Card */}
           <Card 
             key={currentTestimonial.id}
-            className="relative p-8 md:p-12 pt-16 md:pt-20 shadow-2xl border-0 bg-white transition-all duration-700 animate-in fade-in slide-in-from-right-8"
+            className="relative p-6 md:p-12 pt-12 md:pt-20 shadow-2xl border-0 bg-white transition-all duration-700 animate-in fade-in slide-in-from-right-8"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
             {/* Author */}
-            <div className="flex flex-col items-center gap-4 mb-6">
-              <Avatar className="h-16 w-16 ring-4 ring-primary/20">
-                <AvatarFallback className="bg-primary text-white text-xl font-bold">
+            <div className="flex flex-col items-center gap-2 md:gap-4 mb-4 md:mb-6">
+              <Avatar className="h-12 w-12 md:h-16 md:w-16 ring-2 md:ring-4 ring-primary/20">
+                <AvatarFallback className="bg-primary text-white text-lg md:text-xl font-bold">
                   {currentTestimonial.nama.charAt(0).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="text-center">
-                <h3 className="font-bold text-lg">{currentTestimonial.nama}</h3>
-                <p className="text-sm text-primary">{currentTestimonial.email}</p>
+                <h3 className="font-bold text-base md:text-lg">{currentTestimonial.nama}</h3>
+                <p className="text-xs md:text-sm text-primary">{currentTestimonial.email}</p>
               </div>
             </div>
 
             {/* Stars */}
-            <div className="flex justify-center gap-1 mb-6">
+            <div className="flex justify-center gap-1 mb-4 md:mb-6">
               {Array.from({ length: currentTestimonial.testimonial_rating || 5 }).map((_, i) => (
-                <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />
+                <Star key={i} className="w-5 h-5 md:w-6 md:h-6 fill-yellow-400 text-yellow-400" />
               ))}
             </div>
 
             {/* Message */}
-            <p className="text-center text-muted-foreground text-base md:text-lg leading-relaxed mb-8 italic">
+            <p className="text-center text-muted-foreground text-sm md:text-base lg:text-lg leading-relaxed italic">
               "{currentTestimonial.message}"
             </p>
           </Card>
