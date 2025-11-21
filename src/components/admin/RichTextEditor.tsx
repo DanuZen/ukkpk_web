@@ -93,10 +93,10 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
     onUpdate: ({ editor }) => {
       onChange(editor.getHTML());
     },
-    editorProps: {
-      attributes: {
-        class: 'prose prose-sm max-w-none focus:outline-none min-h-[300px] p-4',
-      },
+      editorProps: {
+        attributes: {
+          class: 'prose prose-sm sm:prose-base max-w-none focus:outline-none min-h-[500px] p-8 sm:p-12 bg-white',
+        },
       handleDrop: (view, event, slice, moved) => {
         if (!moved && event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0]) {
           const file = event.dataTransfer.files[0];
@@ -215,9 +215,9 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
   };
 
   return (
-    <div className="border border-border rounded-lg overflow-hidden bg-background">
+    <div className="border border-border rounded-lg overflow-hidden bg-muted/30">
       {/* Toolbar */}
-      <div className="border-b border-border bg-muted/30 p-2 flex flex-wrap gap-1">
+      <div className="border-b border-border bg-muted/50 p-2 flex flex-wrap gap-1 sticky top-0 z-10">
         {/* Text Formatting */}
         <div className="flex gap-1 pr-2 border-r border-border">
           <ToolbarButton
@@ -384,15 +384,20 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
       )}
 
       {/* Editor Content */}
-      <div className="relative">
-        <EditorContent editor={editor} className="prose-p:my-2 prose-headings:my-3" />
+      <div className="relative bg-muted/20 p-4 sm:p-6 md:p-8">
+        <div className="max-w-[21cm] mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+          <EditorContent 
+            editor={editor} 
+            className="prose-p:my-4 prose-p:leading-relaxed prose-headings:my-6 prose-headings:font-bold prose-ul:my-4 prose-ol:my-4 prose-li:my-2 prose-img:my-6 prose-img:rounded-lg prose-img:shadow-md"
+          />
+        </div>
         {uploading && (
           <div className="absolute inset-0 bg-background/50 flex items-center justify-center">
             <div className="text-sm text-muted-foreground">Mengupload gambar...</div>
           </div>
         )}
       </div>
-      <div className="px-4 py-2 text-xs text-muted-foreground border-t border-border bg-muted/10">
+      <div className="px-4 py-2 text-xs text-muted-foreground border-t border-border bg-muted/30">
         💡 Tips: Drag & drop gambar langsung ke editor atau paste dari clipboard
       </div>
     </div>

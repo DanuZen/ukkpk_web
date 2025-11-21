@@ -242,14 +242,15 @@ const BeritaDetail = () => {
               {/* Featured Image */}
               {news.image_url && (
                 <div className="mb-4">
-                  <div className="relative w-full h-[400px] mb-2 overflow-hidden">
+                  <div className="relative w-full rounded-lg overflow-hidden bg-muted">
                     <img
                       src={news.image_url}
                       alt={news.title}
-                      className="w-full h-full object-cover"
+                      loading="eager"
+                      className="w-full h-auto max-h-[600px] object-contain"
                     />
                   </div>
-                  <p className="text-sm text-muted-foreground italic mb-4">
+                  <p className="text-sm text-muted-foreground italic mt-3">
                     {news.title}
                   </p>
                 </div>
