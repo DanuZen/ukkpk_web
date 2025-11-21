@@ -26,6 +26,7 @@ export const ImageUpload = ({
   disabled = false,
 }: ImageUploadProps) => {
   const [isDragging, setIsDragging] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState<string | undefined>(currentImageUrl);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
@@ -81,6 +82,8 @@ export const ImageUpload = ({
     if (files && files[0]) {
       const file = files[0];
       if (validateFile(file)) {
+        const url = URL.createObjectURL(file);
+        setPreviewUrl(url);
         onFileSelect(file);
       }
     }
@@ -90,6 +93,8 @@ export const ImageUpload = ({
     const files = e.target.files;
     if (files && files[0]) {
       if (validateFile(files[0])) {
+        const url = URL.createObjectURL(files[0]);
+        setPreviewUrl(url);
         onFileSelect(files[0]);
       }
     }
@@ -133,10 +138,10 @@ export const ImageUpload = ({
           className="hidden"
         />
 
-        {currentImageUrl ? (
+        {previewUrl ? (
           <div className="relative">
             <img
-              src={currentImageUrl}
+              src={previewUrl}
               alt="Preview"
               className="w-full h-48 object-cover rounded-lg"
             />
@@ -148,6 +153,7 @@ export const ImageUpload = ({
                 className="absolute top-2 right-2"
                 onClick={(e) => {
                   e.stopPropagation();
+                  setPreviewUrl(undefined);
                   onRemove();
                 }}
               >
