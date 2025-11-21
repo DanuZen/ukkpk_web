@@ -358,6 +358,35 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
         </div>
       </div>
 
+      {/* Ruler */}
+      <div className="bg-white border-b border-border overflow-hidden">
+        <div className="max-w-[21cm] mx-auto relative h-6 bg-gray-50">
+          <div className="absolute inset-0 flex items-end px-8">
+            {/* Ruler markings */}
+            {Array.from({ length: 21 }).map((_, i) => {
+              const isMajor = i % 5 === 0;
+              return (
+                <div key={i} className="flex-1 relative">
+                  {/* Major tick marks (every 5cm) */}
+                  {isMajor && (
+                    <>
+                      <div className="absolute bottom-0 left-0 w-px h-3 bg-gray-400" />
+                      <div className="absolute bottom-3 left-0 text-[9px] text-gray-500 -translate-x-1/2">
+                        {i}
+                      </div>
+                    </>
+                  )}
+                  {/* Minor tick marks (every 1cm) */}
+                  {!isMajor && (
+                    <div className="absolute bottom-0 left-0 w-px h-2 bg-gray-300" />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
       {/* Link Dialog */}
       {showLinkDialog && (
         <div className="p-3 border-b border-border bg-muted/20">
