@@ -94,6 +94,7 @@ const Index = () => {
               <p className="text-xs sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
                 Temukan informasi terbaru dan artikel menarik dari UKKPK
               </p>
+              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mt-6" />
             </div>
           </AnimatedSection>
 
