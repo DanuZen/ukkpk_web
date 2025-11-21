@@ -275,6 +275,9 @@ const Radio = () => {
               <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
                 Jadwal <span className="text-primary">Program</span>
               </h2>
+              <p className="text-xs sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
+                Lihat jadwal lengkap program radio UKKPK dan jangan lewatkan program favorit Anda
+              </p>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-8" />
               
               {/* Day Navigation */}
