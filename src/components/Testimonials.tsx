@@ -153,6 +153,19 @@ export const Testimonials = () => {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
+            {/* Author */}
+            <div className="flex flex-col items-center gap-4 mb-6">
+              <Avatar className="h-16 w-16 ring-4 ring-primary/20">
+                <AvatarFallback className="bg-primary text-white text-xl font-bold">
+                  {currentTestimonial.nama.charAt(0).toUpperCase()}
+                </AvatarFallback>
+              </Avatar>
+              <div className="text-center">
+                <h3 className="font-bold text-lg">{currentTestimonial.nama}</h3>
+                <p className="text-sm text-primary">{currentTestimonial.email}</p>
+              </div>
+            </div>
+
             {/* Stars */}
             <div className="flex justify-center gap-1 mb-6">
               {Array.from({ length: currentTestimonial.testimonial_rating || 5 }).map((_, i) => (
@@ -164,19 +177,6 @@ export const Testimonials = () => {
             <p className="text-center text-muted-foreground text-base md:text-lg leading-relaxed mb-8 italic">
               "{currentTestimonial.message}"
             </p>
-
-            {/* Author */}
-            <div className="flex flex-col items-center gap-4">
-              <Avatar className="h-16 w-16 ring-4 ring-primary/20">
-                <AvatarFallback className="bg-primary text-white text-xl font-bold">
-                  {currentTestimonial.nama.charAt(0).toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-              <div className="text-center">
-                <h3 className="font-bold text-lg">{currentTestimonial.nama}</h3>
-                <p className="text-sm text-primary">{currentTestimonial.email}</p>
-              </div>
-            </div>
           </Card>
 
           {/* Navigation Arrows */}
