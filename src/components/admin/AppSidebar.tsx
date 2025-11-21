@@ -33,7 +33,6 @@ const menuItems = [
       { id: "articles", title: "Artikel", icon: FileText },
       { id: "news", title: "Berita", icon: Newspaper },
       { id: "radio", title: "Radio", icon: Radio },
-      { id: "testimonials", title: "Testimoni", icon: MessageSquare },
     ],
   },
   {
