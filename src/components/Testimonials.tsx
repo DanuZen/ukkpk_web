@@ -4,6 +4,7 @@ import { Card } from './ui/card';
 import { Star, ChevronLeft, ChevronRight, Quote, MessageSquare } from 'lucide-react';
 import { Avatar, AvatarFallback } from './ui/avatar';
 import { Button } from './ui/button';
+import { AnimatedSection } from './AnimatedSection';
 
 interface Testimonial {
   id: string;
@@ -87,23 +88,26 @@ export const Testimonials = () => {
   return (
     <section className="py-32 md:py-40 min-h-[85vh] flex items-center scroll-mt-20 bg-gray-50">
       <div className="container mx-auto px-4 max-w-4xl">
-        <div className="text-center mb-12 md:mb-16">
-          <div className="inline-block mb-4">
-            <span className="text-sm font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
-              <MessageSquare className="w-4 h-4 animate-pulse" />
-              TESTIMONI
-            </span>
+        <AnimatedSection animation="fade-up">
+          <div className="text-center mb-12 md:mb-16">
+            <div className="inline-block mb-4">
+              <span className="text-sm font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
+                <MessageSquare className="w-4 h-4 animate-pulse" />
+                TESTIMONI
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+              Apa Kata{' '}
+              <span className="text-primary">Klien Kami?</span>
+            </h2>
+            <p className="text-base md:text-lg text-muted-foreground">
+              Kepuasan pelanggan adalah prioritas utama kami
+            </p>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Apa Kata{' '}
-            <span className="text-primary">Klien Kami?</span>
-          </h2>
-          <p className="text-base md:text-lg text-muted-foreground">
-            Kepuasan pelanggan adalah prioritas utama kami
-          </p>
-        </div>
+        </AnimatedSection>
 
-        <div className="relative">
+        <AnimatedSection animation="fade-up" delay={100}>
+          <div className="relative">
           {/* Quote Icon */}
           <div className="absolute -top-8 left-8 md:left-12 z-10">
             <div className="w-16 h-16 md:w-20 md:h-20 bg-primary rounded-2xl flex items-center justify-center shadow-lg">
@@ -112,7 +116,10 @@ export const Testimonials = () => {
           </div>
 
           {/* Testimonial Card */}
-          <Card className="relative p-8 md:p-12 pt-16 md:pt-20 shadow-2xl border-0 bg-white">
+          <Card 
+            key={currentTestimonial.id}
+            className="relative p-8 md:p-12 pt-16 md:pt-20 shadow-2xl border-0 bg-white transition-all duration-700 animate-in fade-in slide-in-from-right-8"
+          >
             {/* Stars */}
             <div className="flex justify-center gap-1 mb-6">
               {Array.from({ length: currentTestimonial.testimonial_rating || 5 }).map((_, i) => (
@@ -160,24 +167,27 @@ export const Testimonials = () => {
               </Button>
             </>
           )}
-        </div>
+          </div>
+        </AnimatedSection>
 
         {/* Dots Navigation */}
         {testimonials.length > 1 && (
-          <div className="flex justify-center gap-2 mt-8">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? 'w-8 bg-primary'
-                    : 'w-2 bg-gray-300 hover:bg-gray-400'
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
-          </div>
+          <AnimatedSection animation="fade-up" delay={200}>
+            <div className="flex justify-center gap-2 mt-8">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    index === currentIndex
+                      ? 'w-8 bg-primary'
+                      : 'w-2 bg-gray-300 hover:bg-gray-400'
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
+          </AnimatedSection>
         )}
       </div>
     </section>
