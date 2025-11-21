@@ -67,33 +67,42 @@ export type Database = {
           created_at: string | null
           email: string
           id: string
+          is_testimonial: boolean | null
           message: string
           nama: string
           phone: string | null
           program: string | null
           subject: string | null
+          testimonial_order: number | null
+          testimonial_rating: number | null
           updated_at: string | null
         }
         Insert: {
           created_at?: string | null
           email: string
           id?: string
+          is_testimonial?: boolean | null
           message: string
           nama: string
           phone?: string | null
           program?: string | null
           subject?: string | null
+          testimonial_order?: number | null
+          testimonial_rating?: number | null
           updated_at?: string | null
         }
         Update: {
           created_at?: string | null
           email?: string
           id?: string
+          is_testimonial?: boolean | null
           message?: string
           nama?: string
           phone?: string | null
           program?: string | null
           subject?: string | null
+          testimonial_order?: number | null
+          testimonial_rating?: number | null
           updated_at?: string | null
         }
         Relationships: []
@@ -502,45 +511,6 @@ export type Database = {
           created_at?: string
           foto_url?: string
           id?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      testimonials: {
-        Row: {
-          content: string
-          created_at: string
-          id: string
-          is_active: boolean | null
-          name: string
-          order_index: number | null
-          photo_url: string | null
-          rating: number | null
-          role: string
-          updated_at: string
-        }
-        Insert: {
-          content: string
-          created_at?: string
-          id?: string
-          is_active?: boolean | null
-          name: string
-          order_index?: number | null
-          photo_url?: string | null
-          rating?: number | null
-          role: string
-          updated_at?: string
-        }
-        Update: {
-          content?: string
-          created_at?: string
-          id?: string
-          is_active?: boolean | null
-          name?: string
-          order_index?: number | null
-          photo_url?: string | null
-          rating?: number | null
-          role?: string
           updated_at?: string
         }
         Relationships: []

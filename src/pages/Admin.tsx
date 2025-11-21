@@ -15,7 +15,6 @@ import { RadioManager } from "@/components/admin/RadioManager";
 import { ProfileManager } from "@/components/admin/ProfileManager";
 import { MapManager } from "@/components/admin/MapManager";
 import { ContactSubmissionsManager } from "@/components/admin/ContactSubmissionsManager";
-import { TestimonialsManager } from "@/components/admin/TestimonialsManager";
 
 const Admin = () => {
   const { user, signOut } = useAuth();
@@ -48,8 +47,7 @@ const Admin = () => {
       slideshow: "Slideshow Home",
       structure: "Struktur Organisasi",
       maps: "Peta Lokasi",
-      contact: "Saran Masuk",
-      testimonials: "Kelola Testimoni",
+      contact: "Saran Masuk & Testimoni",
     };
     return titles[page] || "Dashboard";
   };
@@ -96,7 +94,6 @@ const Admin = () => {
               {activePage === "structure" && <ProfileManager activeTab="structure" />}
               {activePage === "maps" && <MapManager />}
               {activePage === "contact" && <ContactSubmissionsManager />}
-              {activePage === "testimonials" && <TestimonialsManager />}
             </div>
           </main>
         </div>

@@ -1,29 +1,30 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Card } from './ui/card';
-import { Star } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { Avatar, AvatarFallback } from './ui/avatar';
+import { Button } from './ui/button';
 
 interface Testimonial {
   id: string;
-  name: string;
-  role: string;
-  content: string;
-  photo_url: string | null;
-  rating: number;
+  nama: string;
+  email: string;
+  message: string;
+  testimonial_rating: number;
 }
 
 export const Testimonials = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const fetchTestimonials = async () => {
       const { data, error } = await supabase
-        .from('testimonials')
+        .from('contact_submissions')
         .select('*')
-        .eq('is_active', true)
-        .order('order_index', { ascending: true })
+        .eq('is_testimonial', true)
+        .order('testimonial_order', { ascending: true })
         .order('created_at', { ascending: false });
 
       if (error) {
@@ -37,9 +38,21 @@ export const Testimonials = () => {
     fetchTestimonials();
   }, []);
 
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
+
   if (loading) {
     return (
-      <section className="py-32 md:py-40 min-h-[85vh] flex items-center scroll-mt-20 bg-gray-100">
+      <section className="py-32 md:py-40 min-h-[85vh] flex items-center scroll-mt-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <div className="h-8 w-48 bg-gray-200 animate-pulse mx-auto mb-4 rounded"></div>
@@ -54,49 +67,102 @@ export const Testimonials = () => {
     return null;
   }
 
+  const currentTestimonial = testimonials[currentIndex];
+
   return (
-    <section className="py-32 md:py-40 min-h-[85vh] flex items-center scroll-mt-20 bg-gray-100">
-      <div className="container mx-auto px-4">
+    <section className="py-32 md:py-40 min-h-[85vh] flex items-center scroll-mt-20 bg-gray-50">
+      <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4">
-            Testimoni
+          <div className="inline-block mb-4">
+            <span className="text-sm font-semibold text-green-600 tracking-wider uppercase">
+              TESTIMONI
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            Apa Kata{' '}
+            <span className="text-green-600">Klien Kami?</span>
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Apa kata mereka tentang UKKPK UNP
+          <p className="text-base md:text-lg text-muted-foreground">
+            Kepuasan pelanggan adalah prioritas utama kami
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {testimonials.map((testimonial) => (
-            <Card
-              key={testimonial.id}
-              className="p-6 hover:shadow-xl transition-all duration-300 bg-card"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <Avatar className="h-16 w-16">
-                  <AvatarImage src={testimonial.photo_url || undefined} alt={testimonial.name} />
-                  <AvatarFallback className="bg-primary text-primary-foreground text-lg">
-                    {testimonial.name.charAt(0)}
-                  </AvatarFallback>
-                </Avatar>
-                <div>
-                  <h3 className="font-semibold text-lg">{testimonial.name}</h3>
-                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                </div>
-              </div>
+        <div className="relative">
+          {/* Quote Icon */}
+          <div className="absolute -top-8 left-8 md:left-12 z-10">
+            <div className="w-16 h-16 md:w-20 md:h-20 bg-green-600 rounded-2xl flex items-center justify-center shadow-lg">
+              <Quote className="w-8 h-8 md:w-10 md:h-10 text-white fill-white" />
+            </div>
+          </div>
 
-              <div className="flex gap-1 mb-4">
-                {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
+          {/* Testimonial Card */}
+          <Card className="relative p-8 md:p-12 pt-16 md:pt-20 shadow-2xl border-0 bg-white">
+            {/* Stars */}
+            <div className="flex justify-center gap-1 mb-6">
+              {Array.from({ length: currentTestimonial.testimonial_rating || 5 }).map((_, i) => (
+                <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
 
-              <p className="text-muted-foreground leading-relaxed">
-                "{testimonial.content}"
-              </p>
-            </Card>
-          ))}
+            {/* Message */}
+            <p className="text-center text-muted-foreground text-base md:text-lg leading-relaxed mb-8 italic">
+              "{currentTestimonial.message}"
+            </p>
+
+            {/* Author */}
+            <div className="flex flex-col items-center gap-4">
+              <Avatar className="h-16 w-16 ring-4 ring-green-100">
+                <AvatarFallback className="bg-green-600 text-white text-xl font-bold">
+                  {currentTestimonial.nama.charAt(0).toUpperCase()}
+                </AvatarFallback>
+              </Avatar>
+              <div className="text-center">
+                <h3 className="font-bold text-lg">{currentTestimonial.nama}</h3>
+                <p className="text-sm text-green-600">{currentTestimonial.email}</p>
+              </div>
+            </div>
+          </Card>
+
+          {/* Navigation Arrows */}
+          {testimonials.length > 1 && (
+            <>
+              <Button
+                variant="outline"
+                size="icon"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 rounded-full w-12 h-12 shadow-lg bg-white hover:bg-gray-50 border-2"
+                onClick={prevSlide}
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 rounded-full w-12 h-12 shadow-lg bg-white hover:bg-gray-50 border-2"
+                onClick={nextSlide}
+              >
+                <ChevronRight className="w-5 h-5" />
+              </Button>
+            </>
+          )}
         </div>
+
+        {/* Dots Navigation */}
+        {testimonials.length > 1 && (
+          <div className="flex justify-center gap-2 mt-8">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? 'w-8 bg-green-600'
+                    : 'w-2 bg-gray-300 hover:bg-gray-400'
+                }`}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
