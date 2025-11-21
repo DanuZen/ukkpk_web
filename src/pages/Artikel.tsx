@@ -137,7 +137,7 @@ const Artikel = () => {
               {filteredArticles.map((article, index) => (
                 <AnimatedSection key={article.id} animation="fade-up" delay={index * 100}>
                   <Card 
-                    className="overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+                    className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
                     onClick={() => navigate(`/artikel/${article.id}`)}
                   >
                   {article.image_url && (
