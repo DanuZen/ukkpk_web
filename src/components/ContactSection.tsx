@@ -8,10 +8,8 @@ import { supabase } from '@/integrations/supabase/client';
 import { z } from 'zod';
 const contactSchema = z.object({
   nama: z.string().trim().min(1, "Nama wajib diisi").max(100, "Nama maksimal 100 karakter"),
-  program: z.string().trim().max(100, "Program studi maksimal 100 karakter").optional(),
   phone: z.string().trim().regex(/^[0-9+\-\s()]*$/, "Format nomor telepon tidak valid").max(20, "Nomor telepon maksimal 20 karakter").optional().or(z.literal('')),
   email: z.string().trim().min(1, "Email wajib diisi").email("Format email tidak valid").max(255, "Email maksimal 255 karakter"),
-  subject: z.string().trim().max(200, "Subject maksimal 200 karakter").optional(),
   message: z.string().trim().min(1, "Pesan wajib diisi").max(1000, "Pesan maksimal 1000 karakter")
 });
 
@@ -21,10 +19,8 @@ export const ContactSection = () => {
   } = useToast();
   const [formData, setFormData] = useState({
     nama: '',
-    program: '',
     phone: '',
     email: '',
-    subject: '',
     message: ''
   });
   const handleSubmit = async (e: React.FormEvent) => {
@@ -60,10 +56,8 @@ export const ContactSection = () => {
       // Reset form
       setFormData({
         nama: '',
-        program: '',
         phone: '',
         email: '',
-        subject: '',
         message: ''
       });
     } catch (error) {
@@ -100,22 +94,6 @@ export const ContactSection = () => {
             />
           </div>
           <div>
-            <label className="text-xs sm:text-sm font-medium mb-1 block">Program Studi</label>
-            <Input 
-              placeholder="Asal Prodi Kamu" 
-              value={formData.program} 
-              onChange={e => setFormData({
-                ...formData,
-                program: e.target.value
-              })} 
-              maxLength={100}
-              className="text-xs sm:text-sm"
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-          <div>
             <label className="text-xs sm:text-sm font-medium mb-1 block">Nomor Telepon</label>
             <Input 
               type="tel" 
@@ -129,33 +107,20 @@ export const ContactSection = () => {
               className="text-xs sm:text-sm"
             />
           </div>
-          <div>
-            <label className="text-xs sm:text-sm font-medium mb-1 block">Email</label>
-            <Input 
-              type="email" 
-              placeholder="Email Address" 
-              value={formData.email} 
-              onChange={e => setFormData({
-                ...formData,
-                email: e.target.value
-              })} 
-              maxLength={255}
-              required
-              className="text-xs sm:text-sm"
-            />
-          </div>
         </div>
 
         <div>
-          <label className="text-xs sm:text-sm font-medium mb-1 block">Subject (Opsional)</label>
+          <label className="text-xs sm:text-sm font-medium mb-1 block">Email</label>
           <Input 
-            placeholder="Tulis Siapa Pesan ini ditujukan" 
-            value={formData.subject} 
+            type="email" 
+            placeholder="Email Address" 
+            value={formData.email} 
             onChange={e => setFormData({
               ...formData,
-              subject: e.target.value
+              email: e.target.value
             })} 
-            maxLength={200}
+            maxLength={255}
+            required
             className="text-xs sm:text-sm"
           />
         </div>
