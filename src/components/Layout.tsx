@@ -14,7 +14,7 @@ export const Layout = ({ children }: LayoutProps) => {
   const isHomePage = location.pathname === "/";
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       <ScrollToTop />
       <Navigation />
       {!isHomePage && <BreakingNews />}
