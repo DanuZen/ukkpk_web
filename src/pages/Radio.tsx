@@ -239,8 +239,6 @@ const Radio = () => {
         <div className="container mx-auto px-4">
           {/* Schedule */}
           <div id="jadwal-program" className="relative scroll-mt-20">
-            {/* Decorative Elements */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-12 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0" />
           
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
