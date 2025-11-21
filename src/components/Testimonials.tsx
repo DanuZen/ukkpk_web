@@ -131,7 +131,7 @@ export const Testimonials = () => {
               <span className="text-primary">Tentang Kami?</span>
             </h2>
           <p className="text-sm md:text-base lg:text-lg text-muted-foreground">
-            Kepuasan pelanggan adalah prioritas utama kami
+            Masukan dan pengalaman mereka adalah bagian penting dari perjalanan kami
           </p>
           </div>
         </AnimatedSection>
