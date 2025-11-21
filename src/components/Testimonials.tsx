@@ -79,7 +79,7 @@ export const Testimonials = () => {
         <div className="text-center mb-12 md:mb-16">
           <div className="inline-block mb-4">
             <span className="text-sm font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
-              <MessageSquare className="w-4 h-4" />
+              <MessageSquare className="w-4 h-4 animate-bounce" />
               TESTIMONI
             </span>
           </div>
