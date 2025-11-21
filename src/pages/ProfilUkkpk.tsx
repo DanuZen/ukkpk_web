@@ -3,7 +3,7 @@ import { Layout } from '@/components/Layout';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
-import { Users, Target, Eye, Megaphone, FileText, Radio, Briefcase, ClipboardList, Users2, Handshake, Sparkles, Waves, Shield, Rocket, Mic } from 'lucide-react';
+import { Users, Target, Eye, Megaphone, FileText, Radio, Briefcase, ClipboardList, Users2, Handshake, Sparkles, Waves, Shield, Rocket, Mic, Building2 } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import logoReporter from '@/assets/logo-reporter.png';
 import logoMicu from '@/assets/logo-micu-new.png';
@@ -203,13 +203,22 @@ const ProfilUkkpk = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background"></div>
           <div className="container mx-auto relative z-10">
             <AnimatedSection animation="fade-up">
-              <div className="max-w-3xl mx-auto text-center space-y-6">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
-                  UKKPK UNP
+              <div className="max-w-3xl mx-auto text-center space-y-4 sm:space-y-6">
+                <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 mb-4">
+                  <span className="text-xs sm:text-sm uppercase font-semibold text-primary flex items-center gap-2">
+                    <Building2 className="w-4 h-4 animate-pulse" />
+                    Profil Organisasi
+                  </span>
+                </div>
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                  UKKPK <span className="text-primary">UNP</span>
                 </h1>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground">
-                  Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang
-                </p>
+                <AnimatedSection animation="fade-up" delay={50}>
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground px-4">
+                    Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang
+                  </p>
+                </AnimatedSection>
+                <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mt-6" />
               </div>
             </AnimatedSection>
           </div>
