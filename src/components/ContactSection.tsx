@@ -81,7 +81,7 @@ export const ContactSection = () => {
     youtube: "https://www.youtube.com/@UKKPKUNP",
     tiktok: "#"
   };
-  return <div className="bg-card rounded-lg shadow-lg p-4 sm:p-6 lg:p-8 h-full">
+  return <div className="bg-card rounded-lg shadow-xl p-4 sm:p-6 lg:p-8 h-full">
 
       <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">

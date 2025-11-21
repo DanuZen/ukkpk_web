@@ -302,7 +302,7 @@ const Index = () => {
 
             {/* Location Details */}
             <AnimatedSection animation="fade-up" delay={200}>
-              <Card className="h-full border-border/50">
+              <Card className="h-full border-border/50 shadow-xl">
                 <CardHeader className="p-3 sm:p-4 md:p-6 border-b border-border/50">
                   <CardTitle className="flex items-center gap-2 text-sm sm:text-base md:text-lg font-bold">
                     <div className="p-1.5 sm:p-2 rounded-lg bg-primary/10">
