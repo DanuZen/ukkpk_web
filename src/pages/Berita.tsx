@@ -87,7 +87,7 @@ const Berita = () => {
       </section>
 
       {/* Search Section */}
-      <section className="py-6 sm:py-8 bg-muted/30">
+      <section className="py-6 sm:py-8 bg-white">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="scale-in" delay={100}>
             <div className="max-w-2xl mx-auto relative">
