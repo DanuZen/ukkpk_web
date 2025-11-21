@@ -198,7 +198,7 @@ const ProfilUkkpk = () => {
 
       {/* Hero Section (if no banner) */}
       {!profile?.banner_url && (
-        <section className="relative min-h-screen flex items-center px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
+        <section className="relative h-screen flex items-center px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
           {/* Background Image with Dark Overlay */}
           <div className="absolute inset-0 bg-cover bg-center" style={{
             backgroundImage: `url(https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d)`
