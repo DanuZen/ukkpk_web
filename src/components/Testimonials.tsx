@@ -78,13 +78,13 @@ export const Testimonials = () => {
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-12 md:mb-16">
           <div className="inline-block mb-4">
-            <span className="text-sm font-semibold text-green-600 tracking-wider uppercase">
+            <span className="text-sm font-semibold text-primary tracking-wider uppercase">
               TESTIMONI
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             Apa Kata{' '}
-            <span className="text-green-600">Klien Kami?</span>
+            <span className="text-primary">Klien Kami?</span>
           </h2>
           <p className="text-base md:text-lg text-muted-foreground">
             Kepuasan pelanggan adalah prioritas utama kami
@@ -94,7 +94,7 @@ export const Testimonials = () => {
         <div className="relative">
           {/* Quote Icon */}
           <div className="absolute -top-8 left-8 md:left-12 z-10">
-            <div className="w-16 h-16 md:w-20 md:h-20 bg-green-600 rounded-2xl flex items-center justify-center shadow-lg">
+            <div className="w-16 h-16 md:w-20 md:h-20 bg-primary rounded-2xl flex items-center justify-center shadow-lg">
               <Quote className="w-8 h-8 md:w-10 md:h-10 text-white fill-white" />
             </div>
           </div>
@@ -115,14 +115,14 @@ export const Testimonials = () => {
 
             {/* Author */}
             <div className="flex flex-col items-center gap-4">
-              <Avatar className="h-16 w-16 ring-4 ring-green-100">
-                <AvatarFallback className="bg-green-600 text-white text-xl font-bold">
+              <Avatar className="h-16 w-16 ring-4 ring-primary/20">
+                <AvatarFallback className="bg-primary text-white text-xl font-bold">
                   {currentTestimonial.nama.charAt(0).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="text-center">
                 <h3 className="font-bold text-lg">{currentTestimonial.nama}</h3>
-                <p className="text-sm text-green-600">{currentTestimonial.email}</p>
+                <p className="text-sm text-primary">{currentTestimonial.email}</p>
               </div>
             </div>
           </Card>
@@ -159,7 +159,7 @@ export const Testimonials = () => {
                 onClick={() => goToSlide(index)}
                 className={`h-2 rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? 'w-8 bg-green-600'
+                    ? 'w-8 bg-primary'
                     : 'w-2 bg-gray-300 hover:bg-gray-400'
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
