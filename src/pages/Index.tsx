@@ -291,9 +291,11 @@ const Index = () => {
               <h2 className="text-xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Lokasi Sekretariatan UKKPK
               </h2>
-              <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-4 sm:mb-6">
-                Kunjungi sekretariat kami di kampus Universitas Negeri Padang. Kami siap melayani dan berkolaborasi dengan Anda dalam berbagai kegiatan komunikasi dan penyiaran kampus.
-              </p>
+              <AnimatedSection animation="fade-up" delay={50}>
+                <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-4 sm:mb-6">
+                  Kunjungi sekretariat kami di kampus Universitas Negeri Padang. Kami siap melayani dan berkolaborasi dengan Anda dalam berbagai kegiatan komunikasi dan penyiaran kampus.
+                </p>
+              </AnimatedSection>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
             </div>
           </AnimatedSection>
