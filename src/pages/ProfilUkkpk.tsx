@@ -345,6 +345,9 @@ const ProfilUkkpk = () => {
                 <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
                   Sejarah <span className="text-primary">UKKPK</span>
                 </h2>
+                <p className="text-xs sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
+                  Perjalanan panjang UKKPK dari masa ke masa dalam mengembangkan komunikasi dan penyiaran kampus
+                </p>
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
               </div>
             </AnimatedSection>
@@ -489,6 +492,9 @@ const ProfilUkkpk = () => {
               <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
                 Bidang <span className="text-primary">Kegiatan</span>
               </h2>
+              <p className="text-xs sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
+                Berbagai bidang kegiatan yang menjadi wadah pengembangan skill dan bakat mahasiswa di dunia komunikasi
+              </p>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
             </div>
           </AnimatedSection>
@@ -601,6 +607,9 @@ const ProfilUkkpk = () => {
               <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
                 Nilai-<span className="text-primary">Nilai</span>
               </h2>
+              <p className="text-xs sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
+                Prinsip dan nilai-nilai yang menjadi landasan dalam setiap kegiatan dan karya UKKPK
+              </p>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
             </div>
           </AnimatedSection>
@@ -645,6 +654,9 @@ const ProfilUkkpk = () => {
               <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
                 Struktur <span className="text-primary">Organisasi</span>
               </h2>
+              <p className="text-xs sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
+                Kenali tim pengurus dan struktur organisasi UKKPK yang solid dan profesional
+              </p>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
             </div>
           </AnimatedSection>
