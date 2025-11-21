@@ -155,7 +155,7 @@ export const ContactSection = () => {
                 onClick={() => setFormData({ ...formData, testimonial_rating: star })}
                 onMouseEnter={() => setHoveredStar(star)}
                 onMouseLeave={() => setHoveredStar(0)}
-                className="transition-transform hover:scale-110"
+                className="transition-transform hover:scale-110 active:scale-125"
               >
                 <Star
                   className={`w-8 h-8 transition-colors ${
