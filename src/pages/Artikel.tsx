@@ -72,9 +72,11 @@ const Artikel = () => {
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Artikel UKKPK
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground px-4">
-                Kumpulan artikel, berita, dan informasi terkini seputar kegiatan kampus
-              </p>
+              <AnimatedSection animation="fade-up" delay={50}>
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground px-4">
+                  Kumpulan artikel, berita, dan informasi terkini seputar kegiatan kampus. Temukan berbagai tulisan inspiratif, opini mendalam, dan liputan eksklusif dari UKKPK UNP.
+                </p>
+              </AnimatedSection>
             </div>
           </AnimatedSection>
         </div>

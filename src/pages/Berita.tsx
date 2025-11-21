@@ -75,9 +75,11 @@ const Berita = () => {
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                 Berita Terkini
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground px-4">
-                Informasi dan berita terbaru seputar UKKPK dan kegiatan kampus
-              </p>
+              <AnimatedSection animation="fade-up" delay={50}>
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground px-4">
+                  Informasi dan berita terbaru seputar UKKPK dan kegiatan kampus. Dapatkan update terkini tentang acara, prestasi, dan perkembangan organisasi mahasiswa komunikasi dan penyiaran kampus.
+                </p>
+              </AnimatedSection>
             </div>
           </AnimatedSection>
         </div>

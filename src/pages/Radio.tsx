@@ -179,10 +179,12 @@ const Radio = () => {
                 }
               `}</style>
               
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-muted-foreground px-4">
-                Platform radio kampus yang menghubungkan Anda dengan berbagai program menarik, 
-                berita terkini, dan hiburan berkualitas dari UKKPK UNP.
-              </p>
+              <AnimatedSection animation="fade-up" delay={50}>
+                <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-muted-foreground px-4">
+                  Platform radio kampus yang menghubungkan Anda dengan berbagai program menarik, 
+                  berita terkini, dan hiburan berkualitas dari UKKPK UNP. Nikmati siaran langsung, podcast edukatif, dan konten audio menarik setiap hari.
+                </p>
+              </AnimatedSection>
 
             {/* Current Program Info - Prominent Display */}
             {currentProgram ? <div className="mb-8 p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl">
