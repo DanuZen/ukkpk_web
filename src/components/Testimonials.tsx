@@ -120,19 +120,19 @@ export const Testimonials = () => {
       <div className="container mx-auto px-4 max-w-4xl">
         <AnimatedSection animation="fade-up">
           <div className="text-center mb-12 md:mb-16">
-            <div className="inline-block mb-4">
-              <span className="text-sm font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
-                <MessageSquare className="w-4 h-4 animate-pulse" />
-                TESTIMONI
-              </span>
-            </div>
+          <div className="inline-block mb-4">
+            <span className="text-xs sm:text-sm font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
+              <MessageSquare className="w-3 h-3 sm:w-4 sm:h-4 animate-pulse" />
+              TESTIMONI
+            </span>
+          </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
               Apa Kata{' '}
               <span className="text-primary">Klien Kami?</span>
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground">
-              Kepuasan pelanggan adalah prioritas utama kami
-            </p>
+          <p className="text-sm md:text-base lg:text-lg text-muted-foreground">
+            Kepuasan pelanggan adalah prioritas utama kami
+          </p>
           </div>
         </AnimatedSection>
 
