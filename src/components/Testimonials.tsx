@@ -38,6 +38,17 @@ export const Testimonials = () => {
     fetchTestimonials();
   }, []);
 
+  // Auto-rotate testimonials every 5 seconds
+  useEffect(() => {
+    if (testimonials.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
   };
