@@ -133,6 +133,7 @@ export const Testimonials = () => {
           <p className="text-sm md:text-base lg:text-lg text-muted-foreground">
             Masukan dan pengalaman mereka adalah bagian penting dari perjalanan kami
           </p>
+          <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mt-4" />
           </div>
         </AnimatedSection>
 
