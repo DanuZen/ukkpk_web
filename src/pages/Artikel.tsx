@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
-import { Search, Calendar } from "lucide-react";
+import { Search, Calendar, BookOpen } from "lucide-react";
 import { stripHtml } from "@/lib/utils";
 import { AnimatedSection } from "@/components/AnimatedSection";
 
@@ -69,8 +69,14 @@ const Artikel = () => {
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="max-w-3xl mx-auto text-center space-y-4 sm:space-y-6">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
-                Artikel UKKPK
+              <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 mb-4">
+                <span className="text-xs sm:text-sm uppercase font-semibold text-primary flex items-center gap-2">
+                  <BookOpen className="w-4 h-4 animate-pulse" />
+                  Publikasi Artikel
+                </span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                Artikel <span className="text-primary">UKKPK</span>
               </h1>
               <AnimatedSection animation="fade-up" delay={50}>
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground px-4">
