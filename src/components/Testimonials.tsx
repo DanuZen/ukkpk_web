@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Card } from './ui/card';
-import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight, Quote, MessageSquare } from 'lucide-react';
 import { Avatar, AvatarFallback } from './ui/avatar';
 import { Button } from './ui/button';
 
@@ -78,7 +78,8 @@ export const Testimonials = () => {
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-12 md:mb-16">
           <div className="inline-block mb-4">
-            <span className="text-sm font-semibold text-primary tracking-wider uppercase">
+            <span className="text-sm font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
+              <MessageSquare className="w-4 h-4" />
               TESTIMONI
             </span>
           </div>
