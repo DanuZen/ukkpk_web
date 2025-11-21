@@ -63,11 +63,15 @@ export const Testimonials = () => {
     );
   }
 
-  if (testimonials.length === 0) {
-    return null;
-  }
-
-  const currentTestimonial = testimonials[currentIndex];
+  const currentTestimonial = testimonials.length > 0 
+    ? testimonials[currentIndex]
+    : {
+        id: 'default',
+        nama: 'Tim UKKPK',
+        email: 'ukkpk.office@gmail.com',
+        message: 'Belum ada testimoni yang ditampilkan. Admin dapat memilih testimoni dari menu Saran Masuk di dashboard.',
+        testimonial_rating: 5
+      };
 
   return (
     <section className="py-32 md:py-40 min-h-[85vh] flex items-center scroll-mt-20 bg-gray-50">
