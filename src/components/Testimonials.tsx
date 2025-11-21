@@ -18,6 +18,8 @@ export const Testimonials = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -60,6 +62,34 @@ export const Testimonials = () => {
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
+  };
+
+  // Swipe gesture handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe && testimonials.length > 1) {
+      nextSlide();
+    }
+    if (isRightSwipe && testimonials.length > 1) {
+      prevSlide();
+    }
+
+    // Reset values
+    setTouchStart(0);
+    setTouchEnd(0);
   };
 
   if (loading) {
@@ -119,6 +149,9 @@ export const Testimonials = () => {
           <Card 
             key={currentTestimonial.id}
             className="relative p-8 md:p-12 pt-16 md:pt-20 shadow-2xl border-0 bg-white transition-all duration-700 animate-in fade-in slide-in-from-right-8"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
             {/* Stars */}
             <div className="flex justify-center gap-1 mb-6">
