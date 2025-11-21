@@ -76,6 +76,7 @@ const Artikel = () => {
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground px-4">
                   Kumpulan artikel, berita, dan informasi terkini seputar kegiatan kampus. Temukan berbagai tulisan inspiratif, opini mendalam, dan liputan eksklusif dari UKKPK UNP.
                 </p>
+                <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mt-6" />
               </AnimatedSection>
             </div>
           </AnimatedSection>
