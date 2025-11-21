@@ -9,6 +9,7 @@ import { HomeSlideshow } from '@/components/HomeSlideshow';
 import { GoogleMap } from '@/components/GoogleMap';
 import { ContactSection } from '@/components/ContactSection';
 import { AnimatedSection } from '@/components/AnimatedSection';
+import { Testimonials } from '@/components/Testimonials';
 import { stripHtml } from '@/lib/utils';
 import { FileText, MessageSquare, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 interface Article {
@@ -406,6 +407,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <Testimonials />
 
       {/* Contact Section - Kritik dan Saran */}
       <section className="min-h-[60vh] md:min-h-screen flex items-center py-12 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 relative px-4 bg-white overflow-hidden">
