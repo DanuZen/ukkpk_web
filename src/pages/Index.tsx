@@ -82,14 +82,14 @@ const Index = () => {
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-6 sm:mb-8 md:mb-10 pt-12 sm:pt-16 md:pt-20">
-              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-4 sm:mb-6">
-                <FileText className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
-                <span className="text-[10px] sm:text-sm font-medium text-primary">
-                  Konten Terbaru
+              <div className="inline-block mb-4">
+                <span className="text-sm font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
+                  <FileText className="w-4 h-4 animate-pulse" />
+                  KONTEN TERBARU
                 </span>
               </div>
-              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3 sm:mb-4">
-                Artikel & Berita Terbaru
+              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
+                Artikel & <span className="text-primary">Berita Terbaru</span>
               </h2>
               <p className="text-xs sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
                 Temukan informasi terbaru dan artikel menarik dari UKKPK
@@ -282,14 +282,14 @@ const Index = () => {
         <div className="relative z-10 container mx-auto max-w-7xl">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-8 sm:mb-10 md:mb-12">
-              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-4 sm:mb-6">
-                <MapPin className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
-                <span className="text-[10px] sm:text-sm font-medium text-primary">
-                  Lokasi Kami
+              <div className="inline-block mb-4">
+                <span className="text-sm font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
+                  <MapPin className="w-4 h-4 animate-pulse" />
+                  LOKASI KAMI
                 </span>
               </div>
-              <h2 className="text-xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
-                Lokasi Sekretariatan UKKPK
+              <h2 className="text-xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
+                Lokasi <span className="text-primary">Sekretariat UKKPK</span>
               </h2>
               <AnimatedSection animation="fade-up" delay={50}>
                 <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-4 sm:mb-6">
