@@ -44,6 +44,7 @@ const Artikel = () => {
     const { data } = await supabase
       .from("articles")
       .select("*")
+      .order("published_at", { ascending: false, nullsFirst: false })
       .order("created_at", { ascending: false });
 
     if (data) {
