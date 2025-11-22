@@ -62,7 +62,7 @@ const Event = () => {
       </section>
 
       {/* Events Section */}
-      <section className="py-16 bg-background">
+      <section className="py-16 sm:py-24 md:py-32 lg:py-40 bg-background">
         <div className="container mx-auto px-4">
           {loading ? (
             <p className="text-center text-muted-foreground">Memuat event...</p>
