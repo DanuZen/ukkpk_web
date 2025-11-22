@@ -304,18 +304,18 @@ export const RadioManager = () => {
 
       {/* Calendar Grid */}
       <Card>
-        <CardContent className="p-2 sm:p-3 md:p-4">
-          <div className="overflow-x-auto">
-            <div className="min-w-[700px] sm:min-w-[900px] md:min-w-[1000px]">
+        <CardContent className="p-1.5 sm:p-2 md:p-4">
+          <div className="overflow-x-auto -mx-1.5 sm:mx-0">
+            <div className="min-w-[600px] sm:min-w-[750px] md:min-w-[1000px] px-1.5 sm:px-0">
               {/* Header with Days */}
-              <div className="grid grid-cols-8 gap-0.5 sm:gap-1 mb-1 sm:mb-2">
-                <div className="p-1.5 sm:p-2 text-center font-semibold text-gray-500 text-[10px] sm:text-xs md:text-sm">
+              <div className="grid grid-cols-8 gap-0.5 sm:gap-1 mb-0.5 sm:mb-1">
+                <div className="p-1 sm:p-1.5 md:p-2 text-center font-semibold text-gray-500 text-[9px] sm:text-xs md:text-sm">
                   Waktu
                 </div>
                 {DAYS.map((day, index) => (
                   <div
                     key={index}
-                    className="py-1.5 sm:py-2 px-1.5 sm:px-2 text-center font-semibold bg-gradient-to-r from-primary to-primary/80 text-white rounded-t-lg text-[10px] sm:text-xs md:text-sm"
+                    className="py-1 sm:py-1.5 md:py-2 px-0.5 sm:px-1.5 md:px-2 text-center font-semibold bg-gradient-to-r from-primary to-primary/80 text-white rounded-t text-[9px] sm:text-xs md:text-sm leading-tight"
                   >
                     {day}
                   </div>
@@ -326,7 +326,7 @@ export const RadioManager = () => {
               <div className="space-y-0.5 sm:space-y-1">
                 {TIME_SLOTS.map((time) => (
                   <div key={time} className="grid grid-cols-8 gap-0.5 sm:gap-1">
-                    <div className="p-1.5 sm:p-2 text-center text-[11px] sm:text-xs md:text-sm font-medium text-gray-600 bg-gray-50 rounded-lg flex items-center justify-center">
+                    <div className="p-1 sm:p-1.5 md:p-2 text-center text-[9px] sm:text-xs md:text-sm font-medium text-gray-600 bg-gray-50 rounded flex items-center justify-center">
                       {time}
                     </div>
                     {DAYS.map((_, dayIndex) => {
@@ -336,7 +336,7 @@ export const RadioManager = () => {
                       return (
                         <div
                           key={`${dayIndex}-${time}`}
-                          className={`min-h-[56px] sm:min-h-[72px] md:min-h-[80px] p-1.5 sm:p-2 rounded-lg border-2 transition-all ${
+                          className={`min-h-[48px] sm:min-h-[64px] md:min-h-[80px] p-1 sm:p-1.5 md:p-2 rounded border-2 transition-all ${
                             isEmpty
                               ? "border-dashed border-gray-200 hover:border-primary/50 hover:bg-primary/5 cursor-pointer"
                               : "border-primary/20 bg-primary/5"
@@ -345,10 +345,10 @@ export const RadioManager = () => {
                         >
                           {isEmpty ? (
                             <div className="flex items-center justify-center h-full text-gray-400">
-                              <Plus className="h-4 w-4" />
+                              <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
                             </div>
                           ) : (
-                            <div className="space-y-1">
+                            <div className="space-y-0.5 sm:space-y-1">
                               {programsInSlot.map((program) => {
                                 const slotHour = parseInt(time.split(":")[0]);
                                 const startHour = parseInt(program.air_time.split(':')[0]);
@@ -357,55 +357,55 @@ export const RadioManager = () => {
                                 return (
                                   <div
                                     key={program.id}
-                                    className="bg-white rounded p-2 shadow-sm border border-primary/20 group relative"
+                                    className="bg-white rounded p-1 sm:p-1.5 md:p-2 shadow-sm border border-primary/20 group relative"
                                   >
                                     {isFirstSlot ? (
                                       <>
-                                        <div className="text-xs font-semibold text-gray-900 truncate">
+                                        <div className="text-[9px] sm:text-xs md:text-sm font-semibold text-gray-900 truncate leading-tight">
                                           {program.name}
                                         </div>
-                                        <div className="text-xs text-gray-600 truncate">
+                                        <div className="text-[8px] sm:text-[10px] md:text-xs text-gray-600 truncate mt-0.5">
                                           {program.air_time}{program.end_time ? ` - ${program.end_time}` : ''}
                                         </div>
-                                        <div className="text-xs text-gray-500 truncate">
+                                        <div className="text-[8px] sm:text-[10px] md:text-xs text-gray-500 truncate">
                                           Host: {program.host}
                                         </div>
                                       </>
                                     ) : (
                                       <div className="flex items-center justify-center h-full">
                                         <div className="text-center">
-                                          <div className="text-xs font-medium text-gray-700 truncate mb-0.5">
+                                          <div className="text-[9px] sm:text-xs md:text-sm font-medium text-gray-700 truncate mb-0.5 leading-tight">
                                             {program.name}
                                           </div>
-                                          <div className="text-[10px] text-gray-500">
+                                          <div className="text-[8px] sm:text-[9px] md:text-[10px] text-gray-500">
                                             (berlangsung)
                                           </div>
                                         </div>
                                       </div>
                                     )}
                                     {isFirstSlot && (
-                                      <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
+                                      <div className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 opacity-0 group-hover:opacity-100 transition-opacity flex gap-0.5 sm:gap-1">
                                         <Button
                                           size="icon"
                                           variant="ghost"
-                                          className="h-6 w-6"
+                                          className="h-5 w-5 sm:h-6 sm:w-6"
                                           onClick={(e) => {
                                             e.stopPropagation();
                                             handleEdit(program);
                                           }}
                                         >
-                                          <Pencil className="h-3 w-3" />
+                                          <Pencil className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
                                         </Button>
                                         <Button
                                           size="icon"
                                           variant="ghost"
-                                          className="h-6 w-6 text-red-600"
+                                          className="h-5 w-5 sm:h-6 sm:w-6 text-red-600"
                                           onClick={(e) => {
                                             e.stopPropagation();
                                             handleDelete(program.id);
                                           }}
                                         >
-                                          <Trash2 className="h-3 w-3" />
+                                          <Trash2 className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
                                         </Button>
                                       </div>
                                     )}
