@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { supabase } from '@/integrations/supabase/client';
 import { ArrowLeft, Calendar, Share2, Facebook, Twitter, MessageCircle, Copy, Eye, Heart } from 'lucide-react';
 import { toast } from 'sonner';
@@ -242,14 +243,14 @@ const BeritaDetail = () => {
               {/* Featured Image */}
               {news.image_url && (
                 <div className="mb-4">
-                  <div className="relative w-full rounded-lg overflow-hidden bg-muted">
+                  <AspectRatio ratio={16 / 9} className="rounded-lg overflow-hidden bg-muted">
                     <img
                       src={news.image_url}
                       alt={news.title}
                       loading="eager"
-                      className="w-full h-auto max-h-[600px] object-contain"
+                      className="w-full h-full object-cover"
                     />
-                  </div>
+                  </AspectRatio>
                   <p className="text-sm text-muted-foreground italic mt-3">
                     {news.title}
                   </p>
