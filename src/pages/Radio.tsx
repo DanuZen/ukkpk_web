@@ -269,12 +269,12 @@ const Radio = () => {
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
               <div className="inline-block mb-4">
-                <span className="text-sm font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
+                <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
                   <RadioIcon className="w-4 h-4 animate-pulse" />
                   PROGRAM KAMI
                 </span>
               </div>
-              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
                 Jadwal <span className="text-primary">Program</span>
               </h2>
               <p className="text-xs sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
