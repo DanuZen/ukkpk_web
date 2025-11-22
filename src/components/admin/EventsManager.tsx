@@ -140,9 +140,19 @@ export const EventsManager = () => {
 
   return (
     <div className="space-y-2 sm:space-y-3 md:space-y-8">
+      <div className="flex justify-between items-start gap-2">
+        <div>
+          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">
+            {editingId ? "Edit Event" : "Kelola Event"}
+          </h2>
+          <p className="text-xs sm:text-sm text-gray-600">
+            {editingId ? "Perbarui event yang sudah ada" : "Buat dan kelola jadwal event kampus"}
+          </p>
+        </div>
+      </div>
       <Card>
         <CardHeader className="p-2 sm:p-3 md:p-6">
-          <CardTitle className="text-sm sm:text-base md:text-2xl">{editingId ? "Edit Event" : "Tambah Event Baru"}</CardTitle>
+          <CardTitle className="text-sm sm:text-base md:text-xl">{editingId ? "Form Edit Event" : "Form Tambah Event"}</CardTitle>
         </CardHeader>
         <CardContent className="p-2 sm:p-3 md:p-6">
           <form onSubmit={handleSubmit} className="space-y-1.5 sm:space-y-2 md:space-y-4">

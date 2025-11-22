@@ -95,9 +95,19 @@ export const OrganizationManager = () => {
 
   return (
     <div className="space-y-2 sm:space-y-3 md:space-y-6">
+      <div className="flex justify-between items-start gap-2">
+        <div>
+          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">
+            {editingId ? "Edit Struktur" : "Kelola Struktur Organisasi"}
+          </h2>
+          <p className="text-xs sm:text-sm text-gray-600">
+            {editingId ? "Perbarui data anggota organisasi" : "Kelola data pengurus dan struktur UKKPK"}
+          </p>
+        </div>
+      </div>
       <Card>
         <CardHeader className="p-2 sm:p-3 md:p-6">
-          <CardTitle className="text-sm sm:text-base md:text-2xl">
+          <CardTitle className="text-sm sm:text-base md:text-xl">
             {editingId ? "Edit Anggota" : "Tambah Anggota Baru"}
           </CardTitle>
         </CardHeader>

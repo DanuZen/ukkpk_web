@@ -147,10 +147,17 @@ const BannerSection = () => {
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Banner Profil UKKPK</CardTitle>
-      </CardHeader>
+    <div className="space-y-2 sm:space-y-3 md:space-y-6">
+      <div className="flex justify-between items-start gap-2">
+        <div>
+          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">Banner Profil UKKPK</h2>
+          <p className="text-xs sm:text-sm text-gray-600">Upload dan kelola banner untuk halaman Profil UKKPK</p>
+        </div>
+      </div>
+      <Card>
+        <CardHeader className="p-2 sm:p-3 md:p-6">
+          <CardTitle className="text-sm sm:text-base md:text-xl">Form Upload Banner</CardTitle>
+        </CardHeader>
       <CardContent className="space-y-6">
         <p className="text-sm text-muted-foreground">
           Upload banner yang akan ditampilkan di halaman Profil UKKPK. Rekomendasi ukuran: 1920x1080px atau rasio 16:9.
@@ -200,6 +207,7 @@ const BannerSection = () => {
         </div>
       </CardContent>
     </Card>
+    </div>
   );
 };
 
@@ -344,10 +352,17 @@ const SlideshowSection = () => {
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Kelola Slideshow Home</CardTitle>
-      </CardHeader>
+    <div className="space-y-2 sm:space-y-3 md:space-y-6">
+      <div className="flex justify-between items-start gap-2">
+        <div>
+          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">Kelola Slideshow Home</h2>
+          <p className="text-xs sm:text-sm text-gray-600">Upload dan atur kecepatan slideshow di halaman Home</p>
+        </div>
+      </div>
+      <Card>
+        <CardHeader className="p-2 sm:p-3 md:p-6">
+          <CardTitle className="text-sm sm:text-base md:text-xl">Form Slideshow</CardTitle>
+        </CardHeader>
       <CardContent className="space-y-6">
         {/* Speed Control Section */}
         <div className="space-y-4 p-4 bg-muted/30 rounded-lg border border-border">
@@ -433,6 +448,7 @@ const SlideshowSection = () => {
         </div>
       </CardContent>
     </Card>
+    </div>
   );
 };
 
@@ -586,11 +602,21 @@ const StructureSection = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-2 sm:space-y-3 md:space-y-6">
+      <div className="flex justify-between items-start gap-2">
+        <div>
+          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">
+            {editingId ? "Edit Struktur" : "Struktur Organisasi"}
+          </h2>
+          <p className="text-xs sm:text-sm text-gray-600">
+            {editingId ? "Perbarui struktur organisasi yang ada" : "Tambah dan kelola struktur DPH pengurus per tahun"}
+          </p>
+        </div>
+      </div>
       <Card>
-        <CardHeader>
-          <CardTitle>
-            {editingId ? "Edit Struktur Organisasi" : "Tambah Struktur Organisasi"}
+        <CardHeader className="p-2 sm:p-3 md:p-6">
+          <CardTitle className="text-sm sm:text-base md:text-xl">
+            {editingId ? "Form Edit Struktur" : "Form Tambah Struktur"}
           </CardTitle>
         </CardHeader>
         <CardContent>

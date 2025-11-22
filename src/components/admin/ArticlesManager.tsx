@@ -203,10 +203,20 @@ export const ArticlesManager = () => {
 
   return (
     <div className="space-y-3 sm:space-y-4 md:space-y-6">
+      <div className="flex justify-between items-start gap-2">
+        <div>
+          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">
+            {editingId ? "Edit Artikel" : "Kelola Artikel"}
+          </h2>
+          <p className="text-xs sm:text-sm text-gray-600">
+            {editingId ? "Perbarui artikel yang sudah ada" : "Buat dan kelola konten artikel"}
+          </p>
+        </div>
+      </div>
       <Card>
         <CardHeader className="p-3 sm:p-4 md:p-6">
-          <CardTitle className="text-base sm:text-lg md:text-2xl">
-            {editingId ? "Edit Artikel" : "Tambah Artikel Baru"}
+          <CardTitle className="text-base sm:text-lg md:text-xl">
+            {editingId ? "Form Edit Artikel" : "Form Tambah Artikel"}
           </CardTitle>
         </CardHeader>
         <CardContent className="p-3 sm:p-4 md:p-6">

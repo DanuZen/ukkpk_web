@@ -115,10 +115,16 @@ export const MapManager = () => {
       });
     }
   };
-  return <div className="space-y-6">
+  return <div className="space-y-2 sm:space-y-3 md:space-y-6">
+      <div className="flex justify-between items-start gap-2">
+        <div>
+          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">Pengaturan Peta Lokasi</h2>
+          <p className="text-xs sm:text-sm text-gray-600">Kelola lokasi dan embed Google Maps untuk sekretariat UKKPK</p>
+        </div>
+      </div>
       <Card>
-        <CardHeader>
-          <CardTitle>Pengaturan Lokasi & Peta</CardTitle>
+        <CardHeader className="p-2 sm:p-3 md:p-6">
+          <CardTitle className="text-sm sm:text-base md:text-xl">Form Pengaturan Peta</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
