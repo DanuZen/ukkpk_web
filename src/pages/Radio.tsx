@@ -319,7 +319,7 @@ const Radio = () => {
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
                   </div>
                   
-                  <CardHeader className="relative">
+                  <CardHeader className="relative px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6">
                     <div className="flex items-start gap-4">
                       <div className="relative">
                         <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 border border-primary/20">
@@ -343,7 +343,7 @@ const Radio = () => {
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent className="relative space-y-3">
+                  <CardContent className="relative space-y-3 px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6">
                     <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2 group-hover:text-foreground/80 transition-colors duration-300">
                       {program.description}
                     </p>

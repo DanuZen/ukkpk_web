@@ -138,7 +138,7 @@ const Artikel = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
                   )}
-                  <CardHeader className="space-y-3">
+                  <CardHeader className="space-y-3 px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6">
                     <div className="flex items-center justify-between gap-2">
                       {article.category && (
                         <Badge className="bg-primary/10 text-primary hover:bg-primary/20">
@@ -153,7 +153,7 @@ const Artikel = () => {
                       {article.title}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6">
                     <p className="text-xs sm:text-sm md:text-base text-muted-foreground line-clamp-4 leading-relaxed">
                       {stripHtml(article.content)}
                     </p>
