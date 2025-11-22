@@ -465,6 +465,98 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
           </Select>
         </div>
 
+        {/* Paragraph Spacing */}
+        <div className="flex gap-1 pl-2 border-l border-border">
+          <ToolbarButton
+            onClick={() => {
+              const selection = editor.view.state.selection;
+              const { $from } = selection;
+              const node = $from.parent;
+              
+              if (node.type.name === 'paragraph') {
+                const dom = editor.view.domAtPos($from.pos);
+                const element = dom.node as HTMLElement;
+                const para = element.closest('p');
+                if (para) {
+                  const currentMargin = window.getComputedStyle(para).marginTop;
+                  const currentValue = parseFloat(currentMargin) || 0;
+                  const newValue = currentValue + 16;
+                  editor.commands.command(({ tr }) => {
+                    const attrs = { ...node.attrs, style: `${node.attrs.style || ''}margin-top: ${newValue}px;` };
+                    tr.setNodeMarkup($from.before(), null, attrs);
+                    return true;
+                  });
+                }
+              }
+            }}
+            title="Tambah Spasi Sebelum Paragraf"
+          >
+            <div className="flex flex-col items-center gap-0.5">
+              <div className="w-3 h-0.5 bg-current"></div>
+              <div className="w-4 h-1 bg-current/50"></div>
+            </div>
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => {
+              const html = editor.getHTML();
+              const updatedHtml = html.replace(/style="[^"]*margin-top:[^;"]*;?/g, (match) => {
+                return match.replace(/margin-top:[^;"]*;?/, '');
+              });
+              editor.commands.setContent(updatedHtml);
+            }}
+            title="Hapus Spasi Sebelum Paragraf"
+          >
+            <div className="flex flex-col items-center gap-0">
+              <div className="w-3 h-0.5 bg-current"></div>
+              <div className="w-4 h-1 bg-current/50"></div>
+            </div>
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => {
+              const selection = editor.view.state.selection;
+              const { $from } = selection;
+              const node = $from.parent;
+              
+              if (node.type.name === 'paragraph') {
+                const dom = editor.view.domAtPos($from.pos);
+                const element = dom.node as HTMLElement;
+                const para = element.closest('p');
+                if (para) {
+                  const currentMargin = window.getComputedStyle(para).marginBottom;
+                  const currentValue = parseFloat(currentMargin) || 0;
+                  const newValue = currentValue + 16;
+                  editor.commands.command(({ tr }) => {
+                    const attrs = { ...node.attrs, style: `${node.attrs.style || ''}margin-bottom: ${newValue}px;` };
+                    tr.setNodeMarkup($from.before(), null, attrs);
+                    return true;
+                  });
+                }
+              }
+            }}
+            title="Tambah Spasi Setelah Paragraf"
+          >
+            <div className="flex flex-col items-center gap-0.5">
+              <div className="w-4 h-1 bg-current/50"></div>
+              <div className="w-3 h-0.5 bg-current"></div>
+            </div>
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => {
+              const html = editor.getHTML();
+              const updatedHtml = html.replace(/style="[^"]*margin-bottom:[^;"]*;?/g, (match) => {
+                return match.replace(/margin-bottom:[^;"]*;?/, '');
+              });
+              editor.commands.setContent(updatedHtml);
+            }}
+            title="Hapus Spasi Setelah Paragraf"
+          >
+            <div className="flex flex-col items-center gap-0">
+              <div className="w-4 h-1 bg-current/50"></div>
+              <div className="w-3 h-0.5 bg-current"></div>
+            </div>
+          </ToolbarButton>
+        </div>
+
         {/* Text Color */}
         <div className="flex gap-1 pl-2 border-l border-border">
           <input
