@@ -380,8 +380,8 @@ export const RichTextEditor = ({
       </div>
 
       {/* Ruler */}
-      <div className="bg-white border-b border-border overflow-hidden">
-        <div className="max-w-[21cm] mx-auto relative h-5 bg-gray-50">
+      <div className="bg-white border-b-2 border-gray-300 overflow-hidden">
+        <div className="max-w-[21cm] mx-auto relative h-7 bg-gradient-to-b from-gray-100 to-gray-50 border-x border-gray-200">
           <div className="absolute inset-0 flex items-end px-8">
             {/* Ruler markings */}
             {Array.from({
@@ -391,13 +391,13 @@ export const RichTextEditor = ({
             return <div key={i} className="flex-1 relative">
                   {/* Major tick marks (every 5cm) */}
                   {isMajor && <>
-                      <div className="absolute bottom-0 left-0 w-px h-3 bg-gray-400" />
-                      <div className="absolute bottom-3 left-0 text-[9px] text-gray-500 -translate-x-1/2">
+                      <div className="absolute bottom-0 left-0 w-0.5 h-4 bg-gray-600" />
+                      <div className="absolute bottom-4 left-0 text-[10px] font-medium text-gray-700 -translate-x-1/2">
                         {i}
                       </div>
                     </>}
                   {/* Minor tick marks (every 1cm) */}
-                  {!isMajor && <div className="absolute bottom-0 left-0 w-px h-2 bg-gray-300" />}
+                  {!isMajor && <div className="absolute bottom-0 left-0 w-px h-2.5 bg-gray-400" />}
                 </div>;
           })}
           </div>
