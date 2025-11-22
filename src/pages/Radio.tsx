@@ -84,33 +84,39 @@ const Radio = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const {
-          data: programsData
-        } = await supabase.from("radio_programs").select("*").order("day_of_week", {
-          ascending: true
-        }).order("air_time", {
-          ascending: true
-        });
-        const {
-          data: settingsData
-        } = await supabase.from("radio_settings").select("streaming_url, banner_image_url").single();
+        const { data: programsData } = await supabase
+          .from("radio_programs")
+          .select("*")
+          .order("day_of_week", { ascending: true })
+          .order("air_time", { ascending: true });
+
+        const { data: settingsData } = await supabase
+          .from("radio_settings")
+          .select("streaming_url, banner_image_url")
+          .single();
+
         setPrograms(programsData || []);
         setSettings(settingsData);
-        if (programsData) {
-          setCurrentProgram(getCurrentProgram(programsData));
-        }
       } catch (error) {
         console.error("Error fetching radio data:", error);
       }
     };
+
     fetchData();
+  }, []);
+
+  // Update current program and countdown based on latest schedule
+  useEffect(() => {
+    if (!programs.length) return;
+
+    // Set initial current program
+    setCurrentProgram(getCurrentProgram(programs));
 
     // Update current program every minute
     const interval = setInterval(() => {
-      if (programs.length > 0) {
-        setCurrentProgram(getCurrentProgram(programs));
-      }
+      setCurrentProgram(getCurrentProgram(programs));
     }, 60000);
+
     return () => clearInterval(interval);
   }, [programs]);
   const handleListen = () => {
