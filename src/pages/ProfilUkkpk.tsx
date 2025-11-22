@@ -244,8 +244,8 @@ const ProfilUkkpk = () => {
         </section>
 
       {/* Tentang UKKPK */}
-      <section className="min-h-[85vh] flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-2 sm:px-4 relative overflow-hidden bg-background scroll-mt-20">
-        <div className="container mx-auto relative z-10">
+      <section className="min-h-[85vh] flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-1 sm:px-4 relative overflow-hidden bg-background scroll-mt-20">
+        <div className="container mx-auto px-1 sm:px-4 relative z-10">
           <div className="max-w-5xl mx-auto">
             {/* Section Header */}
             <AnimatedSection animation="fade-up">
@@ -287,8 +287,8 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Visi & Misi */}
-      <section className="min-h-[85vh] flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-2 sm:px-4 relative overflow-hidden bg-background scroll-mt-20">
-        <div className="container mx-auto relative z-10">
+      <section className="min-h-[85vh] flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-1 sm:px-4 relative overflow-hidden bg-background scroll-mt-20">
+        <div className="container mx-auto px-1 sm:px-4 relative z-10">
           <div className="max-w-5xl mx-auto">
             <AnimatedSection animation="fade-up">
               <div className="text-center mb-12">
@@ -358,8 +358,8 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Sejarah Section */}
-      <section className="min-h-screen flex items-center py-16 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 px-2 sm:px-4 bg-gray-100">
-        <div className="container mx-auto">
+      <section className="min-h-screen flex items-center py-16 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 px-1 sm:px-4 bg-gray-100">
+        <div className="container mx-auto px-1 sm:px-4">
           <div className="max-w-6xl mx-auto">
             <AnimatedSection animation="fade-up" delay={100}>
               <div className="text-center mb-12">
@@ -506,8 +506,8 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Bidang Kegiatan */}
-      <section className="min-h-screen flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-2 sm:px-4 relative overflow-hidden bg-background scroll-mt-20">
-        <div className="container mx-auto relative z-10">
+      <section className="min-h-screen flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-1 sm:px-4 relative overflow-hidden bg-background scroll-mt-20">
+        <div className="container mx-auto px-1 sm:px-4 relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
               <div className="inline-block mb-4">
@@ -592,11 +592,11 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Nilai-Nilai */}
-      <section className="min-h-[85vh] flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-2 sm:px-4 relative overflow-hidden scroll-mt-20 bg-gray-100">
+      <section className="min-h-[85vh] flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-1 sm:px-4 relative overflow-hidden scroll-mt-20 bg-gray-100">
         {/* Light gradient background */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-transparent" />
 
-        <div className="container mx-auto relative z-10">
+        <div className="container mx-auto px-1 sm:px-4 relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
               <div className="inline-block mb-4">
@@ -636,8 +636,8 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Struktur Organisasi */}
-      <section className="py-16 sm:py-24 md:py-32 lg:py-40 px-2 sm:px-4 relative overflow-hidden bg-background">
-        <div className="container mx-auto relative z-10">
+      <section className="py-16 sm:py-24 md:py-32 lg:py-40 px-1 sm:px-4 relative overflow-hidden bg-background">
+        <div className="container mx-auto px-1 sm:px-4 relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
               <div className="inline-block mb-4">
