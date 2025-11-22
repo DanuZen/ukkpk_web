@@ -30,6 +30,9 @@ interface News {
   created_at: string;
   cameraman: string[] | null;
   category: string | null;
+  author: string | null;
+  editor: string | null;
+  published_at: string | null;
 }
 
 export const NewsManager = () => {
@@ -163,8 +166,18 @@ export const NewsManager = () => {
     }
   };
 
-  const handleEdit = (item: any) => {
+  const handleEdit = (item: News) => {
     setEditingId(item.id);
+    
+    // Parse published_at to date and time if exists
+    let publishDate = "";
+    let publishTime = "";
+    if (item.published_at) {
+      const date = new Date(item.published_at);
+      publishDate = date.toISOString().split('T')[0];
+      publishTime = date.toTimeString().slice(0, 5);
+    }
+    
     setFormData({
       title: item.title,
       content: item.content,
@@ -172,10 +185,13 @@ export const NewsManager = () => {
       editor: item.editor || "",
       category: item.category || "",
       image_url: item.image_url || "",
-      publish_date: "",
-      publish_time: "",
+      publish_date: publishDate,
+      publish_time: publishTime,
     });
     setCameramen(Array.isArray(item.cameraman) ? item.cameraman : []);
+    
+    // Scroll to form
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleAddCameraman = () => {
