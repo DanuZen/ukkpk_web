@@ -118,15 +118,35 @@ const Radio = () => {
       window.open(settings.streaming_url, "_blank");
     }
   };
+  
+  // Preload banner image for faster loading
+  useEffect(() => {
+    if (settings?.banner_image_url) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = settings.banner_image_url;
+      document.head.appendChild(link);
+      
+      return () => {
+        document.head.removeChild(link);
+      };
+    }
+  }, [settings?.banner_image_url]);
+  
   return <Layout>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
         {/* Background Image with Dark Overlay - Only if set by admin */}
         {settings?.banner_image_url && (
           <>
-            <div className="absolute inset-0 bg-cover bg-center" style={{
-              backgroundImage: `url(${settings.banner_image_url})`
-            }}></div>
+            <img 
+              src={settings.banner_image_url} 
+              alt="Radio Banner" 
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="eager"
+              fetchPriority="high"
+            />
             <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
           </>
         )}
