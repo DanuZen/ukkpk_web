@@ -28,6 +28,9 @@ interface Article {
   category: string | null;
   image_url: string | null;
   created_at: string;
+  author: string | null;
+  editor: string | null;
+  published_at: string | null;
 }
 
 export const ArticlesManager = () => {
@@ -159,16 +162,29 @@ export const ArticlesManager = () => {
 
   const handleEdit = (article: Article) => {
     setEditingId(article.id);
+    
+    // Parse published_at to date and time if exists
+    let publishDate = "";
+    let publishTime = "";
+    if (article.published_at) {
+      const date = new Date(article.published_at);
+      publishDate = date.toISOString().split('T')[0];
+      publishTime = date.toTimeString().slice(0, 5);
+    }
+    
     setFormData({
       title: article.title,
       content: article.content,
       category: article.category || "",
-      author: "",
-      editor: "",
+      author: article.author || "",
+      editor: article.editor || "",
       image_url: article.image_url || "",
-      publish_date: "",
-      publish_time: "",
+      publish_date: publishDate,
+      publish_time: publishTime,
     });
+    
+    // Scroll to form
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleDelete = async (id: string) => {
