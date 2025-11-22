@@ -79,7 +79,7 @@ const Index = () => {
       {/* Artikel & Berita Section - Gabungan */}
       <section className="min-h-[70vh] sm:min-h-screen flex items-center py-2 sm:py-24 md:py-32 lg:py-40 -mt-6 sm:mt-0 scroll-mt-20 bg-white relative overflow-hidden">
         
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="container mx-auto px-2 sm:px-6 relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-6 sm:mb-8 md:mb-10 pt-12 sm:pt-16 md:pt-20">
               <div className="inline-block mb-4">
