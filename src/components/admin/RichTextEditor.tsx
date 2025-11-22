@@ -122,7 +122,7 @@ export const RichTextEditor = ({
     },
     editorProps: {
       attributes: {
-        class: 'prose prose-sm sm:prose-base max-w-none focus:outline-none min-h-[500px] p-8 sm:p-12 bg-white [&_p]:leading-relaxed [&_p]:mb-4 cursor-text caret-primary [&_ul]:list-disc [&_ul]:ml-6 [&_ul]:my-3 [&_ol]:list-decimal [&_ol]:ml-6 [&_ol]:my-3 [&_li]:ml-0 [&_li]:leading-relaxed'
+        class: 'prose prose-xs sm:prose-sm md:prose-base max-w-none focus:outline-none min-h-[500px] p-4 sm:p-8 md:p-12 bg-white [&_p]:leading-relaxed [&_p]:mb-4 cursor-text caret-primary [&_ul]:list-disc [&_ul]:ml-6 [&_ul]:my-3 [&_ol]:list-decimal [&_ol]:ml-6 [&_ol]:my-3 [&_li]:ml-0 [&_li]:leading-relaxed text-sm md:text-base'
       },
       handleDrop: (view, event, slice, moved) => {
         if (!moved && event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0]) {
