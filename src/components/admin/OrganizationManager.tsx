@@ -94,7 +94,7 @@ export const OrganizationManager = () => {
   };
 
   return (
-    <div className="space-y-2 sm:space-y-3 md:space-y-6">
+    <div className="space-y-3 sm:space-y-4 md:space-y-6">
       <div className="flex justify-between items-start gap-2">
         <div>
           <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">
@@ -106,50 +106,50 @@ export const OrganizationManager = () => {
         </div>
       </div>
       <Card>
-        <CardHeader className="p-2 sm:p-3 md:p-6">
+        <CardHeader className="p-3 sm:p-4 md:p-6">
           <CardTitle className="text-sm sm:text-base md:text-xl">
             {editingId ? "Edit Anggota" : "Tambah Anggota Baru"}
           </CardTitle>
         </CardHeader>
-        <CardContent className="p-2 sm:p-3 md:p-6">
-          <form onSubmit={handleSubmit} className="space-y-1.5 sm:space-y-2 md:space-y-4">
+        <CardContent className="p-3 sm:p-4 md:p-6">
+          <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-3 md:space-y-4">
             <div className="space-y-0.5 sm:space-y-1">
-              <Label htmlFor="name" className="text-xs sm:text-sm">Nama</Label>
+              <Label htmlFor="name" className="text-[10px] sm:text-xs md:text-sm">Nama</Label>
               <Input
                 id="name"
                 value={formData.name}
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
-                className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
+                className="h-8 sm:h-9 md:h-10 text-xs sm:text-sm"
                 required
               />
             </div>
             <div className="space-y-0.5 sm:space-y-1">
-              <Label htmlFor="position" className="text-xs sm:text-sm">Jabatan</Label>
+              <Label htmlFor="position" className="text-[10px] sm:text-xs md:text-sm">Jabatan</Label>
               <Input
                 id="position"
                 value={formData.position}
                 onChange={(e) =>
                   setFormData({ ...formData, position: e.target.value })
                 }
-                className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
+                className="h-8 sm:h-9 md:h-10 text-xs sm:text-sm"
                 required
               />
             </div>
             <div className="space-y-0.5 sm:space-y-1">
-              <Label htmlFor="photo_url" className="text-xs sm:text-sm">URL Foto</Label>
+              <Label htmlFor="photo_url" className="text-[10px] sm:text-xs md:text-sm">URL Foto</Label>
               <Input
                 id="photo_url"
                 value={formData.photo_url}
                 onChange={(e) =>
                   setFormData({ ...formData, photo_url: e.target.value })
                 }
-                className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
+                className="h-8 sm:h-9 md:h-10 text-xs sm:text-sm"
               />
             </div>
             <div className="space-y-0.5 sm:space-y-1">
-              <Label htmlFor="order_index" className="text-xs sm:text-sm">Urutan</Label>
+              <Label htmlFor="order_index" className="text-[10px] sm:text-xs md:text-sm">Urutan</Label>
               <Input
                 id="order_index"
                 type="number"
@@ -160,11 +160,11 @@ export const OrganizationManager = () => {
                     order_index: parseInt(e.target.value),
                   })
                 }
-                className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
+                className="h-8 sm:h-9 md:h-10 text-xs sm:text-sm"
               />
             </div>
-            <div className="flex gap-1 sm:gap-2">
-              <Button type="submit" className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm flex-1">
+            <div className="flex gap-1.5 sm:gap-2">
+              <Button type="submit" className="h-8 sm:h-9 md:h-10 text-[10px] sm:text-xs md:text-sm flex-1">
                 {editingId ? "Update" : "Tambah"}
               </Button>
               {editingId && (
@@ -180,6 +180,7 @@ export const OrganizationManager = () => {
                     order_index: 0,
                   });
                 }}
+                className="h-8 sm:h-9 md:h-10 text-[10px] sm:text-xs md:text-sm"
               >
                 Batal
               </Button>
@@ -189,40 +190,40 @@ export const OrganizationManager = () => {
         </CardContent>
       </Card>
 
-      <div className="grid gap-1.5 sm:gap-2 md:gap-4 grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-2 sm:gap-3 md:gap-4 grid-cols-2 lg:grid-cols-3">
         {members.map((member) => (
           <Card key={member.id}>
-            <CardContent className="p-2 sm:p-3 md:p-6">
-              <div className="flex flex-col items-center text-center space-y-1 sm:space-y-1.5 md:space-y-2">
+            <CardContent className="p-3 sm:p-4 md:p-6">
+              <div className="flex flex-col items-center text-center space-y-1 sm:space-y-2 md:space-y-3">
                 {member.photo_url && (
                   <img
                     src={member.photo_url}
                     alt={member.name}
-                    className="w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 rounded-full object-cover"
+                    className="w-14 h-14 sm:w-16 sm:h-16 md:w-24 md:h-24 rounded-full object-cover"
                   />
                 )}
                       <div>
-                        <p className="font-medium text-xs sm:text-sm md:text-base line-clamp-1">{member.name}</p>
-                        <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground line-clamp-1">
+                        <p className="font-medium text-[10px] sm:text-xs md:text-sm line-clamp-1">{member.name}</p>
+                        <p className="text-[9px] sm:text-[10px] md:text-xs text-muted-foreground line-clamp-1">
                           {member.position}
                         </p>
                       </div>
-                <div className="flex gap-0.5 sm:gap-1 md:gap-2 mt-1 sm:mt-2 md:mt-4">
+                <div className="flex gap-1 sm:gap-1.5 md:gap-2 mt-1 sm:mt-2 md:mt-3">
                   <Button
                     size="sm"
                     variant="outline"
                     onClick={() => handleEdit(member)}
-                    className="h-6 w-6 sm:h-7 sm:w-7 md:h-9 md:w-9 p-0"
+                    className="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 p-0"
                   >
-                    <Pencil className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4" />
+                    <Pencil className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4" />
                   </Button>
                   <Button
                     size="sm"
                     variant="destructive"
                     onClick={() => handleDelete(member.id)}
-                    className="h-6 w-6 sm:h-7 sm:w-7 md:h-9 md:w-9 p-0"
+                    className="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 p-0"
                   >
-                    <Trash2 className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4" />
+                    <Trash2 className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4" />
                   </Button>
                 </div>
               </div>
