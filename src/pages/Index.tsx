@@ -284,12 +284,12 @@ const Index = () => {
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-8 sm:mb-10 md:mb-12">
               <div className="inline-block mb-4">
-                <span className="text-sm font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
-                  <MapPin className="w-4 h-4 animate-pulse" />
+                <span className="text-xs sm:text-sm font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
+                  <MapPin className="w-3 h-3 animate-pulse" />
                   LOKASI KAMI
                 </span>
               </div>
-              <h2 className="text-xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
                 Lokasi <span className="text-primary">Sekretariat UKKPK</span>
               </h2>
               <p className="text-xs sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
@@ -427,14 +427,14 @@ const Index = () => {
         <div id="contact" className="relative z-10 container mx-auto max-w-5xl">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-6 sm:mb-8 md:mb-10">
-              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-3 sm:mb-4 md:mb-6">
-                <MessageSquare className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
-                <span className="text-[10px] sm:text-sm font-medium text-primary">
-                  Hubungi Kami
+              <div className="inline-block mb-4">
+                <span className="text-xs sm:text-sm font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
+                  <MessageSquare className="w-3 h-3 animate-pulse" />
+                  HUBUNGI KAMI
                 </span>
               </div>
-              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
-                Kritik dan Saran
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 md:mb-6">
+                Kritik dan <span className="text-primary">Saran</span>
               </h2>
               <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
             </div>
