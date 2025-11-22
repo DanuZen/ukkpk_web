@@ -83,12 +83,12 @@ const Index = () => {
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-6 sm:mb-8 md:mb-10 pt-12 sm:pt-16 md:pt-20">
               <div className="inline-block mb-4">
-                <span className="text-sm font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
+                <span className="text-xs sm:text-sm font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
                   <FileText className="w-4 h-4 animate-pulse" />
                   KONTEN TERBARU
                 </span>
               </div>
-              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4">
                 Artikel & <span className="text-primary">Berita Terbaru</span>
               </h2>
               <p className="text-xs sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">

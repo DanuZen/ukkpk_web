@@ -74,12 +74,12 @@ const Berita = () => {
           <AnimatedSection animation="fade-up">
             <div className="max-w-3xl mx-auto text-center space-y-4 sm:space-y-6">
               <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 mb-4">
-                <span className="text-xs sm:text-sm uppercase font-semibold text-primary flex items-center gap-2">
+                <span className="text-xs uppercase font-semibold text-primary flex items-center gap-2">
                   <Newspaper className="w-4 h-4 animate-pulse" />
                   Publikasi Berita
                 </span>
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
                 Berita <span className="text-primary">Terkini</span>
               </h1>
               <AnimatedSection animation="fade-up" delay={50}>
