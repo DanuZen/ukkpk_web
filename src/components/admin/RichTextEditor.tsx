@@ -22,7 +22,12 @@ import {
   Image as ImageIcon,
   Undo,
   Redo,
-  ChevronsUpDown
+  ChevronsUpDown,
+  Indent,
+  Outdent,
+  Heading1,
+  Heading2,
+  Heading3
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -263,7 +268,7 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
   return (
     <div className="border border-border rounded-lg overflow-hidden bg-muted/30">
       {/* Toolbar */}
-      <div className="border-b border-border bg-muted/50 p-2 flex flex-wrap gap-1 sticky top-0 z-10">
+      <div className="border-b border-border bg-muted/50 p-2 flex flex-wrap gap-1 sticky top-0 z-10 shadow-sm">
         {/* Text Formatting */}
         <div className="flex gap-1 pr-2 border-r border-border">
           <ToolbarButton
@@ -328,6 +333,31 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
           </ToolbarButton>
         </div>
 
+        {/* Headings */}
+        <div className="flex gap-1 pr-2 border-r border-border">
+          <ToolbarButton
+            onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+            active={editor.isActive('heading', { level: 1 })}
+            title="Heading 1"
+          >
+            <Heading1 className="h-4 w-4" />
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+            active={editor.isActive('heading', { level: 2 })}
+            title="Heading 2"
+          >
+            <Heading2 className="h-4 w-4" />
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+            active={editor.isActive('heading', { level: 3 })}
+            title="Heading 3"
+          >
+            <Heading3 className="h-4 w-4" />
+          </ToolbarButton>
+        </div>
+
         {/* Lists */}
         <div className="flex gap-1 pr-2 border-r border-border">
           <ToolbarButton
@@ -343,6 +373,24 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
             title="Numbered List"
           >
             <ListOrdered className="h-4 w-4" />
+          </ToolbarButton>
+        </div>
+
+        {/* Indent Controls */}
+        <div className="flex gap-1 pr-2 border-r border-border">
+          <ToolbarButton
+            onClick={() => editor.chain().focus().liftListItem('listItem').run()}
+            disabled={!editor.can().liftListItem('listItem')}
+            title="Outdent (Shift+Tab)"
+          >
+            <Outdent className="h-4 w-4" />
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => editor.chain().focus().sinkListItem('listItem').run()}
+            disabled={!editor.can().sinkListItem('listItem')}
+            title="Indent (Tab)"
+          >
+            <Indent className="h-4 w-4" />
           </ToolbarButton>
         </div>
 
@@ -394,7 +442,7 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
 
         {/* Line Height */}
         <div className="flex gap-1 pl-2 border-l border-border items-center">
-          <ChevronsUpDown className="h-4 w-4 text-muted-foreground" />
+          <span className="text-xs text-muted-foreground whitespace-nowrap">Jarak Baris:</span>
           <Select
             value={currentLineHeight}
             onValueChange={(value) => {
@@ -402,7 +450,7 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
               editor.chain().focus().setLineHeight(value).run();
             }}
           >
-            <SelectTrigger className="h-8 w-20 text-xs">
+            <SelectTrigger className="h-8 w-[72px] text-xs">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
