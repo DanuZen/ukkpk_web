@@ -500,7 +500,7 @@ export const NewsManager = () => {
                       size="sm"
                       variant="outline"
                       onClick={() => handleEdit(item)}
-                      className="h-6 w-6 sm:h-7 sm:w-7 md:h-9 md:w-9 p-0"
+                      className="h-6 w-6 sm:h-7 sm:w-7 md:h-9 md:w-9 p-0 hover:bg-primary hover:text-white hover:border-primary transition-colors"
                     >
                       <Pencil className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4" />
                     </Button>
