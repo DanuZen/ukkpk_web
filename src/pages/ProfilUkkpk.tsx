@@ -251,8 +251,8 @@ const ProfilUkkpk = () => {
             <AnimatedSection animation="fade-up">
               <div className="text-center mb-12">
               <div className="inline-block mb-4">
-                <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
-                  <Users className="w-4 h-4 animate-pulse" />
+                <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
+                  <Users className="w-3 h-3 animate-pulse" />
                   TENTANG KAMI
                 </span>
               </div>
@@ -293,8 +293,8 @@ const ProfilUkkpk = () => {
             <AnimatedSection animation="fade-up">
               <div className="text-center mb-12">
                 <div className="inline-block mb-4">
-                  <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
-                    <Eye className="w-4 h-4 animate-pulse" />
+                  <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
+                    <Eye className="w-3 h-3 animate-pulse" />
                     VISI & MISI
                   </span>
                 </div>
@@ -364,8 +364,8 @@ const ProfilUkkpk = () => {
             <AnimatedSection animation="fade-up" delay={100}>
               <div className="text-center mb-12">
                 <div className="inline-block mb-4">
-                  <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
-                    <FileText className="w-4 h-4 animate-pulse" />
+                  <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
+                    <FileText className="w-3 h-3 animate-pulse" />
                     PERJALANAN KAMI
                   </span>
                 </div>
@@ -511,8 +511,8 @@ const ProfilUkkpk = () => {
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
               <div className="inline-block mb-4">
-                <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
-                  <Briefcase className="w-4 h-4 animate-pulse" />
+                <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
+                  <Briefcase className="w-3 h-3 animate-pulse" />
                   PROGRAM KAMI
                 </span>
               </div>
@@ -600,8 +600,8 @@ const ProfilUkkpk = () => {
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
               <div className="inline-block mb-4">
-                <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 animate-pulse" />
+                <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
+                  <Sparkles className="w-3 h-3 animate-pulse" />
                   NILAI KAMI
                 </span>
               </div>
@@ -641,8 +641,8 @@ const ProfilUkkpk = () => {
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
               <div className="inline-block mb-4">
-                <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-2">
-                  <Users2 className="w-4 h-4 animate-pulse" />
+                <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
+                  <Users2 className="w-3 h-3 animate-pulse" />
                   TIM KAMI
                 </span>
               </div>
