@@ -221,10 +221,20 @@ export const NewsManager = () => {
 
   return (
     <div className="space-y-2 sm:space-y-3 md:space-y-6">
+      <div className="flex justify-between items-start gap-2">
+        <div>
+          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">
+            {editingId ? "Edit Berita" : "Kelola Berita"}
+          </h2>
+          <p className="text-xs sm:text-sm text-gray-600">
+            {editingId ? "Perbarui berita yang sudah ada" : "Buat dan kelola konten berita terkini"}
+          </p>
+        </div>
+      </div>
       <Card>
         <CardHeader className="p-2 sm:p-3 md:p-6">
-          <CardTitle className="text-sm sm:text-base md:text-2xl">
-            {editingId ? "Edit Berita" : "Tambah Berita Baru"}
+          <CardTitle className="text-sm sm:text-base md:text-xl">
+            {editingId ? "Form Edit Berita" : "Form Tambah Berita"}
           </CardTitle>
         </CardHeader>
         <CardContent className="p-2 sm:p-3 md:p-6">

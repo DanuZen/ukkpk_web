@@ -162,12 +162,17 @@ export const ContactSubmissionsManager = () => {
 
   return (
     <>
+      <div className="flex justify-between items-start gap-2 mb-3 sm:mb-4 md:mb-6">
+        <div>
+          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">Saran & Masukan</h2>
+          <p className="text-xs sm:text-sm text-gray-600">
+            Total: {submissions.length} saran | Testimoni: {testimonialCount}
+          </p>
+        </div>
+      </div>
       <Card>
         <CardHeader className="pb-3 sm:pb-6">
-          <CardTitle className="text-base sm:text-xl">Saran & Masukan</CardTitle>
-          <CardDescription className="text-xs sm:text-sm">
-            Total: {submissions.length} saran | Testimoni: {testimonialCount}
-          </CardDescription>
+          <CardTitle className="text-sm sm:text-base md:text-xl">Daftar Saran</CardTitle>
         </CardHeader>
         <CardContent className="pt-0">
           <div className="mb-3 sm:mb-4">
