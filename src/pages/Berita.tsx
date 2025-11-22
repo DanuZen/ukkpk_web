@@ -94,7 +94,7 @@ const Berita = () => {
       </section>
 
       {/* Search Section */}
-      <section className="py-6 sm:py-8 bg-white">
+      <section className="py-16 sm:py-24 md:py-32 lg:py-40 bg-white">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="scale-in" delay={100}>
             <div className="max-w-2xl mx-auto relative">
@@ -121,7 +121,7 @@ const Berita = () => {
       </section>
 
       {/* News Grid */}
-      <section className="py-8 sm:py-12 md:py-16 bg-white">
+      <section className="py-16 sm:py-24 md:py-32 lg:py-40 bg-white">
         <div className="container mx-auto px-4">
           {filteredNews.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
