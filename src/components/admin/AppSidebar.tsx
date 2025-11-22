@@ -1,4 +1,4 @@
-import { Home, FileText, Newspaper, Radio, Settings, Users, Map, MessageSquare, TrendingUp } from "lucide-react";
+import { Home, FileText, Newspaper, Radio, Settings, Users, Map, MessageSquare, TrendingUp, Image } from "lucide-react";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
 import {
   Sidebar,
@@ -39,6 +39,7 @@ const menuItems = [
     group: "PENGATURAN",
     items: [
       { id: "slideshow", title: "Slideshow Home", icon: Settings },
+      { id: "banner", title: "Banner Profil UKKPK", icon: Image },
       { id: "structure", title: "Struktur Organisasi", icon: Users },
       { id: "maps", title: "Peta Lokasi", icon: Map },
     ],

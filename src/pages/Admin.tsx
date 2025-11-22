@@ -45,6 +45,7 @@ const Admin = () => {
       news: "Kelola Berita",
       radio: "Kelola Radio",
       slideshow: "Slideshow Home",
+      banner: "Banner Profil UKKPK",
       structure: "Struktur Organisasi",
       maps: "Peta Lokasi",
       contact: "Saran Masuk & Testimoni",
@@ -91,6 +92,7 @@ const Admin = () => {
               {activePage === "news" && <NewsManager />}
               {activePage === "radio" && <RadioManager />}
               {activePage === "slideshow" && <ProfileManager activeTab="slideshow" />}
+              {activePage === "banner" && <ProfileManager activeTab="banner" />}
               {activePage === "structure" && <ProfileManager activeTab="structure" />}
               {activePage === "maps" && <MapManager />}
               {activePage === "contact" && <ContactSubmissionsManager />}
