@@ -6,6 +6,7 @@ import Link from '@tiptap/extension-link';
 import Image from '@tiptap/extension-image';
 import { TextStyle } from '@tiptap/extension-text-style';
 import { Color } from '@tiptap/extension-color';
+import { Extension } from '@tiptap/core';
 import { 
   Bold, 
   Italic, 
@@ -20,7 +21,8 @@ import {
   Link2,
   Image as ImageIcon,
   Undo,
-  Redo
+  Redo,
+  ChevronsUpDown
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -29,6 +31,48 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+// Custom line height extension
+const LineHeightExtension = Extension.create({
+  name: 'lineHeight',
+  
+  addGlobalAttributes() {
+    return [
+      {
+        types: ['paragraph', 'heading'],
+        attributes: {
+          lineHeight: {
+            default: null,
+            parseHTML: element => element.style.lineHeight || null,
+            renderHTML: attributes => {
+              if (!attributes.lineHeight) {
+                return {};
+              }
+              return {
+                style: `line-height: ${attributes.lineHeight}`,
+              };
+            },
+          },
+        },
+      },
+    ];
+  },
+  
+  addCommands() {
+    return {
+      setLineHeight: (lineHeight: string) => ({ commands }) => {
+        return commands.updateAttributes('paragraph', { lineHeight });
+      },
+    };
+  },
+});
 
 interface RichTextEditorProps {
   content: string;
@@ -40,6 +84,7 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
   const [showLinkDialog, setShowLinkDialog] = useState(false);
   const [linkUrl, setLinkUrl] = useState('');
   const [uploading, setUploading] = useState(false);
+  const [currentLineHeight, setCurrentLineHeight] = useState('1.75');
   const { toast } = useToast();
 
   const uploadImage = async (file: File): Promise<string | null> => {
@@ -79,6 +124,7 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
       Underline,
       TextStyle,
       Color,
+      LineHeightExtension,
       TextAlign.configure({
         types: ['heading', 'paragraph'],
       }),
@@ -95,7 +141,7 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
     },
       editorProps: {
         attributes: {
-          class: 'prose prose-sm sm:prose-base max-w-none focus:outline-none min-h-[500px] p-8 sm:p-12 bg-white',
+          class: 'prose prose-sm sm:prose-base max-w-none focus:outline-none min-h-[500px] p-8 sm:p-12 bg-white [&_p]:leading-relaxed [&_p]:mb-4',
         },
       handleDrop: (view, event, slice, moved) => {
         if (!moved && event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0]) {
@@ -346,6 +392,31 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
           </ToolbarButton>
         </div>
 
+        {/* Line Height */}
+        <div className="flex gap-1 pl-2 border-l border-border items-center">
+          <ChevronsUpDown className="h-4 w-4 text-muted-foreground" />
+          <Select
+            value={currentLineHeight}
+            onValueChange={(value) => {
+              setCurrentLineHeight(value);
+              editor.chain().focus().setLineHeight(value).run();
+            }}
+          >
+            <SelectTrigger className="h-8 w-20 text-xs">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="1">1.0</SelectItem>
+              <SelectItem value="1.15">1.15</SelectItem>
+              <SelectItem value="1.5">1.5</SelectItem>
+              <SelectItem value="1.75">1.75</SelectItem>
+              <SelectItem value="2">2.0</SelectItem>
+              <SelectItem value="2.5">2.5</SelectItem>
+              <SelectItem value="3">3.0</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
         {/* Text Color */}
         <div className="flex gap-1 pl-2 border-l border-border">
           <input
@@ -417,7 +488,7 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
         <div className="max-w-[21cm] mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
           <EditorContent 
             editor={editor} 
-            className="prose-p:my-4 prose-p:leading-relaxed prose-headings:my-6 prose-headings:font-bold prose-ul:my-4 prose-ol:my-4 prose-li:my-2 prose-img:my-6 prose-img:rounded-lg prose-img:shadow-md"
+            className="prose-p:my-4 prose-headings:mt-8 prose-headings:mb-4 prose-headings:font-bold prose-ul:my-4 prose-ul:space-y-2 prose-ol:my-4 prose-ol:space-y-2 prose-li:leading-relaxed prose-img:my-6 prose-img:rounded-lg prose-img:shadow-md prose-blockquote:my-6 prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:italic"
           />
         </div>
         {uploading && (
