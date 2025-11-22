@@ -24,7 +24,7 @@ interface StrukturOrganisasi {
 }
 
 interface ProfileManagerProps {
-  activeTab?: "slideshow" | "structure";
+  activeTab?: "slideshow" | "structure" | "banner";
 }
 
 export const ProfileManager = ({ activeTab = "slideshow" }: ProfileManagerProps) => {
@@ -32,7 +32,175 @@ export const ProfileManager = ({ activeTab = "slideshow" }: ProfileManagerProps)
     return <SlideshowSection />;
   }
   
+  if (activeTab === "banner") {
+    return <BannerSection />;
+  }
+  
   return <StructureSection />;
+};
+
+// Banner Section
+const BannerSection = () => {
+  const [bannerUrl, setBannerUrl] = useState<string | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchBanner();
+  }, []);
+
+  const fetchBanner = async () => {
+    setLoading(true);
+    const { data } = await supabase
+      .from('profile_settings')
+      .select('banner_url')
+      .maybeSingle();
+    
+    if (data) setBannerUrl(data.banner_url);
+    setLoading(false);
+  };
+
+  const handleUpload = async () => {
+    if (!imageFile) {
+      toast.error('Pilih gambar terlebih dahulu');
+      return;
+    }
+
+    setUploading(true);
+    try {
+      const fileExt = imageFile.name.split('.').pop();
+      const fileName = `${Math.random()}.${fileExt}`;
+      const filePath = `profile/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('uploads')
+        .upload(filePath, imageFile);
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('uploads')
+        .getPublicUrl(filePath);
+
+      // Check if profile settings exist
+      const { data: existing } = await supabase
+        .from('profile_settings')
+        .select('id')
+        .maybeSingle();
+
+      if (existing) {
+        const { error } = await supabase
+          .from('profile_settings')
+          .update({ banner_url: publicUrl })
+          .eq('id', existing.id);
+        
+        if (error) throw error;
+      } else {
+        const { error } = await supabase
+          .from('profile_settings')
+          .insert([{ banner_url: publicUrl }]);
+        
+        if (error) throw error;
+      }
+
+      toast.success('Banner berhasil diupload');
+      setImageFile(null);
+      fetchBanner();
+    } catch (error) {
+      toast.error('Gagal upload banner');
+      console.error(error);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!confirm('Hapus banner Profil UKKPK?')) return;
+
+    try {
+      const { data: existing } = await supabase
+        .from('profile_settings')
+        .select('id')
+        .maybeSingle();
+
+      if (existing) {
+        const { error } = await supabase
+          .from('profile_settings')
+          .update({ banner_url: null })
+          .eq('id', existing.id);
+        
+        if (error) throw error;
+      }
+
+      if (bannerUrl) {
+        const path = bannerUrl.split('/').slice(-2).join('/');
+        await supabase.storage.from('uploads').remove([path]);
+      }
+
+      toast.success('Banner berhasil dihapus');
+      fetchBanner();
+    } catch (error) {
+      toast.error('Gagal menghapus banner');
+      console.error(error);
+    }
+  };
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Banner Profil UKKPK</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <p className="text-sm text-muted-foreground">
+          Upload banner yang akan ditampilkan di halaman Profil UKKPK. Rekomendasi ukuran: 1920x1080px atau rasio 16:9.
+        </p>
+
+        {/* Current Banner Preview */}
+        {loading ? (
+          <div className="w-full h-64 bg-muted animate-pulse rounded-lg" />
+        ) : bannerUrl ? (
+          <div className="relative group">
+            <img
+              src={bannerUrl}
+              alt="Banner Profil UKKPK"
+              className="w-full h-64 object-cover rounded-lg"
+            />
+            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+              <Button
+                variant="destructive"
+                size="icon"
+                onClick={handleDelete}
+              >
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <div className="w-full h-64 bg-muted/30 rounded-lg flex items-center justify-center border-2 border-dashed border-border">
+            <p className="text-muted-foreground">Belum ada banner. Upload banner pertama.</p>
+          </div>
+        )}
+
+        {/* Upload Section */}
+        <div className="space-y-4">
+          <ImageUpload
+            id="banner-upload"
+            label="Upload Banner Baru"
+            onFileSelect={(file) => setImageFile(file)}
+            disabled={uploading}
+          />
+          <Button 
+            onClick={handleUpload} 
+            disabled={uploading || !imageFile}
+            className="w-full"
+          >
+            {uploading ? 'Uploading...' : bannerUrl ? 'Ganti Banner' : 'Upload Banner'}
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  );
 };
 
 // Slideshow Section

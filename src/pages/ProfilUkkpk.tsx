@@ -146,25 +146,39 @@ const ProfilUkkpk = () => {
     title: 'Kreativitas',
     description: 'Mendorong inovasi dan ide-ide segar dalam komunikasi'
   }];
+  // Preload banner image for faster loading
+  useEffect(() => {
+    if (profile?.banner_url) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = profile.banner_url;
+      document.head.appendChild(link);
+      
+      return () => {
+        document.head.removeChild(link);
+      };
+    }
+  }, [profile?.banner_url]);
+
   return <Layout>
       <div className="scroll-smooth">
-        {/* Banner Section */}
-      {profile?.banner_url && <section className="relative w-full min-h-[60vh] overflow-hidden flex items-center">
-          <img src={profile.banner_url} alt="UKKPK Banner" className="w-full h-full object-cover absolute inset-0" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80"></div>
-          <div className="absolute bottom-8 left-0 right-0 text-center">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
-              Profil UKKPK
-            </h1>
-          </div>
-        </section>}
-
-      {/* Hero Section (if no banner) */}
-      {!profile?.banner_url && <section className="relative h-screen flex items-center px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
+        {/* Hero Section with Banner */}
+        <section className="relative h-screen flex items-center px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
           {/* Background Image with Dark Overlay */}
-          <div className="absolute inset-0 bg-cover bg-center" style={{
-          backgroundImage: `url(https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d)`
-        }}></div>
+          {profile?.banner_url ? (
+            <img 
+              src={profile.banner_url} 
+              alt="UKKPK Banner" 
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="eager"
+              fetchPriority="high"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-cover bg-center" style={{
+              backgroundImage: `url(https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d)`
+            }}></div>
+          )}
           <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
           
           <div className="container mx-auto relative z-10">
@@ -227,7 +241,7 @@ const ProfilUkkpk = () => {
               </div>
             </AnimatedSection>
           </div>
-        </section>}
+        </section>
 
       {/* Tentang UKKPK */}
       <section className="min-h-[85vh] flex items-center py-32 md:py-40 px-4 relative overflow-hidden bg-background scroll-mt-20">
