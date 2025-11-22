@@ -146,7 +146,7 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
     },
       editorProps: {
         attributes: {
-          class: 'prose prose-sm sm:prose-base max-w-none focus:outline-none min-h-[500px] p-8 sm:p-12 bg-white [&_p]:leading-relaxed [&_p]:mb-4',
+          class: 'prose prose-sm sm:prose-base max-w-none focus:outline-none min-h-[500px] p-8 sm:p-12 bg-white [&_p]:leading-relaxed [&_p]:mb-4 cursor-text caret-primary',
         },
       handleDrop: (view, event, slice, moved) => {
         if (!moved && event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0]) {
@@ -268,7 +268,7 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
   return (
     <div className="border border-border rounded-lg overflow-hidden bg-muted/30">
       {/* Toolbar */}
-      <div className="border-b border-border bg-muted/50 p-2 flex flex-wrap gap-1 sticky top-0 z-10 shadow-sm">
+      <div className="border-b border-border bg-muted/50 px-2 py-1.5 flex flex-wrap gap-1 sticky top-0 z-10 shadow-sm">
         {/* Text Formatting */}
         <div className="flex gap-1 pr-2 border-r border-border">
           <ToolbarButton
@@ -571,7 +571,7 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
 
       {/* Ruler */}
       <div className="bg-white border-b border-border overflow-hidden">
-        <div className="max-w-[21cm] mx-auto relative h-6 bg-gray-50">
+        <div className="max-w-[21cm] mx-auto relative h-5 bg-gray-50">
           <div className="absolute inset-0 flex items-end px-8">
             {/* Ruler markings */}
             {Array.from({ length: 21 }).map((_, i) => {
@@ -624,11 +624,11 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
       )}
 
       {/* Editor Content */}
-      <div className="relative bg-muted/20 p-4 sm:p-6 md:p-8">
+      <div className="relative bg-muted/20 p-3 sm:p-4 md:p-6">
         <div className="max-w-[21cm] mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
           <EditorContent 
             editor={editor} 
-            className="prose-p:my-4 prose-headings:mt-8 prose-headings:mb-4 prose-headings:font-bold prose-ul:my-4 prose-ul:space-y-2 prose-ol:my-4 prose-ol:space-y-2 prose-li:leading-relaxed prose-img:my-6 prose-img:rounded-lg prose-img:shadow-md prose-blockquote:my-6 prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:italic"
+            className="prose-p:my-3 prose-headings:mt-6 prose-headings:mb-3 prose-headings:font-bold prose-ul:my-3 prose-ul:space-y-1.5 prose-ol:my-3 prose-ol:space-y-1.5 prose-li:leading-relaxed prose-img:my-4 prose-img:rounded-lg prose-img:shadow-md prose-blockquote:my-4 prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:italic"
           />
         </div>
         {uploading && (
@@ -637,7 +637,7 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
           </div>
         )}
       </div>
-      <div className="px-4 py-2 text-xs text-muted-foreground border-t border-border bg-muted/30">
+      <div className="px-3 py-1.5 text-xs text-muted-foreground border-t border-border bg-muted/30">
         💡 Tips: Drag & drop gambar langsung ke editor atau paste dari clipboard
       </div>
     </div>
