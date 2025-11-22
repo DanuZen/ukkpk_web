@@ -230,7 +230,7 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
       disabled={disabled}
       title={title}
       className={cn(
-        "h-8 w-8 p-0",
+        "h-8 w-8 p-0 hover:bg-primary/10 hover:text-primary transition-colors",
         active && "bg-primary/10 text-primary"
       )}
     >
