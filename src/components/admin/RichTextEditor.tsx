@@ -125,7 +125,16 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
 
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        bulletList: {
+          keepMarks: true,
+          keepAttributes: false,
+        },
+        orderedList: {
+          keepMarks: true,
+          keepAttributes: false,
+        },
+      }),
       Underline,
       TextStyle,
       Color,
@@ -146,7 +155,7 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
     },
       editorProps: {
         attributes: {
-          class: 'prose prose-sm sm:prose-base max-w-none focus:outline-none min-h-[500px] p-8 sm:p-12 bg-white [&_p]:leading-relaxed [&_p]:mb-4 cursor-text caret-primary',
+          class: 'prose prose-sm sm:prose-base max-w-none focus:outline-none min-h-[500px] p-8 sm:p-12 bg-white [&_p]:leading-relaxed [&_p]:mb-4 cursor-text caret-primary [&_ul]:list-disc [&_ul]:ml-6 [&_ul]:my-3 [&_ol]:list-decimal [&_ol]:ml-6 [&_ol]:my-3 [&_li]:ml-0 [&_li]:leading-relaxed',
         },
       handleDrop: (view, event, slice, moved) => {
         if (!moved && event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0]) {
@@ -652,7 +661,7 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
         <div className="max-w-[21cm] mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
           <EditorContent 
             editor={editor} 
-            className="prose-p:my-3 prose-headings:mt-6 prose-headings:mb-3 prose-headings:font-bold prose-ul:my-3 prose-ul:space-y-1.5 prose-ol:my-3 prose-ol:space-y-1.5 prose-li:leading-relaxed prose-img:my-4 prose-img:rounded-lg prose-img:shadow-md prose-blockquote:my-4 prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:italic"
+            className="prose-p:my-3 prose-headings:mt-6 prose-headings:mb-3 prose-headings:font-bold prose-ul:my-3 prose-ul:space-y-1.5 prose-ul:list-disc prose-ul:ml-6 prose-ol:my-3 prose-ol:space-y-1.5 prose-ol:list-decimal prose-ol:ml-6 prose-li:leading-relaxed prose-li:ml-0 prose-img:my-4 prose-img:rounded-lg prose-img:shadow-md prose-blockquote:my-4 prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:italic"
           />
         </div>
         {uploading && (
