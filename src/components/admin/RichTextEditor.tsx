@@ -469,25 +469,28 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
         <div className="flex gap-1 pl-2 border-l border-border">
           <ToolbarButton
             onClick={() => {
+              const html = editor.getHTML();
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(html, 'text/html');
               const selection = editor.view.state.selection;
               const { $from } = selection;
-              const node = $from.parent;
               
-              if (node.type.name === 'paragraph') {
-                const dom = editor.view.domAtPos($from.pos);
-                const element = dom.node as HTMLElement;
-                const para = element.closest('p');
-                if (para) {
-                  const currentMargin = window.getComputedStyle(para).marginTop;
-                  const currentValue = parseFloat(currentMargin) || 0;
-                  const newValue = currentValue + 16;
-                  editor.commands.command(({ tr }) => {
-                    const attrs = { ...node.attrs, style: `${node.attrs.style || ''}margin-top: ${newValue}px;` };
-                    tr.setNodeMarkup($from.before(), null, attrs);
-                    return true;
-                  });
-                }
-              }
+              // Find the current paragraph in the document
+              doc.querySelectorAll('p').forEach((p, index) => {
+                const currentStyle = p.getAttribute('style') || '';
+                const marginTopMatch = currentStyle.match(/margin-top:\s*(\d+)px/);
+                const currentMargin = marginTopMatch ? parseInt(marginTopMatch[1]) : 0;
+                const newMargin = currentMargin + 16;
+                
+                // Update or add margin-top
+                const updatedStyle = currentStyle.includes('margin-top:')
+                  ? currentStyle.replace(/margin-top:\s*\d+px/, `margin-top: ${newMargin}px`)
+                  : currentStyle + ` margin-top: ${newMargin}px`;
+                
+                p.setAttribute('style', updatedStyle.trim());
+              });
+              
+              editor.commands.setContent(doc.body.innerHTML);
             }}
             title="Tambah Spasi Sebelum Paragraf"
           >
@@ -499,10 +502,21 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
           <ToolbarButton
             onClick={() => {
               const html = editor.getHTML();
-              const updatedHtml = html.replace(/style="[^"]*margin-top:[^;"]*;?/g, (match) => {
-                return match.replace(/margin-top:[^;"]*;?/, '');
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(html, 'text/html');
+              
+              doc.querySelectorAll('p').forEach((p) => {
+                const currentStyle = p.getAttribute('style') || '';
+                const updatedStyle = currentStyle.replace(/margin-top:\s*\d+px;?/g, '').trim();
+                
+                if (updatedStyle) {
+                  p.setAttribute('style', updatedStyle);
+                } else {
+                  p.removeAttribute('style');
+                }
               });
-              editor.commands.setContent(updatedHtml);
+              
+              editor.commands.setContent(doc.body.innerHTML);
             }}
             title="Hapus Spasi Sebelum Paragraf"
           >
@@ -513,25 +527,24 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
           </ToolbarButton>
           <ToolbarButton
             onClick={() => {
-              const selection = editor.view.state.selection;
-              const { $from } = selection;
-              const node = $from.parent;
+              const html = editor.getHTML();
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(html, 'text/html');
               
-              if (node.type.name === 'paragraph') {
-                const dom = editor.view.domAtPos($from.pos);
-                const element = dom.node as HTMLElement;
-                const para = element.closest('p');
-                if (para) {
-                  const currentMargin = window.getComputedStyle(para).marginBottom;
-                  const currentValue = parseFloat(currentMargin) || 0;
-                  const newValue = currentValue + 16;
-                  editor.commands.command(({ tr }) => {
-                    const attrs = { ...node.attrs, style: `${node.attrs.style || ''}margin-bottom: ${newValue}px;` };
-                    tr.setNodeMarkup($from.before(), null, attrs);
-                    return true;
-                  });
-                }
-              }
+              doc.querySelectorAll('p').forEach((p) => {
+                const currentStyle = p.getAttribute('style') || '';
+                const marginBottomMatch = currentStyle.match(/margin-bottom:\s*(\d+)px/);
+                const currentMargin = marginBottomMatch ? parseInt(marginBottomMatch[1]) : 0;
+                const newMargin = currentMargin + 16;
+                
+                const updatedStyle = currentStyle.includes('margin-bottom:')
+                  ? currentStyle.replace(/margin-bottom:\s*\d+px/, `margin-bottom: ${newMargin}px`)
+                  : currentStyle + ` margin-bottom: ${newMargin}px`;
+                
+                p.setAttribute('style', updatedStyle.trim());
+              });
+              
+              editor.commands.setContent(doc.body.innerHTML);
             }}
             title="Tambah Spasi Setelah Paragraf"
           >
@@ -543,10 +556,21 @@ export const RichTextEditor = ({ content, onChange, placeholder }: RichTextEdito
           <ToolbarButton
             onClick={() => {
               const html = editor.getHTML();
-              const updatedHtml = html.replace(/style="[^"]*margin-bottom:[^;"]*;?/g, (match) => {
-                return match.replace(/margin-bottom:[^;"]*;?/, '');
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(html, 'text/html');
+              
+              doc.querySelectorAll('p').forEach((p) => {
+                const currentStyle = p.getAttribute('style') || '';
+                const updatedStyle = currentStyle.replace(/margin-bottom:\s*\d+px;?/g, '').trim();
+                
+                if (updatedStyle) {
+                  p.setAttribute('style', updatedStyle);
+                } else {
+                  p.removeAttribute('style');
+                }
               });
-              editor.commands.setContent(updatedHtml);
+              
+              editor.commands.setContent(doc.body.innerHTML);
             }}
             title="Hapus Spasi Setelah Paragraf"
           >
