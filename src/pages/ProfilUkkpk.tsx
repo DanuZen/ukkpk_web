@@ -164,7 +164,7 @@ const ProfilUkkpk = () => {
   return <Layout>
       <div className="scroll-smooth">
         {/* Hero Section with Banner */}
-        <section className="relative h-screen flex items-center px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
+        <section className="relative h-screen flex items-center px-2 sm:px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
           {/* Background Image with Dark Overlay */}
           {profile?.banner_url ? (
             <img 
@@ -244,7 +244,7 @@ const ProfilUkkpk = () => {
         </section>
 
       {/* Tentang UKKPK */}
-      <section className="min-h-[85vh] flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-4 relative overflow-hidden bg-background scroll-mt-20">
+      <section className="min-h-[85vh] flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-2 sm:px-4 relative overflow-hidden bg-background scroll-mt-20">
         <div className="container mx-auto relative z-10">
           <div className="max-w-5xl mx-auto">
             {/* Section Header */}
@@ -271,7 +271,7 @@ const ProfilUkkpk = () => {
             {/* Description Card */}
             <AnimatedSection animation="scale-in" delay={100}>
               <Card className="bg-white border-primary/20 shadow-2xl overflow-hidden">
-                <CardContent className="pt-6 pb-6 px-4 sm:pt-8 sm:pb-8 sm:px-6 md:pt-10 md:pb-10 md:px-12 relative">
+                <CardContent className="pt-6 pb-6 px-2 sm:pt-8 sm:pb-8 sm:px-6 md:pt-10 md:pb-10 md:px-12 relative">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
                   <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                   <div className="relative z-10">
@@ -287,7 +287,7 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Visi & Misi */}
-      <section className="min-h-[85vh] flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-4 relative overflow-hidden bg-background scroll-mt-20">
+      <section className="min-h-[85vh] flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-2 sm:px-4 relative overflow-hidden bg-background scroll-mt-20">
         <div className="container mx-auto relative z-10">
           <div className="max-w-5xl mx-auto">
             <AnimatedSection animation="fade-up">
@@ -313,7 +313,7 @@ const ProfilUkkpk = () => {
             <div className="grid md:grid-cols-2 gap-8 mb-16">
               <AnimatedSection animation="slide-right" delay={200}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
-                  <CardContent className="pt-6 pb-6 px-4 sm:pt-8 sm:pb-8 sm:px-6 md:pt-8 md:pb-8 md:px-8 relative">
+                  <CardContent className="pt-6 pb-6 px-2 sm:pt-8 sm:pb-8 sm:px-6 md:pt-8 md:pb-8 md:px-8 relative">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
                         <Sparkles className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -334,7 +334,7 @@ const ProfilUkkpk = () => {
 
               <AnimatedSection animation="slide-left" delay={300}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
-                  <CardContent className="pt-6 pb-6 px-4 sm:pt-8 sm:pb-8 sm:px-6 md:pt-8 md:pb-8 md:px-8 relative">
+                  <CardContent className="pt-6 pb-6 px-2 sm:pt-8 sm:pb-8 sm:px-6 md:pt-8 md:pb-8 md:px-8 relative">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
                         <Rocket className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -358,7 +358,7 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Sejarah Section */}
-      <section className="min-h-screen flex items-center py-16 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 px-4 bg-gray-100">
+      <section className="min-h-screen flex items-center py-16 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 px-2 sm:px-4 bg-gray-100">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <AnimatedSection animation="fade-up" delay={100}>
@@ -383,7 +383,7 @@ const ProfilUkkpk = () => {
             <div className="flex flex-col gap-8 mb-16 max-w-4xl mx-auto">
               <AnimatedSection animation="fade-up" delay={150}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
-                  <CardContent className="pt-6 pb-6 px-4 sm:pt-8 sm:pb-8 sm:px-6 md:pt-8 md:pb-8 md:px-8 relative">
+                  <CardContent className="pt-6 pb-6 px-2 sm:pt-8 sm:pb-8 sm:px-6 md:pt-8 md:pb-8 md:px-8 relative">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
                         <Sparkles className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -412,7 +412,7 @@ const ProfilUkkpk = () => {
 
               <AnimatedSection animation="fade-up" delay={200}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
-                  <CardContent className="pt-6 pb-6 px-4 sm:pt-8 sm:pb-8 sm:px-6 md:pt-8 md:pb-8 md:px-8 relative">
+                  <CardContent className="pt-6 pb-6 px-2 sm:pt-8 sm:pb-8 sm:px-6 md:pt-8 md:pb-8 md:px-8 relative">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
                         <Mic className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -434,7 +434,7 @@ const ProfilUkkpk = () => {
 
               <AnimatedSection animation="fade-up" delay={250}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
-                  <CardContent className="pt-6 pb-6 px-4 sm:pt-8 sm:pb-8 sm:px-6 md:pt-8 md:pb-8 md:px-8 relative">
+                  <CardContent className="pt-6 pb-6 px-2 sm:pt-8 sm:pb-8 sm:px-6 md:pt-8 md:pb-8 md:px-8 relative">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
                         <Waves className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -457,7 +457,7 @@ const ProfilUkkpk = () => {
 
               <AnimatedSection animation="fade-up" delay={300}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
-                  <CardContent className="pt-6 pb-6 px-4 sm:pt-8 sm:pb-8 sm:px-6 md:pt-8 md:pb-8 md:px-8 relative">
+                  <CardContent className="pt-6 pb-6 px-2 sm:pt-8 sm:pb-8 sm:px-6 md:pt-8 md:pb-8 md:px-8 relative">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
                         <Rocket className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -480,7 +480,7 @@ const ProfilUkkpk = () => {
 
               <AnimatedSection animation="fade-up" delay={350}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
-                  <CardContent className="pt-6 pb-6 px-4 sm:pt-8 sm:pb-8 sm:px-6 md:pt-8 md:pb-8 md:px-8 relative">
+                  <CardContent className="pt-6 pb-6 px-2 sm:pt-8 sm:pb-8 sm:px-6 md:pt-8 md:pb-8 md:px-8 relative">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
                         <Shield className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -506,7 +506,7 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Bidang Kegiatan */}
-      <section className="min-h-screen flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-4 relative overflow-hidden bg-background scroll-mt-20">
+      <section className="min-h-screen flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-2 sm:px-4 relative overflow-hidden bg-background scroll-mt-20">
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
@@ -554,7 +554,7 @@ const ProfilUkkpk = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
               {features.slice(0, 4).map((feature, index) => <AnimatedSection key={index} animation="fade-up" delay={100 + index * 100}>
                   <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                    <CardContent className="pt-6 text-center flex flex-col items-center">
+                    <CardContent className="pt-6 px-2 sm:px-4 md:px-6 text-center flex flex-col items-center">
                       <div className="inline-flex p-3 sm:p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
                         {feature.icon}
                       </div>
@@ -573,7 +573,7 @@ const ProfilUkkpk = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {features.slice(4, 7).map((feature, index) => <AnimatedSection key={index + 4} animation="fade-up" delay={500 + index * 100}>
                   <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                    <CardContent className="pt-6 text-center flex flex-col items-center">
+                    <CardContent className="pt-6 px-2 sm:px-4 md:px-6 text-center flex flex-col items-center">
                       <div className="inline-flex p-3 sm:p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
                         {feature.icon}
                       </div>
@@ -592,7 +592,7 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Nilai-Nilai */}
-      <section className="min-h-[85vh] flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-4 relative overflow-hidden scroll-mt-20 bg-gray-100">
+      <section className="min-h-[85vh] flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-2 sm:px-4 relative overflow-hidden scroll-mt-20 bg-gray-100">
         {/* Light gradient background */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-transparent" />
 
@@ -618,7 +618,7 @@ const ProfilUkkpk = () => {
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {values.map((value, index) => <AnimatedSection key={index} animation="scale-in" delay={100 + index * 150}>
                   <Card className="text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                    <CardContent className="pt-6">
+                    <CardContent className="pt-6 px-2 sm:px-4 md:px-6">
                       <div className="inline-flex p-2.5 sm:p-3 rounded-full bg-primary/10 text-primary mb-4">
                         {value.icon}
                       </div>
@@ -636,7 +636,7 @@ const ProfilUkkpk = () => {
       </section>
 
       {/* Struktur Organisasi */}
-      <section className="py-16 sm:py-24 md:py-32 lg:py-40 px-4 relative overflow-hidden bg-background">
+      <section className="py-16 sm:py-24 md:py-32 lg:py-40 px-2 sm:px-4 relative overflow-hidden bg-background">
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
@@ -677,7 +677,7 @@ const ProfilUkkpk = () => {
           {members.length > 0 && <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
               {members.map((member, index) => <AnimatedSection key={member.id} animation="fade-up" delay={100 + index % 3 * 100}>
                   <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                    <CardContent className="p-6 text-center">
+                    <CardContent className="p-2 sm:p-4 md:p-6 text-center">
                       {member.photo_url && <img src={member.photo_url} alt={member.name} className="w-32 h-32 rounded-full mx-auto mb-4 object-cover" />}
                       <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-1">
                         {member.name}
