@@ -177,11 +177,18 @@ const ArtikelDetail = () => {
     }
   };
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('id-ID', {
+    const date = new Date(dateString);
+    const dateStr = date.toLocaleDateString('id-ID', {
       day: 'numeric',
       month: 'long',
-      year: 'numeric'
+      year: 'numeric',
     });
+    const timeStr = date.toLocaleTimeString('id-ID', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    });
+    return `${dateStr} - ${timeStr} WIB`;
   };
   if (loading) {
     return <Layout>
