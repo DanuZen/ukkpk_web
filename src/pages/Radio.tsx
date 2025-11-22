@@ -261,7 +261,7 @@ const Radio = () => {
         </div>
       </section>
       {/* Now Playing & Schedule Section */}
-      <section className="flex items-center py-8 md:py-32 lg:py-40 scroll-mt-20 bg-white">
+      <section className="flex items-center py-16 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 bg-white">
         <div className="container mx-auto px-4">
           {/* Schedule */}
           <div id="jadwal-program" className="relative scroll-mt-20">
