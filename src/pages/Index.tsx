@@ -79,7 +79,7 @@ const Index = () => {
       {/* Artikel & Berita Section - Gabungan */}
       <section className="min-h-[70vh] sm:min-h-screen flex items-center py-2 sm:py-24 md:py-32 lg:py-40 -mt-6 sm:mt-0 scroll-mt-20 bg-white relative overflow-hidden">
         
-        <div className="container mx-auto px-1 sm:px-4 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-6 sm:mb-8 md:mb-10 pt-12 sm:pt-16 md:pt-20">
               <div className="inline-block mb-4">
@@ -243,7 +243,7 @@ const Index = () => {
       </section>
 
       {/* Thank You Section */}
-      <section className="min-h-[60vh] md:min-h-[70vh] flex items-center py-12 sm:py-16 md:py-20 lg:py-24 scroll-mt-20 relative px-1 sm:px-4 bg-gradient-to-b from-primary/90 via-primary to-primary/90 overflow-hidden">
+      <section className="min-h-[60vh] md:min-h-[70vh] flex items-center py-12 sm:py-16 md:py-20 lg:py-24 scroll-mt-20 relative px-4 bg-gradient-to-b from-primary/90 via-primary to-primary/90 overflow-hidden">
         {/* Top gradient fade */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent z-0" />
         
@@ -278,7 +278,7 @@ const Index = () => {
       </section>
 
       {/* Map Section with Location Details */}
-      <section className="min-h-screen flex items-center py-16 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 relative px-1 sm:px-4 bg-white overflow-hidden">
+      <section className="min-h-screen flex items-center py-16 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 relative px-4 bg-white overflow-hidden">
         
         <div className="relative z-10 container mx-auto max-w-7xl">
           <AnimatedSection animation="fade-up">
@@ -422,7 +422,7 @@ const Index = () => {
       <Testimonials />
 
       {/* Contact Section - Kritik dan Saran */}
-      <section className="min-h-[60vh] md:min-h-screen flex items-center py-12 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 relative px-1 sm:px-4 bg-white overflow-hidden">
+      <section className="min-h-[60vh] md:min-h-screen flex items-center py-12 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 relative px-4 bg-white overflow-hidden">
         
         <div id="contact" className="relative z-10 container mx-auto max-w-5xl">
           <AnimatedSection animation="fade-up">
