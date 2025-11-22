@@ -47,6 +47,7 @@ const Berita = () => {
     const { data } = await supabase
       .from('news')
       .select('*')
+      .order('published_at', { ascending: false, nullsFirst: false })
       .order('created_at', { ascending: false });
 
     if (data) {
