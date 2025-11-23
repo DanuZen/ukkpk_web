@@ -275,8 +275,7 @@ const Radio = () => {
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" className="md:w-4 md:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="15 18 9 12 15 6"></polyline>
                   </svg>
-                  <span className="hidden sm:inline">Sebelumnya</span>
-                  <span className="sm:hidden">Prev</span>
+                  Sebelumnya
                 </Button>
                 
                 <Button variant="outline" size="sm" onClick={handleToday} className="font-medium text-xs md:text-sm px-2 py-1.5 md:px-3 md:py-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
@@ -284,8 +283,7 @@ const Radio = () => {
                 </Button>
                 
                 <Button variant="outline" size="sm" onClick={handleNextDay} className="flex items-center gap-1 md:gap-2 text-xs md:text-sm px-2 py-1.5 md:px-3 md:py-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
-                  <span className="hidden sm:inline">Berikutnya</span>
-                  <span className="sm:hidden">Next</span>
+                  Berikutnya
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" className="md:w-4 md:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="9 18 15 12 9 6"></polyline>
                   </svg>
