@@ -270,21 +270,23 @@ const Radio = () => {
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-8" />
               
               {/* Day Navigation */}
-              <div className="flex items-center justify-center gap-4 mb-8">
-                <Button variant="outline" size="sm" onClick={handlePreviousDay} className="flex items-center gap-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div className="flex items-center justify-center gap-2 md:gap-4 mb-8">
+                <Button variant="outline" size="sm" onClick={handlePreviousDay} className="flex items-center gap-1 md:gap-2 text-xs md:text-sm px-2 py-1.5 md:px-3 md:py-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" className="md:w-4 md:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="15 18 9 12 15 6"></polyline>
                   </svg>
-                  Sebelumnya
+                  <span className="hidden sm:inline">Sebelumnya</span>
+                  <span className="sm:hidden">Prev</span>
                 </Button>
                 
-                <Button variant="outline" size="sm" onClick={handleToday} className="font-medium hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
+                <Button variant="outline" size="sm" onClick={handleToday} className="font-medium text-xs md:text-sm px-2 py-1.5 md:px-3 md:py-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
                   Hari Ini
                 </Button>
                 
-                <Button variant="outline" size="sm" onClick={handleNextDay} className="flex items-center gap-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
-                  Berikutnya
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <Button variant="outline" size="sm" onClick={handleNextDay} className="flex items-center gap-1 md:gap-2 text-xs md:text-sm px-2 py-1.5 md:px-3 md:py-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
+                  <span className="hidden sm:inline">Berikutnya</span>
+                  <span className="sm:hidden">Next</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" className="md:w-4 md:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="9 18 15 12 9 6"></polyline>
                   </svg>
                 </Button>
