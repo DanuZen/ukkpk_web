@@ -80,11 +80,11 @@ export const ContactSection = () => {
     youtube: "https://www.youtube.com/@UKKPKUNP",
     tiktok: "#"
   };
-  return <div className="bg-card rounded-lg shadow-xl p-8 sm:p-12 lg:p-16 xl:p-20 h-full">
+  return <div className="bg-card rounded-lg shadow-xl p-4 sm:p-6 lg:p-8 h-full">
 
-      <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
+      <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
         <div>
-          <label className="text-base md:text-lg font-medium mb-2 block">Nama</label>
+          <label className="text-sm md:text-base font-medium mb-1.5 block">Nama</label>
           <Input 
             placeholder="Nama kamu" 
             value={formData.nama} 
@@ -94,12 +94,12 @@ export const ContactSection = () => {
             })} 
             maxLength={100}
             required
-            className="text-base md:text-lg py-6"
+            className="text-sm md:text-base py-2.5"
           />
         </div>
 
         <div>
-          <label className="text-base md:text-lg font-medium mb-2 block">Nomor Telepon</label>
+          <label className="text-sm md:text-base font-medium mb-1.5 block">Nomor Telepon</label>
           <Input 
             type="tel" 
             placeholder="Phone Number" 
@@ -109,12 +109,12 @@ export const ContactSection = () => {
               phone: e.target.value
             })} 
             maxLength={20}
-            className="text-base md:text-lg py-6"
+            className="text-sm md:text-base py-2.5"
           />
         </div>
 
         <div>
-          <label className="text-base md:text-lg font-medium mb-2 block">Email</label>
+          <label className="text-sm md:text-base font-medium mb-1.5 block">Email</label>
           <Input 
             type="email" 
             placeholder="Email Address" 
@@ -125,12 +125,12 @@ export const ContactSection = () => {
             })} 
             maxLength={255}
             required
-            className="text-base md:text-lg py-6"
+            className="text-sm md:text-base py-2.5"
           />
         </div>
 
         <div>
-          <label className="text-base md:text-lg font-medium mb-2 block">Pesan</label>
+          <label className="text-sm md:text-base font-medium mb-1.5 block">Pesan</label>
           <Textarea 
             placeholder="Tuliskan Kritikan maupun saran anda untuk UKKPK UNP"
             value={formData.message} 
@@ -141,12 +141,12 @@ export const ContactSection = () => {
             rows={5} 
             maxLength={1000}
             required
-            className="text-base md:text-lg"
+            className="text-sm md:text-base"
           />
         </div>
 
         <div>
-          <label className="text-base md:text-lg font-medium mb-2 block">Rating</label>
+          <label className="text-sm md:text-base font-medium mb-1.5 block">Rating</label>
           <div className="flex gap-2">
             {[1, 2, 3, 4, 5].map((star) => (
               <button
@@ -174,7 +174,7 @@ export const ContactSection = () => {
           )}
         </div>
 
-        <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 md:py-7 text-base md:text-lg">
+        <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 md:py-3.5 text-sm md:text-base">
           Kirim Pesan
         </Button>
       </form>
