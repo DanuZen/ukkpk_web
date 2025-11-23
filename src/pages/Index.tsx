@@ -83,7 +83,7 @@ const Index = () => {
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-6 sm:mb-8 md:mb-10 pt-12 sm:pt-16 md:pt-20">
               <div className="inline-block mb-4">
-                <span className="text-xs sm:text-sm font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
+                <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
                   <FileText className="w-3 h-3 animate-pulse" />
                   KONTEN TERBARU
                 </span>
@@ -284,7 +284,7 @@ const Index = () => {
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-8 sm:mb-10 md:mb-12">
               <div className="inline-block mb-4">
-                <span className="text-xs sm:text-sm font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
+                <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
                   <MapPin className="w-3 h-3 animate-pulse" />
                   LOKASI KAMI
                 </span>
@@ -426,7 +426,7 @@ const Index = () => {
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-6 sm:mb-8 md:mb-10">
               <div className="inline-block mb-4">
-                <span className="text-xs sm:text-sm font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
+                <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
                   <MessageSquare className="w-3 h-3 animate-pulse" />
                   HUBUNGI KAMI
                 </span>
