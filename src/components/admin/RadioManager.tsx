@@ -303,8 +303,8 @@ export const RadioManager = () => {
         </Dialog>
       </div>
 
-      {/* Mobile Day Selector */}
-      <div className="md:hidden mb-3">
+      {/* Mobile & Tablet Day Selector */}
+      <div className="lg:hidden mb-3">
         <Select value={selectedDayMobile.toString()} onValueChange={(value) => setSelectedDayMobile(parseInt(value))}>
           <SelectTrigger className="h-9 text-sm">
             <SelectValue />
@@ -322,8 +322,8 @@ export const RadioManager = () => {
       {/* Calendar Grid */}
       <Card>
         <CardContent className="p-1.5 sm:p-2 md:p-4">
-          {/* Mobile View - Single Day */}
-          <div className="md:hidden space-y-2">
+          {/* Mobile & Tablet View - Single Day */}
+          <div className="lg:hidden space-y-2">
             <div className="text-center font-semibold bg-gradient-to-r from-primary to-primary/80 text-white rounded py-2 px-3 mb-3">
               {DAYS[selectedDayMobile]}
             </div>
@@ -424,7 +424,7 @@ export const RadioManager = () => {
           </div>
 
           {/* Desktop View - Full Week Grid */}
-          <div className="hidden md:block overflow-x-auto">
+          <div className="hidden lg:block overflow-x-auto">
             <div className="min-w-[1000px]">
               {/* Header with Days */}
               <div className="grid grid-cols-8 gap-1 mb-1">
