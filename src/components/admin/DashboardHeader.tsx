@@ -10,7 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
-import { Home, FileText, Newspaper, Radio, Settings, Users, Map, MessageSquare, TrendingUp } from "lucide-react";
+import { Home, FileText, Newspaper, Radio, Settings, Users, Map, MessageSquare, TrendingUp, Image } from "lucide-react";
 
 interface DashboardHeaderProps {
   title: string;
@@ -40,6 +40,7 @@ const menuItems = [
     group: "PENGATURAN",
     items: [
       { id: "slideshow", title: "Slideshow Home", icon: Settings },
+      { id: "banner", title: "Banner Profil UKKPK", icon: Image },
       { id: "structure", title: "Struktur Organisasi", icon: Users },
       { id: "maps", title: "Peta Lokasi", icon: Map },
     ],
