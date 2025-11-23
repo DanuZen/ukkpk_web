@@ -62,16 +62,16 @@ export const DashboardHeader = ({
   };
   
   return (
-    <header className="sticky top-0 z-50 flex h-14 sm:h-16 items-center gap-2 sm:gap-4 border-b border-primary/20 bg-gradient-to-r from-primary via-primary to-primary shadow-md px-3 sm:px-6">
+    <header className="sticky top-0 z-50 flex h-14 sm:h-16 items-center gap-2 sm:gap-4 border-b bg-white shadow-sm px-3 sm:px-6">
       {/* Desktop Sidebar Trigger */}
       <div className="hidden lg:block">
-        <SidebarTrigger className="text-white" />
+        <SidebarTrigger className="text-gray-700" />
       </div>
 
       {/* Mobile/Tablet Menu */}
       <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="icon" className="lg:hidden text-white hover:text-white hover:bg-white/20">
+          <Button variant="ghost" size="icon" className="lg:hidden text-gray-700 hover:text-primary hover:bg-primary/10">
             <Menu className="h-5 w-5" />
           </Button>
         </SheetTrigger>
@@ -121,7 +121,7 @@ export const DashboardHeader = ({
       </Sheet>
       
       {/* Title - Hidden when search is open on mobile */}
-      <h1 className={`text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white truncate flex-1 min-w-0 ${searchOpen ? 'hidden lg:block' : ''}`}>{title}</h1>
+      <h1 className={`text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 truncate flex-1 min-w-0 ${searchOpen ? 'hidden lg:block' : ''}`}>{title}</h1>
 
       <div className="ml-auto flex items-center gap-1 sm:gap-2">
         {/* Mobile/Tablet Search Toggle Button */}
@@ -130,7 +130,7 @@ export const DashboardHeader = ({
             variant="ghost" 
             size="icon" 
             onClick={() => setSearchOpen(true)}
-            className="lg:hidden text-white hover:bg-white/20 transition-colors h-8 w-8 sm:h-9 sm:w-9"
+            className="lg:hidden text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9"
           >
             <Search className="h-4 w-4" />
           </Button>
@@ -139,13 +139,13 @@ export const DashboardHeader = ({
         {/* Mobile/Tablet Search Input - Inline */}
         {searchOpen && (
           <div className="relative flex-1 lg:hidden flex items-center gap-2">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
-            <Input placeholder="Search..." className="w-full pl-9 pr-2 h-8 sm:h-9 text-xs sm:text-sm bg-white border-white/30" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+            <Input placeholder="Search..." className="w-full pl-9 pr-2 h-8 sm:h-9 text-xs sm:text-sm bg-gray-50 border-gray-200" />
             <Button 
               variant="ghost" 
               size="icon"
               onClick={() => setSearchOpen(false)}
-              className="text-white hover:bg-white/20 transition-colors h-8 w-8 sm:h-9 sm:w-9 flex-shrink-0"
+              className="text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9 flex-shrink-0"
             >
               <X className="h-4 w-4" />
             </Button>
@@ -154,8 +154,8 @@ export const DashboardHeader = ({
 
         {/* Desktop Search Bar - Always Visible */}
         <div className="relative hidden lg:block">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
-          <Input placeholder="Search..." className="w-48 xl:w-64 pl-9 bg-white border-white/30" />
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+          <Input placeholder="Search..." className="w-48 xl:w-64 pl-9 bg-gray-50 border-gray-200" />
         </div>
 
         {!searchOpen && (
@@ -164,7 +164,7 @@ export const DashboardHeader = ({
               variant="ghost" 
               size="icon" 
               onClick={() => navigate("/")} 
-              className="text-white hover:bg-white/20 transition-colors h-8 w-8 sm:h-9 sm:w-9" 
+              className="text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9" 
               title="Kembali ke Website"
             >
               <ExternalLink className="h-4 w-4" />
@@ -173,7 +173,7 @@ export const DashboardHeader = ({
             <Button 
               variant="ghost" 
               size="icon" 
-              className="hidden sm:flex text-white hover:bg-white/20 transition-colors h-9 w-9"
+              className="hidden sm:flex text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9"
             >
               <Bell className="h-4 w-4 sm:h-5 sm:w-5" />
             </Button>
@@ -184,7 +184,7 @@ export const DashboardHeader = ({
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-8 w-8 sm:h-9 sm:w-9 rounded-full flex-shrink-0">
               <Avatar className="h-8 w-8 sm:h-9 sm:w-9">
-                <AvatarFallback className="bg-white text-primary text-xs">
+                <AvatarFallback className="bg-primary text-white text-xs">
                   {user?.email ? getInitials(user.email) : "AD"}
                 </AvatarFallback>
               </Avatar>
