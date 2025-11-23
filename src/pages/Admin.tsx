@@ -91,6 +91,7 @@ const Admin = () => {
               {activePage === "articles" && <ArticlesManager />}
               {activePage === "news" && <NewsManager />}
               {activePage === "radio" && <RadioManager />}
+              {activePage === "slideshow" && <ProfileManager activeTab="slideshow" />}
               {activePage === "banner" && <ProfileManager activeTab="banner" />}
               {activePage === "structure" && <ProfileManager activeTab="structure" />}
               {activePage === "maps" && <MapManager />}

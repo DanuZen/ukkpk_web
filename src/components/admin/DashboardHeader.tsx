@@ -39,6 +39,7 @@ const menuItems = [
   {
     group: "PENGATURAN",
     items: [
+      { id: "slideshow", title: "Galeri Beranda", icon: Settings },
       { id: "banner", title: "Banner Profil", icon: Image },
       { id: "structure", title: "Struktur Organisasi", icon: Users },
       { id: "maps", title: "Lokasi & Peta", icon: Map },

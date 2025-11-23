@@ -21,17 +21,20 @@ interface StrukturOrganisasi {
   created_at: string;
 }
 interface ProfileManagerProps {
-  activeTab?: "structure" | "banner";
+  activeTab?: "slideshow" | "structure" | "banner";
 }
 export const ProfileManager = ({
-  activeTab = "banner"
+  activeTab = "slideshow"
 }: ProfileManagerProps) => {
-  const [currentTab, setCurrentTab] = useState<"structure" | "banner">(activeTab);
+  const [currentTab, setCurrentTab] = useState<"slideshow" | "structure" | "banner">(activeTab);
 
   return (
     <div className="space-y-4">
       <Tabs value={currentTab} onValueChange={(value) => setCurrentTab(value as any)} className="w-full">
-        <TabsList className="grid w-full grid-cols-2 h-auto">
+        <TabsList className="grid w-full grid-cols-3 h-auto">
+          <TabsTrigger value="slideshow" className="text-xs sm:text-sm py-2">
+            Slideshow Home
+          </TabsTrigger>
           <TabsTrigger value="banner" className="text-xs sm:text-sm py-2">
             Banner Profil
           </TabsTrigger>
@@ -39,6 +42,10 @@ export const ProfileManager = ({
             Struktur Organisasi
           </TabsTrigger>
         </TabsList>
+        
+        <TabsContent value="slideshow" className="mt-4">
+          <SlideshowSection />
+        </TabsContent>
         
         <TabsContent value="banner" className="mt-4">
           <BannerSection />
