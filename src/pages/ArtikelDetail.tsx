@@ -229,9 +229,11 @@ const ArtikelDetail = () => {
             {/* Main Content */}
             <div className="lg:col-span-2">
               {/* Article Title */}
-              <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-tight bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
-                {article.title}
-              </h1>
+              <div className="mt-8 md:mt-12">
+                <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-tight bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+                  {article.title}
+                </h1>
+              </div>
 
               {/* Featured Image */}
               {article.image_url && <div className="mb-4">
