@@ -82,7 +82,7 @@ export const ContactSection = () => {
   };
   return <div className="bg-card rounded-lg shadow-xl p-4 sm:p-6 lg:p-8 h-full">
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
         <div>
           <label className="text-sm font-medium mb-1 block">Nama</label>
           <Input 
