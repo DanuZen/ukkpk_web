@@ -121,10 +121,10 @@ const Berita = () => {
       </section>
 
       {/* News Grid */}
-      <section className="py-16 sm:py-24 md:py-32 lg:py-40 bg-white">
+      <section className="py-8 sm:py-16 md:py-24 lg:py-32 bg-white">
         <div className="container mx-auto px-4">
           {filteredNews.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {filteredNews.map((item, index) => (
                 <AnimatedSection key={item.id} animation="fade-up" delay={index * 100}>
                   <Card 
@@ -132,7 +132,7 @@ const Berita = () => {
                     onClick={() => navigate(`/berita/${item.id}`)}
                   >
                   {item.image_url && (
-                    <div className="relative overflow-hidden h-56">
+                    <div className="relative overflow-hidden h-44 sm:h-48 md:h-56">
                       <img
                         src={item.image_url}
                         alt={item.title}
@@ -141,7 +141,7 @@ const Berita = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
                   )}
-                  <CardHeader className="space-y-3 px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6">
+                  <CardHeader className="space-y-2 sm:space-y-3 px-3 py-3 sm:px-4 sm:py-4 md:px-6 md:py-5">
                     <div className="flex items-center justify-between gap-2">
                       <Badge className="bg-primary/10 text-primary hover:bg-primary/20">
                         Berita
@@ -154,8 +154,8 @@ const Berita = () => {
                       {item.title}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6">
-                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground line-clamp-4 leading-relaxed">
+                  <CardContent className="px-3 py-3 sm:px-4 sm:py-4 md:px-6 md:py-5">
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground line-clamp-3 sm:line-clamp-4 leading-relaxed">
                       {stripHtml(item.content)}
                     </p>
                   </CardContent>
