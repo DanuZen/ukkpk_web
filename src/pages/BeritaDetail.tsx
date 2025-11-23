@@ -186,7 +186,7 @@ const BeritaDetail = () => {
   return <Layout>
       <article className="py-4 md:py-8 px-3 md:px-4">
         <div className="container mx-auto max-w-7xl">
-          <Button variant="ghost" className="mb-3 md:mb-6 text-xs md:text-sm" onClick={() => navigate(-1)}>
+          <Button variant="ghost" className="mb-3 md:mb-6 text-xs md:text-sm hover:bg-muted" onClick={() => navigate(-1)}>
             <ArrowLeft className="mr-1 md:mr-2 h-3 w-3 md:h-4 md:w-4" />
             Kembali
           </Button>
