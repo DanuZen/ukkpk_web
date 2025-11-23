@@ -284,7 +284,7 @@ const SlideshowSection = () => {
   };
   return <div className="space-y-3 sm:space-y-4 md:space-y-6">
       <div>
-        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Kelola Slideshow Home</h2>
+        <h2 className="sm:text-xl md:text-2xl font-bold text-gray-900 text-xl">Kelola Slideshow Home</h2>
         <p className="text-sm sm:text-sm text-gray-600 mt-1">Upload dan atur kecepatan slideshow di halaman Home</p>
       </div>
       <Card>
