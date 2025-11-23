@@ -308,9 +308,9 @@ const Radio = () => {
                   
                   <CardHeader className="relative px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6">
                     <div className="flex items-start gap-4">
-                      <div className="relative">
+                        <div className="relative">
                         <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 border border-primary/20">
-                          <RadioIcon className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-primary group-hover:scale-110 transition-transform duration-300" />
+                          <RadioIcon className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-primary animate-pulse group-hover:scale-110 transition-transform duration-300" />
                         </div>
                         {/* Live indicator if it's the current program */}
                         {currentProgram?.id === program.id && <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-background animate-pulse">
