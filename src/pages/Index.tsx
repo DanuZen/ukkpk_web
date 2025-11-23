@@ -422,7 +422,7 @@ const Index = () => {
       {/* Contact Section - Kritik dan Saran */}
       <section className="min-h-[85vh] md:min-h-screen flex items-center py-24 sm:py-28 md:py-32 lg:py-40 scroll-mt-20 relative px-4 bg-white overflow-hidden">
         
-        <div id="contact" className="relative z-10 container mx-auto max-w-5xl">
+        <div id="contact" className="relative z-10 container mx-auto max-w-6xl">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-6 sm:mb-8 md:mb-10">
               <div className="inline-block mb-4">
