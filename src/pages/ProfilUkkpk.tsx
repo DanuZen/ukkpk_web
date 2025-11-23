@@ -263,7 +263,7 @@ const ProfilUkkpk = () => {
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
                   <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                   <div className="relative z-10">
-                    <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed text-left lg:text-lg sm:text-justify">
+                    <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed text-left sm:text-justify">
                       Unit Kegiatan Komunikasi dan Penyiaran Kampus (UKKPK) adalah organisasi mahasiswa yang bergerak dalam pengembangan bidang komunikasi dan media di lingkungan kampus. UKKPK memiliki tiga bidang utama, yaitu Jurnalistik, Master of Ceremony (MC), dan Radio. Melalui bidang Jurnalistik, UKKPK melakukan peliputan dan penyajian informasi kampus secara akurat serta kreatif. Bidang MC berfokus pada peningkatan kemampuan public speaking dan pembawa acara, sehingga anggota mampu tampil profesional dalam berbagai kegiatan kampus. Sementara itu, bidang Radio menghadirkan program siaran, podcast, serta konten audio yang informatif dan menghibur. Ketiga bidang ini saling melengkapi untuk menjadikan UKKPK sebagai wadah pengembangan bakat mahasiswa dalam dunia komunikasi dan penyiaran.
                     </p>
                   </div>
@@ -562,7 +562,7 @@ const ProfilUkkpk = () => {
                       <div className="inline-flex p-3 sm:p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform relative z-10">
                         {feature.icon}
                       </div>
-                      <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-3 min-h-[3rem] flex items-center justify-center relative z-10">
+                      <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-3 min-h-[3rem] flex items-center justify-center relative z-10">
                         {feature.title}
                       </h3>
                       <p className="text-sm sm:text-base md:text-lg text-muted-foreground text-center leading-relaxed relative z-10">
@@ -583,7 +583,7 @@ const ProfilUkkpk = () => {
                       <div className="inline-flex p-3 sm:p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform relative z-10">
                         {feature.icon}
                       </div>
-                      <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-3 min-h-[3rem] flex items-center justify-center relative z-10">
+                      <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-3 min-h-[3rem] flex items-center justify-center relative z-10">
                         {feature.title}
                       </h3>
                       <p className="text-sm sm:text-base md:text-lg text-muted-foreground text-center leading-relaxed relative z-10">
