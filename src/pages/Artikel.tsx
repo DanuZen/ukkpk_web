@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
-import { Search, Calendar } from "lucide-react";
+import { Search, Calendar, BookOpen } from "lucide-react";
 import { stripHtml } from "@/lib/utils";
 import { AnimatedSection } from "@/components/AnimatedSection";
 
@@ -44,6 +44,7 @@ const Artikel = () => {
     const { data } = await supabase
       .from("articles")
       .select("*")
+      .order("published_at", { ascending: false, nullsFirst: false })
       .order("created_at", { ascending: false });
 
     if (data) {
@@ -63,36 +64,45 @@ const Artikel = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
+      <section className="relative py-8 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d')] opacity-5 bg-cover bg-center"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background"></div>
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
-            <div className="max-w-3xl mx-auto text-center space-y-4 sm:space-y-6">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
-                Artikel UKKPK
+            <div className="max-w-3xl mx-auto text-center space-y-2 sm:space-y-6">
+              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 mb-2">
+                <span className="text-xs uppercase font-semibold text-primary flex items-center gap-1">
+                  <BookOpen className="w-3 h-3 animate-pulse" />
+                  Publikasi Artikel
+                </span>
+              </div>
+              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2">
+                Artikel <span className="text-primary">UKKPK</span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground px-4">
-                Kumpulan artikel, berita, dan informasi terkini seputar kegiatan kampus
-              </p>
+              <AnimatedSection animation="fade-up" delay={50}>
+                <p className="text-xs sm:text-base md:text-lg lg:text-xl text-muted-foreground px-2">
+                  Kumpulan artikel, berita, dan informasi terkini seputar kegiatan kampus. Temukan berbagai tulisan inspiratif, opini mendalam, dan liputan eksklusif dari UKKPK UNP.
+                </p>
+                <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mt-3" />
+              </AnimatedSection>
             </div>
           </AnimatedSection>
         </div>
       </section>
 
       {/* Search Section */}
-      <section className="py-6 sm:py-8 bg-muted/30">
+      <section className="py-3 sm:py-6 md:py-8 lg:py-12 bg-white">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="scale-in" delay={100}>
             <div className="max-w-2xl mx-auto relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5 z-10" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4 sm:h-5 sm:w-5 z-10" />
               {/* Mobile placeholder */}
               <Input
                 type="text"
                 placeholder="Cari Artikel"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="sm:hidden pl-10 py-2 text-sm shadow-lg"
+                className="sm:hidden pl-9 py-1.5 text-xs shadow-md"
               />
               {/* Tablet & Desktop placeholder */}
               <Input
@@ -108,40 +118,18 @@ const Artikel = () => {
       </section>
 
       {/* Articles Grid */}
-      <section className="py-8 sm:py-12 md:py-16 bg-background relative overflow-hidden">
-        {/* Curved geometric background patterns */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full border-[40px] border-gray-100/60" />
-          <div className="absolute top-1/3 -right-24 w-80 h-80 rounded-full border-[30px] border-gray-50" />
-          <div className="absolute -bottom-20 left-1/4 w-[500px] h-[500px] rounded-full border-[60px] border-gray-100/50" />
-          <div className="absolute top-20 right-1/3 w-28 h-28 rounded-full border-[12px] border-primary/10" />
-          
-          <div className="absolute top-0 right-0 w-1/4 h-1/2 opacity-25">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
-              backgroundSize: '18px 18px'
-            }} />
-          </div>
-          
-          <div className="absolute bottom-1/4 left-0 w-72 h-72">
-            <svg viewBox="0 0 200 200" className="w-full h-full opacity-20">
-              <path d="M 0,90 Q 50,50 100,90 T 200,90" stroke="#dc2626" strokeWidth="2" fill="none" />
-              <path d="M 0,110 Q 50,70 100,110 T 200,110" stroke="#dc2626" strokeWidth="2" fill="none" />
-              <path d="M 0,130 Q 50,90 100,130 T 200,130" stroke="#dc2626" strokeWidth="1.5" fill="none" />
-            </svg>
-          </div>
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="py-8 sm:py-16 md:py-24 lg:py-32 bg-white">
+        <div className="container mx-auto px-4">
           {filteredArticles.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {filteredArticles.map((article, index) => (
                 <AnimatedSection key={article.id} animation="fade-up" delay={index * 100}>
                   <Card 
-                    className="overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+                    className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
                     onClick={() => navigate(`/artikel/${article.id}`)}
                   >
                   {article.image_url && (
-                    <div className="relative overflow-hidden h-56">
+                    <div className="relative overflow-hidden h-36 sm:h-48 md:h-56">
                       <img
                         src={article.image_url}
                         alt={article.title}
@@ -150,23 +138,23 @@ const Artikel = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
                   )}
-                  <CardHeader className="space-y-3">
-                    <div className="flex items-center justify-between gap-2">
+                  <CardHeader className="space-y-1.5 sm:space-y-3 px-2.5 py-2.5 sm:px-4 sm:py-4 md:px-6 md:py-5">
+                    <div className="flex items-center justify-between gap-1.5">
                       {article.category && (
-                        <Badge className="bg-primary/10 text-primary hover:bg-primary/20">
+                        <Badge className="bg-primary/10 text-primary hover:bg-primary/20 text-[10px] sm:text-xs px-2 py-0.5">
                           {article.category}
                         </Badge>
                       )}
-                      <span className="text-xs text-muted-foreground">
+                      <span className="text-[10px] sm:text-xs text-muted-foreground">
                         {formatDate(article.published_at || article.created_at)}
                       </span>
                     </div>
-                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-base sm:text-lg md:text-xl">
+                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-lg md:text-xl">
                       {article.title}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground line-clamp-4 leading-relaxed">
+                  <CardContent className="px-2.5 py-2 sm:px-4 sm:py-4 md:px-6 md:py-5">
+                    <p className="text-[11px] sm:text-sm md:text-base text-muted-foreground line-clamp-2 sm:line-clamp-4 leading-relaxed">
                       {stripHtml(article.content)}
                     </p>
                   </CardContent>

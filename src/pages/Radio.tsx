@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Radio as RadioIcon, Play, Clock, Mic } from "lucide-react";
+import { Radio as RadioIcon, Play, Clock, Mic, Volume2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import logoSigmaRadio from "@/assets/logo-sigma-radio.png";
@@ -44,7 +44,7 @@ const Radio = () => {
   };
   const calculateTimeRemaining = (program: RadioProgram) => {
     const now = new Date();
-    
+
     // If program has end_time, use it; otherwise assume 1 hour duration
     let endTime = new Date();
     if (program.end_time) {
@@ -96,20 +96,23 @@ const Radio = () => {
         } = await supabase.from("radio_settings").select("streaming_url, banner_image_url").single();
         setPrograms(programsData || []);
         setSettings(settingsData);
-        if (programsData) {
-          setCurrentProgram(getCurrentProgram(programsData));
-        }
       } catch (error) {
         console.error("Error fetching radio data:", error);
       }
     };
     fetchData();
+  }, []);
+
+  // Update current program and countdown based on latest schedule
+  useEffect(() => {
+    if (!programs.length) return;
+
+    // Set initial current program
+    setCurrentProgram(getCurrentProgram(programs));
 
     // Update current program every minute
     const interval = setInterval(() => {
-      if (programs.length > 0) {
-        setCurrentProgram(getCurrentProgram(programs));
-      }
+      setCurrentProgram(getCurrentProgram(programs));
     }, 60000);
     return () => clearInterval(interval);
   }, [programs]);
@@ -118,18 +121,28 @@ const Radio = () => {
       window.open(settings.streaming_url, "_blank");
     }
   };
+
+  // Preload banner image for faster loading
+  useEffect(() => {
+    if (settings?.banner_image_url) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = settings.banner_image_url;
+      document.head.appendChild(link);
+      return () => {
+        document.head.removeChild(link);
+      };
+    }
+  }, [settings?.banner_image_url]);
   return <Layout>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
         {/* Background Image with Dark Overlay - Only if set by admin */}
-        {settings?.banner_image_url && (
-          <>
-            <div className="absolute inset-0 bg-cover bg-center" style={{
-              backgroundImage: `url(${settings.banner_image_url})`
-            }}></div>
+        {settings?.banner_image_url && <>
+            <img src={settings.banner_image_url} alt="Radio Banner" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchPriority="high" />
             <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
-          </>
-        )}
+          </>}
         
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
@@ -179,36 +192,38 @@ const Radio = () => {
                 }
               `}</style>
               
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-muted-foreground px-4">
-                Platform radio kampus yang menghubungkan Anda dengan berbagai program menarik, 
-                berita terkini, dan hiburan berkualitas dari UKKPK UNP.
-              </p>
+              <AnimatedSection animation="fade-up" delay={50}>
+                <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-white px-4 mb-8 sm:mb-12">
+                  Platform radio kampus yang menghubungkan Anda dengan berbagai program menarik, 
+                  berita terkini, dan hiburan berkualitas dari UKKPK UNP. Nikmati siaran langsung, podcast edukatif, dan konten audio menarik setiap hari.
+                </p>
+              </AnimatedSection>
 
             {/* Current Program Info - Prominent Display */}
-            {currentProgram ? <div className="mb-8 p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl">
-                <div className="flex items-start gap-4">
+            {currentProgram ? <div key={currentProgram.id} className="mb-6 sm:mb-8 p-4 sm:p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl animate-fade-in">
+                <div className="flex items-start gap-3 sm:gap-4">
                   <div className="flex-shrink-0">
-                    <div className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center animate-pulse shadow-lg shadow-green-500/50">
-                      <img src={logoSigmaRadio} alt="SIGMA Radio" className="h-7 w-7 object-contain brightness-0 invert" />
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center animate-pulse shadow-lg shadow-green-500/50 bg-red-600">
+                      <img src={logoSigmaRadio} alt="SIGMA Radio" className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 object-contain brightness-0 invert" />
                     </div>
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                      <span className="text-white/90 text-sm font-medium uppercase tracking-wide">SEDANG TAYANG</span>
+                    <div className="flex items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
+                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full animate-pulse" />
+                      <span className="text-white/90 text-xs sm:text-sm font-medium uppercase tracking-wide">SEDANG TAYANG</span>
                     </div>
-                    <h3 className="text-sm sm:text-base md:text-lg lg:text-2xl font-bold mb-2">
+                    <h3 className="text-sm sm:text-base md:text-lg lg:text-2xl font-bold mb-2 text-left text-slate-50">
                       {currentProgram.name} <span className="text-white/80 font-normal">By</span> {currentProgram.host}
                     </h3>
                     {/* Countdown Timer */}
-                    <div className="flex items-center gap-2 mt-3 bg-white/5 rounded-lg px-2 py-1.5 sm:px-3 sm:py-2 w-fit">
+                    <div className="flex items-center gap-1.5 sm:gap-2 mt-2 sm:mt-3 bg-white/5 rounded-lg px-2 py-1.5 sm:px-3 sm:py-2 w-fit">
                       <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 text-white/70" />
                       <span className="text-white/90 text-xs sm:text-sm font-medium">{timeRemaining}</span>
                     </div>
                   </div>
                 </div>
-              </div> : <div className="mb-8 p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl">
-                <div className="flex items-center gap-3">
+              </div> : <div className="mb-6 sm:mb-8 p-4 sm:p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <RadioIcon className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-white/50" />
                   <span className="text-white/70 text-xs sm:text-sm">Tidak ada program yang sedang tayang saat ini</span>
                 </div>
@@ -233,62 +248,43 @@ const Radio = () => {
         </div>
       </section>
       {/* Now Playing & Schedule Section */}
-      <section className="flex items-center py-8 md:py-32 lg:py-40 scroll-mt-20 relative bg-background overflow-hidden">
-        {/* Curved geometric background patterns */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -left-20 w-80 h-80 rounded-full border-[35px] border-gray-100/60" />
-          <div className="absolute top-1/4 -right-20 w-72 h-72 rounded-full border-[28px] border-gray-50" />
-          <div className="absolute bottom-0 left-1/3 w-96 h-96 rounded-full border-[45px] border-gray-100/50" />
-          <div className="absolute top-40 right-1/4 w-24 h-24 rounded-full border-[10px] border-primary/10" />
-          
-          <div className="absolute top-0 right-0 w-1/4 h-1/3 opacity-25">
-            <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
-            backgroundSize: '18px 18px'
-          }} />
-          </div>
-          
-          <div className="absolute bottom-1/3 left-0 w-64 h-64">
-            <svg viewBox="0 0 200 200" className="w-full h-full opacity-20">
-              <path d="M 0,90 Q 50,50 100,90 T 200,90" stroke="#dc2626" strokeWidth="2" fill="none" />
-              <path d="M 0,110 Q 50,70 100,110 T 200,110" stroke="#dc2626" strokeWidth="2" fill="none" />
-            </svg>
-          </div>
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="flex items-center py-16 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 bg-white">
+        <div className="container mx-auto px-4">
           {/* Schedule */}
           <div id="jadwal-program" className="relative scroll-mt-20">
-            {/* Decorative Elements */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-12 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0" />
           
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                <RadioIcon className="h-3 w-3 sm:h-4 sm:w-4 text-primary animate-pulse" />
-                <span className="text-[10px] sm:text-sm font-medium text-primary">Program Kami</span>
+              <div className="inline-block mb-4">
+                <span className="text-[10px] md:text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
+                  <RadioIcon className="w-2.5 h-2.5 md:w-3 md:h-3 animate-pulse" />
+                  PROGRAM KAMI
+                </span>
               </div>
-              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
-                Jadwal Program
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                Jadwal <span className="text-primary">Program</span>
               </h2>
+              <p className="text-xs sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
+                Lihat jadwal lengkap program radio UKKPK dan jangan lewatkan program favorit Anda
+              </p>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-8" />
               
               {/* Day Navigation */}
-              <div className="flex items-center justify-center gap-4 mb-8">
-                <Button variant="outline" size="sm" onClick={handlePreviousDay} className="flex items-center gap-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div className="flex items-center justify-center gap-2 md:gap-4 mb-8">
+                <Button variant="outline" size="sm" onClick={handlePreviousDay} className="flex items-center gap-1 md:gap-2 text-xs md:text-sm px-2 py-1.5 md:px-3 md:py-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" className="md:w-4 md:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="15 18 9 12 15 6"></polyline>
                   </svg>
                   Sebelumnya
                 </Button>
                 
-                <Button variant="outline" size="sm" onClick={handleToday} className="font-medium hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
+                <Button variant="outline" size="sm" onClick={handleToday} className="font-medium text-xs md:text-sm px-2 py-1.5 md:px-3 md:py-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
                   Hari Ini
                 </Button>
                 
-                <Button variant="outline" size="sm" onClick={handleNextDay} className="flex items-center gap-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
+                <Button variant="outline" size="sm" onClick={handleNextDay} className="flex items-center gap-1 md:gap-2 text-xs md:text-sm px-2 py-1.5 md:px-3 md:py-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
                   Berikutnya
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" className="md:w-4 md:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="9 18 15 12 9 6"></polyline>
                   </svg>
                 </Button>
@@ -310,11 +306,11 @@ const Radio = () => {
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
                   </div>
                   
-                  <CardHeader className="relative">
+                  <CardHeader className="relative px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6">
                     <div className="flex items-start gap-4">
-                      <div className="relative">
-                        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 border border-primary/20">
-                          <RadioIcon className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-primary group-hover:scale-110 transition-transform duration-300" />
+                        <div className="relative">
+                        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 text-primary shadow-xl">
+                          <Volume2 className="h-6 w-6 sm:h-7 sm:w-7" />
                         </div>
                         {/* Live indicator if it's the current program */}
                         {currentProgram?.id === program.id && <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-background animate-pulse">
@@ -334,7 +330,7 @@ const Radio = () => {
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent className="relative space-y-3">
+                  <CardContent className="relative space-y-3 px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6">
                     <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2 group-hover:text-foreground/80 transition-colors duration-300">
                       {program.description}
                     </p>

@@ -115,33 +115,37 @@ export const MapManager = () => {
       });
     }
   };
-  return <div className="space-y-6">
+  return <div className="space-y-3 sm:space-y-4 md:space-y-6">
+      <div>
+        <h2 className="sm:text-xl md:text-2xl font-bold text-gray-900 text-xl">Pengaturan Peta Lokasi</h2>
+        <p className="text-sm sm:text-sm text-gray-600 mt-1">Kelola lokasi dan embed Google Maps untuk sekretariat UKKPK</p>
+      </div>
       <Card>
-        <CardHeader>
-          <CardTitle>Pengaturan Lokasi & Peta</CardTitle>
+        <CardHeader className="p-4 sm:p-5 md:p-6">
+          <CardTitle className="text-base sm:text-lg md:text-xl">Form Pengaturan Peta</CardTitle>
         </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+        <CardContent className="p-4 sm:p-5 md:p-6">
+          <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="location-name">Nama Lokasi</Label>
-              <Input id="location-name" value={locationName} onChange={e => setLocationName(e.target.value)} placeholder="Contoh: Sekretariat UKKPK UNP" maxLength={200} />
+              <Label htmlFor="location-name" className="text-sm sm:text-base">Nama Lokasi</Label>
+              <Input id="location-name" value={locationName} onChange={e => setLocationName(e.target.value)} placeholder="Contoh: Sekretariat UKKPK UNP" maxLength={200} className="h-10 sm:h-10 text-sm" />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="embed-url">Google Maps Embed URL</Label>
-              <textarea id="embed-url" value={embedUrl} onChange={e => setEmbedUrl(e.target.value)} placeholder='Paste embed URL atau iframe code dari Google Maps' className="w-full min-h-[100px] p-3 rounded-md border border-input bg-background" />
+              <Label htmlFor="embed-url" className="text-sm sm:text-base">Google Maps Embed URL</Label>
+              <textarea id="embed-url" value={embedUrl} onChange={e => setEmbedUrl(e.target.value)} placeholder='Paste embed URL atau iframe code dari Google Maps' className="w-full min-h-[120px] p-3 rounded-md border border-input bg-background text-sm" />
               
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="maps-link">Link Google Maps (Opsional)</Label>
-              <Input id="maps-link" value={mapsLink} onChange={e => setMapsLink(e.target.value)} placeholder="https://maps.app.goo.gl/..." />
-              <p className="text-sm text-muted-foreground">
+              <Label htmlFor="maps-link" className="text-sm sm:text-base">Link Google Maps (Opsional)</Label>
+              <Input id="maps-link" value={mapsLink} onChange={e => setMapsLink(e.target.value)} placeholder="https://maps.app.goo.gl/..." className="h-10 sm:h-10 text-sm" />
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 Link untuk tombol "View maps"
               </p>
             </div>
 
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full h-10 sm:h-10 text-sm sm:text-base">
               Simpan Pengaturan
             </Button>
           </form>
@@ -149,11 +153,11 @@ export const MapManager = () => {
       </Card>
 
       {embedUrl && <Card>
-          <CardHeader>
-            <CardTitle>Preview Peta</CardTitle>
+          <CardHeader className="p-4 sm:p-5 md:p-6">
+            <CardTitle className="text-base sm:text-lg md:text-xl">Preview Peta</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="w-full h-[400px] rounded-lg overflow-hidden border">
+          <CardContent className="p-4 sm:p-5 md:p-6">
+            <div className="w-full h-[300px] sm:h-[400px] rounded-lg overflow-hidden border">
               <iframe src={extractEmbedUrl(embedUrl)} width="100%" height="100%" style={{
             border: 0
           }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />

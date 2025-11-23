@@ -45,7 +45,7 @@ export const Footer = () => {
           {/* About / Company Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3 mb-4">
-              <img src={logoUkkpk} alt="Logo UKKPK" className="h-14 w-14" />
+              <img src={logoUkkpk} alt="Logo UKKPK" className="h-10 w-10" />
               <h3 className="font-bold text-xl text-white">UKKPK UNP</h3>
             </div>
             <p className="text-xs sm:text-sm md:text-base text-white/80 leading-relaxed text-justify">

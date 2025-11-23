@@ -30,6 +30,9 @@ interface News {
   created_at: string;
   cameraman: string[] | null;
   category: string | null;
+  author: string | null;
+  editor: string | null;
+  published_at: string | null;
 }
 
 export const NewsManager = () => {
@@ -163,8 +166,18 @@ export const NewsManager = () => {
     }
   };
 
-  const handleEdit = (item: any) => {
+  const handleEdit = (item: News) => {
     setEditingId(item.id);
+    
+    // Parse published_at to date and time if exists
+    let publishDate = "";
+    let publishTime = "";
+    if (item.published_at) {
+      const date = new Date(item.published_at);
+      publishDate = date.toISOString().split('T')[0];
+      publishTime = date.toTimeString().slice(0, 5);
+    }
+    
     setFormData({
       title: item.title,
       content: item.content,
@@ -172,10 +185,13 @@ export const NewsManager = () => {
       editor: item.editor || "",
       category: item.category || "",
       image_url: item.image_url || "",
-      publish_date: "",
-      publish_time: "",
+      publish_date: publishDate,
+      publish_time: publishTime,
     });
     setCameramen(Array.isArray(item.cameraman) ? item.cameraman : []);
+    
+    // Scroll to form
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleAddCameraman = () => {
@@ -205,10 +221,20 @@ export const NewsManager = () => {
 
   return (
     <div className="space-y-2 sm:space-y-3 md:space-y-6">
+      <div className="flex justify-between items-start gap-2">
+        <div>
+          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">
+            {editingId ? "Edit Berita" : "Kelola Berita"}
+          </h2>
+          <p className="text-xs sm:text-sm text-gray-600">
+            {editingId ? "Perbarui berita yang sudah ada" : "Buat dan kelola konten berita terkini"}
+          </p>
+        </div>
+      </div>
       <Card>
         <CardHeader className="p-2 sm:p-3 md:p-6">
-          <CardTitle className="text-sm sm:text-base md:text-2xl">
-            {editingId ? "Edit Berita" : "Tambah Berita Baru"}
+          <CardTitle className="text-sm sm:text-base md:text-xl">
+            {editingId ? "Form Edit Berita" : "Form Tambah Berita"}
           </CardTitle>
         </CardHeader>
         <CardContent className="p-2 sm:p-3 md:p-6">
@@ -473,28 +499,28 @@ export const NewsManager = () => {
         ) : (
           news.map((item) => (
             <Card key={item.id}>
-              <CardContent className="p-1.5 sm:p-2 md:p-6">
-                <div className="flex justify-between items-start gap-1.5 sm:gap-2 md:gap-4">
+              <CardContent className="p-2.5 sm:p-3 md:p-6">
+                <div className="flex justify-between items-start gap-2 sm:gap-3 md:gap-4">
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-xs sm:text-sm md:text-lg line-clamp-2">{item.title}</h3>
-                    <p className="mt-0.5 sm:mt-1 md:mt-2 text-[10px] sm:text-xs md:text-sm line-clamp-2">{stripHtml(item.content)}</p>
+                    <h3 className="font-semibold text-sm sm:text-base md:text-lg line-clamp-2 leading-snug">{item.title}</h3>
+                    <p className="mt-1 sm:mt-1.5 md:mt-2 text-xs sm:text-sm md:text-base text-muted-foreground line-clamp-2 leading-relaxed">{stripHtml(item.content)}</p>
                   </div>
-                  <div className="flex gap-0.5 sm:gap-1 md:gap-2 flex-shrink-0">
+                  <div className="flex gap-1.5 sm:gap-2 flex-shrink-0">
                     <Button
                       size="sm"
                       variant="outline"
                       onClick={() => handleEdit(item)}
-                      className="h-6 w-6 sm:h-7 sm:w-7 md:h-9 md:w-9 p-0"
+                      className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 p-0 hover:bg-primary hover:text-white hover:border-primary active:bg-primary active:text-white transition-colors"
                     >
-                      <Pencil className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4" />
+                      <Pencil className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-4.5 md:w-4.5" />
                     </Button>
                     <Button
                       size="sm"
                       variant="destructive"
                       onClick={() => handleDelete(item.id)}
-                      className="h-6 w-6 sm:h-7 sm:w-7 md:h-9 md:w-9 p-0"
+                      className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 p-0 active:scale-95 transition-transform"
                     >
-                      <Trash2 className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4" />
+                      <Trash2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-4.5 md:w-4.5" />
                     </Button>
                   </div>
                 </div>

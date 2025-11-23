@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { supabase } from '@/integrations/supabase/client';
 import { ArrowLeft, Calendar, Share2, Facebook, Twitter, MessageCircle, Copy, Eye, Heart } from 'lucide-react';
 import { toast } from 'sonner';
@@ -33,12 +34,20 @@ const ArtikelDetail = () => {
   const [loading, setLoading] = useState(true);
   const [hasLiked, setHasLiked] = useState(false);
   const [isLiking, setIsLiking] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
+  const [isEntering, setIsEntering] = useState(true);
+  
   useEffect(() => {
     if (id) {
       fetchArticle();
       incrementViewCount();
     }
   }, [id]);
+
+  useEffect(() => {
+    // Trigger entrance animation
+    setIsEntering(false);
+  }, []);
   useEffect(() => {
     if (article) {
       fetchRelatedArticles();
@@ -175,12 +184,26 @@ const ArtikelDetail = () => {
       setIsLiking(false);
     }
   };
+  const handleBack = () => {
+    setIsExiting(true);
+    setTimeout(() => {
+      navigate('/artikel');
+    }, 300);
+  };
+
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('id-ID', {
+    const date = new Date(dateString);
+    const dateStr = date.toLocaleDateString('id-ID', {
       day: 'numeric',
       month: 'long',
-      year: 'numeric'
+      year: 'numeric',
     });
+    const timeStr = date.toLocaleTimeString('id-ID', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    });
+    return `${dateStr} - ${timeStr} WIB`;
   };
   if (loading) {
     return <Layout>
@@ -195,9 +218,9 @@ const ArtikelDetail = () => {
     return null;
   }
   return <Layout>
-      <article className="py-8 px-4">
+      <article className={`py-2 md:py-8 px-2 md:px-4 transition-all duration-500 ${isExiting ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'} ${isEntering ? 'opacity-0 translate-y-8' : ''}`}>
         <div className="container mx-auto max-w-7xl">
-          <Button variant="ghost" className="mb-6" onClick={() => navigate(-1)}>
+          <Button variant="ghost" className="hidden md:inline-flex mb-6" onClick={handleBack}>
             <ArrowLeft className="mr-2 h-4 w-4" />
             Kembali
           </Button>
@@ -206,16 +229,23 @@ const ArtikelDetail = () => {
             {/* Main Content */}
             <div className="lg:col-span-2">
               {/* Article Title */}
-              <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-tight bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
-                {article.title}
-              </h1>
+              <div className="mt-8 md:mt-0">
+                <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-tight bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+                  {article.title}
+                </h1>
+              </div>
 
               {/* Featured Image */}
               {article.image_url && <div className="mb-4">
-                  <div className="relative w-full h-[400px] mb-2 overflow-hidden">
-                    <img src={article.image_url} alt={article.title} className="w-full h-full object-cover" />
-                  </div>
-                  <p className="text-sm text-muted-foreground italic mb-4">
+                  <AspectRatio ratio={16 / 9} className="rounded-lg overflow-hidden bg-muted">
+                    <img 
+                      src={article.image_url} 
+                      alt={article.title} 
+                      loading="eager"
+                      className="w-full h-full object-cover"
+                    />
+                  </AspectRatio>
+                  <p className="text-sm text-muted-foreground italic mt-3">
                     {article.title}
                   </p>
                 </div>}
@@ -344,7 +374,7 @@ const ArtikelDetail = () => {
             </div>
 
             {/* Sidebar - Related Articles */}
-            <div className="lg:col-span-1">
+            <div className="hidden lg:block lg:col-span-1">
               <div>
                 <h3 className="text-lg font-bold mb-4 pb-2 border-b border-border">
                   Berita Terpopuler

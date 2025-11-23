@@ -44,6 +44,7 @@ export const RadioManager = () => {
   const [showProgramDialog, setShowProgramDialog] = useState(false);
   const [showSettingsDialog, setShowSettingsDialog] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState<{ day: number; time: string } | null>(null);
+  const [selectedDayMobile, setSelectedDayMobile] = useState(0);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -302,20 +303,138 @@ export const RadioManager = () => {
         </Dialog>
       </div>
 
+      {/* Mobile & Tablet Day Selector */}
+      <div className="lg:hidden mb-3">
+        <Select value={selectedDayMobile.toString()} onValueChange={(value) => setSelectedDayMobile(parseInt(value))}>
+          <SelectTrigger className="h-9 text-sm">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {DAYS.map((day, index) => (
+              <SelectItem key={index} value={index.toString()}>
+                {day}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
       {/* Calendar Grid */}
       <Card>
-        <CardContent className="p-2 sm:p-3 md:p-4">
-          <div className="overflow-x-auto">
-            <div className="min-w-[700px] sm:min-w-[900px] md:min-w-[1000px]">
+        <CardContent className="p-1.5 sm:p-2 md:p-4">
+          {/* Mobile & Tablet View - Single Day */}
+          <div className="lg:hidden space-y-2">
+            <div className="text-center font-semibold bg-gradient-to-r from-primary to-primary/80 text-white rounded py-2 px-3 mb-3">
+              {DAYS[selectedDayMobile]}
+            </div>
+            <div className="space-y-2">
+              {TIME_SLOTS.map((time) => {
+                const programsInSlot = getProgramsForSlot(selectedDayMobile, time.split(":")[0]);
+                const isEmpty = programsInSlot.length === 0;
+
+                return (
+                  <div key={time} className="flex gap-2">
+                    <div className="w-16 flex-shrink-0 p-2 text-center text-xs font-medium text-gray-600 bg-gray-50 rounded flex items-center justify-center">
+                      {time}
+                    </div>
+                    <div
+                      className={`flex-1 min-h-[64px] p-2 rounded border-2 transition-all ${
+                        isEmpty
+                          ? "border-dashed border-gray-200 hover:border-primary/50 hover:bg-primary/5 cursor-pointer"
+                          : "border-primary/20 bg-primary/5"
+                      }`}
+                      onClick={() => isEmpty && handleSlotClick(selectedDayMobile, time)}
+                    >
+                      {isEmpty ? (
+                        <div className="flex items-center justify-center h-full text-gray-400">
+                          <Plus className="h-4 w-4" />
+                        </div>
+                      ) : (
+                        <div className="space-y-1">
+                          {programsInSlot.map((program) => {
+                            const slotHour = parseInt(time.split(":")[0]);
+                            const startHour = parseInt(program.air_time.split(':')[0]);
+                            const isFirstSlot = slotHour === startHour;
+                            
+                            return (
+                              <div
+                                key={program.id}
+                                className="bg-white rounded p-2 shadow-sm border border-primary/20 group relative"
+                              >
+                                {isFirstSlot ? (
+                                  <>
+                                    <div className="text-xs font-semibold text-gray-900 truncate leading-tight">
+                                      {program.name}
+                                    </div>
+                                    <div className="text-[10px] text-gray-600 truncate mt-0.5">
+                                      {program.air_time}{program.end_time ? ` - ${program.end_time}` : ''}
+                                    </div>
+                                    <div className="text-[10px] text-gray-500 truncate">
+                                      Host: {program.host}
+                                    </div>
+                                  </>
+                                ) : (
+                                  <div className="flex items-center justify-center h-full">
+                                    <div className="text-center">
+                                      <div className="text-xs font-medium text-gray-700 truncate mb-0.5 leading-tight">
+                                        {program.name}
+                                      </div>
+                                      <div className="text-[9px] text-gray-500">
+                                        (berlangsung)
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
+                                {isFirstSlot && (
+                                  <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
+                                    <Button
+                                      size="icon"
+                                      variant="ghost"
+                                      className="h-6 w-6"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleEdit(program);
+                                      }}
+                                    >
+                                      <Pencil className="h-3 w-3" />
+                                    </Button>
+                                    <Button
+                                      size="icon"
+                                      variant="ghost"
+                                      className="h-6 w-6 text-red-600"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleDelete(program.id);
+                                      }}
+                                    >
+                                      <Trash2 className="h-3 w-3" />
+                                    </Button>
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Desktop View - Full Week Grid */}
+          <div className="hidden lg:block overflow-x-auto">
+            <div className="min-w-[1000px]">
               {/* Header with Days */}
-              <div className="grid grid-cols-8 gap-0.5 sm:gap-1 mb-1 sm:mb-2">
-                <div className="p-1.5 sm:p-2 text-center font-semibold text-gray-500 text-[10px] sm:text-xs md:text-sm">
+              <div className="grid grid-cols-8 gap-1 mb-1">
+                <div className="p-2 text-center font-semibold text-gray-500 text-sm">
                   Waktu
                 </div>
                 {DAYS.map((day, index) => (
                   <div
                     key={index}
-                    className="py-1.5 sm:py-2 px-1.5 sm:px-2 text-center font-semibold bg-gradient-to-r from-primary to-primary/80 text-white rounded-t-lg text-[10px] sm:text-xs md:text-sm"
+                    className="py-2 px-2 text-center font-semibold bg-gradient-to-r from-primary to-primary/80 text-white rounded-t text-sm leading-tight"
                   >
                     {day}
                   </div>
@@ -323,10 +442,10 @@ export const RadioManager = () => {
               </div>
 
               {/* Time Slots Grid */}
-              <div className="space-y-0.5 sm:space-y-1">
+              <div className="space-y-1">
                 {TIME_SLOTS.map((time) => (
-                  <div key={time} className="grid grid-cols-8 gap-0.5 sm:gap-1">
-                    <div className="p-1.5 sm:p-2 text-center text-[11px] sm:text-xs md:text-sm font-medium text-gray-600 bg-gray-50 rounded-lg flex items-center justify-center">
+                  <div key={time} className="grid grid-cols-8 gap-1">
+                    <div className="p-2 text-center text-sm font-medium text-gray-600 bg-gray-50 rounded flex items-center justify-center">
                       {time}
                     </div>
                     {DAYS.map((_, dayIndex) => {
@@ -336,7 +455,7 @@ export const RadioManager = () => {
                       return (
                         <div
                           key={`${dayIndex}-${time}`}
-                          className={`min-h-[56px] sm:min-h-[72px] md:min-h-[80px] p-1.5 sm:p-2 rounded-lg border-2 transition-all ${
+                          className={`min-h-[80px] p-2 rounded border-2 transition-all ${
                             isEmpty
                               ? "border-dashed border-gray-200 hover:border-primary/50 hover:bg-primary/5 cursor-pointer"
                               : "border-primary/20 bg-primary/5"
@@ -361,10 +480,10 @@ export const RadioManager = () => {
                                   >
                                     {isFirstSlot ? (
                                       <>
-                                        <div className="text-xs font-semibold text-gray-900 truncate">
+                                        <div className="text-sm font-semibold text-gray-900 truncate leading-tight">
                                           {program.name}
                                         </div>
-                                        <div className="text-xs text-gray-600 truncate">
+                                        <div className="text-xs text-gray-600 truncate mt-0.5">
                                           {program.air_time}{program.end_time ? ` - ${program.end_time}` : ''}
                                         </div>
                                         <div className="text-xs text-gray-500 truncate">
@@ -374,7 +493,7 @@ export const RadioManager = () => {
                                     ) : (
                                       <div className="flex items-center justify-center h-full">
                                         <div className="text-center">
-                                          <div className="text-xs font-medium text-gray-700 truncate mb-0.5">
+                                          <div className="text-sm font-medium text-gray-700 truncate mb-0.5 leading-tight">
                                             {program.name}
                                           </div>
                                           <div className="text-[10px] text-gray-500">

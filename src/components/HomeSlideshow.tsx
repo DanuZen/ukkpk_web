@@ -153,7 +153,7 @@ export const HomeSlideshow = () => {
         </>}
 
       {/* Dots Indicator */}
-      {images.length > 1 && <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-1.5 sm:gap-2">
+      {images.length > 1 && <div className="absolute bottom-12 sm:bottom-16 md:bottom-20 left-1/2 -translate-x-1/2 z-20 flex gap-1.5 sm:gap-2">
           {images.map((_, index) => <button key={index} onClick={() => setCurrentIndex(index)} className={`h-2 rounded-full transition-all ${index === currentIndex ? 'bg-white w-6 sm:w-8' : 'bg-white/50 hover:bg-white/75 w-2'}`} />)}
         </div>}
     </section>;

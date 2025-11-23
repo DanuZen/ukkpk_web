@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Upload, X, Image as ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -26,8 +26,14 @@ export const ImageUpload = ({
   disabled = false,
 }: ImageUploadProps) => {
   const [isDragging, setIsDragging] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState<string | undefined>(currentImageUrl);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
+
+  // Update preview when currentImageUrl changes (for edit mode)
+  useEffect(() => {
+    setPreviewUrl(currentImageUrl);
+  }, [currentImageUrl]);
 
   const validateFile = (file: File): boolean => {
     if (file.size > MAX_FILE_SIZE) {
@@ -81,6 +87,8 @@ export const ImageUpload = ({
     if (files && files[0]) {
       const file = files[0];
       if (validateFile(file)) {
+        const url = URL.createObjectURL(file);
+        setPreviewUrl(url);
         onFileSelect(file);
       }
     }
@@ -90,6 +98,8 @@ export const ImageUpload = ({
     const files = e.target.files;
     if (files && files[0]) {
       if (validateFile(files[0])) {
+        const url = URL.createObjectURL(files[0]);
+        setPreviewUrl(url);
         onFileSelect(files[0]);
       }
     }
@@ -133,10 +143,10 @@ export const ImageUpload = ({
           className="hidden"
         />
 
-        {currentImageUrl ? (
+        {previewUrl ? (
           <div className="relative">
             <img
-              src={currentImageUrl}
+              src={previewUrl}
               alt="Preview"
               className="w-full h-48 object-cover rounded-lg"
             />
@@ -148,6 +158,7 @@ export const ImageUpload = ({
                 className="absolute top-2 right-2"
                 onClick={(e) => {
                   e.stopPropagation();
+                  setPreviewUrl(undefined);
                   onRemove();
                 }}
               >
@@ -162,20 +173,20 @@ export const ImageUpload = ({
           </div>
         ) : (
           <div className="text-center">
-            <div className="mx-auto w-12 h-12 bg-muted rounded-full flex items-center justify-center mb-3">
+            <div className="mx-auto w-8 h-8 md:w-12 md:h-12 bg-muted rounded-full flex items-center justify-center mb-2 md:mb-3">
               {isDragging ? (
-                <Upload className="h-6 w-6 text-primary" />
+                <Upload className="h-4 w-4 md:h-6 md:w-6 text-primary" />
               ) : (
-                <ImageIcon className="h-6 w-6 text-muted-foreground" />
+                <ImageIcon className="h-4 w-4 md:h-6 md:w-6 text-muted-foreground" />
               )}
             </div>
-            <p className="text-sm font-medium mb-1">
+            <p className="text-xs md:text-sm font-medium mb-1">
               {isDragging ? "Lepaskan untuk upload" : "Upload Gambar"}
             </p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-[10px] md:text-xs text-muted-foreground">
               Klik atau drag & drop gambar di sini
             </p>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-[10px] md:text-xs text-muted-foreground mt-1">
               PNG, JPG, atau WEBP (Max. 5MB)
             </p>
           </div>

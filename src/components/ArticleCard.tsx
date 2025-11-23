@@ -21,7 +21,7 @@ const categoryColors: Record<string, string> = {
 export const ArticleCard = ({ title, category, image, link = "#", excerpt, date }: ArticleCardProps) => {
   return (
     <Link to={link} className="group">
-      <div className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 ease-out h-full flex flex-col animate-fade-up">
+      <div className="bg-card border border-border rounded-xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 ease-out h-full flex flex-col animate-fade-up">
         {/* Image */}
         <div className="relative h-56 bg-gradient-to-br from-muted to-muted-foreground/10 overflow-hidden">
           {image ? (
@@ -29,6 +29,7 @@ export const ArticleCard = ({ title, category, image, link = "#", excerpt, date 
               <img
                 src={image}
                 alt={title}
+                loading="eager"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" />

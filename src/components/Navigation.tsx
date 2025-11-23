@@ -103,10 +103,10 @@ export const Navigation = () => {
       <div className="container mx-auto px-4 relative">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <img src={logoUkkpk} alt="Logo UKKPK" className="h-10 w-10 transition-all duration-300 group-hover:scale-105" />
-            <div className={`text-2xl font-bold transition-all duration-300 group-hover:scale-105 ${showTransparentNav ? "text-white" : "text-primary"}`}>
-              UKKPK UNP  
+          <Link to="/" className="flex items-center gap-2 md:gap-3 group">
+            <img src={logoUkkpk} alt="Logo UKKPK" className="h-9 w-9 md:h-10 md:w-10 transition-all duration-300 group-hover:scale-105" />
+            <div className={`text-xl md:text-2xl font-bold transition-all duration-300 group-hover:scale-105 ${showTransparentNav ? "text-white" : "text-primary"}`}>
+              UKKPK UNP  
             </div>
           </Link>
 

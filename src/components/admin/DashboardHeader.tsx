@@ -10,7 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
-import { Home, FileText, Newspaper, Radio, Settings, Users, Map, MessageSquare, TrendingUp } from "lucide-react";
+import { Home, FileText, Newspaper, Radio, Settings, Users, Map, MessageSquare, TrendingUp, Image } from "lucide-react";
 
 interface DashboardHeaderProps {
   title: string;
@@ -24,8 +24,8 @@ const menuItems = [
     group: "DASHBOARD",
     items: [
       { id: "dashboard", title: "Dashboard Utama", icon: Home },
-      { id: "analytics", title: "Analytics", icon: TrendingUp },
-      { id: "contact", title: "Saran Masuk", icon: MessageSquare },
+      { id: "analytics", title: "Analitik", icon: TrendingUp },
+      { id: "contact", title: "Pesan & Saran", icon: MessageSquare },
     ],
   },
   {
@@ -33,15 +33,16 @@ const menuItems = [
     items: [
       { id: "articles", title: "Artikel", icon: FileText },
       { id: "news", title: "Berita", icon: Newspaper },
-      { id: "radio", title: "Radio", icon: Radio },
+      { id: "radio", title: "Program Radio", icon: Radio },
     ],
   },
   {
     group: "PENGATURAN",
     items: [
-      { id: "slideshow", title: "Slideshow Home", icon: Settings },
+      { id: "slideshow", title: "Galeri Beranda", icon: Settings },
+      { id: "banner", title: "Banner Profil", icon: Image },
       { id: "structure", title: "Struktur Organisasi", icon: Users },
-      { id: "maps", title: "Peta Lokasi", icon: Map },
+      { id: "maps", title: "Lokasi & Peta", icon: Map },
     ],
   },
 ];
@@ -62,7 +63,7 @@ export const DashboardHeader = ({
   };
   
   return (
-    <header className="sticky top-0 z-10 flex h-14 sm:h-16 items-center gap-2 sm:gap-4 border-b bg-white px-3 sm:px-6">
+    <header className="sticky top-0 z-50 flex h-14 sm:h-16 items-center gap-2 sm:gap-4 border-b bg-white shadow-sm px-3 sm:px-6">
       {/* Desktop Sidebar Trigger */}
       <div className="hidden lg:block">
         <SidebarTrigger className="text-gray-700" />
