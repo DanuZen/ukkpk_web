@@ -248,7 +248,7 @@ const ProfilUkkpk = () => {
                   Profil <span className="text-primary">UKKPK</span>
                 </h2>
                 <AnimatedSection animation="fade-up" delay={50}>
-                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
+                  <p className="sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6 text-xs">
                     Kenali lebih dekat Unit Kegiatan Komunikasi dan Penyiaran Kampus, wadah pengembangan talenta mahasiswa di bidang komunikasi dan media kampus.
                   </p>
                 </AnimatedSection>
