@@ -244,7 +244,7 @@ const ProfilUkkpk = () => {
                   TENTANG KAMI
                 </span>
               </div>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
                   Profil <span className="text-primary">UKKPK</span>
                 </h2>
                 <AnimatedSection animation="fade-up" delay={50}>
