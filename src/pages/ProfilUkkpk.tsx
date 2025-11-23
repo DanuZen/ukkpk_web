@@ -154,31 +154,19 @@ const ProfilUkkpk = () => {
       link.as = 'image';
       link.href = profile.banner_url;
       document.head.appendChild(link);
-      
       return () => {
         document.head.removeChild(link);
       };
     }
   }, [profile?.banner_url]);
-
   return <Layout>
       <div className="scroll-smooth">
         {/* Hero Section with Banner */}
         <section className="relative h-screen flex items-center px-2 sm:px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
           {/* Background Image with Dark Overlay */}
-          {profile?.banner_url ? (
-            <img 
-              src={profile.banner_url} 
-              alt="UKKPK Banner" 
-              className="absolute inset-0 w-full h-full object-cover"
-              loading="eager"
-              fetchPriority="high"
-            />
-          ) : (
-            <div className="absolute inset-0 bg-cover bg-center" style={{
-              backgroundImage: `url(https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d)`
-            }}></div>
-          )}
+          {profile?.banner_url ? <img src={profile.banner_url} alt="UKKPK Banner" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchPriority="high" /> : <div className="absolute inset-0 bg-cover bg-center" style={{
+          backgroundImage: `url(https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d)`
+        }}></div>}
           <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
           
           <div className="container mx-auto relative z-10">
@@ -275,7 +263,7 @@ const ProfilUkkpk = () => {
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
                   <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                   <div className="relative z-10">
-                    <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed text-left sm:text-justify">
+                    <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed text-left sm:text-justify lg:text-lg">
                       Unit Kegiatan Komunikasi dan Penyiaran Kampus (UKKPK) adalah organisasi mahasiswa yang bergerak dalam pengembangan bidang komunikasi dan media di lingkungan kampus. UKKPK memiliki tiga bidang utama, yaitu Jurnalistik, Master of Ceremony (MC), dan Radio. Melalui bidang Jurnalistik, UKKPK melakukan peliputan dan penyajian informasi kampus secara akurat serta kreatif. Bidang MC berfokus pada peningkatan kemampuan public speaking dan pembawa acara, sehingga anggota mampu tampil profesional dalam berbagai kegiatan kampus. Sementara itu, bidang Radio menghadirkan program siaran, podcast, serta konten audio yang informatif dan menghibur. Ketiga bidang ini saling melengkapi untuk menjadikan UKKPK sebagai wadah pengembangan bakat mahasiswa dalam dunia komunikasi dan penyiaran.
                     </p>
                   </div>
