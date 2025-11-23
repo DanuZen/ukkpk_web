@@ -186,7 +186,7 @@ export const Testimonials = () => {
               <Button
                 variant="outline"
                 size="icon"
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 md:-translate-x-16 rounded-full w-12 h-12 bg-transparent hover:bg-primary/10 border-0"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 md:-translate-x-16 rounded-full w-12 h-12 bg-transparent border-0"
                 onClick={prevSlide}
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -194,7 +194,7 @@ export const Testimonials = () => {
               <Button
                 variant="outline"
                 size="icon"
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 md:translate-x-16 rounded-full w-12 h-12 bg-transparent hover:bg-primary/10 border-0"
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 md:translate-x-16 rounded-full w-12 h-12 bg-transparent border-0"
                 onClick={nextSlide}
               >
                 <ChevronRight className="w-5 h-5" />
