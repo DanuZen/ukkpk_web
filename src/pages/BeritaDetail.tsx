@@ -350,7 +350,7 @@ const BeritaDetail = () => {
             </div>
 
             {/* Sidebar - Related News */}
-            <div className="lg:col-span-1">
+            <div className="hidden lg:block lg:col-span-1">
               <div>
                 <h3 className="text-base md:text-lg font-bold mb-3 md:mb-4 pb-2 border-b border-border">
                   Berita Terpopuler
