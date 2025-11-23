@@ -62,7 +62,7 @@ export const DashboardHeader = ({
   };
   
   return (
-    <header className="sticky top-0 z-10 flex h-14 sm:h-16 items-center gap-2 sm:gap-4 border-b border-primary/20 bg-gradient-to-r from-primary via-primary to-primary/90 px-3 sm:px-6">
+    <header className="sticky top-0 z-50 flex h-14 sm:h-16 items-center gap-2 sm:gap-4 border-b border-primary/20 bg-gradient-to-r from-primary via-primary to-primary shadow-md px-3 sm:px-6">
       {/* Desktop Sidebar Trigger */}
       <div className="hidden lg:block">
         <SidebarTrigger className="text-white" />
