@@ -84,7 +84,7 @@ export const ContactSection = () => {
 
       <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
         <div>
-          <label className="text-sm font-medium mb-1 block">Nama</label>
+          <label className="text-base md:text-lg font-medium mb-2 block">Nama</label>
           <Input 
             placeholder="Nama kamu" 
             value={formData.nama} 
@@ -94,12 +94,12 @@ export const ContactSection = () => {
             })} 
             maxLength={100}
             required
-            className="text-sm"
+            className="text-base md:text-lg py-6"
           />
         </div>
 
         <div>
-          <label className="text-sm font-medium mb-1 block">Nomor Telepon</label>
+          <label className="text-base md:text-lg font-medium mb-2 block">Nomor Telepon</label>
           <Input 
             type="tel" 
             placeholder="Phone Number" 
@@ -109,12 +109,12 @@ export const ContactSection = () => {
               phone: e.target.value
             })} 
             maxLength={20}
-            className="text-sm"
+            className="text-base md:text-lg py-6"
           />
         </div>
 
         <div>
-          <label className="text-sm font-medium mb-1 block">Email</label>
+          <label className="text-base md:text-lg font-medium mb-2 block">Email</label>
           <Input 
             type="email" 
             placeholder="Email Address" 
@@ -125,12 +125,12 @@ export const ContactSection = () => {
             })} 
             maxLength={255}
             required
-            className="text-sm"
+            className="text-base md:text-lg py-6"
           />
         </div>
 
         <div>
-          <label className="text-sm font-medium mb-1 block">Pesan</label>
+          <label className="text-base md:text-lg font-medium mb-2 block">Pesan</label>
           <Textarea 
             placeholder="Tuliskan Kritikan maupun saran anda untuk UKKPK UNP"
             value={formData.message} 
@@ -141,12 +141,12 @@ export const ContactSection = () => {
             rows={5} 
             maxLength={1000}
             required
-            className="text-sm"
+            className="text-base md:text-lg"
           />
         </div>
 
         <div>
-          <label className="text-sm font-medium mb-1 block">Rating</label>
+          <label className="text-base md:text-lg font-medium mb-2 block">Rating</label>
           <div className="flex gap-2">
             {[1, 2, 3, 4, 5].map((star) => (
               <button
@@ -168,13 +168,13 @@ export const ContactSection = () => {
             ))}
           </div>
           {formData.testimonial_rating > 0 && (
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-sm md:text-base text-muted-foreground mt-1">
               Anda memberikan {formData.testimonial_rating} bintang
             </p>
           )}
         </div>
 
-        <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 text-base">
+        <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 md:py-7 text-base md:text-lg">
           Kirim Pesan
         </Button>
       </form>
