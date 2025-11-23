@@ -80,7 +80,7 @@ export const ContactSection = () => {
     youtube: "https://www.youtube.com/@UKKPKUNP",
     tiktok: "#"
   };
-  return <div className="bg-card rounded-lg shadow-xl p-6 sm:p-8 lg:p-12 h-full">
+  return <div className="bg-card rounded-lg shadow-xl p-8 sm:p-12 lg:p-16 xl:p-20 h-full">
 
       <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
         <div>
