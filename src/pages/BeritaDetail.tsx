@@ -184,55 +184,55 @@ const BeritaDetail = () => {
     return null;
   }
   return <Layout>
-      <article className="py-8 px-4">
+      <article className="py-4 md:py-8 px-3 md:px-4">
         <div className="container mx-auto max-w-7xl">
-          <Button variant="ghost" className="mb-6" onClick={() => navigate(-1)}>
-            <ArrowLeft className="mr-2 h-4 w-4" />
+          <Button variant="ghost" className="mb-3 md:mb-6 text-xs md:text-sm" onClick={() => navigate(-1)}>
+            <ArrowLeft className="mr-1 md:mr-2 h-3 w-3 md:h-4 md:w-4" />
             Kembali
           </Button>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-8">
             {/* Main Content */}
             <div className="lg:col-span-2">
               {/* News Title */}
-              <div className="mb-6">
-                <h1 className="md:text-4xl font-bold mb-3 leading-tight bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent text-xl">
+              <div className="mb-3 md:mb-6">
+                <h1 className="text-lg md:text-4xl font-bold mb-2 md:mb-3 leading-tight bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                   {news.title}
                 </h1>
-                {news.category && <Badge variant="secondary" className="bg-primary/10 text-primary">
+                {news.category && <Badge variant="secondary" className="bg-primary/10 text-primary text-[10px] md:text-xs px-2 py-0.5">
                     {news.category.toUpperCase()}
                   </Badge>}
               </div>
 
               {/* Featured Image */}
-              {news.image_url && <div className="mb-4">
-                  <AspectRatio ratio={16 / 9} className="rounded-lg overflow-hidden bg-muted">
+              {news.image_url && <div className="mb-3 md:mb-4">
+                  <AspectRatio ratio={16 / 9} className="rounded-md md:rounded-lg overflow-hidden bg-muted">
                     <img src={news.image_url} alt={news.title} loading="eager" className="w-full h-full object-cover" />
                   </AspectRatio>
-                  <p className="text-muted-foreground italic mt-3 text-xs">
+                  <p className="text-muted-foreground italic mt-2 md:mt-3 text-[10px] md:text-xs">
                     {news.title}
                   </p>
                 </div>}
 
               {/* News Metadata */}
-              <div className="mb-6 pb-4 border-b border-border space-y-2">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Calendar className="h-4 w-4" />
-                    <span className="text-xs">{formatDate(news.published_at || news.created_at)}</span>
+              <div className="mb-4 md:mb-6 pb-3 md:pb-4 border-b border-border space-y-1.5 md:space-y-2">
+                <div className="flex items-center justify-between mb-1.5 md:mb-2">
+                  <div className="flex items-center gap-1.5 md:gap-2 text-sm text-muted-foreground">
+                    <Calendar className="h-3 w-3 md:h-4 md:w-4" />
+                    <span className="text-[10px] md:text-xs">{formatDate(news.published_at || news.created_at)}</span>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                      <Eye className="h-4 w-4" />
-                      <span>{news.view_count || 0}</span>
+                  <div className="flex items-center gap-2 md:gap-4">
+                    <div className="flex items-center gap-0.5 md:gap-1 text-sm text-muted-foreground">
+                      <Eye className="h-3 w-3 md:h-4 md:w-4" />
+                      <span className="text-[10px] md:text-xs">{news.view_count || 0}</span>
                     </div>
-                    <Button variant="ghost" size="sm" onClick={handleLike} disabled={isLiking} className={`flex items-center gap-1 ${hasLiked ? 'text-primary' : 'text-muted-foreground'} hover:text-primary transition-colors`}>
-                      <Heart className={`h-4 w-4 ${hasLiked ? 'fill-current' : ''}`} />
-                      <span>{news.likes_count || 0}</span>
+                    <Button variant="ghost" size="sm" onClick={handleLike} disabled={isLiking} className={`flex items-center gap-0.5 md:gap-1 p-1 md:p-2 ${hasLiked ? 'text-primary' : 'text-muted-foreground'} hover:text-primary transition-colors`}>
+                      <Heart className={`h-3 w-3 md:h-4 md:w-4 ${hasLiked ? 'fill-current' : ''}`} />
+                      <span className="text-[10px] md:text-xs">{news.likes_count || 0}</span>
                     </Button>
                   </div>
                 </div>
-                <div className="text-sm space-y-1">
+                <div className="text-[11px] md:text-sm space-y-0.5 md:space-y-1">
                   {news.author && <p>
                       <span className="text-muted-foreground">Reporter : </span>
                       <span className="font-medium text-foreground">{news.author}</span>
@@ -245,50 +245,50 @@ const BeritaDetail = () => {
               </div>
 
               {/* News Content */}
-              <div className="prose prose-lg max-w-none mb-8">
-                <div className="text-foreground/90 leading-relaxed article-content" dangerouslySetInnerHTML={{
+              <div className="prose prose-sm md:prose-lg max-w-none mb-4 md:mb-8">
+                <div className="text-foreground/90 leading-relaxed article-content text-xs md:text-base" dangerouslySetInnerHTML={{
                 __html: sanitizeHtml(news.content)
               }} />
               </div>
 
               {/* Editor Info */}
-              {news.editor && <div className="mb-6 pb-4 border-b border-border">
-                  <p className="text-sm text-muted-foreground">
+              {news.editor && <div className="mb-4 md:mb-6 pb-3 md:pb-4 border-b border-border">
+                  <p className="text-[11px] md:text-sm text-muted-foreground">
                     Penyunting: <span className="font-medium text-foreground">{news.editor}</span>
                   </p>
                 </div>}
 
               {/* Share Buttons */}
-              <div className="mb-6 pb-4 border-b border-border">
-                <div className="flex items-center gap-2 mb-3">
-                  <Share2 className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm font-medium text-muted-foreground">Bagikan:</span>
+              <div className="mb-4 md:mb-6 pb-3 md:pb-4 border-b border-border">
+                <div className="flex items-center gap-1.5 md:gap-2 mb-2 md:mb-3">
+                  <Share2 className="h-3 w-3 md:h-4 md:w-4 text-muted-foreground" />
+                  <span className="text-xs md:text-sm font-medium text-muted-foreground">Bagikan:</span>
                 </div>
-                <div className="flex items-center gap-2 flex-wrap">
-                  <Button variant="outline" size="sm" className="flex items-center gap-2 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-colors" onClick={() => {
+                <div className="flex items-center gap-1.5 md:gap-2 flex-wrap">
+                  <Button variant="outline" size="sm" className="flex items-center gap-1 md:gap-2 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-colors text-[10px] md:text-xs px-2 md:px-3 py-1 md:py-2" onClick={() => {
                   const url = window.location.href;
                   window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank', 'width=600,height=400');
                 }}>
-                    <Facebook className="h-4 w-4" />
+                    <Facebook className="h-3 w-3 md:h-4 md:w-4" />
                     Facebook
                   </Button>
-                  <Button variant="outline" size="sm" className="flex items-center gap-2 hover:bg-sky-500 hover:text-white hover:border-sky-500 transition-colors" onClick={() => {
+                  <Button variant="outline" size="sm" className="flex items-center gap-1 md:gap-2 hover:bg-sky-500 hover:text-white hover:border-sky-500 transition-colors text-[10px] md:text-xs px-2 md:px-3 py-1 md:py-2" onClick={() => {
                   const url = window.location.href;
                   const text = news.title;
                   window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank', 'width=600,height=400');
                 }}>
-                    <Twitter className="h-4 w-4" />
+                    <Twitter className="h-3 w-3 md:h-4 md:w-4" />
                     Twitter
                   </Button>
-                  <Button variant="outline" size="sm" className="flex items-center gap-2 hover:bg-green-500 hover:text-white hover:border-green-500 transition-colors" onClick={() => {
+                  <Button variant="outline" size="sm" className="flex items-center gap-1 md:gap-2 hover:bg-green-500 hover:text-white hover:border-green-500 transition-colors text-[10px] md:text-xs px-2 md:px-3 py-1 md:py-2" onClick={() => {
                   const url = window.location.href;
                   const text = news.title;
                   window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
                 }}>
-                    <MessageCircle className="h-4 w-4" />
+                    <MessageCircle className="h-3 w-3 md:h-4 md:w-4" />
                     WhatsApp
                   </Button>
-                  <Button variant="outline" size="sm" className="flex items-center gap-2 hover:bg-primary hover:text-white hover:border-primary transition-colors" onClick={() => {
+                  <Button variant="outline" size="sm" className="flex items-center gap-1 md:gap-2 hover:bg-primary hover:text-white hover:border-primary transition-colors text-[10px] md:text-xs px-2 md:px-3 py-1 md:py-2" onClick={() => {
                   const url = window.location.href;
                   navigator.clipboard.writeText(url).then(() => {
                     toast.success('Link berhasil disalin!');
@@ -296,29 +296,29 @@ const BeritaDetail = () => {
                     toast.error('Gagal menyalin link');
                   });
                 }}>
-                    <Copy className="h-4 w-4" />
+                    <Copy className="h-3 w-3 md:h-4 md:w-4" />
                     Salin URL
                   </Button>
                 </div>
               </div>
 
               {/* Other News Section */}
-              {otherNews.length > 0 && <div className="mt-12 pt-8 border-t border-border">
-                  <h3 className="text-2xl font-bold mb-6">Berita Lainnya</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {otherNews.map(item => <div key={item.id} className="group cursor-pointer bg-card rounded-lg overflow-hidden border border-border hover:shadow-lg transition-all duration-300" onClick={() => {
+              {otherNews.length > 0 && <div className="mt-6 md:mt-12 pt-4 md:pt-8 border-t border-border">
+                  <h3 className="text-lg md:text-2xl font-bold mb-3 md:mb-6">Berita Lainnya</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6">
+                    {otherNews.map(item => <div key={item.id} className="group cursor-pointer bg-card rounded-md md:rounded-lg overflow-hidden border border-border hover:shadow-lg transition-all duration-300" onClick={() => {
                   navigate(`/berita/${item.id}`);
                   window.scrollTo(0, 0);
                 }}>
-                        {item.image_url && <div className="relative w-full h-40 overflow-hidden">
+                        {item.image_url && <div className="relative w-full h-28 md:h-40 overflow-hidden">
                             <img src={item.image_url} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                           </div>}
-                        <div className="p-4">
-                          <h4 className="font-semibold line-clamp-2 group-hover:text-primary transition-colors mb-2">
+                        <div className="p-2.5 md:p-4">
+                          <h4 className="font-semibold line-clamp-2 group-hover:text-primary transition-colors mb-1.5 md:mb-2 text-xs md:text-base">
                             {item.title}
                           </h4>
-                          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                            <Calendar className="h-3 w-3" />
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
+                            <Calendar className="h-2.5 w-2.5 md:h-3 md:w-3" />
                             <span>{formatDate(item.published_at || item.created_at)}</span>
                           </div>
                         </div>
@@ -327,8 +327,8 @@ const BeritaDetail = () => {
                 </div>}
 
               {/* Bottom Navigation */}
-              <div className="mt-8 pt-6 border-t border-border">
-                <Button variant="outline" onClick={() => navigate('/berita')}>
+              <div className="mt-4 md:mt-8 pt-3 md:pt-6 border-t border-border">
+                <Button variant="outline" onClick={() => navigate('/berita')} className="text-xs md:text-sm px-3 md:px-4 py-1.5 md:py-2">
                   Lihat Berita Lainnya
                 </Button>
               </div>
@@ -337,23 +337,23 @@ const BeritaDetail = () => {
             {/* Sidebar - Related News */}
             <div className="lg:col-span-1">
               <div>
-                <h3 className="text-lg font-bold mb-4 pb-2 border-b border-border">
+                <h3 className="text-base md:text-lg font-bold mb-3 md:mb-4 pb-2 border-b border-border">
                   Berita Terpopuler
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-3 md:space-y-4">
                   {relatedNews.map(relatedItem => <div key={relatedItem.id} className="group cursor-pointer" onClick={() => {
                   navigate(`/berita/${relatedItem.id}`);
                   window.scrollTo(0, 0);
                 }}>
-                      <div className="flex gap-3">
-                        {relatedItem.image_url && <div className="w-20 h-20 flex-shrink-0 rounded overflow-hidden">
+                      <div className="flex gap-2 md:gap-3">
+                        {relatedItem.image_url && <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 rounded overflow-hidden">
                             <img src={relatedItem.image_url} alt={relatedItem.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                           </div>}
                         <div className="flex-1 min-w-0">
-                          <h4 className="text-sm font-semibold line-clamp-2 group-hover:text-primary transition-colors mb-1">
+                          <h4 className="text-xs md:text-sm font-semibold line-clamp-2 group-hover:text-primary transition-colors mb-0.5 md:mb-1">
                             {relatedItem.title}
                           </h4>
-                          <p className="text-xs text-muted-foreground">
+                          <p className="text-[10px] md:text-xs text-muted-foreground">
                             {formatDate(relatedItem.published_at || relatedItem.created_at)}
                           </p>
                         </div>
