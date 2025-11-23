@@ -45,7 +45,6 @@ export const RadioManager = () => {
   const [showSettingsDialog, setShowSettingsDialog] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState<{ day: number; time: string } | null>(null);
   const [selectedDayMobile, setSelectedDayMobile] = useState(0);
-  const [viewMode, setViewMode] = useState<"mobile" | "desktop">("desktop");
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -304,30 +303,8 @@ export const RadioManager = () => {
         </Dialog>
       </div>
 
-      {/* View Mode Toggle */}
-      <div className="flex justify-end mb-3">
-        <div className="inline-flex rounded-lg border border-gray-200 p-1">
-          <Button
-            variant={viewMode === "desktop" ? "default" : "ghost"}
-            size="sm"
-            onClick={() => setViewMode("desktop")}
-            className="h-7 px-3 text-xs"
-          >
-            Desktop
-          </Button>
-          <Button
-            variant={viewMode === "mobile" ? "default" : "ghost"}
-            size="sm"
-            onClick={() => setViewMode("mobile")}
-            className="h-7 px-3 text-xs"
-          >
-            Mobile
-          </Button>
-        </div>
-      </div>
-
       {/* Mobile Day Selector */}
-      <div className={viewMode === "mobile" ? "mb-3" : "hidden"}>
+      <div className="md:hidden mb-3">
         <Select value={selectedDayMobile.toString()} onValueChange={(value) => setSelectedDayMobile(parseInt(value))}>
           <SelectTrigger className="h-9 text-sm">
             <SelectValue />
@@ -346,7 +323,7 @@ export const RadioManager = () => {
       <Card>
         <CardContent className="p-1.5 sm:p-2 md:p-4">
           {/* Mobile View - Single Day */}
-          <div className={viewMode === "mobile" ? "space-y-2" : "hidden"}>
+          <div className="md:hidden space-y-2">
             <div className="text-center font-semibold bg-gradient-to-r from-primary to-primary/80 text-white rounded py-2 px-3 mb-3">
               {DAYS[selectedDayMobile]}
             </div>
@@ -447,7 +424,7 @@ export const RadioManager = () => {
           </div>
 
           {/* Desktop View - Full Week Grid */}
-          <div className={viewMode === "desktop" ? "overflow-x-auto" : "hidden"}>
+          <div className="hidden md:block overflow-x-auto">
             <div className="min-w-[1000px]">
               {/* Header with Days */}
               <div className="grid grid-cols-8 gap-1 mb-1">
