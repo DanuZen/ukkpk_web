@@ -308,7 +308,7 @@ const ProfilUkkpk = () => {
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary shadow-xl">
                         <Sparkles className="h-6 w-6 sm:h-7 sm:w-7" />
                       </div>
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
                         Visi
                       </h3>
                     </div>
@@ -331,7 +331,7 @@ const ProfilUkkpk = () => {
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary shadow-xl">
                         <Rocket className="h-6 w-6 sm:h-7 sm:w-7" />
                       </div>
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
                         Misi
                       </h3>
                     </div>
@@ -382,7 +382,7 @@ const ProfilUkkpk = () => {
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary shadow-xl">
                         <Sparkles className="h-6 w-6 sm:h-7 sm:w-7" />
                       </div>
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
                         Awal Terbentuk (1993)
                       </h3>
                     </div>
@@ -413,7 +413,7 @@ const ProfilUkkpk = () => {
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary shadow-xl">
                         <Mic className="h-6 w-6 sm:h-7 sm:w-7" />
                       </div>
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
                         Perkembangan Organisasi (1993-2000)
                       </h3>
                     </div>
@@ -437,7 +437,7 @@ const ProfilUkkpk = () => {
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary shadow-xl">
                         <Waves className="h-6 w-6 sm:h-7 sm:w-7" />
                       </div>
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
                         Transformasi Modern (2000-2015)
                       </h3>
                     </div>
@@ -462,7 +462,7 @@ const ProfilUkkpk = () => {
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary shadow-xl">
                         <Rocket className="h-6 w-6 sm:h-7 sm:w-7" />
                       </div>
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
                         Ekspansi Bidang (2015-2020)
                       </h3>
                     </div>
@@ -487,7 +487,7 @@ const ProfilUkkpk = () => {
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary shadow-xl">
                         <Shield className="h-6 w-6 sm:h-7 sm:w-7" />
                       </div>
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
                         Era Digital & Inovasi (2020-Sekarang)
                       </h3>
                     </div>
