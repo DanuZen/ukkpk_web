@@ -91,7 +91,7 @@ const Artikel = () => {
       </section>
 
       {/* Search Section */}
-      <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-white">
+      <section className="py-4 sm:py-6 md:py-8 lg:py-12 bg-white">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="scale-in" delay={100}>
             <div className="max-w-2xl mx-auto relative">
