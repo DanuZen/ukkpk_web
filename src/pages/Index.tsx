@@ -292,9 +292,7 @@ const Index = () => {
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
                 Lokasi <span className="text-primary">Sekretariat UKKPK</span>
               </h2>
-              <p className="text-xs sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
-                Temukan kami di kampus UNP untuk informasi lebih lanjut dan kunjungan langsung
-              </p>
+              
               
               <AnimatedSection animation="fade-up" delay={50}>
                 <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-4 sm:mb-6">
