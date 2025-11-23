@@ -209,8 +209,8 @@ const BeritaDetail = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-8">
             {/* Main Content */}
             <div className="lg:col-span-2">
-              {/* News Title */}
-              <div className="mb-3 md:mb-6">
+              {/* Article Title */}
+              <div className="mt-8 md:mt-12 mb-3 md:mb-6">
                 <h1 className="text-lg md:text-4xl font-bold mb-2 md:mb-3 leading-tight bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                   {news.title}
                 </h1>
