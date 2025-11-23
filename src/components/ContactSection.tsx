@@ -80,12 +80,10 @@ export const ContactSection = () => {
     youtube: "https://www.youtube.com/@UKKPKUNP",
     tiktok: "#"
   };
-  return <div className="bg-card rounded-lg shadow-xl pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-12 md:pb-12 md:px-14 h-full relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
-      <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
-      
-      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 md:space-y-6 relative z-10">
-        <div className="relative z-10">
+  return <div className="bg-card rounded-lg shadow-xl p-4 sm:p-6 lg:p-8 h-full">
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
           <label className="text-sm font-medium mb-1 block">Nama</label>
           <Input 
             placeholder="Nama kamu" 
@@ -100,7 +98,7 @@ export const ContactSection = () => {
           />
         </div>
 
-        <div className="relative z-10">
+        <div>
           <label className="text-sm font-medium mb-1 block">Nomor Telepon</label>
           <Input 
             type="tel" 
@@ -115,7 +113,7 @@ export const ContactSection = () => {
           />
         </div>
 
-        <div className="relative z-10">
+        <div>
           <label className="text-sm font-medium mb-1 block">Email</label>
           <Input 
             type="email" 
@@ -131,7 +129,7 @@ export const ContactSection = () => {
           />
         </div>
 
-        <div className="relative z-10">
+        <div>
           <label className="text-sm font-medium mb-1 block">Pesan</label>
           <Textarea 
             placeholder="Tuliskan Kritikan maupun saran anda untuk UKKPK UNP"
@@ -147,7 +145,7 @@ export const ContactSection = () => {
           />
         </div>
 
-        <div className="relative z-10">
+        <div>
           <label className="text-sm font-medium mb-1 block">Rating</label>
           <div className="flex gap-2">
             {[1, 2, 3, 4, 5].map((star) => (
@@ -176,7 +174,7 @@ export const ContactSection = () => {
           )}
         </div>
 
-        <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 text-base relative z-10">
+        <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 text-base">
           Kirim Pesan
         </Button>
       </form>
