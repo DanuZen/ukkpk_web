@@ -44,7 +44,7 @@ const Radio = () => {
   };
   const calculateTimeRemaining = (program: RadioProgram) => {
     const now = new Date();
-    
+
     // If program has end_time, use it; otherwise assume 1 hour duration
     let endTime = new Date();
     if (program.end_time) {
@@ -84,24 +84,22 @@ const Radio = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data: programsData } = await supabase
-          .from("radio_programs")
-          .select("*")
-          .order("day_of_week", { ascending: true })
-          .order("air_time", { ascending: true });
-
-        const { data: settingsData } = await supabase
-          .from("radio_settings")
-          .select("streaming_url, banner_image_url")
-          .single();
-
+        const {
+          data: programsData
+        } = await supabase.from("radio_programs").select("*").order("day_of_week", {
+          ascending: true
+        }).order("air_time", {
+          ascending: true
+        });
+        const {
+          data: settingsData
+        } = await supabase.from("radio_settings").select("streaming_url, banner_image_url").single();
         setPrograms(programsData || []);
         setSettings(settingsData);
       } catch (error) {
         console.error("Error fetching radio data:", error);
       }
     };
-
     fetchData();
   }, []);
 
@@ -116,7 +114,6 @@ const Radio = () => {
     const interval = setInterval(() => {
       setCurrentProgram(getCurrentProgram(programs));
     }, 60000);
-
     return () => clearInterval(interval);
   }, [programs]);
   const handleListen = () => {
@@ -124,7 +121,7 @@ const Radio = () => {
       window.open(settings.streaming_url, "_blank");
     }
   };
-  
+
   // Preload banner image for faster loading
   useEffect(() => {
     if (settings?.banner_image_url) {
@@ -133,29 +130,19 @@ const Radio = () => {
       link.as = 'image';
       link.href = settings.banner_image_url;
       document.head.appendChild(link);
-      
       return () => {
         document.head.removeChild(link);
       };
     }
   }, [settings?.banner_image_url]);
-  
   return <Layout>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
         {/* Background Image with Dark Overlay - Only if set by admin */}
-        {settings?.banner_image_url && (
-          <>
-            <img 
-              src={settings.banner_image_url} 
-              alt="Radio Banner" 
-              className="absolute inset-0 w-full h-full object-cover"
-              loading="eager"
-              fetchPriority="high"
-            />
+        {settings?.banner_image_url && <>
+            <img src={settings.banner_image_url} alt="Radio Banner" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchPriority="high" />
             <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
-          </>
-        )}
+          </>}
         
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
@@ -225,7 +212,7 @@ const Radio = () => {
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                       <span className="text-white/90 text-sm font-medium uppercase tracking-wide">SEDANG TAYANG</span>
                     </div>
-                    <h3 className="text-sm sm:text-base md:text-lg lg:text-2xl font-bold mb-2">
+                    <h3 className="text-sm sm:text-base md:text-lg lg:text-2xl font-bold mb-2 text-left text-slate-50">
                       {currentProgram.name} <span className="text-white/80 font-normal">By</span> {currentProgram.host}
                     </h3>
                     {/* Countdown Timer */}
