@@ -36,12 +36,19 @@ const BeritaDetail = () => {
   const [hasLiked, setHasLiked] = useState(false);
   const [isLiking, setIsLiking] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
+  const [isEntering, setIsEntering] = useState(true);
+  
   useEffect(() => {
     if (id) {
       fetchNews();
       incrementViewCount();
     }
   }, [id]);
+
+  useEffect(() => {
+    // Trigger entrance animation
+    setIsEntering(false);
+  }, []);
   useEffect(() => {
     if (news) {
       fetchRelatedNews();
@@ -192,7 +199,7 @@ const BeritaDetail = () => {
     return null;
   }
   return <Layout>
-      <article className={`py-4 md:py-8 px-3 md:px-4 transition-opacity duration-300 ${isExiting ? 'opacity-0' : 'opacity-100'}`}>
+      <article className={`py-4 md:py-8 px-3 md:px-4 transition-all duration-500 ${isExiting ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'} ${isEntering ? 'opacity-0 translate-y-8' : ''}`}>
         <div className="container mx-auto max-w-7xl">
           <Button variant="ghost" className="mb-3 md:mb-6 text-xs md:text-sm bg-transparent hover:bg-muted/50 hover:text-foreground" onClick={handleBack}>
             <ArrowLeft className="mr-1 md:mr-2 h-3 w-3 md:h-4 md:w-4" />
