@@ -185,6 +185,7 @@ const ProfilUkkpk = () => {
                 </div>
                 <style>{`
                   .typewriter-text-profil {
+                    white-space: nowrap;
                     width: 0;
                     overflow: hidden;
                     border-right: 4px solid white;
