@@ -259,9 +259,9 @@ const ProfilUkkpk = () => {
             {/* Description Card */}
             <AnimatedSection animation="scale-in" delay={100}>
               <Card className="bg-white border-primary/20 shadow-2xl overflow-hidden">
-                <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-12 md:pb-12 md:px-14 relative">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
-                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
+                  <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-12 md:pb-12 md:px-14 relative">
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                    <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                   <div className="relative z-10">
                     <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed text-left sm:text-justify">
                       Unit Kegiatan Komunikasi dan Penyiaran Kampus (UKKPK) adalah organisasi mahasiswa yang bergerak dalam pengembangan bidang komunikasi dan media di lingkungan kampus. UKKPK memiliki tiga bidang utama, yaitu Jurnalistik, Master of Ceremony (MC), dan Radio. Melalui bidang Jurnalistik, UKKPK melakukan peliputan dan penyajian informasi kampus secara akurat serta kreatif. Bidang MC berfokus pada peningkatan kemampuan public speaking dan pembawa acara, sehingga anggota mampu tampil profesional dalam berbagai kegiatan kampus. Sementara itu, bidang Radio menghadirkan program siaran, podcast, serta konten audio yang informatif dan menghibur. Ketiga bidang ini saling melengkapi untuk menjadikan UKKPK sebagai wadah pengembangan bakat mahasiswa dalam dunia komunikasi dan penyiaran.
@@ -302,8 +302,8 @@ const ProfilUkkpk = () => {
               <AnimatedSection animation="slide-right" delay={200}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
-                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                    <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary shadow-xl">
                         <Sparkles className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -325,8 +325,8 @@ const ProfilUkkpk = () => {
               <AnimatedSection animation="slide-left" delay={300}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
-                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                    <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary shadow-xl">
                         <Rocket className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -376,8 +376,8 @@ const ProfilUkkpk = () => {
               <AnimatedSection animation="fade-up" delay={150}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
-                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                    <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary shadow-xl">
                         <Sparkles className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -407,8 +407,8 @@ const ProfilUkkpk = () => {
               <AnimatedSection animation="fade-up" delay={200}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
-                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                    <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary shadow-xl">
                         <Mic className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -431,8 +431,8 @@ const ProfilUkkpk = () => {
               <AnimatedSection animation="fade-up" delay={250}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
-                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                    <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary shadow-xl">
                         <Waves className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -456,8 +456,8 @@ const ProfilUkkpk = () => {
               <AnimatedSection animation="fade-up" delay={300}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
-                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                    <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary shadow-xl">
                         <Rocket className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -481,8 +481,8 @@ const ProfilUkkpk = () => {
               <AnimatedSection animation="fade-up" delay={350}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
-                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                    <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary shadow-xl">
                         <Shield className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -557,8 +557,8 @@ const ProfilUkkpk = () => {
               {features.slice(0, 4).map((feature, index) => <AnimatedSection key={index} animation="fade-up" delay={100 + index * 100}>
                   <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg">
                     <CardContent className="pt-8 px-4 sm:px-6 md:px-8 text-center flex flex-col items-center relative">
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
-                      <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
+                      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                      <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                       <div className="inline-flex p-3 sm:p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform relative z-10">
                         {feature.icon}
                       </div>
@@ -578,8 +578,8 @@ const ProfilUkkpk = () => {
               {features.slice(4, 7).map((feature, index) => <AnimatedSection key={index + 4} animation="fade-up" delay={500 + index * 100}>
                   <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg">
                     <CardContent className="pt-8 px-4 sm:px-6 md:px-8 text-center flex flex-col items-center relative">
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
-                      <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
+                      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                      <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                       <div className="inline-flex p-3 sm:p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform relative z-10">
                         {feature.icon}
                       </div>
@@ -625,8 +625,8 @@ const ProfilUkkpk = () => {
             {values.map((value, index) => <AnimatedSection key={index} animation="scale-in" delay={100 + index * 150}>
                   <Card className="text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 shadow-lg">
                     <CardContent className="pt-8 px-4 sm:px-6 md:px-8 relative">
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
-                      <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
+                      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                      <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                       <div className="inline-flex p-2.5 sm:p-3 rounded-full bg-primary/10 text-primary mb-4 relative z-10">
                         {value.icon}
                       </div>
