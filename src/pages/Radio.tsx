@@ -203,7 +203,7 @@ const Radio = () => {
             {currentProgram ? <div className="mb-8 p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0">
-                    <div className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center animate-pulse shadow-lg shadow-green-500/50">
+                    <div className="w-14 h-14 rounded-full flex items-center justify-center animate-pulse shadow-lg shadow-green-500/50 bg-red-600">
                       <img src={logoSigmaRadio} alt="SIGMA Radio" className="h-7 w-7 object-contain brightness-0 invert" />
                     </div>
                   </div>
