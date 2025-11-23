@@ -34,6 +34,7 @@ const ArtikelDetail = () => {
   const [loading, setLoading] = useState(true);
   const [hasLiked, setHasLiked] = useState(false);
   const [isLiking, setIsLiking] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
   useEffect(() => {
     if (id) {
       fetchArticle();
@@ -176,6 +177,13 @@ const ArtikelDetail = () => {
       setIsLiking(false);
     }
   };
+  const handleBack = () => {
+    setIsExiting(true);
+    setTimeout(() => {
+      navigate('/artikel');
+    }, 300);
+  };
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const dateStr = date.toLocaleDateString('id-ID', {
@@ -203,9 +211,9 @@ const ArtikelDetail = () => {
     return null;
   }
   return <Layout>
-      <article className="py-8 px-4">
+      <article className={`py-8 px-4 transition-opacity duration-300 ${isExiting ? 'opacity-0' : 'opacity-100'}`}>
         <div className="container mx-auto max-w-7xl">
-          <Button variant="ghost" className="mb-6" onClick={() => navigate(-1)}>
+          <Button variant="ghost" className="mb-6" onClick={handleBack}>
             <ArrowLeft className="mr-2 h-4 w-4" />
             Kembali
           </Button>
