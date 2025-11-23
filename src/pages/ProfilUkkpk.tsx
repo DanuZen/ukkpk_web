@@ -302,6 +302,8 @@ const ProfilUkkpk = () => {
               <AnimatedSection animation="slide-right" delay={200}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
                         <Sparkles className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -323,6 +325,8 @@ const ProfilUkkpk = () => {
               <AnimatedSection animation="slide-left" delay={300}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
                         <Rocket className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -372,6 +376,8 @@ const ProfilUkkpk = () => {
               <AnimatedSection animation="fade-up" delay={150}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
                         <Sparkles className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -401,6 +407,8 @@ const ProfilUkkpk = () => {
               <AnimatedSection animation="fade-up" delay={200}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
                         <Mic className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -423,6 +431,8 @@ const ProfilUkkpk = () => {
               <AnimatedSection animation="fade-up" delay={250}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
                         <Waves className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -446,6 +456,8 @@ const ProfilUkkpk = () => {
               <AnimatedSection animation="fade-up" delay={300}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
                         <Rocket className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -469,6 +481,8 @@ const ProfilUkkpk = () => {
               <AnimatedSection animation="fade-up" delay={350}>
                 <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                   <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center flex-shrink-0 text-white shadow-xl">
                         <Shield className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -542,14 +556,16 @@ const ProfilUkkpk = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
               {features.slice(0, 4).map((feature, index) => <AnimatedSection key={index} animation="fade-up" delay={100 + index * 100}>
                   <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                    <CardContent className="pt-8 px-4 sm:px-6 md:px-8 text-center flex flex-col items-center">
-                      <div className="inline-flex p-3 sm:p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
+                    <CardContent className="pt-8 px-4 sm:px-6 md:px-8 text-center flex flex-col items-center relative">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                      <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
+                      <div className="inline-flex p-3 sm:p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform relative z-10">
                         {feature.icon}
                       </div>
-                      <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-3 min-h-[3rem] flex items-center justify-center">
+                      <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-3 min-h-[3rem] flex items-center justify-center relative z-10">
                         {feature.title}
                       </h3>
-                      <p className="text-xs sm:text-sm md:text-base text-muted-foreground text-center leading-relaxed">
+                      <p className="text-xs sm:text-sm md:text-base text-muted-foreground text-center leading-relaxed relative z-10">
                         {feature.description}
                       </p>
                     </CardContent>
@@ -561,14 +577,16 @@ const ProfilUkkpk = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {features.slice(4, 7).map((feature, index) => <AnimatedSection key={index + 4} animation="fade-up" delay={500 + index * 100}>
                   <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                    <CardContent className="pt-8 px-4 sm:px-6 md:px-8 text-center flex flex-col items-center">
-                      <div className="inline-flex p-3 sm:p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
+                    <CardContent className="pt-8 px-4 sm:px-6 md:px-8 text-center flex flex-col items-center relative">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                      <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
+                      <div className="inline-flex p-3 sm:p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform relative z-10">
                         {feature.icon}
                       </div>
-                      <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-3 min-h-[3rem] flex items-center justify-center">
+                      <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-3 min-h-[3rem] flex items-center justify-center relative z-10">
                         {feature.title}
                       </h3>
-                      <p className="text-xs sm:text-sm md:text-base text-muted-foreground text-center leading-relaxed">
+                      <p className="text-xs sm:text-sm md:text-base text-muted-foreground text-center leading-relaxed relative z-10">
                         {feature.description}
                       </p>
                     </CardContent>
@@ -606,14 +624,16 @@ const ProfilUkkpk = () => {
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {values.map((value, index) => <AnimatedSection key={index} animation="scale-in" delay={100 + index * 150}>
                   <Card className="text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                    <CardContent className="pt-8 px-4 sm:px-6 md:px-8">
-                      <div className="inline-flex p-2.5 sm:p-3 rounded-full bg-primary/10 text-primary mb-4">
+                    <CardContent className="pt-8 px-4 sm:px-6 md:px-8 relative">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
+                      <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
+                      <div className="inline-flex p-2.5 sm:p-3 rounded-full bg-primary/10 text-primary mb-4 relative z-10">
                         {value.icon}
                       </div>
-                    <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2">
+                    <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2 relative z-10">
                       {value.title}
                     </h3>
-                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground text-center leading-relaxed">
+                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground text-center leading-relaxed relative z-10">
                       {value.description}
                     </p>
                   </CardContent>
