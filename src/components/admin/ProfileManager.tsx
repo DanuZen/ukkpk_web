@@ -147,18 +147,16 @@ const BannerSection = () => {
   };
 
   return (
-    <div className="space-y-2 sm:space-y-3 md:space-y-6">
-      <div className="flex justify-between items-start gap-2">
-        <div>
-          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">Banner Profil UKKPK</h2>
-          <p className="text-xs sm:text-sm text-gray-600">Upload dan kelola banner untuk halaman Profil UKKPK</p>
-        </div>
+    <div className="space-y-3 sm:space-y-4 md:space-y-6">
+      <div>
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Banner Profil UKKPK</h2>
+        <p className="text-sm sm:text-sm text-gray-600 mt-1">Upload dan kelola banner untuk halaman Profil UKKPK</p>
       </div>
       <Card>
-        <CardHeader className="p-2 sm:p-3 md:p-6">
-          <CardTitle className="text-sm sm:text-base md:text-xl">Form Upload Banner</CardTitle>
+        <CardHeader className="p-4 sm:p-5 md:p-6">
+          <CardTitle className="text-base sm:text-lg md:text-xl">Form Upload Banner</CardTitle>
         </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-4 sm:space-y-5 md:space-y-6 p-4 sm:p-5 md:p-6">
         <p className="text-sm text-muted-foreground">
           Upload banner yang akan ditampilkan di halaman Profil UKKPK. Rekomendasi ukuran: 1920x1080px atau rasio 16:9.
         </p>
@@ -352,26 +350,24 @@ const SlideshowSection = () => {
   };
 
   return (
-    <div className="space-y-2 sm:space-y-3 md:space-y-6">
-      <div className="flex justify-between items-start gap-2">
-        <div>
-          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">Kelola Slideshow Home</h2>
-          <p className="text-xs sm:text-sm text-gray-600">Upload dan atur kecepatan slideshow di halaman Home</p>
-        </div>
+    <div className="space-y-3 sm:space-y-4 md:space-y-6">
+      <div>
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Kelola Slideshow Home</h2>
+        <p className="text-sm sm:text-sm text-gray-600 mt-1">Upload dan atur kecepatan slideshow di halaman Home</p>
       </div>
       <Card>
-        <CardHeader className="p-2 sm:p-3 md:p-6">
-          <CardTitle className="text-sm sm:text-base md:text-xl">Form Slideshow</CardTitle>
+        <CardHeader className="p-4 sm:p-5 md:p-6">
+          <CardTitle className="text-base sm:text-lg md:text-xl">Form Slideshow</CardTitle>
         </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-4 sm:space-y-5 md:space-y-6 p-4 sm:p-5 md:p-6">
         {/* Speed Control Section */}
-        <div className="space-y-4 p-4 bg-muted/30 rounded-lg border border-border">
+        <div className="space-y-3 p-3 sm:p-4 bg-muted/30 rounded-lg border border-border">
           <div className="space-y-2">
-            <Label htmlFor="speed">Kecepatan Auto-Rotation (milliseconds)</Label>
-            <p className="text-sm text-muted-foreground">
+            <Label htmlFor="speed" className="text-sm sm:text-base">Kecepatan Auto-Rotation (milliseconds)</Label>
+            <p className="text-xs sm:text-sm text-muted-foreground">
               Atur berapa lama setiap foto ditampilkan sebelum berganti otomatis (1000ms = 1 detik)
             </p>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <Input
                 id="speed"
                 type="number"
@@ -380,12 +376,13 @@ const SlideshowSection = () => {
                 step="500"
                 value={autoPlaySpeed}
                 onChange={(e) => setAutoPlaySpeed(Number(e.target.value))}
-                className="max-w-xs"
+                className="w-full sm:max-w-xs"
               />
               <Button 
                 onClick={handleUpdateSpeed} 
                 disabled={updating}
                 variant="outline"
+                className="w-full sm:w-auto"
               >
                 {updating ? 'Menyimpan...' : 'Simpan'}
               </Button>

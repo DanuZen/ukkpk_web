@@ -95,61 +95,59 @@ export const OrganizationManager = () => {
 
   return (
     <div className="space-y-3 sm:space-y-4 md:space-y-6">
-      <div className="flex justify-between items-start gap-2">
-        <div>
-          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">
-            {editingId ? "Edit Struktur" : "Kelola Struktur Organisasi"}
-          </h2>
-          <p className="text-xs sm:text-sm text-gray-600">
-            {editingId ? "Perbarui data anggota organisasi" : "Kelola data pengurus dan struktur UKKPK"}
-          </p>
-        </div>
+      <div>
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">
+          {editingId ? "Edit Struktur" : "Kelola Struktur Organisasi"}
+        </h2>
+        <p className="text-sm sm:text-sm text-gray-600 mt-1">
+          {editingId ? "Perbarui data anggota organisasi" : "Kelola data pengurus dan struktur UKKPK"}
+        </p>
       </div>
       <Card>
-        <CardHeader className="p-3 sm:p-4 md:p-6">
-          <CardTitle className="text-sm sm:text-base md:text-xl">
+        <CardHeader className="p-4 sm:p-5 md:p-6">
+          <CardTitle className="text-base sm:text-lg md:text-xl">
             {editingId ? "Edit Anggota" : "Tambah Anggota Baru"}
           </CardTitle>
         </CardHeader>
-        <CardContent className="p-3 sm:p-4 md:p-6">
-          <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-3 md:space-y-4">
-            <div className="space-y-0.5 sm:space-y-1">
-              <Label htmlFor="name" className="text-[10px] sm:text-xs md:text-sm">Nama</Label>
+        <CardContent className="p-4 sm:p-5 md:p-6">
+          <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name" className="text-sm sm:text-base">Nama</Label>
               <Input
                 id="name"
                 value={formData.name}
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
-                className="h-8 sm:h-9 md:h-10 text-xs sm:text-sm"
+                className="h-10 text-sm"
                 required
               />
             </div>
-            <div className="space-y-0.5 sm:space-y-1">
-              <Label htmlFor="position" className="text-[10px] sm:text-xs md:text-sm">Jabatan</Label>
+            <div className="space-y-2">
+              <Label htmlFor="position" className="text-sm sm:text-base">Jabatan</Label>
               <Input
                 id="position"
                 value={formData.position}
                 onChange={(e) =>
                   setFormData({ ...formData, position: e.target.value })
                 }
-                className="h-8 sm:h-9 md:h-10 text-xs sm:text-sm"
+                className="h-10 text-sm"
                 required
               />
             </div>
-            <div className="space-y-0.5 sm:space-y-1">
-              <Label htmlFor="photo_url" className="text-[10px] sm:text-xs md:text-sm">URL Foto</Label>
+            <div className="space-y-2">
+              <Label htmlFor="photo_url" className="text-sm sm:text-base">URL Foto</Label>
               <Input
                 id="photo_url"
                 value={formData.photo_url}
                 onChange={(e) =>
                   setFormData({ ...formData, photo_url: e.target.value })
                 }
-                className="h-8 sm:h-9 md:h-10 text-xs sm:text-sm"
+                className="h-10 text-sm"
               />
             </div>
-            <div className="space-y-0.5 sm:space-y-1">
-              <Label htmlFor="order_index" className="text-[10px] sm:text-xs md:text-sm">Urutan</Label>
+            <div className="space-y-2">
+              <Label htmlFor="order_index" className="text-sm sm:text-base">Urutan</Label>
               <Input
                 id="order_index"
                 type="number"
@@ -160,11 +158,11 @@ export const OrganizationManager = () => {
                     order_index: parseInt(e.target.value),
                   })
                 }
-                className="h-8 sm:h-9 md:h-10 text-xs sm:text-sm"
+                className="h-10 text-sm"
               />
             </div>
-            <div className="flex gap-1.5 sm:gap-2">
-              <Button type="submit" className="h-8 sm:h-9 md:h-10 text-[10px] sm:text-xs md:text-sm flex-1">
+            <div className="flex flex-col sm:flex-row gap-2">
+              <Button type="submit" className="h-10 text-sm flex-1">
                 {editingId ? "Update" : "Tambah"}
               </Button>
               {editingId && (
@@ -180,7 +178,7 @@ export const OrganizationManager = () => {
                     order_index: 0,
                   });
                 }}
-                className="h-8 sm:h-9 md:h-10 text-[10px] sm:text-xs md:text-sm"
+                className="h-10 text-sm sm:w-auto"
               >
                 Batal
               </Button>
@@ -190,40 +188,40 @@ export const OrganizationManager = () => {
         </CardContent>
       </Card>
 
-      <div className="grid gap-2 sm:gap-3 md:gap-4 grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-3 sm:gap-4 grid-cols-2 lg:grid-cols-3">
         {members.map((member) => (
           <Card key={member.id}>
-            <CardContent className="p-3 sm:p-4 md:p-6">
-              <div className="flex flex-col items-center text-center space-y-1 sm:space-y-2 md:space-y-3">
+            <CardContent className="p-4 sm:p-5 md:p-6">
+              <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3">
                 {member.photo_url && (
                   <img
                     src={member.photo_url}
                     alt={member.name}
-                    className="w-14 h-14 sm:w-16 sm:h-16 md:w-24 md:h-24 rounded-full object-cover"
+                    className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full object-cover"
                   />
                 )}
                       <div>
-                        <p className="font-medium text-[10px] sm:text-xs md:text-sm line-clamp-1">{member.name}</p>
-                        <p className="text-[9px] sm:text-[10px] md:text-xs text-muted-foreground line-clamp-1">
+                        <p className="font-medium text-xs sm:text-sm md:text-base line-clamp-1">{member.name}</p>
+                        <p className="text-xs sm:text-xs md:text-sm text-muted-foreground line-clamp-1">
                           {member.position}
                         </p>
                       </div>
-                <div className="flex gap-1 sm:gap-1.5 md:gap-2 mt-1 sm:mt-2 md:mt-3">
+                <div className="flex gap-2 mt-2">
                   <Button
                     size="sm"
                     variant="outline"
                     onClick={() => handleEdit(member)}
-                    className="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 p-0"
+                    className="h-8 w-8 sm:h-9 sm:w-9 p-0"
                   >
-                    <Pencil className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4" />
+                    <Pencil className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                   </Button>
                   <Button
                     size="sm"
                     variant="destructive"
                     onClick={() => handleDelete(member.id)}
-                    className="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 p-0"
+                    className="h-8 w-8 sm:h-9 sm:w-9 p-0"
                   >
-                    <Trash2 className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4" />
+                    <Trash2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                   </Button>
                 </div>
               </div>
