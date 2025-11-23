@@ -35,6 +35,7 @@ const BeritaDetail = () => {
   const [loading, setLoading] = useState(true);
   const [hasLiked, setHasLiked] = useState(false);
   const [isLiking, setIsLiking] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
   useEffect(() => {
     if (id) {
       fetchNews();
@@ -157,6 +158,13 @@ const BeritaDetail = () => {
       setIsLiking(false);
     }
   };
+  const handleBack = () => {
+    setIsExiting(true);
+    setTimeout(() => {
+      navigate('/berita');
+    }, 300);
+  };
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const dateStr = date.toLocaleDateString('id-ID', {
@@ -184,9 +192,9 @@ const BeritaDetail = () => {
     return null;
   }
   return <Layout>
-      <article className="py-4 md:py-8 px-3 md:px-4">
+      <article className={`py-4 md:py-8 px-3 md:px-4 transition-opacity duration-300 ${isExiting ? 'opacity-0' : 'opacity-100'}`}>
         <div className="container mx-auto max-w-7xl">
-          <Button variant="ghost" className="mb-3 md:mb-6 text-xs md:text-sm bg-transparent hover:bg-muted/50 hover:text-foreground" onClick={() => navigate('/berita')}>
+          <Button variant="ghost" className="mb-3 md:mb-6 text-xs md:text-sm bg-transparent hover:bg-muted/50 hover:text-foreground" onClick={handleBack}>
             <ArrowLeft className="mr-1 md:mr-2 h-3 w-3 md:h-4 md:w-4" />
             Kembali
           </Button>
