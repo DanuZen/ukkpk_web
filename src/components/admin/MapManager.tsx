@@ -117,7 +117,7 @@ export const MapManager = () => {
   };
   return <div className="space-y-3 sm:space-y-4 md:space-y-6">
       <div>
-        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Pengaturan Peta Lokasi</h2>
+        <h2 className="sm:text-xl md:text-2xl font-bold text-gray-900 text-xl">Pengaturan Peta Lokasi</h2>
         <p className="text-sm sm:text-sm text-gray-600 mt-1">Kelola lokasi dan embed Google Maps untuk sekretariat UKKPK</p>
       </div>
       <Card>
