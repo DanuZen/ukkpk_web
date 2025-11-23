@@ -290,7 +290,7 @@ const ProfilUkkpk = () => {
                   Arah & <span className="text-primary">Tujuan</span>
                 </h2>
                 <AnimatedSection animation="fade-up" delay={50}>
-                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
+                  <p className="sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6 text-xs">
                     Visi dan misi UKKPK dalam mencetak generasi mahasiswa yang kompeten, inovatif, dan profesional di bidang komunikasi dan penyiaran kampus.
                   </p>
                 </AnimatedSection>
