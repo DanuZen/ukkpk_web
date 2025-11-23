@@ -5,7 +5,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { ImageUpload } from "@/components/admin/ImageUpload";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Trash2, Edit, Plus } from "lucide-react";
@@ -26,35 +25,11 @@ interface ProfileManagerProps {
 export const ProfileManager = ({
   activeTab = "slideshow"
 }: ProfileManagerProps) => {
-  const [currentTab, setCurrentTab] = useState<"slideshow" | "structure" | "banner">(activeTab);
-
   return (
     <div className="space-y-4">
-      <Tabs value={currentTab} onValueChange={(value) => setCurrentTab(value as any)} className="w-full">
-        <TabsList className="grid w-full grid-cols-3 h-auto">
-          <TabsTrigger value="slideshow" className="text-xs sm:text-sm py-2">
-            Slideshow Home
-          </TabsTrigger>
-          <TabsTrigger value="banner" className="text-xs sm:text-sm py-2">
-            Banner Profil
-          </TabsTrigger>
-          <TabsTrigger value="structure" className="text-xs sm:text-sm py-2">
-            Struktur Organisasi
-          </TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="slideshow" className="mt-4">
-          <SlideshowSection />
-        </TabsContent>
-        
-        <TabsContent value="banner" className="mt-4">
-          <BannerSection />
-        </TabsContent>
-        
-        <TabsContent value="structure" className="mt-4">
-          <StructureSection />
-        </TabsContent>
-      </Tabs>
+      {activeTab === "slideshow" && <SlideshowSection />}
+      {activeTab === "banner" && <BannerSection />}
+      {activeTab === "structure" && <StructureSection />}
     </div>
   );
 };
