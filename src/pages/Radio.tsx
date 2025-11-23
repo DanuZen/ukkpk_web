@@ -200,7 +200,7 @@ const Radio = () => {
               </AnimatedSection>
 
             {/* Current Program Info - Prominent Display */}
-            {currentProgram ? <div className="mb-6 sm:mb-8 p-4 sm:p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl">
+            {currentProgram ? <div key={currentProgram.id} className="mb-6 sm:mb-8 p-4 sm:p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl animate-fade-in">
                 <div className="flex items-start gap-3 sm:gap-4">
                   <div className="flex-shrink-0">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center animate-pulse shadow-lg shadow-green-500/50 bg-red-600">
