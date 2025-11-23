@@ -200,30 +200,30 @@ const Radio = () => {
               </AnimatedSection>
 
             {/* Current Program Info - Prominent Display */}
-            {currentProgram ? <div className="mb-8 p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl">
-                <div className="flex items-start gap-4">
+            {currentProgram ? <div className="mb-6 sm:mb-8 p-4 sm:p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl">
+                <div className="flex items-start gap-3 sm:gap-4">
                   <div className="flex-shrink-0">
-                    <div className="w-14 h-14 rounded-full flex items-center justify-center animate-pulse shadow-lg shadow-green-500/50 bg-red-600">
-                      <img src={logoSigmaRadio} alt="SIGMA Radio" className="h-7 w-7 object-contain brightness-0 invert" />
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center animate-pulse shadow-lg shadow-green-500/50 bg-red-600">
+                      <img src={logoSigmaRadio} alt="SIGMA Radio" className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 object-contain brightness-0 invert" />
                     </div>
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                      <span className="text-white/90 text-sm font-medium uppercase tracking-wide">SEDANG TAYANG</span>
+                    <div className="flex items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
+                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full animate-pulse" />
+                      <span className="text-white/90 text-xs sm:text-sm font-medium uppercase tracking-wide">SEDANG TAYANG</span>
                     </div>
                     <h3 className="text-sm sm:text-base md:text-lg lg:text-2xl font-bold mb-2 text-left text-slate-50">
                       {currentProgram.name} <span className="text-white/80 font-normal">By</span> {currentProgram.host}
                     </h3>
                     {/* Countdown Timer */}
-                    <div className="flex items-center gap-2 mt-3 bg-white/5 rounded-lg px-2 py-1.5 sm:px-3 sm:py-2 w-fit">
+                    <div className="flex items-center gap-1.5 sm:gap-2 mt-2 sm:mt-3 bg-white/5 rounded-lg px-2 py-1.5 sm:px-3 sm:py-2 w-fit">
                       <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 text-white/70" />
                       <span className="text-white/90 text-xs sm:text-sm font-medium">{timeRemaining}</span>
                     </div>
                   </div>
                 </div>
-              </div> : <div className="mb-8 p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl">
-                <div className="flex items-center gap-3">
+              </div> : <div className="mb-6 sm:mb-8 p-4 sm:p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <RadioIcon className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-white/50" />
                   <span className="text-white/70 text-xs sm:text-sm">Tidak ada program yang sedang tayang saat ini</span>
                 </div>
