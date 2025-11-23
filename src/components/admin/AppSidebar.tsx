@@ -23,8 +23,8 @@ const menuItems = [
     group: "DASHBOARD",
     items: [
       { id: "dashboard", title: "Dashboard Utama", icon: Home },
-      { id: "analytics", title: "Analytics", icon: TrendingUp },
-      { id: "contact", title: "Saran Masuk", icon: MessageSquare },
+      { id: "analytics", title: "Analitik", icon: TrendingUp },
+      { id: "contact", title: "Pesan & Saran", icon: MessageSquare },
     ],
   },
   {
@@ -32,16 +32,16 @@ const menuItems = [
     items: [
       { id: "articles", title: "Artikel", icon: FileText },
       { id: "news", title: "Berita", icon: Newspaper },
-      { id: "radio", title: "Radio", icon: Radio },
+      { id: "radio", title: "Program Radio", icon: Radio },
     ],
   },
   {
     group: "PENGATURAN",
     items: [
-      { id: "slideshow", title: "Slideshow Home", icon: Settings },
-      { id: "banner", title: "Banner Profil UKKPK", icon: Image },
+      { id: "slideshow", title: "Galeri Beranda", icon: Settings },
+      { id: "banner", title: "Banner Profil", icon: Image },
       { id: "structure", title: "Struktur Organisasi", icon: Users },
-      { id: "maps", title: "Peta Lokasi", icon: Map },
+      { id: "maps", title: "Lokasi & Peta", icon: Map },
     ],
   },
 ];
