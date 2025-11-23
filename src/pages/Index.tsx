@@ -278,7 +278,7 @@ const Index = () => {
       </section>
 
       {/* Map Section with Location Details */}
-      <section className="min-h-screen flex items-center py-16 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 relative px-4 bg-white overflow-hidden">
+      <section className="min-h-screen flex items-center py-16 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 relative px-2 sm:px-4 bg-white overflow-hidden">
         
         <div className="relative z-10 container mx-auto max-w-7xl">
           <AnimatedSection animation="fade-up">
@@ -303,7 +303,7 @@ const Index = () => {
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6 lg:gap-8 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4 md:gap-6 lg:gap-8 items-stretch">
             {/* Map */}
             <AnimatedSection animation="scale-in" delay={100} className="my-[8px]">
               <GoogleMap />
