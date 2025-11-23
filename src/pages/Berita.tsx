@@ -67,26 +67,26 @@ const Berita = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
+      <section className="relative py-8 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d')] opacity-5 bg-cover bg-center"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background"></div>
         <div className="container mx-auto relative z-10">
           <AnimatedSection animation="fade-up">
-            <div className="max-w-3xl mx-auto text-center space-y-4 sm:space-y-6">
-              <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 mb-4">
-                <span className="text-xs uppercase font-semibold text-primary flex items-center gap-1.5">
+            <div className="max-w-3xl mx-auto text-center space-y-2 sm:space-y-6">
+              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 mb-2">
+                <span className="text-xs uppercase font-semibold text-primary flex items-center gap-1">
                   <Newspaper className="w-3 h-3 animate-pulse" />
                   Publikasi Berita
                 </span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2">
                 Berita <span className="text-primary">Terkini</span>
               </h1>
               <AnimatedSection animation="fade-up" delay={50}>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground px-4">
+                <p className="text-xs sm:text-base md:text-lg lg:text-xl text-muted-foreground px-2">
                   Informasi dan berita terbaru seputar UKKPK dan kegiatan kampus. Dapatkan update terkini tentang acara, prestasi, dan perkembangan organisasi mahasiswa komunikasi dan penyiaran kampus.
                 </p>
-                <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mt-6" />
+                <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mt-3" />
               </AnimatedSection>
             </div>
           </AnimatedSection>
@@ -94,18 +94,18 @@ const Berita = () => {
       </section>
 
       {/* Search Section */}
-      <section className="py-4 sm:py-6 md:py-8 lg:py-12 bg-white">
+      <section className="py-3 sm:py-6 md:py-8 lg:py-12 bg-white">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="scale-in" delay={100}>
             <div className="max-w-2xl mx-auto relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5 z-10" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4 sm:h-5 sm:w-5 z-10" />
               {/* Mobile placeholder */}
               <Input
                 type="text"
                 placeholder="Cari Berita"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="sm:hidden pl-10 py-2 text-sm shadow-lg"
+                className="sm:hidden pl-9 py-1.5 text-xs shadow-md"
               />
               {/* Tablet & Desktop placeholder */}
               <Input
@@ -132,7 +132,7 @@ const Berita = () => {
                     onClick={() => navigate(`/berita/${item.id}`)}
                   >
                   {item.image_url && (
-                    <div className="relative overflow-hidden h-44 sm:h-48 md:h-56">
+                    <div className="relative overflow-hidden h-36 sm:h-48 md:h-56">
                       <img
                         src={item.image_url}
                         alt={item.title}
@@ -141,21 +141,21 @@ const Berita = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
                   )}
-                  <CardHeader className="space-y-2 sm:space-y-3 px-3 py-3 sm:px-4 sm:py-4 md:px-6 md:py-5">
-                    <div className="flex items-center justify-between gap-2">
-                      <Badge className="bg-primary/10 text-primary hover:bg-primary/20">
+                  <CardHeader className="space-y-1.5 sm:space-y-3 px-2.5 py-2.5 sm:px-4 sm:py-4 md:px-6 md:py-5">
+                    <div className="flex items-center justify-between gap-1.5">
+                      <Badge className="bg-primary/10 text-primary hover:bg-primary/20 text-[10px] sm:text-xs px-2 py-0.5">
                         Berita
                       </Badge>
-                      <span className="text-xs text-muted-foreground">
+                      <span className="text-[10px] sm:text-xs text-muted-foreground">
                         {formatDate(item.published_at || item.created_at)}
                       </span>
                     </div>
-                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-base sm:text-lg md:text-xl">
+                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-lg md:text-xl">
                       {item.title}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="px-3 py-3 sm:px-4 sm:py-4 md:px-6 md:py-5">
-                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground line-clamp-3 sm:line-clamp-4 leading-relaxed">
+                  <CardContent className="px-2.5 py-2 sm:px-4 sm:py-4 md:px-6 md:py-5">
+                    <p className="text-[11px] sm:text-sm md:text-base text-muted-foreground line-clamp-2 sm:line-clamp-4 leading-relaxed">
                       {stripHtml(item.content)}
                     </p>
                   </CardContent>
