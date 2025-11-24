@@ -123,7 +123,7 @@ const Auth = () => {
       </div>
 
       {/* Right Side - Illustration */}
-      <div className="hidden lg:flex w-1/2 bg-primary relative overflow-hidden items-center justify-center animate-fade-in">
+      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-primary to-primary/90 relative overflow-hidden items-center justify-center animate-fade-in">
         {/* Subtle Pattern Background */}
         <div className="absolute inset-0 opacity-15">
           <div className="absolute top-0 left-0 w-full h-full" style={{
