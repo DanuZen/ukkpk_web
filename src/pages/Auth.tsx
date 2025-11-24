@@ -60,14 +60,7 @@ const Auth = () => {
   };
   return <div className="min-h-screen flex">
       {/* Left Side - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gradient-to-br from-white via-gray-50/50 to-primary/5 relative overflow-hidden">
-        {/* Dynamic Animated Background */}
-        <div className="absolute inset-0">
-          {/* Gradient Orbs */}
-          <div className="absolute top-20 -left-20 w-64 h-64 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-20 -right-20 w-80 h-80 bg-gradient-to-tl from-secondary/10 to-transparent rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-accent/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
-        </div>
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white relative overflow-hidden">
 
         <div className="w-full max-w-md relative z-10">
           {/* Logo */}
