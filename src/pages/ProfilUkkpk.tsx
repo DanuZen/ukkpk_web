@@ -9,7 +9,6 @@ import logoReporter from '@/assets/logo-reporter.png';
 import logoMicu from '@/assets/logo-micu-new.png';
 import logoMc from '@/assets/logo-mc.png';
 import logoSigmaRadio from '@/assets/logo-sigma-radio.png';
-
 interface OrgMember {
   id: string;
   name: string;
@@ -17,14 +16,12 @@ interface OrgMember {
   photo_url: string | null;
   order_index: number | null;
 }
-
 interface ProfileSettings {
   id: string;
   banner_url: string | null;
   description: string | null;
   organization_image_url: string | null;
 }
-
 interface StrukturOrganisasi {
   id: string;
   angkatan: string;
@@ -38,113 +35,115 @@ const AnimatedSection: React.FC<{
   animation?: 'fade-up' | 'fade-in' | 'scale-in' | 'slide-left' | 'slide-right';
   delay?: number;
   className?: string;
-}> = ({ children, animation = 'fade-up', delay = 0, className = '' }) => {
-  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
-
+}> = ({
+  children,
+  animation = 'fade-up',
+  delay = 0,
+  className = ''
+}) => {
+  const {
+    ref,
+    isVisible
+  } = useScrollAnimation({
+    threshold: 0.1
+  });
   const animationClasses = {
     'fade-up': isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10',
     'fade-in': isVisible ? 'opacity-100' : 'opacity-0',
     'scale-in': isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95',
     'slide-left': isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10',
-    'slide-right': isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10',
+    'slide-right': isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
   };
-
-  return (
-    <div ref={ref} className={`transition-all duration-700 ease-out ${animationClasses[animation]} ${className}`} style={{ transitionDelay: `${delay}ms` }}>
+  return <div ref={ref} className={`transition-all duration-700 ease-out ${animationClasses[animation]} ${className}`} style={{
+    transitionDelay: `${delay}ms`
+  }}>
       {children}
-    </div>
-  );
+    </div>;
 };
-
 const ProfilUkkpk = () => {
   const [members, setMembers] = useState<OrgMember[]>([]);
   const [profile, setProfile] = useState<ProfileSettings | null>(null);
   const [strukturData, setStrukturData] = useState<StrukturOrganisasi[]>([]);
   const [selectedYear, setSelectedYear] = useState(0);
-
-  const divisionLogos = [
-    { name: 'Jurnalistik', image: logoReporter },
-    { name: 'Penyiaran', image: logoSigmaRadio },
-    { name: 'Kreatif Media', image: logoMc },
-  ];
-
-  const features = [
-    {
-      icon: <Megaphone className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
-      title: 'MC Dan Keprotokolan',
-      description: 'Membina keterampilan berbicara di depan umum dan menjadi pembawa acara profesional',
-    },
-    {
-      icon: <FileText className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
-      title: 'Jurnalistik & Penyiaran',
-      description: 'Mengembangkan kemampuan menulis berita, artikel, dan melakukan liputan yang mendalam',
-    },
-    {
-      icon: <Radio className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
-      title: 'Radio & Penyiaran',
-      description: 'Melatih kemampuan penyiaran, produksi audio, dan manajemen program radio',
-    },
-    {
-      icon: <Briefcase className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
-      title: 'Biro Kewirausahaan',
-      description: 'Mengembangkan jiwa entrepreneurship dan keterampilan bisnis di bidang komunikasi',
-    },
-    {
-      icon: <ClipboardList className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
-      title: 'Biro Kesekretariatan',
-      description: 'Melatih kemampuan administrasi, manajemen dokumen, dan koordinasi organisasi',
-    },
-    {
-      icon: <Users2 className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
-      title: 'Human Resource Development',
-      description: 'Mengembangkan potensi SDM melalui pelatihan dan pengembangan anggota',
-    },
-    {
-      icon: <Handshake className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
-      title: 'Public Relation',
-      description: 'Membangun dan memelihara hubungan baik dengan stakeholder internal maupun eksternal',
-    },
-  ];
-
-  const values = [
-    {
-      icon: <Users className="h-5 w-5 sm:h-6 sm:w-6" />,
-      title: 'Kekeluargaan',
-      description: 'Membangun solidaritas dan kebersamaan antar anggota',
-    },
-    {
-      icon: <Target className="h-5 w-5 sm:h-6 sm:w-6" />,
-      title: 'Profesionalisme',
-      description: 'Mengutamakan kualitas dan dedikasi dalam setiap karya',
-    },
-    {
-      icon: <Eye className="h-5 w-5 sm:h-6 sm:w-6" />,
-      title: 'Kreativitas',
-      description: 'Mendorong inovasi dan ide-ide segar dalam komunikasi',
-    },
-  ];
-
+  const divisionLogos = [{
+    name: 'Jurnalistik',
+    image: logoReporter
+  }, {
+    name: 'Penyiaran',
+    image: logoSigmaRadio
+  }, {
+    name: 'Kreatif Media',
+    image: logoMc
+  }];
+  const features = [{
+    icon: <Megaphone className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
+    title: 'MC Dan Keprotokolan',
+    description: 'Membina keterampilan berbicara di depan umum dan menjadi pembawa acara profesional'
+  }, {
+    icon: <FileText className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
+    title: 'Jurnalistik & Penyiaran',
+    description: 'Mengembangkan kemampuan menulis berita, artikel, dan melakukan liputan yang mendalam'
+  }, {
+    icon: <Radio className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
+    title: 'Radio & Penyiaran',
+    description: 'Melatih kemampuan penyiaran, produksi audio, dan manajemen program radio'
+  }, {
+    icon: <Briefcase className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
+    title: 'Biro Kewirausahaan',
+    description: 'Mengembangkan jiwa entrepreneurship dan keterampilan bisnis di bidang komunikasi'
+  }, {
+    icon: <ClipboardList className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
+    title: 'Biro Kesekretariatan',
+    description: 'Melatih kemampuan administrasi, manajemen dokumen, dan koordinasi organisasi'
+  }, {
+    icon: <Users2 className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
+    title: 'Human Resource Development',
+    description: 'Mengembangkan potensi SDM melalui pelatihan dan pengembangan anggota'
+  }, {
+    icon: <Handshake className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
+    title: 'Public Relation',
+    description: 'Membangun dan memelihara hubungan baik dengan stakeholder internal maupun eksternal'
+  }];
+  const values = [{
+    icon: <Users className="h-5 w-5 sm:h-6 sm:w-6" />,
+    title: 'Kekeluargaan',
+    description: 'Membangun solidaritas dan kebersamaan antar anggota'
+  }, {
+    icon: <Target className="h-5 w-5 sm:h-6 sm:w-6" />,
+    title: 'Profesionalisme',
+    description: 'Mengutamakan kualitas dan dedikasi dalam setiap karya'
+  }, {
+    icon: <Eye className="h-5 w-5 sm:h-6 sm:w-6" />,
+    title: 'Kreativitas',
+    description: 'Mendorong inovasi dan ide-ide segar dalam komunikasi'
+  }];
   useEffect(() => {
     fetchMembers();
     fetchProfile();
     fetchStrukturOrganisasi();
   }, []);
-
   const fetchMembers = async () => {
-    const { data } = await supabase.from('organization').select('*').order('order_index', { ascending: true });
+    const {
+      data
+    } = await supabase.from('organization').select('*').order('order_index', {
+      ascending: true
+    });
     if (data) setMembers(data);
   };
-
   const fetchProfile = async () => {
-    const { data } = await supabase.from('profile_settings').select('*').limit(1).maybeSingle();
+    const {
+      data
+    } = await supabase.from('profile_settings').select('*').limit(1).maybeSingle();
     if (data) setProfile(data);
   };
-
   const fetchStrukturOrganisasi = async () => {
-    const { data } = await supabase.from('struktur_organisasi').select('*').order('created_at', { ascending: true });
+    const {
+      data
+    } = await supabase.from('struktur_organisasi').select('*').order('created_at', {
+      ascending: true
+    });
     if (data) setStrukturData(data);
   };
-
   useEffect(() => {
     if (profile?.banner_url) {
       const link = document.createElement('link');
@@ -157,17 +156,13 @@ const ProfilUkkpk = () => {
       };
     }
   }, [profile?.banner_url]);
-
-  return (
-    <Layout>
+  return <Layout>
       <div className="scroll-smooth">
         {/* Hero Section */}
         <section className="relative h-screen flex items-center px-2 sm:px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
-          {profile?.banner_url ? (
-            <img src={profile.banner_url} alt="UKKPK Banner" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchPriority="high" />
-          ) : (
-            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d)` }} />
-          )}
+          {profile?.banner_url ? <img src={profile.banner_url} alt="UKKPK Banner" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchPriority="high" /> : <div className="absolute inset-0 bg-cover bg-center" style={{
+          backgroundImage: `url(https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d)`
+        }} />}
           <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70" />
 
           <div className="container mx-auto relative z-10">
@@ -244,7 +239,7 @@ const ProfilUkkpk = () => {
                     <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
                     <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                     <div className="relative z-10">
-                      <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed text-justify">
+                      <p className="sm:text-base md:text-lg text-muted-foreground leading-relaxed text-justify text-xs">
                         Unit Kegiatan Komunikasi dan Penyiaran Kampus (UKKPK) adalah organisasi mahasiswa yang bergerak dalam pengembangan bidang komunikasi dan media di lingkungan kampus. UKKPK memiliki tiga bidang utama, yaitu
                         Jurnalistik, Master of Ceremony (MC), dan Radio. Melalui bidang Jurnalistik, UKKPK melakukan peliputan dan penyajian informasi kampus secara akurat serta kreatif. Bidang MC berfokus pada peningkatan kemampuan public
                         speaking dan pembawa acara, sehingga anggota mampu tampil profesional dalam berbagai kegiatan kampus. Sementara itu, bidang Radio menghadirkan program siaran, podcast, serta konten audio yang informatif dan
@@ -345,44 +340,32 @@ const ProfilUkkpk = () => {
 
               {/* Timeline Cards */}
               <div className="flex flex-col gap-8 mb-16 max-w-4xl mx-auto">
-                {[
-                  {
-                    delay: 150,
-                    icon: <Sparkles className="h-6 w-6 sm:h-7 sm:w-7" />,
-                    title: 'Awal Terbentuk (1993)',
-                    content:
-                      'UKKPK (Unit Kegiatan Komunikasi dan Penyiaran Kampus) merupakan salah satu unit kegiatan mahasiswa (UKM) yang ada di Universitas Negeri Padang (UNP). UKM ini merupakan fusi tiga UKM, yaitu UK MC, UK Radio, dan UK Penerbitan Kampus, yang telah ada sebelumnya di IKIP Padang. Pada tahun 1993 ketiga tersebut bergabung dan membentuk satu kesatuan dengan nama Unit Kegiatan Komunikasi dan Penerbitan Kampus (UKKPK) IKIP Padang. Namun seiring perkembangan dan kondisi waktu, pada tahun 2000 dalam MUBES III UKKPK UNP berganti nama menjadi Unit Kegiatan Komunikasi dan Penyiaran Kampus namun tetap menggunakan akronim UKKPK.',
-                  },
-                  {
-                    delay: 200,
-                    icon: <Mic className="h-6 w-6 sm:h-7 sm:w-7" />,
-                    title: 'Perkembangan Organisasi (1993-2000)',
-                    content:
-                      'Pada masa awal berdirinya, UKKPK fokus mengembangkan tiga bidang utama: MC dan Public Speaking, Penerbitan Kampus, dan Penyiaran Radio. Ketiga bidang ini menjadi fondasi kuat bagi pengembangan keterampilan komunikasi mahasiswa UNP dalam berbagai aspek.',
-                  },
-                  {
-                    delay: 250,
-                    icon: <Waves className="h-6 w-6 sm:h-7 sm:w-7" />,
-                    title: 'Transformasi Modern (2000-2015)',
-                    content:
-                      'Memasuki era digital, UKKPK mulai mengadaptasi teknologi modern dalam kegiatan penyiaran dan jurnalistik. Bidang penerbitan bertransformasi menjadi jurnalistik digital, dan radio kampus mulai mengadopsi teknologi streaming online. Perubahan ini menandai era baru UKKPK dalam menghadapi perkembangan zaman.',
-                  },
-                  {
-                    delay: 300,
-                    icon: <Rocket className="h-6 w-6 sm:h-7 sm:w-7" />,
-                    title: 'Ekspansi Bidang (2015-2020)',
-                    content:
-                      'UKKPK terus berkembang dengan menambah berbagai bidang baru seperti Kewirausahaan, Kesekretariatan, Human Resource Development, dan Public Relations. Ekspansi ini bertujuan untuk memberikan pengalaman yang lebih komprehensif kepada anggota dalam berbagai aspek komunikasi dan organisasi.',
-                  },
-                  {
-                    delay: 350,
-                    icon: <Shield className="h-6 w-6 sm:h-7 sm:w-7" />,
-                    title: 'Era Digital & Inovasi (2020-Sekarang)',
-                    content:
-                      'Di era pandemi dan pasca pandemi, UKKPK semakin memperkuat kehadiran digitalnya. Berbagai inovasi seperti webinar, podcast, konten media sosial, dan kolaborasi lintas platform menjadi fokus utama. UKKPK terus beradaptasi dan berinovasi untuk tetap relevan di tengah perkembangan teknologi komunikasi yang pesat.',
-                  },
-                ].map((item, index) => (
-                  <AnimatedSection key={index} animation="fade-up" delay={item.delay}>
+                {[{
+                delay: 150,
+                icon: <Sparkles className="h-6 w-6 sm:h-7 sm:w-7" />,
+                title: 'Awal Terbentuk (1993)',
+                content: 'UKKPK (Unit Kegiatan Komunikasi dan Penyiaran Kampus) merupakan salah satu unit kegiatan mahasiswa (UKM) yang ada di Universitas Negeri Padang (UNP). UKM ini merupakan fusi tiga UKM, yaitu UK MC, UK Radio, dan UK Penerbitan Kampus, yang telah ada sebelumnya di IKIP Padang. Pada tahun 1993 ketiga tersebut bergabung dan membentuk satu kesatuan dengan nama Unit Kegiatan Komunikasi dan Penerbitan Kampus (UKKPK) IKIP Padang. Namun seiring perkembangan dan kondisi waktu, pada tahun 2000 dalam MUBES III UKKPK UNP berganti nama menjadi Unit Kegiatan Komunikasi dan Penyiaran Kampus namun tetap menggunakan akronim UKKPK.'
+              }, {
+                delay: 200,
+                icon: <Mic className="h-6 w-6 sm:h-7 sm:w-7" />,
+                title: 'Perkembangan Organisasi (1993-2000)',
+                content: 'Pada masa awal berdirinya, UKKPK fokus mengembangkan tiga bidang utama: MC dan Public Speaking, Penerbitan Kampus, dan Penyiaran Radio. Ketiga bidang ini menjadi fondasi kuat bagi pengembangan keterampilan komunikasi mahasiswa UNP dalam berbagai aspek.'
+              }, {
+                delay: 250,
+                icon: <Waves className="h-6 w-6 sm:h-7 sm:w-7" />,
+                title: 'Transformasi Modern (2000-2015)',
+                content: 'Memasuki era digital, UKKPK mulai mengadaptasi teknologi modern dalam kegiatan penyiaran dan jurnalistik. Bidang penerbitan bertransformasi menjadi jurnalistik digital, dan radio kampus mulai mengadopsi teknologi streaming online. Perubahan ini menandai era baru UKKPK dalam menghadapi perkembangan zaman.'
+              }, {
+                delay: 300,
+                icon: <Rocket className="h-6 w-6 sm:h-7 sm:w-7" />,
+                title: 'Ekspansi Bidang (2015-2020)',
+                content: 'UKKPK terus berkembang dengan menambah berbagai bidang baru seperti Kewirausahaan, Kesekretariatan, Human Resource Development, dan Public Relations. Ekspansi ini bertujuan untuk memberikan pengalaman yang lebih komprehensif kepada anggota dalam berbagai aspek komunikasi dan organisasi.'
+              }, {
+                delay: 350,
+                icon: <Shield className="h-6 w-6 sm:h-7 sm:w-7" />,
+                title: 'Era Digital & Inovasi (2020-Sekarang)',
+                content: 'Di era pandemi dan pasca pandemi, UKKPK semakin memperkuat kehadiran digitalnya. Berbagai inovasi seperti webinar, podcast, konten media sosial, dan kolaborasi lintas platform menjadi fokus utama. UKKPK terus beradaptasi dan berinovasi untuk tetap relevan di tengah perkembangan teknologi komunikasi yang pesat.'
+              }].map((item, index) => <AnimatedSection key={index} animation="fade-up" delay={item.delay}>
                     <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
                       <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative">
                         <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
@@ -394,8 +377,7 @@ const ProfilUkkpk = () => {
                         <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed text-justify">{item.content}</p>
                       </CardContent>
                     </Card>
-                  </AnimatedSection>
-                ))}
+                  </AnimatedSection>)}
               </div>
             </div>
           </div>
@@ -434,22 +416,19 @@ const ProfilUkkpk = () => {
 
                 {/* 3 Logo Bidang */}
                 <div className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-8 max-w-3xl mx-auto">
-                  {divisionLogos.map((logo, index) => (
-                    <AnimatedSection key={index} animation="scale-in" delay={200 + index * 100}>
+                  {divisionLogos.map((logo, index) => <AnimatedSection key={index} animation="scale-in" delay={200 + index * 100}>
                       <div className="flex flex-col items-center group">
                         <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mb-4 rounded-lg overflow-hidden p-4 transition-all duration-300 hover:scale-110 hover:rotate-3 bg-transparent">
                           <img src={logo.image} alt={logo.name} className="w-full h-full object-contain drop-shadow-xl" />
                         </div>
                       </div>
-                    </AnimatedSection>
-                  ))}
+                    </AnimatedSection>)}
                 </div>
               </div>
 
               {/* Features Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-                {features.slice(0, 4).map((feature, index) => (
-                  <AnimatedSection key={index} animation="fade-up" delay={100 + index * 100}>
+                {features.slice(0, 4).map((feature, index) => <AnimatedSection key={index} animation="fade-up" delay={100 + index * 100}>
                     <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg">
                       <CardContent className="pt-8 px-4 sm:px-6 md:px-8 text-center flex flex-col items-center relative">
                         <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
@@ -459,14 +438,12 @@ const ProfilUkkpk = () => {
                         <p className="text-sm sm:text-base md:text-lg text-muted-foreground text-center leading-relaxed relative z-10">{feature.description}</p>
                       </CardContent>
                     </Card>
-                  </AnimatedSection>
-                ))}
+                  </AnimatedSection>)}
               </div>
 
               {/* Baris kedua: 3 card centered */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                {features.slice(4, 7).map((feature, index) => (
-                  <AnimatedSection key={index + 4} animation="fade-up" delay={500 + index * 100}>
+                {features.slice(4, 7).map((feature, index) => <AnimatedSection key={index + 4} animation="fade-up" delay={500 + index * 100}>
                     <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg">
                       <CardContent className="pt-8 px-4 sm:px-6 md:px-8 text-center flex flex-col items-center relative">
                         <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
@@ -476,8 +453,7 @@ const ProfilUkkpk = () => {
                         <p className="text-sm sm:text-base md:text-lg text-muted-foreground text-center leading-relaxed relative z-10">{feature.description}</p>
                       </CardContent>
                     </Card>
-                  </AnimatedSection>
-                ))}
+                  </AnimatedSection>)}
               </div>
             </div>
           </div>
@@ -505,8 +481,7 @@ const ProfilUkkpk = () => {
             </AnimatedSection>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              {values.map((value, index) => (
-                <AnimatedSection key={index} animation="scale-in" delay={100 + index * 150}>
+              {values.map((value, index) => <AnimatedSection key={index} animation="scale-in" delay={100 + index * 150}>
                   <Card className="text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 shadow-lg">
                     <CardContent className="pt-8 px-4 sm:px-6 md:px-8 relative">
                       <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
@@ -516,8 +491,7 @@ const ProfilUkkpk = () => {
                       <p className="text-sm sm:text-base md:text-lg text-muted-foreground text-center leading-relaxed relative z-10">{value.description}</p>
                     </CardContent>
                   </Card>
-                </AnimatedSection>
-              ))}
+                </AnimatedSection>)}
             </div>
           </div>
         </section>
@@ -541,18 +515,13 @@ const ProfilUkkpk = () => {
               </div>
             </AnimatedSection>
 
-            {strukturData.length > 0 && (
-              <AnimatedSection animation="fade-in" delay={100}>
+            {strukturData.length > 0 && <AnimatedSection animation="fade-in" delay={100}>
                 <div className="max-w-5xl mx-auto mb-8">
-                  {strukturData.length > 1 && (
-                    <div className="flex justify-center gap-3 mb-8">
-                      {strukturData.map((struktur, index) => (
-                        <Button key={struktur.id} variant={selectedYear === index ? 'default' : 'outline'} onClick={() => setSelectedYear(index)} className="min-w-[140px] transition-all duration-300 hover:scale-105" size="lg">
+                  {strukturData.length > 1 && <div className="flex justify-center gap-3 mb-8">
+                      {strukturData.map((struktur, index) => <Button key={struktur.id} variant={selectedYear === index ? 'default' : 'outline'} onClick={() => setSelectedYear(index)} className="min-w-[140px] transition-all duration-300 hover:scale-105" size="lg">
                           {struktur.angkatan}
-                        </Button>
-                      ))}
-                    </div>
-                  )}
+                        </Button>)}
+                    </div>}
                   <div className="text-center mb-6">
                     <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">{strukturData[selectedYear]?.angkatan}</h3>
                   </div>
@@ -560,13 +529,10 @@ const ProfilUkkpk = () => {
                     <img src={strukturData[selectedYear]?.foto_url} alt={`Struktur Organisasi ${strukturData[selectedYear]?.angkatan}`} className="w-full rounded-lg shadow-xl" />
                   </div>
                 </div>
-              </AnimatedSection>
-            )}
+              </AnimatedSection>}
 
-            {members.length > 0 && (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                {members.map((member, index) => (
-                  <AnimatedSection key={member.id} animation="fade-up" delay={100 + (index % 3) * 100}>
+            {members.length > 0 && <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                {members.map((member, index) => <AnimatedSection key={member.id} animation="fade-up" delay={100 + index % 3 * 100}>
                     <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                       <CardContent className="p-2 sm:p-4 md:p-6 text-center">
                         {member.photo_url && <img src={member.photo_url} alt={member.name} className="w-32 h-32 rounded-full mx-auto mb-4 object-cover" />}
@@ -574,15 +540,11 @@ const ProfilUkkpk = () => {
                         <p className="text-xs sm:text-sm text-primary">{member.position}</p>
                       </CardContent>
                     </Card>
-                  </AnimatedSection>
-                ))}
-              </div>
-            )}
+                  </AnimatedSection>)}
+              </div>}
           </div>
         </section>
       </div>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default ProfilUkkpk;
