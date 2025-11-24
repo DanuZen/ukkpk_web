@@ -7,7 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
-import authBgLogo from "@/assets/auth-bg-logo.png";
+import logoMicuMascot from "@/assets/logo-micu-mascot.png";
 
 const REMEMBER_ME_KEY = 'ukkpk_remember_me';
 const SAVED_EMAIL_KEY = 'ukkpk_saved_email';
@@ -129,16 +129,25 @@ const Auth = () => {
         </div>
       </div>
 
-      {/* Right Side - Background Image */}
-      <div 
-        className="hidden lg:block w-1/2 relative overflow-hidden"
-        style={{
-          backgroundImage: `url(${authBgLogo})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      />
+      {/* Right Side - Illustration */}
+      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-primary via-primary/90 to-primary/70 relative overflow-hidden items-center justify-center animate-fade-in">
+        {/* MICU Logo & Welcome Text */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white z-10">
+          <img 
+            src={logoMicuMascot} 
+            alt="MICU Mascot" 
+            loading="eager"
+            className="h-64 w-auto mx-auto mb-6 drop-shadow-2xl"
+            style={{
+              animation: 'float 3s ease-in-out infinite 0.5s backwards',
+              filter: 'drop-shadow(0 0 40px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 80px rgba(255, 255, 255, 0.4))',
+              willChange: 'transform'
+            }}
+          />
+          <h2 className="text-3xl font-bold mb-2 drop-shadow-lg">Selamat Datang Intelektual Muda!</h2>
+          <p className="text-lg opacity-90 drop-shadow">Unit Kegiatan Komunikasi & Penyiaran Kampus</p>
+        </div>
+      </div>
 
       <style>{`
         @keyframes float {
