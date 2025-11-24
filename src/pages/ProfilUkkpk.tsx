@@ -482,13 +482,13 @@ const ProfilUkkpk = () => {
 
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {values.map((value, index) => <AnimatedSection key={index} animation="scale-in" delay={100 + index * 150}>
-                  <Card className="text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                    <CardContent className="pt-8 px-4 sm:px-6 md:px-8 relative">
+                  <Card className="text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 shadow-lg h-full">
+                    <CardContent className="pt-8 pb-8 px-4 sm:px-6 md:px-8 relative flex flex-col items-center h-full">
                       <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
                       <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                       <div className="inline-flex p-2.5 sm:p-3 rounded-full bg-primary/10 text-primary mb-4 relative z-10">{value.icon}</div>
                       <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2 relative z-10">{value.title}</h3>
-                      <p className="text-sm sm:text-base md:text-lg text-muted-foreground text-center leading-relaxed relative z-10">{value.description}</p>
+                      <p className="text-sm sm:text-base text-muted-foreground text-center leading-relaxed relative z-10">{value.description}</p>
                     </CardContent>
                   </Card>
                 </AnimatedSection>)}
