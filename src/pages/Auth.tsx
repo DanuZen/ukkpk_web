@@ -60,11 +60,22 @@ const Auth = () => {
   };
   return <div className="min-h-screen flex">
       {/* Left Side - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-background relative overflow-hidden">
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 left-20 w-32 h-32 rounded-full border-2 border-primary/20"></div>
-          <div className="absolute bottom-20 right-20 w-48 h-48 rounded-full border-2 border-primary/20"></div>
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gradient-to-br from-white via-gray-50/50 to-primary/5 relative overflow-hidden">
+        {/* Dynamic Animated Background */}
+        <div className="absolute inset-0">
+          {/* Gradient Orbs */}
+          <div className="absolute top-20 -left-20 w-64 h-64 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-20 -right-20 w-80 h-80 bg-gradient-to-tl from-secondary/10 to-transparent rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-accent/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          
+          {/* Animated Circles */}
+          <div className="absolute top-20 left-20 w-32 h-32 rounded-full border-2 border-primary/10 animate-spin-slow"></div>
+          <div className="absolute bottom-20 right-20 w-48 h-48 rounded-full border-2 border-primary/5 animate-spin-slow" style={{ animationDelay: '0.5s' }}></div>
+          
+          {/* Floating Dots */}
+          <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-primary/20 rounded-full animate-float"></div>
+          <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-secondary/20 rounded-full animate-float" style={{ animationDelay: '0.3s' }}></div>
+          <div className="absolute bottom-1/3 left-1/3 w-3 h-3 bg-accent/20 rounded-full animate-float" style={{ animationDelay: '0.6s' }}></div>
         </div>
 
         <div className="w-full max-w-md relative z-10">
@@ -180,6 +191,10 @@ const Auth = () => {
           0% { transform: translateX(0) translateY(0); opacity: 1; }
           100% { transform: translateX(-200px) translateY(200px); opacity: 0; }
         }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
         .animate-float {
           animation: float 6s ease-in-out infinite;
         }
@@ -188,6 +203,9 @@ const Auth = () => {
         }
         .animate-shooting-star {
           animation: shooting-star 3s ease-in infinite;
+        }
+        .animate-spin-slow {
+          animation: spin-slow 20s linear infinite;
         }
         .delay-100 { animation-delay: 0.1s; }
         .delay-200 { animation-delay: 0.2s; }
