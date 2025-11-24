@@ -120,8 +120,8 @@ export const DashboardOverview = () => {
     fetchRecentActivity();
   }, []);
 
-  // Mock chart data for visualization
-  const chartData = Array.from({ length: 30 }, (_, i) => ({
+  // Mock chart data for visualization - reduced to 12 data points for better readability
+  const chartData = Array.from({ length: 12 }, (_, i) => ({
     day: i + 1,
     views: Math.floor(Math.random() * 1000) + 500,
   }));
