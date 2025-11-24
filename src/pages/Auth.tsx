@@ -131,26 +131,6 @@ const Auth = () => {
 
       {/* Right Side - Illustration */}
       <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-primary via-primary/90 to-primary/70 relative overflow-hidden items-center justify-center animate-fade-in">
-        {/* Decorative Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-20 w-3 h-3 bg-white/80 rounded-full animate-pulse shadow-lg"></div>
-          <div className="absolute top-40 right-40 w-2 h-2 bg-white/60 rounded-full animate-pulse delay-100 shadow-md"></div>
-          <div className="absolute bottom-32 left-32 w-3 h-3 bg-white/80 rounded-full animate-pulse delay-200 shadow-lg"></div>
-          <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-white/60 rounded-full animate-pulse delay-300 shadow-md"></div>
-          <div className="absolute top-1/2 right-1/3 w-4 h-4 bg-white/40 rounded-full blur-sm"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-3 h-3 bg-white/40 rounded-full blur-sm"></div>
-        </div>
-
-        {/* Clouds */}
-        <div className="absolute top-20 left-10 w-32 h-16 bg-white/10 rounded-full blur-xl animate-float"></div>
-        <div className="absolute top-40 right-20 w-40 h-20 bg-white/10 rounded-full blur-xl animate-float delay-200"></div>
-        <div className="absolute bottom-40 left-1/3 w-36 h-18 bg-white/5 rounded-full blur-2xl"></div>
-
-        {/* Person Working at Desk Illustration */}
-        <div className="relative z-10 animate-float-slow">
-          
-        </div>
-
         {/* MICU Logo & Welcome Text */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white z-10">
           <img 
