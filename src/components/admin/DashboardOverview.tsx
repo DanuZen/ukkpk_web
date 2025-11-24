@@ -34,6 +34,7 @@ interface RecentActivity {
 export const DashboardOverview = () => {
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [chartData, setChartData] = useState<{ day: number; views: number }[]>([]);
   const [stats, setStats] = useState({
     articles: 0,
     news: 0,
@@ -122,14 +123,58 @@ export const DashboardOverview = () => {
     fetchRecentActivity();
   }, []);
 
-  // Calculate days in selected month
-  const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
-  
-  // Mock chart data based on actual days in selected month
-  const chartData = Array.from({ length: daysInMonth }, (_, i) => ({
-    day: i + 1,
-    views: Math.floor(Math.random() * 1000) + 500,
-  }));
+  useEffect(() => {
+    const fetchChartData = async () => {
+      try {
+        const startDate = new Date(selectedYear, selectedMonth, 1);
+        const endDate = new Date(selectedYear, selectedMonth + 1, 0);
+        
+        // Fetch articles and news for selected month/year
+        const { data: articlesData } = await supabase
+          .from('articles')
+          .select('published_at, view_count')
+          .gte('published_at', startDate.toISOString())
+          .lte('published_at', endDate.toISOString());
+
+        const { data: newsData } = await supabase
+          .from('news')
+          .select('published_at, view_count')
+          .gte('published_at', startDate.toISOString())
+          .lte('published_at', endDate.toISOString());
+
+        // Calculate days in month
+        const daysInMonth = endDate.getDate();
+        
+        // Initialize array with zeros for each day
+        const dailyViews = Array.from({ length: daysInMonth }, (_, i) => ({
+          day: i + 1,
+          views: 0
+        }));
+
+        // Aggregate views by day from articles
+        articlesData?.forEach(article => {
+          if (article.published_at) {
+            const day = new Date(article.published_at).getDate();
+            dailyViews[day - 1].views += article.view_count || 0;
+          }
+        });
+
+        // Aggregate views by day from news
+        newsData?.forEach(news => {
+          if (news.published_at) {
+            const day = new Date(news.published_at).getDate();
+            dailyViews[day - 1].views += news.view_count || 0;
+          }
+        });
+
+        setChartData(dailyViews);
+      } catch (error) {
+        console.error('Error fetching chart data:', error);
+      }
+    };
+
+    fetchChartData();
+  }, [selectedMonth, selectedYear]);
 
   const months = [
     'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
