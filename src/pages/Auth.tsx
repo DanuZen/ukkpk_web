@@ -67,15 +67,6 @@ const Auth = () => {
           <div className="absolute top-20 -left-20 w-64 h-64 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl animate-float"></div>
           <div className="absolute bottom-20 -right-20 w-80 h-80 bg-gradient-to-tl from-secondary/10 to-transparent rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-accent/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
-          
-          {/* Animated Circles */}
-          <div className="absolute top-20 left-20 w-32 h-32 rounded-full border-2 border-primary/10 animate-spin-slow"></div>
-          <div className="absolute bottom-20 right-20 w-48 h-48 rounded-full border-2 border-primary/5 animate-spin-slow" style={{ animationDelay: '0.5s' }}></div>
-          
-          {/* Floating Dots */}
-          <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-primary/20 rounded-full animate-float"></div>
-          <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-secondary/20 rounded-full animate-float" style={{ animationDelay: '0.3s' }}></div>
-          <div className="absolute bottom-1/3 left-1/3 w-3 h-3 bg-accent/20 rounded-full animate-float" style={{ animationDelay: '0.6s' }}></div>
         </div>
 
         <div className="w-full max-w-md relative z-10">
