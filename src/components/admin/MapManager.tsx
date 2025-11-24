@@ -36,7 +36,7 @@ export const MapManager = () => {
         setEmbedUrl(data.embed_url || "");
       }
     } catch (error) {
-      console.error("Error fetching map settings:", error);
+      // Error silently handled
     }
   };
   const extractEmbedUrl = (input: string): string => {
@@ -107,7 +107,6 @@ export const MapManager = () => {
       });
       fetchSettings();
     } catch (error) {
-      console.error("Error saving map settings:", error);
       toast({
         title: "Error",
         description: "Gagal menyimpan pengaturan peta",

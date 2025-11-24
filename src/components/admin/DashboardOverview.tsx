@@ -84,7 +84,7 @@ export const DashboardOverview = () => {
         setTopArticles(articlesData || []);
         setTopNews(newsData || []);
       } catch (error) {
-        console.error('Error fetching top content:', error);
+        // Error silently handled
       }
     };
 
@@ -110,7 +110,7 @@ export const DashboardOverview = () => {
 
         setRecentActivity(combined);
       } catch (error) {
-        console.error('Error fetching recent activity:', error);
+        // Error silently handled
       }
     };
 
