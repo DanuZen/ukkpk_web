@@ -340,7 +340,7 @@ const ProfilUkkpk = () => {
 
               {/* Timeline Cards */}
               <div className="flex flex-col gap-8 mb-16 max-w-4xl mx-auto">
-                {[{
+              {[{
                 delay: 150,
                 icon: <Sparkles className="h-6 w-6 sm:h-7 sm:w-7" />,
                 title: 'Awal Terbentuk (1993)',
@@ -366,15 +366,15 @@ const ProfilUkkpk = () => {
                 title: 'Era Digital & Inovasi (2020-Sekarang)',
                 content: 'Di era pandemi dan pasca pandemi, UKKPK semakin memperkuat kehadiran digitalnya. Berbagai inovasi seperti webinar, podcast, konten media sosial, dan kolaborasi lintas platform menjadi fokus utama. UKKPK terus beradaptasi dan berinovasi untuk tetap relevan di tengah perkembangan teknologi komunikasi yang pesat.'
               }].map((item, index) => <AnimatedSection key={index} animation="fade-up" delay={item.delay}>
-                    <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500">
-                      <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative">
+                    <Card className="bg-white border-primary/20 shadow-xl overflow-hidden transition-all duration-500 h-full">
+                      <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative flex flex-col h-full">
                         <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
                         <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                         <div className="flex items-center gap-4 mb-6">
                           <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary shadow-xl">{item.icon}</div>
                           <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">{item.title}</h3>
                         </div>
-                        <p className="sm:text-base md:text-lg text-muted-foreground leading-relaxed text-justify text-xs">{item.content}</p>
+                        <p className="sm:text-base text-muted-foreground leading-relaxed text-justify text-xs">{item.content}</p>
                       </CardContent>
                     </Card>
                   </AnimatedSection>)}
