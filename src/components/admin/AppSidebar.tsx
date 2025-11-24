@@ -76,21 +76,21 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
         </SidebarHeader>
 
         <SidebarContent className="px-3 py-4 bg-white">
-          {menuItems.map((section) => (
-            <SidebarGroup key={section.group}>
+          {menuItems.map((section, index) => (
+            <SidebarGroup key={section.group} className={index > 0 ? "mt-6" : ""}>
               {shouldShowText && (
-                <SidebarGroupLabel className="text-gray-400 text-xs font-semibold px-3 mb-2 uppercase">
+                <SidebarGroupLabel className="text-gray-400 text-xs font-semibold px-3 mb-3 uppercase">
                   {section.group}
                 </SidebarGroupLabel>
               )}
               <SidebarGroupContent>
-                <SidebarMenu>
+                <SidebarMenu className="space-y-1.5">
                   {section.items.map((item) => (
                     <SidebarMenuItem key={item.id}>
                       <SidebarMenuButton
                         onClick={() => handleNavigate(item.id)}
                         className={`
-                          transition-all duration-200 cursor-pointer rounded-lg
+                          transition-all duration-200 cursor-pointer rounded-lg py-2.5
                           ${
                             activePage === item.id
                               ? "bg-primary text-white font-medium hover:bg-primary/90"
@@ -98,8 +98,8 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
                           }
                         `}
                       >
-                        <item.icon className="h-5 w-5" />
-                        {shouldShowText && <span>{item.title}</span>}
+                        <item.icon className="h-5 w-5 flex-shrink-0" />
+                        {shouldShowText && <span className="ml-3">{item.title}</span>}
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   ))}
