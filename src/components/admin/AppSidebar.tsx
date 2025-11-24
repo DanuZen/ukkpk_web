@@ -50,7 +50,7 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
   const { open } = useSidebar();
 
   return (
-    <Sidebar className="border-r border-gray-200 bg-white">
+    <Sidebar className="border-r border-gray-200 bg-white" collapsible="offcanvas">
       <div className="flex h-full flex-col">
         <SidebarHeader className="border-b border-gray-200 px-3 py-3 bg-white">
           <div className="flex items-center gap-2.5">

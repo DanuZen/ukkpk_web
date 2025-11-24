@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdmin } from "@/hooks/useAdmin";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/admin/AppSidebar";
@@ -21,6 +22,7 @@ const Admin = () => {
   const { isAdmin, loading } = useAdmin();
   const navigate = useNavigate();
   const [activePage, setActivePage] = useState("dashboard");
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (!loading && !user) {
@@ -69,12 +71,9 @@ const Admin = () => {
 
   return (
     <AdminLayout>
-      <SidebarProvider defaultOpen={true}>
+      <SidebarProvider defaultOpen={!isMobile}>
         <div className="flex min-h-screen w-full">
-          {/* Desktop Sidebar */}
-          <div className="hidden lg:block">
-            <AppSidebar activePage={activePage} onNavigate={setActivePage} />
-          </div>
+          <AppSidebar activePage={activePage} onNavigate={setActivePage} />
           
           <main className="flex-1 flex flex-col">
             <DashboardHeader 
