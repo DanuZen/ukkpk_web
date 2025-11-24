@@ -374,7 +374,7 @@ const ProfilUkkpk = () => {
                           <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary shadow-xl">{item.icon}</div>
                           <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">{item.title}</h3>
                         </div>
-                        <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed text-justify">{item.content}</p>
+                        <p className="sm:text-base md:text-lg text-muted-foreground leading-relaxed text-justify text-xs">{item.content}</p>
                       </CardContent>
                     </Card>
                   </AnimatedSection>)}
