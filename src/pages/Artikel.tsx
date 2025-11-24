@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Layout } from "@/components/Layout";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { supabase } from "@/integrations/supabase/client";
-import { Search, Calendar, BookOpen } from "lucide-react";
-import { stripHtml } from "@/lib/utils";
-import { AnimatedSection } from "@/components/AnimatedSection";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Layout } from '@/components/Layout';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { supabase } from '@/integrations/supabase/client';
+import { Search, Calendar, BookOpen } from 'lucide-react';
+import { stripHtml } from '@/lib/utils';
+import { AnimatedSection } from '@/components/AnimatedSection';
 
 interface Article {
   id: string;
@@ -22,7 +22,7 @@ interface Article {
 const Artikel = () => {
   const navigate = useNavigate();
   const [articles, setArticles] = useState<Article[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [filteredArticles, setFilteredArticles] = useState<Article[]>([]);
 
   useEffect(() => {
@@ -31,21 +31,13 @@ const Artikel = () => {
 
   useEffect(() => {
     const filtered = articles.filter(
-      (article) =>
-        article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        article.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (article.category &&
-          article.category.toLowerCase().includes(searchTerm.toLowerCase()))
+      (article) => article.title.toLowerCase().includes(searchTerm.toLowerCase()) || article.content.toLowerCase().includes(searchTerm.toLowerCase()) || (article.category && article.category.toLowerCase().includes(searchTerm.toLowerCase()))
     );
     setFilteredArticles(filtered);
   }, [searchTerm, articles]);
 
   const fetchArticles = async () => {
-    const { data } = await supabase
-      .from("articles")
-      .select("*")
-      .order("published_at", { ascending: false, nullsFirst: false })
-      .order("created_at", { ascending: false });
+    const { data } = await supabase.from('articles').select('*').order('published_at', { ascending: false, nullsFirst: false }).order('created_at', { ascending: false });
 
     if (data) {
       setArticles(data);
@@ -54,10 +46,10 @@ const Artikel = () => {
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("id-ID", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
+    return new Date(dateString).toLocaleDateString('id-ID', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
     });
   };
 
@@ -97,13 +89,7 @@ const Artikel = () => {
             <div className="max-w-2xl mx-auto relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4 sm:h-5 sm:w-5 z-10" />
               {/* Mobile placeholder */}
-              <Input
-                type="text"
-                placeholder="Cari Artikel"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="sm:hidden pl-9 py-1.5 text-xs shadow-md"
-              />
+              <Input type="text" placeholder="Cari Artikel" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="sm:hidden pl-9 py-1.5 text-xs shadow-md" />
               {/* Tablet & Desktop placeholder */}
               <Input
                 type="text"
@@ -124,49 +110,30 @@ const Artikel = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {filteredArticles.map((article, index) => (
                 <AnimatedSection key={article.id} animation="fade-up" delay={index * 100}>
-                  <Card 
-                    className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
-                    onClick={() => navigate(`/artikel/${article.id}`)}
-                  >
-                  {article.image_url && (
-                    <div className="relative overflow-hidden h-36 sm:h-48 md:h-56">
-                      <img
-                        src={article.image_url}
-                        alt={article.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </div>
-                  )}
-                  <CardHeader className="space-y-1.5 sm:space-y-3 px-2.5 py-2.5 sm:px-4 sm:py-4 md:px-6 md:py-5">
-                    <div className="flex items-center justify-between gap-1.5">
-                      {article.category && (
-                        <Badge className="bg-primary/10 text-primary hover:bg-primary/20 text-[10px] sm:text-xs px-2 py-0.5">
-                          {article.category}
-                        </Badge>
-                      )}
-                      <span className="text-[10px] sm:text-xs text-muted-foreground">
-                        {formatDate(article.published_at || article.created_at)}
-                      </span>
-                    </div>
-                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-lg md:text-xl">
-                      {article.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="px-2.5 py-2 sm:px-4 sm:py-4 md:px-6 md:py-5">
-                    <p className="text-[11px] sm:text-sm md:text-base text-muted-foreground line-clamp-2 sm:line-clamp-4 leading-relaxed">
-                      {stripHtml(article.content)}
-                    </p>
-                  </CardContent>
-                </Card>
+                  <Card className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer h-full flex flex-col" onClick={() => navigate(`/artikel/${article.id}`)}>
+                    {article.image_url && (
+                      <div className="relative overflow-hidden h-36 sm:h-48 md:h-56">
+                        <img src={article.image_url} alt={article.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </div>
+                    )}
+                    <CardHeader className="space-y-1.5 sm:space-y-3 px-2.5 py-2.5 sm:px-4 sm:py-4 md:px-6 md:py-5">
+                      <div className="flex items-center justify-between gap-1.5">
+                        {article.category && <Badge className="bg-primary/10 text-primary hover:bg-primary/20 text-[10px] sm:text-xs px-2 py-0.5">{article.category}</Badge>}
+                        <span className="text-[10px] sm:text-xs text-muted-foreground">{formatDate(article.published_at || article.created_at)}</span>
+                      </div>
+                      <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-lg md:text-xl">{article.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0 mt-auto flex flex-col items-start">
+                      <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(article.content)}</p>
+                    </CardContent>
+                  </Card>
                 </AnimatedSection>
               ))}
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-muted-foreground">
-                {searchTerm ? "Artikel tidak ditemukan" : "Belum ada artikel"}
-              </p>
+              <p className="text-muted-foreground">{searchTerm ? 'Artikel tidak ditemukan' : 'Belum ada artikel'}</p>
             </div>
           )}
         </div>

@@ -194,13 +194,8 @@ const Radio = () => {
               `}</style>
 
               <AnimatedSection animation="fade-up" delay={50}>
-<<<<<<< HEAD
-                <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white/80 px-4">
-                  Platform radio kampus yang menghubungkan Anda dengan berbagai program menarik, berita terkini, dan hiburan berkualitas dari UKKPK UNP. Dengarkan siaran langsung kami
-=======
                 <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-white/80 px-4 mb-8 sm:mb-12">
-                  Platform radio kampus yang menghubungkan Anda dengan berbagai program menarik, berita terkini, dan hiburan berkualitas dari UKKPK UNP.  
->>>>>>> abf1408554838526c3e3f81b21dbc041440c26e1
+                  Platform radio kampus yang menghubungkan Anda dengan berbagai program menarik, berita terkini, dan hiburan berkualitas dari UKKPK UNP. Dengarkan siaran langsung kami
                 </p>
               </AnimatedSection>
 

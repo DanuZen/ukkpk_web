@@ -41,44 +41,48 @@ const Index = () => {
     fetchNews();
   }, []);
   const fetchArticles = async () => {
-    const {
-      data
-    } = await supabase.from('articles').select('*').order('created_at', {
-      ascending: false
-    }).limit(6);
+    const { data } = await supabase
+      .from('articles')
+      .select('*')
+      .order('created_at', {
+        ascending: false,
+      })
+      .limit(6);
     if (data) setArticles(data);
   };
   const fetchNews = async () => {
-    const {
-      data
-    } = await supabase.from('news').select('*').order('created_at', {
-      ascending: false
-    }).limit(15);
+    const { data } = await supabase
+      .from('news')
+      .select('*')
+      .order('created_at', {
+        ascending: false,
+      })
+      .limit(15);
     if (data) setNews(data);
   };
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('id-ID', {
       day: 'numeric',
       month: 'long',
-      year: 'numeric'
+      year: 'numeric',
     });
   };
   const newsPerPage = 3;
   const displayedNews = news.slice(newsPage * newsPerPage, (newsPage + 1) * newsPerPage);
   const totalNewsPages = Math.ceil(news.length / newsPerPage);
   const handlePrevNews = () => {
-    setNewsPage(prev => Math.max(0, prev - 1));
+    setNewsPage((prev) => Math.max(0, prev - 1));
   };
   const handleNextNews = () => {
-    setNewsPage(prev => Math.min(totalNewsPages - 1, prev + 1));
+    setNewsPage((prev) => Math.min(totalNewsPages - 1, prev + 1));
   };
-  return <Layout>
+  return (
+    <Layout>
       {/* Hero Slideshow Section */}
       <HomeSlideshow />
 
       {/* Artikel & Berita Section - Gabungan */}
       <section className="min-h-[70vh] sm:min-h-screen flex items-center py-2 sm:py-24 md:py-32 lg:py-40 -mt-6 sm:mt-0 scroll-mt-20 bg-white relative overflow-hidden">
-        
         <div className="container mx-auto px-2 sm:px-6 relative z-10">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-6 sm:mb-8 md:mb-10 pt-12 sm:pt-16 md:pt-20">
@@ -91,153 +95,186 @@ const Index = () => {
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4">
                 Artikel & <span className="text-primary">Berita Terbaru</span>
               </h2>
-              <p className="text-xs sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
-                Temukan informasi terbaru dan artikel menarik dari UKKPK
-              </p>
+              <p className="text-xs sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">Temukan informasi terbaru dan artikel menarik dari UKKPK</p>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mt-6" />
             </div>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={100}>
-            {articles.length === 0 && news.length === 0 ? <p className="text-center text-muted-foreground">Belum ada konten tersedia.</p> : <>
-              {/* Desktop: Show all items in 3 columns */}
-              <div className="hidden lg:grid grid-cols-3 gap-4 sm:gap-6">
-                {/* Artikel Cards */}
-                {articles.map((article, index) => <AnimatedSection key={`article-${article.id}`} animation="fade-up" delay={index * 100}>
-                    <Card className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/artikel/${article.id}`)}>
-                      {article.image_url && <div className="relative overflow-hidden h-32 sm:h-40 md:h-48 lg:h-56">
-                          <img src={article.image_url} alt={article.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
-                          <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
-                            <Badge className="bg-primary text-primary-foreground shadow-lg text-[10px] sm:text-xs">Artikel</Badge>
-                          </div>
-                        </div>}
-                      <CardHeader className="p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-2.5 md:space-y-3">
-                        <div className="flex items-center gap-2 mb-2 flex-wrap">
-                          <Badge variant="secondary" className="text-[10px] sm:text-xs">{article.category}</Badge>
-                          <span className="text-[10px] sm:text-xs text-muted-foreground">{formatDate(article.published_at || article.created_at)}</span>
-                        </div>
-                        <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg lg:text-xl">{article.title}</CardTitle>
-                      </CardHeader>
-                      <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
-                        <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(article.content)}</p>
-                      </CardContent>
-                    </Card>
-                  </AnimatedSection>)}
-
-                {/* News Cards - Desktop */}
-                {news.map((item, newsIndex) => <AnimatedSection key={`news-${item.id}`} animation="fade-up" delay={(articles.length + newsIndex) * 100}>
-                    <Card className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/berita/${item.id}`)}>
-                      {item.image_url && <div className="relative overflow-hidden h-32 sm:h-40 md:h-48 lg:h-56">
-                          <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
-                          <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
-                            <Badge className="bg-secondary text-secondary-foreground shadow-lg text-[10px] sm:text-xs">Berita</Badge>
-                          </div>
-                        </div>}
-                      <CardHeader className="p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-2.5 md:space-y-3">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-[10px] sm:text-xs text-muted-foreground">{formatDate(item.published_at || item.created_at)}</span>
-                        </div>
-                        <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg lg:text-xl">{item.title}</CardTitle>
-                      </CardHeader>
-                      <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
-                        <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(item.content)}</p>
-                      </CardContent>
-                    </Card>
-                  </AnimatedSection>)}
-              </div>
-
-              {/* Tablet: Show only 6 items in 2 columns (3 rows) */}
-              <div className="hidden md:grid lg:hidden grid-cols-2 gap-4 sm:gap-6">
-                {[...articles, ...news].slice(0, 6).map((item, index) => {
-                const isArticle = 'category' in item && item.category !== null;
-                return <AnimatedSection key={`${isArticle ? 'article' : 'news'}-${item.id}`} animation="fade-up" delay={index * 100}>
-                      <Card className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/${isArticle ? 'artikel' : 'berita'}/${item.id}`)}>
-                        {item.image_url && <div className="relative overflow-hidden h-32 sm:h-40 md:h-48">
-                            <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+            {articles.length === 0 && news.length === 0 ? (
+              <p className="text-center text-muted-foreground">Belum ada konten tersedia.</p>
+            ) : (
+              <>
+                {/* Desktop: Show all items in 3 columns */}
+                <div className="hidden lg:grid grid-cols-3 gap-4 sm:gap-6">
+                  {/* Artikel Cards */}
+                  {articles.map((article, index) => (
+                    <AnimatedSection key={`article-${article.id}`} animation="fade-up" delay={index * 100}>
+                      <Card className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full flex flex-col" onClick={() => navigate(`/artikel/${article.id}`)}>
+                        {article.image_url && (
+                          <div className="relative overflow-hidden h-32 sm:h-40 md:h-48 lg:h-56">
+                            <img src={article.image_url} alt={article.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
                             <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
-                              <Badge className={`${isArticle ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground'} shadow-lg text-[10px] sm:text-xs`}>
-                                {isArticle ? 'Artikel' : 'Berita'}
-                              </Badge>
+                              <Badge className="bg-primary text-primary-foreground shadow-lg text-[10px] sm:text-xs">Artikel</Badge>
                             </div>
-                          </div>}
+                          </div>
+                        )}
                         <CardHeader className="p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-2.5 md:space-y-3">
                           <div className="flex items-center gap-2 mb-2 flex-wrap">
-                            {isArticle && 'category' in item && <Badge variant="secondary" className="text-[10px] sm:text-xs">{item.category}</Badge>}
-                            <span className="text-[10px] sm:text-xs text-muted-foreground">{formatDate(item.published_at || item.created_at)}</span>
+                            <Badge variant="secondary" className="text-[10px] sm:text-xs">
+                              {article.category}
+                            </Badge>
+                            <span className="text-[10px] sm:text-xs text-muted-foreground">{formatDate(article.published_at || article.created_at)}</span>
                           </div>
-                          <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg">{item.title}</CardTitle>
+                          <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg lg:text-xl">{article.title}</CardTitle>
                         </CardHeader>
-                        <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
-                          <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(item.content)}</p>
+                        <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0 flex-1 flex flex-col">
+                          <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(article.content)}</p>
                         </CardContent>
                       </Card>
-                    </AnimatedSection>;
-              })}
-              </div>
+                    </AnimatedSection>
+                  ))}
 
-              {/* Mobile: Show carousel */}
-              <div className="md:hidden">
-                <div className="grid grid-cols-1 gap-4">
-                {/* Artikel Cards */}
-                {articles.map((article, index) => <AnimatedSection key={`article-${article.id}`} animation="fade-up" delay={index * 100}>
-                    <Card className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/artikel/${article.id}`)}>
-                      {article.image_url && <div className="relative overflow-hidden h-32 sm:h-40 md:h-48 lg:h-56">
-                          <img src={article.image_url} alt={article.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
-                          <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
-                            <Badge className="bg-primary text-primary-foreground shadow-lg text-[10px] sm:text-xs">Artikel</Badge>
-                          </div>
-                        </div>}
-                      <CardHeader className="p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-2.5 md:space-y-3">
-                        <div className="flex items-center gap-2 mb-2 flex-wrap">
-                          <Badge variant="secondary" className="text-[10px] sm:text-xs">{article.category}</Badge>
-                          <span className="text-[10px] sm:text-xs text-muted-foreground">{formatDate(article.published_at || article.created_at)}</span>
-                        </div>
-                        <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg lg:text-xl">{article.title}</CardTitle>
-                      </CardHeader>
-                      <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
-                        <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(article.content)}</p>
-                      </CardContent>
-                    </Card>
-                  </AnimatedSection>)}
-
-                {/* News Cards Mobile Only - Paginated */}
-                <div className="contents">
-                  {displayedNews.map((item, newsIndex) => <AnimatedSection key={`news-mobile-${item.id}`} animation="fade-up" delay={(articles.length + newsIndex) * 100}>
-                      <Card className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => navigate(`/berita/${item.id}`)}>
-                        {item.image_url && <div className="relative overflow-hidden h-32 sm:h-40 md:h-48 lg:h-56">
+                  {/* News Cards - Desktop */}
+                  {news.map((item, newsIndex) => (
+                    <AnimatedSection key={`news-${item.id}`} animation="fade-up" delay={(articles.length + newsIndex) * 100}>
+                      <Card className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full flex flex-col" onClick={() => navigate(`/berita/${item.id}`)}>
+                        {item.image_url && (
+                          <div className="relative overflow-hidden h-32 sm:h-40 md:h-48 lg:h-56">
                             <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
                             <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
                               <Badge className="bg-secondary text-secondary-foreground shadow-lg text-[10px] sm:text-xs">Berita</Badge>
                             </div>
-                          </div>}
+                          </div>
+                        )}
                         <CardHeader className="p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-2.5 md:space-y-3">
                           <div className="flex items-center gap-2 mb-2">
                             <span className="text-[10px] sm:text-xs text-muted-foreground">{formatDate(item.published_at || item.created_at)}</span>
                           </div>
                           <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg lg:text-xl">{item.title}</CardTitle>
                         </CardHeader>
-                        <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
+                        <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0 mt-auto flex flex-col items-start">
                           <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(item.content)}</p>
                         </CardContent>
                       </Card>
-                    </AnimatedSection>)}
+                    </AnimatedSection>
+                  ))}
                 </div>
-              </div>
-              </div>
 
-              {/* Mobile Navigation Arrows for News */}
-              {news.length > newsPerPage && <div className="flex justify-center items-center gap-4 mt-6 md:hidden">
-                  <Button variant="outline" size="icon" onClick={handlePrevNews} disabled={newsPage === 0} className="h-10 w-10 rounded-full">
-                    <ChevronLeft className="h-5 w-5" />
-                  </Button>
-                  <span className="text-sm text-muted-foreground">
-                    {newsPage + 1} / {totalNewsPages}
-                  </span>
-                  <Button variant="outline" size="icon" onClick={handleNextNews} disabled={newsPage >= totalNewsPages - 1} className="h-10 w-10 rounded-full">
-                    <ChevronRight className="h-5 w-5" />
-                  </Button>
-                </div>}
-            </>}
+                {/* Tablet: Show only 6 items in 2 columns (3 rows) */}
+                <div className="hidden md:grid lg:hidden grid-cols-2 gap-4 sm:gap-6">
+                  {[...articles, ...news].slice(0, 6).map((item, index) => {
+                    const isArticle = 'category' in item && item.category !== null;
+                    return (
+                      <AnimatedSection key={`${isArticle ? 'article' : 'news'}-${item.id}`} animation="fade-up" delay={index * 100}>
+                        <Card
+                          className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full flex flex-col"
+                          onClick={() => navigate(`/${isArticle ? 'artikel' : 'berita'}/${item.id}`)}
+                        >
+                          {item.image_url && (
+                            <div className="relative overflow-hidden h-32 sm:h-40 md:h-48">
+                              <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+                              <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
+                                <Badge className={`${isArticle ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground'} shadow-lg text-[10px] sm:text-xs`}>{isArticle ? 'Artikel' : 'Berita'}</Badge>
+                              </div>
+                            </div>
+                          )}
+                          <CardHeader className="p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-2.5 md:space-y-3">
+                            <div className="flex items-center gap-2 mb-2 flex-wrap">
+                              {isArticle && 'category' in item && (
+                                <Badge variant="secondary" className="text-[10px] sm:text-xs">
+                                  {item.category}
+                                </Badge>
+                              )}
+                              <span className="text-[10px] sm:text-xs text-muted-foreground">{formatDate(item.published_at || item.created_at)}</span>
+                            </div>
+                            <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg">{item.title}</CardTitle>
+                          </CardHeader>
+                          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0 flex-1 flex flex-col">
+                            <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(item.content)}</p>
+                          </CardContent>
+                        </Card>
+                      </AnimatedSection>
+                    );
+                  })}
+                </div>
+
+                {/* Mobile: Show carousel */}
+                <div className="md:hidden">
+                  <div className="grid grid-cols-1 gap-4">
+                    {/* Artikel Cards */}
+                    {articles.map((article, index) => (
+                      <AnimatedSection key={`article-${article.id}`} animation="fade-up" delay={index * 100}>
+                        <Card className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full flex flex-col" onClick={() => navigate(`/artikel/${article.id}`)}>
+                          {article.image_url && (
+                            <div className="relative overflow-hidden h-32 sm:h-40 md:h-48 lg:h-56">
+                              <img src={article.image_url} alt={article.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+                              <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
+                                <Badge className="bg-primary text-primary-foreground shadow-lg text-[10px] sm:text-xs">Artikel</Badge>
+                              </div>
+                            </div>
+                          )}
+                          <CardHeader className="p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-2.5 md:space-y-3">
+                            <div className="flex items-center gap-2 mb-2 flex-wrap">
+                              <Badge variant="secondary" className="text-[10px] sm:text-xs">
+                                {article.category}
+                              </Badge>
+                              <span className="text-[10px] sm:text-xs text-muted-foreground">{formatDate(article.published_at || article.created_at)}</span>
+                            </div>
+                            <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg lg:text-xl">{article.title}</CardTitle>
+                          </CardHeader>
+                          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0 flex-1 flex flex-col">
+                            <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(article.content)}</p>
+                          </CardContent>
+                        </Card>
+                      </AnimatedSection>
+                    ))}
+
+                    {/* News Cards Mobile Only - Paginated */}
+                    <div className="contents">
+                      {displayedNews.map((item, newsIndex) => (
+                        <AnimatedSection key={`news-mobile-${item.id}`} animation="fade-up" delay={(articles.length + newsIndex) * 100}>
+                          <Card className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full flex flex-col" onClick={() => navigate(`/berita/${item.id}`)}>
+                            {item.image_url && (
+                              <div className="relative overflow-hidden h-32 sm:h-40 md:h-48 lg:h-56">
+                                <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+                                <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
+                                  <Badge className="bg-secondary text-secondary-foreground shadow-lg text-[10px] sm:text-xs">Berita</Badge>
+                                </div>
+                              </div>
+                            )}
+                            <CardHeader className="p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-2.5 md:space-y-3">
+                              <div className="flex items-center gap-2 mb-2">
+                                <span className="text-[10px] sm:text-xs text-muted-foreground">{formatDate(item.published_at || item.created_at)}</span>
+                              </div>
+                              <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg lg:text-xl">{item.title}</CardTitle>
+                            </CardHeader>
+                            <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0 flex-1 flex flex-col items-start">
+                              <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(item.content)}</p>
+                            </CardContent>
+                          </Card>
+                        </AnimatedSection>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mobile Navigation Arrows for News */}
+                {news.length > newsPerPage && (
+                  <div className="flex justify-center items-center gap-4 mt-6 md:hidden">
+                    <Button variant="outline" size="icon" onClick={handlePrevNews} disabled={newsPage === 0} className="h-10 w-10 rounded-full">
+                      <ChevronLeft className="h-5 w-5" />
+                    </Button>
+                    <span className="text-sm text-muted-foreground">
+                      {newsPage + 1} / {totalNewsPages}
+                    </span>
+                    <Button variant="outline" size="icon" onClick={handleNextNews} disabled={newsPage >= totalNewsPages - 1} className="h-10 w-10 rounded-full">
+                      <ChevronRight className="h-5 w-5" />
+                    </Button>
+                  </div>
+                )}
+              </>
+            )}
           </AnimatedSection>
         </div>
       </section>
@@ -246,22 +283,19 @@ const Index = () => {
       <section className="min-h-[60vh] md:min-h-[70vh] flex items-center py-12 sm:py-16 md:py-20 lg:py-24 scroll-mt-20 relative px-4 bg-gradient-to-b from-primary/90 via-primary to-primary/90 overflow-hidden">
         {/* Top gradient fade */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent z-0" />
-        
+
         {/* Bottom gradient fade */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-0" />
 
         <div className="container mx-auto relative z-10 text-center max-w-4xl">
           <AnimatedSection animation="fade-up">
             <div className="mb-6 sm:mb-8">
-              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white">
-                Terima Kasih Telah Mengunjungi
-              </h2>
-              
+              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white">Terima Kasih Telah Mengunjungi</h2>
+
               <div className="w-32 h-1 bg-white/50 mx-auto mb-6 sm:mb-8" />
-              
+
               <p className="text-sm sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed px-4">
-                Kami sangat menghargai kunjungan Anda. Semoga informasi yang kami sajikan bermanfaat 
-                untuk Anda. Jangan ragu untuk menghubungi kami jika ada pertanyaan atau saran.
+                Kami sangat menghargai kunjungan Anda. Semoga informasi yang kami sajikan bermanfaat untuk Anda. Jangan ragu untuk menghubungi kami jika ada pertanyaan atau saran.
               </p>
             </div>
           </AnimatedSection>
@@ -271,7 +305,6 @@ const Index = () => {
               <Button size="lg" onClick={() => navigate('/profil-ukkpk')} className="bg-white text-primary hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300">
                 Tentang Kami
               </Button>
-              
             </div>
           </AnimatedSection>
         </div>
@@ -279,7 +312,6 @@ const Index = () => {
 
       {/* Map Section with Location Details */}
       <section className="min-h-screen flex items-center py-16 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 relative px-2 sm:px-4 bg-white overflow-hidden">
-        
         <div className="relative z-10 container mx-auto max-w-7xl">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-8 sm:mb-10 md:mb-12">
@@ -292,8 +324,7 @@ const Index = () => {
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
                 Lokasi <span className="text-primary">Sekretariat UKKPK</span>
               </h2>
-              
-              
+
               <AnimatedSection animation="fade-up" delay={50}>
                 <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-4 sm:mb-6">
                   Kunjungi sekretariat kami di kampus Universitas Negeri Padang. Kami siap melayani dan berkolaborasi dengan Anda dalam berbagai kegiatan komunikasi dan penyiaran kampus.
@@ -332,8 +363,10 @@ const Index = () => {
                     <div className="flex-1 min-w-0">
                       <h3 className="font-semibold text-xs sm:text-sm md:text-base mb-1">Alamat</h3>
                       <p className="text-muted-foreground text-[10px] sm:text-xs md:text-sm leading-relaxed">
-                        Gedung PKM Pusat, Universitas Negeri Padang<br />
-                        Jl. Air Tawar Barat, Kec. Padang Utara<br />
+                        Gedung PKM Pusat, Universitas Negeri Padang
+                        <br />
+                        Jl. Air Tawar Barat, Kec. Padang Utara
+                        <br />
                         Kota Padang, Sumatera Barat
                       </p>
                     </div>
@@ -346,7 +379,11 @@ const Index = () => {
                     <div className="flex items-center gap-2.5 sm:gap-3">
                       <div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-green-500/10 flex items-center justify-center">
                         <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                          />
                         </svg>
                       </div>
                       <div className="flex-1 min-w-0">
@@ -355,7 +392,6 @@ const Index = () => {
                           +62 823-8823-5091
                         </a>
                       </div>
-                      
                     </div>
 
                     <div className="flex items-center gap-2.5 sm:gap-3">
@@ -370,7 +406,6 @@ const Index = () => {
                           Ukkpk.office@gmail.com
                         </a>
                       </div>
-                      
                     </div>
                   </div>
 
@@ -402,7 +437,12 @@ const Index = () => {
                   <div className="h-px bg-border/50 hidden md:block" />
 
                   {/* View Maps Button */}
-                  <a href="https://maps.app.goo.gl/EdRi73gdkcyNDZy88" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full px-4 py-2.5 sm:py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all duration-300 hover:scale-[1.02] shadow-md font-medium text-xs sm:text-sm">
+                  <a
+                    href="https://maps.app.goo.gl/EdRi73gdkcyNDZy88"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 w-full px-4 py-2.5 sm:py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all duration-300 hover:scale-[1.02] shadow-md font-medium text-xs sm:text-sm"
+                  >
                     <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                       <circle cx="12" cy="10" r="3" />
@@ -421,7 +461,6 @@ const Index = () => {
 
       {/* Contact Section - Kritik dan Saran */}
       <section className="min-h-[85vh] md:min-h-screen flex items-center py-24 sm:py-28 md:py-32 lg:py-40 scroll-mt-20 relative bg-white overflow-hidden">
-        
         <div id="contact" className="relative z-10 container mx-auto px-4 sm:px-6 max-w-5xl">
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-6 sm:mb-8 md:mb-10">
@@ -434,19 +473,17 @@ const Index = () => {
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 md:mb-6">
                 Kritik dan <span className="text-primary">Saran</span>
               </h2>
-              <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-4 sm:mb-6">
-                Kami sangat menghargai masukan Anda. Sampaikan kritik dan saran untuk membantu kami meningkatkan kualitas layanan UKKPK.
-              </p>
+              <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-4 sm:mb-6">Kami sangat menghargai masukan Anda. Sampaikan kritik dan saran untuk membantu kami meningkatkan kualitas layanan UKKPK.</p>
               <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
             </div>
           </AnimatedSection>
-          
+
           <AnimatedSection animation="scale-in" delay={100}>
             <ContactSection />
           </AnimatedSection>
         </div>
       </section>
-
-    </Layout>;
+    </Layout>
+  );
 };
 export default Index;
