@@ -307,7 +307,7 @@ const ProfilUkkpk = () => {
                         </div>
                         <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">Misi</h3>
                       </div>
-                      <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed text-justify">
+                      <p className="sm:text-base md:text-lg text-muted-foreground leading-relaxed text-justify text-xs">
                         UKKPK UNP membekali keterampilan komunikasi untuk meningkatkan intelektualitas, kepemimpinan, penalaran, minat, kegemaran, dan kesejahteraan untuk mahasiswa UNP dan umum, terutama anggota UKKPK UNP.
                       </p>
                     </CardContent>
