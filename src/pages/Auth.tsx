@@ -125,10 +125,10 @@ const Auth = () => {
       {/* Right Side - Illustration */}
       <div className="hidden lg:flex w-1/2 bg-red-600 relative overflow-hidden items-center justify-center animate-fade-in">
         {/* Subtle Pattern Background */}
-        <div className="absolute inset-0 opacity-25">
+        <div className="absolute inset-0 opacity-15">
           <div className="absolute top-0 left-0 w-full h-full" style={{
-            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.2) 3px, transparent 3px)',
-            backgroundSize: '30px 30px',
+            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.2) 1.5px, transparent 1.5px)',
+            backgroundSize: '60px 60px',
           }}></div>
         </div>
         
