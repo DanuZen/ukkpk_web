@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { Loader2 } from "lucide-react";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
 import logoMicuMascot from "@/assets/logo-micu-mascot.png";
 
@@ -108,6 +109,7 @@ const Auth = () => {
             </div>
 
             <Button type="submit" className="w-full h-11 sm:h-12 text-sm sm:text-base bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary transition-all duration-300" disabled={loading}>
+              {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               {loading ? "Memproses..." : "Log In"}
             </Button>
             </form>
