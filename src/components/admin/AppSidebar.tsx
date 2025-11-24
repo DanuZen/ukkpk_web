@@ -47,7 +47,7 @@ const menuItems = [
 ];
 
 export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
-  const { open, setOpen, isMobile } = useSidebar();
+  const { open, setOpen, isMobile, openMobile } = useSidebar();
 
   const handleNavigate = (page: string) => {
     onNavigate(page);
@@ -57,13 +57,16 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
     }
   };
 
+  // Show text when sidebar is open OR when on mobile (offcanvas always shows text)
+  const shouldShowText = open || isMobile || openMobile;
+
   return (
     <Sidebar className="border-r border-gray-200 bg-white" collapsible="offcanvas">
       <div className="flex h-full flex-col">
         <SidebarHeader className="border-b border-gray-200 px-3 py-3 bg-white">
           <div className="flex items-center gap-2.5">
             <img src={logoUkkpk} alt="UKKPK Logo" className="h-9 w-9" />
-            {open && (
+            {shouldShowText && (
               <div className="flex flex-col">
                 <span className="text-base font-bold text-primary">UKKPK</span>
                 <span className="text-xs text-gray-500">Admin Panel</span>
@@ -75,7 +78,7 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
         <SidebarContent className="px-3 py-4 bg-white">
           {menuItems.map((section) => (
             <SidebarGroup key={section.group}>
-              {open && (
+              {shouldShowText && (
                 <SidebarGroupLabel className="text-gray-400 text-xs font-semibold px-3 mb-2 uppercase">
                   {section.group}
                 </SidebarGroupLabel>
@@ -96,7 +99,7 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
                         `}
                       >
                         <item.icon className="h-5 w-5" />
-                        {open && <span>{item.title}</span>}
+                        {shouldShowText && <span>{item.title}</span>}
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   ))}
