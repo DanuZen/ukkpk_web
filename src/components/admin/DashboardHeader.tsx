@@ -29,12 +29,12 @@ export const DashboardHeader = ({
   };
   
   return (
-    <header className="sticky top-0 z-50 flex h-14 sm:h-16 items-center gap-2 sm:gap-4 border-b bg-white shadow-sm px-3 sm:px-6">
+    <header className="sticky top-0 z-50 flex h-14 sm:h-16 items-center gap-2 sm:gap-3 md:gap-4 border-b bg-white shadow-sm px-3 sm:px-4 md:px-6">
       {/* Sidebar Trigger */}
       <SidebarTrigger className="text-gray-700 hover:bg-primary hover:text-white transition-colors rounded-md flex-shrink-0" />
       
       {/* Search Bar - Now prominently positioned */}
-      <div className="relative flex-1 max-w-xs sm:max-w-md">
+      <div className="relative flex-1 max-w-xs sm:max-w-sm md:max-w-md">
         <Search className="absolute left-2 sm:left-3 top-1/2 h-3.5 w-3.5 sm:h-4 sm:w-4 -translate-y-1/2 text-gray-400" />
         <Input 
           placeholder="Cari..." 
