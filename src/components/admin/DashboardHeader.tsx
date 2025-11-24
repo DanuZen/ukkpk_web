@@ -29,43 +29,43 @@ export const DashboardHeader = ({
   };
   
   return (
-    <header className="sticky top-0 z-50 flex h-14 sm:h-16 items-center gap-2 sm:gap-3 md:gap-4 border-b bg-white shadow-sm px-3 sm:px-4 md:px-6">
+    <header className="sticky top-0 z-50 flex h-14 sm:h-16 items-center gap-1.5 sm:gap-2 md:gap-3 border-b bg-white shadow-sm px-2 sm:px-3 md:px-6">
       {/* Sidebar Trigger */}
-      <SidebarTrigger className="text-gray-700 hover:bg-primary hover:text-white transition-colors rounded-md flex-shrink-0" />
+      <SidebarTrigger className="text-gray-700 hover:bg-primary hover:text-white transition-colors rounded-md flex-shrink-0 h-8 w-8 sm:h-9 sm:w-9" />
       
-      {/* Search Bar - Now prominently positioned */}
-      <div className="relative flex-1 max-w-xs sm:max-w-sm md:max-w-md">
-        <Search className="absolute left-2 sm:left-3 top-1/2 h-3.5 w-3.5 sm:h-4 sm:w-4 -translate-y-1/2 text-gray-400" />
+      {/* Search Bar - Responsive width */}
+      <div className="relative flex-1 max-w-[140px] sm:max-w-xs md:max-w-md">
+        <Search className="absolute left-2 top-1/2 h-3.5 w-3.5 sm:h-4 sm:w-4 -translate-y-1/2 text-gray-400" />
         <Input 
           placeholder="Cari..." 
-          className="w-full pl-7 sm:pl-9 pr-2 sm:pr-3 h-8 sm:h-9 md:h-10 text-xs sm:text-sm bg-gray-50 border-gray-200 focus:bg-white" 
+          className="w-full pl-7 sm:pl-9 pr-2 h-8 sm:h-9 md:h-10 text-xs sm:text-sm bg-gray-50 border-gray-200 focus:bg-white" 
         />
       </div>
 
-      <div className="ml-auto flex items-center gap-1 sm:gap-2">
+      <div className="ml-auto flex items-center gap-1 sm:gap-1.5 md:gap-2">
         <Button 
           variant="ghost" 
           size="icon" 
           onClick={() => navigate("/")} 
-          className="text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9" 
+          className="text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9 flex-shrink-0" 
           title="Kembali ke Website"
         >
-          <ExternalLink className="h-4 w-4" />
+          <ExternalLink className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
         </Button>
 
         <Button 
           variant="ghost" 
           size="icon" 
-          className="hidden sm:flex text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9"
+          className="hidden md:flex text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9 flex-shrink-0"
         >
           <Bell className="h-4 w-4 sm:h-5 sm:w-5" />
         </Button>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="relative h-8 w-8 sm:h-9 sm:w-9 rounded-full flex-shrink-0">
+            <Button variant="ghost" className="relative h-8 w-8 sm:h-9 sm:w-9 rounded-full flex-shrink-0 p-0">
               <Avatar className="h-8 w-8 sm:h-9 sm:w-9">
-                <AvatarFallback className="bg-primary text-white text-xs">
+                <AvatarFallback className="bg-primary text-white text-[10px] sm:text-xs">
                   {user?.email ? getInitials(user.email) : "AD"}
                 </AvatarFallback>
               </Avatar>
