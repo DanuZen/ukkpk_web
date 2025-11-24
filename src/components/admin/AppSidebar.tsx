@@ -52,9 +52,9 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
   return (
     <Sidebar className="border-r border-gray-200 bg-white">
       <div className="flex h-full flex-col">
-        <SidebarHeader className="border-b border-gray-200 p-4 bg-white">
-          <div className="flex items-center gap-3">
-            <img src={logoUkkpk} alt="UKKPK Logo" className="h-10 w-10" />
+        <SidebarHeader className="border-b border-gray-200 px-3 py-3 bg-white">
+          <div className="flex items-center gap-2.5">
+            <img src={logoUkkpk} alt="UKKPK Logo" className="h-9 w-9" />
             {open && (
               <div className="flex flex-col">
                 <span className="text-base font-bold text-primary">UKKPK</span>
