@@ -50,26 +50,28 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
   const { open } = useSidebar();
 
   return (
-    <Sidebar className="border-r-0">
-      <div className="flex h-full flex-col bg-gradient-to-b from-primary via-primary to-primary/90">
-        <SidebarHeader className="border-b border-white/10 p-4">
+    <Sidebar className="border-r border-gray-200 bg-white">
+      <div className="flex h-full flex-col">
+        <SidebarHeader className="border-b border-gray-200 p-4 bg-white">
           <div className="flex items-center gap-3">
             <img src={logoUkkpk} alt="UKKPK Logo" className="h-10 w-10" />
             {open && (
               <div className="flex flex-col">
-                <span className="text-lg font-bold text-white">UKKPK UNP</span>
-                <span className="text-xs text-white/80">Admin Dashboard</span>
+                <span className="text-lg font-bold text-primary">UKKPK</span>
+                <span className="text-xs text-gray-500">Admin Panel</span>
               </div>
             )}
           </div>
         </SidebarHeader>
 
-        <SidebarContent className="px-2 py-4">
+        <SidebarContent className="px-3 py-4 bg-white">
           {menuItems.map((section) => (
             <SidebarGroup key={section.group}>
-              <SidebarGroupLabel className="text-white/60 text-xs font-semibold px-3 mb-1">
-                {section.group}
-              </SidebarGroupLabel>
+              {open && (
+                <SidebarGroupLabel className="text-gray-400 text-xs font-semibold px-3 mb-2 uppercase">
+                  {section.group}
+                </SidebarGroupLabel>
+              )}
               <SidebarGroupContent>
                 <SidebarMenu>
                   {section.items.map((item) => (
@@ -77,11 +79,11 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
                       <SidebarMenuButton
                         onClick={() => onNavigate(item.id)}
                         className={`
-                          transition-all duration-200 cursor-pointer
+                          transition-all duration-200 cursor-pointer rounded-lg
                           ${
                             activePage === item.id
-                              ? "bg-white/20 text-white font-semibold"
-                              : "text-white/90 hover:bg-white/10"
+                              ? "bg-primary text-white font-medium hover:bg-primary/90"
+                              : "text-gray-700 hover:bg-gray-100"
                           }
                         `}
                       >
