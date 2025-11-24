@@ -32,6 +32,8 @@ interface RecentActivity {
 }
 
 export const DashboardOverview = () => {
+  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [stats, setStats] = useState({
     articles: 0,
     news: 0,
@@ -120,11 +122,21 @@ export const DashboardOverview = () => {
     fetchRecentActivity();
   }, []);
 
-  // Mock chart data for visualization - reduced to 12 data points for better readability
-  const chartData = Array.from({ length: 12 }, (_, i) => ({
+  // Calculate days in selected month
+  const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
+  
+  // Mock chart data based on actual days in selected month
+  const chartData = Array.from({ length: daysInMonth }, (_, i) => ({
     day: i + 1,
     views: Math.floor(Math.random() * 1000) + 500,
   }));
+
+  const months = [
+    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+  ];
+
+  const years = Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - i);
 
   const statCards = [
     {
@@ -216,11 +228,26 @@ export const DashboardOverview = () => {
       <Card className="border-0 shadow-sm">
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <CardTitle className="text-lg font-semibold">Statistik Views</CardTitle>
-          <select className="text-sm border rounded-md px-3 py-1 bg-white">
-            <option>Oktober</option>
-            <option>November</option>
-            <option>Desember</option>
-          </select>
+          <div className="flex gap-2">
+            <select 
+              className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer"
+              value={selectedMonth}
+              onChange={(e) => setSelectedMonth(Number(e.target.value))}
+            >
+              {months.map((month, index) => (
+                <option key={index} value={index}>{month}</option>
+              ))}
+            </select>
+            <select 
+              className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer"
+              value={selectedYear}
+              onChange={(e) => setSelectedYear(Number(e.target.value))}
+            >
+              {years.map((year) => (
+                <option key={year} value={year}>{year}</option>
+              ))}
+            </select>
+          </div>
         </CardHeader>
         <CardContent className="pt-4">
           <ResponsiveContainer width="100%" height={300}>
