@@ -57,7 +57,7 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
             <img src={logoUkkpk} alt="UKKPK Logo" className="h-10 w-10" />
             {open && (
               <div className="flex flex-col">
-                <span className="text-lg font-bold text-primary">UKKPK</span>
+                <span className="text-base font-bold text-primary">UKKPK</span>
                 <span className="text-xs text-gray-500">Admin Panel</span>
               </div>
             )}
