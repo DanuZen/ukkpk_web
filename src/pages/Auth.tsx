@@ -124,6 +124,17 @@ const Auth = () => {
 
       {/* Right Side - Illustration */}
       <div className="hidden lg:flex w-1/2 bg-red-600 relative overflow-hidden items-center justify-center animate-fade-in">
+        {/* Subtle Pattern Background */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full" style={{
+            backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.1) 35px, rgba(255,255,255,0.1) 70px)',
+          }}></div>
+        </div>
+        
+        {/* Decorative Circles */}
+        <div className="absolute top-20 right-20 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-20 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+        
         {/* MICU Logo & Welcome Text */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white z-10">
           <img 
