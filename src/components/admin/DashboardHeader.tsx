@@ -34,11 +34,11 @@ export const DashboardHeader = ({
       <SidebarTrigger className="text-gray-700 hover:bg-primary hover:text-white transition-colors rounded-md flex-shrink-0" />
       
       {/* Search Bar - Now prominently positioned */}
-      <div className="relative flex-1 max-w-md">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+      <div className="relative flex-1 max-w-xs sm:max-w-md">
+        <Search className="absolute left-2 sm:left-3 top-1/2 h-3.5 w-3.5 sm:h-4 sm:w-4 -translate-y-1/2 text-gray-400" />
         <Input 
           placeholder="Cari..." 
-          className="w-full pl-9 pr-3 h-9 sm:h-10 bg-gray-50 border-gray-200 focus:bg-white" 
+          className="w-full pl-7 sm:pl-9 pr-2 sm:pr-3 h-8 sm:h-9 md:h-10 text-xs sm:text-sm bg-gray-50 border-gray-200 focus:bg-white" 
         />
       </div>
 
