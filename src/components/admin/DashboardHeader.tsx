@@ -32,8 +32,8 @@ export const DashboardHeader = ({
   
   return (
     <header className="sticky top-0 z-50 flex h-14 sm:h-16 items-center gap-2 sm:gap-4 border-b bg-white shadow-sm px-3 sm:px-6">
-      {/* Sidebar Trigger - All screen sizes */}
-      <SidebarTrigger className="text-gray-700" />
+      {/* Sidebar Trigger */}
+      <SidebarTrigger className="text-gray-700 hover:bg-primary hover:text-white transition-colors rounded-md" />
       
       {/* Title - Hidden when search is open on mobile */}
       <h1 className={`text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 truncate flex-1 min-w-0 ${searchOpen ? 'hidden lg:block' : ''}`}>{title}</h1>
