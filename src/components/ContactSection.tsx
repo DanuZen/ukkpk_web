@@ -66,7 +66,6 @@ export const ContactSection = () => {
       });
       setHoveredStar(0);
     } catch (error) {
-      console.error('Error submitting contact form:', error);
       toast({
         title: "Gagal mengirim",
         description: "Terjadi kesalahan. Silakan coba lagi.",

@@ -51,7 +51,6 @@ export const EventsManager = () => {
       if (error) throw error;
       setEvents(data || []);
     } catch (error) {
-      console.error("Error fetching events:", error);
       toast.error("Gagal memuat event");
     }
   };
@@ -104,7 +103,6 @@ export const EventsManager = () => {
       setEditingId(null);
       fetchEvents();
     } catch (error) {
-      console.error("Error saving event:", error);
       toast.error("Gagal menyimpan event");
     }
   };
@@ -133,7 +131,6 @@ export const EventsManager = () => {
       toast.success("Event berhasil dihapus");
       fetchEvents();
     } catch (error) {
-      console.error("Error deleting event:", error);
       toast.error("Gagal menghapus event");
     }
   };

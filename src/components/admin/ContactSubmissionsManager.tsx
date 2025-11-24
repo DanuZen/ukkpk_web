@@ -66,7 +66,6 @@ export const ContactSubmissionsManager = () => {
       if (error) throw error;
       setSubmissions(data || []);
     } catch (error) {
-      console.error('Error fetching submissions:', error);
       toast.error('Gagal memuat data saran');
     } finally {
       setLoading(false);
@@ -100,7 +99,6 @@ export const ContactSubmissionsManager = () => {
       toast.success('Saran berhasil dihapus');
       fetchSubmissions();
     } catch (error) {
-      console.error('Error deleting submission:', error);
       toast.error('Gagal menghapus saran');
     }
   };
@@ -117,7 +115,6 @@ export const ContactSubmissionsManager = () => {
       toast.success(!currentValue ? 'Ditambahkan ke testimoni' : 'Dihapus dari testimoni');
       fetchSubmissions();
     } catch (error) {
-      console.error('Error toggling testimonial:', error);
       toast.error('Gagal mengupdate status testimoni');
     }
   };
@@ -138,7 +135,6 @@ export const ContactSubmissionsManager = () => {
       setEditingId(null);
       fetchSubmissions();
     } catch (error) {
-      console.error('Error updating testimonial:', error);
       toast.error('Gagal mengupdate testimoni');
     }
   };

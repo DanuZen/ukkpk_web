@@ -95,7 +95,6 @@ const BannerSection = () => {
       fetchBanner();
     } catch (error) {
       toast.error('Gagal upload banner');
-      console.error(error);
     } finally {
       setUploading(false);
     }
@@ -122,7 +121,6 @@ const BannerSection = () => {
       fetchBanner();
     } catch (error) {
       toast.error('Gagal menghapus banner');
-      console.error(error);
     }
   };
   return <div className="space-y-3 sm:space-y-4 md:space-y-6">
@@ -216,7 +214,6 @@ const SlideshowSection = () => {
       toast.success('Kecepatan slideshow berhasil diubah');
     } catch (error) {
       toast.error('Gagal mengubah kecepatan slideshow');
-      console.error(error);
     } finally {
       setUpdating(false);
     }
@@ -257,7 +254,6 @@ const SlideshowSection = () => {
       fetchImages();
     } catch (error) {
       toast.error('Gagal upload foto');
-      console.error(error);
     } finally {
       setUploading(false);
     }
@@ -278,7 +274,6 @@ const SlideshowSection = () => {
       fetchImages();
     } catch (error) {
       toast.error('Gagal menghapus foto');
-      console.error(error);
     }
   };
   return <div className="space-y-3 sm:space-y-4 md:space-y-6">
@@ -364,7 +359,6 @@ const StructureSection = () => {
     });
     if (error) {
       toast.error("Gagal memuat data struktur organisasi");
-      console.error(error);
     } else {
       setStructures(data || []);
     }
@@ -422,7 +416,6 @@ const StructureSection = () => {
       resetForm();
       fetchStructures();
     } catch (error) {
-      console.error(error);
       toast.error("Gagal menyimpan struktur organisasi");
     } finally {
       setUploading(false);
@@ -447,7 +440,6 @@ const StructureSection = () => {
     } = await supabase.from("struktur_organisasi").delete().eq("id", id);
     if (error) {
       toast.error("Gagal menghapus struktur organisasi");
-      console.error(error);
     } else {
       toast.success("Struktur organisasi berhasil dihapus");
       fetchStructures();
