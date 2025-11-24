@@ -62,7 +62,7 @@ const Auth = () => {
       {/* Left Side - Login Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white relative overflow-hidden">
 
-        <div className="w-full max-w-md relative z-10">
+        <div className="w-full max-w-md relative z-10 bg-white p-8 rounded-2xl shadow-2xl">
           {/* Logo */}
           <AnimatedSection animation="fade-in" delay={100}>
             <div className="mb-8 flex justify-center">
