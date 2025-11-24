@@ -123,7 +123,7 @@ const Auth = () => {
       </div>
 
       {/* Right Side - Illustration */}
-      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-primary via-primary/90 to-primary/70 relative overflow-hidden items-center justify-center animate-fade-in">
+      <div className="hidden lg:flex w-1/2 bg-red-600 relative overflow-hidden items-center justify-center animate-fade-in">
         {/* MICU Logo & Welcome Text */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white z-10">
           <img 
