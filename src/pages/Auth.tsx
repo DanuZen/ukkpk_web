@@ -127,7 +127,8 @@ const Auth = () => {
         {/* Subtle Pattern Background */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 left-0 w-full h-full" style={{
-            backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 50px, rgba(255,255,255,0.15) 50px, rgba(255,255,255,0.15) 100px)',
+            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.15) 2px, transparent 2px)',
+            backgroundSize: '40px 40px',
           }}></div>
         </div>
         
