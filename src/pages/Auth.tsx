@@ -60,16 +60,16 @@ const Auth = () => {
   };
   return <div className="min-h-screen flex">
       {/* Left Side - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-white relative overflow-hidden">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-white relative overflow-hidden transition-all duration-300">
 
-        <div className="w-full max-w-md relative z-10 bg-white p-6 sm:p-8 rounded-xl sm:rounded-2xl shadow-2xl">
+        <div className="w-full max-w-md relative z-10 bg-white p-6 sm:p-8 rounded-xl sm:rounded-2xl shadow-2xl transition-all duration-300">
           {/* Logo */}
           <AnimatedSection animation="fade-in" delay={100}>
-            <div className="mb-6 sm:mb-8 flex justify-center">
+            <div className="mb-6 sm:mb-8 flex justify-center transition-all duration-300">
               <img 
                 src={logoUkkpk} 
                 alt="UKKPK Logo" 
-                className="h-12 sm:h-16 w-auto animate-scale-in"
+                className="h-12 sm:h-16 w-auto animate-scale-in transition-all duration-300"
                 loading="eager"
                 fetchPriority="high"
               />
@@ -78,21 +78,21 @@ const Auth = () => {
 
           {/* Title */}
           <AnimatedSection animation="fade-up" delay={200}>
-            <div className="mb-6 sm:mb-8 text-center">
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2">Login</h1>
-              <p className="text-sm sm:text-base text-muted-foreground">Masuk ke Dashboard Admin UKKPK UNP</p>
+            <div className="mb-6 sm:mb-8 text-center transition-all duration-300">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2 transition-all duration-300">Login</h1>
+              <p className="text-sm sm:text-base text-muted-foreground transition-all duration-300">Masuk ke Dashboard Admin UKKPK UNP</p>
             </div>
           </AnimatedSection>
 
           {/* Form */}
           <AnimatedSection animation="fade-up" delay={300}>
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-            <div className="space-y-2">
-              <Input type="email" value={email} onChange={e => setEmail(e.target.value)} required placeholder="Email Address" className="h-11 sm:h-12 text-sm sm:text-base" />
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 transition-all duration-300">
+            <div className="space-y-2 transition-all duration-300">
+              <Input type="email" value={email} onChange={e => setEmail(e.target.value)} required placeholder="Email Address" className="h-11 sm:h-12 text-sm sm:text-base transition-all duration-300" />
             </div>
 
-            <div className="space-y-2">
-              <Input type="password" value={password} onChange={e => setPassword(e.target.value)} required placeholder="Password" className="h-11 sm:h-12 text-sm sm:text-base" />
+            <div className="space-y-2 transition-all duration-300">
+              <Input type="password" value={password} onChange={e => setPassword(e.target.value)} required placeholder="Password" className="h-11 sm:h-12 text-sm sm:text-base transition-all duration-300" />
             </div>
 
             <div className="flex items-center justify-between">
@@ -107,7 +107,7 @@ const Auth = () => {
               </button>
             </div>
 
-            <Button type="submit" className="w-full h-11 sm:h-12 text-sm sm:text-base bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary" disabled={loading}>
+            <Button type="submit" className="w-full h-11 sm:h-12 text-sm sm:text-base bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary transition-all duration-300" disabled={loading}>
               {loading ? "Memproses..." : "Log In"}
             </Button>
             </form>
@@ -123,7 +123,7 @@ const Auth = () => {
       </div>
 
       {/* Right Side - Illustration */}
-      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-primary to-primary/90 relative overflow-hidden items-center justify-center animate-fade-in">
+      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-primary to-primary/90 relative overflow-hidden items-center justify-center animate-fade-in transition-all duration-300">
         {/* Subtle Pattern Background */}
         <div className="absolute inset-0 opacity-15">
           <div className="absolute top-0 left-0 w-full h-full" style={{
