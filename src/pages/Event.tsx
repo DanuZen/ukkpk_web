@@ -35,7 +35,7 @@ const Event = () => {
         if (error) throw error;
         setEvents(data || []);
       } catch (error) {
-        console.error("Error fetching events:", error);
+        // Error fetching events - fail silently
       } finally {
         setLoading(false);
       }

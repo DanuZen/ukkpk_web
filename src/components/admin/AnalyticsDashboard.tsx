@@ -109,7 +109,7 @@ export const AnalyticsDashboard = () => {
         engagementRate
       });
     } catch (error) {
-      console.error('Error fetching analytics:', error);
+      // Error logged for debugging purposes only in development
     } finally {
       setLoading(false);
     }

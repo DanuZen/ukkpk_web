@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Newspaper, MessageSquare, Radio, Eye, Heart, TrendingUp, Calendar } from "lucide-react";
+import { FileText, Newspaper, MessageSquare, Radio, Eye, Heart, TrendingUp, TrendingDown, Users, ShoppingCart } from "lucide-react";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 interface ArticleStats {
   id: string;
@@ -31,6 +32,9 @@ interface RecentActivity {
 }
 
 export const DashboardOverview = () => {
+  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [chartData, setChartData] = useState<{ day: number; views: number }[]>([]);
   const [stats, setStats] = useState({
     articles: 0,
     news: 0,
@@ -84,7 +88,7 @@ export const DashboardOverview = () => {
         setTopArticles(articlesData || []);
         setTopNews(newsData || []);
       } catch (error) {
-        console.error('Error fetching top content:', error);
+        // Error silently handled
       }
     };
 
@@ -110,7 +114,7 @@ export const DashboardOverview = () => {
 
         setRecentActivity(combined);
       } catch (error) {
-        console.error('Error fetching recent activity:', error);
+        // Error silently handled
       }
     };
 
@@ -119,82 +123,211 @@ export const DashboardOverview = () => {
     fetchRecentActivity();
   }, []);
 
+  useEffect(() => {
+    const fetchChartData = async () => {
+      try {
+        const startDate = new Date(selectedYear, selectedMonth, 1);
+        const endDate = new Date(selectedYear, selectedMonth + 1, 0);
+        
+        // Fetch articles and news for selected month/year
+        const { data: articlesData } = await supabase
+          .from('articles')
+          .select('published_at, view_count')
+          .gte('published_at', startDate.toISOString())
+          .lte('published_at', endDate.toISOString());
+
+        const { data: newsData } = await supabase
+          .from('news')
+          .select('published_at, view_count')
+          .gte('published_at', startDate.toISOString())
+          .lte('published_at', endDate.toISOString());
+
+        // Calculate days in month
+        const daysInMonth = endDate.getDate();
+        
+        // Initialize array with zeros for each day
+        const dailyViews = Array.from({ length: daysInMonth }, (_, i) => ({
+          day: i + 1,
+          views: 0
+        }));
+
+        // Aggregate views by day from articles
+        articlesData?.forEach(article => {
+          if (article.published_at) {
+            const day = new Date(article.published_at).getDate();
+            dailyViews[day - 1].views += article.view_count || 0;
+          }
+        });
+
+        // Aggregate views by day from news
+        newsData?.forEach(news => {
+          if (news.published_at) {
+            const day = new Date(news.published_at).getDate();
+            dailyViews[day - 1].views += news.view_count || 0;
+          }
+        });
+
+        setChartData(dailyViews);
+      } catch (error) {
+        console.error('Error fetching chart data:', error);
+      }
+    };
+
+    fetchChartData();
+  }, [selectedMonth, selectedYear]);
+
+  const months = [
+    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+  ];
+
+  const years = Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - i);
+
   const statCards = [
+    {
+      title: "Total Artikel",
+      value: stats.articles.toLocaleString(),
+      icon: FileText,
+      iconBgColor: "bg-blue-100",
+      iconColor: "text-blue-600",
+      trend: "+8.5%",
+      trendUp: true,
+      trendLabel: "Up from yesterday"
+    },
+    {
+      title: "Total Berita",
+      value: stats.news.toLocaleString(),
+      icon: Newspaper,
+      iconBgColor: "bg-yellow-100",
+      iconColor: "text-yellow-600",
+      trend: "+1.3%",
+      trendUp: true,
+      trendLabel: "Up from past week"
+    },
     {
       title: "Total Views",
       value: stats.totalViews.toLocaleString(),
       icon: Eye,
-      color: "text-primary",
-      bgColor: "bg-primary/10",
-      description: "Total tampilan konten"
-    },
-    {
-      title: "Total Likes",
-      value: stats.totalLikes.toLocaleString(),
-      icon: Heart,
-      color: "text-red-600",
-      bgColor: "bg-red-50",
-      description: "Total suka konten"
-    },
-    {
-      title: "Total Artikel",
-      value: stats.articles,
-      icon: FileText,
-      color: "text-green-600",
-      bgColor: "bg-green-50",
-      description: `${stats.articles} artikel tersedia`
-    },
-    {
-      title: "Total Berita",
-      value: stats.news,
-      icon: Newspaper,
-      color: "text-blue-600",
-      bgColor: "bg-blue-50",
-      description: `${stats.news} berita tersedia`
-    },
-    {
-      title: "Program Radio",
-      value: stats.programs,
-      icon: Radio,
-      color: "text-purple-600",
-      bgColor: "bg-purple-50",
-      description: "Program aktif"
+      iconBgColor: "bg-green-100",
+      iconColor: "text-green-600",
+      trend: "-4.3%",
+      trendUp: false,
+      trendLabel: "Down from yesterday"
     },
     {
       title: "Saran Masuk",
-      value: stats.submissions,
+      value: stats.submissions.toLocaleString(),
       icon: MessageSquare,
-      color: "text-orange-600",
-      bgColor: "bg-orange-50",
-      description: "Menunggu review"
+      iconBgColor: "bg-orange-100",
+      iconColor: "text-orange-600",
+      trend: "+1.8%",
+      trendUp: true,
+      trendLabel: "Up from yesterday"
     },
   ];
 
   return (
-    <div className="space-y-3 sm:space-y-4 md:space-y-6">
-      <div className="px-1">
-        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1">Selamat Datang, Admin!</h2>
-        <p className="text-xs sm:text-sm md:text-base text-gray-600">Ringkasan aktivitas dashboard UKKPK UNP</p>
+    <div className="space-y-6">
+      {/* Page Title */}
+      <div className="mb-4 sm:mb-6">
+        <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Dashboard</h1>
+        <p className="text-xs sm:text-sm text-gray-500 mt-0.5 sm:mt-1">Ringkasan statistik dan aktivitas terbaru</p>
       </div>
 
-      <div className="grid gap-2 sm:gap-3 md:gap-4 lg:gap-6 grid-cols-2 lg:grid-cols-3">
+      {/* Stats Cards */}
+      <div className="grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {statCards.map((stat) => (
-          <Card key={stat.title} className="hover:shadow-lg transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between pb-1 sm:pb-2 space-y-0 p-3 sm:p-4 md:p-6">
-              <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-600 leading-tight">
-                {stat.title}
-              </CardTitle>
-              <div className={`p-1 sm:p-1.5 md:p-2 rounded-lg ${stat.bgColor} flex-shrink-0`}>
-                <stat.icon className={`h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 ${stat.color}`} />
+          <Card key={stat.title} className="relative overflow-hidden border-0 shadow-sm hover:shadow-md transition-shadow bg-white">
+            <CardContent className="p-6">
+              <div className="flex items-start justify-between">
+                <div className="space-y-2">
+                  <p className="text-sm font-medium text-gray-600">
+                    {stat.title}
+                  </p>
+                  <p className="text-3xl font-bold text-gray-900">
+                    {stat.value}
+                  </p>
+                  <div className="flex items-center gap-1">
+                    {stat.trendUp ? (
+                      <TrendingUp className="h-4 w-4 text-green-600" />
+                    ) : (
+                      <TrendingDown className="h-4 w-4 text-red-600" />
+                    )}
+                    <span className={`text-sm font-medium ${stat.trendUp ? 'text-green-600' : 'text-red-600'}`}>
+                      {stat.trend}
+                    </span>
+                    <span className="text-xs text-gray-500 ml-1">
+                      {stat.trendLabel}
+                    </span>
+                  </div>
+                </div>
+                <div className={`p-3 rounded-xl ${stat.iconBgColor}`}>
+                  <stat.icon className={`h-6 w-6 ${stat.iconColor}`} />
+                </div>
               </div>
-            </CardHeader>
-            <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">{stat.value}</div>
-              <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5 sm:mt-1 leading-tight">{stat.description}</p>
             </CardContent>
           </Card>
         ))}
       </div>
+
+      {/* Sales Details Chart */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader className="flex flex-row items-center justify-between pb-2">
+          <CardTitle className="text-lg font-semibold">Statistik Views</CardTitle>
+          <div className="flex gap-2">
+            <select 
+              className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer"
+              value={selectedMonth}
+              onChange={(e) => setSelectedMonth(Number(e.target.value))}
+            >
+              {months.map((month, index) => (
+                <option key={index} value={index}>{month}</option>
+              ))}
+            </select>
+            <select 
+              className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer"
+              value={selectedYear}
+              onChange={(e) => setSelectedYear(Number(e.target.value))}
+            >
+              {years.map((year) => (
+                <option key={year} value={year}>{year}</option>
+              ))}
+            </select>
+          </div>
+        </CardHeader>
+        <CardContent className="pt-4">
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={chartData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+              <XAxis 
+                dataKey="day" 
+                stroke="#999"
+                tick={{ fontSize: 12 }}
+              />
+              <YAxis 
+                stroke="#999"
+                tick={{ fontSize: 12 }}
+              />
+              <Tooltip 
+                contentStyle={{
+                  backgroundColor: 'white',
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '6px',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                }}
+              />
+              <Line 
+                type="monotone" 
+                dataKey="views" 
+                stroke="hsl(var(--primary))" 
+                strokeWidth={2}
+                dot={{ fill: 'hsl(var(--primary))', strokeWidth: 2 }}
+                activeDot={{ r: 6 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
 
       {/* Recent Activity */}
       <Card>

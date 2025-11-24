@@ -66,7 +66,6 @@ export const ContactSubmissionsManager = () => {
       if (error) throw error;
       setSubmissions(data || []);
     } catch (error) {
-      console.error('Error fetching submissions:', error);
       toast.error('Gagal memuat data saran');
     } finally {
       setLoading(false);
@@ -100,7 +99,6 @@ export const ContactSubmissionsManager = () => {
       toast.success('Saran berhasil dihapus');
       fetchSubmissions();
     } catch (error) {
-      console.error('Error deleting submission:', error);
       toast.error('Gagal menghapus saran');
     }
   };
@@ -117,7 +115,6 @@ export const ContactSubmissionsManager = () => {
       toast.success(!currentValue ? 'Ditambahkan ke testimoni' : 'Dihapus dari testimoni');
       fetchSubmissions();
     } catch (error) {
-      console.error('Error toggling testimonial:', error);
       toast.error('Gagal mengupdate status testimoni');
     }
   };
@@ -138,7 +135,6 @@ export const ContactSubmissionsManager = () => {
       setEditingId(null);
       fetchSubmissions();
     } catch (error) {
-      console.error('Error updating testimonial:', error);
       toast.error('Gagal mengupdate testimoni');
     }
   };
@@ -164,17 +160,17 @@ export const ContactSubmissionsManager = () => {
     <>
       <div className="flex justify-between items-start gap-2 mb-3 sm:mb-4 md:mb-6">
         <div>
-          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">Saran & Masukan</h2>
-          <p className="text-xs sm:text-sm text-gray-600">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Saran & Masukan</h2>
+          <p className="text-xs sm:text-sm text-gray-500 mt-0.5 sm:mt-1">
             Total: {submissions.length} saran | Testimoni: {testimonialCount}
           </p>
         </div>
       </div>
       <Card>
-        <CardHeader className="pb-3 sm:pb-6">
+        <CardHeader className="pb-3 sm:pb-4 md:pb-6 p-3 sm:p-4 md:p-6">
           <CardTitle className="text-sm sm:text-base md:text-xl">Daftar Saran</CardTitle>
         </CardHeader>
-        <CardContent className="pt-0">
+        <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
           <div className="mb-3 sm:mb-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />

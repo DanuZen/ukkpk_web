@@ -1,16 +1,11 @@
 import { User } from "@supabase/supabase-js";
-import { Search, Bell, LogOut, ExternalLink, Menu, X as CloseIcon, X } from "lucide-react";
+import { Search, Bell, LogOut, ExternalLink } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { useState } from "react";
-import logoUkkpk from "@/assets/logo-ukkpk.png";
-import { Home, FileText, Newspaper, Radio, Settings, Users, Map, MessageSquare, TrendingUp, Image } from "lucide-react";
 
 interface DashboardHeaderProps {
   title: string;
@@ -19,33 +14,6 @@ interface DashboardHeaderProps {
   activePage: string;
   onNavigate: (page: string) => void;
 }
-const menuItems = [
-  {
-    group: "DASHBOARD",
-    items: [
-      { id: "dashboard", title: "Dashboard Utama", icon: Home },
-      { id: "analytics", title: "Analitik", icon: TrendingUp },
-      { id: "contact", title: "Pesan & Saran", icon: MessageSquare },
-    ],
-  },
-  {
-    group: "KONTEN",
-    items: [
-      { id: "articles", title: "Artikel", icon: FileText },
-      { id: "news", title: "Berita", icon: Newspaper },
-      { id: "radio", title: "Program Radio", icon: Radio },
-    ],
-  },
-  {
-    group: "PENGATURAN",
-    items: [
-      { id: "slideshow", title: "Galeri Beranda", icon: Settings },
-      { id: "banner", title: "Banner Profil", icon: Image },
-      { id: "structure", title: "Struktur Organisasi", icon: Users },
-      { id: "maps", title: "Lokasi & Peta", icon: Map },
-    ],
-  },
-];
 
 export const DashboardHeader = ({
   title,
@@ -55,137 +23,49 @@ export const DashboardHeader = ({
   onNavigate
 }: DashboardHeaderProps) => {
   const navigate = useNavigate();
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   const getInitials = (email: string) => {
     return email.substring(0, 2).toUpperCase();
   };
   
   return (
-    <header className="sticky top-0 z-50 flex h-14 sm:h-16 items-center gap-2 sm:gap-4 border-b bg-white shadow-sm px-3 sm:px-6">
-      {/* Desktop Sidebar Trigger */}
-      <div className="hidden lg:block">
-        <SidebarTrigger className="text-gray-700" />
+    <header className="sticky top-0 z-50 flex h-14 sm:h-16 items-center gap-1.5 sm:gap-2 md:gap-3 border-b bg-white shadow-sm px-2 sm:px-3 md:px-6">
+      {/* Sidebar Trigger */}
+      <SidebarTrigger className="text-gray-700 hover:bg-primary hover:text-white transition-colors rounded-md flex-shrink-0 h-8 w-8 sm:h-9 sm:w-9" />
+      
+      {/* Search Bar - Responsive width */}
+      <div className="relative flex-1 max-w-[140px] sm:max-w-xs md:max-w-md">
+        <Search className="absolute left-2 top-1/2 h-3.5 w-3.5 sm:h-4 sm:w-4 -translate-y-1/2 text-gray-400" />
+        <Input 
+          placeholder="Cari..." 
+          className="w-full pl-7 sm:pl-9 pr-2 h-8 sm:h-9 md:h-10 text-xs sm:text-sm bg-gray-50 border-gray-200 focus:bg-white" 
+        />
       </div>
 
-      {/* Mobile/Tablet Menu */}
-      <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-        <SheetTrigger asChild>
-          <Button variant="ghost" size="icon" className="lg:hidden text-gray-700 hover:text-primary hover:bg-primary/10">
-            <Menu className="h-5 w-5" />
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="left" className="w-64 p-0">
-          <div className="flex h-full flex-col bg-gradient-to-b from-primary via-primary to-primary/90">
-            <SheetHeader className="border-b border-white/10 p-4">
-              <div className="flex items-center gap-3">
-                <img src={logoUkkpk} alt="UKKPK Logo" className="h-10 w-10" />
-                <div className="flex flex-col text-left">
-                  <SheetTitle className="text-lg font-bold text-white">UKKPK UNP</SheetTitle>
-                  <span className="text-xs text-white/80">Admin Dashboard</span>
-                </div>
-              </div>
-            </SheetHeader>
+      <div className="ml-auto flex items-center gap-1 sm:gap-1.5 md:gap-2">
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          onClick={() => navigate("/")} 
+          className="text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9 flex-shrink-0" 
+          title="Kembali ke Website"
+        >
+          <ExternalLink className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+        </Button>
 
-            <div className="flex-1 overflow-y-auto px-2 py-4">
-              {menuItems.map((section) => (
-                <div key={section.group} className="mb-6">
-                  <h3 className="text-white/60 text-xs font-semibold px-3 mb-2">{section.group}</h3>
-                  <div className="space-y-1">
-                    {section.items.map((item) => (
-                      <button
-                        key={item.id}
-                        onClick={() => {
-                          onNavigate(item.id);
-                          setMobileMenuOpen(false);
-                        }}
-                        className={`
-                          w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200
-                          ${
-                            activePage === item.id
-                              ? "bg-white/20 text-white font-semibold"
-                              : "text-white/90 hover:bg-white/10"
-                          }
-                        `}
-                      >
-                        <item.icon className="h-5 w-5" />
-                        <span>{item.title}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </SheetContent>
-      </Sheet>
-      
-      {/* Title - Hidden when search is open on mobile */}
-      <h1 className={`text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 truncate flex-1 min-w-0 ${searchOpen ? 'hidden lg:block' : ''}`}>{title}</h1>
-
-      <div className="ml-auto flex items-center gap-1 sm:gap-2">
-        {/* Mobile/Tablet Search Toggle Button */}
-        {!searchOpen && (
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={() => setSearchOpen(true)}
-            className="lg:hidden text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9"
-          >
-            <Search className="h-4 w-4" />
-          </Button>
-        )}
-
-        {/* Mobile/Tablet Search Input - Inline */}
-        {searchOpen && (
-          <div className="relative flex-1 lg:hidden flex items-center gap-2">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-            <Input placeholder="Search..." className="w-full pl-9 pr-2 h-8 sm:h-9 text-xs sm:text-sm bg-gray-50 border-gray-200" />
-            <Button 
-              variant="ghost" 
-              size="icon"
-              onClick={() => setSearchOpen(false)}
-              className="text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9 flex-shrink-0"
-            >
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
-        )}
-
-        {/* Desktop Search Bar - Always Visible */}
-        <div className="relative hidden lg:block">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-          <Input placeholder="Search..." className="w-48 xl:w-64 pl-9 bg-gray-50 border-gray-200" />
-        </div>
-
-        {!searchOpen && (
-          <>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={() => navigate("/")} 
-              className="text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9" 
-              title="Kembali ke Website"
-            >
-              <ExternalLink className="h-4 w-4" />
-            </Button>
-
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="hidden sm:flex text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9"
-            >
-              <Bell className="h-4 w-4 sm:h-5 sm:w-5" />
-            </Button>
-          </>
-        )}
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          className="hidden md:flex text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9 flex-shrink-0"
+        >
+          <Bell className="h-4 w-4 sm:h-5 sm:w-5" />
+        </Button>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="relative h-8 w-8 sm:h-9 sm:w-9 rounded-full flex-shrink-0">
+            <Button variant="ghost" className="relative h-8 w-8 sm:h-9 sm:w-9 rounded-full flex-shrink-0 p-0">
               <Avatar className="h-8 w-8 sm:h-9 sm:w-9">
-                <AvatarFallback className="bg-primary text-white text-xs">
+                <AvatarFallback className="bg-primary text-white text-[10px] sm:text-xs">
                   {user?.email ? getInitials(user.email) : "AD"}
                 </AvatarFallback>
               </Avatar>

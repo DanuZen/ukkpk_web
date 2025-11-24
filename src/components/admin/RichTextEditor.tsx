@@ -86,7 +86,6 @@ export const RichTextEditor = ({
       } = supabase.storage.from('uploads').getPublicUrl(filePath);
       return publicUrl;
     } catch (error) {
-      console.error('Error uploading image:', error);
       toast({
         title: "Error",
         description: "Gagal mengupload gambar",

@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { Loader2 } from "lucide-react";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
 import logoMicuMascot from "@/assets/logo-micu-mascot.png";
 
@@ -60,21 +61,16 @@ const Auth = () => {
   };
   return <div className="min-h-screen flex">
       {/* Left Side - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-background relative overflow-hidden">
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 left-20 w-32 h-32 rounded-full border-2 border-primary/20"></div>
-          <div className="absolute bottom-20 right-20 w-48 h-48 rounded-full border-2 border-primary/20"></div>
-        </div>
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-white relative overflow-hidden transition-all duration-300">
 
-        <div className="w-full max-w-md relative z-10">
+        <div className="w-full max-w-md relative z-10 bg-white p-6 sm:p-8 rounded-xl sm:rounded-2xl shadow-2xl transition-all duration-300">
           {/* Logo */}
           <AnimatedSection animation="fade-in" delay={100}>
-            <div className="mb-8 flex justify-center">
+            <div className="mb-6 sm:mb-8 flex justify-center transition-all duration-300">
               <img 
                 src={logoUkkpk} 
                 alt="UKKPK Logo" 
-                className="h-16 w-auto animate-scale-in"
+                className="h-12 sm:h-16 w-auto animate-scale-in transition-all duration-300"
                 loading="eager"
                 fetchPriority="high"
               />
@@ -83,21 +79,21 @@ const Auth = () => {
 
           {/* Title */}
           <AnimatedSection animation="fade-up" delay={200}>
-            <div className="mb-8 text-center">
-              <h1 className="text-4xl font-bold text-foreground mb-2">Login</h1>
-              <p className="text-muted-foreground">Masuk ke Dashboard Admin UKKPK UNP</p>
+            <div className="mb-6 sm:mb-8 text-center transition-all duration-300">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2 transition-all duration-300">Login</h1>
+              <p className="text-sm sm:text-base text-muted-foreground transition-all duration-300">Masuk ke Dashboard Admin UKKPK UNP</p>
             </div>
           </AnimatedSection>
 
           {/* Form */}
           <AnimatedSection animation="fade-up" delay={300}>
-            <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-2">
-              <Input type="email" value={email} onChange={e => setEmail(e.target.value)} required placeholder="Email Address" className="h-12 text-base" />
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 transition-all duration-300">
+            <div className="space-y-2 transition-all duration-300">
+              <Input type="email" value={email} onChange={e => setEmail(e.target.value)} required placeholder="Email Address" className="h-11 sm:h-12 text-sm sm:text-base transition-all duration-300" />
             </div>
 
-            <div className="space-y-2">
-              <Input type="password" value={password} onChange={e => setPassword(e.target.value)} required placeholder="Password" className="h-12 text-base" />
+            <div className="space-y-2 transition-all duration-300">
+              <Input type="password" value={password} onChange={e => setPassword(e.target.value)} required placeholder="Password" className="h-11 sm:h-12 text-sm sm:text-base transition-all duration-300" />
             </div>
 
             <div className="flex items-center justify-between">
@@ -112,7 +108,8 @@ const Auth = () => {
               </button>
             </div>
 
-            <Button type="submit" className="w-full h-12 text-base bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary" disabled={loading}>
+            <Button type="submit" className="w-full h-11 sm:h-12 text-sm sm:text-base bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary transition-all duration-300" disabled={loading}>
+              {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               {loading ? "Memproses..." : "Log In"}
             </Button>
             </form>
@@ -120,7 +117,7 @@ const Auth = () => {
 
           {/* Footer Note */}
           <AnimatedSection animation="fade-in" delay={400}>
-            <div className="mt-8 text-center text-sm text-muted-foreground">
+            <div className="mt-6 sm:mt-8 text-center text-xs sm:text-sm text-muted-foreground">
               <p>Hanya untuk Admin UKKPK UNP</p>
             </div>
           </AnimatedSection>
@@ -128,27 +125,19 @@ const Auth = () => {
       </div>
 
       {/* Right Side - Illustration */}
-      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-primary via-primary/90 to-primary/70 relative overflow-hidden items-center justify-center animate-fade-in">
-        {/* Decorative Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-20 w-3 h-3 bg-white/80 rounded-full animate-pulse shadow-lg"></div>
-          <div className="absolute top-40 right-40 w-2 h-2 bg-white/60 rounded-full animate-pulse delay-100 shadow-md"></div>
-          <div className="absolute bottom-32 left-32 w-3 h-3 bg-white/80 rounded-full animate-pulse delay-200 shadow-lg"></div>
-          <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-white/60 rounded-full animate-pulse delay-300 shadow-md"></div>
-          <div className="absolute top-1/2 right-1/3 w-4 h-4 bg-white/40 rounded-full blur-sm"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-3 h-3 bg-white/40 rounded-full blur-sm"></div>
+      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-primary to-primary/90 relative overflow-hidden items-center justify-center animate-fade-in transition-all duration-300">
+        {/* Subtle Pattern Background */}
+        <div className="absolute inset-0 opacity-15">
+          <div className="absolute top-0 left-0 w-full h-full" style={{
+            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.2) 1.5px, transparent 1.5px)',
+            backgroundSize: '60px 60px',
+          }}></div>
         </div>
-
-        {/* Clouds */}
-        <div className="absolute top-20 left-10 w-32 h-16 bg-white/10 rounded-full blur-xl animate-float"></div>
-        <div className="absolute top-40 right-20 w-40 h-20 bg-white/10 rounded-full blur-xl animate-float delay-200"></div>
-        <div className="absolute bottom-40 left-1/3 w-36 h-18 bg-white/5 rounded-full blur-2xl"></div>
-
-        {/* Person Working at Desk Illustration */}
-        <div className="relative z-10 animate-float-slow">
-          
-        </div>
-
+        
+        {/* Decorative Circles */}
+        <div className="absolute top-20 right-20 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-20 w-[500px] h-[500px] bg-white/10 rounded-full blur-3xl"></div>
+        
         {/* MICU Logo & Welcome Text */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white z-10">
           <img 
@@ -180,6 +169,10 @@ const Auth = () => {
           0% { transform: translateX(0) translateY(0); opacity: 1; }
           100% { transform: translateX(-200px) translateY(200px); opacity: 0; }
         }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
         .animate-float {
           animation: float 6s ease-in-out infinite;
         }
@@ -188,6 +181,9 @@ const Auth = () => {
         }
         .animate-shooting-star {
           animation: shooting-star 3s ease-in infinite;
+        }
+        .animate-spin-slow {
+          animation: spin-slow 20s linear infinite;
         }
         .delay-100 { animation-delay: 0.1s; }
         .delay-200 { animation-delay: 0.2s; }

@@ -70,7 +70,6 @@ export const RadioManager = () => {
       if (error) throw error;
       setPrograms(data || []);
     } catch (error) {
-      console.error("Error fetching programs:", error);
       toast.error("Gagal memuat program radio");
     }
   };
@@ -87,7 +86,7 @@ export const RadioManager = () => {
       setStreamingUrl(data.streaming_url);
       setBannerImageUrl(data.banner_image_url || "");
     } catch (error) {
-      console.error("Error fetching settings:", error);
+      // Error silently handled
     }
   };
 
@@ -130,7 +129,6 @@ export const RadioManager = () => {
       setSelectedSlot(null);
       fetchPrograms();
     } catch (error) {
-      console.error("Error saving program:", error);
       toast.error("Gagal menyimpan program");
     }
   };
@@ -185,7 +183,6 @@ export const RadioManager = () => {
       setShowSettingsDialog(false);
       fetchSettings();
     } catch (error) {
-      console.error("Error updating settings:", error);
       toast.error("Gagal memperbarui pengaturan");
     }
   };
@@ -216,7 +213,6 @@ export const RadioManager = () => {
       toast.success("Program berhasil dihapus");
       fetchPrograms();
     } catch (error) {
-      console.error("Error deleting program:", error);
       toast.error("Gagal menghapus program");
     }
   };
