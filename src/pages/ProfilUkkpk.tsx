@@ -429,13 +429,13 @@ const ProfilUkkpk = () => {
               {/* Features Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
                 {features.slice(0, 4).map((feature, index) => <AnimatedSection key={index} animation="fade-up" delay={100 + index * 100}>
-                    <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                      <CardContent className="pt-8 px-4 sm:px-6 md:px-8 text-center flex flex-col items-center relative">
+                    <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg h-full">
+                      <CardContent className="pt-8 pb-8 px-4 sm:px-6 md:px-8 text-center flex flex-col items-center relative h-full">
                         <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
                         <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                         <div className="inline-flex p-3 sm:p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform relative z-10">{feature.icon}</div>
-                        <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-3 min-h-[3rem] flex items-center justify-center relative z-10">{feature.title}</h3>
-                        <p className="text-sm sm:text-base md:text-lg text-muted-foreground text-center leading-relaxed relative z-10">{feature.description}</p>
+                        <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-3 min-h-[3.5rem] flex items-center justify-center relative z-10">{feature.title}</h3>
+                        <p className="text-sm sm:text-base text-muted-foreground text-center leading-relaxed relative z-10">{feature.description}</p>
                       </CardContent>
                     </Card>
                   </AnimatedSection>)}
@@ -444,13 +444,13 @@ const ProfilUkkpk = () => {
               {/* Baris kedua: 3 card centered */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
                 {features.slice(4, 7).map((feature, index) => <AnimatedSection key={index + 4} animation="fade-up" delay={500 + index * 100}>
-                    <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                      <CardContent className="pt-8 px-4 sm:px-6 md:px-8 text-center flex flex-col items-center relative">
+                    <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg h-full">
+                      <CardContent className="pt-8 pb-8 px-4 sm:px-6 md:px-8 text-center flex flex-col items-center relative h-full">
                         <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
                         <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
                         <div className="inline-flex p-3 sm:p-4 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform relative z-10">{feature.icon}</div>
-                        <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-3 min-h-[3rem] flex items-center justify-center relative z-10">{feature.title}</h3>
-                        <p className="text-sm sm:text-base md:text-lg text-muted-foreground text-center leading-relaxed relative z-10">{feature.description}</p>
+                        <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-3 min-h-[3.5rem] flex items-center justify-center relative z-10">{feature.title}</h3>
+                        <p className="text-sm sm:text-base text-muted-foreground text-center leading-relaxed relative z-10">{feature.description}</p>
                       </CardContent>
                     </Card>
                   </AnimatedSection>)}
