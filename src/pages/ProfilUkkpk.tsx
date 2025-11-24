@@ -289,7 +289,7 @@ const ProfilUkkpk = () => {
                         </div>
                         <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">Visi</h3>
                       </div>
-                      <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed text-justify">
+                      <p className="sm:text-base md:text-lg text-muted-foreground leading-relaxed text-justify text-xs">
                         Menjadikan UKKPK UNP sebagai wadah yang disiplin, inovatif, dan kreatif dalam mewujudkan mahasiswa yang berintelektual dan berkompeten di bidang komunikasi dan penyiaran yang berbudi luhur.
                       </p>
                     </CardContent>
