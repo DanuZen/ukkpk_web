@@ -47,7 +47,15 @@ const menuItems = [
 ];
 
 export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
-  const { open } = useSidebar();
+  const { open, setOpen, isMobile } = useSidebar();
+
+  const handleNavigate = (page: string) => {
+    onNavigate(page);
+    // Auto-close sidebar on mobile after navigation
+    if (isMobile) {
+      setOpen(false);
+    }
+  };
 
   return (
     <Sidebar className="border-r border-gray-200 bg-white" collapsible="offcanvas">
@@ -77,7 +85,7 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
                   {section.items.map((item) => (
                     <SidebarMenuItem key={item.id}>
                       <SidebarMenuButton
-                        onClick={() => onNavigate(item.id)}
+                        onClick={() => handleNavigate(item.id)}
                         className={`
                           transition-all duration-200 cursor-pointer rounded-lg
                           ${
