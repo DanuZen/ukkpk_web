@@ -181,7 +181,7 @@ export const Footer = () => {
           {/* Kontak */}
           <div className="space-y-4">
             <h4 className="font-semibold text-lg mb-4 text-white">Kontak</h4>
-            <ul className="space-y-4 text-xs sm:text-sm md:text-base">
+            <ul className="flex flex-col md:flex-row md:gap-8 lg:gap-12 space-y-4 md:space-y-0 text-xs sm:text-sm md:text-base">
               <li className="flex items-start gap-3 text-white/90">
                 <Mail className="h-5 w-5 flex-shrink-0 mt-0.5" />
                 <div>
