@@ -242,7 +242,8 @@ export const Navigation = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && <div className="absolute top-full left-0 right-0 lg:hidden py-4 bg-background border-t border-border space-y-2 shadow-lg z-50 animate-in slide-in-from-top duration-300">
+        {isOpen && <div className="fixed top-16 left-0 right-0 bottom-0 lg:hidden bg-background/95 backdrop-blur-sm overflow-y-auto z-50 animate-in slide-in-from-top duration-300">
+            <div className="py-4 space-y-2">
             {navItems.map(item => {
           const isActive = location.pathname === item.path;
           return <Link key={item.name} to={item.path} className={`block mx-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground shadow-md" : "text-foreground hover:bg-gray-100"}`} onClick={() => setIsOpen(false)}>
@@ -298,6 +299,7 @@ export const Navigation = () => {
                   Login Sekarang
                 </Link>
               )}
+            </div>
             </div>
           </div>}
       </div>
