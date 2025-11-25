@@ -188,53 +188,53 @@ export const DashboardOverview = () => {
       title: "Total Artikel",
       value: stats.articles.toLocaleString(),
       icon: FileText,
-      iconBgColor: "bg-blue-100",
-      iconColor: "text-blue-600",
+      iconBgColor: "bg-blue-500",
+      iconColor: "text-white",
       trend: "+8.5%",
       trendUp: true,
-      trendLabel: "Up from yesterday"
+      trendLabel: "vs bulan lalu"
     },
     {
       title: "Total Berita",
       value: stats.news.toLocaleString(),
       icon: Newspaper,
-      iconBgColor: "bg-yellow-100",
-      iconColor: "text-yellow-600",
+      iconBgColor: "bg-green-500",
+      iconColor: "text-white",
       trend: "+1.3%",
       trendUp: true,
-      trendLabel: "Up from past week"
+      trendLabel: "vs bulan lalu"
     },
     {
       title: "Total Views",
       value: stats.totalViews.toLocaleString(),
       icon: Eye,
-      iconBgColor: "bg-green-100",
-      iconColor: "text-green-600",
+      iconBgColor: "bg-purple-500",
+      iconColor: "text-white",
       trend: "-4.3%",
       trendUp: false,
-      trendLabel: "Down from yesterday"
+      trendLabel: "vs bulan lalu"
     },
     {
       title: "Saran Masuk",
       value: stats.submissions.toLocaleString(),
       icon: MessageSquare,
-      iconBgColor: "bg-orange-100",
-      iconColor: "text-orange-600",
+      iconBgColor: "bg-orange-500",
+      iconColor: "text-white",
       trend: "+1.8%",
       trendUp: true,
-      trendLabel: "Up from yesterday"
+      trendLabel: "vs bulan lalu"
     },
   ];
 
   return (
     <div className="space-y-6">
-      {/* Page Title */}
-      <div className="mb-4 sm:mb-6">
-        <div className="flex items-center gap-3">
-          <Home className="h-8 w-8 text-primary animate-fade-in" />
-          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
-            <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-            <p className="text-gray-600 mt-1">Ringkasan statistik dan aktivitas terbaru</p>
+      {/* Welcome Card */}
+      <div className="bg-gradient-to-r from-primary via-blue-500 to-cyan-500 rounded-xl p-6 sm:p-8 text-white shadow-lg animate-fade-in">
+        <div className="flex items-start gap-3">
+          <span className="text-3xl sm:text-4xl">👋</span>
+          <div>
+            <h2 className="text-xl sm:text-2xl font-bold mb-2">Selamat Datang!</h2>
+            <p className="text-white/90 text-sm sm:text-base">Berikut ringkasan data sistem UKKPK hari ini</p>
           </div>
         </div>
       </div>
@@ -242,7 +242,7 @@ export const DashboardOverview = () => {
       {/* Stats Cards */}
       <div className="grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {statCards.map((stat) => (
-          <Card key={stat.title} className="relative overflow-hidden border-0 shadow-sm hover:shadow-md transition-shadow bg-white">
+          <Card key={stat.title} className="relative overflow-hidden border-0 shadow-md hover:shadow-lg transition-shadow bg-white">
             <CardContent className="p-6">
               <div className="flex items-start justify-between">
                 <div className="space-y-2">
@@ -253,20 +253,15 @@ export const DashboardOverview = () => {
                     {stat.value}
                   </p>
                   <div className="flex items-center gap-1">
-                    {stat.trendUp ? (
-                      <TrendingUp className="h-4 w-4 text-green-600" />
-                    ) : (
-                      <TrendingDown className="h-4 w-4 text-red-600" />
-                    )}
-                    <span className={`text-sm font-medium ${stat.trendUp ? 'text-green-600' : 'text-red-600'}`}>
-                      {stat.trend}
+                    <span className={`text-xs font-medium ${stat.trendUp ? 'text-green-600' : 'text-red-600'}`}>
+                      {stat.trendUp ? '↑' : '↓'} {stat.trend}
                     </span>
-                    <span className="text-xs text-gray-500 ml-1">
+                    <span className="text-xs text-gray-500">
                       {stat.trendLabel}
                     </span>
                   </div>
                 </div>
-                <div className={`p-3 rounded-xl ${stat.iconBgColor}`}>
+                <div className={`p-4 rounded-2xl ${stat.iconBgColor} shadow-sm`}>
                   <stat.icon className={`h-6 w-6 ${stat.iconColor}`} />
                 </div>
               </div>
