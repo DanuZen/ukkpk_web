@@ -124,6 +124,11 @@ export const ThemeManager = () => {
 
   return (
     <div className="space-y-6">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-gray-900">Pengaturan Tema Website</h2>
+        <p className="text-gray-600 mt-1">Kelola tema dan warna website UKKPK sesuai preferensi Anda</p>
+      </div>
+
       <Card>
         <CardHeader>
           <div className="flex items-center gap-2">
