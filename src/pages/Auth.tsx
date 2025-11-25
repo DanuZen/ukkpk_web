@@ -168,7 +168,7 @@ const Auth = () => {
                     Ingat saya
                   </Label>
                 </div>
-                <button type="button" className="text-sm text-primary hover:underline" onClick={() => toast.info("Hubungi administrator untuk reset password")}>
+                <button type="button" onClick={() => toast.info("Hubungi administrator untuk reset password")} className="text-primary hover:underline text-xs">
                   Lupa password?
                 </button>
               </div>
