@@ -178,7 +178,7 @@ export const DashboardOverview = () => {
       {/* Stats Cards */}
       <div className="grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {statCards.map((stat) => (
-          <Card key={stat.title} className="relative overflow-hidden border-0 shadow-md hover:shadow-lg transition-shadow bg-white">
+          <Card key={stat.title} className="relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-shadow bg-white">
             <CardContent className="p-6">
               <div className="flex items-start justify-between">
                 <div className="space-y-2">
@@ -207,7 +207,7 @@ export const DashboardOverview = () => {
       </div>
 
       {/* Recent Activity */}
-      <Card>
+      <Card className="shadow-xl">
         <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
           <CardTitle className="text-sm sm:text-base md:text-xl font-semibold">Aktivitas Terbaru</CardTitle>
         </CardHeader>
@@ -239,7 +239,7 @@ export const DashboardOverview = () => {
       {/* Top Articles and News */}
       <div className="grid gap-3 sm:gap-4 md:gap-6 lg:grid-cols-2">
         {/* Top 5 Articles */}
-        <Card>
+        <Card className="shadow-xl">
           <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
             <CardTitle className="text-sm sm:text-base md:text-xl font-semibold flex items-center gap-1.5 sm:gap-2">
               <FileText className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5 text-primary flex-shrink-0" />
@@ -279,7 +279,7 @@ export const DashboardOverview = () => {
         </Card>
 
         {/* Top 5 News */}
-        <Card>
+        <Card className="shadow-xl">
           <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
             <CardTitle className="text-sm sm:text-base md:text-xl font-semibold flex items-center gap-1.5 sm:gap-2">
               <Newspaper className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5 text-primary flex-shrink-0" />

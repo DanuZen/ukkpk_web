@@ -233,7 +233,7 @@ export const AnalyticsDashboard = () => {
 
       {/* Overview Stats - First Row */}
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
-        <Card className="bg-gradient-to-br from-purple-50 to-purple-100/50 border-purple-200">
+        <Card className="bg-gradient-to-br from-purple-50 to-purple-100/50 border-purple-200 shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
             <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Engagement Rate</CardTitle>
             <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 text-purple-500 flex-shrink-0" />
@@ -246,7 +246,7 @@ export const AnalyticsDashboard = () => {
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-amber-50 to-amber-100/50 border-amber-200">
+        <Card className="bg-gradient-to-br from-amber-50 to-amber-100/50 border-amber-200 shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
             <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Avg Views/Artikel</CardTitle>
             <Eye className="h-3 w-3 sm:h-4 sm:w-4 text-amber-500 flex-shrink-0" />
@@ -259,7 +259,7 @@ export const AnalyticsDashboard = () => {
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-cyan-50 to-cyan-100/50 border-cyan-200">
+        <Card className="bg-gradient-to-br from-cyan-50 to-cyan-100/50 border-cyan-200 shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
             <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Avg Views/Berita</CardTitle>
             <Eye className="h-3 w-3 sm:h-4 sm:w-4 text-cyan-500 flex-shrink-0" />
@@ -272,7 +272,7 @@ export const AnalyticsDashboard = () => {
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-pink-50 to-pink-100/50 border-pink-200">
+        <Card className="bg-gradient-to-br from-pink-50 to-pink-100/50 border-pink-200 shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
             <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Avg Engagement</CardTitle>
             <Heart className="h-3 w-3 sm:h-4 sm:w-4 text-pink-500 flex-shrink-0" />
@@ -290,7 +290,7 @@ export const AnalyticsDashboard = () => {
 
       {/* Overview Stats - Second Row */}
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
-        <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
+        <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20 shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
             <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Total Views</CardTitle>
             <Eye className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
@@ -303,7 +303,7 @@ export const AnalyticsDashboard = () => {
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-red-50 to-red-100/50 border-red-200">
+        <Card className="bg-gradient-to-br from-red-50 to-red-100/50 border-red-200 shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
             <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Total Likes</CardTitle>
             <Heart className="h-3 w-3 sm:h-4 sm:w-4 text-red-500 flex-shrink-0" />
@@ -316,7 +316,7 @@ export const AnalyticsDashboard = () => {
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-blue-50 to-blue-100/50 border-blue-200">
+        <Card className="bg-gradient-to-br from-blue-50 to-blue-100/50 border-blue-200 shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
             <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Total Artikel</CardTitle>
             <FileText className="h-3 w-3 sm:h-4 sm:w-4 text-blue-500 flex-shrink-0" />
@@ -329,7 +329,7 @@ export const AnalyticsDashboard = () => {
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-green-50 to-green-100/50 border-green-200">
+        <Card className="bg-gradient-to-br from-green-50 to-green-100/50 border-green-200 shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
             <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Total Berita</CardTitle>
             <Newspaper className="h-3 w-3 sm:h-4 sm:w-4 text-green-500 flex-shrink-0" />
@@ -344,7 +344,7 @@ export const AnalyticsDashboard = () => {
       </div>
 
       {/* Statistik Views Chart */}
-      <Card className="border-0 shadow-sm">
+      <Card className="border-0 shadow-xl">
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <CardTitle className="text-lg font-semibold">Statistik Views</CardTitle>
           <div className="flex gap-2">
@@ -404,7 +404,7 @@ export const AnalyticsDashboard = () => {
 
       {/* Charts */}
       <div className="grid gap-3 sm:gap-4 md:gap-6 lg:grid-cols-2">
-        <Card>
+        <Card className="shadow-xl">
           <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
             <CardTitle className="text-sm sm:text-base md:text-xl">Perbandingan Artikel vs Berita</CardTitle>
           </CardHeader>
@@ -423,7 +423,7 @@ export const AnalyticsDashboard = () => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="shadow-xl">
           <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
             <CardTitle className="text-sm sm:text-base md:text-xl">Top 8 Konten Terpopuler</CardTitle>
           </CardHeader>
