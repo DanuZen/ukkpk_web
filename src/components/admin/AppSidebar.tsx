@@ -64,25 +64,25 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
   const shouldShowText = open || isMobile || openMobile;
 
   return (
-    <Sidebar className="border-r border-gray-200 bg-white transition-all duration-300 ease-in-out" collapsible="offcanvas">
+    <Sidebar className="border-r border-primary/20 bg-gradient-to-b from-primary via-primary to-primary/90 transition-all duration-300 ease-in-out" collapsible="offcanvas">
       <div className="flex h-full flex-col animate-fade-in">
-        <SidebarHeader className="px-3 py-3 bg-white">
+        <SidebarHeader className="px-3 py-3 bg-transparent border-b border-white/10">
           <div className="flex items-center gap-2.5 ml-2">
             <img src={logoUkkpk} alt="UKKPK Logo" className="h-9 w-9 transition-transform duration-200 hover:scale-110" />
             {shouldShowText && (
               <div className="flex flex-col animate-fade-in">
-                <span className="text-base font-bold text-primary">UKKPK</span>
-                <span className="text-xs text-gray-500">Admin Panel</span>
+                <span className="text-base font-bold text-white">UKKPK</span>
+                <span className="text-xs text-white/70">Admin Panel</span>
               </div>
             )}
           </div>
         </SidebarHeader>
 
-        <SidebarContent className="px-3 py-4 bg-white">
+        <SidebarContent className="px-3 py-4 bg-transparent">
           {menuItems.map((section, index) => (
             <SidebarGroup key={section.group} className={index > 0 ? "mt-6" : ""}>
               {shouldShowText && (
-                <SidebarGroupLabel className="text-gray-400 text-xs font-semibold px-3 mb-3 uppercase animate-fade-in">
+                <SidebarGroupLabel className="text-white/60 text-xs font-semibold px-3 mb-3 uppercase animate-fade-in">
                   {section.group}
                 </SidebarGroupLabel>
               )}
@@ -94,15 +94,15 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
                       className="animate-fade-in"
                       style={{ animationDelay: `${itemIndex * 50}ms` }}
                     >
-                      <SidebarMenuButton
+                        <SidebarMenuButton
                         onClick={() => handleNavigate(item.id)}
                         className={`
                           transition-all duration-200 cursor-pointer rounded-lg py-2.5
                           hover:translate-x-1 hover:shadow-sm
                           ${
                             activePage === item.id
-                              ? "bg-primary text-white font-medium hover:bg-primary/90 shadow-md"
-                              : "text-gray-700 hover:bg-gray-100"
+                              ? "bg-white/20 text-white font-semibold shadow-md"
+                              : "text-white/90 hover:bg-white/10"
                           }
                         `}
                       >
