@@ -174,7 +174,7 @@ const Auth = () => {
               </div>
 
               {/* Login Button */}
-              <Button type="submit" className="w-full h-12 text-base font-semibold" disabled={loading}>
+              <Button type="submit" disabled={loading} className="w-full h-12 text-base font-bold">
                 {loading ? <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     Memproses...
