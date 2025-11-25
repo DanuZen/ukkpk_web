@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Plus, Pencil, Trash2, Settings as SettingsIcon } from "lucide-react";
+import { Plus, Pencil, Trash2, Settings as SettingsIcon, Radio as RadioIcon } from "lucide-react";
 import { ImageUpload } from "./ImageUpload";
 
 interface RadioProgram {
@@ -256,10 +256,13 @@ export const RadioManager = () => {
 
   return (
     <div className="space-y-3 sm:space-y-4 md:space-y-6">
-      <div className="flex justify-between items-start gap-2">
-        <div>
-          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">Jadwal Program Radio</h2>
-          <p className="text-xs sm:text-sm text-gray-600">Kelola jadwal program radio mingguan</p>
+      <div className="flex justify-between items-start gap-2 mb-6">
+        <div className="flex items-center gap-3">
+          <RadioIcon className="h-8 w-8 text-primary flex-shrink-0" />
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900">Jadwal Program Radio</h2>
+            <p className="text-gray-600 mt-1">Kelola jadwal program radio mingguan</p>
+          </div>
         </div>
         <Dialog open={showSettingsDialog} onOpenChange={setShowSettingsDialog}>
           <DialogTrigger asChild>

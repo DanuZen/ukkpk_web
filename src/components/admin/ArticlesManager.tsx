@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { Pencil, Trash2, Plus, Eye, Edit3 } from "lucide-react";
+import { Pencil, Trash2, Plus, Eye, Edit3, FileText } from "lucide-react";
 import { sanitizeHtml } from "@/lib/sanitize";
 import { z } from "zod";
 
@@ -203,14 +203,17 @@ export const ArticlesManager = () => {
 
   return (
     <div className="space-y-3 sm:space-y-4 md:space-y-6">
-      <div className="flex justify-between items-start gap-2">
-        <div>
-          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">
-            {editingId ? "Edit Artikel" : "Kelola Artikel"}
-          </h2>
-          <p className="text-xs sm:text-sm text-gray-600">
-            {editingId ? "Perbarui artikel yang sudah ada" : "Buat dan kelola konten artikel"}
-          </p>
+      <div className="flex justify-between items-start gap-2 mb-6">
+        <div className="flex items-center gap-3">
+          <FileText className="h-8 w-8 text-primary flex-shrink-0" />
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900">
+              {editingId ? "Edit Artikel" : "Kelola Artikel"}
+            </h2>
+            <p className="text-gray-600 mt-1">
+              {editingId ? "Perbarui artikel yang sudah ada" : "Buat dan kelola konten artikel"}
+            </p>
+          </div>
         </div>
       </div>
       <Card>

@@ -20,7 +20,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Trash2, Star, CheckCircle2, XCircle, Eye, Search } from 'lucide-react';
+import { Trash2, Star, CheckCircle2, XCircle, Eye, Search, MessageSquare } from 'lucide-react';
 import { toast } from 'sonner';
 import { format } from 'date-fns';
 import { id as idLocale } from 'date-fns/locale';
@@ -159,11 +159,14 @@ export const ContactSubmissionsManager = () => {
   return (
     <>
       <div className="flex justify-between items-start gap-1 mb-3 sm:mb-4 md:mb-6">
-        <div>
-          <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Saran & Masukan</h2>
-          <p className="text-xs sm:text-sm text-gray-500 mt-0.5 sm:mt-1">
-            Total: {submissions.length} saran | Testimoni: {testimonialCount}
-          </p>
+        <div className="flex items-center gap-3">
+          <MessageSquare className="h-8 w-8 text-primary flex-shrink-0" />
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900">Saran & Masukan</h2>
+            <p className="text-gray-600 mt-1">
+              Total: {submissions.length} saran | Testimoni: {testimonialCount}
+            </p>
+          </div>
         </div>
       </div>
       <Card>

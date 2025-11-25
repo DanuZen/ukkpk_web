@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Pencil, Trash2, Eye, Edit3, Plus, X } from "lucide-react";
+import { Pencil, Trash2, Eye, Edit3, Plus, X, Newspaper } from "lucide-react";
 import { sanitizeHtml } from "@/lib/sanitize";
 import { z } from "zod";
 
@@ -221,14 +221,17 @@ export const NewsManager = () => {
 
   return (
     <div className="space-y-2 sm:space-y-3 md:space-y-6">
-      <div className="flex justify-between items-start gap-2">
-        <div>
-          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">
-            {editingId ? "Edit Berita" : "Kelola Berita"}
-          </h2>
-          <p className="text-xs sm:text-sm text-gray-600">
-            {editingId ? "Perbarui berita yang sudah ada" : "Buat dan kelola konten berita terkini"}
-          </p>
+      <div className="flex justify-between items-start gap-2 mb-6">
+        <div className="flex items-center gap-3">
+          <Newspaper className="h-8 w-8 text-primary flex-shrink-0" />
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900">
+              {editingId ? "Edit Berita" : "Kelola Berita"}
+            </h2>
+            <p className="text-gray-600 mt-1">
+              {editingId ? "Perbarui berita yang sudah ada" : "Buat dan kelola konten berita terkini"}
+            </p>
+          </div>
         </div>
       </div>
       <Card>
