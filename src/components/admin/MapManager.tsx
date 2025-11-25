@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { Map } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 interface MapSettings {
   id: string;
@@ -115,9 +116,14 @@ export const MapManager = () => {
     }
   };
   return <div className="space-y-3 sm:space-y-4 md:space-y-6">
-      <div>
-        <h2 className="sm:text-xl md:text-2xl font-bold text-gray-900 text-xl">Pengaturan Peta Lokasi</h2>
-        <p className="text-sm sm:text-sm text-gray-600 mt-1">Kelola lokasi dan embed Google Maps untuk sekretariat UKKPK</p>
+      <div className="mb-6">
+        <div className="flex items-center gap-3">
+          <Map className="h-8 w-8 text-primary" />
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900">Pengaturan Peta Lokasi</h2>
+            <p className="text-gray-600 mt-1">Kelola lokasi dan embed Google Maps untuk sekretariat UKKPK</p>
+          </div>
+        </div>
       </div>
       <Card>
         <CardHeader className="p-4 sm:p-5 md:p-6">

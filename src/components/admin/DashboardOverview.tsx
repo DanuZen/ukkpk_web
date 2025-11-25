@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Newspaper, MessageSquare, Radio, Eye, Heart, TrendingUp, TrendingDown, Users, ShoppingCart } from "lucide-react";
+import { FileText, Newspaper, MessageSquare, Radio, Eye, Heart, TrendingUp, TrendingDown, Users, ShoppingCart, Home } from "lucide-react";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
@@ -230,8 +230,13 @@ export const DashboardOverview = () => {
     <div className="space-y-6">
       {/* Page Title */}
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Dashboard</h1>
-        <p className="text-xs sm:text-sm text-gray-500 mt-0.5 sm:mt-1">Ringkasan statistik dan aktivitas terbaru</p>
+        <div className="flex items-center gap-3">
+          <Home className="h-8 w-8 text-primary" />
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+            <p className="text-gray-600 mt-1">Ringkasan statistik dan aktivitas terbaru</p>
+          </div>
+        </div>
       </div>
 
       {/* Stats Cards */}

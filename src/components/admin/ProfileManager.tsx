@@ -7,7 +7,7 @@ import { ImageUpload } from "@/components/admin/ImageUpload";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { Trash2, Edit, Plus } from "lucide-react";
+import { Trash2, Edit, Plus, Image as ImageIcon, Users, Settings } from "lucide-react";
 interface SlideshowImage {
   id: string;
   image_url: string;
@@ -124,9 +124,14 @@ const BannerSection = () => {
     }
   };
   return <div className="space-y-3 sm:space-y-4 md:space-y-6">
-      <div>
-        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Banner Profil UKKPK</h2>
-        <p className="text-sm sm:text-sm text-gray-600 mt-1">Upload dan kelola banner untuk halaman Profil UKKPK</p>
+      <div className="mb-6">
+        <div className="flex items-center gap-3">
+          <ImageIcon className="h-8 w-8 text-primary" />
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900">Banner Profil UKKPK</h2>
+            <p className="text-gray-600 mt-1">Upload dan kelola banner untuk halaman Profil UKKPK</p>
+          </div>
+        </div>
       </div>
       <Card>
         <CardHeader className="p-4 sm:p-5 md:p-6">
@@ -277,9 +282,14 @@ const SlideshowSection = () => {
     }
   };
   return <div className="space-y-3 sm:space-y-4 md:space-y-6">
-      <div>
-        <h2 className="sm:text-xl md:text-2xl font-bold text-gray-900 text-xl">Kelola Slideshow Home</h2>
-        <p className="text-sm sm:text-sm text-gray-600 mt-1">Upload dan atur kecepatan slideshow di halaman Home</p>
+      <div className="mb-6">
+        <div className="flex items-center gap-3">
+          <Settings className="h-8 w-8 text-primary" />
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900">Kelola Slideshow Home</h2>
+            <p className="text-gray-600 mt-1">Upload dan atur kecepatan slideshow di halaman Home</p>
+          </div>
+        </div>
       </div>
       <Card>
         <CardHeader className="p-4 sm:p-5 md:p-6">
@@ -464,14 +474,17 @@ const StructureSection = () => {
     setImagePreview("");
   };
   return <div className="space-y-2 sm:space-y-3 md:space-y-6">
-      <div className="flex justify-between items-start gap-2">
-        <div>
-          <h2 className="sm:text-lg md:text-2xl font-bold text-gray-900 text-xl">
-            {editingId ? "Edit Struktur" : "Struktur Organisasi"}
-          </h2>
-          <p className="text-xs sm:text-sm text-gray-600">
-            {editingId ? "Perbarui struktur organisasi yang ada" : "Tambah dan kelola struktur DPH pengurus per tahun"}
-          </p>
+      <div className="flex justify-between items-start gap-2 mb-6">
+        <div className="flex items-center gap-3">
+          <Users className="h-8 w-8 text-primary flex-shrink-0" />
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900">
+              {editingId ? "Edit Struktur" : "Struktur Organisasi"}
+            </h2>
+            <p className="text-gray-600 mt-1">
+              {editingId ? "Perbarui struktur organisasi yang ada" : "Tambah dan kelola struktur DPH pengurus per tahun"}
+            </p>
+          </div>
         </div>
       </div>
       <Card>
