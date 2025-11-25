@@ -160,7 +160,7 @@ const ProfilUkkpk = () => {
     <Layout>
       <div className="scroll-smooth">
         {/* Hero Section */}
-        <section className="relative h-screen flex items-center px-2 sm:px-4 bg-gradient-to-br from-primary/20 to-background overflow-hidden">
+        <section className="relative h-screen flex items-center px-2 sm:px-4 bg-black overflow-hidden">
           {profile?.banner_url ? (
             <img src={profile.banner_url} alt="UKKPK Banner" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchPriority="high" />
           ) : (
