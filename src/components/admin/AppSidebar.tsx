@@ -1,4 +1,5 @@
-import { Home, FileText, Newspaper, Radio, Settings, Users, Map, MessageSquare, TrendingUp, Image, Palette } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Home, FileText, Newspaper, Radio, Settings, Users, Map, MessageSquare, TrendingUp, Image, Palette, LayoutDashboard, FileStack, SettingsIcon, ChevronDown } from "lucide-react";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
 import {
   Sidebar,
@@ -12,6 +13,11 @@ import {
   SidebarHeader,
   useSidebar,
 } from "@/components/ui/sidebar";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/collapsible";
 
 interface AppSidebarProps {
   activePage: string;
@@ -21,6 +27,7 @@ interface AppSidebarProps {
 const menuItems = [
   {
     group: "DASHBOARD",
+    icon: LayoutDashboard,
     items: [
       { id: "dashboard", title: "Dashboard Utama", icon: Home },
       { id: "analytics", title: "Analitik", icon: TrendingUp },
@@ -29,6 +36,7 @@ const menuItems = [
   },
   {
     group: "KONTEN",
+    icon: FileStack,
     items: [
       { id: "articles", title: "Artikel", icon: FileText },
       { id: "news", title: "Berita", icon: Newspaper },
@@ -37,6 +45,7 @@ const menuItems = [
   },
   {
     group: "PENGATURAN",
+    icon: SettingsIcon,
     items: [
       { id: "slideshow", title: "Galeri Beranda", icon: Settings },
       { id: "banner", title: "Banner Profil", icon: Image },
@@ -49,6 +58,38 @@ const menuItems = [
 
 export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
   const { open, setOpen, isMobile, openMobile, setOpenMobile } = useSidebar();
+  
+  // Find which group contains the active page
+  const getActiveGroup = () => {
+    for (const section of menuItems) {
+      if (section.items.some(item => item.id === activePage)) {
+        return section.group;
+      }
+    }
+    return null;
+  };
+
+  // Initialize with the active group open
+  const [openGroups, setOpenGroups] = useState<string[]>(() => {
+    const activeGroup = getActiveGroup();
+    return activeGroup ? [activeGroup] : ["DASHBOARD"];
+  });
+
+  // Update open groups when active page changes
+  useEffect(() => {
+    const activeGroup = getActiveGroup();
+    if (activeGroup && !openGroups.includes(activeGroup)) {
+      setOpenGroups(prev => [...prev, activeGroup]);
+    }
+  }, [activePage]);
+
+  const toggleGroup = (group: string) => {
+    setOpenGroups(prev => 
+      prev.includes(group) 
+        ? prev.filter(g => g !== group)
+        : [...prev, group]
+    );
+  };
 
   const handleNavigate = (page: string) => {
     onNavigate(page);
@@ -80,40 +121,62 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
 
         <SidebarContent className="px-3 py-4 bg-transparent">
           {menuItems.map((section, index) => (
-            <SidebarGroup key={section.group} className={index > 0 ? "mt-6" : ""}>
-              {shouldShowText && (
-                <SidebarGroupLabel className="text-white/60 text-xs font-semibold px-3 mb-3 uppercase animate-fade-in">
-                  {section.group}
-                </SidebarGroupLabel>
-              )}
-              <SidebarGroupContent>
-                <SidebarMenu className="space-y-1.5">
-                  {section.items.map((item, itemIndex) => (
-                    <SidebarMenuItem 
-                      key={item.id}
-                      className="animate-fade-in"
-                      style={{ animationDelay: `${itemIndex * 50}ms` }}
-                    >
-                        <SidebarMenuButton
-                        onClick={() => handleNavigate(item.id)}
-                        className={`
-                          transition-all duration-200 cursor-pointer rounded-lg py-2.5
-                          hover:translate-x-1 hover:shadow-sm
-                          ${
-                            activePage === item.id
-                              ? "bg-white/20 text-white font-semibold shadow-md"
-                              : "text-white/90 hover:bg-white/10"
-                          }
-                        `}
-                      >
-                        <item.icon className="h-5 w-5 flex-shrink-0 transition-transform duration-200" />
-                        {shouldShowText && <span className="ml-3">{item.title}</span>}
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
+            <Collapsible
+              key={section.group}
+              open={openGroups.includes(section.group)}
+              onOpenChange={() => toggleGroup(section.group)}
+              className={index > 0 ? "mt-4" : ""}
+            >
+              <SidebarGroup>
+                <CollapsibleTrigger className="flex items-center justify-between w-full px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-all duration-200 group">
+                  <div className="flex items-center gap-2">
+                    <section.icon className="h-4 w-4 text-white/80" />
+                    {shouldShowText && (
+                      <span className="text-white/80 text-xs font-semibold uppercase">
+                        {section.group}
+                      </span>
+                    )}
+                  </div>
+                  {shouldShowText && (
+                    <ChevronDown 
+                      className={`h-4 w-4 text-white/60 transition-transform duration-200 ${
+                        openGroups.includes(section.group) ? "rotate-180" : ""
+                      }`}
+                    />
+                  )}
+                </CollapsibleTrigger>
+                
+                <CollapsibleContent className="mt-2">
+                  <SidebarGroupContent>
+                    <SidebarMenu className="space-y-1.5">
+                      {section.items.map((item, itemIndex) => (
+                        <SidebarMenuItem 
+                          key={item.id}
+                          className="animate-fade-in"
+                          style={{ animationDelay: `${itemIndex * 50}ms` }}
+                        >
+                          <SidebarMenuButton
+                            onClick={() => handleNavigate(item.id)}
+                            className={`
+                              transition-all duration-200 cursor-pointer rounded-lg py-2.5
+                              hover:translate-x-1 hover:shadow-sm
+                              ${
+                                activePage === item.id
+                                  ? "bg-white/20 text-white font-semibold shadow-md"
+                                  : "text-white/90 hover:bg-white/10"
+                              }
+                            `}
+                          >
+                            <item.icon className="h-5 w-5 flex-shrink-0 transition-transform duration-200" />
+                            {shouldShowText && <span className="ml-3">{item.title}</span>}
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      ))}
+                    </SidebarMenu>
+                  </SidebarGroupContent>
+                </CollapsibleContent>
+              </SidebarGroup>
+            </Collapsible>
           ))}
         </SidebarContent>
       </div>
