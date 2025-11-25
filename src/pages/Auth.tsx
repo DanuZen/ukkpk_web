@@ -131,7 +131,7 @@ const Auth = () => {
             {/* Header */}
             <div className="text-center space-y-2">
               <p className="text-sm text-primary font-medium flex items-center justify-center gap-2">
-                <span className="text-lg">👋</span> Selamat Datang Kembali
+                 Selamat Datang Kembali
               </p>
               <h1 className="text-3xl font-bold text-gray-900">Login ke Akun Anda</h1>
               <p className="text-muted-foreground">Masuk untuk mengakses dashboard</p>
