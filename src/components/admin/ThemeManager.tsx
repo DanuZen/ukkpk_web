@@ -126,8 +126,8 @@ export const ThemeManager = () => {
     <div className="space-y-6">
       <div className="mb-6">
         <div className="flex items-center gap-3">
-          <Palette className="h-8 w-8 text-primary" />
-          <div>
+          <Palette className="h-8 w-8 text-primary animate-fade-in" />
+          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
             <h2 className="text-2xl font-bold text-gray-900">Pengaturan Tema Website</h2>
             <p className="text-gray-600 mt-1">Kelola tema dan warna website UKKPK sesuai preferensi Anda</p>
           </div>

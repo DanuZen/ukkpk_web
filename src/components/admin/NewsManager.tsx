@@ -223,8 +223,8 @@ export const NewsManager = () => {
     <div className="space-y-2 sm:space-y-3 md:space-y-6">
       <div className="flex justify-between items-start gap-2 mb-6">
         <div className="flex items-center gap-3">
-          <Newspaper className="h-8 w-8 text-primary flex-shrink-0" />
-          <div>
+          <Newspaper className="h-8 w-8 text-primary flex-shrink-0 animate-fade-in" />
+          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
             <h2 className="text-2xl font-bold text-gray-900">
               {editingId ? "Edit Berita" : "Kelola Berita"}
             </h2>
