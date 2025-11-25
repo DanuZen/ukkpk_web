@@ -118,8 +118,8 @@ export const MapManager = () => {
   return <div className="space-y-3 sm:space-y-4 md:space-y-6">
       <div className="mb-6">
         <div className="flex items-center gap-3">
-          <Map className="h-8 w-8 text-primary" />
-          <div>
+          <Map className="h-8 w-8 text-primary animate-fade-in" />
+          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
             <h2 className="text-2xl font-bold text-gray-900">Pengaturan Peta Lokasi</h2>
             <p className="text-gray-600 mt-1">Kelola lokasi dan embed Google Maps untuk sekretariat UKKPK</p>
           </div>

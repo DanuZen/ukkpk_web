@@ -126,8 +126,8 @@ const BannerSection = () => {
   return <div className="space-y-3 sm:space-y-4 md:space-y-6">
       <div className="mb-6">
         <div className="flex items-center gap-3">
-          <ImageIcon className="h-8 w-8 text-primary" />
-          <div>
+          <ImageIcon className="h-8 w-8 text-primary animate-fade-in" />
+          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
             <h2 className="text-2xl font-bold text-gray-900">Banner Profil UKKPK</h2>
             <p className="text-gray-600 mt-1">Upload dan kelola banner untuk halaman Profil UKKPK</p>
           </div>
@@ -284,8 +284,8 @@ const SlideshowSection = () => {
   return <div className="space-y-3 sm:space-y-4 md:space-y-6">
       <div className="mb-6">
         <div className="flex items-center gap-3">
-          <Settings className="h-8 w-8 text-primary" />
-          <div>
+          <Settings className="h-8 w-8 text-primary animate-fade-in" />
+          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
             <h2 className="text-2xl font-bold text-gray-900">Kelola Slideshow Home</h2>
             <p className="text-gray-600 mt-1">Upload dan atur kecepatan slideshow di halaman Home</p>
           </div>
@@ -476,8 +476,8 @@ const StructureSection = () => {
   return <div className="space-y-2 sm:space-y-3 md:space-y-6">
       <div className="flex justify-between items-start gap-2 mb-6">
         <div className="flex items-center gap-3">
-          <Users className="h-8 w-8 text-primary flex-shrink-0" />
-          <div>
+          <Users className="h-8 w-8 text-primary flex-shrink-0 animate-fade-in" />
+          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
             <h2 className="text-2xl font-bold text-gray-900">
               {editingId ? "Edit Struktur" : "Struktur Organisasi"}
             </h2>

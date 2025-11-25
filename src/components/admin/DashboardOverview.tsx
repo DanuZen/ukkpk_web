@@ -231,8 +231,8 @@ export const DashboardOverview = () => {
       {/* Page Title */}
       <div className="mb-4 sm:mb-6">
         <div className="flex items-center gap-3">
-          <Home className="h-8 w-8 text-primary" />
-          <div>
+          <Home className="h-8 w-8 text-primary animate-fade-in" />
+          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
             <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
             <p className="text-gray-600 mt-1">Ringkasan statistik dan aktivitas terbaru</p>
           </div>

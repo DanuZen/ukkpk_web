@@ -258,8 +258,8 @@ export const RadioManager = () => {
     <div className="space-y-3 sm:space-y-4 md:space-y-6">
       <div className="flex justify-between items-start gap-2 mb-6">
         <div className="flex items-center gap-3">
-          <RadioIcon className="h-8 w-8 text-primary flex-shrink-0" />
-          <div>
+          <RadioIcon className="h-8 w-8 text-primary flex-shrink-0 animate-fade-in" />
+          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
             <h2 className="text-2xl font-bold text-gray-900">Jadwal Program Radio</h2>
             <p className="text-gray-600 mt-1">Kelola jadwal program radio mingguan</p>
           </div>
