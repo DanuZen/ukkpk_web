@@ -35,6 +35,9 @@ interface OverallStats {
 }
 const COLORS = ['#dc2626', '#ea580c', '#f59e0b', '#84cc16', '#22c55e', '#06b6d4'];
 export const AnalyticsDashboard = () => {
+  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [chartData, setChartData] = useState<{ day: number; views: number }[]>([]);
   const [articles, setArticles] = useState<ArticleStats[]>([]);
   const [news, setNews] = useState<NewsStats[]>([]);
   const [overallStats, setOverallStats] = useState<OverallStats>({
@@ -56,6 +59,59 @@ export const AnalyticsDashboard = () => {
   useEffect(() => {
     fetchAnalytics();
   }, []);
+
+  useEffect(() => {
+    const fetchChartData = async () => {
+      try {
+        const startDate = new Date(selectedYear, selectedMonth, 1);
+        const endDate = new Date(selectedYear, selectedMonth + 1, 0);
+        
+        // Fetch articles and news for selected month/year
+        const { data: articlesData } = await supabase
+          .from('articles')
+          .select('published_at, view_count')
+          .gte('published_at', startDate.toISOString())
+          .lte('published_at', endDate.toISOString());
+
+        const { data: newsData } = await supabase
+          .from('news')
+          .select('published_at, view_count')
+          .gte('published_at', startDate.toISOString())
+          .lte('published_at', endDate.toISOString());
+
+        // Calculate days in month
+        const daysInMonth = endDate.getDate();
+        
+        // Initialize array with zeros for each day
+        const dailyViews = Array.from({ length: daysInMonth }, (_, i) => ({
+          day: i + 1,
+          views: 0
+        }));
+
+        // Aggregate views by day from articles
+        articlesData?.forEach(article => {
+          if (article.published_at) {
+            const day = new Date(article.published_at).getDate();
+            dailyViews[day - 1].views += article.view_count || 0;
+          }
+        });
+
+        // Aggregate views by day from news
+        newsData?.forEach(news => {
+          if (news.published_at) {
+            const day = new Date(news.published_at).getDate();
+            dailyViews[day - 1].views += news.view_count || 0;
+          }
+        });
+
+        setChartData(dailyViews);
+      } catch (error) {
+        console.error('Error fetching chart data:', error);
+      }
+    };
+
+    fetchChartData();
+  }, [selectedMonth, selectedYear]);
   const fetchAnalytics = async () => {
     try {
       // Fetch articles with views and likes
@@ -116,6 +172,13 @@ export const AnalyticsDashboard = () => {
   };
   const topArticles = articles.slice(0, 5);
   const topNews = news.slice(0, 5);
+
+  const months = [
+    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+  ];
+
+  const years = Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - i);
 
   // Prepare data for comparison chart
   const comparisonData = [{
@@ -279,6 +342,65 @@ export const AnalyticsDashboard = () => {
           </CardContent>
         </Card>
       </div>
+
+      {/* Statistik Views Chart */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader className="flex flex-row items-center justify-between pb-2">
+          <CardTitle className="text-lg font-semibold">Statistik Views</CardTitle>
+          <div className="flex gap-2">
+            <select 
+              className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer"
+              value={selectedMonth}
+              onChange={(e) => setSelectedMonth(Number(e.target.value))}
+            >
+              {months.map((month, index) => (
+                <option key={index} value={index}>{month}</option>
+              ))}
+            </select>
+            <select 
+              className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer"
+              value={selectedYear}
+              onChange={(e) => setSelectedYear(Number(e.target.value))}
+            >
+              {years.map((year) => (
+                <option key={year} value={year}>{year}</option>
+              ))}
+            </select>
+          </div>
+        </CardHeader>
+        <CardContent className="pt-4">
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={chartData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+              <XAxis 
+                dataKey="day" 
+                stroke="#999"
+                tick={{ fontSize: 12 }}
+              />
+              <YAxis 
+                stroke="#999"
+                tick={{ fontSize: 12 }}
+              />
+              <Tooltip 
+                contentStyle={{
+                  backgroundColor: 'white',
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '6px',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                }}
+              />
+              <Line 
+                type="monotone" 
+                dataKey="views" 
+                stroke="hsl(var(--primary))" 
+                strokeWidth={2}
+                dot={{ fill: 'hsl(var(--primary))', strokeWidth: 2 }}
+                activeDot={{ r: 6 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
 
       {/* Charts */}
       <div className="grid gap-3 sm:gap-4 md:gap-6 lg:grid-cols-2">

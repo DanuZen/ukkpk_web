@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Newspaper, MessageSquare, Radio, Eye, Heart, TrendingUp, TrendingDown, Users, ShoppingCart, Home } from "lucide-react";
+import { FileText, Newspaper, MessageSquare, Eye, Heart } from "lucide-react";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 interface ArticleStats {
   id: string;
@@ -32,9 +31,6 @@ interface RecentActivity {
 }
 
 export const DashboardOverview = () => {
-  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-  const [chartData, setChartData] = useState<{ day: number; views: number }[]>([]);
   const [stats, setStats] = useState({
     articles: 0,
     news: 0,
@@ -123,66 +119,6 @@ export const DashboardOverview = () => {
     fetchRecentActivity();
   }, []);
 
-  useEffect(() => {
-    const fetchChartData = async () => {
-      try {
-        const startDate = new Date(selectedYear, selectedMonth, 1);
-        const endDate = new Date(selectedYear, selectedMonth + 1, 0);
-        
-        // Fetch articles and news for selected month/year
-        const { data: articlesData } = await supabase
-          .from('articles')
-          .select('published_at, view_count')
-          .gte('published_at', startDate.toISOString())
-          .lte('published_at', endDate.toISOString());
-
-        const { data: newsData } = await supabase
-          .from('news')
-          .select('published_at, view_count')
-          .gte('published_at', startDate.toISOString())
-          .lte('published_at', endDate.toISOString());
-
-        // Calculate days in month
-        const daysInMonth = endDate.getDate();
-        
-        // Initialize array with zeros for each day
-        const dailyViews = Array.from({ length: daysInMonth }, (_, i) => ({
-          day: i + 1,
-          views: 0
-        }));
-
-        // Aggregate views by day from articles
-        articlesData?.forEach(article => {
-          if (article.published_at) {
-            const day = new Date(article.published_at).getDate();
-            dailyViews[day - 1].views += article.view_count || 0;
-          }
-        });
-
-        // Aggregate views by day from news
-        newsData?.forEach(news => {
-          if (news.published_at) {
-            const day = new Date(news.published_at).getDate();
-            dailyViews[day - 1].views += news.view_count || 0;
-          }
-        });
-
-        setChartData(dailyViews);
-      } catch (error) {
-        console.error('Error fetching chart data:', error);
-      }
-    };
-
-    fetchChartData();
-  }, [selectedMonth, selectedYear]);
-
-  const months = [
-    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-  ];
-
-  const years = Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - i);
-
   const statCards = [
     {
       title: "Total Artikel",
@@ -269,65 +205,6 @@ export const DashboardOverview = () => {
           </Card>
         ))}
       </div>
-
-      {/* Sales Details Chart */}
-      <Card className="border-0 shadow-sm">
-        <CardHeader className="flex flex-row items-center justify-between pb-2">
-          <CardTitle className="text-lg font-semibold">Statistik Views</CardTitle>
-          <div className="flex gap-2">
-            <select 
-              className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer"
-              value={selectedMonth}
-              onChange={(e) => setSelectedMonth(Number(e.target.value))}
-            >
-              {months.map((month, index) => (
-                <option key={index} value={index}>{month}</option>
-              ))}
-            </select>
-            <select 
-              className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer"
-              value={selectedYear}
-              onChange={(e) => setSelectedYear(Number(e.target.value))}
-            >
-              {years.map((year) => (
-                <option key={year} value={year}>{year}</option>
-              ))}
-            </select>
-          </div>
-        </CardHeader>
-        <CardContent className="pt-4">
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-              <XAxis 
-                dataKey="day" 
-                stroke="#999"
-                tick={{ fontSize: 12 }}
-              />
-              <YAxis 
-                stroke="#999"
-                tick={{ fontSize: 12 }}
-              />
-              <Tooltip 
-                contentStyle={{
-                  backgroundColor: 'white',
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '6px',
-                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                }}
-              />
-              <Line 
-                type="monotone" 
-                dataKey="views" 
-                stroke="hsl(var(--primary))" 
-                strokeWidth={2}
-                dot={{ fill: 'hsl(var(--primary))', strokeWidth: 2 }}
-                activeDot={{ r: 6 }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </CardContent>
-      </Card>
 
       {/* Recent Activity */}
       <Card>
