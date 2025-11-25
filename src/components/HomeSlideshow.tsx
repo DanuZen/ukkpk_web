@@ -120,19 +120,19 @@ export const HomeSlideshow = () => {
           {/* CTA Buttons */}
           <div style={{
           animationDelay: '0.4s'
-        }} className="gap-2 mb-6 sm:mb-8 animate-fade-up items-center justify-center flex flex-row sm:gap-[10px]">
+        }} className="gap-2 mb-6 sm:mb-8 animate-fade-up items-center justify-center flex flex-row">
             <Link to="/artikel" className="flex-1">
-              <Button size="sm" className="w-full text-xs sm:text-base px-4 sm:px-6 py-2 sm:py-5 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
+              <Button size="sm" className="w-full text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2.5 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
                 Baca Artikel
               </Button>
             </Link>
             <Link to="/berita" className="flex-1">
-              <Button size="sm" className="w-full text-xs sm:text-base px-4 sm:px-6 py-2 sm:py-5 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
+              <Button size="sm" className="w-full text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2.5 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
                 Lihat Berita
               </Button>
             </Link>
             <Link to="/radio" className="flex-1">
-              <Button size="sm" variant="outline" className="w-full text-xs sm:text-base px-4 sm:px-6 py-2 sm:py-5 bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white shadow-lg hover:shadow-xl transition-all">
+              <Button size="sm" variant="outline" className="w-full text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2.5 bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white shadow-lg hover:shadow-xl transition-all">
                 Dengar Radio
               </Button>
             </Link>
