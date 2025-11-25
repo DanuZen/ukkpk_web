@@ -130,11 +130,11 @@ const Auth = () => {
           <div className="bg-white rounded-2xl shadow-xl p-8 space-y-6">
             {/* Header */}
             <div className="text-center space-y-2">
-              <p className="text-sm text-primary font-medium flex items-center justify-center gap-2">
+              <p className="text-primary font-medium flex items-center justify-center gap-2 text-xs">
                  Selamat Datang Kembali
               </p>
-              <h1 className="text-3xl font-bold text-gray-900">Login ke Akun Anda</h1>
-              <p className="text-muted-foreground">Masuk untuk mengakses dashboard</p>
+              <h1 className="font-bold text-gray-900 text-2xl">Login ke Akun Anda</h1>
+              <p className="text-muted-foreground text-sm">Masuk untuk mengakses dashboard</p>
             </div>
 
             {/* Form */}
