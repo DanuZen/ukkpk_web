@@ -7,6 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
+import logoMicuMascot from "@/assets/logo-micu-mascot.png";
 import { Loader2, Mail, Lock, Eye, EyeOff, Check, ArrowRight, ArrowLeft } from "lucide-react";
 
 const REMEMBER_ME_KEY = 'ukkpk_remember_me';
@@ -78,6 +79,11 @@ const Auth = () => {
 
           <div className="space-y-8">
             <div>
+              <img 
+                src={logoMicuMascot} 
+                alt="MICU Mascot" 
+                className="h-24 w-auto mb-6"
+              />
               <h2 className="text-4xl font-bold mb-4 leading-tight">
                 Kelola Media Kampus<br />Lebih Mudah & Efisien
               </h2>
