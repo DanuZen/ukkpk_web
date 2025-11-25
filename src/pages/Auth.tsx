@@ -82,9 +82,9 @@ const Auth = () => {
               <img 
                 src={logoMicuMascot} 
                 alt="MICU Mascot" 
-                className="h-52 w-auto mb-6 ml-8 animate-float"
+                className="h-64 w-auto mb-6 ml-16 animate-float"
                 style={{
-                  filter: 'drop-shadow(0 0 40px rgba(255, 255, 255, 0.6))'
+                  filter: 'drop-shadow(0 0 30px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 60px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 90px rgba(255, 255, 255, 0.3))'
                 }}
               />
               <h2 className="text-4xl font-bold mb-4 leading-tight">
