@@ -131,7 +131,7 @@ export const HomeSlideshow = () => {
               </Button>
             </Link>
             <Link to="/radio">
-              <Button size="sm" className="text-xs sm:text-base px-4 sm:px-6 py-2 sm:py-5 bg-transparent border-2 border-white text-white hover:bg-white/10 shadow-lg hover:shadow-xl transition-all">
+              <Button size="lg" variant="outline" className="text-xs sm:text-base px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white">
                 Dengar Radio
               </Button>
             </Link>
