@@ -95,22 +95,22 @@ export const HomeSlideshow = () => {
         opacity: opacity
       }}>
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-4 sm:mb-6">
-            <RadioIcon className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
-            <span className="text-xs sm:text-sm font-medium text-white">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-3 sm:mb-6">
+            <RadioIcon className="h-3 w-3 sm:h-5 sm:w-5 text-white" />
+            <span className="text-[10px] sm:text-sm font-medium text-white">
               Unit Kegiatan Komunikasi & Penyiaran Kampus
             </span>
           </div>
           
           {/* Main Heading */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white drop-shadow-2xl leading-tight">
+          <h1 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-3 sm:mb-6 text-white drop-shadow-2xl leading-tight">
             Media Kampus
             <br />
             Profesional dari UNP
           </h1>
           
           {/* Subtitle */}
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 mb-6 sm:mb-8 leading-relaxed max-w-2xl animate-fade-up" style={{
+          <p className="text-xs sm:text-base md:text-lg lg:text-xl text-gray-200 mb-4 sm:mb-8 leading-relaxed max-w-2xl animate-fade-up" style={{
           animationDelay: '0.2s'
         }}>
             Platform media kampus yang menghubungkan Anda dengan berita terkini, 
@@ -120,22 +120,22 @@ export const HomeSlideshow = () => {
           {/* CTA Buttons */}
           <div style={{
           animationDelay: '0.4s'
-        }} className="gap-2 mb-6 sm:mb-8 animate-fade-up flex-row flex items-center justify-start">
+        }} className="gap-1.5 sm:gap-2 mb-4 sm:mb-8 animate-fade-up flex-row flex items-center justify-start flex-wrap">
             <Link to="/artikel">
-              <Button size="sm" className="text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
-                <BookOpen className="w-3 h-3 sm:w-4 sm:h-4" />
+              <Button size="sm" className="text-[10px] sm:text-sm px-2 sm:px-4 py-1 sm:py-2 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
+                <BookOpen className="w-2.5 h-2.5 sm:w-4 sm:h-4" />
                 Baca Artikel
               </Button>
             </Link>
             <Link to="/berita">
-              <Button size="sm" className="text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
-                <Newspaper className="w-3 h-3 sm:w-4 sm:h-4" />
+              <Button size="sm" className="text-[10px] sm:text-sm px-2 sm:px-4 py-1 sm:py-2 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
+                <Newspaper className="w-2.5 h-2.5 sm:w-4 sm:h-4" />
                 Lihat Berita
               </Button>
             </Link>
             <Link to="/radio">
-              <Button size="sm" variant="outline" className="text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white shadow-lg hover:shadow-xl transition-all">
-                <RadioIcon className="w-3 h-3 sm:w-4 sm:h-4" />
+              <Button size="sm" variant="outline" className="text-[10px] sm:text-sm px-2 sm:px-4 py-1 sm:py-2 bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white shadow-lg hover:shadow-xl transition-all">
+                <RadioIcon className="w-2.5 h-2.5 sm:w-4 sm:h-4" />
                 Dengar Radio
               </Button>
             </Link>
