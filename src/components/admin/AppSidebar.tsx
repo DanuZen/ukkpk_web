@@ -47,12 +47,14 @@ const menuItems = [
 ];
 
 export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
-  const { open, setOpen, isMobile, openMobile } = useSidebar();
+  const { open, setOpen, isMobile, openMobile, setOpenMobile } = useSidebar();
 
   const handleNavigate = (page: string) => {
     onNavigate(page);
     // Auto-close sidebar on mobile after navigation
-    if (isMobile) {
+    if (isMobile && openMobile) {
+      setOpenMobile(false);
+    } else if (isMobile) {
       setOpen(false);
     }
   };
