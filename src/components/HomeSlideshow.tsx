@@ -121,20 +121,20 @@ export const HomeSlideshow = () => {
           <div style={{
           animationDelay: '0.4s'
         }} className="gap-2 mb-6 sm:mb-8 animate-fade-up items-center justify-center flex flex-row">
-            <Link to="/artikel" className="flex-1">
-              <Button size="sm" className="w-full text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2.5 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
+            <Link to="/artikel">
+              <Button size="sm" className="text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
                 <BookOpen className="w-3 h-3 sm:w-4 sm:h-4" />
                 Baca Artikel
               </Button>
             </Link>
-            <Link to="/berita" className="flex-1">
-              <Button size="sm" className="w-full text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2.5 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
+            <Link to="/berita">
+              <Button size="sm" className="text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
                 <Newspaper className="w-3 h-3 sm:w-4 sm:h-4" />
                 Lihat Berita
               </Button>
             </Link>
-            <Link to="/radio" className="flex-1">
-              <Button size="sm" variant="outline" className="w-full text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2.5 bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white shadow-lg hover:shadow-xl transition-all">
+            <Link to="/radio">
+              <Button size="sm" variant="outline" className="text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white shadow-lg hover:shadow-xl transition-all">
                 <RadioIcon className="w-3 h-3 sm:w-4 sm:h-4" />
                 Dengar Radio
               </Button>
