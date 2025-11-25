@@ -252,7 +252,7 @@ const BeritaDetail = () => {
                       <span className="text-muted-foreground">Reporter : </span>
                       <span className="font-medium text-foreground">{news.author}</span>
                     </p>}
-                  {news.cameraman && news.cameraman.length > 0 && <p>
+                  {Array.isArray(news.cameraman) && news.cameraman.length > 0 && <p>
                       <span className="text-muted-foreground">Kameraman : </span>
                       <span className="font-medium text-foreground">{news.cameraman.join(", ")}</span>
                     </p>}
