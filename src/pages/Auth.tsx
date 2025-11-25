@@ -9,37 +9,37 @@ import { toast } from "sonner";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
 import logoMicuMascot from "@/assets/logo-micu-mascot.png";
 import { Loader2, Mail, Lock, Eye, EyeOff, Check, ArrowRight, ArrowLeft } from "lucide-react";
-
 const REMEMBER_ME_KEY = 'ukkpk_remember_me';
 const SAVED_EMAIL_KEY = 'ukkpk_saved_email';
-
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { signIn } = useAuth();
+  const {
+    signIn
+  } = useAuth();
   const navigate = useNavigate();
 
   // Load saved credentials on mount
   useEffect(() => {
     const savedRememberMe = localStorage.getItem(REMEMBER_ME_KEY);
     const savedEmail = localStorage.getItem(SAVED_EMAIL_KEY);
-    
     if (savedRememberMe === 'true' && savedEmail) {
       setRememberMe(true);
       setEmail(savedEmail);
     }
   }, []);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const { error } = await signIn(email, password);
+      const {
+        error
+      } = await signIn(email, password);
       if (error) throw error;
-      
+
       // Save or clear credentials based on rememberMe
       if (rememberMe) {
         localStorage.setItem(REMEMBER_ME_KEY, 'true');
@@ -48,7 +48,6 @@ const Auth = () => {
         localStorage.removeItem(REMEMBER_ME_KEY);
         localStorage.removeItem(SAVED_EMAIL_KEY);
       }
-      
       toast.success("Login berhasil!");
       navigate("/admin");
     } catch (error: any) {
@@ -57,9 +56,7 @@ const Auth = () => {
       setLoading(false);
     }
   };
-
-  return (
-    <div className="min-h-screen flex">
+  return <div className="min-h-screen flex">
       {/* Left Section - Brand/Info */}
       <div className="hidden lg:flex lg:flex-1 bg-gradient-to-br from-primary via-primary to-primary/80 p-12 flex-col justify-between text-white relative overflow-hidden">
         {/* Decorative elements */}
@@ -79,14 +76,9 @@ const Auth = () => {
 
           <div className="space-y-8">
             <div>
-              <img 
-                src={logoMicuMascot} 
-                alt="MICU Mascot" 
-                className="h-64 w-auto mb-6 ml-16 animate-float"
-                style={{
-                  filter: 'drop-shadow(0 0 30px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 60px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 90px rgba(255, 255, 255, 0.3))'
-                }}
-              />
+              <img src={logoMicuMascot} alt="MICU Mascot" className="h-64 w-auto mb-6 ml-16 animate-float" style={{
+              filter: 'drop-shadow(0 0 30px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 60px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 90px rgba(255, 255, 255, 0.3))'
+            }} />
               <h2 className="text-4xl font-bold mb-4 leading-tight">
                 Kelola Media Kampus<br />Lebih Mudah & Efisien
               </h2>
@@ -128,7 +120,7 @@ const Auth = () => {
         </div>
 
         <div className="relative z-10">
-          <p className="text-sm text-white/70">© 2024 UKKPK UNP. All rights reserved.</p>
+          <p className="text-sm text-white/70">© 2025 UKKPK UNP. All          </p>
         </div>
       </div>
 
@@ -152,15 +144,7 @@ const Auth = () => {
                 <Label htmlFor="email" className="text-sm font-medium">Email</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="admin@ukkpk.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="h-12 pl-10"
-                  />
+                  <Input id="email" type="email" placeholder="admin@ukkpk.com" value={email} onChange={e => setEmail(e.target.value)} required className="h-12 pl-10" />
                 </div>
               </div>
 
@@ -169,20 +153,8 @@ const Auth = () => {
                 <Label htmlFor="password" className="text-sm font-medium">Password</Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                  <Input
-                    id="password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder="••••••••"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    className="h-12 pl-10 pr-10"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                  >
+                  <Input id="password" type={showPassword ? "text" : "password"} placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} required className="h-12 pl-10 pr-10" />
+                  <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors">
                     {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                   </button>
                 </div>
@@ -191,41 +163,25 @@ const Auth = () => {
               {/* Remember Me & Forgot Password */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                  <Checkbox
-                    id="remember"
-                    checked={rememberMe}
-                    onCheckedChange={(checked) => setRememberMe(checked as boolean)}
-                  />
+                  <Checkbox id="remember" checked={rememberMe} onCheckedChange={checked => setRememberMe(checked as boolean)} />
                   <Label htmlFor="remember" className="text-sm cursor-pointer">
                     Ingat saya
                   </Label>
                 </div>
-                <button 
-                  type="button" 
-                  className="text-sm text-primary hover:underline"
-                  onClick={() => toast.info("Hubungi administrator untuk reset password")}
-                >
+                <button type="button" className="text-sm text-primary hover:underline" onClick={() => toast.info("Hubungi administrator untuk reset password")}>
                   Lupa password?
                 </button>
               </div>
 
               {/* Login Button */}
-              <Button
-                type="submit"
-                className="w-full h-12 text-base font-semibold"
-                disabled={loading}
-              >
-                {loading ? (
-                  <>
+              <Button type="submit" className="w-full h-12 text-base font-semibold" disabled={loading}>
+                {loading ? <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     Memproses...
-                  </>
-                ) : (
-                  <>
+                  </> : <>
                     Login
                     <ArrowRight className="ml-2 h-4 w-4" />
-                  </>
-                )}
+                  </>}
               </Button>
             </form>
 
@@ -241,10 +197,7 @@ const Auth = () => {
 
             {/* Back to Home Link */}
             <div className="text-center">
-              <Link 
-                to="/" 
-                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
+              <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
                 <ArrowLeft className="h-4 w-4" />
                 Kembali ke Beranda
               </Link>
@@ -262,8 +215,6 @@ const Auth = () => {
           animation: float 3s ease-in-out infinite;
         }
       `}</style>
-    </div>
-  );
+    </div>;
 };
-
 export default Auth;
