@@ -128,7 +128,7 @@ const Index = () => {
                           </div>
                           <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg lg:text-xl">{article.title}</CardTitle>
                         </CardHeader>
-                        <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0 flex-1 flex flex-col">
+                        <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0 flex-1 flex flex-col justify-end">
                           <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(article.content)}</p>
                         </CardContent>
                       </Card>
@@ -153,7 +153,7 @@ const Index = () => {
                           </div>
                           <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg lg:text-xl">{item.title}</CardTitle>
                         </CardHeader>
-                        <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0 mt-auto flex flex-col items-start">
+                        <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0 flex-1 flex flex-col justify-end">
                           <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(item.content)}</p>
                         </CardContent>
                       </Card>
@@ -190,7 +190,7 @@ const Index = () => {
                             </div>
                             <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg">{item.title}</CardTitle>
                           </CardHeader>
-                          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0 flex-1 flex flex-col">
+                          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0 flex-1 flex flex-col justify-end">
                             <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(item.content)}</p>
                           </CardContent>
                         </Card>
@@ -223,7 +223,7 @@ const Index = () => {
                             </div>
                             <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg lg:text-xl">{article.title}</CardTitle>
                           </CardHeader>
-                          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0 flex-1 flex flex-col">
+                          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0 flex-1 flex flex-col justify-end">
                             <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(article.content)}</p>
                           </CardContent>
                         </Card>
@@ -249,7 +249,7 @@ const Index = () => {
                               </div>
                               <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg lg:text-xl">{item.title}</CardTitle>
                             </CardHeader>
-                            <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0 flex-1 flex flex-col items-start">
+                            <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0 flex-1 flex flex-col justify-end">
                               <p className="text-muted-foreground line-clamp-3 text-[10px] sm:text-xs md:text-sm leading-relaxed">{stripHtml(item.content)}</p>
                             </CardContent>
                           </Card>
