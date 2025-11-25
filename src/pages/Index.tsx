@@ -428,7 +428,7 @@ const Index = () => {
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 md:mb-6">
                 Kritik dan <span className="text-primary">Saran</span>
               </h2>
-              <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-4 sm:mb-6">Kami sangat menghargai masukan Anda. Sampaikan kritik dan saran untuk membantu kami meningkatkan kualitas layanan UKKPK.</p>
+              <p className="sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-4 sm:mb-6 text-xs">Kami sangat menghargai masukan Anda. Sampaikan kritik dan saran untuk membantu kami meningkatkan kualitas layanan UKKPK.</p>
               <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
             </div>
           </AnimatedSection>
