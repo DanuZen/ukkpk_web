@@ -128,7 +128,7 @@ const Berita = () => {
               {filteredNews.map((item, index) => (
                 <AnimatedSection key={item.id} animation="fade-up" delay={index * 100}>
                   <Card 
-                    className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+                    className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer h-full flex flex-col"
                     onClick={() => navigate(`/berita/${item.id}`)}
                   >
                   {item.image_url && (
@@ -154,7 +154,7 @@ const Berita = () => {
                       {item.title}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="px-2.5 py-2 sm:px-4 sm:py-4 md:px-6 md:py-5">
+                  <CardContent className="px-2.5 py-2 sm:px-4 sm:py-4 md:px-6 md:py-5 flex-1 flex flex-col justify-end">
                     <p className="text-[11px] sm:text-sm md:text-base text-muted-foreground line-clamp-2 sm:line-clamp-4 leading-relaxed">
                       {stripHtml(item.content)}
                     </p>
