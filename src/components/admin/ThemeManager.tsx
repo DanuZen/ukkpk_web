@@ -134,7 +134,7 @@ export const ThemeManager = () => {
         </div>
       </div>
 
-      <Card>
+      <Card className="shadow-xl">
         <CardHeader>
           <div className="flex items-center gap-2">
             <Palette className="h-5 w-5 text-primary" />
@@ -151,7 +151,7 @@ export const ThemeManager = () => {
             {themePresets.map((preset) => (
               <Card 
                 key={preset.name}
-                className={`cursor-pointer transition-all hover:shadow-lg ${
+                className={`shadow-xl cursor-pointer transition-all hover:shadow-2xl ${
                   selectedPreset === preset.name ? "ring-2 ring-primary" : ""
                 }`}
                 onClick={() => applyPreset(preset)}
@@ -194,7 +194,7 @@ export const ThemeManager = () => {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="shadow-xl">
         <CardHeader>
           <div className="flex items-center gap-2">
             <Palette className="h-5 w-5 text-primary" />
@@ -296,7 +296,7 @@ export const ThemeManager = () => {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="shadow-xl">
         <CardHeader>
           <CardTitle>Preview Warna</CardTitle>
           <CardDescription>

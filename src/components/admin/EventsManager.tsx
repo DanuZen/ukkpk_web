@@ -147,7 +147,7 @@ export const EventsManager = () => {
           </p>
         </div>
       </div>
-      <Card>
+      <Card className="shadow-xl">
         <CardHeader className="p-2 sm:p-3 md:p-6">
           <CardTitle className="text-sm sm:text-base md:text-xl">{editingId ? "Form Edit Event" : "Form Tambah Event"}</CardTitle>
         </CardHeader>
@@ -239,7 +239,7 @@ export const EventsManager = () => {
       <div className="space-y-4">
         <h3 className="text-xl font-semibold">Daftar Event</h3>
         {events.map((event) => (
-          <Card key={event.id}>
+          <Card key={event.id} className="shadow-xl">
             <CardContent className="pt-6">
               <div className="flex justify-between items-start">
                 <div className="flex-1">

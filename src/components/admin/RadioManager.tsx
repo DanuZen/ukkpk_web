@@ -319,7 +319,7 @@ export const RadioManager = () => {
       </div>
 
       {/* Calendar Grid */}
-      <Card>
+      <Card className="shadow-xl">
         <CardContent className="p-1.5 sm:p-2 md:p-4">
           {/* Mobile & Tablet View - Single Day */}
           <div className="lg:hidden space-y-2">

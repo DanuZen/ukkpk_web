@@ -103,7 +103,7 @@ export const OrganizationManager = () => {
           {editingId ? "Perbarui data anggota organisasi" : "Kelola data pengurus dan struktur UKKPK"}
         </p>
       </div>
-      <Card>
+      <Card className="shadow-xl">
         <CardHeader className="p-4 sm:p-5 md:p-6">
           <CardTitle className="text-base sm:text-lg md:text-xl">
             {editingId ? "Edit Anggota" : "Tambah Anggota Baru"}
@@ -190,7 +190,7 @@ export const OrganizationManager = () => {
 
       <div className="grid gap-3 sm:gap-4 grid-cols-2 lg:grid-cols-3">
         {members.map((member) => (
-          <Card key={member.id}>
+          <Card key={member.id} className="shadow-xl">
             <CardContent className="p-4 sm:p-5 md:p-6">
               <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3">
                 {member.photo_url && (
