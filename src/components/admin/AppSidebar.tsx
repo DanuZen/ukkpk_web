@@ -67,7 +67,7 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
     <Sidebar className="border-r border-gray-200 bg-white transition-all duration-300 ease-in-out" collapsible="offcanvas">
       <div className="flex h-full flex-col animate-fade-in">
         <SidebarHeader className="px-3 py-3 bg-white">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2.5 ml-2">
             <img src={logoUkkpk} alt="UKKPK Logo" className="h-9 w-9 transition-transform duration-200 hover:scale-110" />
             {shouldShowText && (
               <div className="flex flex-col animate-fade-in">
