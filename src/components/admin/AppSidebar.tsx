@@ -51,6 +51,10 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
 
   const handleNavigate = (page: string) => {
     onNavigate(page);
+    // Auto-close sidebar on mobile after navigation
+    if (isMobile) {
+      setOpen(false);
+    }
   };
 
   // Show text when sidebar is open OR when on mobile (offcanvas always shows text)
