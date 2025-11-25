@@ -82,7 +82,10 @@ const Auth = () => {
               <img 
                 src={logoMicuMascot} 
                 alt="MICU Mascot" 
-                className="h-24 w-auto mb-6"
+                className="h-40 w-auto mb-6 animate-float"
+                style={{
+                  filter: 'drop-shadow(0 0 40px rgba(255, 255, 255, 0.6))'
+                }}
               />
               <h2 className="text-4xl font-bold mb-4 leading-tight">
                 Kelola Media Kampus<br />Lebih Mudah & Efisien
@@ -249,6 +252,16 @@ const Auth = () => {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 };
