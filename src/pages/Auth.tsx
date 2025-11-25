@@ -134,7 +134,7 @@ const Auth = () => {
                  Selamat Datang Kembali
               </p>
               <h1 className="font-bold text-gray-900 text-2xl">Login ke Akun Anda</h1>
-              <p className="text-muted-foreground text-sm">Masuk untuk mengakses dashboard</p>
+              <p className="text-muted-foreground text-xs">Masuk untuk mengakses dashboard</p>
             </div>
 
             {/* Form */}
