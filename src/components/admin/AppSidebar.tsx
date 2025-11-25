@@ -64,8 +64,8 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
   const shouldShowText = open || isMobile || openMobile;
 
   return (
-    <Sidebar className="border-r border-primary/20 bg-gradient-to-b from-primary via-primary to-primary/90 transition-all duration-300 ease-in-out" collapsible="offcanvas">
-      <div className="flex h-full flex-col animate-fade-in">
+    <Sidebar className="border-r border-primary/20 transition-all duration-300 ease-in-out" collapsible="offcanvas">
+      <div className="flex h-full flex-col bg-gradient-to-b from-primary via-primary to-primary/90 animate-fade-in">
         <SidebarHeader className="px-3 py-3 bg-transparent border-b border-white/10">
           <div className="flex items-center gap-2.5 ml-2">
             <img src={logoUkkpk} alt="UKKPK Logo" className="h-9 w-9 transition-transform duration-200 hover:scale-110" />
