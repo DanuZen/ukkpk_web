@@ -33,12 +33,12 @@ export const DashboardHeader = ({
       {/* Sidebar Trigger */}
       <SidebarTrigger className="text-gray-700 hover:bg-primary hover:text-white transition-colors rounded-md flex-shrink-0 h-8 w-8 sm:h-9 sm:w-9" />
       
-      {/* Search Bar - Hidden on tablet when sidebar open */}
-      <div className="relative flex-1 max-w-[100px] sm:max-w-[120px] md:max-w-md lg:max-w-lg">
-        <Search className="absolute left-2 top-1/2 h-3.5 w-3.5 sm:h-4 sm:w-4 -translate-y-1/2 text-gray-400" />
+      {/* Search Bar - Hidden on tablet, visible on desktop */}
+      <div className="relative hidden lg:flex flex-1 max-w-md xl:max-w-lg">
+        <Search className="absolute left-2 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
         <Input 
           placeholder="Cari..." 
-          className="w-full pl-7 sm:pl-8 pr-2 h-8 sm:h-9 md:h-10 text-xs sm:text-sm bg-gray-50 border-gray-200 focus:bg-white" 
+          className="w-full pl-8 pr-2 h-10 text-sm bg-gray-50 border-gray-200 focus:bg-white" 
         />
       </div>
 
