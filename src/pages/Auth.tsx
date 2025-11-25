@@ -70,7 +70,7 @@ const Auth = () => {
             <img src={logoUkkpk} alt="UKKPK Logo" className="h-12 w-12" />
             <div>
               <h1 className="text-xl font-bold">UKKPK UNP</h1>
-              <p className="text-sm text-white/80">Dashboard Admin</p>
+              
             </div>
           </div>
 
