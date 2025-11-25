@@ -4,12 +4,44 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { Palette, RefreshCw } from "lucide-react";
+import { Palette, RefreshCw, Check } from "lucide-react";
+
+const themePresets = [
+  {
+    name: "Default",
+    description: "Tema default UKKPK dengan merah khas",
+    primary: "#dc2626",
+    secondary: "#64748b",
+    accent: "#f59e0b",
+  },
+  {
+    name: "Modern",
+    description: "Tema modern dengan biru elegant",
+    primary: "#3b82f6",
+    secondary: "#8b5cf6",
+    accent: "#06b6d4",
+  },
+  {
+    name: "Classic",
+    description: "Tema klasik dengan hijau natural",
+    primary: "#059669",
+    secondary: "#475569",
+    accent: "#eab308",
+  },
+  {
+    name: "Vibrant",
+    description: "Tema vibrant dengan ungu energik",
+    primary: "#a855f7",
+    secondary: "#ec4899",
+    accent: "#f97316",
+  },
+];
 
 export const ThemeManager = () => {
   const [primaryColor, setPrimaryColor] = useState("#dc2626");
   const [secondaryColor, setSecondaryColor] = useState("#64748b");
   const [accentColor, setAccentColor] = useState("#f59e0b");
+  const [selectedPreset, setSelectedPreset] = useState<string | null>("Default");
 
   useEffect(() => {
     // Load theme colors from localStorage or use defaults
@@ -66,25 +98,28 @@ export const ThemeManager = () => {
     toast.success("Tema berhasil diperbarui");
   };
 
-  const resetTheme = () => {
-    const defaultPrimary = "#dc2626";
-    const defaultSecondary = "#64748b";
-    const defaultAccent = "#f59e0b";
-
-    setPrimaryColor(defaultPrimary);
-    setSecondaryColor(defaultSecondary);
-    setAccentColor(defaultAccent);
+  const applyPreset = (preset: typeof themePresets[0]) => {
+    setPrimaryColor(preset.primary);
+    setSecondaryColor(preset.secondary);
+    setAccentColor(preset.accent);
+    setSelectedPreset(preset.name);
 
     const root = document.documentElement;
-    root.style.setProperty("--primary", hexToHsl(defaultPrimary));
-    root.style.setProperty("--secondary", hexToHsl(defaultSecondary));
-    root.style.setProperty("--accent", hexToHsl(defaultAccent));
+    root.style.setProperty("--primary", hexToHsl(preset.primary));
+    root.style.setProperty("--secondary", hexToHsl(preset.secondary));
+    root.style.setProperty("--accent", hexToHsl(preset.accent));
 
-    localStorage.setItem("theme-primary", defaultPrimary);
-    localStorage.setItem("theme-secondary", defaultSecondary);
-    localStorage.setItem("theme-accent", defaultAccent);
+    localStorage.setItem("theme-primary", preset.primary);
+    localStorage.setItem("theme-secondary", preset.secondary);
+    localStorage.setItem("theme-accent", preset.accent);
+    localStorage.setItem("theme-preset", preset.name);
 
-    toast.success("Tema dikembalikan ke default");
+    toast.success(`Tema ${preset.name} berhasil diterapkan`);
+  };
+
+  const resetTheme = () => {
+    const defaultPreset = themePresets[0];
+    applyPreset(defaultPreset);
   };
 
   return (
@@ -94,9 +129,69 @@ export const ThemeManager = () => {
           <div className="flex items-center gap-2">
             <Palette className="h-5 w-5 text-primary" />
             <div>
-              <CardTitle>Pengaturan Tema Website</CardTitle>
+              <CardTitle>Preset Tema</CardTitle>
               <CardDescription className="mt-1">
-                Sesuaikan warna tema website UKKPK sesuai preferensi Anda
+                Pilih preset tema yang sudah jadi atau kustomisasi sendiri
+              </CardDescription>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {themePresets.map((preset) => (
+              <Card 
+                key={preset.name}
+                className={`cursor-pointer transition-all hover:shadow-lg ${
+                  selectedPreset === preset.name ? "ring-2 ring-primary" : ""
+                }`}
+                onClick={() => applyPreset(preset)}
+              >
+                <CardHeader className="pb-3">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <CardTitle className="text-base">{preset.name}</CardTitle>
+                      <CardDescription className="text-xs mt-1">
+                        {preset.description}
+                      </CardDescription>
+                    </div>
+                    {selectedPreset === preset.name && (
+                      <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                    )}
+                  </div>
+                </CardHeader>
+                <CardContent className="pb-4">
+                  <div className="flex gap-2">
+                    <div 
+                      className="h-12 flex-1 rounded border border-border"
+                      style={{ backgroundColor: preset.primary }}
+                      title="Primary"
+                    />
+                    <div 
+                      className="h-12 flex-1 rounded border border-border"
+                      style={{ backgroundColor: preset.secondary }}
+                      title="Secondary"
+                    />
+                    <div 
+                      className="h-12 flex-1 rounded border border-border"
+                      style={{ backgroundColor: preset.accent }}
+                      title="Accent"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <Palette className="h-5 w-5 text-primary" />
+            <div>
+              <CardTitle>Kustomisasi Warna</CardTitle>
+              <CardDescription className="mt-1">
+                Sesuaikan warna tema secara manual sesuai preferensi Anda
               </CardDescription>
             </div>
           </div>
@@ -174,8 +269,14 @@ export const ThemeManager = () => {
           </div>
 
           <div className="flex gap-3 pt-4 border-t">
-            <Button onClick={applyTheme} className="flex-1">
-              Terapkan Tema
+            <Button 
+              onClick={() => {
+                applyTheme();
+                setSelectedPreset(null); // Clear preset selection when manually applying
+              }} 
+              className="flex-1"
+            >
+              Terapkan Warna Manual
             </Button>
             <Button onClick={resetTheme} variant="outline" className="gap-2">
               <RefreshCw className="h-4 w-4" />
