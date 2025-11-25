@@ -158,7 +158,7 @@ export const ContactSubmissionsManager = () => {
 
   return (
     <>
-      <div className="flex justify-between items-start gap-2 mb-3 sm:mb-4 md:mb-6">
+      <div className="flex justify-between items-start gap-1 mb-3 sm:mb-4 md:mb-6">
         <div>
           <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Saran & Masukan</h2>
           <p className="text-xs sm:text-sm text-gray-500 mt-0.5 sm:mt-1">
@@ -167,7 +167,7 @@ export const ContactSubmissionsManager = () => {
         </div>
       </div>
       <Card>
-        <CardHeader className="pb-3 sm:pb-4 md:pb-6 p-3 sm:p-4 md:p-6">
+        <CardHeader className="pb-3 sm:pb-4 p-3 sm:p-4 md:p-6">
           <CardTitle className="text-sm sm:text-base md:text-xl">Daftar Saran</CardTitle>
         </CardHeader>
         <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
@@ -184,7 +184,7 @@ export const ContactSubmissionsManager = () => {
           </div>
 
           {/* Desktop Table */}
-          <div className="hidden md:block rounded-md border overflow-x-auto">
+          <div className="hidden lg:block rounded-md border overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -305,20 +305,22 @@ export const ContactSubmissionsManager = () => {
                         )}
                       </TableCell>
                       <TableCell className="text-right">
-                        <div className="flex justify-end gap-2">
+                        <div className="flex justify-end gap-1">
                           <Button
                             variant="outline"
                             size="sm"
                             onClick={() => handleViewDetail(submission)}
+                            className="h-7 w-7 p-0"
                           >
-                            <Eye className="h-4 w-4" />
+                            <Eye className="h-3.5 w-3.5" />
                           </Button>
                           <Button
                             variant="destructive"
                             size="sm"
                             onClick={() => handleDelete(submission.id)}
+                            className="h-7 w-7 p-0"
                           >
-                            <Trash2 className="h-4 w-4" />
+                            <Trash2 className="h-3.5 w-3.5" />
                           </Button>
                         </div>
                       </TableCell>
@@ -329,8 +331,8 @@ export const ContactSubmissionsManager = () => {
             </Table>
           </div>
 
-          {/* Mobile Cards */}
-          <div className="md:hidden space-y-3">
+          {/* Mobile/Tablet Cards */}
+          <div className="lg:hidden space-y-3">
             {filteredSubmissions.length === 0 ? (
               <div className="text-center py-8 text-sm text-gray-500">
                 {searchQuery ? 'Tidak ada hasil yang ditemukan' : 'Belum ada saran masuk'}
