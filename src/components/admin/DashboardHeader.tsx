@@ -29,20 +29,20 @@ export const DashboardHeader = ({
   };
   
   return (
-    <header className="sticky top-0 z-50 flex h-14 sm:h-16 items-center gap-1.5 sm:gap-2 md:gap-3 border-b bg-white shadow-sm px-2 sm:px-3 md:px-6">
+    <header className="sticky top-0 z-50 flex h-14 sm:h-16 items-center gap-1 sm:gap-1.5 md:gap-3 border-b bg-white shadow-sm px-2 sm:px-3 md:px-6 overflow-hidden">
       {/* Sidebar Trigger */}
       <SidebarTrigger className="text-gray-700 hover:bg-primary hover:text-white transition-colors rounded-md flex-shrink-0 h-8 w-8 sm:h-9 sm:w-9" />
       
-      {/* Search Bar - Responsive width */}
-      <div className="relative flex-1 max-w-[140px] sm:max-w-xs md:max-w-md">
+      {/* Search Bar - Hidden on tablet when sidebar open */}
+      <div className="relative flex-1 max-w-[100px] sm:max-w-[120px] md:max-w-md lg:max-w-lg">
         <Search className="absolute left-2 top-1/2 h-3.5 w-3.5 sm:h-4 sm:w-4 -translate-y-1/2 text-gray-400" />
         <Input 
           placeholder="Cari..." 
-          className="w-full pl-7 sm:pl-9 pr-2 h-8 sm:h-9 md:h-10 text-xs sm:text-sm bg-gray-50 border-gray-200 focus:bg-white" 
+          className="w-full pl-7 sm:pl-8 pr-2 h-8 sm:h-9 md:h-10 text-xs sm:text-sm bg-gray-50 border-gray-200 focus:bg-white" 
         />
       </div>
 
-      <div className="ml-auto flex items-center gap-1 sm:gap-1.5 md:gap-2">
+      <div className="ml-auto flex items-center gap-0.5 sm:gap-1 md:gap-2">
         <Button 
           variant="ghost" 
           size="icon" 
