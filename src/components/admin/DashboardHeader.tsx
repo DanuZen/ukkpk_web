@@ -29,7 +29,7 @@ export const DashboardHeader = ({
   };
   
   return (
-    <header className="sticky top-0 z-50 flex h-14 sm:h-16 items-center gap-1 sm:gap-1.5 md:gap-3 border-b bg-white shadow-sm px-2 sm:px-3 md:px-6 overflow-hidden">
+    <header className="sticky top-0 z-50 flex h-14 sm:h-16 items-center gap-1 border-b bg-white shadow-sm px-2 sm:px-3 md:px-6">
       {/* Sidebar Trigger */}
       <SidebarTrigger className="text-gray-700 hover:bg-primary hover:text-white transition-colors rounded-md flex-shrink-0 h-8 w-8 sm:h-9 sm:w-9" />
       
@@ -42,12 +42,12 @@ export const DashboardHeader = ({
         />
       </div>
 
-      <div className="ml-auto flex items-center gap-0.5 sm:gap-1 md:gap-2">
+      <div className="ml-auto flex items-center gap-1 md:gap-2">
         <Button 
           variant="ghost" 
           size="icon" 
           onClick={() => navigate("/")} 
-          className="text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 sm:h-9 sm:w-9 flex-shrink-0" 
+          className="text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 flex-shrink-0" 
           title="Kembali ke Website"
         >
           <ExternalLink className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
@@ -56,15 +56,15 @@ export const DashboardHeader = ({
         <Button 
           variant="ghost" 
           size="icon" 
-          className="hidden md:flex text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9 flex-shrink-0"
+          className="hidden lg:flex text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 flex-shrink-0"
         >
-          <Bell className="h-4 w-4 sm:h-5 sm:w-5" />
+          <Bell className="h-4 w-4" />
         </Button>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="relative h-8 w-8 sm:h-9 sm:w-9 rounded-full flex-shrink-0 p-0">
-              <Avatar className="h-8 w-8 sm:h-9 sm:w-9">
+            <Button variant="ghost" className="relative h-8 w-8 rounded-full flex-shrink-0 p-0">
+              <Avatar className="h-8 w-8">
                 <AvatarFallback className="bg-primary text-white text-[10px] sm:text-xs">
                   {user?.email ? getInitials(user.email) : "AD"}
                 </AvatarFallback>
