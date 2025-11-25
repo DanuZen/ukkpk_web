@@ -161,12 +161,12 @@ const ProfilUkkpk = () => {
       <div className="scroll-smooth">
         {/* Hero Section */}
         <section className="relative h-screen flex items-center px-2 sm:px-4 bg-black overflow-hidden">
-          {profile?.banner_url ? (
-            <img src={profile.banner_url} alt="UKKPK Banner" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchPriority="high" />
-          ) : (
-            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d)` }} />
+          {profile?.banner_url && (
+            <>
+              <img src={profile.banner_url} alt="UKKPK Banner" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchPriority="high" />
+              <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70" />
+            </>
           )}
-          <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70" />
 
           <div className="container mx-auto relative z-10">
             <AnimatedSection animation="fade-up">
