@@ -169,7 +169,7 @@ export const ContactSubmissionsManager = () => {
           </div>
         </div>
       </div>
-      <Card>
+      <Card className="shadow-xl">
         <CardHeader className="pb-3 sm:pb-4 p-3 sm:p-4 md:p-6">
           <CardTitle className="text-sm sm:text-base md:text-xl">Daftar Saran</CardTitle>
         </CardHeader>

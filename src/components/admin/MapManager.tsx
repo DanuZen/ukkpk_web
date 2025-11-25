@@ -125,7 +125,7 @@ export const MapManager = () => {
           </div>
         </div>
       </div>
-      <Card>
+      <Card className="shadow-xl">
         <CardHeader className="p-4 sm:p-5 md:p-6">
           <CardTitle className="text-base sm:text-lg md:text-xl">Form Pengaturan Peta</CardTitle>
         </CardHeader>
@@ -157,7 +157,7 @@ export const MapManager = () => {
         </CardContent>
       </Card>
 
-      {embedUrl && <Card>
+      {embedUrl && <Card className="shadow-xl">
           <CardHeader className="p-4 sm:p-5 md:p-6">
             <CardTitle className="text-base sm:text-lg md:text-xl">Preview Peta</CardTitle>
           </CardHeader>

@@ -234,7 +234,7 @@ export const NewsManager = () => {
           </div>
         </div>
       </div>
-      <Card>
+      <Card className="shadow-xl">
         <CardHeader className="p-2 sm:p-3 md:p-6">
           <CardTitle className="text-sm sm:text-base md:text-xl">
             {editingId ? "Form Edit Berita" : "Form Tambah Berita"}
@@ -394,7 +394,7 @@ export const NewsManager = () => {
                   />
                 </TabsContent>
                 <TabsContent value="preview" className="mt-1.5 sm:mt-2 md:mt-4">
-                  <Card>
+                  <Card className="shadow-xl">
                     <CardContent className="p-2 sm:p-3 md:p-6">
                       {/* Preview Header */}
                       <div className="mb-2 sm:mb-3 md:mb-6">
@@ -486,7 +486,7 @@ export const NewsManager = () => {
         </div>
         
         {news.length === 0 ? (
-          <Card>
+          <Card className="shadow-xl">
             <CardContent className="p-3 sm:p-4 md:p-6">
               <div className="text-center py-4 sm:py-6 md:py-8">
                 <div className="mx-auto w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-muted rounded-full flex items-center justify-center mb-2 sm:mb-3 md:mb-4">
@@ -501,7 +501,7 @@ export const NewsManager = () => {
           </Card>
         ) : (
           news.map((item) => (
-            <Card key={item.id}>
+            <Card key={item.id} className="shadow-xl">
               <CardContent className="p-2.5 sm:p-3 md:p-6">
                 <div className="flex justify-between items-start gap-2 sm:gap-3 md:gap-4">
                   <div className="flex-1 min-w-0">

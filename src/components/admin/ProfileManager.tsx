@@ -133,7 +133,7 @@ const BannerSection = () => {
           </div>
         </div>
       </div>
-      <Card>
+      <Card className="shadow-xl">
         <CardHeader className="p-4 sm:p-5 md:p-6">
           <CardTitle className="text-base sm:text-lg md:text-xl">Form Upload Banner</CardTitle>
         </CardHeader>
@@ -291,7 +291,7 @@ const SlideshowSection = () => {
           </div>
         </div>
       </div>
-      <Card>
+      <Card className="shadow-xl">
         <CardHeader className="p-4 sm:p-5 md:p-6">
           <CardTitle className="text-base sm:text-lg md:text-xl">Form Slideshow</CardTitle>
         </CardHeader>
@@ -487,7 +487,7 @@ const StructureSection = () => {
           </div>
         </div>
       </div>
-      <Card>
+      <Card className="shadow-xl">
         <CardHeader className="p-2 sm:p-3 md:p-6">
           <CardTitle className="text-sm sm:text-base md:text-xl">
             {editingId ? "Form Edit Struktur" : "Form Tambah Struktur"}
@@ -517,7 +517,7 @@ const StructureSection = () => {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="shadow-xl">
         <CardHeader>
           <CardTitle>Daftar Struktur Organisasi</CardTitle>
         </CardHeader>
