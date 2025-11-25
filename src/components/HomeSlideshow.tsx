@@ -120,7 +120,7 @@ export const HomeSlideshow = () => {
           {/* CTA Buttons */}
           <div style={{
           animationDelay: '0.4s'
-        }} className="gap-2 mb-6 sm:mb-8 animate-fade-up items-center justify-center flex flex-row">
+        }} className="gap-2 mb-6 sm:mb-8 animate-fade-up flex-row flex items-center justify-start">
             <Link to="/artikel">
               <Button size="sm" className="text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
                 <BookOpen className="w-3 h-3 sm:w-4 sm:h-4" />
