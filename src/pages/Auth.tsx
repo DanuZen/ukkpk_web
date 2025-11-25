@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "@/hooks/useAuth";
+import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
-import { AnimatedSection } from "@/components/AnimatedSection";
-import { Loader2 } from "lucide-react";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
-import logoMicuMascot from "@/assets/logo-micu-mascot.png";
+import { Loader2, Mail, Lock, Eye, EyeOff, Check, ArrowRight, ArrowLeft } from "lucide-react";
 
 const REMEMBER_ME_KEY = 'ukkpk_remember_me';
 const SAVED_EMAIL_KEY = 'ukkpk_saved_email';
@@ -17,10 +16,9 @@ const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const {
-    signIn
-  } = useAuth();
+  const { signIn } = useAuth();
   const navigate = useNavigate();
 
   // Load saved credentials on mount
@@ -33,13 +31,12 @@ const Auth = () => {
       setEmail(savedEmail);
     }
   }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const {
-        error
-      } = await signIn(email, password);
+      const { error } = await signIn(email, password);
       if (error) throw error;
       
       // Save or clear credentials based on rememberMe
@@ -59,136 +56,195 @@ const Auth = () => {
       setLoading(false);
     }
   };
-  return <div className="min-h-screen flex">
-      {/* Left Side - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-white relative overflow-hidden transition-all duration-300">
 
-        <div className="w-full max-w-md relative z-10 bg-white p-6 sm:p-8 rounded-xl sm:rounded-2xl shadow-2xl transition-all duration-300">
-          {/* Logo */}
-          <AnimatedSection animation="fade-in" delay={100}>
-            <div className="mb-6 sm:mb-8 flex justify-center transition-all duration-300">
-              <img 
-                src={logoUkkpk} 
-                alt="UKKPK Logo" 
-                className="h-12 sm:h-16 w-auto animate-scale-in transition-all duration-300"
-                loading="eager"
-                fetchPriority="high"
-              />
+  return (
+    <div className="min-h-screen flex">
+      {/* Left Section - Brand/Info */}
+      <div className="hidden lg:flex lg:flex-1 bg-gradient-to-br from-primary via-primary to-primary/80 p-12 flex-col justify-between text-white relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+          <div className="absolute top-20 left-20 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-20 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative z-10">
+          <div className="flex items-center gap-3 mb-16">
+            <img src={logoUkkpk} alt="UKKPK Logo" className="h-12 w-12" />
+            <div>
+              <h1 className="text-xl font-bold">UKKPK UNP</h1>
+              <p className="text-sm text-white/80">Dashboard Admin</p>
             </div>
-          </AnimatedSection>
+          </div>
 
-          {/* Title */}
-          <AnimatedSection animation="fade-up" delay={200}>
-            <div className="mb-6 sm:mb-8 text-center transition-all duration-300">
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2 transition-all duration-300">Login</h1>
-              <p className="text-sm sm:text-base text-muted-foreground transition-all duration-300">Masuk ke Dashboard Admin UKKPK UNP</p>
-            </div>
-          </AnimatedSection>
-
-          {/* Form */}
-          <AnimatedSection animation="fade-up" delay={300}>
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 transition-all duration-300">
-            <div className="space-y-2 transition-all duration-300">
-              <Input type="email" value={email} onChange={e => setEmail(e.target.value)} required placeholder="Email Address" className="h-11 sm:h-12 text-sm sm:text-base transition-all duration-300" />
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-4xl font-bold mb-4 leading-tight">
+                Kelola Media Kampus<br />Lebih Mudah & Efisien
+              </h2>
+              <p className="text-lg text-white/90 leading-relaxed">
+                Platform digital terintegrasi untuk mengelola konten artikel, berita, radio, dan kegiatan kampus dalam satu dashboard
+              </p>
             </div>
 
-            <div className="space-y-2 transition-all duration-300">
-              <Input type="password" value={password} onChange={e => setPassword(e.target.value)} required placeholder="Password" className="h-11 sm:h-12 text-sm sm:text-base transition-all duration-300" />
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <Checkbox id="remember" checked={rememberMe} onCheckedChange={checked => setRememberMe(checked as boolean)} />
-                <label htmlFor="remember" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer">
-                  Remember Me
-                </label>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="mt-1 p-1 bg-white/20 rounded-full">
+                  <Check className="w-4 h-4" />
+                </div>
+                <div>
+                  <p className="font-medium">Manajemen konten lengkap</p>
+                  <p className="text-sm text-white/80">Kelola artikel, berita, dan radio dalam satu platform</p>
+                </div>
               </div>
-              <button type="button" className="text-sm text-primary hover:underline" onClick={() => toast.info("Hubungi administrator untuk reset password")}>
-                Forgot Your Password?
-              </button>
+              <div className="flex items-start gap-3">
+                <div className="mt-1 p-1 bg-white/20 rounded-full">
+                  <Check className="w-4 h-4" />
+                </div>
+                <div>
+                  <p className="font-medium">Editor teks yang canggih</p>
+                  <p className="text-sm text-white/80">Buat konten menarik dengan rich text editor profesional</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="mt-1 p-1 bg-white/20 rounded-full">
+                  <Check className="w-4 h-4" />
+                </div>
+                <div>
+                  <p className="font-medium">Analytics & laporan</p>
+                  <p className="text-sm text-white/80">Pantau performa konten dengan dashboard analytics real-time</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative z-10">
+          <p className="text-sm text-white/70">© 2024 UKKPK UNP. All rights reserved.</p>
+        </div>
+      </div>
+
+      {/* Right Section - Login Form */}
+      <div className="flex-1 flex items-center justify-center p-8 bg-gray-50">
+        <div className="w-full max-w-md">
+          <div className="bg-white rounded-2xl shadow-xl p-8 space-y-6">
+            {/* Header */}
+            <div className="text-center space-y-2">
+              <p className="text-sm text-primary font-medium flex items-center justify-center gap-2">
+                <span className="text-lg">👋</span> Selamat Datang Kembali
+              </p>
+              <h1 className="text-3xl font-bold text-gray-900">Login ke Akun Anda</h1>
+              <p className="text-muted-foreground">Masuk untuk mengakses dashboard</p>
             </div>
 
-            <Button type="submit" className="w-full h-11 sm:h-12 text-sm sm:text-base bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary transition-all duration-300" disabled={loading}>
-              {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {loading ? "Memproses..." : "Log In"}
-            </Button>
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Email Field */}
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-sm font-medium">Email</Label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="admin@ukkpk.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="h-12 pl-10"
+                  />
+                </div>
+              </div>
+
+              {/* Password Field */}
+              <div className="space-y-2">
+                <Label htmlFor="password" className="text-sm font-medium">Password</Label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                  <Input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="h-12 pl-10 pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                  </button>
+                </div>
+              </div>
+
+              {/* Remember Me & Forgot Password */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="remember"
+                    checked={rememberMe}
+                    onCheckedChange={(checked) => setRememberMe(checked as boolean)}
+                  />
+                  <Label htmlFor="remember" className="text-sm cursor-pointer">
+                    Ingat saya
+                  </Label>
+                </div>
+                <button 
+                  type="button" 
+                  className="text-sm text-primary hover:underline"
+                  onClick={() => toast.info("Hubungi administrator untuk reset password")}
+                >
+                  Lupa password?
+                </button>
+              </div>
+
+              {/* Login Button */}
+              <Button
+                type="submit"
+                className="w-full h-12 text-base font-semibold"
+                disabled={loading}
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Memproses...
+                  </>
+                ) : (
+                  <>
+                    Login
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </>
+                )}
+              </Button>
             </form>
-          </AnimatedSection>
 
-          {/* Footer Note */}
-          <AnimatedSection animation="fade-in" delay={400}>
-            <div className="mt-6 sm:mt-8 text-center text-xs sm:text-sm text-muted-foreground">
-              <p>Hanya untuk Admin UKKPK UNP</p>
+            {/* Divider */}
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-200"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-white text-muted-foreground">atau</span>
+              </div>
             </div>
-          </AnimatedSection>
+
+            {/* Back to Home Link */}
+            <div className="text-center">
+              <Link 
+                to="/" 
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                Kembali ke Beranda
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Right Side - Illustration */}
-      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-primary to-primary/90 relative overflow-hidden items-center justify-center animate-fade-in transition-all duration-300">
-        {/* Subtle Pattern Background */}
-        <div className="absolute inset-0 opacity-15">
-          <div className="absolute top-0 left-0 w-full h-full" style={{
-            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.2) 1.5px, transparent 1.5px)',
-            backgroundSize: '60px 60px',
-          }}></div>
-        </div>
-        
-        {/* Decorative Circles */}
-        <div className="absolute top-20 right-20 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-20 w-[500px] h-[500px] bg-white/10 rounded-full blur-3xl"></div>
-        
-        {/* MICU Logo & Welcome Text */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white z-10">
-          <img 
-            src={logoMicuMascot} 
-            alt="MICU Mascot" 
-            loading="eager"
-            className="h-64 w-auto mx-auto mb-6 drop-shadow-2xl"
-            style={{
-              animation: 'float 3s ease-in-out infinite 0.5s backwards',
-              filter: 'drop-shadow(0 0 40px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 80px rgba(255, 255, 255, 0.4))',
-              willChange: 'transform'
-            }}
-          />
-          <h2 className="text-3xl font-bold mb-2 drop-shadow-lg">Selamat Datang Intelektual Muda!</h2>
-          <p className="text-lg opacity-90 drop-shadow">Unit Kegiatan Komunikasi & Penyiaran Kampus</p>
-        </div>
-      </div>
-
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-        @keyframes float-slow {
-          0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
-          50% { transform: translate(-50%, -50%) translateY(-30px); }
-        }
-        @keyframes shooting-star {
-          0% { transform: translateX(0) translateY(0); opacity: 1; }
-          100% { transform: translateX(-200px) translateY(200px); opacity: 0; }
-        }
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        .animate-float-slow {
-          animation: float-slow 8s ease-in-out infinite;
-        }
-        .animate-shooting-star {
-          animation: shooting-star 3s ease-in infinite;
-        }
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-      `}</style>
-    </div>;
+    </div>
+  );
 };
+
 export default Auth;
