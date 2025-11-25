@@ -77,7 +77,7 @@ export const HomeSlideshow = () => {
 
   // Calculate blur and opacity based on scroll
   const blurAmount = Math.min(scrollY / 300, 1); // 0 to 1
-  const opacity = Math.max(1 - (scrollY / 400), 0); // 1 to 0
+  const opacity = Math.max(1 - scrollY / 400, 0); // 1 to 0
 
   return <section className="relative w-full h-screen overflow-hidden group -mt-16">
       {/* Slideshow Images */}
@@ -90,13 +90,10 @@ export const HomeSlideshow = () => {
 
       {/* Overlay Text */}
       <div className="absolute inset-0 flex items-center justify-center pt-16">
-        <div 
-          className="max-w-3xl text-left z-10 px-4 sm:px-6 animate-fade-in transition-all duration-300"
-          style={{
-            filter: `blur(${blurAmount * 8}px)`,
-            opacity: opacity,
-          }}
-        >
+        <div className="max-w-3xl text-left z-10 px-4 sm:px-6 animate-fade-in transition-all duration-300" style={{
+        filter: `blur(${blurAmount * 8}px)`,
+        opacity: opacity
+      }}>
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-4 sm:mb-6">
             <RadioIcon className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
@@ -113,13 +110,17 @@ export const HomeSlideshow = () => {
           </h1>
           
           {/* Subtitle */}
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 mb-6 sm:mb-8 leading-relaxed max-w-2xl animate-fade-up" style={{ animationDelay: '0.2s' }}>
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 mb-6 sm:mb-8 leading-relaxed max-w-2xl animate-fade-up" style={{
+          animationDelay: '0.2s'
+        }}>
             Platform media kampus yang menghubungkan Anda dengan berita terkini, 
             artikel berkualitas, dan siaran radio kampus dari UKKPK UNP.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-row gap-2 sm:gap-4 mb-6 sm:mb-8 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+          <div style={{
+          animationDelay: '0.4s'
+        }} className="gap-2 mb-6 sm:mb-8 animate-fade-up items-center justify-center flex flex-row sm:gap-[10px]">
             <Link to="/artikel" className="flex-1">
               <Button size="sm" className="w-full text-xs sm:text-base px-4 sm:px-6 py-2 sm:py-5 bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
                 Baca Artikel
