@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { ChevronLeft, ChevronRight, Radio as RadioIcon, Play, BookOpen, Newspaper } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useIsMobile } from '@/hooks/use-mobile';
 interface SlideshowImage {
   id: string;
   image_url: string;
@@ -16,6 +17,7 @@ export const HomeSlideshow = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [autoPlaySpeed, setAutoPlaySpeed] = useState(5000);
   const [scrollY, setScrollY] = useState(0);
+  const isMobile = useIsMobile();
   useEffect(() => {
     fetchImages();
     fetchSettings();
@@ -78,6 +80,9 @@ export const HomeSlideshow = () => {
   // Calculate blur and opacity based on scroll
   const blurAmount = Math.min(scrollY / 300, 1); // 0 to 1
   const opacity = Math.max(1 - scrollY / 400, 0); // 1 to 0
+  
+  // Reduce blur on mobile for better readability
+  const maxBlur = isMobile ? 3 : 8; // 3px on mobile, 8px on desktop
 
   return <section className="relative w-full h-screen overflow-hidden group -mt-16">
       {/* Slideshow Images */}
@@ -91,7 +96,7 @@ export const HomeSlideshow = () => {
       {/* Overlay Text */}
       <div className="absolute inset-0 flex items-center justify-center pt-16">
         <div className="max-w-3xl text-left z-10 px-4 sm:px-6 animate-fade-in transition-all duration-300" style={{
-        filter: `blur(${blurAmount * 8}px)`,
+        filter: `blur(${blurAmount * maxBlur}px)`,
         opacity: opacity
       }}>
           {/* Badge */}
