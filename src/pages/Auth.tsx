@@ -134,7 +134,7 @@ const Auth = () => {
                  Selamat Datang Kembali
               </p>
               <h1 className="font-bold text-gray-900 text-2xl">Login ke Akun Anda</h1>
-              <p className="text-muted-foreground text-xs">Masuk untuk mengakses dashboard</p>
+              <p className="text-muted-foreground text-sm">Masuk untuk mengakses dashboard</p>
             </div>
 
             {/* Form */}
@@ -174,7 +174,7 @@ const Auth = () => {
               </div>
 
               {/* Login Button */}
-              <Button type="submit" disabled={loading} className="w-full h-12 text-base font-bold">
+              <Button type="submit" className="w-full h-12 text-base font-semibold" disabled={loading}>
                 {loading ? <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     Memproses...
