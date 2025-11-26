@@ -29,9 +29,9 @@ export const DashboardHeader = ({
   };
   
   return (
-    <header className="sticky top-0 z-50 flex h-14 sm:h-16 items-center gap-1 border-b bg-white shadow-sm px-2 sm:px-3 md:px-6">
+    <header className="sticky top-0 z-50 flex h-14 sm:h-16 items-center gap-2 border-b bg-white shadow-sm px-3 sm:px-4 md:px-6">
       {/* Sidebar Trigger */}
-      <SidebarTrigger className="text-gray-700 hover:bg-primary hover:text-white transition-colors rounded-md flex-shrink-0 h-8 w-8 sm:h-9 sm:w-9" />
+      <SidebarTrigger className="text-gray-700 hover:bg-primary hover:text-white transition-colors rounded-md flex-shrink-0 h-9 w-9" />
       
       {/* Search Bar - Hidden on tablet, visible on desktop */}
       <div className="relative hidden lg:flex flex-1 max-w-md xl:max-w-lg">
@@ -42,30 +42,30 @@ export const DashboardHeader = ({
         />
       </div>
 
-      <div className="ml-auto flex items-center gap-1 md:gap-2">
+      <div className="ml-auto flex items-center gap-2 md:gap-3">
         <Button 
           variant="ghost" 
           size="icon" 
           onClick={() => navigate("/")} 
-          className="text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 flex-shrink-0" 
+          className="text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9 flex-shrink-0" 
           title="Kembali ke Website"
         >
-          <ExternalLink className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+          <ExternalLink className="h-4 w-4" />
         </Button>
 
         <Button 
           variant="ghost" 
           size="icon" 
-          className="hidden lg:flex text-gray-600 hover:bg-primary hover:text-white transition-colors h-8 w-8 flex-shrink-0"
+          className="hidden lg:flex text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9 flex-shrink-0"
         >
           <Bell className="h-4 w-4" />
         </Button>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="relative h-8 w-8 rounded-full flex-shrink-0 p-0">
-              <Avatar className="h-8 w-8">
-                <AvatarFallback className="bg-primary text-white text-[10px] sm:text-xs">
+            <Button variant="ghost" className="relative h-9 w-9 rounded-full flex-shrink-0 p-0">
+              <Avatar className="h-9 w-9">
+                <AvatarFallback className="bg-primary text-white text-xs">
                   {user?.email ? getInitials(user.email) : "AD"}
                 </AvatarFallback>
               </Avatar>
