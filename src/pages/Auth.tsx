@@ -76,15 +76,24 @@ const Auth = () => {
 
           <div className="space-y-8">
             <div>
-              <img src={logoMicuMascot} alt="MICU Mascot" className="h-64 w-auto mb-6 ml-16 animate-float" style={{
-              filter: 'drop-shadow(0 0 30px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 60px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 90px rgba(255, 255, 255, 0.3))'
-            }} />
               <h2 className="text-4xl font-bold mb-4 leading-tight">
                 Kelola Media Kampus<br />Lebih Mudah & Efisien
               </h2>
-              <p className="text-lg text-white/90 leading-relaxed">
+              <p className="text-lg text-white/90 leading-relaxed mb-8">
                 Platform digital terintegrasi untuk mengelola konten artikel, berita, radio, dan kegiatan kampus dalam satu dashboard
               </p>
+              
+              {/* MICU Mascot Logo */}
+              <div className="flex justify-center">
+                <img 
+                  src={logoMicuMascot} 
+                  alt="MICU Mascot" 
+                  className="h-48 w-auto animate-float" 
+                  style={{
+                    filter: 'drop-shadow(0 0 30px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 60px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 90px rgba(255, 255, 255, 0.3))'
+                  }} 
+                />
+              </div>
             </div>
 
             <div className="space-y-4">
