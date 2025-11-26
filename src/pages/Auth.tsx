@@ -76,7 +76,7 @@ const Auth = () => {
 
           <div className="space-y-8">
             <div>
-              <h2 className="font-bold mb-4 leading-tight text-6xl">
+              <h2 className="font-bold mb-4 leading-tight text-7xl text-justify">
                 Website Resmi<br />UKKPK UNP
               </h2>
               <p className="text-lg text-white/90 leading-relaxed mb-8 text-justify">
