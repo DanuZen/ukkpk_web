@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { FileText, Newspaper, MessageSquare, Eye, Heart } from "lucide-react";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
-
 interface ArticleStats {
   id: string;
   title: string;
@@ -14,7 +13,6 @@ interface ArticleStats {
   category: string | null;
   published_at: string | null;
 }
-
 interface NewsStats {
   id: string;
   title: string;
@@ -22,14 +20,12 @@ interface NewsStats {
   likes_count: number;
   published_at: string | null;
 }
-
 interface RecentActivity {
   id: string;
   title: string;
   type: 'article' | 'news';
   created_at: string;
 }
-
 export const DashboardOverview = () => {
   const [stats, setStats] = useState({
     articles: 0,
@@ -37,137 +33,125 @@ export const DashboardOverview = () => {
     submissions: 0,
     programs: 0,
     totalViews: 0,
-    totalLikes: 0,
+    totalLikes: 0
   });
   const [topArticles, setTopArticles] = useState<ArticleStats[]>([]);
   const [topNews, setTopNews] = useState<NewsStats[]>([]);
   const [recentActivity, setRecentActivity] = useState<RecentActivity[]>([]);
-
   useEffect(() => {
     const fetchStats = async () => {
-      const [articlesRes, newsRes, submissionsRes, programsRes] = await Promise.all([
-        supabase.from("articles").select("id, view_count, likes_count", { count: "exact" }),
-        supabase.from("news").select("id, view_count, likes_count", { count: "exact" }),
-        supabase.from("contact_submissions").select("id", { count: "exact", head: true }),
-        supabase.from("radio_programs").select("id", { count: "exact", head: true }),
-      ]);
-
+      const [articlesRes, newsRes, submissionsRes, programsRes] = await Promise.all([supabase.from("articles").select("id, view_count, likes_count", {
+        count: "exact"
+      }), supabase.from("news").select("id, view_count, likes_count", {
+        count: "exact"
+      }), supabase.from("contact_submissions").select("id", {
+        count: "exact",
+        head: true
+      }), supabase.from("radio_programs").select("id", {
+        count: "exact",
+        head: true
+      })]);
       const totalArticleViews = (articlesRes.data || []).reduce((sum, a) => sum + (a.view_count || 0), 0);
       const totalArticleLikes = (articlesRes.data || []).reduce((sum, a) => sum + (a.likes_count || 0), 0);
       const totalNewsViews = (newsRes.data || []).reduce((sum, n) => sum + (n.view_count || 0), 0);
       const totalNewsLikes = (newsRes.data || []).reduce((sum, n) => sum + (n.likes_count || 0), 0);
-
       setStats({
         articles: articlesRes.count || 0,
         news: newsRes.count || 0,
         submissions: submissionsRes.count || 0,
         programs: programsRes.count || 0,
         totalViews: totalArticleViews + totalNewsViews,
-        totalLikes: totalArticleLikes + totalNewsLikes,
+        totalLikes: totalArticleLikes + totalNewsLikes
       });
     };
-
     const fetchTopContent = async () => {
       try {
-        const { data: articlesData } = await supabase
-          .from('articles')
-          .select('id, title, view_count, likes_count, category, published_at')
-          .order('view_count', { ascending: false })
-          .limit(5);
-
-        const { data: newsData } = await supabase
-          .from('news')
-          .select('id, title, view_count, likes_count, published_at')
-          .order('view_count', { ascending: false })
-          .limit(5);
-
+        const {
+          data: articlesData
+        } = await supabase.from('articles').select('id, title, view_count, likes_count, category, published_at').order('view_count', {
+          ascending: false
+        }).limit(5);
+        const {
+          data: newsData
+        } = await supabase.from('news').select('id, title, view_count, likes_count, published_at').order('view_count', {
+          ascending: false
+        }).limit(5);
         setTopArticles(articlesData || []);
         setTopNews(newsData || []);
       } catch (error) {
         // Error silently handled
       }
     };
-
     const fetchRecentActivity = async () => {
       try {
-        const { data: recentArticles } = await supabase
-          .from('articles')
-          .select('id, title, created_at')
-          .order('created_at', { ascending: false })
-          .limit(3);
-
-        const { data: recentNews } = await supabase
-          .from('news')
-          .select('id, title, created_at')
-          .order('created_at', { ascending: false })
-          .limit(3);
-
-        const combined: RecentActivity[] = [
-          ...(recentArticles || []).map(a => ({ ...a, type: 'article' as const })),
-          ...(recentNews || []).map(n => ({ ...n, type: 'news' as const }))
-        ].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
-          .slice(0, 5);
-
+        const {
+          data: recentArticles
+        } = await supabase.from('articles').select('id, title, created_at').order('created_at', {
+          ascending: false
+        }).limit(3);
+        const {
+          data: recentNews
+        } = await supabase.from('news').select('id, title, created_at').order('created_at', {
+          ascending: false
+        }).limit(3);
+        const combined: RecentActivity[] = [...(recentArticles || []).map(a => ({
+          ...a,
+          type: 'article' as const
+        })), ...(recentNews || []).map(n => ({
+          ...n,
+          type: 'news' as const
+        }))].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).slice(0, 5);
         setRecentActivity(combined);
       } catch (error) {
         // Error silently handled
       }
     };
-
     fetchStats();
     fetchTopContent();
     fetchRecentActivity();
   }, []);
-
-  const statCards = [
-    {
-      title: "Total Artikel",
-      value: stats.articles.toLocaleString(),
-      icon: FileText,
-      iconBgColor: "bg-blue-500",
-      iconColor: "text-white",
-      trend: "+8.5%",
-      trendUp: true,
-      trendLabel: "vs bulan lalu"
-    },
-    {
-      title: "Total Berita",
-      value: stats.news.toLocaleString(),
-      icon: Newspaper,
-      iconBgColor: "bg-green-500",
-      iconColor: "text-white",
-      trend: "+1.3%",
-      trendUp: true,
-      trendLabel: "vs bulan lalu"
-    },
-    {
-      title: "Total Views",
-      value: stats.totalViews.toLocaleString(),
-      icon: Eye,
-      iconBgColor: "bg-purple-500",
-      iconColor: "text-white",
-      trend: "-4.3%",
-      trendUp: false,
-      trendLabel: "vs bulan lalu"
-    },
-    {
-      title: "Saran Masuk",
-      value: stats.submissions.toLocaleString(),
-      icon: MessageSquare,
-      iconBgColor: "bg-orange-500",
-      iconColor: "text-white",
-      trend: "+1.8%",
-      trendUp: true,
-      trendLabel: "vs bulan lalu"
-    },
-  ];
-
-  return (
-    <div className="space-y-6">
+  const statCards = [{
+    title: "Total Artikel",
+    value: stats.articles.toLocaleString(),
+    icon: FileText,
+    iconBgColor: "bg-blue-500",
+    iconColor: "text-white",
+    trend: "+8.5%",
+    trendUp: true,
+    trendLabel: "vs bulan lalu"
+  }, {
+    title: "Total Berita",
+    value: stats.news.toLocaleString(),
+    icon: Newspaper,
+    iconBgColor: "bg-green-500",
+    iconColor: "text-white",
+    trend: "+1.3%",
+    trendUp: true,
+    trendLabel: "vs bulan lalu"
+  }, {
+    title: "Total Views",
+    value: stats.totalViews.toLocaleString(),
+    icon: Eye,
+    iconBgColor: "bg-purple-500",
+    iconColor: "text-white",
+    trend: "-4.3%",
+    trendUp: false,
+    trendLabel: "vs bulan lalu"
+  }, {
+    title: "Saran Masuk",
+    value: stats.submissions.toLocaleString(),
+    icon: MessageSquare,
+    iconBgColor: "bg-orange-500",
+    iconColor: "text-white",
+    trend: "+1.8%",
+    trendUp: true,
+    trendLabel: "vs bulan lalu"
+  }];
+  return <div className="space-y-6">
       {/* Welcome Card */}
-      <div className="bg-gradient-to-r from-primary via-blue-500 to-cyan-500 rounded-xl p-6 sm:p-8 text-white shadow-lg animate-fade-in">
+      <div className="bg-gradient-to-r from-primary via-blue-500 to-cyan-500 rounded-xl p-6 sm:p-8 text-white shadow-lg animate-fade-in bg-red-500">
         <div className="flex items-start gap-3">
-          <span className="text-3xl sm:text-4xl">👋</span>
+          
           <div>
             <h2 className="text-xl sm:text-2xl font-bold mb-2">Selamat Datang!</h2>
             <p className="text-white/90 text-sm sm:text-base">Berikut ringkasan data sistem UKKPK hari ini</p>
@@ -177,8 +161,7 @@ export const DashboardOverview = () => {
 
       {/* Stats Cards */}
       <div className="grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-        {statCards.map((stat) => (
-          <Card key={stat.title} className="relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-shadow bg-white">
+        {statCards.map(stat => <Card key={stat.title} className="relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-shadow bg-white">
             <CardContent className="p-6">
               <div className="flex items-start justify-between">
                 <div className="space-y-2">
@@ -202,8 +185,7 @@ export const DashboardOverview = () => {
                 </div>
               </div>
             </CardContent>
-          </Card>
-        ))}
+          </Card>)}
       </div>
 
       {/* Recent Activity */}
@@ -213,11 +195,7 @@ export const DashboardOverview = () => {
         </CardHeader>
         <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
           <div className="space-y-2 sm:space-y-3 md:space-y-4">
-            {recentActivity.length === 0 ? (
-              <p className="text-center text-gray-500 py-4 sm:py-6 md:py-8 text-xs sm:text-sm">Belum ada aktivitas</p>
-            ) : (
-              recentActivity.map((activity) => (
-                <div key={`${activity.type}-${activity.id}`} className="flex items-start gap-2 sm:gap-3 md:gap-4 pb-2 sm:pb-3 md:pb-4 border-b last:border-0">
+            {recentActivity.length === 0 ? <p className="text-center text-gray-500 py-4 sm:py-6 md:py-8 text-xs sm:text-sm">Belum ada aktivitas</p> : recentActivity.map(activity => <div key={`${activity.type}-${activity.id}`} className="flex items-start gap-2 sm:gap-3 md:gap-4 pb-2 sm:pb-3 md:pb-4 border-b last:border-0">
                   <div className="flex-shrink-0">
                     <Badge variant={activity.type === 'article' ? 'default' : 'secondary'} className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5">
                       {activity.type === 'article' ? 'Artikel' : 'Berita'}
@@ -226,12 +204,12 @@ export const DashboardOverview = () => {
                   <div className="flex-1 min-w-0">
                     <h4 className="font-medium text-gray-900 text-xs sm:text-sm md:text-base line-clamp-2">{activity.title}</h4>
                     <p className="text-[10px] sm:text-xs md:text-sm text-gray-500 mt-0.5">
-                      {format(new Date(activity.created_at), "d MMM yyyy, HH:mm", { locale: id })}
+                      {format(new Date(activity.created_at), "d MMM yyyy, HH:mm", {
+                  locale: id
+                })}
                     </p>
                   </div>
-                </div>
-              ))
-            )}
+                </div>)}
           </div>
         </CardContent>
       </Card>
@@ -248,11 +226,7 @@ export const DashboardOverview = () => {
           </CardHeader>
           <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
             <div className="space-y-2 sm:space-y-3 md:space-y-4">
-              {topArticles.length === 0 ? (
-                <p className="text-center text-gray-500 py-4 sm:py-6 md:py-8 text-xs sm:text-sm">Belum ada artikel</p>
-              ) : (
-                topArticles.map((article, index) => (
-                  <div key={article.id} className="flex items-start gap-2 sm:gap-3 md:gap-4">
+              {topArticles.length === 0 ? <p className="text-center text-gray-500 py-4 sm:py-6 md:py-8 text-xs sm:text-sm">Belum ada artikel</p> : topArticles.map((article, index) => <div key={article.id} className="flex items-start gap-2 sm:gap-3 md:gap-4">
                     <div className="flex-shrink-0">
                       <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-primary/10 flex items-center justify-center">
                         <span className="text-[10px] sm:text-xs md:text-sm font-bold text-primary">{index + 1}</span>
@@ -271,9 +245,7 @@ export const DashboardOverview = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))
-              )}
+                  </div>)}
             </div>
           </CardContent>
         </Card>
@@ -288,11 +260,7 @@ export const DashboardOverview = () => {
           </CardHeader>
           <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
             <div className="space-y-2 sm:space-y-3 md:space-y-4">
-              {topNews.length === 0 ? (
-                <p className="text-center text-gray-500 py-4 sm:py-6 md:py-8 text-xs sm:text-sm">Belum ada berita</p>
-              ) : (
-                topNews.map((newsItem, index) => (
-                  <div key={newsItem.id} className="flex items-start gap-2 sm:gap-3 md:gap-4">
+              {topNews.length === 0 ? <p className="text-center text-gray-500 py-4 sm:py-6 md:py-8 text-xs sm:text-sm">Belum ada berita</p> : topNews.map((newsItem, index) => <div key={newsItem.id} className="flex items-start gap-2 sm:gap-3 md:gap-4">
                     <div className="flex-shrink-0">
                       <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-primary/10 flex items-center justify-center">
                         <span className="text-[10px] sm:text-xs md:text-sm font-bold text-primary">{index + 1}</span>
@@ -311,13 +279,10 @@ export const DashboardOverview = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))
-              )}
+                  </div>)}
             </div>
           </CardContent>
         </Card>
       </div>
-    </div>
-  );
+    </div>;
 };
