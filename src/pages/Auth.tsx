@@ -84,7 +84,7 @@ const Auth = () => {
               </p>
               
               {/* MICU Logo & Features */}
-              <div className="flex items-center gap-8">
+              <div className="gap-8 flex-col flex items-start justify-center">
                 {/* Features List */}
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
