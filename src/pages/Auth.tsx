@@ -91,19 +91,19 @@ const Auth = () => {
                     <div className="mt-1 p-1 bg-white/20 rounded-full">
                       <Check className="w-4 h-4" />
                     </div>
-                    <p className="font-medium">Manajemen konten lengkap</p>
+                    <p className="font-medium">Menyediakan Informasi Seputar UNP</p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="mt-1 p-1 bg-white/20 rounded-full">
                       <Check className="w-4 h-4" />
                     </div>
-                    <p className="font-medium">Editor teks yang canggih</p>
+                    <p className="font-medium">Artikel dan Berita Terbaru    </p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="mt-1 p-1 bg-white/20 rounded-full">
                       <Check className="w-4 h-4" />
                     </div>
-                    <p className="font-medium">Analytics & laporan</p>
+                    <p className="font-medium">​Laman Radio Kampus </p>
                   </div>
                 </div>
                 
