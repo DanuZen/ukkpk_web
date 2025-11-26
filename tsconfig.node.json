@@ -1,4 +1,4 @@
-//tsconfig.node.json
+//tsconfig.node.json.
 {
   "compilerOptions": {
     "target": "ES2022",
