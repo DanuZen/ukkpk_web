@@ -56,8 +56,8 @@ const Auth = () => {
       setLoading(false);
     }
   };
-  return <div className="min-h-screen flex">
-      {/* Left Section - Brand/Info */}
+  return <div className="min-h-screen flex flex-col lg:flex-row">
+      {/* Left Section - Brand/Info (Desktop only) */}
       <div className="hidden lg:flex lg:flex-1 bg-gradient-to-br from-primary via-primary to-primary/80 p-12 flex-col justify-between text-white relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-0 left-0 w-full h-full opacity-10">
@@ -127,6 +127,12 @@ const Auth = () => {
       {/* Right Section - Login Form */}
       <div className="flex-1 flex items-center justify-center p-4 sm:p-6 md:p-8 bg-gray-50">
         <div className="w-full max-w-md px-4 sm:px-0">
+          {/* Logo & Brand - Mobile/Tablet Only */}
+          <div className="lg:hidden flex items-center justify-center gap-3 mb-6 sm:mb-8">
+            <img src={logoUkkpk} alt="UKKPK Logo" className="h-10 w-10 sm:h-12 sm:w-12" />
+            <h1 className="text-lg sm:text-xl font-bold text-primary">UKKPK UNP</h1>
+          </div>
+
           <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-5 sm:p-6 md:p-8 space-y-4 sm:space-y-5 md:space-y-6">
             {/* Header */}
             <div className="text-center space-y-1.5 sm:space-y-2">
