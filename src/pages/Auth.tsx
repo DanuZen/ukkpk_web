@@ -109,7 +109,9 @@ const Auth = () => {
                 
                 {/* MICU Mascot Logo */}
                 <div className="flex-shrink-0">
-                  <img src={logoMicuMascot} alt="MICU Mascot" className="h-48 w-auto" />
+                  <img src={logoMicuMascot} alt="MICU Mascot" className="h-48 w-auto" style={{
+                    filter: 'drop-shadow(0 4px 8px rgba(255, 255, 255, 0.3))'
+                  }} />
                 </div>
               </div>
             </div>
