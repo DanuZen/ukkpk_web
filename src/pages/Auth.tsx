@@ -84,15 +84,10 @@ const Auth = () => {
               </p>
               
               {/* MICU Mascot Logo */}
-              <div className="flex justify-center">
-                <img 
-                  src={logoMicuMascot} 
-                  alt="MICU Mascot" 
-                  className="h-48 w-auto animate-float" 
-                  style={{
-                    filter: 'drop-shadow(0 0 30px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 60px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 90px rgba(255, 255, 255, 0.3))'
-                  }} 
-                />
+              <div className="flex items-center justify-start">
+                <img src={logoMicuMascot} alt="MICU Mascot" className="h-48 w-auto animate-float" style={{
+                filter: 'drop-shadow(0 0 30px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 60px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 90px rgba(255, 255, 255, 0.3))'
+              }} />
               </div>
             </div>
 
