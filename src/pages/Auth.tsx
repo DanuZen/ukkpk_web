@@ -76,10 +76,10 @@ const Auth = () => {
 
           <div className="space-y-8">
             <div>
-              <h2 className="text-4xl font-bold mb-4 leading-tight">
+              <h2 className="font-bold mb-4 leading-tight text-6xl">
                 Website Resmi<br />UKKPK UNP
               </h2>
-              <p className="text-lg text-white/90 leading-relaxed mb-8">
+              <p className="text-lg text-white/90 leading-relaxed mb-8 text-justify">
                 Portal informasi utama Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang yang menyediakan berita terkini, artikel kampus, dan layanan radio kampus untuk seluruh civitas akademika
               </p>
               
@@ -110,8 +110,8 @@ const Auth = () => {
                 {/* MICU Mascot Logo */}
                 <div className="flex-shrink-0">
                   <img src={logoMicuMascot} alt="MICU Mascot" className="h-48 w-auto" style={{
-                    filter: 'drop-shadow(0 4px 8px rgba(255, 255, 255, 0.3))'
-                  }} />
+                  filter: 'drop-shadow(0 4px 8px rgba(255, 255, 255, 0.3))'
+                }} />
                 </div>
               </div>
             </div>
