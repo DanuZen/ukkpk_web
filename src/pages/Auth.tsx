@@ -83,30 +83,34 @@ const Auth = () => {
                 Platform digital terintegrasi untuk mengelola konten artikel, berita, radio, dan kegiatan kampus dalam satu dashboard
               </p>
               
-              {/* MICU Mascot Logo */}
-              <div className="flex items-center justify-start">
-                <img src={logoMicuMascot} alt="MICU Mascot" className="h-48 w-auto" />
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <div className="mt-1 p-1 bg-white/20 rounded-full">
-                  <Check className="w-4 h-4" />
+              {/* MICU Logo & Features */}
+              <div className="flex items-center gap-8">
+                {/* MICU Mascot Logo */}
+                <div className="flex-shrink-0">
+                  <img src={logoMicuMascot} alt="MICU Mascot" className="h-48 w-auto" />
                 </div>
-                <p className="font-medium">Manajemen konten lengkap</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="mt-1 p-1 bg-white/20 rounded-full">
-                  <Check className="w-4 h-4" />
+                
+                {/* Features List */}
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 p-1 bg-white/20 rounded-full">
+                      <Check className="w-4 h-4" />
+                    </div>
+                    <p className="font-medium">Manajemen konten lengkap</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 p-1 bg-white/20 rounded-full">
+                      <Check className="w-4 h-4" />
+                    </div>
+                    <p className="font-medium">Editor teks yang canggih</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 p-1 bg-white/20 rounded-full">
+                      <Check className="w-4 h-4" />
+                    </div>
+                    <p className="font-medium">Analytics & laporan</p>
+                  </div>
                 </div>
-                <p className="font-medium">Editor teks yang canggih</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="mt-1 p-1 bg-white/20 rounded-full">
-                  <Check className="w-4 h-4" />
-                </div>
-                <p className="font-medium">Analytics & laporan</p>
               </div>
             </div>
           </div>
