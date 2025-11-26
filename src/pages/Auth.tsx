@@ -85,11 +85,6 @@ const Auth = () => {
               
               {/* MICU Logo & Features */}
               <div className="flex items-center gap-8">
-                {/* MICU Mascot Logo */}
-                <div className="flex-shrink-0">
-                  <img src={logoMicuMascot} alt="MICU Mascot" className="h-48 w-auto" />
-                </div>
-                
                 {/* Features List */}
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
@@ -110,6 +105,11 @@ const Auth = () => {
                     </div>
                     <p className="font-medium">Analytics & laporan</p>
                   </div>
+                </div>
+                
+                {/* MICU Mascot Logo */}
+                <div className="flex-shrink-0">
+                  <img src={logoMicuMascot} alt="MICU Mascot" className="h-48 w-auto" />
                 </div>
               </div>
             </div>
