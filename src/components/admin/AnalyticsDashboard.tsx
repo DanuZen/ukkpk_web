@@ -220,9 +220,14 @@ export const AnalyticsDashboard = () => {
       </div>;
   }
   return <div className="space-y-3 sm:space-y-4 md:space-y-6">
-      <div className="px-1">
-        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1">Analytics & Statistik</h2>
-        <p className="text-xs sm:text-sm md:text-base text-gray-600">Data performa konten website UKKPK</p>
+      <div className="mb-6">
+        <div className="flex items-center gap-3">
+          <TrendingUp className="h-8 w-8 text-primary animate-fade-in" />
+          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
+            <h2 className="text-2xl font-bold text-gray-900">Analytics & Statistik</h2>
+            <p className="text-gray-600 mt-1">Data performa konten website UKKPK</p>
+          </div>
+        </div>
       </div>
 
       {/* Overview Stats - First Row */}
