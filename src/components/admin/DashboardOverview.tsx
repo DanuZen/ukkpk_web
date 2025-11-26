@@ -149,7 +149,7 @@ export const DashboardOverview = () => {
   }];
   return <div className="space-y-6">
       {/* Welcome Card */}
-      <div className="bg-gradient-to-r from-primary via-blue-500 to-cyan-500 rounded-xl p-6 sm:p-8 text-white shadow-lg animate-fade-in bg-red-500">
+      <div className="bg-gradient-to-r from-primary via-primary via-primary/90 to-black/80 rounded-xl p-6 sm:p-8 text-white shadow-lg animate-fade-in">
         <div className="flex items-start gap-3">
           
           <div>
