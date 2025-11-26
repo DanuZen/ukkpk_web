@@ -209,20 +209,20 @@ export const ThemeManager = () => {
         <CardContent className="space-y-6">
           <div className="grid gap-6 md:grid-cols-3">
             <div className="space-y-2">
-              <Label htmlFor="primary-color">Warna Primer</Label>
+              <Label htmlFor="primary-color" className="text-sm">Warna Primer</Label>
               <div className="flex gap-2">
                 <Input
                   id="primary-color"
                   type="color"
                   value={primaryColor}
                   onChange={(e) => setPrimaryColor(e.target.value)}
-                  className="h-10 w-20 cursor-pointer"
+                  className="h-10 w-14 sm:w-16 cursor-pointer flex-shrink-0"
                 />
                 <Input
                   type="text"
                   value={primaryColor}
                   onChange={(e) => setPrimaryColor(e.target.value)}
-                  className="flex-1"
+                  className="flex-1 min-w-0 text-sm"
                   placeholder="#dc2626"
                 />
               </div>
@@ -232,20 +232,20 @@ export const ThemeManager = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="secondary-color">Warna Sekunder</Label>
+              <Label htmlFor="secondary-color" className="text-sm">Warna Sekunder</Label>
               <div className="flex gap-2">
                 <Input
                   id="secondary-color"
                   type="color"
                   value={secondaryColor}
                   onChange={(e) => setSecondaryColor(e.target.value)}
-                  className="h-10 w-20 cursor-pointer"
+                  className="h-10 w-14 sm:w-16 cursor-pointer flex-shrink-0"
                 />
                 <Input
                   type="text"
                   value={secondaryColor}
                   onChange={(e) => setSecondaryColor(e.target.value)}
-                  className="flex-1"
+                  className="flex-1 min-w-0 text-sm"
                   placeholder="#64748b"
                 />
               </div>
@@ -255,20 +255,20 @@ export const ThemeManager = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="accent-color">Warna Aksen</Label>
+              <Label htmlFor="accent-color" className="text-sm">Warna Aksen</Label>
               <div className="flex gap-2">
                 <Input
                   id="accent-color"
                   type="color"
                   value={accentColor}
                   onChange={(e) => setAccentColor(e.target.value)}
-                  className="h-10 w-20 cursor-pointer"
+                  className="h-10 w-14 sm:w-16 cursor-pointer flex-shrink-0"
                 />
                 <Input
                   type="text"
                   value={accentColor}
                   onChange={(e) => setAccentColor(e.target.value)}
-                  className="flex-1"
+                  className="flex-1 min-w-0 text-sm"
                   placeholder="#f59e0b"
                 />
               </div>
@@ -278,17 +278,17 @@ export const ThemeManager = () => {
             </div>
           </div>
 
-          <div className="flex gap-3 pt-4 border-t">
+          <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
             <Button 
               onClick={() => {
                 applyTheme();
-                setSelectedPreset(null); // Clear preset selection when manually applying
+                setSelectedPreset(null);
               }} 
-              className="flex-1"
+              className="flex-1 text-sm"
             >
               Terapkan Warna Manual
             </Button>
-            <Button onClick={resetTheme} variant="outline" className="gap-2">
+            <Button onClick={resetTheme} variant="outline" className="gap-2 text-sm sm:w-auto">
               <RefreshCw className="h-4 w-4" />
               Reset Default
             </Button>
