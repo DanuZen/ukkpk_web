@@ -220,12 +220,12 @@ export const AnalyticsDashboard = () => {
       </div>;
   }
   return <div className="space-y-3 sm:space-y-4 md:space-y-6">
-      <div className="mb-6">
-        <div className="flex items-center gap-3">
-          <TrendingUp className="h-8 w-8 text-primary animate-fade-in" />
+      <div className="mb-4 sm:mb-6">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <TrendingUp className="h-6 w-6 sm:h-8 sm:w-8 text-primary animate-fade-in flex-shrink-0" />
           <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
-            <h2 className="text-2xl font-bold text-gray-900">Analytics & Statistik</h2>
-            <p className="text-gray-600 mt-1">Data performa konten website UKKPK</p>
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Analytics & Statistik</h2>
+            <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-0.5 sm:mt-1">Data performa konten website UKKPK</p>
           </div>
         </div>
       </div>

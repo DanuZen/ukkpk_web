@@ -221,14 +221,14 @@ export const NewsManager = () => {
 
   return (
     <div className="space-y-2 sm:space-y-3 md:space-y-6">
-      <div className="flex justify-between items-start gap-2 mb-6">
-        <div className="flex items-center gap-3">
-          <Newspaper className="h-8 w-8 text-primary flex-shrink-0 animate-fade-in" />
+      <div className="flex justify-between items-start gap-2 mb-4 sm:mb-6">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Newspaper className="h-6 w-6 sm:h-8 sm:w-8 text-primary flex-shrink-0 animate-fade-in" />
           <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
-            <h2 className="text-2xl font-bold text-gray-900">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">
               {editingId ? "Edit Berita" : "Kelola Berita"}
             </h2>
-            <p className="text-gray-600 mt-1">
+            <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-0.5 sm:mt-1">
               {editingId ? "Perbarui berita yang sudah ada" : "Buat dan kelola konten berita terkini"}
             </p>
           </div>
