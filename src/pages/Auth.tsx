@@ -96,28 +96,19 @@ const Auth = () => {
                 <div className="mt-1 p-1 bg-white/20 rounded-full">
                   <Check className="w-4 h-4" />
                 </div>
-                <div>
-                  <p className="font-medium">Manajemen konten lengkap</p>
-                  <p className="text-sm text-white/80">Kelola artikel, berita, dan radio dalam satu platform</p>
-                </div>
+                <p className="font-medium">Manajemen konten lengkap</p>
               </div>
               <div className="flex items-start gap-3">
                 <div className="mt-1 p-1 bg-white/20 rounded-full">
                   <Check className="w-4 h-4" />
                 </div>
-                <div>
-                  <p className="font-medium">Editor teks yang canggih</p>
-                  <p className="text-sm text-white/80">Buat konten menarik dengan rich text editor profesional</p>
-                </div>
+                <p className="font-medium">Editor teks yang canggih</p>
               </div>
               <div className="flex items-start gap-3">
                 <div className="mt-1 p-1 bg-white/20 rounded-full">
                   <Check className="w-4 h-4" />
                 </div>
-                <div>
-                  <p className="font-medium">Analytics & laporan</p>
-                  <p className="text-sm text-white/80">Pantau performa konten dengan dashboard analytics real-time</p>
-                </div>
+                <p className="font-medium">Analytics & laporan</p>
               </div>
             </div>
           </div>
