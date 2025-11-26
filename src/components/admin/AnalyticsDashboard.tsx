@@ -343,73 +343,72 @@ export const AnalyticsDashboard = () => {
         </Card>
       </div>
 
-      {/* Statistik Views Chart */}
-      <Card className="border-0 shadow-xl">
-        <CardHeader className="flex flex-row items-center justify-between pb-2">
-          <CardTitle className="text-lg font-semibold">Statistik Views</CardTitle>
-          <div className="flex gap-2">
-            <select 
-              className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer"
-              value={selectedMonth}
-              onChange={(e) => setSelectedMonth(Number(e.target.value))}
-            >
-              {months.map((month, index) => (
-                <option key={index} value={index}>{month}</option>
-              ))}
-            </select>
-            <select 
-              className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer"
-              value={selectedYear}
-              onChange={(e) => setSelectedYear(Number(e.target.value))}
-            >
-              {years.map((year) => (
-                <option key={year} value={year}>{year}</option>
-              ))}
-            </select>
-          </div>
-        </CardHeader>
-        <CardContent className="pt-4">
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-              <XAxis 
-                dataKey="day" 
-                stroke="#999"
-                tick={{ fontSize: 12 }}
-              />
-              <YAxis 
-                stroke="#999"
-                tick={{ fontSize: 12 }}
-              />
-              <Tooltip 
-                contentStyle={{
-                  backgroundColor: 'white',
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '6px',
-                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                }}
-              />
-              <Line 
-                type="monotone" 
-                dataKey="views" 
-                stroke="hsl(var(--primary))" 
-                strokeWidth={2}
-                dot={{ fill: 'hsl(var(--primary))', strokeWidth: 2 }}
-                activeDot={{ r: 6 }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </CardContent>
-      </Card>
-
-      {/* Charts */}
+      {/* Statistik Views & Perbandingan Charts */}
       <div className="grid gap-3 sm:gap-4 md:gap-6 lg:grid-cols-2">
+        <Card className="border-0 shadow-xl">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-lg font-semibold">Statistik Views</CardTitle>
+            <div className="flex gap-2">
+              <select 
+                className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer"
+                value={selectedMonth}
+                onChange={(e) => setSelectedMonth(Number(e.target.value))}
+              >
+                {months.map((month, index) => (
+                  <option key={index} value={index}>{month}</option>
+                ))}
+              </select>
+              <select 
+                className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer"
+                value={selectedYear}
+                onChange={(e) => setSelectedYear(Number(e.target.value))}
+              >
+                {years.map((year) => (
+                  <option key={year} value={year}>{year}</option>
+                ))}
+              </select>
+            </div>
+          </CardHeader>
+          <CardContent className="pt-4">
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={chartData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                <XAxis 
+                  dataKey="day" 
+                  stroke="#999"
+                  tick={{ fontSize: 12 }}
+                />
+                <YAxis 
+                  stroke="#999"
+                  tick={{ fontSize: 12 }}
+                />
+                <Tooltip 
+                  contentStyle={{
+                    backgroundColor: 'white',
+                    border: '1px solid #e5e7eb',
+                    borderRadius: '6px',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                  }}
+                />
+                <Line 
+                  type="monotone" 
+                  dataKey="views" 
+                  stroke="hsl(var(--primary))" 
+                  strokeWidth={2}
+                  dot={{ fill: 'hsl(var(--primary))', strokeWidth: 2 }}
+                  activeDot={{ r: 6 }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
         <Card className="shadow-xl">
           <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
             <CardTitle className="text-sm sm:text-base md:text-xl">Perbandingan Artikel vs Berita</CardTitle>
           </CardHeader>
           <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
-            <ResponsiveContainer width="100%" height={200}>
+            <ResponsiveContainer width="100%" height={300}>
               <BarChart data={comparisonData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" tick={{ fontSize: 9 }} />
@@ -422,7 +421,10 @@ export const AnalyticsDashboard = () => {
             </ResponsiveContainer>
           </CardContent>
         </Card>
+      </div>
 
+      {/* Top Content Chart */}
+      <div className="grid gap-3 sm:gap-4 md:gap-6">
         <Card className="shadow-xl">
           <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
             <CardTitle className="text-sm sm:text-base md:text-xl">Top 8 Konten Terpopuler</CardTitle>
