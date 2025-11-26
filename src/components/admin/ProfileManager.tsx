@@ -124,12 +124,12 @@ const BannerSection = () => {
     }
   };
   return <div className="space-y-3 sm:space-y-4 md:space-y-6">
-      <div className="mb-6">
-        <div className="flex items-center gap-3">
-          <ImageIcon className="h-8 w-8 text-primary animate-fade-in" />
+      <div className="mb-4 sm:mb-6">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <ImageIcon className="h-6 w-6 sm:h-8 sm:w-8 text-primary animate-fade-in flex-shrink-0" />
           <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
-            <h2 className="text-2xl font-bold text-gray-900">Banner Profil UKKPK</h2>
-            <p className="text-gray-600 mt-1">Upload dan kelola banner untuk halaman Profil UKKPK</p>
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Banner Profil UKKPK</h2>
+            <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-0.5 sm:mt-1">Upload dan kelola banner untuk halaman Profil UKKPK</p>
           </div>
         </div>
       </div>
@@ -282,12 +282,12 @@ const SlideshowSection = () => {
     }
   };
   return <div className="space-y-3 sm:space-y-4 md:space-y-6">
-      <div className="mb-6">
-        <div className="flex items-center gap-3">
-          <Settings className="h-8 w-8 text-primary animate-fade-in" />
+      <div className="mb-4 sm:mb-6">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Settings className="h-6 w-6 sm:h-8 sm:w-8 text-primary animate-fade-in flex-shrink-0" />
           <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
-            <h2 className="text-2xl font-bold text-gray-900">Kelola Slideshow Home</h2>
-            <p className="text-gray-600 mt-1">Upload dan atur kecepatan slideshow di halaman Home</p>
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Kelola Slideshow Home</h2>
+            <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-0.5 sm:mt-1">Upload dan atur kecepatan slideshow di halaman Home</p>
           </div>
         </div>
       </div>
@@ -474,14 +474,14 @@ const StructureSection = () => {
     setImagePreview("");
   };
   return <div className="space-y-2 sm:space-y-3 md:space-y-6">
-      <div className="flex justify-between items-start gap-2 mb-6">
-        <div className="flex items-center gap-3">
-          <Users className="h-8 w-8 text-primary flex-shrink-0 animate-fade-in" />
+      <div className="flex justify-between items-start gap-2 mb-4 sm:mb-6">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Users className="h-6 w-6 sm:h-8 sm:w-8 text-primary flex-shrink-0 animate-fade-in" />
           <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
-            <h2 className="text-2xl font-bold text-gray-900">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">
               {editingId ? "Edit Struktur" : "Struktur Organisasi"}
             </h2>
-            <p className="text-gray-600 mt-1">
+            <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-0.5 sm:mt-1">
               {editingId ? "Perbarui struktur organisasi yang ada" : "Tambah dan kelola struktur DPH pengurus per tahun"}
             </p>
           </div>

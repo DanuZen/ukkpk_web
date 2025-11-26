@@ -37,7 +37,10 @@ const COLORS = ['#dc2626', '#ea580c', '#f59e0b', '#84cc16', '#22c55e', '#06b6d4'
 export const AnalyticsDashboard = () => {
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-  const [chartData, setChartData] = useState<{ day: number; views: number }[]>([]);
+  const [chartData, setChartData] = useState<{
+    day: number;
+    views: number;
+  }[]>([]);
   const [articles, setArticles] = useState<ArticleStats[]>([]);
   const [news, setNews] = useState<NewsStats[]>([]);
   const [overallStats, setOverallStats] = useState<OverallStats>({
@@ -59,31 +62,27 @@ export const AnalyticsDashboard = () => {
   useEffect(() => {
     fetchAnalytics();
   }, []);
-
   useEffect(() => {
     const fetchChartData = async () => {
       try {
         const startDate = new Date(selectedYear, selectedMonth, 1);
         const endDate = new Date(selectedYear, selectedMonth + 1, 0);
-        
-        // Fetch articles and news for selected month/year
-        const { data: articlesData } = await supabase
-          .from('articles')
-          .select('published_at, view_count')
-          .gte('published_at', startDate.toISOString())
-          .lte('published_at', endDate.toISOString());
 
-        const { data: newsData } = await supabase
-          .from('news')
-          .select('published_at, view_count')
-          .gte('published_at', startDate.toISOString())
-          .lte('published_at', endDate.toISOString());
+        // Fetch articles and news for selected month/year
+        const {
+          data: articlesData
+        } = await supabase.from('articles').select('published_at, view_count').gte('published_at', startDate.toISOString()).lte('published_at', endDate.toISOString());
+        const {
+          data: newsData
+        } = await supabase.from('news').select('published_at, view_count').gte('published_at', startDate.toISOString()).lte('published_at', endDate.toISOString());
 
         // Calculate days in month
         const daysInMonth = endDate.getDate();
-        
+
         // Initialize array with zeros for each day
-        const dailyViews = Array.from({ length: daysInMonth }, (_, i) => ({
+        const dailyViews = Array.from({
+          length: daysInMonth
+        }, (_, i) => ({
           day: i + 1,
           views: 0
         }));
@@ -103,13 +102,11 @@ export const AnalyticsDashboard = () => {
             dailyViews[day - 1].views += news.view_count || 0;
           }
         });
-
         setChartData(dailyViews);
       } catch (error) {
         console.error('Error fetching chart data:', error);
       }
     };
-
     fetchChartData();
   }, [selectedMonth, selectedYear]);
   const fetchAnalytics = async () => {
@@ -172,13 +169,10 @@ export const AnalyticsDashboard = () => {
   };
   const topArticles = articles.slice(0, 5);
   const topNews = news.slice(0, 5);
-
-  const months = [
-    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-  ];
-
-  const years = Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - i);
+  const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+  const years = Array.from({
+    length: 10
+  }, (_, i) => new Date().getFullYear() - i);
 
   // Prepare data for comparison chart
   const comparisonData = [{
@@ -226,9 +220,14 @@ export const AnalyticsDashboard = () => {
       </div>;
   }
   return <div className="space-y-3 sm:space-y-4 md:space-y-6">
-      <div className="px-1">
-        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1">Analytics & Statistik</h2>
-        <p className="text-xs sm:text-sm md:text-base text-gray-600">Data performa konten website UKKPK</p>
+      <div className="mb-4 sm:mb-6">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <TrendingUp className="h-6 w-6 sm:h-8 sm:w-8 text-primary animate-fade-in flex-shrink-0" />
+          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Analytics & Statistik</h2>
+            <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-0.5 sm:mt-1">Data performa konten website UKKPK</p>
+          </div>
+        </div>
       </div>
 
       {/* Overview Stats - First Row */}
@@ -343,104 +342,76 @@ export const AnalyticsDashboard = () => {
         </Card>
       </div>
 
-      {/* Statistik Views Chart */}
-      <Card className="border-0 shadow-xl">
-        <CardHeader className="flex flex-row items-center justify-between pb-2">
-          <CardTitle className="text-lg font-semibold">Statistik Views</CardTitle>
-          <div className="flex gap-2">
-            <select 
-              className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer"
-              value={selectedMonth}
-              onChange={(e) => setSelectedMonth(Number(e.target.value))}
-            >
-              {months.map((month, index) => (
-                <option key={index} value={index}>{month}</option>
-              ))}
-            </select>
-            <select 
-              className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer"
-              value={selectedYear}
-              onChange={(e) => setSelectedYear(Number(e.target.value))}
-            >
-              {years.map((year) => (
-                <option key={year} value={year}>{year}</option>
-              ))}
-            </select>
-          </div>
-        </CardHeader>
-        <CardContent className="pt-4">
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-              <XAxis 
-                dataKey="day" 
-                stroke="#999"
-                tick={{ fontSize: 12 }}
-              />
-              <YAxis 
-                stroke="#999"
-                tick={{ fontSize: 12 }}
-              />
-              <Tooltip 
-                contentStyle={{
-                  backgroundColor: 'white',
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '6px',
-                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                }}
-              />
-              <Line 
-                type="monotone" 
-                dataKey="views" 
-                stroke="hsl(var(--primary))" 
-                strokeWidth={2}
-                dot={{ fill: 'hsl(var(--primary))', strokeWidth: 2 }}
-                activeDot={{ r: 6 }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </CardContent>
-      </Card>
-
-      {/* Charts */}
+      {/* Statistik Views & Perbandingan Charts */}
       <div className="grid gap-3 sm:gap-4 md:gap-6 lg:grid-cols-2">
+        <Card className="border-0 shadow-xl">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-lg font-semibold">Statistik Views</CardTitle>
+            <div className="flex gap-2">
+              <select className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer" value={selectedMonth} onChange={e => setSelectedMonth(Number(e.target.value))}>
+                {months.map((month, index) => <option key={index} value={index}>{month}</option>)}
+              </select>
+              <select className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer" value={selectedYear} onChange={e => setSelectedYear(Number(e.target.value))}>
+                {years.map(year => <option key={year} value={year}>{year}</option>)}
+              </select>
+            </div>
+          </CardHeader>
+          <CardContent className="pt-4">
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={chartData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                <XAxis dataKey="day" stroke="#999" tick={{
+                fontSize: 12
+              }} />
+                <YAxis stroke="#999" tick={{
+                fontSize: 12
+              }} />
+                <Tooltip contentStyle={{
+                backgroundColor: 'white',
+                border: '1px solid #e5e7eb',
+                borderRadius: '6px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+              }} />
+                <Line type="monotone" dataKey="views" stroke="hsl(var(--primary))" strokeWidth={2} dot={{
+                fill: 'hsl(var(--primary))',
+                strokeWidth: 2
+              }} activeDot={{
+                r: 6
+              }} />
+              </LineChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
         <Card className="shadow-xl">
           <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
             <CardTitle className="text-sm sm:text-base md:text-xl">Perbandingan Artikel vs Berita</CardTitle>
           </CardHeader>
           <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
-            <ResponsiveContainer width="100%" height={200}>
+            <ResponsiveContainer width="100%" height={300}>
               <BarChart data={comparisonData}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" tick={{ fontSize: 9 }} />
-                <YAxis tick={{ fontSize: 9 }} />
+                <XAxis dataKey="name" tick={{
+                fontSize: 9
+              }} />
+                <YAxis tick={{
+                fontSize: 9
+              }} />
                 <Tooltip />
-                <Legend wrapperStyle={{ fontSize: '10px' }} />
+                <Legend wrapperStyle={{
+                fontSize: '10px'
+              }} />
                 <Bar dataKey="Artikel" fill="#dc2626" />
                 <Bar dataKey="Berita" fill="#3b82f6" />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
+      </div>
 
-        <Card className="shadow-xl">
-          <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
-            <CardTitle className="text-sm sm:text-base md:text-xl">Top 8 Konten Terpopuler</CardTitle>
-          </CardHeader>
-          <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
-            <ResponsiveContainer width="100%" height={200}>
-              <BarChart data={topContentData} layout="horizontal">
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis type="number" tick={{ fontSize: 9 }} />
-                <YAxis dataKey="title" type="category" width={60} tick={{ fontSize: 8 }} />
-                <Tooltip />
-                <Legend wrapperStyle={{ fontSize: '10px' }} />
-                <Bar dataKey="views" fill="#dc2626" name="Views" />
-                <Bar dataKey="likes" fill="#f59e0b" name="Likes" />
-              </BarChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
+      {/* Top Content Chart */}
+      <div className="grid gap-3 sm:gap-4 md:gap-6">
+        
       </div>
     </div>;
 };
