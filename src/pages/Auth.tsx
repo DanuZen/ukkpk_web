@@ -119,7 +119,7 @@ const Auth = () => {
         </div>
 
         <div className="relative z-10">
-          <p className="text-sm text-white/70">© 2025 UKKPK UNP. All          </p>
+          <p className="text-sm text-white/70">© 2025 UKKPK UNP.           </p>
         </div>
       </div>
 
