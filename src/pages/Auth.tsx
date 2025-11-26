@@ -77,10 +77,10 @@ const Auth = () => {
           <div className="space-y-8">
             <div>
               <h2 className="text-4xl font-bold mb-4 leading-tight">
-                Kelola Media Kampus<br />Lebih Mudah & Efisien
+                Website Resmi<br />UKKPK UNP
               </h2>
               <p className="text-lg text-white/90 leading-relaxed mb-8">
-                Platform digital terintegrasi untuk mengelola konten artikel, berita, radio, dan kegiatan kampus dalam satu dashboard
+                Portal informasi utama Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang yang menyediakan berita terkini, artikel kampus, dan layanan radio kampus untuk seluruh civitas akademika
               </p>
               
               {/* MICU Logo & Features */}
