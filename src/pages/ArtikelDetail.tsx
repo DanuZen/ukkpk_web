@@ -179,7 +179,7 @@ const ArtikelDetail = () => {
     <Layout>
       <article className={`py-2 md:py-8 px-2 md:px-4 transition-all duration-500 ${isExiting ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'} ${isEntering ? 'opacity-0 translate-y-8' : ''}`}>
         <div className="container mx-auto max-w-7xl">
-          <Button variant="ghost" className="hidden md:inline-flex mb-6" onClick={handleBack}>
+          <Button variant="ghost" className="hidden md:inline-flex mb-6 bg-transparent hover:bg-muted/50 hover:text-foreground" onClick={handleBack}>
             <ArrowLeft className="mr-2 h-4 w-4" />
             Kembali
           </Button>
@@ -284,7 +284,7 @@ const ArtikelDetail = () => {
               )}
 
               <div className="mt-8 pt-6 border-t border-border">
-                <Button variant="outline" onClick={() => navigate('/artikel')}>
+                <Button variant="ghost" onClick={() => navigate('/artikel')} className="bg-transparent hover:bg-muted/50 hover:text-foreground">
                   Lihat Artikel Lainnya
                 </Button>
               </div>
@@ -308,6 +308,11 @@ const ArtikelDetail = () => {
                       </h4>
                     </div>
                   ))}
+                </div>
+                <div className="mt-6 pt-6 border-t border-border">
+                  <Button variant="ghost" className="w-full bg-transparent hover:bg-muted/50 hover:text-foreground" onClick={() => navigate('/berita')}>
+                    Lihat Berita Lainnya
+                  </Button>
                 </div>
               </div>
             </div>

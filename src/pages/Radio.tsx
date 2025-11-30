@@ -318,7 +318,7 @@ const Radio = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 {filteredPrograms.map((program, index) => (
                   <AnimatedSection key={program.id} animation="fade-up" delay={index * 100}>
-                    <Card className="group relative overflow-hidden border-border/40 hover:border-primary/40 transition-all duration-500 shadow-lg hover:shadow-2xl hover:shadow-primary/10 bg-white dark:bg-gray-900">
+                    <Card className="group relative overflow-hidden border-border/40 hover:border-primary/40 transition-all duration-500 shadow-lg hover:shadow-2xl hover:shadow-primary/10 bg-white dark:bg-gray-900 h-full flex flex-col">
                       {/* Gradient Background on Hover */}
                       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -354,9 +354,9 @@ const Radio = () => {
                           </div>
                         </div>
                       </CardHeader>
-                      <CardContent className="relative space-y-3 px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6">
+                      <CardContent className="relative space-y-3 px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 flex-1 flex flex-col">
                         <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2 group-hover:text-foreground/80 transition-colors duration-300">{program.description}</p>
-                        <div className="flex items-center gap-2 pt-2 border-t border-border/50">
+                        <div className="flex items-center gap-2 pt-2 border-t border-border/50 mt-auto">
                           <div className="flex items-center gap-1.5 text-sm">
                             <Mic className="h-3.5 w-3.5 text-primary" />
                             <span className="font-medium text-foreground">{program.host}</span>

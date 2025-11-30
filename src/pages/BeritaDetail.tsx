@@ -76,8 +76,9 @@ const BeritaDetail = () => {
     try {
       const { data, error } = await supabase.from('news').select('*').neq('id', id).order('created_at', { ascending: false }).limit(8);
       if (error) throw error;
-      setOtherNews((data || []).slice(0, 3));
-      setRelatedNews((data || []).slice(3, 8));
+      // Prioritize sidebar (relatedNews) first
+      setRelatedNews((data || []).slice(0, 5));
+      setOtherNews((data || []).slice(5, 8));
     } catch (error) {
       console.error('Error fetching related news:', error);
     }
@@ -280,7 +281,7 @@ const BeritaDetail = () => {
               )}
 
               <div className="mt-4 md:mt-8 pt-3 md:pt-6 border-t border-border">
-                <Button variant="outline" onClick={() => navigate('/berita')} className="text-xs md:text-sm px-3 md:px-4 py-1.5 md:py-2">
+                <Button variant="ghost" onClick={() => navigate('/berita')} className="text-xs md:text-sm px-3 md:px-4 py-1.5 md:py-2 bg-transparent hover:bg-muted/50 hover:text-foreground">
                   Lihat Berita Lainnya
                 </Button>
               </div>
@@ -304,6 +305,11 @@ const BeritaDetail = () => {
                       </h4>
                     </div>
                   ))}
+                </div>
+                <div className="mt-6 pt-6 border-t border-border">
+                  <Button variant="ghost" className="w-full bg-transparent hover:bg-muted/50 hover:text-foreground" onClick={() => navigate('/berita')}>
+                    Lihat Berita Lainnya
+                  </Button>
                 </div>
               </div>
             </div>
