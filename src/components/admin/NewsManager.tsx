@@ -370,7 +370,7 @@ export const NewsManager = () => {
                       {/* Preview Content */}
                       <div className="prose prose-sm sm:prose md:prose-lg max-w-none">
                         {formData.content ? (
-                          <div className="text-foreground/90 leading-relaxed article-content text-xs sm:text-sm md:text-base" dangerouslySetInnerHTML={{ __html: sanitizeHtml(formData.content) }} />
+                          <div className="text-foreground/90 leading-relaxed article-content text-xs sm:text-sm md:text-base [&_ul]:!list-disc [&_ul]:!pl-5 [&_ol]:!list-decimal [&_ol]:!pl-5 [&_li]:!pl-1 [&_li>p]:!m-0 [&_li>p]:!inline" dangerouslySetInnerHTML={{ __html: sanitizeHtml(formData.content) }} />
                         ) : (
                           <p className="text-muted-foreground italic text-xs sm:text-sm md:text-base">Konten berita akan ditampilkan di sini...</p>
                         )}
