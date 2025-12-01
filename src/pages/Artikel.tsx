@@ -63,7 +63,7 @@ const Artikel = () => {
           <AnimatedSection animation="fade-up">
             <div className="max-w-3xl mx-auto text-center space-y-2 sm:space-y-6">
               <div className="inline-block px-3 py-1 rounded-full bg-primary/10 mb-2">
-                <span className="text-xs uppercase font-semibold text-primary flex items-center gap-1">
+                <span className="text-[8px] sm:text-xs uppercase font-semibold text-primary flex items-center gap-1">
                   <BookOpen className="w-3 h-3 animate-pulse" />
                   Publikasi Artikel
                 </span>

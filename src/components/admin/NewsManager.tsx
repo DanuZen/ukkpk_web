@@ -20,6 +20,7 @@ const newsSchema = z.object({
   author: z.string().trim().max(100, 'Nama author maksimal 100 karakter').optional(),
   editor: z.string().trim().max(100, 'Nama editor maksimal 100 karakter').optional(),
   cameraman: z.string().trim().max(100, 'Nama cameraman maksimal 100 karakter').optional(),
+  image_caption: z.string().trim().max(200, 'Deskripsi gambar maksimal 200 karakter').optional(),
 });
 
 interface News {
@@ -27,6 +28,7 @@ interface News {
   title: string;
   content: string;
   image_url: string | null;
+  image_caption: string | null;
   created_at: string;
   cameraman: string[] | null;
   category: string | null;
@@ -52,6 +54,7 @@ export const NewsManager = () => {
     editor: '',
     category: '',
     image_url: '',
+    image_caption: '',
     publish_date: '',
     publish_time: '',
   });
@@ -71,7 +74,8 @@ export const NewsManager = () => {
       toast.error('Gagal memuat berita');
       return;
     }
-    setNews(data || []);
+    // Cast to News type to handle potential missing fields from database
+    setNews((data || []) as unknown as News[]);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -84,6 +88,7 @@ export const NewsManager = () => {
         content: formData.content,
         author: formData.author || undefined,
         editor: formData.editor || undefined,
+        image_caption: formData.image_caption || undefined,
       });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -130,6 +135,7 @@ export const NewsManager = () => {
         category: formData.category.trim() || null,
         cameraman: cameramen.length > 0 ? cameramen : null,
         image_url: imageUrl,
+        image_caption: formData.image_caption.trim() || null,
         published_at: publishedAt,
       };
 
@@ -145,7 +151,7 @@ export const NewsManager = () => {
         toast.success('Berita berhasil ditambahkan');
       }
 
-      setFormData({ title: '', content: '', author: '', editor: '', category: '', image_url: '', publish_date: '', publish_time: '' });
+      setFormData({ title: '', content: '', author: '', editor: '', category: '', image_url: '', image_caption: '', publish_date: '', publish_time: '' });
       setCameramen([]);
       setCurrentCameraman('');
       setEditingId(null);
@@ -177,6 +183,7 @@ export const NewsManager = () => {
       editor: item.editor || '',
       category: item.category || '',
       image_url: item.image_url || '',
+      image_caption: item.image_caption || '',
       publish_date: publishDate,
       publish_time: publishTime,
     });
@@ -217,8 +224,12 @@ export const NewsManager = () => {
         <div className="flex items-center gap-2 sm:gap-3">
           <Newspaper className="h-6 w-6 sm:h-8 sm:w-8 text-primary flex-shrink-0 animate-fade-in" />
           <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">              {editingId ? 'Edit Berita' : 'Kelola Berita'}            </h2>           {' '}
-            <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-0.5 sm:mt-1">              {editingId ? 'Perbarui berita yang sudah ada' : 'Buat dan kelola konten berita terkini'}            </p>
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">
+              {editingId ? 'Edit Berita' : 'Kelola Berita'}
+            </h2>
+            <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-0.5 sm:mt-1">
+              {editingId ? 'Perbarui berita yang sudah ada' : 'Buat dan kelola konten berita terkini'}
+            </p>
           </div>
         </div>
       </div>
@@ -311,6 +322,12 @@ export const NewsManager = () => {
             </div>
             <ImageUpload id="news-image-upload" label="Upload Gambar" currentImageUrl={formData.image_url} onFileSelect={(file) => setImageFile(file)} onRemove={() => setFormData({ ...formData, image_url: '' })} disabled={uploading} />
             <div className="space-y-0.5 sm:space-y-1">
+              <Label htmlFor="image_caption" className="text-xs sm:text-sm">
+                Deskripsi Gambar
+              </Label>
+              <Input id="image_caption" value={formData.image_caption} onChange={(e) => setFormData({ ...formData, image_caption: e.target.value })} placeholder="Keterangan untuk gambar (opsional)" className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm" />
+            </div>
+            <div className="space-y-0.5 sm:space-y-1">
               <Label htmlFor="content" className="text-xs sm:text-sm">
                 Konten
               </Label>
@@ -393,7 +410,7 @@ export const NewsManager = () => {
                     setImageFile(null);
                     setCameramen([]);
                     setCurrentCameraman('');
-                    setFormData({ title: '', content: '', author: '', editor: '', category: '', image_url: '', publish_date: '', publish_time: '' });
+                    setFormData({ title: '', content: '', author: '', editor: '', category: '', image_url: '', image_caption: '', publish_date: '', publish_time: '' });
                   }}
                   className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
                 >

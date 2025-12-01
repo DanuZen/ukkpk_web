@@ -19,6 +19,7 @@ const articleSchema = z.object({
   category: z.string().trim().max(50, "Kategori maksimal 50 karakter").optional(),
   author: z.string().trim().max(100, "Nama author maksimal 100 karakter").optional(),
   editor: z.string().trim().max(100, "Nama editor maksimal 100 karakter").optional(),
+  image_caption: z.string().trim().max(200, "Deskripsi gambar maksimal 200 karakter").optional(),
 });
 
 interface Article {
@@ -27,6 +28,7 @@ interface Article {
   content: string;
   category: string | null;
   image_url: string | null;
+  image_caption: string | null;
   created_at: string;
   author: string | null;
   editor: string | null;
@@ -50,6 +52,7 @@ export const ArticlesManager = () => {
     author: "",
     editor: "",
     image_url: "",
+    image_caption: "",
     publish_date: "",
     publish_time: "",
   });
@@ -70,7 +73,8 @@ export const ArticlesManager = () => {
       toast.error("Gagal memuat artikel");
       return;
     }
-    setArticles(data || []);
+    // Cast to Article type to handle potential missing fields from database
+    setArticles((data || []) as unknown as Article[]);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -84,6 +88,7 @@ export const ArticlesManager = () => {
         category: formData.category || undefined,
         author: formData.author || undefined,
         editor: formData.editor || undefined,
+        image_caption: formData.image_caption || undefined,
       });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -131,6 +136,7 @@ export const ArticlesManager = () => {
         author: formData.author.trim() || null,
         editor: formData.editor.trim() || null,
         image_url: imageUrl,
+        image_caption: formData.image_caption.trim() || null,
         published_at: publishedAt
       };
 
@@ -149,7 +155,7 @@ export const ArticlesManager = () => {
         toast.success("Artikel berhasil ditambahkan");
       }
 
-      setFormData({ title: "", content: "", category: "", author: "", editor: "", image_url: "", publish_date: "", publish_time: "" });
+      setFormData({ title: "", content: "", category: "", author: "", editor: "", image_url: "", image_caption: "", publish_date: "", publish_time: "" });
       setEditingId(null);
       setImageFile(null);
       fetchArticles();
@@ -179,6 +185,7 @@ export const ArticlesManager = () => {
       author: article.author || "",
       editor: article.editor || "",
       image_url: article.image_url || "",
+      image_caption: article.image_caption || "",
       publish_date: publishDate,
       publish_time: publishTime,
     });
@@ -308,6 +315,18 @@ export const ArticlesManager = () => {
               disabled={uploading}
             />
             <div className="space-y-0.5 sm:space-y-1">
+              <Label htmlFor="image_caption" className="text-xs sm:text-sm">Deskripsi Gambar</Label>
+              <Input
+                id="image_caption"
+                value={formData.image_caption}
+                onChange={(e) =>
+                  setFormData({ ...formData, image_caption: e.target.value })
+                }
+                placeholder="Keterangan untuk gambar (opsional)"
+                className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
+              />
+            </div>
+            <div className="space-y-0.5 sm:space-y-1">
               <Label htmlFor="content" className="text-xs sm:text-sm">Konten</Label>
               <Tabs defaultValue="edit" className="w-full mt-1 sm:mt-2">
                 <TabsList className="grid w-full grid-cols-2 h-7 sm:h-8 md:h-10 text-xs sm:text-sm">
@@ -399,6 +418,7 @@ export const ArticlesManager = () => {
                       author: "",
                       editor: "",
                       image_url: "",
+                      image_caption: "",
                       publish_date: "",
                       publish_time: "",
                     });

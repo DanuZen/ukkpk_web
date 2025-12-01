@@ -14,6 +14,7 @@ interface News {
   title: string;
   content: string;
   image_url: string | null;
+  image_caption: string | null;
   created_at: string;
   published_at: string | null;
   author: string | null;
@@ -63,7 +64,7 @@ const BeritaDetail = () => {
         navigate('/berita');
         return;
       }
-      setNews(data);
+      setNews(data as unknown as News);
     } catch (error) {
       console.error('Error fetching news:', error);
       toast.error('Gagal memuat berita');
@@ -77,8 +78,8 @@ const BeritaDetail = () => {
       const { data, error } = await supabase.from('news').select('*').neq('id', id).order('created_at', { ascending: false }).limit(8);
       if (error) throw error;
       // Prioritize sidebar (relatedNews) first
-      setRelatedNews((data || []).slice(0, 5));
-      setOtherNews((data || []).slice(5, 8));
+      setRelatedNews(((data || []) as unknown as News[]).slice(0, 5));
+      setOtherNews(((data || []) as unknown as News[]).slice(5, 8));
     } catch (error) {
       console.error('Error fetching related news:', error);
     }
@@ -169,91 +170,112 @@ const BeritaDetail = () => {
     <Layout>
       <article className={`py-2 md:py-8 px-2 md:px-4 transition-all duration-500 ${isExiting ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'} ${isEntering ? 'opacity-0 translate-y-8' : ''}`}>
         <div className="container mx-auto max-w-7xl">
-          <Button variant="ghost" className="hidden md:inline-flex mb-3 md:mb-6 text-xs md:text-sm bg-transparent hover:bg-muted/50 hover:text-foreground" onClick={handleBack}>
-            <ArrowLeft className="mr-1 md:mr-2 h-3 w-3 md:h-4 md:w-4" />
+          <Button variant="ghost" className="hidden md:inline-flex mb-6 bg-transparent hover:bg-muted/50 hover:text-foreground" onClick={handleBack}>
+            <ArrowLeft className="mr-2 h-4 w-4" />
             Kembali
           </Button>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-20">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-20">
             <div className="lg:col-span-2">
-              <div className="mt-8 md:mt-0 mb-3 md:mb-6">
-                <h1 className="text-lg md:text-4xl font-bold mb-2 md:mb-3 leading-tight bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+              <div className="mt-8 md:mt-0">
+                <h1 className="text-lg md:text-4xl font-bold mb-6 leading-tight bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                   {news.title}
                 </h1>
-                {news.category && <Badge variant="secondary" className="bg-primary/10 text-primary text-[10px] md:text-xs px-2 py-0.5">{news.category.toUpperCase()}</Badge>}
+                {news.category && <div className="text-primary font-bold text-[10px] md:text-xs mb-4 uppercase">{news.category}</div>}
               </div>
 
               {news.image_url && (
-                <div className="mb-3 md:mb-4">
-                  <AspectRatio ratio={16 / 9} className="rounded-md md:rounded-lg overflow-hidden bg-muted">
+                <div className="mb-4">
+                  <AspectRatio ratio={16 / 9} className="rounded-lg overflow-hidden bg-muted">
                     <img src={news.image_url} alt={news.title} loading="eager" className="w-full h-full object-cover" />
                   </AspectRatio>
-                  <p className="text-muted-foreground italic mt-2 md:mt-3 text-[10px] md:text-xs">{news.title}</p>
+                  <p className="text-[10px] md:text-sm text-muted-foreground italic mt-2 md:mt-3">{news.image_caption || news.title}</p>
                 </div>
               )}
 
-              {/* News Metadata - All in one row */}
-              <div className="mb-4 md:mb-6 pb-3 md:pb-4 border-b border-border">
-                <div className="flex flex-wrap items-center justify-between gap-2 md:gap-3">
-                  <div className="flex flex-wrap items-center gap-2 md:gap-3">
-                    <div className="bg-muted/50 px-2 md:px-3 py-1 md:py-1.5 rounded-md flex items-center gap-1.5 md:gap-2 text-[11px] md:text-xs text-muted-foreground">
-                      <Calendar className="h-3 w-3 md:h-4 md:w-4" />
-                      <span>{formatDate(news.published_at || news.created_at)}</span>
+              {/* News Metadata */}
+              <div className="mb-6 pb-4 border-b border-border">
+                <div className="flex flex-col gap-2 md:gap-3">
+                  {/* First row on mobile: Calendar and Like button */}
+                  {/* First row on desktop: Calendar, Reporter, and Like button */}
+                  <div className="flex items-center justify-between gap-2 md:gap-3">
+                    <div className="flex items-center gap-2 md:gap-3">
+                      <div className="bg-muted/50 px-2 py-1 md:px-3 md:py-1.5 rounded-md flex items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
+                        <Calendar className="h-3 w-3 md:h-4 md:w-4" />
+                        <span>{formatDate(news.published_at || news.created_at)}</span>
+                      </div>
+                      {news.author && (
+                        <div className="hidden md:flex bg-muted/50 px-2 py-1 md:px-3 md:py-1.5 rounded-md items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
+                          <User className="h-3 w-3 md:h-4 md:w-4" />
+                          <span>{news.author}</span>
+                        </div>
+                      )}
                     </div>
+                    <div className="flex items-center gap-2">
+                      <Button variant="ghost" size="sm" onClick={handleLike} disabled={isLiking} className={`flex items-center gap-1 ${hasLiked ? 'text-primary' : 'text-muted-foreground'} hover:text-primary hover:bg-transparent transition-colors h-auto py-1 px-2`}>
+                        <Heart className={`h-3 w-3 md:h-4 md:w-4 ${hasLiked ? 'fill-current' : ''}`} />
+                        <span className="text-[10px] md:text-xs">{news.likes_count || 0}</span>
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  {/* Second row on mobile: Author and Cameraman */}
+                  {/* Second row on desktop: Cameraman only (Editor moved to bottom) */}
+                  <div className="flex flex-wrap items-center gap-2 md:gap-3">
                     {news.author && (
-                      <div className="bg-muted/50 px-2 md:px-3 py-1 md:py-1.5 rounded-md flex items-center gap-1.5 md:gap-2 text-[11px] md:text-xs text-muted-foreground">
+                      <div className="md:hidden bg-muted/50 px-2 py-1 md:px-3 md:py-1.5 rounded-md flex items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
                         <User className="h-3 w-3 md:h-4 md:w-4" />
                         <span>{news.author}</span>
                       </div>
                     )}
                     {Array.isArray(news.cameraman) && news.cameraman.length > 0 && (
-                      <div className="bg-muted/50 px-2 md:px-3 py-1 md:py-1.5 rounded-md flex items-center gap-1.5 md:gap-2 text-[11px] md:text-xs text-muted-foreground">
+                      <div className="bg-muted/50 px-2 py-1 md:px-3 md:py-1.5 rounded-md flex items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
                         <Video className="h-3 w-3 md:h-4 md:w-4" />
                         <span>{news.cameraman.join(", ")}</span>
                       </div>
                     )}
                   </div>
-                  <div className="flex items-center gap-2 md:gap-4">
-                    <Button variant="ghost" size="sm" onClick={handleLike} disabled={isLiking} className={`flex items-center gap-0.5 md:gap-1 p-1 md:p-2 ${hasLiked ? 'text-primary' : 'text-muted-foreground'} hover:text-primary hover:bg-transparent transition-colors`}>
-                      <Heart className={`h-3 w-3 md:h-4 md:w-4 ${hasLiked ? 'fill-current' : ''}`} />
-                      <span className="text-[10px] md:text-xs">{news.likes_count || 0}</span>
-                    </Button>
-                  </div>
                 </div>
               </div>
 
-              <div className="prose prose-sm md:prose-lg max-w-none mb-4 md:mb-8">
-                <div className="text-foreground/90 leading-relaxed article-content text-xs md:text-base [&_ul]:!list-disc [&_ul]:!pl-5 [&_ol]:!list-decimal [&_ol]:!pl-5 [&_li]:!pl-1 [&_li>p]:!m-0 [&_li>p]:!inline" dangerouslySetInnerHTML={{ __html: sanitizeHtml(news.content) }} />
+              {/* News Content */}
+              <div className="prose prose-sm md:prose-lg max-w-none mb-6">
+                <div 
+                  className="text-foreground/90 leading-relaxed article-content text-xs md:text-base [&_ul]:!list-disc [&_ul]:!pl-5 [&_ol]:!list-decimal [&_ol]:!pl-5 [&_li]:!pl-1 [&_li>p]:!m-0 [&_li>p]:!inline"
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(news.content) }}
+                />
               </div>
 
+              {/* Editor Info - All Screens (after content) */}
               {news.editor && (
-                <div className="mb-4 md:mb-6 pb-3 md:pb-4 border-b border-border">
-                  <div className="bg-muted/50 px-2 md:px-3 py-1 md:py-1.5 rounded-md inline-flex items-center gap-1.5 md:gap-2 text-[11px] md:text-xs text-muted-foreground">
+                <div className="mb-6 pb-4 border-b border-border">
+                  <div className="bg-muted/50 px-2 py-1 md:px-3 md:py-1.5 rounded-md flex items-center gap-1.5 md:gap-2 text-[10px] md:text-sm text-muted-foreground w-fit">
                     <FileEdit className="h-3 w-3 md:h-4 md:w-4" />
                     <span>Penyunting: {news.editor}</span>
                   </div>
                 </div>
               )}
 
-              <div className="mb-4 md:mb-6 pb-3 md:pb-4 border-b border-border">
+              {/* Share Section */}
+              <div className="mb-6 pb-4 border-b border-border">
                 <div className="flex items-center gap-1.5 md:gap-2 mb-2 md:mb-3">
                   <Share2 className="h-3 w-3 md:h-4 md:w-4 text-muted-foreground" />
-                  <span className="text-xs md:text-sm font-medium text-muted-foreground">Bagikan:</span>
+                  <span className="text-[10px] md:text-sm font-medium text-muted-foreground">Bagikan:</span>
                 </div>
                 <div className="flex items-center gap-1.5 md:gap-2 flex-wrap">
-                  <Button variant="outline" size="sm" className="flex items-center gap-1 md:gap-2 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-colors text-[10px] md:text-xs px-2 md:px-3 py-1 md:py-2" onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank', 'width=600,height=400')}>
+                  <Button variant="outline" size="sm" className="flex items-center gap-1 md:gap-2 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-colors text-[10px] md:text-sm h-7 md:h-9 px-2 md:px-3" onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank', 'width=600,height=400')}>
                     <Facebook className="h-3 w-3 md:h-4 md:w-4" />
                     Facebook
                   </Button>
-                  <Button variant="outline" size="sm" className="flex items-center gap-1 md:gap-2 hover:bg-sky-500 hover:text-white hover:border-sky-500 transition-colors text-[10px] md:text-xs px-2 md:px-3 py-1 md:py-2" onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(news.title)}`, '_blank', 'width=600,height=400')}>
+                  <Button variant="outline" size="sm" className="flex items-center gap-1 md:gap-2 hover:bg-sky-500 hover:text-white hover:border-sky-500 transition-colors text-[10px] md:text-sm h-7 md:h-9 px-2 md:px-3" onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(news.title)}`, '_blank', 'width=600,height=400')}>
                     <Twitter className="h-3 w-3 md:h-4 md:w-4" />
                     Twitter
                   </Button>
-                  <Button variant="outline" size="sm" className="flex items-center gap-1 md:gap-2 hover:bg-green-500 hover:text-white hover:border-green-500 transition-colors text-[10px] md:text-xs px-2 md:px-3 py-1 md:py-2" onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent(news.title + ' ' + window.location.href)}`, '_blank')}>
+                  <Button variant="outline" size="sm" className="flex items-center gap-1 md:gap-2 hover:bg-green-500 hover:text-white hover:border-green-500 transition-colors text-[10px] md:text-sm h-7 md:h-9 px-2 md:px-3" onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent(news.title + ' ' + window.location.href)}`, '_blank')}>
                     <MessageCircle className="h-3 w-3 md:h-4 md:w-4" />
                     WhatsApp
                   </Button>
-                  <Button variant="outline" size="sm" className="flex items-center gap-1 md:gap-2 hover:bg-primary hover:text-white hover:border-primary transition-colors text-[10px] md:text-xs px-2 md:px-3 py-1 md:py-2" onClick={() => navigator.clipboard.writeText(window.location.href).then(() => toast.success('Link berhasil disalin!')).catch(() => toast.error('Gagal menyalin link'))}>
+                  <Button variant="outline" size="sm" className="flex items-center gap-1 md:gap-2 hover:bg-primary hover:text-white hover:border-primary transition-colors text-[10px] md:text-sm h-7 md:h-9 px-2 md:px-3" onClick={() => navigator.clipboard.writeText(window.location.href).then(() => toast.success('Link berhasil disalin!')).catch(() => toast.error('Gagal menyalin link'))}>
                     <Copy className="h-3 w-3 md:h-4 md:w-4" />
                     Salin URL
                   </Button>
@@ -280,8 +302,8 @@ const BeritaDetail = () => {
                 </div>
               )}
 
-              <div className="mt-4 md:mt-8 pt-3 md:pt-6 border-t border-border">
-                <Button variant="ghost" onClick={() => navigate('/berita')} className="text-xs md:text-sm px-3 md:px-4 py-1.5 md:py-2 bg-transparent hover:bg-muted/50 hover:text-foreground">
+              <div className="mt-8 pt-6 border-t border-border">
+                <Button variant="ghost" onClick={() => navigate('/berita')} className="bg-transparent hover:bg-muted/50 hover:text-foreground">
                   Lihat Berita Lainnya
                 </Button>
               </div>

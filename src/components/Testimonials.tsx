@@ -137,7 +137,6 @@ export const Testimonials = () => {
               </Avatar>
               <div className="text-center">
                 <h3 className="font-bold text-base md:text-lg">{currentTestimonial.nama}</h3>
-                <p className="text-xs md:text-sm text-primary">{currentTestimonial.email}</p>
               </div>
             </div>
 

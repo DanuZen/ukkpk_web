@@ -9,11 +9,11 @@ export const Footer = () => {
       facebook: "https://web.facebook.com/p/UKKPK-UNP-100063495233989/",
       instagram: "https://www.instagram.com/ukkpk_unp/",
       youtube: "https://www.youtube.com/@UKKPKUNP",
-      tiktok: "#"
+      tiktok: "https://www.tiktok.com/@ukkpk_unp"
     },
     sigma: {
       facebook: "#",
-      instagram: "#",
+      instagram: "https://www.instagram.com/sigmaradioukkpk/",
       youtube: "#",
       tiktok: "#"
     }
