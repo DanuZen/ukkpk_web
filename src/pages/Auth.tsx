@@ -9,8 +9,11 @@ import { toast } from "sonner";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
 import logoMicuMascot from "@/assets/logo-micu-mascot.png";
 import { Loader2, Mail, Lock, Eye, EyeOff, Check, ArrowRight, ArrowLeft } from "lucide-react";
+import { AnimatedSection } from "@/components/AnimatedSection";
+
 const REMEMBER_ME_KEY = 'ukkpk_remember_me';
 const SAVED_EMAIL_KEY = 'ukkpk_saved_email';
+
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,6 +34,7 @@ const Auth = () => {
       setEmail(savedEmail);
     }
   }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -56,6 +60,7 @@ const Auth = () => {
       setLoading(false);
     }
   };
+
   return <div className="min-h-screen flex flex-col lg:flex-row">
       {/* Left Section - Brand/Info (Desktop only) */}
       <div className="hidden lg:flex lg:flex-1 bg-gradient-to-br from-primary via-primary to-primary/80 p-12 flex-col justify-between text-white relative overflow-hidden">
@@ -70,7 +75,6 @@ const Auth = () => {
             <img src={logoUkkpk} alt="UKKPK Logo" className="h-12 w-12" />
             <div>
               <h1 className="text-xl font-bold">UKKPK UNP</h1>
-              
             </div>
           </div>
 
@@ -119,7 +123,7 @@ const Auth = () => {
         </div>
 
         <div className="relative z-10">
-          <p className="text-sm text-white/70">© 2025 UKKPK UNP.           </p>
+          <p className="text-sm text-white/70">© 2025 UKKPK UNP.           </p>
         </div>
       </div>
 
@@ -127,87 +131,91 @@ const Auth = () => {
       <div className="flex-1 flex items-center justify-center p-4 sm:p-6 md:p-8 bg-gray-50">
         <div className="w-full max-w-md px-4 sm:px-0">
           {/* Logo & Brand - Mobile/Tablet Only */}
-          <div className="lg:hidden flex items-center justify-center gap-3 mb-6 sm:mb-8">
-            <img src={logoUkkpk} alt="UKKPK Logo" className="h-10 w-10 sm:h-12 sm:w-12" />
-            <h1 className="text-lg sm:text-xl font-bold text-primary">UKKPK UNP</h1>
-          </div>
-
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-5 sm:p-6 md:p-8 space-y-4 sm:space-y-5 md:space-y-6">
-            {/* Header */}
-            <div className="text-center space-y-1.5 sm:space-y-2">
-              <p className="text-primary font-medium flex items-center justify-center gap-2 text-[10px] sm:text-xs">
-                 Selamat Datang Kembali
-              </p>
-              <h1 className="font-bold text-gray-900 text-xl sm:text-2xl">Login ke Akun Anda</h1>
-              <p className="text-muted-foreground text-xs sm:text-sm">Masuk untuk mengakses dashboard</p>
+          <AnimatedSection animation="fade-up">
+            <div className="lg:hidden flex items-center justify-center gap-3 mb-6 sm:mb-8">
+              <img src={logoUkkpk} alt="UKKPK Logo" className="h-10 w-10 sm:h-12 sm:w-12" />
+              <h1 className="text-lg sm:text-xl font-bold text-primary">UKKPK UNP</h1>
             </div>
+          </AnimatedSection>
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
-              {/* Email Field */}
-              <div className="space-y-1.5 sm:space-y-2">
-                <Label htmlFor="email" className="text-xs sm:text-sm font-medium">Email</Label>
-                <div className="relative">
-                  <Mail className="absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground" />
-                  <Input id="email" type="email" placeholder="admin@ukkpk.com" value={email} onChange={e => setEmail(e.target.value)} required className="h-10 sm:h-11 md:h-12 pl-9 sm:pl-10 text-sm" />
-                </div>
+          <AnimatedSection animation="fade-up" delay={100}>
+            <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-5 sm:p-6 md:p-8 space-y-4 sm:space-y-5 md:space-y-6">
+              {/* Header */}
+              <div className="text-center space-y-1.5 sm:space-y-2">
+                <p className="text-primary font-medium flex items-center justify-center gap-2 text-[10px] sm:text-xs">
+                   Selamat Datang Kembali
+                </p>
+                <h1 className="font-bold text-gray-900 text-xl sm:text-2xl">Login ke Akun Anda</h1>
+                <p className="text-muted-foreground text-xs sm:text-sm">Masuk untuk mengakses dashboard</p>
               </div>
 
-              {/* Password Field */}
-              <div className="space-y-1.5 sm:space-y-2">
-                <Label htmlFor="password" className="text-xs sm:text-sm font-medium">Password</Label>
-                <div className="relative">
-                  <Lock className="absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground" />
-                  <Input id="password" type={showPassword ? "text" : "password"} placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} required className="h-10 sm:h-11 md:h-12 pl-9 sm:pl-10 pr-9 sm:pr-10 text-sm" />
-                  <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-2.5 sm:right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors">
-                    {showPassword ? <EyeOff className="h-4 w-4 sm:h-5 sm:w-5" /> : <Eye className="h-4 w-4 sm:h-5 sm:w-5" />}
+              {/* Form */}
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                {/* Email Field */}
+                <div className="space-y-1.5 sm:space-y-2">
+                  <Label htmlFor="email" className="text-xs sm:text-sm font-medium">Email</Label>
+                  <div className="relative">
+                    <Mail className="absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground" />
+                    <Input id="email" type="email" placeholder="admin@ukkpk.com" value={email} onChange={e => setEmail(e.target.value)} required className="h-10 sm:h-11 md:h-12 pl-9 sm:pl-10 text-sm" />
+                  </div>
+                </div>
+
+                {/* Password Field */}
+                <div className="space-y-1.5 sm:space-y-2">
+                  <Label htmlFor="password" className="text-xs sm:text-sm font-medium">Password</Label>
+                  <div className="relative">
+                    <Lock className="absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground" />
+                    <Input id="password" type={showPassword ? "text" : "password"} placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} required className="h-10 sm:h-11 md:h-12 pl-9 sm:pl-10 pr-9 sm:pr-10 text-sm" />
+                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-2.5 sm:right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors">
+                      {showPassword ? <EyeOff className="h-4 w-4 sm:h-5 sm:w-5" /> : <Eye className="h-4 w-4 sm:h-5 sm:w-5" />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Remember Me & Forgot Password */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-1.5 sm:space-x-2">
+                    <Checkbox id="remember" checked={rememberMe} onCheckedChange={checked => setRememberMe(checked as boolean)} className="h-4 w-4" />
+                    <Label htmlFor="remember" className="text-xs sm:text-sm cursor-pointer">
+                      Ingat saya
+                    </Label>
+                  </div>
+                  <button type="button" onClick={() => toast.info("Hubungi administrator untuk reset password")} className="text-primary hover:underline text-[10px] sm:text-xs">
+                    Lupa password?
                   </button>
                 </div>
-              </div>
 
-              {/* Remember Me & Forgot Password */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-1.5 sm:space-x-2">
-                  <Checkbox id="remember" checked={rememberMe} onCheckedChange={checked => setRememberMe(checked as boolean)} className="h-4 w-4" />
-                  <Label htmlFor="remember" className="text-xs sm:text-sm cursor-pointer">
-                    Ingat saya
-                  </Label>
+                {/* Login Button */}
+                <Button type="submit" className="w-full h-10 sm:h-11 md:h-12 text-sm sm:text-base font-semibold" disabled={loading}>
+                  {loading ? <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Memproses...
+                    </> : <>
+                      Login
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </>}
+                </Button>
+              </form>
+
+              {/* Divider */}
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-200"></div>
                 </div>
-                <button type="button" onClick={() => toast.info("Hubungi administrator untuk reset password")} className="text-primary hover:underline text-[10px] sm:text-xs">
-                  Lupa password?
-                </button>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-white text-muted-foreground">atau</span>
+                </div>
               </div>
 
-              {/* Login Button */}
-              <Button type="submit" className="w-full h-10 sm:h-11 md:h-12 text-sm sm:text-base font-semibold" disabled={loading}>
-                {loading ? <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Memproses...
-                  </> : <>
-                    Login
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </>}
-              </Button>
-            </form>
-
-            {/* Divider */}
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-200"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-muted-foreground">atau</span>
+              {/* Back to Home Link */}
+              <div className="text-center">
+                <Link to="/" className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors">
+                  <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                  Kembali ke Beranda
+                </Link>
               </div>
             </div>
-
-            {/* Back to Home Link */}
-            <div className="text-center">
-              <Link to="/" className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors">
-                <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                Kembali ke Beranda
-              </Link>
-            </div>
-          </div>
+          </AnimatedSection>
         </div>
       </div>
 
@@ -222,4 +230,5 @@ const Auth = () => {
       `}</style>
     </div>;
 };
+
 export default Auth;

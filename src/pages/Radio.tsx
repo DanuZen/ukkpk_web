@@ -23,8 +23,32 @@ const DAYS = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 const getCurrentProgram = (programs: RadioProgram[]) => {
   const now = new Date();
   const currentDay = now.getDay();
-  const currentTime = now.toTimeString().slice(0, 5);
-  return programs.find((p) => p.day_of_week === currentDay && p.air_time <= currentTime);
+  const currentTime = now.getTime();
+
+  return programs.find((p) => {
+    if (p.day_of_week !== currentDay) return false;
+
+    // Create Date objects for start time
+    const [startHours, startMinutes] = p.air_time.split(':').map(Number);
+    const startTimeDate = new Date();
+    startTimeDate.setHours(startHours, startMinutes, 0, 0);
+
+    // Create Date objects for end time
+    const endTimeDate = new Date();
+    if (p.end_time) {
+      const [endHours, endMinutes] = p.end_time.split(':').map(Number);
+      endTimeDate.setHours(endHours, endMinutes, 0, 0);
+      // Handle cross-midnight: if end time is before start time, it means it ends the next day
+      if (endTimeDate < startTimeDate) {
+        endTimeDate.setDate(endTimeDate.getDate() + 1);
+      }
+    } else {
+      // Default to 1 hour duration if no end time
+      endTimeDate.setHours(startHours + 1, startMinutes, 0, 0);
+    }
+
+    return currentTime >= startTimeDate.getTime() && currentTime < endTimeDate.getTime();
+  });
 };
 const Radio = () => {
   const [programs, setPrograms] = useState<RadioProgram[]>([]);
@@ -205,7 +229,7 @@ const Radio = () => {
                   <div className="flex items-start gap-3 sm:gap-4">
                     <div className="flex-shrink-0">
                       <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center animate-pulse shadow-lg shadow-green-500/50 bg-red-600">
-                        <img src={logoSigmaRadio} alt="SIGMA Radio" className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 object-contain brightness-0 invert" />
+                        <RadioIcon className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 text-white" />
                       </div>
                     </div>
                     <div className="flex-1">

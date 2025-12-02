@@ -93,7 +93,7 @@ export const Testimonials = () => {
     id: 'default',
     nama: 'Tim UKKPK',
     email: 'ukkpk.office@gmail.com',
-    message: 'Belum ada testimoni yang ditampilkan. Admin dapat memilih testimoni dari menu Saran Masuk di dashboard.',
+    message: 'Belum ada testimoni yang ditampilkan.',
     testimonial_rating: 5
   };
   return <section className="py-32 md:py-40 min-h-[85vh] flex items-center scroll-mt-20 bg-gray-50">

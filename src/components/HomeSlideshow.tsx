@@ -20,7 +20,6 @@ export const HomeSlideshow = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [autoPlaySpeed, setAutoPlaySpeed] = useState(5000);
   const [scrollY, setScrollY] = useState(0);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -33,13 +32,6 @@ export const HomeSlideshow = () => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Window resize tracking
-  useEffect(() => {
-    const handleResize = () => setWindowHeight(window.innerHeight);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // Auto-rotation effect
@@ -103,8 +95,8 @@ export const HomeSlideshow = () => {
   // Reduce blur on mobile for better readability
   const maxBlur = isMobile ? 3 : 8; // 3px on mobile, 8px on desktop
 
-  // Hide indicators when scrolling or when window height is increased beyond normal
-  const shouldShowIndicators = scrollY < 50 && windowHeight <= 900;
+  // Hide indicators when scrolling
+  const shouldShowIndicators = scrollY < 50;
 
   return (
     <section className="relative w-full h-screen overflow-hidden group -mt-16">
