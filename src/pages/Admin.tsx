@@ -17,6 +17,7 @@ import { ProfileManager } from "@/components/admin/ProfileManager";
 import { MapManager } from "@/components/admin/MapManager";
 import { ContactSubmissionsManager } from "@/components/admin/ContactSubmissionsManager";
 import { ThemeManager } from "@/components/admin/ThemeManager";
+import { PopupManager } from "@/components/admin/PopupManager";
 
 const Admin = () => {
   const { user, signOut } = useAuth();
@@ -47,6 +48,7 @@ const Admin = () => {
       articles: "Kelola Artikel",
       news: "Kelola Berita",
       radio: "Kelola Radio",
+      popup: "Popup Welcome",
       slideshow: "Slideshow Home",
       banner: "Banner Profil UKKPK",
       structure: "Struktur Organisasi",
@@ -92,6 +94,7 @@ const Admin = () => {
               {activePage === "articles" && <ArticlesManager />}
               {activePage === "news" && <NewsManager />}
               {activePage === "radio" && <RadioManager />}
+              {activePage === "popup" && <PopupManager />}
               {activePage === "slideshow" && <ProfileManager activeTab="slideshow" />}
               {activePage === "banner" && <ProfileManager activeTab="banner" />}
               {activePage === "structure" && <ProfileManager activeTab="structure" />}

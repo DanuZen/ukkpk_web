@@ -10,6 +10,7 @@ import { GoogleMap } from '@/components/GoogleMap';
 import { ContactSection } from '@/components/ContactSection';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import { Testimonials } from '@/components/Testimonials';
+import { WelcomePopup } from '@/components/WelcomePopup';
 import { stripHtml } from '@/lib/utils';
 import { FileText, MessageSquare, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 interface Article {
@@ -73,6 +74,9 @@ const Index = () => {
     setNewsPage(prev => Math.min(totalNewsPages - 1, prev + 1));
   };
   return <Layout>
+      {/* Welcome Popup */}
+      <WelcomePopup />
+      
       {/* Hero Slideshow Section */}
       <HomeSlideshow />
 
