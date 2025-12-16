@@ -55,7 +55,7 @@ export const RegistrationManager = () => {
         .order("created_at", { ascending: false });
 
       if (error) throw error;
-      setRegistrations(data || []);
+      setRegistrations((data as unknown as Registration[]) || []);
     } catch (error: any) {
       console.error("Error fetching registrations:", error);
       toast.error("Gagal memuat data pendaftaran");
