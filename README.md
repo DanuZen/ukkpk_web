@@ -102,26 +102,13 @@ File hasil build akan tersedia di folder **dist/**.
 
 ---
 
-## 🤝 Kontribusi
-
-Kontribusi sangat terbuka!
-Silakan buat **pull request**, atau buka **issue** jika menemukan bug atau ingin menambahkan fitur baru.
-
----
-
-## 🛡️ Lisensi
-
-Project ini menggunakan lisensi **MIT** — bebas digunakan dan dikembangkan.
-
----
-
 ## 📞 Kontak
 
 Jika membutuhkan bantuan atau pertanyaan terkait project:
 
 - **Email**: [wagzofficial@gmail.com](mailto:wagzofficial@gmail.com)
 - **Instagram**: @daann.u
-- - **Website**: https://ukkpk.pkm.unp.ac.id
+- **Website**: https://ukkpk.pkm.unp.ac.id
 
 ---
 
