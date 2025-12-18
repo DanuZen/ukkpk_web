@@ -140,6 +140,16 @@ export const NewsManager = () => {
       };
 
       if (editingId) {
+        // Check if we're replacing an existing image
+        if (imageFile) {
+          const oldNews = news.find(n => n.id === editingId);
+          if (oldNews?.image_url) {
+            const urlParts = oldNews.image_url.split('/');
+            const fileName = urlParts[urlParts.length - 1];
+            await supabase.storage.from('uploads').remove([`news/${fileName}`]);
+          }
+        }
+
         const { error } = await supabase.from('news').update(dataToSave).eq('id', editingId);
 
         if (error) throw error;
@@ -207,6 +217,14 @@ export const NewsManager = () => {
   const handleDelete = async (id: string) => {
     if (!confirm('Yakin ingin menghapus berita ini?')) return;
 
+    // Find news to get image url
+    const item = news.find(n => n.id === id);
+    if (item?.image_url) {
+      const urlParts = item.image_url.split('/');
+      const fileName = urlParts[urlParts.length - 1];
+      await supabase.storage.from('uploads').remove([`news/${fileName}`]);
+    }
+
     const { error } = await supabase.from('news').delete().eq('id', id);
 
     if (error) {
@@ -219,7 +237,7 @@ export const NewsManager = () => {
   };
 
   return (
-    <div className="space-y-2 sm:space-y-3 md:space-y-6">
+    <div className="space-y-3 sm:space-y-4 md:space-y-6">
       <div className="flex justify-between items-start gap-2 mb-4 sm:mb-6">
         <div className="flex items-center gap-2 sm:gap-3">
           <Newspaper className="h-6 w-6 sm:h-8 sm:w-8 text-primary flex-shrink-0 animate-fade-in" />
@@ -233,17 +251,29 @@ export const NewsManager = () => {
           </div>
         </div>
       </div>
-      <Card className="shadow-xl">
-        <CardHeader className="p-2 sm:p-3 md:p-6">
-          <CardTitle className="text-sm sm:text-base md:text-xl">{editingId ? 'Form Edit Berita' : 'Form Tambah Berita'}</CardTitle>
+      <Card className="shadow-xl overflow-hidden">
+        <CardHeader className="p-3 sm:p-4 md:p-6">
+          <CardTitle className="text-base sm:text-lg md:text-xl">{editingId ? 'Form Edit Berita' : 'Form Tambah Berita'}</CardTitle>
         </CardHeader>
-        <CardContent className="p-2 sm:p-3 md:p-6">
+        <CardContent className="p-3 sm:p-4 md:p-6">
           <form onSubmit={handleSubmit} className="space-y-1.5 sm:space-y-2 md:space-y-4">
             <div className="space-y-0.5 sm:space-y-1">
               <Label htmlFor="title" className="text-xs sm:text-sm">
                 Judul
               </Label>
               <Input id="title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="Masukkan judul berita" className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm" required />
+            </div>
+            <div className="space-y-0.5 sm:space-y-1">
+              <Label htmlFor="category" className="text-xs sm:text-sm">
+                Kategori
+              </Label>
+              <Input
+                id="category"
+                value={formData.category}
+                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                placeholder="Contoh: Teknologi"
+                className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
+              />
             </div>
             <div className="space-y-0.5 sm:space-y-1">
               <Label htmlFor="author" className="text-xs sm:text-sm">
@@ -258,23 +288,6 @@ export const NewsManager = () => {
               <Input id="editor" value={formData.editor} onChange={(e) => setFormData({ ...formData, editor: e.target.value })} placeholder="Nama penyunting" className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm" />
             </div>
             <div className="space-y-0.5 sm:space-y-1">
-              <Label htmlFor="category" className="text-xs sm:text-sm">
-                Kategori
-              </Label>
-              <Select value={formData.category} onValueChange={(value) => setFormData({ ...formData, category: value })}>
-                <SelectTrigger id="category" className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm">
-                  <SelectValue placeholder="Pilih kategori berita" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="kampus">Kampus</SelectItem>
-                  <SelectItem value="organisasi">Organisasi</SelectItem>
-                  <SelectItem value="mahasiswa">Mahasiswa</SelectItem>
-                  <SelectItem value="event">Event</SelectItem>
-                  <SelectItem value="umum">Umum</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-0.5 sm:space-y-1">
               <Label htmlFor="cameraman" className="text-xs sm:text-sm">
                 Kameramen
               </Label>
@@ -286,9 +299,9 @@ export const NewsManager = () => {
                     onChange={(e) => setCurrentCameraman(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddCameraman())}
                     placeholder="Nama kameramen"
-                    className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
+                    className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm flex-1 min-w-0"
                   />
-                  <Button type="button" onClick={handleAddCameraman} variant="outline" size="icon" className="h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10">
+                  <Button type="button" onClick={handleAddCameraman} variant="outline" size="icon" className="h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10 flex-shrink-0">
                     <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
                   </Button>
                 </div>
@@ -342,11 +355,11 @@ export const NewsManager = () => {
                     Preview
                   </TabsTrigger>
                 </TabsList>
-                <TabsContent value="edit" className="mt-1.5 sm:mt-2 md:mt-4">
+                <TabsContent value="edit" className="mt-1.5 sm:mt-2 md:mt-4 overflow-hidden">
                   <RichTextEditor content={formData.content} onChange={(html) => setFormData({ ...formData, content: html })} placeholder="Tulis isi berita di sini..." />
                 </TabsContent>
-                <TabsContent value="preview" className="mt-1.5 sm:mt-2 md:mt-4">
-                  <Card className="shadow-xl">
+                <TabsContent value="preview" className="mt-1.5 sm:mt-2 md:mt-4 overflow-hidden">
+                  <Card className="shadow-xl overflow-hidden">
                     <CardContent className="p-2 sm:p-3 md:p-6">
                       {/* Preview Header */}
                       <div className="mb-2 sm:mb-3 md:mb-6">
@@ -359,7 +372,7 @@ export const NewsManager = () => {
                         )}
 
                         <div className="flex items-center justify-between mb-2 sm:mb-3 md:mb-6 pb-1.5 sm:pb-2 md:pb-4 border-b">
-                          <div className="flex flex-col gap-0.5 sm:gap-1 md:gap-2 text-[10px] sm:text-xs md:text-sm text-muted-foreground">
+                          <div className="flex flex-col gap-0.5 sm:gap-1 md:gap-2 text-[10px] sm:text-xs md:text-sm text-muted-foreground flex-1 min-w-0 mr-2">
                             <span>
                               {new Date().toLocaleDateString('id-ID', {
                                 day: 'numeric',
@@ -373,19 +386,19 @@ export const NewsManager = () => {
                               {cameramen?.length > 0 && <span>• Kameramen: {(cameramen || []).join(', ')}</span>}
                             </div>
                             {formData.category && (
-                              <Badge variant="outline" className="mt-2">
+                              <Badge variant="outline" className="mt-2 w-fit">
                                 {formData.category}
                               </Badge>
                             )}
                           </div>
-                          <Badge variant="secondary" className="bg-primary/10 text-primary">
+                          <Badge variant="secondary" className="bg-primary/10 text-primary flex-shrink-0">
                             BERITA
                           </Badge>
                         </div>
                       </div>
 
                       {/* Preview Content */}
-                      <div className="prose prose-sm sm:prose md:prose-lg max-w-none">
+                      <div className="prose prose-sm sm:prose md:prose-lg max-w-none break-words">
                         {formData.content ? (
                           <div className="text-foreground/90 leading-relaxed article-content text-xs sm:text-sm md:text-base [&_ul]:!list-disc [&_ul]:!pl-5 [&_ol]:!list-decimal [&_ol]:!pl-5 [&_li]:!pl-1 [&_li>p]:!m-0 [&_li>p]:!inline" dangerouslySetInnerHTML={{ __html: sanitizeHtml(formData.content) }} />
                         ) : (
@@ -448,8 +461,8 @@ export const NewsManager = () => {
               <CardContent className="p-2.5 sm:p-3 md:p-6">
                 <div className="flex justify-between items-start gap-2 sm:gap-3 md:gap-4">
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-sm sm:text-base md:text-lg line-clamp-2 leading-snug">{item.title}</h3>
-                    <p className="mt-1 sm:mt-1.5 md:mt-2 text-xs sm:text-sm md:text-base text-muted-foreground line-clamp-2 leading-relaxed">{stripHtml(item.content)}</p>
+                    <h3 className="font-semibold text-sm sm:text-base md:text-lg break-words leading-snug">{item.title}</h3>
+                    <p className="mt-1 sm:mt-1.5 md:mt-2 text-xs sm:text-sm md:text-base text-muted-foreground line-clamp-2 break-words leading-relaxed">{stripHtml(item.content)}</p>
                   </div>
                   <div className="flex gap-1.5 sm:gap-2 flex-shrink-0">
                     <Button

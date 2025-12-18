@@ -9,7 +9,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { X } from 'lucide-react';
+import { X, Rocket } from 'lucide-react';
 
 interface PopupSettings {
   id: string;
@@ -23,10 +23,14 @@ interface PopupSettings {
   button_type: 'link' | 'form';
   show_title: boolean;
   show_content: boolean;
+  show_image: boolean;
 }
+
+
 
 export const WelcomePopup = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showFloatingButton, setShowFloatingButton] = useState(false);
   const [popupData, setPopupData] = useState<PopupSettings | null>(null);
   const navigate = useNavigate();
 
@@ -45,6 +49,7 @@ export const WelcomePopup = () => {
 
       setPopupData(data as unknown as PopupSettings);
       setIsOpen(true);
+      setShowFloatingButton(false); // Reset floating button when popup opens
     };
 
     checkAndShowPopup();
@@ -52,10 +57,15 @@ export const WelcomePopup = () => {
 
   const handleClose = () => {
     setIsOpen(false);
+    // Show floating button after popup is closed
+    if (popupData?.show_button) {
+      setShowFloatingButton(true);
+    }
   };
 
   const handleButtonClick = () => {
     setIsOpen(false);
+    setShowFloatingButton(false); // Hide floating button after click
 
     if (popupData?.button_link) {
       // Check if it's an external link
@@ -73,59 +83,58 @@ export const WelcomePopup = () => {
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="max-w-2xl p-0 overflow-hidden border-0 gap-0">
-        {/* Close Button */}
-        <button
-          onClick={handleClose}
-          className="absolute right-3 top-3 z-50 rounded-full bg-white/90 p-2 shadow-lg hover:bg-white transition-all duration-200 hover:scale-110"
-          aria-label="Close"
-        >
-          <X className="h-4 w-4 text-gray-700" />
-        </button>
+    <>
+      <Dialog open={isOpen} onOpenChange={handleClose}>
+        <DialogContent hideClose className="max-w-2xl p-0 overflow-visible border-0 gap-0 bg-transparent shadow-none">
+          {/* Close Button */}
+          <button
+            onClick={handleClose}
+            className="hidden sm:block absolute -top-10 -right-4 z-50 p-0 text-white/80 hover:text-white transition-colors"
+            aria-label="Close"
+          >
+            <X className="h-6 w-6" />
+          </button>
 
-        {/* Image Section */}
-        {popupData.image_url && (
-          <div className="relative w-full h-64 sm:h-80 md:h-96 overflow-hidden">
-            <img
-              src={popupData.image_url}
-              alt={popupData.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        )}
+          {/* Image Section */}
+          {popupData.show_image && popupData.image_url && (
+            <div className="relative w-[90%] mx-auto sm:w-full bg-background rounded-lg overflow-hidden">
+              <img
+                src={popupData.image_url}
+                alt={popupData.title}
+                className="w-full h-auto object-contain"
+              />
+            </div>
+          )}
 
-        {/* Content Section */}
-        {(popupData.show_title || (popupData.show_content && popupData.content) || popupData.show_button) && (
-          <div className="p-6 sm:p-8">
-            <DialogHeader className="space-y-3 text-center">
-              {popupData.show_title && (
-                <DialogTitle className="text-2xl sm:text-3xl font-bold text-gray-900">
-                  {popupData.title}
-                </DialogTitle>
-              )}
-              {popupData.show_content && popupData.content && (
-                <DialogDescription className="text-base sm:text-lg text-gray-600 leading-relaxed">
-                  {popupData.content}
-                </DialogDescription>
-              )}
-            </DialogHeader>
+          {/* Action Button - attached to bottom of dialog */}
+          {popupData.show_button && isOpen && (
+            <div className="absolute -bottom-10 sm:-bottom-20 left-0 right-0 flex justify-center z-50">
+              <Button
+                onClick={handleButtonClick}
+                size="lg"
+                className="h-auto px-4 py-2 sm:px-6 sm:py-4 text-xs sm:text-lg font-semibold bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-1.5 sm:gap-2"
+              >
+                <Rocket className="w-3 h-3 sm:w-5 sm:h-5 animate-pulse" />
+                {popupData.button_text}
+              </Button>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
 
-            {/* Action Button */}
-            {popupData.show_button && (
-              <div className="mt-6 flex justify-center">
-                <Button
-                  onClick={handleButtonClick}
-                  size="lg"
-                  className="px-8 py-6 text-lg font-semibold bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                >
-                  {popupData.button_text}
-                </Button>
-              </div>
-            )}
-          </div>
-        )}
-      </DialogContent>
-    </Dialog>
+      {/* Floating Button - appears on the right after popup is closed */}
+      {showFloatingButton && popupData.show_button && (
+        <div className="fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-[9999] animate-in slide-in-from-right duration-500">
+          <Button
+            onClick={handleButtonClick}
+            size="lg"
+            className="h-auto px-4 py-2 sm:px-6 sm:py-6 text-xs sm:text-base font-semibold bg-primary hover:bg-primary/90 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 rounded-full flex items-center gap-1.5 sm:gap-2"
+          >
+            <Rocket className="w-3 h-3 sm:w-5 sm:h-5" />
+            {popupData.button_text}
+          </Button>
+        </div>
+      )}
+    </>
   );
 };

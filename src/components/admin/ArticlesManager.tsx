@@ -141,6 +141,16 @@ export const ArticlesManager = () => {
       };
 
       if (editingId) {
+        // Check if we're replacing an existing image
+        if (imageFile) {
+          const oldArticle = articles.find(a => a.id === editingId);
+          if (oldArticle?.image_url) {
+            const urlParts = oldArticle.image_url.split('/');
+            const fileName = urlParts[urlParts.length - 1];
+            await supabase.storage.from('uploads').remove([`articles/${fileName}`]);
+          }
+        }
+
         const { error } = await supabase
           .from("articles")
           .update(dataToSave)
@@ -196,6 +206,14 @@ export const ArticlesManager = () => {
 
   const handleDelete = async (id: string) => {
     if (!confirm("Yakin ingin menghapus artikel ini?")) return;
+
+    // Find article to get image url
+    const article = articles.find(a => a.id === id);
+    if (article?.image_url) {
+      const urlParts = article.image_url.split('/');
+      const fileName = urlParts[urlParts.length - 1];
+      await supabase.storage.from('uploads').remove([`articles/${fileName}`]);
+    }
 
     const { error } = await supabase.from("articles").delete().eq("id", id);
 
@@ -459,13 +477,13 @@ export const ArticlesManager = () => {
               <CardContent className="p-2.5 sm:p-3 md:p-6">
                 <div className="flex justify-between items-start gap-2 sm:gap-3 md:gap-4">
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-sm sm:text-base md:text-lg line-clamp-2 leading-snug">{article.title}</h3>
+                    <h3 className="font-semibold text-sm sm:text-base md:text-lg break-words leading-snug">{article.title}</h3>
                     {article.category && (
                       <p className="text-xs sm:text-sm md:text-base text-muted-foreground mt-0.5">
                         {article.category}
                       </p>
                     )}
-                    <p className="mt-1 sm:mt-1.5 md:mt-2 text-xs sm:text-sm md:text-base text-muted-foreground line-clamp-2 leading-relaxed">{stripHtml(article.content)}</p>
+                    <p className="mt-1 sm:mt-1.5 md:mt-2 text-xs sm:text-sm md:text-base text-muted-foreground line-clamp-2 break-words leading-relaxed">{stripHtml(article.content)}</p>
                   </div>
                   <div className="flex gap-1.5 sm:gap-2 flex-shrink-0">
                     <Button

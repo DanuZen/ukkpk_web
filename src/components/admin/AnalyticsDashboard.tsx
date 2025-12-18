@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
-import { Eye, Heart, FileText, Newspaper, TrendingUp, Users } from 'lucide-react';
+import { Eye, Heart, FileText, Newspaper, TrendingUp, Users, MoreHorizontal, ArrowUpRight } from 'lucide-react';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+
 interface ArticleStats {
   id: string;
   title: string;
@@ -33,7 +35,9 @@ interface OverallStats {
   avgNewsLikes: number;
   engagementRate: number;
 }
+
 const COLORS = ['#dc2626', '#ea580c', '#f59e0b', '#84cc16', '#22c55e', '#06b6d4'];
+
 export const AnalyticsDashboard = () => {
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
@@ -59,9 +63,11 @@ export const AnalyticsDashboard = () => {
     engagementRate: 0
   });
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetchAnalytics();
   }, []);
+
   useEffect(() => {
     const fetchChartData = async () => {
       try {
@@ -109,6 +115,7 @@ export const AnalyticsDashboard = () => {
     };
     fetchChartData();
   }, [selectedMonth, selectedYear]);
+
   const fetchAnalytics = async () => {
     try {
       // Fetch articles with views and likes
@@ -167,6 +174,7 @@ export const AnalyticsDashboard = () => {
       setLoading(false);
     }
   };
+
   const topArticles = articles.slice(0, 5);
   const topNews = news.slice(0, 5);
   const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
@@ -214,15 +222,21 @@ export const AnalyticsDashboard = () => {
     likes: n.likes_count || 0,
     type: 'Berita'
   }))].sort((a, b) => b.views - a.views).slice(0, 8);
+
   if (loading) {
-    return <div className="flex items-center justify-center h-64">
+    return (
+      <div className="flex items-center justify-center h-64">
         <p className="text-muted-foreground text-xs sm:text-sm">Memuat data analytics...</p>
-      </div>;
+      </div>
+    );
   }
-  return <div className="space-y-3 sm:space-y-4 md:space-y-6">
-      <div className="mb-4 sm:mb-6">
-        <div className="flex items-center gap-2 sm:gap-3">
-          <TrendingUp className="h-6 w-6 sm:h-8 sm:w-8 text-primary animate-fade-in flex-shrink-0" />
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="mb-6">
+        <div className="flex items-center gap-3">
+          <TrendingUp className="h-8 w-8 text-primary animate-fade-in flex-shrink-0" />
           <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Analytics & Statistik</h2>
             <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-0.5 sm:mt-1">Data performa konten website UKKPK</p>
@@ -230,120 +244,123 @@ export const AnalyticsDashboard = () => {
         </div>
       </div>
 
-      {/* Overview Stats - First Row */}
-      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
-        <Card className="bg-gradient-to-br from-purple-50 to-purple-100/50 border-purple-200 shadow-xl">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
-            <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Engagement Rate</CardTitle>
-            <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 text-purple-500 flex-shrink-0" />
+      {/* New Styled Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        {/* Total Views Card */}
+        <Card className="relative overflow-hidden bg-gradient-to-br from-emerald-500 to-emerald-600 border-0 shadow-xl text-white group hover:scale-105 transition-transform duration-300">
+          <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+            <Eye className="w-24 h-24 transform translate-x-4 -translate-y-4" />
+          </div>
+          <CardHeader className="flex flex-row items-center justify-between pb-2 relative z-10">
+            <CardTitle className="text-sm font-medium text-emerald-100">Total Views</CardTitle>
+            <Button variant="ghost" size="icon" className="h-8 w-8 text-emerald-100 hover:text-white hover:bg-white/20">
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
           </CardHeader>
-          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
-            <div className="text-xl sm:text-2xl font-bold text-purple-600">{overallStats.engagementRate.toFixed(2)}%</div>
-            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
-              Likes per View
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-br from-amber-50 to-amber-100/50 border-amber-200 shadow-xl">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
-            <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Avg Views/Artikel</CardTitle>
-            <Eye className="h-3 w-3 sm:h-4 sm:w-4 text-amber-500 flex-shrink-0" />
-          </CardHeader>
-          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
-            <div className="text-xl sm:text-2xl font-bold text-amber-600">{overallStats.avgArticleViews.toLocaleString()}</div>
-            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
-              Per artikel
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-br from-cyan-50 to-cyan-100/50 border-cyan-200 shadow-xl">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
-            <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Avg Views/Berita</CardTitle>
-            <Eye className="h-3 w-3 sm:h-4 sm:w-4 text-cyan-500 flex-shrink-0" />
-          </CardHeader>
-          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
-            <div className="text-xl sm:text-2xl font-bold text-cyan-600">{overallStats.avgNewsViews.toLocaleString()}</div>
-            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
-              Per berita
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-br from-pink-50 to-pink-100/50 border-pink-200 shadow-xl">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
-            <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Avg Engagement</CardTitle>
-            <Heart className="h-3 w-3 sm:h-4 sm:w-4 text-pink-500 flex-shrink-0" />
-          </CardHeader>
-          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
-            <div className="text-xl sm:text-2xl font-bold text-pink-600">
-              {Math.round((overallStats.avgArticleLikes + overallStats.avgNewsLikes) / 2).toLocaleString()}
+          <CardContent className="relative z-10">
+            <div className="text-4xl font-bold mb-2">{overallStats.totalViews.toLocaleString()}</div>
+            <div className="flex items-center text-emerald-100 text-xs">
+              <span className="bg-white/20 px-1.5 py-0.5 rounded text-white flex items-center gap-1 mr-2">
+                <TrendingUp className="w-3 h-3" /> +12.5%
+              </span>
+              <span>Last Month</span>
             </div>
-            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
-              Likes rata-rata
-            </p>
+            {/* Decorative Wave */}
+            <div className="absolute bottom-0 left-0 right-0 h-16 opacity-20">
+              <svg viewBox="0 0 1440 320" className="w-full h-full" preserveAspectRatio="none">
+                <path fill="#fff" d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+              </svg>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Total Likes Card */}
+        <Card className="relative overflow-hidden bg-gradient-to-br from-purple-500 to-purple-600 border-0 shadow-xl text-white group hover:scale-105 transition-transform duration-300">
+          <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+            <Heart className="w-24 h-24 transform translate-x-4 -translate-y-4" />
+          </div>
+          <CardHeader className="flex flex-row items-center justify-between pb-2 relative z-10">
+            <CardTitle className="text-sm font-medium text-purple-100">Total Likes</CardTitle>
+            <Button variant="ghost" size="icon" className="h-8 w-8 text-purple-100 hover:text-white hover:bg-white/20">
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </CardHeader>
+          <CardContent className="relative z-10">
+            <div className="text-4xl font-bold mb-2">{overallStats.totalLikes.toLocaleString()}</div>
+            <div className="flex items-center text-purple-100 text-xs">
+              <span className="bg-white/20 px-1.5 py-0.5 rounded text-white flex items-center gap-1 mr-2">
+                <TrendingUp className="w-3 h-3" /> +8.2%
+              </span>
+              <span>Last Month</span>
+            </div>
+            {/* Decorative Wave */}
+            <div className="absolute bottom-0 left-0 right-0 h-16 opacity-20">
+              <svg viewBox="0 0 1440 320" className="w-full h-full" preserveAspectRatio="none">
+                <path fill="#fff" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+              </svg>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Total Articles Card */}
+        <Card className="relative overflow-hidden bg-gradient-to-br from-blue-500 to-blue-600 border-0 shadow-xl text-white group hover:scale-105 transition-transform duration-300">
+          <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+            <FileText className="w-24 h-24 transform translate-x-4 -translate-y-4" />
+          </div>
+          <CardHeader className="flex flex-row items-center justify-between pb-2 relative z-10">
+            <CardTitle className="text-sm font-medium text-blue-100">Total Artikel</CardTitle>
+            <Button variant="ghost" size="icon" className="h-8 w-8 text-blue-100 hover:text-white hover:bg-white/20">
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </CardHeader>
+          <CardContent className="relative z-10">
+            <div className="text-4xl font-bold mb-2">{overallStats.totalArticles.toLocaleString()}</div>
+            <div className="flex items-center text-blue-100 text-xs">
+              <span className="bg-white/20 px-1.5 py-0.5 rounded text-white flex items-center gap-1 mr-2">
+                <ArrowUpRight className="w-3 h-3" /> +5
+              </span>
+              <span>Added this month</span>
+            </div>
+            {/* Decorative Wave */}
+            <div className="absolute bottom-0 left-0 right-0 h-16 opacity-20">
+              <svg viewBox="0 0 1440 320" className="w-full h-full" preserveAspectRatio="none">
+                <path fill="#fff" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+              </svg>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Total News Card */}
+        <Card className="relative overflow-hidden bg-gradient-to-br from-amber-400 to-orange-500 border-0 shadow-xl text-white group hover:scale-105 transition-transform duration-300">
+          <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+            <Newspaper className="w-24 h-24 transform translate-x-4 -translate-y-4" />
+          </div>
+          <CardHeader className="flex flex-row items-center justify-between pb-2 relative z-10">
+            <CardTitle className="text-sm font-medium text-amber-100">Total Berita</CardTitle>
+            <Button variant="ghost" size="icon" className="h-8 w-8 text-amber-100 hover:text-white hover:bg-white/20">
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </CardHeader>
+          <CardContent className="relative z-10">
+            <div className="text-4xl font-bold mb-2">{overallStats.totalNews.toLocaleString()}</div>
+            <div className="flex items-center text-amber-100 text-xs">
+              <span className="bg-white/20 px-1.5 py-0.5 rounded text-white flex items-center gap-1 mr-2">
+                <ArrowUpRight className="w-3 h-3" /> +3
+              </span>
+              <span>Added this month</span>
+            </div>
+            {/* Decorative Wave */}
+            <div className="absolute bottom-0 left-0 right-0 h-16 opacity-20">
+              <svg viewBox="0 0 1440 320" className="w-full h-full" preserveAspectRatio="none">
+                <path fill="#fff" d="M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,133.3C672,128,768,160,864,170.7C960,181,1056,171,1152,154.7C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+              </svg>
+            </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Overview Stats - Second Row */}
-      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
-        <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20 shadow-xl">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
-            <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Total Views</CardTitle>
-            <Eye className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
-          </CardHeader>
-          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
-            <div className="text-xl sm:text-2xl font-bold text-primary">{overallStats.totalViews.toLocaleString()}</div>
-            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
-              A: {overallStats.totalArticleViews.toLocaleString()} | B: {overallStats.totalNewsViews.toLocaleString()}
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-br from-red-50 to-red-100/50 border-red-200 shadow-xl">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
-            <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Total Likes</CardTitle>
-            <Heart className="h-3 w-3 sm:h-4 sm:w-4 text-red-500 flex-shrink-0" />
-          </CardHeader>
-          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
-            <div className="text-xl sm:text-2xl font-bold text-red-600">{overallStats.totalLikes.toLocaleString()}</div>
-            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
-              A: {overallStats.totalArticleLikes.toLocaleString()} | B: {overallStats.totalNewsLikes.toLocaleString()}
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-br from-blue-50 to-blue-100/50 border-blue-200 shadow-xl">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
-            <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Total Artikel</CardTitle>
-            <FileText className="h-3 w-3 sm:h-4 sm:w-4 text-blue-500 flex-shrink-0" />
-          </CardHeader>
-          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
-            <div className="text-xl sm:text-2xl font-bold text-blue-600">{overallStats.totalArticles.toLocaleString()}</div>
-            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
-              Artikel dipublikasi
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-br from-green-50 to-green-100/50 border-green-200 shadow-xl">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 sm:pb-2 p-3 sm:p-4 md:p-6">
-            <CardTitle className="text-[10px] sm:text-xs md:text-sm font-medium leading-tight">Total Berita</CardTitle>
-            <Newspaper className="h-3 w-3 sm:h-4 sm:w-4 text-green-500 flex-shrink-0" />
-          </CardHeader>
-          <CardContent className="p-3 pt-0 sm:p-4 sm:pt-0 md:p-6 md:pt-0">
-            <div className="text-xl sm:text-2xl font-bold text-green-600">{overallStats.totalNews.toLocaleString()}</div>
-            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
-              Berita dipublikasi
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Statistik Views & Perbandingan Charts */}
-      <div className="grid gap-3 sm:gap-4 md:gap-6 lg:grid-cols-2">
+      {/* Charts */}
+      <div className="grid gap-6 lg:grid-cols-2">
         <Card className="border-0 shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-lg font-semibold">Statistik Views</CardTitle>
@@ -360,24 +377,10 @@ export const AnalyticsDashboard = () => {
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                <XAxis dataKey="day" stroke="#999" tick={{
-                fontSize: 12
-              }} />
-                <YAxis stroke="#999" tick={{
-                fontSize: 12
-              }} />
-                <Tooltip contentStyle={{
-                backgroundColor: 'white',
-                border: '1px solid #e5e7eb',
-                borderRadius: '6px',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-              }} />
-                <Line type="monotone" dataKey="views" stroke="hsl(var(--primary))" strokeWidth={2} dot={{
-                fill: 'hsl(var(--primary))',
-                strokeWidth: 2
-              }} activeDot={{
-                r: 6
-              }} />
+                <XAxis dataKey="day" stroke="#999" tick={{ fontSize: 12 }} />
+                <YAxis stroke="#999" tick={{ fontSize: 12 }} />
+                <Tooltip contentStyle={{ backgroundColor: 'white', border: '1px solid #e5e7eb', borderRadius: '6px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }} />
+                <Line type="monotone" dataKey="views" stroke="hsl(var(--primary))" strokeWidth={2} dot={{ fill: 'hsl(var(--primary))', strokeWidth: 2 }} activeDot={{ r: 6 }} />
               </LineChart>
             </ResponsiveContainer>
           </CardContent>
@@ -391,16 +394,10 @@ export const AnalyticsDashboard = () => {
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={comparisonData}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" tick={{
-                fontSize: 9
-              }} />
-                <YAxis tick={{
-                fontSize: 9
-              }} />
+                <XAxis dataKey="name" tick={{ fontSize: 9 }} />
+                <YAxis tick={{ fontSize: 9 }} />
                 <Tooltip />
-                <Legend wrapperStyle={{
-                fontSize: '10px'
-              }} />
+                <Legend wrapperStyle={{ fontSize: '10px' }} />
                 <Bar dataKey="Artikel" fill="#dc2626" />
                 <Bar dataKey="Berita" fill="#3b82f6" />
               </BarChart>
@@ -408,10 +405,6 @@ export const AnalyticsDashboard = () => {
           </CardContent>
         </Card>
       </div>
-
-      {/* Top Content Chart */}
-      <div className="grid gap-3 sm:gap-4 md:gap-6">
-        
-      </div>
-    </div>;
+    </div>
+  );
 };

@@ -136,15 +136,10 @@ export const ThemeManager = () => {
 
       <Card className="shadow-xl">
         <CardHeader>
-          <div className="flex items-center gap-2">
-            <Palette className="h-5 w-5 text-primary" />
-            <div>
-              <CardTitle>Preset Tema</CardTitle>
-              <CardDescription className="mt-1">
-                Pilih preset tema yang sudah jadi atau kustomisasi sendiri
-              </CardDescription>
-            </div>
-          </div>
+          <CardTitle className="text-base sm:text-lg">Preset Tema</CardTitle>
+          <CardDescription className="mt-1">
+            Pilih preset tema yang sudah jadi atau kustomisasi sendiri
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -196,15 +191,10 @@ export const ThemeManager = () => {
 
       <Card className="shadow-xl">
         <CardHeader>
-          <div className="flex items-center gap-2">
-            <Palette className="h-5 w-5 text-primary" />
-            <div>
-              <CardTitle>Kustomisasi Warna</CardTitle>
-              <CardDescription className="mt-1">
-                Sesuaikan warna tema secara manual sesuai preferensi Anda
-              </CardDescription>
-            </div>
-          </div>
+          <CardTitle className="text-base sm:text-lg">Kustomisasi Warna</CardTitle>
+          <CardDescription className="mt-1">
+            Sesuaikan warna tema secara manual sesuai preferensi Anda
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="grid gap-6 md:grid-cols-3">
@@ -298,7 +288,7 @@ export const ThemeManager = () => {
 
       <Card className="shadow-xl">
         <CardHeader>
-          <CardTitle>Preview Warna</CardTitle>
+          <CardTitle className="text-base sm:text-lg">Preview Warna</CardTitle>
           <CardDescription>
             Pratinjau warna tema yang akan diterapkan
           </CardDescription>

@@ -8,7 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from 'sonner';
-import { Upload, Eye, Save, Loader2 } from 'lucide-react';
+import { Upload, Eye, Save, Loader2, X, Image } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -29,6 +29,7 @@ interface PopupSettings {
   button_type: 'link' | 'form';
   show_title: boolean;
   show_content: boolean;
+  show_image: boolean;
 }
 
 export const PopupManager = () => {
@@ -48,6 +49,7 @@ export const PopupManager = () => {
     button_type: 'link',
     show_title: true,
     show_content: true,
+    show_image: true,
   });
 
   useEffect(() => {
@@ -74,6 +76,7 @@ export const PopupManager = () => {
           button_type: fetchedData.button_type ?? 'link',
           show_title: fetchedData.show_title ?? true,
           show_content: fetchedData.show_content ?? true,
+          show_image: fetchedData.show_image ?? true,
         });
       }
     } catch (error: any) {
@@ -84,10 +87,7 @@ export const PopupManager = () => {
     }
   };
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
+  const uploadImage = async (file: File) => {
     // Validate file type
     if (!file.type.startsWith('image/')) {
       toast.error('File harus berupa gambar');
@@ -126,12 +126,27 @@ export const PopupManager = () => {
     }
   };
 
-  const handleSave = async () => {
-    if (!popupSettings.title.trim()) {
-      toast.error('Judul tidak boleh kosong');
-      return;
-    }
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    await uploadImage(file);
+  };
 
+  const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const file = e.dataTransfer.files?.[0];
+    if (!file) return;
+    await uploadImage(file);
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleSave = async () => {
     setSaving(true);
     try {
       const { data, error } = await supabase
@@ -147,6 +162,7 @@ export const PopupManager = () => {
           button_type: popupSettings.button_type,
           show_title: popupSettings.show_title,
           show_content: popupSettings.show_content,
+          show_image: popupSettings.show_image,
         })
         .eq('id', popupSettings.id)
         .select();
@@ -166,6 +182,38 @@ export const PopupManager = () => {
     }
   };
 
+  const handleDeleteImage = async () => {
+    if (!popupSettings.image_url) return;
+    
+    if (!confirm('Apakah Anda yakin ingin menghapus gambar ini?')) return;
+
+    setUploading(true);
+    try {
+      // Extract filename from URL
+      const urlParts = popupSettings.image_url.split('/');
+      const filename = urlParts[urlParts.length - 1];
+
+      // Delete from storage
+      const { error: deleteError } = await supabase.storage
+        .from('uploads')
+        .remove([filename]);
+
+      if (deleteError) {
+        console.error('Error deleting from storage:', deleteError);
+        // Continue anyway to update database
+      }
+
+      // Update database
+      setPopupSettings({ ...popupSettings, image_url: null });
+      toast.success('Gambar berhasil dihapus');
+    } catch (error: any) {
+      console.error('Error deleting image:', error);
+      toast.error('Gagal menghapus gambar');
+    } finally {
+      setUploading(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -175,14 +223,26 @@ export const PopupManager = () => {
   }
 
   return (
-    <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <span>Pengaturan Popup Welcome</span>
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="popup-enabled" className="text-sm font-normal">
+    <div className="space-y-4 sm:space-y-6">
+      {/* Header Section - Outside Card */}
+      <div className="mb-2 sm:mb-6">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Image className="h-5 w-5 sm:h-8 sm:w-8 text-primary animate-fade-in flex-shrink-0" />
+          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
+            <h2 className="text-base sm:text-xl md:text-2xl font-bold text-gray-900">Pengaturan Popup Welcome</h2>
+            <p className="text-[10px] sm:text-sm md:text-base text-gray-600 mt-0.5 sm:mt-1">Kelola popup informasi yang muncul saat pengunjung membuka website</p>
+          </div>
+        </div>
+      </div>
+
+      <Card className="shadow-xl">
+        <CardHeader className="p-3 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+            <CardTitle className="text-sm sm:text-lg md:text-xl font-semibold">Form Pengaturan</CardTitle>
+            
+            <div className="flex items-center justify-between sm:justify-end gap-2 sm:gap-4 w-full sm:w-auto">
+              <div className="flex items-center gap-2 px-2 py-1 bg-gray-50 rounded-lg border flex-1 sm:flex-none justify-center sm:justify-start">
+                <Label htmlFor="popup-enabled" className="text-xs sm:text-sm font-medium cursor-pointer">
                   {popupSettings.is_enabled ? 'Aktif' : 'Nonaktif'}
                 </Label>
                 <Switch
@@ -191,102 +251,93 @@ export const PopupManager = () => {
                   onCheckedChange={(checked) =>
                     setPopupSettings({ ...popupSettings, is_enabled: checked })
                   }
+                  className="scale-75 sm:scale-100"
                 />
               </div>
               <Button
                 onClick={() => setShowPreview(true)}
                 variant="outline"
                 size="sm"
+                className="gap-1.5 h-8 sm:h-9 text-xs sm:text-sm px-2 sm:px-4"
               >
-                <Eye className="h-4 w-4 mr-2" />
+                <Eye className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 Preview
               </Button>
             </div>
-          </CardTitle>
+          </div>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Image Upload */}
           <div className="space-y-2">
-            <Label htmlFor="popup-image">Gambar Popup</Label>
-            <div className="flex items-center gap-4">
-              <Input
-                id="popup-image"
-                type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-                disabled={uploading}
-                className="flex-1"
-              />
-              {uploading && <Loader2 className="h-4 w-4 animate-spin" />}
+            <div className="flex items-center justify-between">
+              <Label htmlFor="popup-image">Gambar Popup</Label>
+              <div className="flex items-center gap-2">
+                <Label htmlFor="show_image" className="text-xs font-normal text-muted-foreground">Tampilkan</Label>
+                <Switch
+                  id="show_image"
+                  checked={popupSettings.show_image}
+                  onCheckedChange={(checked) =>
+                    setPopupSettings({ ...popupSettings, show_image: checked })
+                  }
+                />
+              </div>
             </div>
-            {popupSettings.image_url && (
-              <div className="mt-2 relative w-full h-48 rounded-lg overflow-hidden border">
+            {/* Hidden file input */}
+            <Input
+              id="popup-image"
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              disabled={uploading}
+              className="hidden"
+            />
+            {!popupSettings.image_url ? (
+              <div
+                onDrop={handleDrop}
+                onDragOver={handleDragOver}
+                className="mt-2 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-primary transition-colors cursor-pointer"
+                onClick={() => document.getElementById('popup-image')?.click()}
+              >
+                <Upload className="h-12 w-12 mx-auto text-gray-400 mb-4" />
+                <p className="text-sm text-gray-600 mb-2">
+                  Klik atau drag & drop untuk mengganti gambar
+                </p>
+                <p className="text-xs text-gray-400">
+                  Format: JPG, PNG, GIF (Max 5MB)
+                </p>
+              </div>
+            ) : (
+              <div className="mt-2 relative w-full h-48 rounded-lg overflow-hidden border group">
                 <img
                   src={popupSettings.image_url}
                   alt="Preview"
                   className="w-full h-full object-cover"
                 />
+                <button
+                  type="button"
+                  onClick={handleDeleteImage}
+                  disabled={uploading}
+                  className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-50"
+                  title="Hapus gambar"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+                <div
+                  onDrop={handleDrop}
+                  onDragOver={handleDragOver}
+                  onClick={() => document.getElementById('popup-image')?.click()}
+                  className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all cursor-pointer flex items-center justify-center opacity-0 hover:opacity-100"
+                >
+                  <p className="text-white text-sm font-medium">
+                    Klik atau drag & drop untuk mengganti gambar
+                  </p>
+                </div>
               </div>
-            )}
-          </div>
-
-          {/* Title */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <Label htmlFor="popup-title">Judul *</Label>
-              <div className="flex items-center gap-2">
-                <Label htmlFor="show_title" className="text-xs font-normal text-muted-foreground">Tampilkan</Label>
-                <Switch
-                  id="show_title"
-                  checked={popupSettings.show_title}
-                  onCheckedChange={(checked) =>
-                    setPopupSettings({ ...popupSettings, show_title: checked })
-                  }
-                />
-              </div>
-            </div>
-            {popupSettings.show_title && (
-              <Input
-                id="popup-title"
-                value={popupSettings.title}
-                onChange={(e) =>
-                  setPopupSettings({ ...popupSettings, title: e.target.value })
-                }
-                placeholder="Selamat Datang di UKKPK!"
-              />
-            )}
-          </div>
-
-          {/* Content */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <Label htmlFor="popup-content">Konten</Label>
-              <div className="flex items-center gap-2">
-                <Label htmlFor="show_content" className="text-xs font-normal text-muted-foreground">Tampilkan</Label>
-                <Switch
-                  id="show_content"
-                  checked={popupSettings.show_content}
-                  onCheckedChange={(checked) =>
-                    setPopupSettings({ ...popupSettings, show_content: checked })
-                  }
-                />
-              </div>
-            </div>
-            {popupSettings.show_content && (
-              <Textarea
-                id="popup-content"
-                value={popupSettings.content || ''}
-                onChange={(e) =>
-                  setPopupSettings({ ...popupSettings, content: e.target.value })
-                }
-                placeholder="Deskripsi atau pesan sambutan..."
-                rows={4}
-              />
             )}
           </div>
 
           {/* Button Settings */}
-          <div className="space-y-4 pt-4 border-t">
+          <div className="space-y-4 pt-4">
             <div className="flex items-center justify-between">
               <Label htmlFor="show_button" className="text-base font-medium">Tombol Aksi</Label>
               <div className="flex items-center gap-2">

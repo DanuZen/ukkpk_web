@@ -51,11 +51,13 @@ const LineHeightExtension = Extension.create({
     };
   }
 });
+
 interface RichTextEditorProps {
   content: string;
   onChange: (html: string) => void;
   placeholder?: string;
 }
+
 export const RichTextEditor = ({
   content,
   onChange,
@@ -65,25 +67,20 @@ export const RichTextEditor = ({
   const [linkUrl, setLinkUrl] = useState('');
   const [uploading, setUploading] = useState(false);
   const [currentLineHeight, setCurrentLineHeight] = useState('1.75');
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
+
   const uploadImage = async (file: File): Promise<string | null> => {
     try {
       setUploading(true);
       const fileExt = file.name.split('.').pop();
       const fileName = `${Math.random()}.${fileExt}`;
       const filePath = `${fileName}`;
-      const {
-        error: uploadError,
-        data
-      } = await supabase.storage.from('uploads').upload(filePath, file);
+      
+      const { error: uploadError } = await supabase.storage.from('uploads').upload(filePath, file);
+      
       if (uploadError) throw uploadError;
-      const {
-        data: {
-          publicUrl
-        }
-      } = supabase.storage.from('uploads').getPublicUrl(filePath);
+      
+      const { data: { publicUrl } } = supabase.storage.from('uploads').getPublicUrl(filePath);
       return publicUrl;
     } catch (error) {
       toast({
@@ -96,27 +93,35 @@ export const RichTextEditor = ({
       setUploading(false);
     }
   };
+
   const editor = useEditor({
-    extensions: [StarterKit.configure({
-      bulletList: {
-        keepMarks: true,
-        keepAttributes: false
-      },
-      orderedList: {
-        keepMarks: true,
-        keepAttributes: false
-      }
-    }), Underline, TextStyle, Color, LineHeightExtension, TextAlign.configure({
-      types: ['heading', 'paragraph']
-    }), Link.configure({
-      openOnClick: false
-    }), Image.configure({
-      inline: true
-    })],
+    extensions: [
+      StarterKit.configure({
+        bulletList: {
+          keepMarks: true,
+          keepAttributes: false
+        },
+        orderedList: {
+          keepMarks: true,
+          keepAttributes: false
+        }
+      }), 
+      Underline, 
+      TextStyle, 
+      Color, 
+      LineHeightExtension, 
+      TextAlign.configure({
+        types: ['heading', 'paragraph']
+      }), 
+      Link.configure({
+        openOnClick: false
+      }), 
+      Image.configure({
+        inline: true
+      })
+    ],
     content,
-    onUpdate: ({
-      editor
-    }) => {
+    onUpdate: ({ editor }) => {
       onChange(editor.getHTML());
     },
     editorProps: {
@@ -140,17 +145,13 @@ export const RichTextEditor = ({
           // Upload and insert image
           uploadImage(file).then(url => {
             if (url) {
-              const {
-                schema
-              } = view.state;
+              const { schema } = view.state;
               const coordinates = view.posAtCoords({
                 left: event.clientX,
                 top: event.clientY
               });
               if (coordinates) {
-                const node = schema.nodes.image.create({
-                  src: url
-                });
+                const node = schema.nodes.image.create({ src: url });
                 const transaction = view.state.tr.insert(coordinates.pos, node);
                 view.dispatch(transaction);
               }
@@ -170,9 +171,7 @@ export const RichTextEditor = ({
               event.preventDefault();
               uploadImage(file).then(url => {
                 if (url) {
-                  editor?.chain().focus().setImage({
-                    src: url
-                  }).run();
+                  editor?.chain().focus().setImage({ src: url }).run();
                 }
               });
               return true;
@@ -194,6 +193,7 @@ export const RichTextEditor = ({
   if (!editor) {
     return null;
   }
+
   const ToolbarButton = ({
     onClick,
     active,
@@ -206,18 +206,28 @@ export const RichTextEditor = ({
     disabled?: boolean;
     children: React.ReactNode;
     title: string;
-  }) => <Button type="button" variant="ghost" size="sm" onClick={onClick} disabled={disabled} title={title} className={cn("h-8 w-8 p-0 hover:bg-primary/10 hover:text-primary transition-colors", active && "bg-primary/10 text-primary")}>
+  }) => (
+    <Button 
+      type="button" 
+      variant="ghost" 
+      size="sm" 
+      onClick={onClick} 
+      disabled={disabled} 
+      title={title} 
+      className={cn("h-8 w-8 p-0 hover:bg-primary/10 hover:text-primary transition-colors", active && "bg-primary/10 text-primary")}
+    >
       {children}
-    </Button>;
+    </Button>
+  );
+
   const addLink = () => {
     if (linkUrl) {
-      editor.chain().focus().setLink({
-        href: linkUrl
-      }).run();
+      editor.chain().focus().setLink({ href: linkUrl }).run();
       setLinkUrl('');
       setShowLinkDialog(false);
     }
   };
+
   const handleImageFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -231,12 +241,12 @@ export const RichTextEditor = ({
     }
     const url = await uploadImage(file);
     if (url) {
-      editor.chain().focus().setImage({
-        src: url
-      }).run();
+      editor.chain().focus().setImage({ src: url }).run();
     }
   };
-  return <div className="border border-border rounded-lg overflow-hidden bg-muted/30">
+
+  return (
+    <div className="border border-border rounded-lg overflow-hidden bg-muted/30">
       {/* Toolbar */}
       <div className="border-b border-border bg-muted/50 px-2 py-1.5 flex flex-wrap gap-1 sticky top-0 z-10 shadow-sm">
         {/* Text Formatting */}
@@ -257,49 +267,29 @@ export const RichTextEditor = ({
 
         {/* Text Alignment */}
         <div className="flex gap-1 pr-2 border-r border-border">
-          <ToolbarButton onClick={() => editor.chain().focus().setTextAlign('left').run()} active={editor.isActive({
-          textAlign: 'left'
-        })} title="Align Left">
+          <ToolbarButton onClick={() => editor.chain().focus().setTextAlign('left').run()} active={editor.isActive({ textAlign: 'left' })} title="Align Left">
             <AlignLeft className="h-4 w-4" />
           </ToolbarButton>
-          <ToolbarButton onClick={() => editor.chain().focus().setTextAlign('center').run()} active={editor.isActive({
-          textAlign: 'center'
-        })} title="Align Center">
+          <ToolbarButton onClick={() => editor.chain().focus().setTextAlign('center').run()} active={editor.isActive({ textAlign: 'center' })} title="Align Center">
             <AlignCenter className="h-4 w-4" />
           </ToolbarButton>
-          <ToolbarButton onClick={() => editor.chain().focus().setTextAlign('right').run()} active={editor.isActive({
-          textAlign: 'right'
-        })} title="Align Right">
+          <ToolbarButton onClick={() => editor.chain().focus().setTextAlign('right').run()} active={editor.isActive({ textAlign: 'right' })} title="Align Right">
             <AlignRight className="h-4 w-4" />
           </ToolbarButton>
-          <ToolbarButton onClick={() => editor.chain().focus().setTextAlign('justify').run()} active={editor.isActive({
-          textAlign: 'justify'
-        })} title="Justify">
+          <ToolbarButton onClick={() => editor.chain().focus().setTextAlign('justify').run()} active={editor.isActive({ textAlign: 'justify' })} title="Justify">
             <AlignJustify className="h-4 w-4" />
           </ToolbarButton>
         </div>
 
         {/* Headings */}
         <div className="flex gap-1 pr-2 border-r border-border">
-          <ToolbarButton onClick={() => editor.chain().focus().toggleHeading({
-          level: 1
-        }).run()} active={editor.isActive('heading', {
-          level: 1
-        })} title="Heading 1">
+          <ToolbarButton onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} active={editor.isActive('heading', { level: 1 })} title="Heading 1">
             <Heading1 className="h-4 w-4" />
           </ToolbarButton>
-          <ToolbarButton onClick={() => editor.chain().focus().toggleHeading({
-          level: 2
-        }).run()} active={editor.isActive('heading', {
-          level: 2
-        })} title="Heading 2">
+          <ToolbarButton onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} active={editor.isActive('heading', { level: 2 })} title="Heading 2">
             <Heading2 className="h-4 w-4" />
           </ToolbarButton>
-          <ToolbarButton onClick={() => editor.chain().focus().toggleHeading({
-          level: 3
-        }).run()} active={editor.isActive('heading', {
-          level: 3
-        })} title="Heading 3">
+          <ToolbarButton onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()} active={editor.isActive('heading', { level: 3 })} title="Heading 3">
             <Heading3 className="h-4 w-4" />
           </ToolbarButton>
         </div>
@@ -351,9 +341,9 @@ export const RichTextEditor = ({
         <div className="flex gap-1 pl-2 border-l border-border items-center">
           <span className="text-xs text-muted-foreground whitespace-nowrap">Jarak Baris:</span>
           <Select value={currentLineHeight} onValueChange={value => {
-          setCurrentLineHeight(value);
-          editor.chain().focus().setLineHeight(value).run();
-        }}>
+            setCurrentLineHeight(value);
+            editor.chain().focus().setLineHeight(value).run();
+          }}>
             <SelectTrigger className="h-8 w-[72px] text-xs">
               <SelectValue />
             </SelectTrigger>
@@ -369,46 +359,59 @@ export const RichTextEditor = ({
           </Select>
         </div>
 
-        {/* Paragraph Spacing */}
-        
-
         {/* Text Color */}
         <div className="flex gap-1 pl-2 border-l border-border">
-          <input type="color" onChange={e => editor.chain().focus().setColor(e.target.value).run()} value={editor.getAttributes('textStyle').color || '#000000'} className="h-8 w-12 rounded cursor-pointer" title="Text Color" />
+          <input 
+            type="color" 
+            onChange={e => editor.chain().focus().setColor(e.target.value).run()} 
+            value={editor.getAttributes('textStyle').color || '#000000'} 
+            className="h-8 w-12 rounded cursor-pointer" 
+            title="Text Color" 
+          />
         </div>
       </div>
 
-      {/* Ruler */}
-      <div className="bg-white border-b-2 border-gray-300 overflow-hidden">
+      {/* Ruler - Hidden on mobile */}
+      <div className="hidden sm:block bg-white border-b-2 border-gray-300 overflow-hidden">
         <div className="max-w-[21cm] mx-auto relative h-7 bg-gradient-to-b from-gray-100 to-gray-50 border-x border-gray-200">
           <div className="absolute inset-0 flex items-end px-8">
             {/* Ruler markings */}
-            {Array.from({
-            length: 21
-          }).map((_, i) => {
-            const isMajor = i % 5 === 0;
-            return <div key={i} className="flex-1 relative">
+            {Array.from({ length: 21 }).map((_, i) => {
+              const isMajor = i % 5 === 0;
+              return (
+                <div key={i} className="flex-1 relative">
                   {/* Major tick marks (every 5cm) */}
-                  {isMajor && <>
+                  {isMajor && (
+                    <>
                       <div className="absolute bottom-0 left-0 w-0.5 h-4 bg-gray-600" />
                       <div className="absolute bottom-4 left-0 text-[10px] font-medium text-gray-700 -translate-x-1/2">
                         {i}
                       </div>
-                    </>}
+                    </>
+                  )}
                   {/* Minor tick marks (every 1cm) */}
                   {!isMajor && <div className="absolute bottom-0 left-0 w-px h-2.5 bg-gray-400" />}
-                </div>;
-          })}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
 
       {/* Link Dialog */}
-      {showLinkDialog && <div className="p-3 border-b border-border bg-muted/20">
+      {showLinkDialog && (
+        <div className="p-3 border-b border-border bg-muted/20">
           <div className="flex gap-2 items-end">
             <div className="flex-1">
               <Label htmlFor="link-url" className="text-xs">URL Link</Label>
-              <Input id="link-url" type="url" placeholder="https://example.com" value={linkUrl} onChange={e => setLinkUrl(e.target.value)} onKeyDown={e => e.key === 'Enter' && addLink()} />
+              <Input 
+                id="link-url" 
+                type="url" 
+                placeholder="https://example.com" 
+                value={linkUrl} 
+                onChange={e => setLinkUrl(e.target.value)} 
+                onKeyDown={e => e.key === 'Enter' && addLink()} 
+              />
             </div>
             <Button type="button" size="sm" onClick={addLink}>
               Tambah
@@ -417,19 +420,23 @@ export const RichTextEditor = ({
               Batal
             </Button>
           </div>
-        </div>}
+        </div>
+      )}
 
       {/* Editor Content */}
-      <div className="relative bg-muted/20 p-3 sm:p-4 md:p-6">
+      <div className="relative bg-muted/20 p-2 sm:p-4 md:p-6">
         <div className="max-w-[21cm] mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
           <EditorContent editor={editor} className="prose-p:my-3 prose-headings:mt-6 prose-headings:mb-3 prose-headings:font-bold prose-ul:my-3 prose-ul:space-y-1.5 prose-ul:list-disc prose-ul:ml-6 prose-ol:my-3 prose-ol:space-y-1.5 prose-ol:list-decimal prose-ol:ml-6 prose-li:leading-relaxed prose-li:ml-0 prose-img:my-4 prose-img:rounded-lg prose-img:shadow-md prose-blockquote:my-4 prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:italic" />
         </div>
-        {uploading && <div className="absolute inset-0 bg-background/50 flex items-center justify-center">
+        {uploading && (
+          <div className="absolute inset-0 bg-background/50 flex items-center justify-center">
             <div className="text-sm text-muted-foreground">Mengupload gambar...</div>
-          </div>}
+          </div>
+        )}
       </div>
       <div className="px-3 py-1.5 text-xs text-muted-foreground border-t border-border bg-muted/30">
         💡 Tips: Drag & drop gambar langsung ke editor atau paste dari clipboard
       </div>
-    </div>;
+    </div>
+  );
 };

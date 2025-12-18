@@ -22,6 +22,7 @@ import {
 interface AppSidebarProps {
   activePage: string;
   onNavigate: (page: string) => void;
+  userRole?: string | null;
 }
 
 const menuItems = [
@@ -57,12 +58,40 @@ const menuItems = [
   },
 ];
 
-export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
+export function AppSidebar({ activePage, onNavigate, userRole }: AppSidebarProps) {
   const { open, setOpen, isMobile, openMobile, setOpenMobile } = useSidebar();
+  
+  // Filter menu items based on role
+  const getFilteredMenuItems = () => {
+    // Admin sees everything
+    if (!userRole || userRole === 'admin') return menuItems;
+
+    return menuItems.map(group => {
+      // Filter items based on role
+      const filteredItems = group.items.filter(item => {
+        if (userRole === 'admin_jurnalistik') {
+          // Jurnalistik: Dashboard, Analytics, Articles, News
+          return ['dashboard', 'analytics', 'articles', 'news'].includes(item.id);
+        }
+        if (userRole === 'admin_radio') {
+          // Radio: Dashboard, Analytics, Radio
+          return ['dashboard', 'analytics', 'radio'].includes(item.id);
+        }
+        return false;
+      });
+
+      return {
+        ...group,
+        items: filteredItems
+      };
+    }).filter(group => group.items.length > 0); // Remove empty groups
+  };
+
+  const filteredMenuItems = getFilteredMenuItems();
   
   // Find which group contains the active page
   const getActiveGroup = () => {
-    for (const section of menuItems) {
+    for (const section of filteredMenuItems) {
       if (section.items.some(item => item.id === activePage)) {
         return section.group;
       }
@@ -120,13 +149,13 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
           </div>
         </SidebarHeader>
 
-        <SidebarContent className="px-3 py-4 bg-transparent">
-          {menuItems.map((section, index) => (
+        <SidebarContent className="px-3 py-2 bg-transparent scrollbar-hide">
+          {filteredMenuItems.map((section, index) => (
             <Collapsible
               key={section.group}
               open={openGroups.includes(section.group)}
               onOpenChange={() => toggleGroup(section.group)}
-              className={index > 0 ? "mt-4" : ""}
+              className={index > 0 ? "mt-2" : ""}
             >
               <SidebarGroup>
                 <CollapsibleTrigger className="flex items-center justify-between w-full px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-all duration-200 group">
@@ -147,9 +176,9 @@ export function AppSidebar({ activePage, onNavigate }: AppSidebarProps) {
                   )}
                 </CollapsibleTrigger>
                 
-                <CollapsibleContent className="mt-2">
+                <CollapsibleContent className="mt-1">
                   <SidebarGroupContent>
-                    <SidebarMenu className="space-y-1.5">
+                    <SidebarMenu className="space-y-1">
                       {section.items.map((item, itemIndex) => (
                         <SidebarMenuItem 
                           key={item.id}

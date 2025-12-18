@@ -146,9 +146,6 @@ All colors MUST be HSL.
   
   body {
     @apply bg-background text-foreground font-sans;
-    background-image: var(--bg-pattern);
-    background-attachment: fixed;
-    background-size: cover;
     position: relative;
     overflow-x: hidden;
   }
@@ -178,45 +175,6 @@ All colors MUST be HSL.
 
   *::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--scrollbar-thumb-hover));
-  }
-
-  /* Animated broadcast waves - CSS Gradients */
-  body::before {
-    content: '';
-    position: fixed;
-    top: -10%;
-    left: -10%;
-    width: 500px;
-    height: 500px;
-    pointer-events: none;
-    z-index: 0;
-    background: 
-      radial-gradient(circle, hsl(348 89% 43% / 0.15) 0%, transparent 20%),
-      radial-gradient(circle, hsl(348 89% 43% / 0.12) 0%, transparent 30%),
-      radial-gradient(circle, hsl(348 89% 43% / 0.08) 0%, transparent 40%),
-      radial-gradient(circle, hsl(348 89% 43% / 0.05) 0%, transparent 50%);
-    background-size: 100px 100px, 200px 200px, 300px 300px, 400px 400px;
-    background-position: center;
-    animation: wave-pulse 3s ease-in-out infinite;
-  }
-
-  body::after {
-    content: '';
-    position: fixed;
-    bottom: -10%;
-    right: -10%;
-    width: 500px;
-    height: 500px;
-    pointer-events: none;
-    z-index: 0;
-    background: 
-      radial-gradient(circle, hsl(237 98% 38% / 0.15) 0%, transparent 20%),
-      radial-gradient(circle, hsl(237 98% 38% / 0.12) 0%, transparent 30%),
-      radial-gradient(circle, hsl(237 98% 38% / 0.08) 0%, transparent 40%),
-      radial-gradient(circle, hsl(237 98% 38% / 0.05) 0%, transparent 50%);
-    background-size: 100px 100px, 200px 200px, 300px 300px, 400px 400px;
-    background-position: center;
-    animation: broadcast-signal 4s ease-in-out infinite;
   }
 
   body > * {
@@ -287,5 +245,15 @@ All colors MUST be HSL.
 
   .article-content blockquote {
     @apply border-l-4 border-primary pl-4 italic my-4;
+  }
+
+  /* Hide scrollbar but keep scroll functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
   }
 }

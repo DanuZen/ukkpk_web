@@ -346,14 +346,14 @@ export const ContactSubmissionsManager = () => {
                   <div className="space-y-2">
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-semibold text-sm truncate">{submission.nama}</h4>
-                        <p className="text-xs text-gray-600 truncate">{submission.email}</p>
+                        <h4 className="font-semibold text-sm break-words pr-2">{submission.nama}</h4>
+                        <p className="text-xs text-gray-600 break-all">{submission.email}</p>
                       </div>
                       <button
                         onClick={() =>
                           handleToggleTestimonial(submission.id, submission.is_testimonial)
                         }
-                        className="flex-shrink-0"
+                        className="flex-shrink-0 -mt-1 -mr-1 p-2 hover:bg-gray-100 rounded-full transition-colors"
                       >
                         {submission.is_testimonial ? (
                           <CheckCircle2 className="w-5 h-5 text-green-600" />

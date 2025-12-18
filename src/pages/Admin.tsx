@@ -21,7 +21,7 @@ import { PopupManager } from "@/components/admin/PopupManager";
 
 const Admin = () => {
   const { user, signOut } = useAuth();
-  const { isAdmin, loading } = useAdmin();
+  const { isAdmin, userRole, loading } = useAdmin();
   const navigate = useNavigate();
   const [activePage, setActivePage] = useState("dashboard");
   const isMobile = useIsMobile();
@@ -77,9 +77,9 @@ const Admin = () => {
     <AdminLayout>
       <SidebarProvider defaultOpen={!isMobile}>
         <div className="flex min-h-screen w-full">
-          <AppSidebar activePage={activePage} onNavigate={setActivePage} />
+          <AppSidebar activePage={activePage} onNavigate={setActivePage} userRole={userRole} />
           
-          <main className="flex-1 flex flex-col">
+          <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
             <DashboardHeader 
               title={getPageTitle(activePage)} 
               user={user}
@@ -88,7 +88,7 @@ const Admin = () => {
               onNavigate={setActivePage}
             />
             
-            <div className="flex-1 p-4 sm:p-6 bg-gray-100">
+            <div className="flex-1 p-4 sm:p-6 bg-gray-100 overflow-x-hidden">
               {activePage === "dashboard" && <DashboardOverview />}
               {activePage === "analytics" && <AnalyticsDashboard />}
               {activePage === "articles" && <ArticlesManager />}
