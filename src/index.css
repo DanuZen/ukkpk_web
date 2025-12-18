@@ -188,7 +188,7 @@ All colors MUST be HSL.
   }
 
   .article-content p {
-    @apply my-4 text-justify;
+    @apply my-4;
   }
 
   .article-content h1, .article-content h2, .article-content h3 {
@@ -232,7 +232,7 @@ All colors MUST be HSL.
   }
 
   .article-content li {
-    @apply ml-4;
+    @apply ml-0;
   }
 
   .article-content a {

@@ -178,14 +178,14 @@ const ArtikelDetail = () => {
 
   return (
     <Layout>
-      <article className={`py-2 md:py-8 px-2 md:px-4 transition-all duration-500 ${isExiting ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'} ${isEntering ? 'opacity-0 translate-y-8' : ''}`}>
-        <div className="container mx-auto max-w-7xl">
+      <article className={`py-2 md:py-12 px-2 md:px-4 transition-all duration-500 ${isExiting ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'} ${isEntering ? 'opacity-0 translate-y-8' : ''}`}>
+        <div className="container mx-auto max-w-6xl">
           <Button variant="ghost" className="hidden md:inline-flex mb-6 bg-transparent hover:bg-muted/50 hover:text-foreground" onClick={handleBack}>
             <ArrowLeft className="mr-2 h-4 w-4" />
             Kembali
           </Button>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-20">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
             <div className="lg:col-span-2">
               <div className="mt-8 md:mt-0">
                 <h1 className="text-lg md:text-4xl font-bold mb-6 leading-tight bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
@@ -250,9 +250,9 @@ const ArtikelDetail = () => {
               </div>
 
               {/* Article Content */}
-              <div className="prose prose-sm md:prose-lg max-w-none mb-6">
+              <div className="prose prose-sm md:prose-lg max-w-4xl mb-12">
                 <div 
-                  className="text-foreground/90 leading-relaxed article-content text-xs md:text-base [&_ul]:!list-disc [&_ul]:!pl-5 [&_ol]:!list-decimal [&_ol]:!pl-5 [&_li]:!pl-1 [&_li>p]:!m-0 [&_li>p]:!inline"
+                  className="text-foreground/90 leading-relaxed article-content [&_ul]:!list-disc [&_ul]:!pl-5 [&_ol]:!list-decimal [&_ol]:!pl-5 [&_li]:!pl-1 [&_li>p]:!m-0 [&_li>p]:!inline"
                   dangerouslySetInnerHTML={{ __html: sanitizeHtml(article.content) }}
                 />
               </div>
