@@ -63,68 +63,76 @@ const Auth = () => {
 
   return <div className="min-h-screen flex flex-col lg:flex-row">
       {/* Left Section - Brand/Info (Desktop only) */}
-      <div className="hidden lg:flex lg:flex-1 bg-gradient-to-br from-primary via-primary to-primary/80 p-12 flex-col justify-between text-white relative overflow-hidden">
+      <div className="hidden lg:flex lg:flex-1 bg-gradient-to-br from-primary via-primary to-primary/80 p-12 flex-col text-white relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-0 left-0 w-full h-full opacity-10">
           <div className="absolute top-20 left-20 w-32 h-32 bg-white rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 right-20 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+          
+          {/* Large Background Mascot */}
+          <AnimatedSection animation="fade-in" delay={200} className="absolute -bottom-10 -right-10">
+            <img 
+              src={logoMicuMascot} 
+              alt="MICU Mascot Background" 
+              className="h-[600px] w-auto opacity-100 pointer-events-none select-none z-0 rotate-[-10deg]" 
+            />
+          </AnimatedSection>
         </div>
 
-        <div className="relative z-10">
+        {/* Top Logo */}
+        <AnimatedSection animation="fade-down" delay={100} className="relative z-10">
           <div className="flex items-center gap-3 mb-16">
             <img src={logoUkkpk} alt="UKKPK Logo" className="h-12 w-12" />
             <div>
               <h1 className="text-xl font-bold">UKKPK UNP</h1>
             </div>
           </div>
+        </AnimatedSection>
 
-          <div className="space-y-8">
-            <div>
-              <h2 className="font-bold mb-4 leading-tight text-7xl text-justify">
-                Website Resmi<br />UKKPK UNP
-              </h2>
-              <p className="text-lg text-white/90 leading-relaxed mb-8 text-justify">
-                Portal informasi utama Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang yang menyediakan berita terkini, artikel kampus, dan layanan radio kampus untuk seluruh civitas akademika
-              </p>
-              
-              {/* MICU Logo & Features */}
-              <div className="gap-8 flex-col flex items-start justify-center">
-                {/* Features List */}
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 p-1 bg-white/20 rounded-full">
-                      <Check className="w-4 h-4" />
-                    </div>
-                    <p className="font-medium">Menyediakan Informasi Seputar UNP</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 p-1 bg-white/20 rounded-full">
-                      <Check className="w-4 h-4" />
-                    </div>
-                    <p className="font-medium">Artikel dan Berita Terbaru    </p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 p-1 bg-white/20 rounded-full">
-                      <Check className="w-4 h-4" />
-                    </div>
-                    <p className="font-medium">​Laman Radio Kampus </p>
-                  </div>
-                </div>
+        {/* Centered Main Content */}
+        <div className="relative z-10 flex-1 flex flex-col justify-center pb-32">
+          <AnimatedSection animation="fade-up" delay={300}>
+            <div className="space-y-8">
+              <div>
+                <h2 className="font-bold mb-4 leading-tight text-7xl text-justify">
+                  Website Resmi<br />UKKPK UNP
+                </h2>
+                <p className="text-lg text-white/90 leading-relaxed mb-8 text-justify">
+                  Portal informasi utama Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang yang menyediakan berita terkini, artikel kampus, dan layanan radio kampus untuk seluruh civitas akademika
+                </p>
                 
-                {/* MICU Mascot Logo */}
-                <div className="flex-shrink-0">
-                  <img src={logoMicuMascot} alt="MICU Mascot" className="h-48 w-auto" style={{
-                  filter: 'drop-shadow(0 4px 8px rgba(255, 255, 255, 0.3))'
-                }} />
+                {/* Features List */}
+                <div className="gap-8 flex-col flex items-start justify-center">
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="mt-1 p-1 bg-white/20 rounded-full">
+                        <Check className="w-4 h-4" />
+                      </div>
+                      <p className="font-medium">Menyediakan Informasi Seputar UNP</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="mt-1 p-1 bg-white/20 rounded-full">
+                        <Check className="w-4 h-4" />
+                      </div>
+                      <p className="font-medium">Artikel dan Berita Terbaru    </p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="mt-1 p-1 bg-white/20 rounded-full">
+                        <Check className="w-4 h-4" />
+                      </div>
+                      <p className="font-medium">​Laman Radio Kampus </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
 
-        <div className="relative z-10">
-          <p className="text-sm text-white/70">© 2025 UKKPK UNP.           </p>
-        </div>
+        {/* Bottom Copyright */}
+        <AnimatedSection animation="fade-up" delay={500} className="relative z-10">
+          <p className="text-sm text-white/70">© 2025 UKKPK UNP.</p>
+        </AnimatedSection>
       </div>
 
       {/* Right Section - Login Form */}

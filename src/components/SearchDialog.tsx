@@ -98,15 +98,15 @@ export const SearchDialog = ({ open, onOpenChange }: SearchDialogProps) => {
         <DialogHeader>
           <DialogTitle>Cari Konten</DialogTitle>
         </DialogHeader>
-        <div className="relative">
-          <Search className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
+        <div className="relative group">
           <Input
             placeholder="Cari artikel, berita, atau event..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="pl-10"
+            className="w-full h-12 pl-12 pr-4 rounded-full border-2 border-primary focus-visible:ring-0 focus-visible:border-primary bg-white transition-all duration-300 shadow-sm group-hover:shadow-md text-foreground placeholder:text-muted-foreground"
             autoFocus
           />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-primary/60" />
         </div>
 
         <div className="mt-4 max-h-96 overflow-y-auto space-y-2">
@@ -125,7 +125,11 @@ export const SearchDialog = ({ open, onOpenChange }: SearchDialogProps) => {
               {results.map((result) => (
                 <Link
                   key={`${result.type}-${result.id}`}
-                  to={result.type === "event" ? "/event" : "/artikel"}
+                  to={
+                    result.type === "article" ? `/artikel/${result.id}` :
+                    result.type === "news" ? `/berita/${result.id}` :
+                    "/event"
+                  }
                   onClick={() => onOpenChange(false)}
                   className="block p-4 rounded-lg border hover:bg-accent transition-colors"
                 >

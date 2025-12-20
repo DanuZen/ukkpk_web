@@ -124,7 +124,7 @@ const Berita = () => {
       <section className="py-8 sm:py-16 md:py-24 lg:py-32 bg-white">
         <div className="container mx-auto px-4">
           {filteredNews.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 md:gap-8">
               {filteredNews.map((item, index) => (
                 <AnimatedSection key={item.id} animation="fade-up" delay={index * 100}>
                   <Card 
@@ -132,7 +132,7 @@ const Berita = () => {
                     onClick={() => navigate(`/berita/${item.id}`)}
                   >
                   {item.image_url && (
-                    <div className="relative overflow-hidden h-36 sm:h-48 md:h-56">
+                    <div className="relative overflow-hidden h-28 sm:h-48 md:h-56">
                       <img
                         src={item.image_url}
                         alt={item.title}

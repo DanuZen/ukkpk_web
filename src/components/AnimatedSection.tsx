@@ -3,7 +3,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 interface AnimatedSectionProps {
   children: ReactNode;
-  animation?: "fade-up" | "fade-in" | "scale-in" | "slide-left" | "slide-right";
+  animation?: "fade-up" | "fade-down" | "fade-in" | "scale-in" | "slide-left" | "slide-right";
   className?: string;
   delay?: number;
 }
@@ -28,6 +28,12 @@ export const AnimatedSection = ({
           isVisible
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-8"
+        }`;
+      case "fade-down":
+        return `${baseTransition} ${
+          isVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-8"
         }`;
       case "fade-in":
         return `${baseTransition} ${
