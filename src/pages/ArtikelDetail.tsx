@@ -187,7 +187,11 @@ const ArtikelDetail = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
             <div className="lg:col-span-2">
               <div className="mt-8 md:mt-0">
+<<<<<<< HEAD
                 <h1 className="text-xl md:text-4xl font-bold mb-6 leading-tight text-foreground">
+=======
+                <h1 className="text-lg md:text-4xl font-bold mb-6 leading-tight bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
+>>>>>>> d8b849af252fccf09a2be50e95913ef3afc83844
                   {article.title}
                 </h1>
               </div>
@@ -204,15 +208,17 @@ const ArtikelDetail = () => {
               {/* Article Metadata */}
               <div className="mb-6 pb-4 border-b border-border">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-3">
-                  <div className="flex items-center justify-between md:justify-start gap-2 md:gap-4 w-full md:w-auto">
-                    <div className="flex items-center gap-2 md:gap-4">
-                      <div className="flex items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
-                        <Calendar className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                  {/* Mobile: Calendar and Like button on first row */}
+                  {/* Desktop: Calendar, Author, and Like button all on one row */}
+                  <div className="flex items-center justify-between md:justify-start gap-2 md:gap-3 w-full md:w-auto">
+                    <div className="flex items-center gap-2 md:gap-3">
+                      <div className="bg-muted/50 px-2 py-1 md:px-3 md:py-1.5 rounded-md flex items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
+                        <Calendar className="h-3 w-3 md:h-4 md:w-4" />
                         <span>{formatDate(article.published_at || article.created_at)}</span>
                       </div>
                       {article.author && (
-                        <div className="hidden md:flex items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
-                          <User className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                        <div className="hidden md:flex bg-muted/50 px-2 py-1 md:px-3 md:py-1.5 rounded-md items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
+                          <User className="h-3 w-3 md:h-4 md:w-4" />
                           <span>{article.author}</span>
                         </div>
                       )}
@@ -225,11 +231,13 @@ const ArtikelDetail = () => {
                     </div>
                   </div>
                   
+                  {/* Second row on mobile: Author */}
+                  {/* Desktop: Like button only (Editor moved to bottom) */}
                   <div className="flex items-center justify-between md:justify-end gap-2 md:gap-3">
                     <div className="flex items-center gap-2 md:gap-3">
                       {article.author && (
-                        <div className="md:hidden flex items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
-                          <User className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                        <div className="md:hidden bg-muted/50 px-2 py-1 md:px-3 md:py-1.5 rounded-md flex items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
+                          <User className="h-3 w-3 md:h-4 md:w-4" />
                           <span>{article.author}</span>
                         </div>
                       )}
@@ -258,6 +266,7 @@ const ArtikelDetail = () => {
                 )}
               </div>
 
+<<<<<<< HEAD
               {article.source && (
                 <div className="mt-8 pt-4 border-t border-border">
                   <p className="text-xs md:text-sm font-semibold mb-2">Sumber:</p>
@@ -279,6 +288,14 @@ const ArtikelDetail = () => {
                       } catch (e) {}
                       return <div className="text-[10px] md:text-xs text-muted-foreground break-words">{article.source}</div>;
                     })()}
+=======
+              {/* Editor Info - All Screens (after content) */}
+              {article.editor && (
+                <div className="mb-6 pb-4 border-b border-border">
+                  <div className="bg-muted/50 px-2 py-1 md:px-3 md:py-1.5 rounded-md flex items-center gap-1.5 md:gap-2 text-[10px] md:text-sm text-muted-foreground w-fit">
+                    <FileEdit className="h-3 w-3 md:h-4 md:w-4" />
+                    <span>Penyunting: {article.editor}</span>
+>>>>>>> d8b849af252fccf09a2be50e95913ef3afc83844
                   </div>
                 </div>
               )}
@@ -339,8 +356,8 @@ const ArtikelDetail = () => {
             <div className="hidden lg:block lg:col-span-1">
               <div>
                 <div className="mb-6">
-                  <h3 className="text-xl md:text-2xl font-bold mb-2">Berita Terkait</h3>
-                  <div className="h-1 w-12 bg-primary"></div>
+                  <h3 className="text-2xl font-bold mb-2">Berita Terkait</h3>
+                  <div className="h-1 w-12 bg-orange-500"></div>
                 </div>
                 <div className="space-y-6">
                   {relatedArticles.map((relatedArticle, index) => (

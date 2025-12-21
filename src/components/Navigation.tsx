@@ -8,7 +8,6 @@ import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
-
 interface SearchResult {
   id: string;
   title: string;
@@ -18,7 +17,6 @@ interface SearchResult {
   editor?: string | null;
   cameraman?: string[] | null;
 }
-
 const navItems = [{
   name: "HOME",
   path: "/"
@@ -35,7 +33,6 @@ const navItems = [{
   name: "PROFIL UKKPK",
   path: "/profil-ukkpk"
 }];
-
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -62,7 +59,6 @@ export const Navigation = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   useEffect(() => {
     const searchContent = async () => {
       if (!searchQuery.trim()) {
@@ -71,6 +67,7 @@ export const Navigation = () => {
       }
       setSearchLoading(true);
       try {
+<<<<<<< HEAD
         const [articlesRes, newsRes, eventsRes] = await Promise.all([
           supabase.from('articles').select('id, title, created_at, author, editor').or(`title.ilike.%${searchQuery}%,content.ilike.%${searchQuery}%,author.ilike.%${searchQuery}%,editor.ilike.%${searchQuery}%`).limit(3),
           supabase.from('news').select('id, title, created_at, author, editor, cameraman').or(`title.ilike.%${searchQuery}%,content.ilike.%${searchQuery}%,author.ilike.%${searchQuery}%,editor.ilike.%${searchQuery}%`).limit(3),
@@ -101,6 +98,25 @@ export const Navigation = () => {
             created_at: e.event_date
           }))
         ];
+=======
+        const [articlesRes, newsRes, eventsRes] = await Promise.all([supabase.from('articles').select('id, title, created_at').ilike('title', `%${searchQuery}%`).limit(3), supabase.from('news').select('id, title, created_at').ilike('title', `%${searchQuery}%`).limit(3), supabase.from('events').select('id, name, event_date').ilike('name', `%${searchQuery}%`).limit(3)]);
+        const results: SearchResult[] = [...(articlesRes.data || []).map(a => ({
+          id: a.id,
+          title: a.title,
+          type: 'article' as const,
+          created_at: a.created_at
+        })), ...(newsRes.data || []).map(n => ({
+          id: n.id,
+          title: n.title,
+          type: 'news' as const,
+          created_at: n.created_at
+        })), ...(eventsRes.data || []).map(e => ({
+          id: e.id,
+          title: e.name,
+          type: 'event' as const,
+          created_at: e.event_date
+        }))];
+>>>>>>> d8b849af252fccf09a2be50e95913ef3afc83844
         setSearchResults(results);
       } catch (error) {
         console.error('Search error:', error);
@@ -111,19 +127,15 @@ export const Navigation = () => {
     const debounce = setTimeout(searchContent, 300);
     return () => clearTimeout(debounce);
   }, [searchQuery]);
-
   const handleLogout = async () => {
     await signOut();
     toast.success("Berhasil logout");
     setIsPopoverOpen(false);
     navigate("/");
   };
-
   const isHomePage = location.pathname === "/";
   const showTransparentNav = isHomePage && !isScrolled && !isOpen;
-
-  return (
-    <nav className={`${showTransparentNav ? "bg-transparent" : "bg-white border-b border-border shadow-sm"} sticky top-0 z-50 transition-all duration-300`}>
+  return <nav className={`${showTransparentNav ? "bg-transparent" : "bg-white border-b border-border shadow-sm"} sticky top-0 z-50 transition-all duration-300`}>
       <div className="container mx-auto px-4 relative">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -136,77 +148,32 @@ export const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1 flex-1 justify-end">
-            {!isSearchOpen ? (
-              <>
+            {!isSearchOpen ? <>
                 {navItems.map(item => {
-                  const isActive = location.pathname === item.path;
-                  return (
-                    <Link 
-                      key={item.name} 
-                      to={item.path} 
-                      className={`px-4 py-5 text-sm transition-all duration-300 relative ${isActive ? (showTransparentNav ? "font-semibold text-white border-b-2 border-white" : "font-semibold text-primary border-b-2 border-primary") : (showTransparentNav ? "font-medium text-white hover:border-b-2 hover:border-white/50" : "font-medium text-foreground hover:text-primary hover:border-b-2 hover:border-primary/50")}`}
-                    >
+              const isActive = location.pathname === item.path;
+              return <Link key={item.name} to={item.path} className={`px-4 py-5 text-sm transition-all duration-300 relative ${isActive ? (showTransparentNav ? "font-semibold text-white border-b-2 border-white" : "font-semibold text-primary border-b-2 border-primary") : (showTransparentNav ? "font-medium text-white hover:border-b-2 hover:border-white/50" : "font-medium text-foreground hover:text-primary hover:border-b-2 hover:border-primary/50")}`}>
                       {item.name}
-                    </Link>
-                  );
-                })}
+                    </Link>;
+            })}
                 <Button variant="ghost" size="icon" className={`ml-2 transition-all duration-300 ${showTransparentNav ? "text-white hover:bg-white/10 hover:text-white" : "hover:bg-primary/10 hover:text-primary"}`} onClick={() => setIsSearchOpen(true)}>
                   <Search className="h-5 w-5" />
                 </Button>
-              </>
-            ) : (
-              <div className="flex items-center gap-3 animate-fade-in flex-1 max-w-md relative">
-                <div className="relative flex-1 group">
-                  <Input 
-                    type="text" 
-                    placeholder="Cari artikel, berita, atau event..." 
-                    value={searchQuery} 
-                    onChange={e => setSearchQuery(e.target.value)} 
-                    className={`w-full h-11 pl-5 pr-12 rounded-full border-2 transition-all duration-300 shadow-sm group-hover:shadow-md focus-visible:ring-0 ${
-                      showTransparentNav 
-                        ? "border-white bg-white/20 backdrop-blur-md text-white placeholder:text-white/60 focus-visible:border-white" 
-                        : "border-primary bg-white text-foreground placeholder:text-muted-foreground focus-visible:border-primary"
-                    }`} 
-                    autoFocus 
-                  />
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                    <Search className={`h-5 w-5 ${showTransparentNav ? "text-white/70" : "text-primary/60"}`} />
-                  </div>
-                </div>
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  className={`transition-all duration-300 rounded-full h-10 w-10 flex-shrink-0 ${
-                    showTransparentNav 
-                      ? "hover:bg-white/10 text-white hover:text-white" 
-                      : "hover:bg-primary/10 text-primary hover:text-primary"
-                  }`} 
-                  onClick={() => {
-                    setIsSearchOpen(false);
-                    setSearchQuery("");
-                    setSearchResults([]);
-                  }}
-                >
-                  <X className="h-6 w-6 stroke-[2.5px]" />
+              </> : <div className="flex items-center gap-2 animate-fade-in flex-1 max-w-md relative">
+                <Input type="text" placeholder="Cari artikel, berita, atau event..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="flex-1" autoFocus />
+                <Button variant="ghost" size="icon" className="hover:bg-primary hover:text-white transition-colors" onClick={() => {
+              setIsSearchOpen(false);
+              setSearchQuery("");
+              setSearchResults([]);
+            }}>
+                  <X className="h-5 w-5" />
                 </Button>
                 
-                {searchResults.length > 0 && (
-                  <div className="absolute top-full mt-2 w-full bg-background border border-border rounded-lg shadow-lg max-h-96 overflow-y-auto z-50 animate-fade-in">
-                    {searchResults.map(result => (
-                      <Link 
-                        key={`${result.type}-${result.id}`} 
-                        to={
-                          result.type === 'article' ? `/artikel/${result.id}` : 
-                          result.type === 'news' ? `/berita/${result.id}` : 
-                          '/radio'
-                        }
-                        className="block px-4 py-3 hover:bg-secondary/10 transition-colors border-b border-border last:border-b-0" 
-                        onClick={() => {
-                          setIsSearchOpen(false);
-                          setSearchQuery("");
-                          setSearchResults([]);
-                        }}
-                      >
+                {searchResults.length > 0 && <div className="absolute top-full mt-2 w-full bg-background border border-border rounded-lg shadow-lg max-h-96 overflow-y-auto z-50 animate-fade-in">
+                    {searchResults.map(result => <Link key={`${result.type}-${result.id}`} to={`/${result.type === 'article' ? 'artikel' : result.type === 'news' ? 'berita' : 'event'}`} className="block px-4 py-3 hover:bg-secondary/10 transition-colors border-b border-border last:border-b-0" onClick={() => {
+                setIsSearchOpen(false);
+                setSearchQuery("");
+                setSearchResults([]);
+              }}>
                         <div className="font-medium">{result.title}</div>
                         <div className="text-xs text-muted-foreground mt-1 flex flex-wrap gap-x-2">
                           <span>{result.type === 'article' ? 'Artikel' : result.type === 'news' ? 'Berita' : 'Event'}</span>
@@ -217,12 +184,9 @@ export const Navigation = () => {
                             </>
                           )}
                         </div>
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
+                      </Link>)}
+                  </div>}
+              </div>}
             
             {/* Profile Icon with Login/Logout */}
             <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
@@ -232,8 +196,7 @@ export const Navigation = () => {
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-80 p-0 bg-white" align="end">
-                {!user ? (
-                  <div className="bg-white">
+                {!user ? <div className="bg-white">
                     <div className="p-6 space-y-5">
                       {/* Icon & Header */}
                       <div className="flex items-center gap-3">
@@ -271,9 +234,7 @@ export const Navigation = () => {
                         </p>
                       </div>
                     </div>
-                  </div>
-                ) : (
-                  <div className="bg-white">
+                  </div> : <div className="bg-white">
                     <div className="p-4 space-y-3">
                       {/* User Info */}
                       <div className="pb-3 border-b border-border/50">
@@ -311,8 +272,7 @@ export const Navigation = () => {
                         </Button>
                       </div>
                     </div>
-                  </div>
-                )}
+                  </div>}
               </PopoverContent>
             </Popover>
           </div>
@@ -324,76 +284,66 @@ export const Navigation = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="fixed top-16 left-0 right-0 bottom-0 lg:hidden bg-background/95 backdrop-blur-sm overflow-y-auto z-50 animate-in slide-in-from-top duration-300">
+        {isOpen && <div className="fixed top-16 left-0 right-0 bottom-0 lg:hidden bg-background/95 backdrop-blur-sm overflow-y-auto z-50 animate-in slide-in-from-top duration-300">
             <div className="py-4 space-y-2">
-              {navItems.map(item => {
-                const isActive = location.pathname === item.path;
-                return (
-                  <Link 
-                    key={item.name} 
-                    to={item.path} 
-                    className={`block mx-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground shadow-md" : "text-foreground hover:bg-gray-100"}`} 
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                );
-              })}
-              
-              {/* Account Section */}
-              <div className="border-t border-border mt-2 pt-2">
-                {user ? (
-                  <>
-                    {/* User Info */}
-                    <div className="mx-2 px-4 py-3 mb-2 bg-gray-100 rounded-lg">
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 bg-gradient-to-br from-primary to-primary/80 rounded-lg shadow-sm">
-                          <User className="h-4 w-4 text-white" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-xs font-semibold truncate">{user.email}</p>
-                          <p className="text-xs text-muted-foreground">Administrator</p>
-                        </div>
+            {navItems.map(item => {
+          const isActive = location.pathname === item.path;
+          return <Link key={item.name} to={item.path} className={`block mx-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground shadow-md" : "text-foreground hover:bg-gray-100"}`} onClick={() => setIsOpen(false)}>
+                  {item.name}
+                </Link>;
+        })}
+            
+            {/* Account Section */}
+            <div className="border-t border-border mt-2 pt-2">
+              {user ? (
+                <>
+                  {/* User Info */}
+                  <div className="mx-2 px-4 py-3 mb-2 bg-gray-100 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-gradient-to-br from-primary to-primary/80 rounded-lg shadow-sm">
+                        <User className="h-4 w-4 text-white" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold truncate">{user.email}</p>
+                        <p className="text-xs text-muted-foreground">Administrator</p>
                       </div>
                     </div>
-                    
-                    {/* Admin Actions */}
-                    <Link 
-                      to="/admin"
-                      className="flex items-center gap-2 mx-2 px-4 py-3 text-sm font-medium rounded-lg text-foreground hover:bg-gray-100 transition-all duration-300"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <LayoutDashboard className="h-4 w-4" />
-                      Dashboard Admin
-                    </Link>
-                    
-                    <button
-                      onClick={() => {
-                        handleLogout();
-                        setIsOpen(false);
-                      }}
-                      className="flex items-center gap-2 mx-2 px-4 py-3 text-sm font-medium rounded-lg text-destructive hover:bg-destructive/10 transition-all duration-300 w-full"
-                    >
-                      <LogOut className="h-4 w-4" />
-                      Logout
-                    </button>
-                  </>
-                ) : (
+                  </div>
+                  
+                  {/* Admin Actions */}
                   <Link 
-                    to="/auth"
-                    className="flex items-center justify-center gap-2 mx-2 px-4 py-3 text-sm font-medium rounded-lg bg-primary text-white hover:bg-primary/90 transition-all duration-300"
+                    to="/admin"
+                    className="flex items-center gap-2 mx-2 px-4 py-3 text-sm font-medium rounded-lg text-foreground hover:bg-gray-100 transition-all duration-300"
                     onClick={() => setIsOpen(false)}
                   >
-                    <User className="h-4 w-4" />
-                    Login Sekarang
+                    <LayoutDashboard className="h-4 w-4" />
+                    Dashboard Admin
                   </Link>
-                )}
-              </div>
+                  
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      setIsOpen(false);
+                    }}
+                    className="flex items-center gap-2 mx-2 px-4 py-3 text-sm font-medium rounded-lg text-destructive hover:bg-destructive/10 transition-all duration-300 w-full"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <Link 
+                  to="/auth"
+                  className="flex items-center justify-center gap-2 mx-2 px-4 py-3 text-sm font-medium rounded-lg bg-primary text-white hover:bg-primary/90 transition-all duration-300"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <User className="h-4 w-4" />
+                  Login Sekarang
+                </Link>
+              )}
             </div>
-          </div>
-        )}
+            </div>
+          </div>}
       </div>
-    </nav>
-  );
+    </nav>;
 };
