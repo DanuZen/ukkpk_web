@@ -178,7 +178,7 @@ const BeritaDetail = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
             <div className="lg:col-span-2">
               <div className="mt-8 md:mt-0">
-                <h1 className="text-2xl md:text-4xl font-bold mb-6 leading-tight text-foreground">
+                <h1 className="text-lg md:text-4xl font-bold mb-6 leading-tight bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
                   {news.title}
                 </h1>
                 {news.category && <div className="text-primary font-bold text-[10px] md:text-xs mb-4 uppercase">{news.category}</div>}
@@ -196,17 +196,21 @@ const BeritaDetail = () => {
               {/* News Metadata */}
               <div className="mb-6 pb-4 border-b border-border">
                 <div className="flex flex-col gap-2 md:gap-3">
-                  <div className="flex items-center justify-between gap-2 md:gap-4">
-                    <div className="flex items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
-                      <Calendar className="h-3.5 w-3.5 md:h-4 md:w-4" />
-                      <span>{formatDate(news.published_at || news.created_at)}</span>
-                    </div>
-                    {news.author && (
-                      <div className="hidden md:flex items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
-                        <User className="h-3.5 w-3.5 md:h-4 md:w-4" />
-                        <span>{news.author}</span>
+                  {/* First row on mobile: Calendar and Like button */}
+                  {/* First row on desktop: Calendar, Reporter, and Like button */}
+                  <div className="flex items-center justify-between gap-2 md:gap-3">
+                    <div className="flex items-center gap-2 md:gap-3">
+                      <div className="bg-muted/50 px-2 py-1 md:px-3 md:py-1.5 rounded-md flex items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
+                        <Calendar className="h-3 w-3 md:h-4 md:w-4" />
+                        <span>{formatDate(news.published_at || news.created_at)}</span>
                       </div>
-                    )}
+                      {news.author && (
+                        <div className="hidden md:flex bg-muted/50 px-2 py-1 md:px-3 md:py-1.5 rounded-md items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
+                          <User className="h-3 w-3 md:h-4 md:w-4" />
+                          <span>{news.author}</span>
+                        </div>
+                      )}
+                    </div>
                     <div className="flex items-center gap-2">
                       <Button variant="ghost" size="sm" onClick={handleLike} disabled={isLiking} className={`flex items-center gap-1 ${hasLiked ? 'text-primary' : 'text-muted-foreground'} hover:text-primary hover:bg-transparent transition-colors h-auto py-1 px-2`}>
                         <Heart className={`h-3 w-3 md:h-4 md:w-4 ${hasLiked ? 'fill-current' : ''}`} />
@@ -215,16 +219,18 @@ const BeritaDetail = () => {
                     </div>
                   </div>
                   
-                  <div className="flex flex-wrap items-center gap-2 md:gap-4">
+                  {/* Second row on mobile: Author and Cameraman */}
+                  {/* Second row on desktop: Cameraman only (Editor moved to bottom) */}
+                  <div className="flex flex-wrap items-center gap-2 md:gap-3">
                     {news.author && (
-                      <div className="md:hidden flex items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
-                        <User className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                      <div className="md:hidden bg-muted/50 px-2 py-1 md:px-3 md:py-1.5 rounded-md flex items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
+                        <User className="h-3 w-3 md:h-4 md:w-4" />
                         <span>{news.author}</span>
                       </div>
                     )}
                     {Array.isArray(news.cameraman) && news.cameraman.length > 0 && (
-                      <div className="flex items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
-                        <Video className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                      <div className="bg-muted/50 px-2 py-1 md:px-3 md:py-1.5 rounded-md flex items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-muted-foreground">
+                        <Video className="h-3 w-3 md:h-4 md:w-4" />
                         <span>{news.cameraman.join(", ")}</span>
                       </div>
                     )}
@@ -243,8 +249,8 @@ const BeritaDetail = () => {
               {/* Editor Info - All Screens (after content) */}
               {news.editor && (
                 <div className="mb-6 pb-4 border-b border-border">
-                  <div className="flex items-center gap-1.5 md:gap-2 text-[10px] md:text-sm text-muted-foreground w-fit">
-                    <FileEdit className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                  <div className="bg-muted/50 px-2 py-1 md:px-3 md:py-1.5 rounded-md flex items-center gap-1.5 md:gap-2 text-[10px] md:text-sm text-muted-foreground w-fit">
+                    <FileEdit className="h-3 w-3 md:h-4 md:w-4" />
                     <span>Penyunting: {news.editor}</span>
                   </div>
                 </div>
@@ -306,8 +312,8 @@ const BeritaDetail = () => {
             <div className="hidden lg:block lg:col-span-1">
               <div>
                 <div className="mb-6">
-                  <h3 className="text-xl md:text-2xl font-bold mb-2">Berita Terkait</h3>
-                  <div className="h-1 w-12 bg-primary"></div>
+                  <h3 className="text-2xl font-bold mb-2">Berita Terkait</h3>
+                  <div className="h-1 w-12 bg-orange-500"></div>
                 </div>
                 <div className="space-y-6">
                   {relatedNews.map((relatedItem, index) => (

@@ -107,12 +107,12 @@ const Artikel = () => {
       <section className="py-8 sm:py-16 md:py-24 lg:py-32 bg-white">
         <div className="container mx-auto px-4">
           {filteredArticles.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 md:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {filteredArticles.map((article, index) => (
                 <AnimatedSection key={article.id} animation="fade-up" delay={index * 100}>
                   <Card className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer h-full flex flex-col" onClick={() => navigate(`/artikel/${article.id}`)}>
                     {article.image_url && (
-                      <div className="relative overflow-hidden h-28 sm:h-48 md:h-56">
+                      <div className="relative overflow-hidden h-36 sm:h-48 md:h-56">
                         <img src={article.image_url} alt={article.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </div>
