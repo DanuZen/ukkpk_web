@@ -14,6 +14,9 @@ interface SearchResult {
   title: string;
   type: 'article' | 'news' | 'event';
   created_at: string;
+  author?: string | null;
+  editor?: string | null;
+  cameraman?: string[] | null;
 }
 
 const navItems = [{
@@ -69,22 +72,27 @@ export const Navigation = () => {
       setSearchLoading(true);
       try {
         const [articlesRes, newsRes, eventsRes] = await Promise.all([
-          supabase.from('articles').select('id, title, created_at').ilike('title', `%${searchQuery}%`).limit(3),
-          supabase.from('news').select('id, title, created_at').ilike('title', `%${searchQuery}%`).limit(3),
-          supabase.from('events').select('id, name, event_date').ilike('name', `%${searchQuery}%`).limit(3)
+          supabase.from('articles').select('id, title, created_at, author, editor').or(`title.ilike.%${searchQuery}%,content.ilike.%${searchQuery}%,author.ilike.%${searchQuery}%,editor.ilike.%${searchQuery}%`).limit(3),
+          supabase.from('news').select('id, title, created_at, author, editor, cameraman').or(`title.ilike.%${searchQuery}%,content.ilike.%${searchQuery}%,author.ilike.%${searchQuery}%,editor.ilike.%${searchQuery}%`).limit(3),
+          supabase.from('events').select('id, name, event_date').or(`name.ilike.%${searchQuery}%,description.ilike.%${searchQuery}%`).limit(3)
         ]);
         const results: SearchResult[] = [
           ...(articlesRes.data || []).map(a => ({
             id: a.id,
             title: a.title,
             type: 'article' as const,
-            created_at: a.created_at
+            created_at: a.created_at,
+            author: a.author,
+            editor: a.editor
           })),
           ...(newsRes.data || []).map(n => ({
             id: n.id,
             title: n.title,
             type: 'news' as const,
-            created_at: n.created_at
+            created_at: n.created_at,
+            author: n.author,
+            editor: n.editor,
+            cameraman: n.cameraman
           })),
           ...(eventsRes.data || []).map(e => ({
             id: e.id,
@@ -200,8 +208,14 @@ export const Navigation = () => {
                         }}
                       >
                         <div className="font-medium">{result.title}</div>
-                        <div className="text-xs text-muted-foreground mt-1">
-                          {result.type === 'article' ? 'Artikel' : result.type === 'news' ? 'Berita' : 'Event'}
+                        <div className="text-xs text-muted-foreground mt-1 flex flex-wrap gap-x-2">
+                          <span>{result.type === 'article' ? 'Artikel' : result.type === 'news' ? 'Berita' : 'Event'}</span>
+                          {result.author && (
+                            <>
+                              <span className="text-border">•</span>
+                              <span>{result.author}</span>
+                            </>
+                          )}
                         </div>
                       </Link>
                     ))}

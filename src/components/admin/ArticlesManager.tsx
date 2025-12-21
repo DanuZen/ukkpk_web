@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { Pencil, Trash2, Plus, Eye, Edit3, FileText } from "lucide-react";
+import { Pencil, Trash2, Plus, Eye, Edit3, FileText, X } from "lucide-react";
 import { sanitizeHtml } from "@/lib/sanitize";
 import { z } from "zod";
 
@@ -19,6 +19,7 @@ const articleSchema = z.object({
   category: z.string().trim().max(50, "Kategori maksimal 50 karakter").optional(),
   author: z.string().trim().max(100, "Nama author maksimal 100 karakter").optional(),
   editor: z.string().trim().max(100, "Nama editor maksimal 100 karakter").optional(),
+  source: z.string().optional(),
   image_caption: z.string().trim().max(200, "Deskripsi gambar maksimal 200 karakter").optional(),
 });
 
@@ -32,6 +33,7 @@ interface Article {
   created_at: string;
   author: string | null;
   editor: string | null;
+  source: string | null;
   published_at: string | null;
 }
 
@@ -56,6 +58,8 @@ export const ArticlesManager = () => {
     publish_date: "",
     publish_time: "",
   });
+  const [sources, setSources] = useState<string[]>([]);
+  const [currentSource, setCurrentSource] = useState("");
   const [uploading, setUploading] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
 
@@ -88,6 +92,7 @@ export const ArticlesManager = () => {
         category: formData.category || undefined,
         author: formData.author || undefined,
         editor: formData.editor || undefined,
+        source: sources.length > 0 ? JSON.stringify(sources) : undefined,
         image_caption: formData.image_caption || undefined,
       });
     } catch (error) {
@@ -135,6 +140,7 @@ export const ArticlesManager = () => {
         category: formData.category.trim() || null,
         author: formData.author.trim() || null,
         editor: formData.editor.trim() || null,
+        source: sources.length > 0 ? JSON.stringify(sources) : null,
         image_url: imageUrl,
         image_caption: formData.image_caption.trim() || null,
         published_at: publishedAt
@@ -166,6 +172,8 @@ export const ArticlesManager = () => {
       }
 
       setFormData({ title: "", content: "", category: "", author: "", editor: "", image_url: "", image_caption: "", publish_date: "", publish_time: "" });
+      setSources([]);
+      setCurrentSource("");
       setEditingId(null);
       setImageFile(null);
       fetchArticles();
@@ -199,6 +207,18 @@ export const ArticlesManager = () => {
       publish_date: publishDate,
       publish_time: publishTime,
     });
+
+    // Parse source JSON array
+    let parsedSources: string[] = [];
+    if (article.source) {
+      try {
+        const parsed = JSON.parse(article.source);
+        parsedSources = Array.isArray(parsed) ? parsed : [article.source];
+      } catch (e) {
+        parsedSources = [article.source];
+      }
+    }
+    setSources(parsedSources);
     
     // Scroll to form
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -224,6 +244,17 @@ export const ArticlesManager = () => {
 
     toast.success("Artikel berhasil dihapus");
     fetchArticles();
+  };
+
+  const handleAddSource = () => {
+    if (currentSource.trim()) {
+      setSources([...sources, currentSource.trim()]);
+      setCurrentSource("");
+    }
+  };
+
+  const handleRemoveSource = (index: number) => {
+    setSources(sources.filter((_, i) => i !== index));
   };
 
   return (
@@ -274,29 +305,31 @@ export const ArticlesManager = () => {
                 className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
               />
             </div>
-            <div className="space-y-0.5 sm:space-y-1">
-              <Label htmlFor="author" className="text-xs sm:text-sm">Penulis</Label>
-              <Input
-                id="author"
-                value={formData.author}
-                onChange={(e) =>
-                  setFormData({ ...formData, author: e.target.value })
-                }
-                placeholder="Nama penulis"
-                className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
-              />
-            </div>
-            <div className="space-y-0.5 sm:space-y-1">
-              <Label htmlFor="editor" className="text-xs sm:text-sm">Penyunting</Label>
-              <Input
-                id="editor"
-                value={formData.editor}
-                onChange={(e) =>
-                  setFormData({ ...formData, editor: e.target.value })
-                }
-                placeholder="Nama penyunting"
-                className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
-              />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5 sm:gap-2 md:gap-4">
+              <div className="space-y-0.5 sm:space-y-1">
+                <Label htmlFor="author" className="text-xs sm:text-sm">Penulis</Label>
+                <Input
+                  id="author"
+                  value={formData.author}
+                  onChange={(e) =>
+                    setFormData({ ...formData, author: e.target.value })
+                  }
+                  placeholder="Nama penulis"
+                  className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
+                />
+              </div>
+              <div className="space-y-0.5 sm:space-y-1">
+                <Label htmlFor="editor" className="text-xs sm:text-sm">Penyunting</Label>
+                <Input
+                  id="editor"
+                  value={formData.editor}
+                  onChange={(e) =>
+                    setFormData({ ...formData, editor: e.target.value })
+                  }
+                  placeholder="Nama penyunting"
+                  className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm"
+                />
+              </div>
             </div>
             <div className="grid grid-cols-2 gap-1.5 sm:gap-2 md:gap-4">
               <div className="space-y-0.5 sm:space-y-1">
@@ -384,13 +417,16 @@ export const ArticlesManager = () => {
                         )}
 
                         <div className="flex items-center justify-between mb-2 sm:mb-3 md:mb-6 pb-1.5 sm:pb-2 md:pb-4 border-b">
-                          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 text-[10px] sm:text-xs md:text-sm text-muted-foreground">
+                          <div className="flex flex-col gap-1 text-[10px] sm:text-xs md:text-sm text-muted-foreground">
                             <span>{new Date().toLocaleDateString('id-ID', {
                               day: 'numeric',
                               month: 'long',
                               year: 'numeric'
                             })}</span>
-                            {formData.author && <span>Penulis: {formData.author}</span>}
+                            <div className="flex flex-wrap gap-2">
+                              {formData.author && <span>Penulis: {formData.author}</span>}
+                              {formData.editor && <span>• Penyunting: {formData.editor}</span>}
+                            </div>
                           </div>
                           {formData.category && (
                             <Badge variant="secondary" className="bg-primary/10 text-primary text-[10px] sm:text-xs">
@@ -413,10 +449,58 @@ export const ArticlesManager = () => {
                           </p>
                         )}
                       </div>
+
+                      {sources.length > 0 && (
+                        <div className="mt-8 pt-4 border-t border-border">
+                          <p className="text-xs md:text-sm font-semibold mb-2">Sumber:</p>
+                          <div className="flex flex-col gap-1.5">
+                            {sources.map((src, i) => (
+                              <div key={i} className="text-[10px] md:text-xs text-muted-foreground break-words">
+                                {src.startsWith('http') ? (
+                                  <a href={src} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline inline-flex items-center gap-1">
+                                    {src}
+                                  </a>
+                                ) : src}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </CardContent>
                   </Card>
                 </TabsContent>
               </Tabs>
+            </div>
+
+            <div className="space-y-0.5 sm:space-y-1">
+              <Label htmlFor="source" className="text-xs sm:text-sm">Sumber</Label>
+              <div className="space-y-1 sm:space-y-2">
+                <div className="flex gap-1 sm:gap-2">
+                  <Input
+                    id="source"
+                    value={currentSource}
+                    onChange={(e) => setCurrentSource(e.target.value)}
+                    onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddSource())}
+                    placeholder="Sumber artikel (URL/Media)"
+                    className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm flex-1"
+                  />
+                  <Button type="button" onClick={handleAddSource} variant="outline" size="icon" className="h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10">
+                    <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
+                  </Button>
+                </div>
+                {sources.length > 0 && (
+                  <div className="flex flex-wrap gap-1 sm:gap-2">
+                    {sources.map((src, index) => (
+                      <Badge key={index} variant="secondary" className="gap-1 text-[10px] sm:text-xs">
+                        <span className="max-w-[150px] truncate">{src}</span>
+                        <button type="button" onClick={() => handleRemoveSource(index)} className="ml-1 hover:text-destructive">
+                          <X className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
+                        </button>
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
             <div className="flex gap-1 sm:gap-2">
               <Button type="submit" disabled={uploading} className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm flex-1">
@@ -429,6 +513,8 @@ export const ArticlesManager = () => {
                   onClick={() => {
                     setEditingId(null);
                     setImageFile(null);
+                    setSources([]);
+                    setCurrentSource("");
                     setFormData({
                       title: "",
                       content: "",

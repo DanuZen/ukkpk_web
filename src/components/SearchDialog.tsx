@@ -13,6 +13,9 @@ interface SearchResult {
   category?: string;
   date?: string;
   location?: string;
+  author?: string | null;
+  editor?: string | null;
+  cameraman?: string[] | null;
 }
 
 interface SearchDialogProps {
@@ -39,15 +42,15 @@ export const SearchDialog = ({ open, onOpenChange }: SearchDialogProps) => {
         // Search articles
         const { data: articles } = await supabase
           .from("articles")
-          .select("id, title, category, created_at")
-          .or(`title.ilike.${searchTerm},content.ilike.${searchTerm}`)
+          .select("id, title, category, created_at, author, editor")
+          .or(`title.ilike.${searchTerm},content.ilike.${searchTerm},author.ilike.${searchTerm},editor.ilike.${searchTerm}`)
           .limit(5);
 
         // Search news
         const { data: news } = await supabase
           .from("news")
-          .select("id, title, created_at")
-          .or(`title.ilike.${searchTerm},content.ilike.${searchTerm}`)
+          .select("id, title, created_at, author, editor, cameraman")
+          .or(`title.ilike.${searchTerm},content.ilike.${searchTerm},author.ilike.${searchTerm},editor.ilike.${searchTerm}`)
           .limit(5);
 
         // Search events
@@ -64,12 +67,17 @@ export const SearchDialog = ({ open, onOpenChange }: SearchDialogProps) => {
             type: "article" as const,
             category: a.category,
             date: a.created_at,
+            author: a.author,
+            editor: a.editor,
           })),
           ...(news || []).map((n) => ({
             id: n.id,
             title: n.title,
             type: "news" as const,
             date: n.created_at,
+            author: n.author,
+            editor: n.editor,
+            cameraman: n.cameraman,
           })),
           ...(events || []).map((e) => ({
             id: e.id,
@@ -145,8 +153,27 @@ export const SearchDialog = ({ open, onOpenChange }: SearchDialogProps) => {
                           })}
                         </p>
                       )}
+                      {(result.author || result.editor || (result.cameraman && result.cameraman.length > 0)) && (
+                        <div className="flex flex-wrap gap-x-3 gap-y-1 mt-1">
+                          {result.author && (
+                            <p className="text-xs text-muted-foreground">
+                              <span className="font-medium text-primary/70">Penulis:</span> {result.author}
+                            </p>
+                          )}
+                          {result.editor && (
+                            <p className="text-xs text-muted-foreground">
+                              <span className="font-medium text-primary/70">Editor:</span> {result.editor}
+                            </p>
+                          )}
+                          {result.cameraman && result.cameraman.length > 0 && (
+                            <p className="text-xs text-muted-foreground">
+                              <span className="font-medium text-primary/70">Cameraman:</span> {result.cameraman.join(", ")}
+                            </p>
+                          )}
+                        </div>
+                      )}
                       {result.location && (
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-muted-foreground mt-1">
                           📍 {result.location}
                         </p>
                       )}

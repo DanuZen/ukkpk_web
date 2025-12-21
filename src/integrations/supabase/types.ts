@@ -26,6 +26,7 @@ export type Database = {
           image_url: string | null
           likes_count: number
           published_at: string | null
+          source: string | null
           title: string
           updated_at: string
           view_count: number

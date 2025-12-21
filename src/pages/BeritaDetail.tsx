@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { supabase } from '@/integrations/supabase/client';
-import { ArrowLeft, Calendar, Share2, Facebook, Twitter, MessageCircle, Copy, Heart, User, Video, FileEdit } from 'lucide-react';
+import { ArrowLeft, Calendar, Share2, Facebook, Twitter, MessageCircle, Copy, Heart, User, Video } from 'lucide-react';
 import { toast } from 'sonner';
 import { sanitizeHtml } from '@/lib/sanitize';
 
@@ -19,6 +19,7 @@ interface News {
   published_at: string | null;
   author: string | null;
   editor: string | null;
+  source: string | null;
   cameraman: string[] | null;
   category: string | null;
   view_count: number;
@@ -77,7 +78,6 @@ const BeritaDetail = () => {
     try {
       const { data, error } = await supabase.from('news').select('*').neq('id', id).order('created_at', { ascending: false }).limit(8);
       if (error) throw error;
-      // Prioritize sidebar (relatedNews) first
       setRelatedNews(((data || []) as unknown as News[]).slice(0, 5));
       setOtherNews(((data || []) as unknown as News[]).slice(5, 8));
     } catch (error) {
@@ -178,7 +178,7 @@ const BeritaDetail = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
             <div className="lg:col-span-2">
               <div className="mt-8 md:mt-0">
-                <h1 className="text-2xl md:text-4xl font-bold mb-6 leading-tight text-foreground">
+                <h1 className="text-xl md:text-4xl font-bold mb-6 leading-tight text-foreground">
                   {news.title}
                 </h1>
                 {news.category && <div className="text-primary font-bold text-[10px] md:text-xs mb-4 uppercase">{news.category}</div>}
@@ -233,25 +233,46 @@ const BeritaDetail = () => {
               </div>
 
               {/* News Content */}
-              <div className="prose prose-sm md:prose-lg max-w-4xl mb-12">
+              <div className="prose prose-sm md:prose-lg max-w-4xl mb-12 overflow-hidden break-words">
                 <div 
-                  className="text-foreground/90 leading-relaxed article-content [&_ul]:!list-disc [&_ul]:!pl-5 [&_ol]:!list-decimal [&_ol]:!pl-5 [&_li]:!pl-1 [&_li>p]:!m-0 [&_li>p]:!inline"
-                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(news.content) }}
+                  className="text-foreground/90 leading-relaxed article-content text-xs sm:text-sm md:text-base [&_ul]:!list-disc [&_ul]:!pl-5 [&_ol]:!list-decimal [&_ol]:!pl-5 [&_li]:!pl-1 [&_li>p]:!m-0 [&_li>p]:!inline"
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(news.content) }} 
                 />
+                
+                {news.editor && (
+                  <div className="mt-8 text-xs md:text-sm text-muted-foreground italic">
+                    <span>Penyunting: {news.editor}</span>
+                  </div>
+                )}
               </div>
 
-              {/* Editor Info - All Screens (after content) */}
-              {news.editor && (
-                <div className="mb-6 pb-4 border-b border-border">
-                  <div className="flex items-center gap-1.5 md:gap-2 text-[10px] md:text-sm text-muted-foreground w-fit">
-                    <FileEdit className="h-3.5 w-3.5 md:h-4 md:w-4" />
-                    <span>Penyunting: {news.editor}</span>
+              {news.source && (
+                <div className="mt-8 pt-4 border-t border-border">
+                  <p className="text-xs md:text-sm font-semibold mb-2">Sumber:</p>
+                  <div className="flex flex-col gap-1.5">
+                    {(() => {
+                      try {
+                        const sources = JSON.parse(news.source);
+                        if (Array.isArray(sources)) {
+                          return sources.map((src, i) => (
+                            <div key={i} className="text-[10px] md:text-xs text-muted-foreground break-words">
+                              {src.startsWith('http') ? (
+                                <a href={src} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline inline-flex items-center gap-1">
+                                  {src}
+                                </a>
+                              ) : src}
+                            </div>
+                          ));
+                        }
+                      } catch (e) {}
+                      return <div className="text-[10px] md:text-xs text-muted-foreground break-words">{news.source}</div>;
+                    })()}
                   </div>
                 </div>
               )}
 
               {/* Share Section */}
-              <div className="mb-6 pb-4 border-b border-border">
+              <div className="mt-12 mb-6 pb-4 border-b border-border">
                 <div className="flex items-center gap-1.5 md:gap-2 mb-2 md:mb-3">
                   <Share2 className="h-3 w-3 md:h-4 md:w-4 text-muted-foreground" />
                   <span className="text-[10px] md:text-sm font-medium text-muted-foreground">Bagikan:</span>

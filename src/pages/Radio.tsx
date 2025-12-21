@@ -162,7 +162,7 @@ const Radio = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center px-4 bg-black overflow-hidden">
+      <section className="relative min-h-screen flex items-center pb-24 md:pb-0 px-4 bg-black overflow-hidden">
         {/* Background Image with Dark Overlay - Only if set by admin */}
         {settings?.banner_image_url && (
           <>

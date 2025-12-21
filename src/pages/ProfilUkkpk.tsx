@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Layout } from '@/components/Layout';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -9,6 +9,7 @@ import logoReporter from '@/assets/logo-reporter.png';
 import logoMicu from '@/assets/logo-micu-new.png';
 import logoMc from '@/assets/logo-mc.png';
 import logoSigmaRadio from '@/assets/logo-sigma-radio.png';
+import themeSong from '@/assets/THEME SONG UKKPK.mp3';
 
 interface OrgMember {
   id: string;
@@ -60,6 +61,41 @@ const ProfilUkkpk = () => {
   const [profile, setProfile] = useState<ProfileSettings | null>(null);
   const [strukturData, setStrukturData] = useState<StrukturOrganisasi[]>([]);
   const [selectedYear, setSelectedYear] = useState(0);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const audio = new Audio(themeSong);
+    audio.loop = true;
+    audioRef.current = audio;
+
+    const playAudio = () => {
+      if (audio.paused) {
+        audio.play().catch(error => {
+          console.log("Autoplay blocked, waiting for interaction:", error);
+        });
+      }
+    };
+
+    // Attempt to play immediately
+    playAudio();
+
+    // Fallback: play on first user interaction if blocked
+    const handleInteraction = () => {
+      playAudio();
+      window.removeEventListener('click', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+    };
+
+    window.addEventListener('click', handleInteraction);
+    window.addEventListener('touchstart', handleInteraction);
+
+    return () => {
+      audio.pause();
+      audio.src = "";
+      window.removeEventListener('click', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+    };
+  }, []);
 
   const divisionLogos = [
     { name: 'Jurnalistik', image: logoReporter },

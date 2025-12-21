@@ -120,7 +120,7 @@ export const HomeSlideshow = () => {
       </div>
 
       {/* Overlay Text */}
-      <div className="absolute inset-0 flex items-center justify-center pt-16">
+      <div className="absolute inset-0 flex items-center justify-center pt-16 pb-24 md:pb-0">
         <div
           className="max-w-3xl text-left z-10 px-4 sm:px-6 animate-fade-in transition-all duration-300"
           style={{
