@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { supabase } from '@/integrations/supabase/client';
-import { ArrowLeft, Calendar, Share2, Facebook, Twitter, MessageCircle, Copy, Heart, User } from 'lucide-react';
+import { ArrowLeft, Calendar, Share2, Facebook, Twitter, MessageCircle, Copy, Heart, User, FileEdit } from 'lucide-react';
 import { toast } from 'sonner';
 import { sanitizeHtml } from '@/lib/sanitize';
 
@@ -187,11 +187,11 @@ const ArtikelDetail = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
             <div className="lg:col-span-2">
               <div className="mt-8 md:mt-0">
-<<<<<<< HEAD
-                <h1 className="text-xl md:text-4xl font-bold mb-6 leading-tight text-foreground">
-=======
+
+
+
                 <h1 className="text-lg md:text-4xl font-bold mb-6 leading-tight bg-gradient-to-r from-primary via-primary to-black/80 bg-clip-text text-transparent">
->>>>>>> d8b849af252fccf09a2be50e95913ef3afc83844
+
                   {article.title}
                 </h1>
               </div>
@@ -259,14 +259,14 @@ const ArtikelDetail = () => {
                   dangerouslySetInnerHTML={{ __html: sanitizeHtml(article.content) }} 
                 />
                 
-                {article.editor && (
-                  <div className="mt-8 text-xs md:text-sm text-muted-foreground italic">
-                    <span>Penyunting: {article.editor}</span>
-                  </div>
-                )}
+
+
+
+
+
               </div>
 
-<<<<<<< HEAD
+
               {article.source && (
                 <div className="mt-8 pt-4 border-t border-border">
                   <p className="text-xs md:text-sm font-semibold mb-2">Sumber:</p>
@@ -288,14 +288,17 @@ const ArtikelDetail = () => {
                       } catch (e) {}
                       return <div className="text-[10px] md:text-xs text-muted-foreground break-words">{article.source}</div>;
                     })()}
-=======
+                  </div>
+                </div>
+              )}
+
               {/* Editor Info - All Screens (after content) */}
               {article.editor && (
                 <div className="mb-6 pb-4 border-b border-border">
                   <div className="bg-muted/50 px-2 py-1 md:px-3 md:py-1.5 rounded-md flex items-center gap-1.5 md:gap-2 text-[10px] md:text-sm text-muted-foreground w-fit">
                     <FileEdit className="h-3 w-3 md:h-4 md:w-4" />
                     <span>Penyunting: {article.editor}</span>
->>>>>>> d8b849af252fccf09a2be50e95913ef3afc83844
+
                   </div>
                 </div>
               )}

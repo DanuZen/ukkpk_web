@@ -67,7 +67,7 @@ export const Navigation = () => {
       }
       setSearchLoading(true);
       try {
-<<<<<<< HEAD
+
         const [articlesRes, newsRes, eventsRes] = await Promise.all([
           supabase.from('articles').select('id, title, created_at, author, editor').or(`title.ilike.%${searchQuery}%,content.ilike.%${searchQuery}%,author.ilike.%${searchQuery}%,editor.ilike.%${searchQuery}%`).limit(3),
           supabase.from('news').select('id, title, created_at, author, editor, cameraman').or(`title.ilike.%${searchQuery}%,content.ilike.%${searchQuery}%,author.ilike.%${searchQuery}%,editor.ilike.%${searchQuery}%`).limit(3),
@@ -84,6 +84,7 @@ export const Navigation = () => {
           })),
           ...(newsRes.data || []).map(n => ({
             id: n.id,
+  
             title: n.title,
             type: 'news' as const,
             created_at: n.created_at,
@@ -98,25 +99,25 @@ export const Navigation = () => {
             created_at: e.event_date
           }))
         ];
-=======
-        const [articlesRes, newsRes, eventsRes] = await Promise.all([supabase.from('articles').select('id, title, created_at').ilike('title', `%${searchQuery}%`).limit(3), supabase.from('news').select('id, title, created_at').ilike('title', `%${searchQuery}%`).limit(3), supabase.from('events').select('id, name, event_date').ilike('name', `%${searchQuery}%`).limit(3)]);
-        const results: SearchResult[] = [...(articlesRes.data || []).map(a => ({
-          id: a.id,
-          title: a.title,
-          type: 'article' as const,
-          created_at: a.created_at
-        })), ...(newsRes.data || []).map(n => ({
-          id: n.id,
-          title: n.title,
-          type: 'news' as const,
-          created_at: n.created_at
-        })), ...(eventsRes.data || []).map(e => ({
-          id: e.id,
-          title: e.name,
-          type: 'event' as const,
-          created_at: e.event_date
-        }))];
->>>>>>> d8b849af252fccf09a2be50e95913ef3afc83844
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         setSearchResults(results);
       } catch (error) {
         console.error('Search error:', error);
