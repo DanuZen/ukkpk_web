@@ -73,7 +73,7 @@ export const HomeSlideshow = () => {
 
   if (images.length === 0) {
     return (
-      <section className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-primary/20 via-background to-secondary/20 -mt-16">
+      <section className="relative w-screen h-[calc(100dvh+4rem)] max-w-[100vw] overflow-hidden bg-gradient-to-br from-primary/20 via-background to-secondary/20 -mt-16">
         <div className="absolute inset-0 flex items-center justify-center px-4 pt-16">
           <div className="text-center z-10 animate-fade-in">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
@@ -99,7 +99,7 @@ export const HomeSlideshow = () => {
   const shouldShowIndicators = scrollY < 50;
 
   return (
-    <section className="relative w-full h-screen overflow-hidden group -mt-16">
+    <section className="relative w-screen h-[calc(100dvh+4rem)] max-w-[100vw] overflow-hidden group -mt-16">
       {/* Slideshow Images */}
       <div className="relative w-full h-full">
         {images.map((image, index) => (
@@ -120,7 +120,7 @@ export const HomeSlideshow = () => {
       </div>
 
       {/* Overlay Text */}
-      <div className="absolute inset-0 flex items-center justify-center pt-16 pb-24 md:pb-0">
+      <div className="absolute inset-0 flex items-center justify-center pt-24 pb-12 md:pt-16 md:pb-0">
         <div
           className="max-w-3xl text-left z-10 px-4 sm:px-6 animate-fade-in transition-all duration-300"
           style={{

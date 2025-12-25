@@ -148,7 +148,6 @@ All colors MUST be HSL.
     @apply bg-background text-foreground font-sans;
     position: relative;
     overflow-x: hidden;
-    scrollbar-gutter: stable;
   }
 
   /* Modern Custom Scrollbar */
