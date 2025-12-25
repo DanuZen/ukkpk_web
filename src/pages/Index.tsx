@@ -180,7 +180,7 @@ const Index = () => {
 
                 {/* Mobile: Show carousel */}
                 <div className="md:hidden">
-                  <div className="grid grid-cols-1 gap-4">
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
                     {/* Artikel Cards */}
                     {articles.map((article, index) => <AnimatedSection key={`article-${article.id}`} animation="fade-up" delay={index * 100}>
                         <Card className="overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full flex flex-col" onClick={() => navigate(`/artikel/${article.id}`)}>
@@ -192,9 +192,9 @@ const Index = () => {
                             </div>}
                           <CardHeader className="p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-2.5 md:space-y-3">
                             <div className="flex items-center gap-2 mb-2 flex-wrap">
-                              <Badge variant="secondary" className="text-[10px] sm:text-xs">
-                                {article.category}
-                              </Badge>
+
+
+
                               <span className="text-[10px] sm:text-xs text-muted-foreground">{formatDate(article.published_at || article.created_at)}</span>
                             </div>
                             <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base md:text-lg lg:text-xl">{article.title}</CardTitle>

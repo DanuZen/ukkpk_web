@@ -124,7 +124,7 @@ const Berita = () => {
       <section className="py-8 sm:py-16 md:py-24 lg:py-32 bg-white">
         <div className="container mx-auto px-4">
           {filteredNews.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {filteredNews.map((item, index) => (
                 <AnimatedSection key={item.id} animation="fade-up" delay={index * 100}>
                   <Card 
@@ -143,7 +143,7 @@ const Berita = () => {
                   )}
                   <CardHeader className="space-y-1.5 sm:space-y-3 px-2.5 py-2.5 sm:px-4 sm:py-4 md:px-6 md:py-5">
                     <div className="flex items-center justify-between gap-1.5">
-                      <Badge className="bg-primary/10 text-primary hover:bg-primary/20 text-[10px] sm:text-xs px-2 py-0.5">
+                      <Badge className="hidden sm:inline-flex bg-primary/10 text-primary hover:bg-primary/20 text-[10px] sm:text-xs px-2 py-0.5">
                         Berita
                       </Badge>
                       <span className="text-[10px] sm:text-xs text-muted-foreground">
