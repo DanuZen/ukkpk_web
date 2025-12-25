@@ -1,16 +1,18 @@
 import { LucideIcon } from "lucide-react";
 import { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 interface DashboardPageHeaderProps {
   title: string;
   subtitle: string;
   icon: LucideIcon;
   children?: ReactNode;
+  className?: string;
 }
 
-export const DashboardPageHeader = ({ title, subtitle, icon: Icon, children }: DashboardPageHeaderProps) => {
+export const DashboardPageHeader = ({ title, subtitle, icon: Icon, children, className }: DashboardPageHeaderProps) => {
   return (
-    <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div className={cn("mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4", className)}>
       <div className="flex items-center gap-3">
         <div className="p-2 bg-primary/10 rounded-lg">
           <Icon className="h-6 w-6 text-primary animate-fade-in" />

@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Map } from "lucide-react";
+import { Map, Eye, EyeOff } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { DashboardPageHeader } from "@/components/admin/DashboardPageHeader";
 
@@ -19,7 +19,9 @@ export const MapManager = () => {
   const [settings, setSettings] = useState<MapSettings | null>(null);
   const [locationName, setLocationName] = useState("");
   const [embedUrl, setEmbedUrl] = useState("");
+  const [showEmbedUrl, setShowEmbedUrl] = useState(false);
   const [mapsLink, setMapsLink] = useState("");
+  const [showMapsLink, setShowMapsLink] = useState(false);
   const {
     toast
   } = useToast();
@@ -122,12 +124,13 @@ export const MapManager = () => {
         title="Pengaturan Peta Lokasi" 
         subtitle="Kelola lokasi dan embed Google Maps untuk sekretariat UKKPK" 
         icon={Map} 
+        className="mb-0" 
       />
       <Card className="shadow-xl">
-        <CardHeader className="p-4 sm:p-5 md:p-6">
+        <CardHeader className="p-4 pb-2 sm:p-5 sm:pb-3 md:p-6 md:pb-4">
           <CardTitle className="text-base sm:text-lg md:text-xl">Form Pengaturan Peta</CardTitle>
         </CardHeader>
-        <CardContent className="p-4 sm:p-5 md:p-6">
+        <CardContent className="p-4 pt-0 sm:p-5 sm:pt-0 md:p-6 md:pt-0">
           <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
             <div className="space-y-2">
               <Label htmlFor="location-name" className="text-sm sm:text-base">Nama Lokasi</Label>
@@ -136,13 +139,59 @@ export const MapManager = () => {
 
             <div className="space-y-2">
               <Label htmlFor="embed-url" className="text-sm sm:text-base">Google Maps Embed URL</Label>
-              <textarea id="embed-url" value={embedUrl} onChange={e => setEmbedUrl(e.target.value)} placeholder='Paste embed URL atau iframe code dari Google Maps' className="w-full min-h-[120px] p-3 rounded-md border border-input bg-background text-sm" />
+              <div className="relative">
+                {showEmbedUrl ? (
+                  <textarea 
+                    id="embed-url" 
+                    value={embedUrl} 
+                    onChange={e => setEmbedUrl(e.target.value)} 
+                    placeholder='Paste embed URL atau iframe code dari Google Maps' 
+                    className="w-full min-h-[120px] p-3 rounded-md border border-input bg-background text-sm pr-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
+                  />
+                ) : (
+                  <div className="w-full min-h-[120px] p-3 rounded-md border border-input bg-background text-sm text-muted-foreground break-all pr-10 flex items-start">
+                    {embedUrl ? '•'.repeat(Math.min(embedUrl.length, 400)) : <span className="text-muted-foreground opacity-50">Paste embed URL atau iframe code dari Google Maps</span>}
+                  </div>
+                )}
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute top-2 right-2 h-8 w-8 text-gray-500 hover:text-gray-700 hover:bg-transparent"
+                  onClick={() => setShowEmbedUrl(!showEmbedUrl)}
+                >
+                  {showEmbedUrl ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
+                </Button>
+              </div>
               
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="maps-link" className="text-sm sm:text-base">Link Google Maps (Opsional)</Label>
-              <Input id="maps-link" value={mapsLink} onChange={e => setMapsLink(e.target.value)} placeholder="https://maps.app.goo.gl/..." className="h-10 sm:h-10 text-sm" />
+              <div className="relative">
+                {showMapsLink ? (
+                  <textarea 
+                    id="maps-link" 
+                    value={mapsLink} 
+                    onChange={e => setMapsLink(e.target.value)} 
+                    placeholder="https://maps.app.goo.gl/..." 
+                    className="w-full min-h-[120px] p-3 rounded-md border border-input bg-background text-sm pr-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
+                  />
+                ) : (
+                  <div className="w-full min-h-[120px] p-3 rounded-md border border-input bg-background text-sm text-muted-foreground break-all pr-10 flex items-start">
+                    {mapsLink ? '•'.repeat(Math.min(mapsLink.length, 400)) : <span className="text-muted-foreground opacity-50">https://maps.app.goo.gl/...</span>}
+                  </div>
+                )}
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute top-2 right-2 h-8 w-8 text-gray-500 hover:text-gray-700 hover:bg-transparent"
+                  onClick={() => setShowMapsLink(!showMapsLink)}
+                >
+                  {showMapsLink ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
+                </Button>
+              </div>
               <p className="text-xs sm:text-sm text-muted-foreground">
                 Link untuk tombol "View maps"
               </p>
@@ -154,18 +203,5 @@ export const MapManager = () => {
           </form>
         </CardContent>
       </Card>
-
-      {embedUrl && <Card className="shadow-xl">
-          <CardHeader className="p-4 sm:p-5 md:p-6">
-            <CardTitle className="text-base sm:text-lg md:text-xl">Preview Peta</CardTitle>
-          </CardHeader>
-          <CardContent className="p-4 sm:p-5 md:p-6">
-            <div className="w-full h-[300px] sm:h-[400px] rounded-lg overflow-hidden border">
-              <iframe src={extractEmbedUrl(embedUrl)} width="100%" height="100%" style={{
-            border: 0
-          }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-            </div>
-          </CardContent>
-        </Card>}
     </div>;
 };

@@ -8,7 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from 'sonner';
-import { Upload, Eye, Save, Loader2, X, Image } from 'lucide-react';
+import { Eye, Save, Loader2, Image } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -17,6 +17,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { DashboardPageHeader } from '@/components/admin/DashboardPageHeader';
+import { ImageUpload } from '@/components/admin/ImageUpload';
 
 interface PopupSettings {
   id: string;
@@ -127,25 +128,7 @@ export const PopupManager = () => {
     }
   };
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    await uploadImage(file);
-  };
 
-  const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    const file = e.dataTransfer.files?.[0];
-    if (!file) return;
-    await uploadImage(file);
-  };
-
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
 
   const handleSave = async () => {
     setSaving(true);
@@ -279,58 +262,14 @@ export const PopupManager = () => {
                 />
               </div>
             </div>
-            {/* Hidden file input */}
-            <Input
-              id="popup-image"
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-              disabled={uploading}
-              className="hidden"
+            <ImageUpload 
+              id="popup-image" 
+              label="" 
+              currentImageUrl={popupSettings.image_url || undefined} 
+              onFileSelect={(file) => uploadImage(file)} 
+              onRemove={handleDeleteImage} 
+              disabled={uploading} 
             />
-            {!popupSettings.image_url ? (
-              <div
-                onDrop={handleDrop}
-                onDragOver={handleDragOver}
-                className="mt-2 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-primary transition-colors cursor-pointer"
-                onClick={() => document.getElementById('popup-image')?.click()}
-              >
-                <Upload className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-                <p className="text-sm text-gray-600 mb-2">
-                  Klik atau drag & drop untuk mengganti gambar
-                </p>
-                <p className="text-xs text-gray-400">
-                  Format: JPG, PNG, GIF (Max 5MB)
-                </p>
-              </div>
-            ) : (
-              <div className="mt-2 relative w-full h-48 rounded-lg overflow-hidden border group">
-                <img
-                  src={popupSettings.image_url}
-                  alt="Preview"
-                  className="w-full h-full object-cover"
-                />
-                <button
-                  type="button"
-                  onClick={handleDeleteImage}
-                  disabled={uploading}
-                  className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-50"
-                  title="Hapus gambar"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-                <div
-                  onDrop={handleDrop}
-                  onDragOver={handleDragOver}
-                  onClick={() => document.getElementById('popup-image')?.click()}
-                  className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all cursor-pointer flex items-center justify-center opacity-0 hover:opacity-100"
-                >
-                  <p className="text-white text-sm font-medium">
-                    Klik atau drag & drop untuk mengganti gambar
-                  </p>
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Button Settings */}

@@ -263,8 +263,7 @@ export const RadioManager = () => {
         icon={RadioIcon} 
       >
         <Button 
-          variant="outline" 
-          className="hidden sm:flex h-9 px-3 md:h-10 md:px-4 text-sm"
+          className="hidden sm:flex h-9 px-3 md:h-10 md:px-4 text-sm bg-red-600 hover:bg-red-700 text-white border-0"
           onClick={() => setShowSettingsDialog(true)}
         >
           <SettingsIcon className="h-4 w-4 mr-2" />

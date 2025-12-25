@@ -130,12 +130,13 @@ const BannerSection = () => {
         title="Banner Profil UKKPK" 
         subtitle="Upload dan kelola banner untuk halaman Profil UKKPK" 
         icon={ImageIcon} 
+        className="mb-0" 
       />
       <Card className="shadow-xl">
-        <CardHeader className="p-4 sm:p-5 md:p-6">
+        <CardHeader className="p-4 pb-2 sm:p-5 sm:pb-3 md:p-6 md:pb-4">
           <CardTitle className="text-base sm:text-lg md:text-xl">Form Upload Banner</CardTitle>
         </CardHeader>
-      <CardContent className="space-y-4 sm:space-y-5 md:space-y-6 p-4 sm:p-5 md:p-6">
+      <CardContent className="space-y-4 sm:space-y-5 md:space-y-6 p-4 pt-0 sm:p-5 sm:pt-0 md:p-6 md:pt-0">
         <p className="text-sm text-muted-foreground">
           Upload banner yang akan ditampilkan di halaman Profil UKKPK. Rekomendasi ukuran: 1920x1080px atau rasio 16:9.
         </p>
@@ -284,12 +285,13 @@ const SlideshowSection = () => {
         title="Kelola Slideshow Home" 
         subtitle="Upload dan atur kecepatan slideshow di halaman Home" 
         icon={Settings} 
+        className="mb-0" 
       />
       <Card className="shadow-xl">
-        <CardHeader className="p-4 sm:p-5 md:p-6">
+        <CardHeader className="p-4 pb-2 sm:p-5 sm:pb-3 md:p-6 md:pb-4">
           <CardTitle className="text-base sm:text-lg md:text-xl">Form Slideshow</CardTitle>
         </CardHeader>
-      <CardContent className="space-y-4 sm:space-y-5 md:space-y-6 p-4 sm:p-5 md:p-6">
+      <CardContent className="space-y-4 sm:space-y-5 md:space-y-6 p-4 pt-0 sm:p-5 sm:pt-0 md:p-6 md:pt-0">
         {/* Speed Control Section */}
         <div className="space-y-3 p-3 sm:p-4 bg-muted/30 rounded-lg border border-border">
           <div className="space-y-2">

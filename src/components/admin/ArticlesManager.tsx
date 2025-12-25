@@ -477,7 +477,7 @@ export const ArticlesManager = () => {
                     placeholder="Sumber artikel (URL/Media)"
                     className="h-7 sm:h-8 md:h-10 text-xs sm:text-sm flex-1"
                   />
-                  <Button type="button" onClick={handleAddSource} variant="outline" size="icon" className="h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10">
+                  <Button type="button" onClick={handleAddSource} className="h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10 bg-red-600 hover:bg-red-700 text-white border-0">
                     <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
                   </Button>
                 </div>

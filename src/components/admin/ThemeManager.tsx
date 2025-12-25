@@ -283,42 +283,7 @@ export const ThemeManager = () => {
         </CardContent>
       </Card>
 
-      <Card className="shadow-xl">
-        <CardHeader>
-          <CardTitle className="text-base sm:text-lg">Preview Warna</CardTitle>
-          <CardDescription>
-            Pratinjau warna tema yang akan diterapkan
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 md:grid-cols-3">
-            <div className="space-y-2">
-              <div 
-                className="h-24 rounded-lg shadow-md flex items-center justify-center text-white font-medium"
-                style={{ backgroundColor: primaryColor }}
-              >
-                Warna Primer
-              </div>
-            </div>
-            <div className="space-y-2">
-              <div 
-                className="h-24 rounded-lg shadow-md flex items-center justify-center text-white font-medium"
-                style={{ backgroundColor: secondaryColor }}
-              >
-                Warna Sekunder
-              </div>
-            </div>
-            <div className="space-y-2">
-              <div 
-                className="h-24 rounded-lg shadow-md flex items-center justify-center text-white font-medium"
-                style={{ backgroundColor: accentColor }}
-              >
-                Warna Aksen
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+
     </div>
   );
 };
