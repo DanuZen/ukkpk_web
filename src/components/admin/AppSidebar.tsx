@@ -192,8 +192,8 @@ export function AppSidebar({ activePage, onNavigate, userRole }: AppSidebarProps
                               hover:translate-x-1 hover:shadow-sm
                               ${
                                 activePage === item.id
-                                  ? "bg-white/20 text-white font-semibold shadow-md"
-                                  : "text-white/90 hover:bg-white/10"
+                                  ? "bg-white/20 !text-white font-semibold shadow-md"
+                                  : "text-white hover:bg-white/10 hover:text-white"
                               }
                             `}
                           >

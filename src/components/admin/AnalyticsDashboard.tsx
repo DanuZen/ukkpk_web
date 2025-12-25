@@ -3,8 +3,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { Eye, Heart, FileText, Newspaper, TrendingUp, Users, MoreHorizontal, ArrowUpRight } from 'lucide-react';
-import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell, AreaChart, Area } from 'recharts';
 import { DashboardPageHeader } from "@/components/admin/DashboardPageHeader";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface ArticleStats {
   id: string;
@@ -244,7 +245,7 @@ export const AnalyticsDashboard = () => {
       {/* New Styled Stats Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {/* Total Views Card */}
-        <Card className="relative overflow-hidden bg-gradient-to-br from-emerald-500 to-emerald-600 border-0 shadow-xl text-white group hover:scale-105 transition-transform duration-300">
+        <Card className="relative overflow-hidden bg-gradient-to-br from-emerald-500 to-emerald-600 border-0 shadow-xl text-white group transition-transform duration-300">
           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
             <Eye className="w-24 h-24 transform translate-x-4 -translate-y-4" />
           </div>
@@ -272,7 +273,7 @@ export const AnalyticsDashboard = () => {
         </Card>
 
         {/* Total Likes Card */}
-        <Card className="relative overflow-hidden bg-gradient-to-br from-purple-500 to-purple-600 border-0 shadow-xl text-white group hover:scale-105 transition-transform duration-300">
+        <Card className="relative overflow-hidden bg-gradient-to-br from-purple-500 to-purple-600 border-0 shadow-xl text-white group transition-transform duration-300">
           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
             <Heart className="w-24 h-24 transform translate-x-4 -translate-y-4" />
           </div>
@@ -300,7 +301,7 @@ export const AnalyticsDashboard = () => {
         </Card>
 
         {/* Total Articles Card */}
-        <Card className="relative overflow-hidden bg-gradient-to-br from-blue-500 to-blue-600 border-0 shadow-xl text-white group hover:scale-105 transition-transform duration-300">
+        <Card className="relative overflow-hidden bg-gradient-to-br from-blue-500 to-blue-600 border-0 shadow-xl text-white group transition-transform duration-300">
           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
             <FileText className="w-24 h-24 transform translate-x-4 -translate-y-4" />
           </div>
@@ -328,7 +329,7 @@ export const AnalyticsDashboard = () => {
         </Card>
 
         {/* Total News Card */}
-        <Card className="relative overflow-hidden bg-gradient-to-br from-amber-400 to-orange-500 border-0 shadow-xl text-white group hover:scale-105 transition-transform duration-300">
+        <Card className="relative overflow-hidden bg-gradient-to-br from-amber-400 to-orange-500 border-0 shadow-xl text-white group transition-transform duration-300">
           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
             <Newspaper className="w-24 h-24 transform translate-x-4 -translate-y-4" />
           </div>
@@ -362,23 +363,78 @@ export const AnalyticsDashboard = () => {
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-lg font-semibold">Statistik Views</CardTitle>
             <div className="flex gap-2">
-              <select className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer" value={selectedMonth} onChange={e => setSelectedMonth(Number(e.target.value))}>
-                {months.map((month, index) => <option key={index} value={index}>{month}</option>)}
-              </select>
-              <select className="text-sm border rounded-md px-3 py-1 bg-white hover:bg-gray-50 cursor-pointer" value={selectedYear} onChange={e => setSelectedYear(Number(e.target.value))}>
-                {years.map(year => <option key={year} value={year}>{year}</option>)}
-              </select>
+              <Select value={selectedMonth.toString()} onValueChange={(value) => setSelectedMonth(Number(value))}>
+                <SelectTrigger className="w-[120px] bg-white">
+                  <SelectValue placeholder="Bulan" />
+                </SelectTrigger>
+                <SelectContent>
+                  {months.map((month, index) => (
+                    <SelectItem key={index} value={index.toString()}>
+                      {month}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Select value={selectedYear.toString()} onValueChange={(value) => setSelectedYear(Number(value))}>
+                <SelectTrigger className="w-[100px] bg-white">
+                  <SelectValue placeholder="Tahun" />
+                </SelectTrigger>
+                <SelectContent>
+                  {years.map((year) => (
+                    <SelectItem key={year} value={year.toString()}>
+                      {year}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </CardHeader>
           <CardContent className="pt-4">
             <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                <XAxis dataKey="day" stroke="#999" tick={{ fontSize: 12 }} />
-                <YAxis stroke="#999" tick={{ fontSize: 12 }} />
-                <Tooltip contentStyle={{ backgroundColor: 'white', border: '1px solid #e5e7eb', borderRadius: '6px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }} />
-                <Line type="monotone" dataKey="views" stroke="hsl(var(--primary))" strokeWidth={2} dot={{ fill: 'hsl(var(--primary))', strokeWidth: 2 }} activeDot={{ r: 6 }} />
-              </LineChart>
+              <AreaChart data={chartData} margin={{ left: -20, right: 0, top: 0, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="colorViews" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#dc2626" stopOpacity={0.8}/>
+                    <stop offset="95%" stopColor="#dc2626" stopOpacity={0.2}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
+                <XAxis 
+                  dataKey="day" 
+                  stroke="#9ca3af" 
+                  tick={{ fontSize: 12 }} 
+                  axisLine={false}
+                  tickLine={false}
+                  dy={10}
+                />
+                <YAxis 
+                  stroke="#9ca3af" 
+                  tick={{ fontSize: 12 }} 
+                  axisLine={false}
+                  tickLine={false}
+                  dx={-10}
+                />
+                <Tooltip 
+                  cursor={{ stroke: '#dc2626', strokeWidth: 2 }}
+                  contentStyle={{ 
+                    backgroundColor: '#1f2937', 
+                    border: 'none', 
+                    borderRadius: '8px', 
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                    color: '#fff'
+                  }}
+                  itemStyle={{ color: '#fff' }}
+                  labelStyle={{ color: '#9ca3af', marginBottom: '0.25rem' }}
+                />
+                <Area 
+                  type="monotone" 
+                  dataKey="views" 
+                  stroke="#dc2626" 
+                  strokeWidth={3}
+                  fillOpacity={1} 
+                  fill="url(#colorViews)" 
+                />
+              </AreaChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
@@ -389,14 +445,62 @@ export const AnalyticsDashboard = () => {
           </CardHeader>
           <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
             <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={comparisonData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" tick={{ fontSize: 9 }} />
-                <YAxis tick={{ fontSize: 9 }} />
-                <Tooltip />
-                <Legend wrapperStyle={{ fontSize: '10px' }} />
-                <Bar dataKey="Artikel" fill="#dc2626" />
-                <Bar dataKey="Berita" fill="#3b82f6" />
+              <BarChart data={comparisonData} margin={{ left: -20, right: 0, top: 0, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="colorArtikel" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#dc2626" stopOpacity={0.9}/>
+                    <stop offset="95%" stopColor="#dc2626" stopOpacity={0.6}/>
+                  </linearGradient>
+                  <linearGradient id="colorBerita" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.9}/>
+                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.6}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
+                <XAxis 
+                  dataKey="name" 
+                  stroke="#9ca3af" 
+                  tick={{ fontSize: 10 }} 
+                  axisLine={false}
+                  tickLine={false}
+                  dy={10}
+                />
+                <YAxis 
+                  stroke="#9ca3af" 
+                  tick={{ fontSize: 10 }} 
+                  axisLine={false}
+                  tickLine={false}
+                  dx={-10}
+                />
+                <Tooltip 
+                  cursor={{ fill: 'transparent' }}
+                  contentStyle={{ 
+                    backgroundColor: '#1f2937', 
+                    border: 'none', 
+                    borderRadius: '8px', 
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                    color: '#fff'
+                  }}
+                  itemStyle={{ color: '#fff' }}
+                  labelStyle={{ color: '#9ca3af', marginBottom: '0.25rem' }}
+                />
+                <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '20px' }} />
+                <Bar 
+                  dataKey="Artikel" 
+                  fill="url(#colorArtikel)" 
+                  stroke="#dc2626"
+                  strokeWidth={2}
+                  radius={[4, 4, 0, 0]}
+                  barSize={48}
+                />
+                <Bar 
+                  dataKey="Berita" 
+                  fill="url(#colorBerita)" 
+                  stroke="#3b82f6"
+                  strokeWidth={2}
+                  radius={[4, 4, 0, 0]}
+                  barSize={48}
+                />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>

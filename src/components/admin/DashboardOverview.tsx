@@ -135,7 +135,7 @@ export const DashboardOverview = () => {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
         
         {/* Total Articles Card */}
-        <Card className="relative overflow-hidden bg-gradient-to-br from-blue-500 to-blue-600 border-0 shadow-xl text-white group hover:scale-105 transition-transform duration-300">
+        <Card className="relative overflow-hidden bg-gradient-to-br from-blue-500 to-blue-600 border-0 shadow-xl text-white group transition-transform duration-300">
           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
             <FileText className="w-24 h-24 transform translate-x-4 -translate-y-4" />
           </div>
@@ -163,7 +163,7 @@ export const DashboardOverview = () => {
         </Card>
 
         {/* Total News Card */}
-        <Card className="relative overflow-hidden bg-gradient-to-br from-emerald-500 to-emerald-600 border-0 shadow-xl text-white group hover:scale-105 transition-transform duration-300">
+        <Card className="relative overflow-hidden bg-gradient-to-br from-emerald-500 to-emerald-600 border-0 shadow-xl text-white group transition-transform duration-300">
           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
             <Newspaper className="w-24 h-24 transform translate-x-4 -translate-y-4" />
           </div>
@@ -191,7 +191,7 @@ export const DashboardOverview = () => {
         </Card>
 
         {/* Total Views Card */}
-        <Card className="relative overflow-hidden bg-gradient-to-br from-purple-500 to-purple-600 border-0 shadow-xl text-white group hover:scale-105 transition-transform duration-300">
+        <Card className="relative overflow-hidden bg-gradient-to-br from-purple-500 to-purple-600 border-0 shadow-xl text-white group transition-transform duration-300">
           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
             <Eye className="w-24 h-24 transform translate-x-4 -translate-y-4" />
           </div>
@@ -219,7 +219,7 @@ export const DashboardOverview = () => {
         </Card>
 
         {/* Submissions Card */}
-        <Card className="relative overflow-hidden bg-gradient-to-br from-amber-400 to-orange-500 border-0 shadow-xl text-white group hover:scale-105 transition-transform duration-300">
+        <Card className="relative overflow-hidden bg-gradient-to-br from-amber-400 to-orange-500 border-0 shadow-xl text-white group transition-transform duration-300">
           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
             <MessageSquare className="w-24 h-24 transform translate-x-4 -translate-y-4" />
           </div>
