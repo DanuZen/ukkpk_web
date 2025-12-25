@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil, Trash2, Users } from "lucide-react";
+import { DashboardPageHeader } from "@/components/admin/DashboardPageHeader";
 
 interface OrgMember {
   id: string;
@@ -95,14 +96,11 @@ export const OrganizationManager = () => {
 
   return (
     <div className="space-y-3 sm:space-y-4 md:space-y-6">
-      <div>
-        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">
-          {editingId ? "Edit Struktur" : "Kelola Struktur Organisasi"}
-        </h2>
-        <p className="text-sm sm:text-sm text-gray-600 mt-1">
-          {editingId ? "Perbarui data anggota organisasi" : "Kelola data pengurus dan struktur UKKPK"}
-        </p>
-      </div>
+      <DashboardPageHeader 
+        title={editingId ? "Edit Struktur" : "Kelola Struktur Organisasi"} 
+        subtitle={editingId ? "Perbarui data anggota organisasi" : "Kelola data pengurus dan struktur UKKPK"} 
+        icon={Users} 
+      />
       <Card className="shadow-xl">
         <CardHeader className="p-4 sm:p-5 md:p-6">
           <CardTitle className="text-base sm:text-lg md:text-xl">

@@ -13,6 +13,7 @@ import { toast } from 'sonner';
 import { Pencil, Trash2, Eye, Edit3, Plus, X, Newspaper } from 'lucide-react';
 import { sanitizeHtml } from '@/lib/sanitize';
 import { z } from 'zod';
+import { DashboardPageHeader } from '@/components/admin/DashboardPageHeader';
 
 const newsSchema = z.object({
   title: z.string().trim().min(1, 'Judul harus diisi').max(200, 'Judul maksimal 200 karakter'),
@@ -270,19 +271,11 @@ export const NewsManager = () => {
 
   return (
     <div className="space-y-3 sm:space-y-4 md:space-y-6">
-      <div className="flex justify-between items-start gap-2 mb-4 sm:mb-6">
-        <div className="flex items-center gap-2 sm:gap-3">
-          <Newspaper className="h-6 w-6 sm:h-8 sm:w-8 text-primary flex-shrink-0 animate-fade-in" />
-          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">
-              {editingId ? 'Edit Berita' : 'Kelola Berita'}
-            </h2>
-            <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-0.5 sm:mt-1">
-              {editingId ? 'Perbarui berita yang sudah ada' : 'Buat dan kelola konten berita terkini'}
-            </p>
-          </div>
-        </div>
-      </div>
+      <DashboardPageHeader 
+        title={editingId ? 'Edit Berita' : 'Kelola Berita'} 
+        subtitle={editingId ? 'Perbarui berita yang sudah ada' : 'Buat dan kelola konten berita terkini'} 
+        icon={Newspaper} 
+      />
       <Card className="shadow-xl overflow-hidden">
         <CardHeader className="p-3 sm:p-4 md:p-6">
           <CardTitle className="text-base sm:text-lg md:text-xl">{editingId ? 'Form Edit Berita' : 'Form Tambah Berita'}</CardTitle>

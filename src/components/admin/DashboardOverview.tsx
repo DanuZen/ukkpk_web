@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { FileText, Newspaper, MessageSquare, Eye, Heart, TrendingUp, ArrowUpRight, MoreHorizontal } from "lucide-react";
+import { DashboardPageHeader } from "@/components/admin/DashboardPageHeader";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
 
@@ -124,17 +125,11 @@ export const DashboardOverview = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center gap-3">
-          <div className="p-2 bg-primary/10 rounded-lg">
-            <TrendingUp className="h-6 w-6 text-primary animate-fade-in" />
-          </div>
-          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Dashboard Overview</h2>
-            <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-0.5 sm:mt-1">Ringkasan aktivitas dan performa website UKKPK</p>
-          </div>
-        </div>
-      </div>
+      <DashboardPageHeader 
+        title="Dashboard Overview" 
+        subtitle="Ringkasan aktivitas dan performa website UKKPK" 
+        icon={TrendingUp} 
+      />
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

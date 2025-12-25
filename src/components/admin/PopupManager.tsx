@@ -16,6 +16,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { DashboardPageHeader } from '@/components/admin/DashboardPageHeader';
 
 interface PopupSettings {
   id: string;
@@ -225,15 +226,11 @@ export const PopupManager = () => {
   return (
     <div className="space-y-4 sm:space-y-6">
       {/* Header Section - Outside Card */}
-      <div className="mb-2 sm:mb-6">
-        <div className="flex items-center gap-2 sm:gap-3">
-          <Image className="h-5 w-5 sm:h-8 sm:w-8 text-primary animate-fade-in flex-shrink-0" />
-          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
-            <h2 className="text-base sm:text-xl md:text-2xl font-bold text-gray-900">Pengaturan Popup Welcome</h2>
-            <p className="text-[10px] sm:text-sm md:text-base text-gray-600 mt-0.5 sm:mt-1">Kelola popup informasi yang muncul saat pengunjung membuka website</p>
-          </div>
-        </div>
-      </div>
+      <DashboardPageHeader 
+        title="Pengaturan Popup Welcome" 
+        subtitle="Kelola popup informasi yang muncul saat pengunjung membuka website" 
+        icon={Image} 
+      />
 
       <Card className="shadow-xl">
         <CardHeader className="p-3 sm:p-6">

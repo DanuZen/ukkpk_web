@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 import { Plus, Pencil, Trash2, Settings as SettingsIcon, Radio as RadioIcon } from "lucide-react";
 import { ImageUpload } from "./ImageUpload";
+import { DashboardPageHeader } from "@/components/admin/DashboardPageHeader";
 
 interface RadioProgram {
   id: string;
@@ -256,66 +257,51 @@ export const RadioManager = () => {
 
   return (
     <div className="space-y-3 sm:space-y-4 md:space-y-6">
-      <div className="flex justify-between items-start gap-2 mb-4 sm:mb-6">
-        <div className="flex items-center gap-2 sm:gap-3">
-          <RadioIcon className="h-6 w-6 sm:h-8 sm:w-8 text-primary flex-shrink-0 animate-fade-in" />
-          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Jadwal Program Radio</h2>
-            <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-0.5 sm:mt-1">Kelola jadwal program radio mingguan</p>
-          </div>
-        </div>
-        <Dialog open={showSettingsDialog} onOpenChange={setShowSettingsDialog}>
-          <DialogTrigger asChild>
-            <Button variant="outline" className="h-8 px-2 sm:h-9 sm:px-3 md:h-10 md:px-4 text-xs sm:text-sm">
-              <SettingsIcon className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-              <span className="hidden xs:inline">Pengaturan Radio</span>
-              <span className="xs:hidden">Pengaturan</span>
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-md p-3 sm:p-4 md:p-6">
-            <DialogHeader>
-              <DialogTitle className="text-sm sm:text-base md:text-lg">Pengaturan Radio</DialogTitle>
-            </DialogHeader>
-            <div className="space-y-3 sm:space-y-4">
-              <div>
-                <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">URL Streaming</label>
-                <Input
-                  value={streamingUrl}
-                  onChange={(e) => setStreamingUrl(e.target.value)}
-                  placeholder="https://streaming-url.com"
-                  className="h-8 sm:h-9 md:h-10 text-xs sm:text-sm"
-                />
-              </div>
-              <div>
-                <ImageUpload
-                  id="banner-image"
-                  label="Banner Image"
-                  currentImageUrl={bannerImageUrl}
-                  onFileSelect={setBannerImage}
-                />
-              </div>
-              <Button onClick={handleUpdateSettings} className="w-full h-8 sm:h-9 md:h-10 text-xs sm:text-sm">
-                Simpan Pengaturan
-              </Button>
-            </div>
-          </DialogContent>
-        </Dialog>
-      </div>
+      <DashboardPageHeader 
+        title="Jadwal Program Radio" 
+        subtitle="Kelola jadwal program radio mingguan" 
+        icon={RadioIcon} 
+      >
+        <Button 
+          variant="outline" 
+          className="hidden sm:flex h-9 px-3 md:h-10 md:px-4 text-sm"
+          onClick={() => setShowSettingsDialog(true)}
+        >
+          <SettingsIcon className="h-4 w-4 mr-2" />
+          <span>Pengaturan Radio</span>
+        </Button>
+      </DashboardPageHeader>
+
 
       {/* Mobile & Tablet Day Selector */}
-      <div className="lg:hidden mb-3">
-        <Select value={selectedDayMobile.toString()} onValueChange={(value) => setSelectedDayMobile(parseInt(value))}>
-          <SelectTrigger className="h-9 text-sm">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {DAYS.map((day, index) => (
-              <SelectItem key={index} value={index.toString()}>
-                {day}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+      {/* Mobile & Tablet Day Selector */}
+      <div className="lg:hidden mb-3 flex gap-2">
+        <div className="flex-1">
+          <Select value={selectedDayMobile.toString()} onValueChange={(value) => setSelectedDayMobile(parseInt(value))}>
+            <SelectTrigger className="h-9 text-sm">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {DAYS.map((day, index) => (
+                <SelectItem 
+                  key={index} 
+                  value={index.toString()}
+                  className="focus:bg-red-600 focus:text-white data-[state=checked]:bg-red-600 data-[state=checked]:text-white"
+                >
+                  {day}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <Button 
+          variant="outline" 
+          size="icon"
+          className="h-9 w-9 flex-shrink-0"
+          onClick={() => setShowSettingsDialog(true)}
+        >
+          <SettingsIcon className="h-4 w-4" />
+        </Button>
       </div>
 
       {/* Calendar Grid */}
@@ -323,7 +309,7 @@ export const RadioManager = () => {
         <CardContent className="p-1.5 sm:p-2 md:p-4">
           {/* Mobile & Tablet View - Single Day */}
           <div className="lg:hidden space-y-2">
-            <div className="text-center font-semibold bg-gradient-to-r from-primary to-primary/80 text-white rounded py-2 px-3 mb-3">
+            <div className="text-center font-semibold bg-gradient-to-r from-red-600 to-red-500 text-white rounded py-2 px-3 mb-3">
               {DAYS[selectedDayMobile]}
             </div>
             <div className="space-y-2">
@@ -433,7 +419,7 @@ export const RadioManager = () => {
                 {DAYS.map((day, index) => (
                   <div
                     key={index}
-                    className="py-2 px-2 text-center font-semibold bg-gradient-to-r from-primary to-primary/80 text-white rounded-t text-sm leading-tight"
+                    className="py-2 px-2 text-center font-semibold bg-gradient-to-r from-red-600 to-red-500 text-white rounded-t text-sm leading-tight"
                   >
                     {day}
                   </div>
@@ -582,7 +568,11 @@ export const RadioManager = () => {
                 </SelectTrigger>
                 <SelectContent>
                   {DAYS.map((day, index) => (
-                    <SelectItem key={index} value={index.toString()}>
+                    <SelectItem 
+                      key={index} 
+                      value={index.toString()}
+                      className="focus:bg-red-600 focus:text-white data-[state=checked]:bg-red-600 data-[state=checked]:text-white"
+                    >
                       {day}
                     </SelectItem>
                   ))}
@@ -632,6 +622,37 @@ export const RadioManager = () => {
               </Button>
             </div>
           </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Settings Dialog */}
+      <Dialog open={showSettingsDialog} onOpenChange={setShowSettingsDialog}>
+        <DialogContent className="max-w-md p-3 sm:p-4 md:p-6">
+          <DialogHeader>
+            <DialogTitle className="text-sm sm:text-base md:text-lg">Pengaturan Radio</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3 sm:space-y-4">
+            <div>
+              <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">URL Streaming</label>
+              <Input
+                value={streamingUrl}
+                onChange={(e) => setStreamingUrl(e.target.value)}
+                placeholder="https://streaming-url.com"
+                className="h-8 sm:h-9 md:h-10 text-xs sm:text-sm"
+              />
+            </div>
+            <div>
+              <ImageUpload
+                id="banner-image"
+                label="Banner Image"
+                currentImageUrl={bannerImageUrl}
+                onFileSelect={setBannerImage}
+              />
+            </div>
+            <Button onClick={handleUpdateSettings} className="w-full h-8 sm:h-9 md:h-10 text-xs sm:text-sm">
+              Simpan Pengaturan
+            </Button>
+          </div>
         </DialogContent>
       </Dialog>
     </div>

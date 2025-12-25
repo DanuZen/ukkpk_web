@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil, Trash2, Calendar } from "lucide-react";
+import { DashboardPageHeader } from "@/components/admin/DashboardPageHeader";
 import { z } from "zod";
 
 const eventSchema = z.object({
@@ -137,16 +138,11 @@ export const EventsManager = () => {
 
   return (
     <div className="space-y-2 sm:space-y-3 md:space-y-8">
-      <div className="flex justify-between items-start gap-2">
-        <div>
-          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-gray-900">
-            {editingId ? "Edit Event" : "Kelola Event"}
-          </h2>
-          <p className="text-xs sm:text-sm text-gray-600">
-            {editingId ? "Perbarui event yang sudah ada" : "Buat dan kelola jadwal event kampus"}
-          </p>
-        </div>
-      </div>
+      <DashboardPageHeader 
+        title={editingId ? "Edit Event" : "Kelola Event"} 
+        subtitle={editingId ? "Perbarui event yang sudah ada" : "Buat dan kelola jadwal event kampus"} 
+        icon={Calendar} 
+      />
       <Card className="shadow-xl">
         <CardHeader className="p-2 sm:p-3 md:p-6">
           <CardTitle className="text-sm sm:text-base md:text-xl">{editingId ? "Form Edit Event" : "Form Tambah Event"}</CardTitle>

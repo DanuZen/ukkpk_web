@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { Eye, Heart, FileText, Newspaper, TrendingUp, Users, MoreHorizontal, ArrowUpRight } from 'lucide-react';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { DashboardPageHeader } from "@/components/admin/DashboardPageHeader";
 
 interface ArticleStats {
   id: string;
@@ -234,15 +235,11 @@ export const AnalyticsDashboard = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center gap-3">
-          <TrendingUp className="h-8 w-8 text-primary animate-fade-in flex-shrink-0" />
-          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Analytics & Statistik</h2>
-            <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-0.5 sm:mt-1">Data performa konten website UKKPK</p>
-          </div>
-        </div>
-      </div>
+      <DashboardPageHeader 
+        title="Analytics & Statistik" 
+        subtitle="Data performa konten website UKKPK" 
+        icon={TrendingUp} 
+      />
 
       {/* New Styled Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

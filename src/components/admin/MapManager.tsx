@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Map } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { DashboardPageHeader } from "@/components/admin/DashboardPageHeader";
+
 interface MapSettings {
   id: string;
   location_name: string;
@@ -116,15 +118,11 @@ export const MapManager = () => {
     }
   };
   return <div className="space-y-3 sm:space-y-4 md:space-y-6">
-      <div className="mb-4 sm:mb-6">
-        <div className="flex items-center gap-2 sm:gap-3">
-          <Map className="h-6 w-6 sm:h-8 sm:w-8 text-primary animate-fade-in flex-shrink-0" />
-          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Pengaturan Peta Lokasi</h2>
-            <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-0.5 sm:mt-1">Kelola lokasi dan embed Google Maps untuk sekretariat UKKPK</p>
-          </div>
-        </div>
-      </div>
+      <DashboardPageHeader 
+        title="Pengaturan Peta Lokasi" 
+        subtitle="Kelola lokasi dan embed Google Maps untuk sekretariat UKKPK" 
+        icon={Map} 
+      />
       <Card className="shadow-xl">
         <CardHeader className="p-4 sm:p-5 md:p-6">
           <CardTitle className="text-base sm:text-lg md:text-xl">Form Pengaturan Peta</CardTitle>

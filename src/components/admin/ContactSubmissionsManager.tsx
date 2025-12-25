@@ -24,6 +24,7 @@ import { Trash2, Star, CheckCircle2, XCircle, Eye, Search, MessageSquare } from 
 import { toast } from 'sonner';
 import { format } from 'date-fns';
 import { id as idLocale } from 'date-fns/locale';
+import { DashboardPageHeader } from '@/components/admin/DashboardPageHeader';
 
 type ContactSubmission = {
   id: string;
@@ -158,17 +159,11 @@ export const ContactSubmissionsManager = () => {
 
   return (
     <>
-      <div className="flex justify-between items-start gap-1 mb-3 sm:mb-4 md:mb-6">
-        <div className="flex items-center gap-2 sm:gap-3">
-          <MessageSquare className="h-6 w-6 sm:h-8 sm:w-8 text-primary flex-shrink-0 animate-fade-in" />
-          <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Saran & Masukan</h2>
-            <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-0.5 sm:mt-1">
-              Total: {submissions.length} saran | Testimoni: {testimonialCount}
-            </p>
-          </div>
-        </div>
-      </div>
+      <DashboardPageHeader 
+        title="Saran & Masukan" 
+        subtitle={`Total: ${submissions.length} saran | Testimoni: ${testimonialCount}`} 
+        icon={MessageSquare} 
+      />
       <Card className="shadow-xl">
         <CardHeader className="pb-3 sm:pb-4 p-3 sm:p-4 md:p-6">
           <CardTitle className="text-sm sm:text-base md:text-xl">Daftar Saran</CardTitle>
