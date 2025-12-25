@@ -177,10 +177,10 @@ All colors MUST be HSL.
     background: hsl(var(--scrollbar-thumb-hover));
   }
 
-  body > * {
+  /* body > * {
     position: relative;
     z-index: 1;
-  }
+  } */
 
   /* Rich Text Editor Styles */
   .article-content {
