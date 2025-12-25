@@ -242,7 +242,7 @@ export const AnalyticsDashboard = () => {
       />
 
       {/* New Styled Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {/* Total Views Card */}
         <Card className="relative overflow-hidden bg-gradient-to-br from-emerald-500 to-emerald-600 border-0 shadow-xl text-white group hover:scale-105 transition-transform duration-300">
           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
@@ -385,7 +385,7 @@ export const AnalyticsDashboard = () => {
 
         <Card className="shadow-xl">
           <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
-            <CardTitle className="text-sm sm:text-base md:text-xl">Perbandingan Artikel vs Berita</CardTitle>
+            <CardTitle className="text-lg font-semibold">Perbandingan Artikel vs Berita</CardTitle>
           </CardHeader>
           <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
             <ResponsiveContainer width="100%" height={300}>

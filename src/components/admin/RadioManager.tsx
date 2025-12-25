@@ -627,7 +627,7 @@ export const RadioManager = () => {
 
       {/* Settings Dialog */}
       <Dialog open={showSettingsDialog} onOpenChange={setShowSettingsDialog}>
-        <DialogContent className="max-w-md p-3 sm:p-4 md:p-6">
+        <DialogContent className="w-[90%] max-w-md p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-lg">
           <DialogHeader>
             <DialogTitle className="text-sm sm:text-base md:text-lg">Pengaturan Radio</DialogTitle>
           </DialogHeader>
