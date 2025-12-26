@@ -247,6 +247,39 @@ All colors MUST be HSL.
     @apply border-l-4 border-primary pl-4 italic my-4;
   }
 
+  /* Default text alignment: justify for all paragraphs and headings */
+  .article-content p,
+  .article-content h1,
+  .article-content h2,
+  .article-content h3,
+  .article-content h4,
+  .article-content h5,
+  .article-content h6 {
+    text-align: justify !important;
+  }
+
+  /* Override with specific alignments from TipTap editor */
+  .article-content p[style*="text-align: left"],
+  .article-content h1[style*="text-align: left"],
+  .article-content h2[style*="text-align: left"],
+  .article-content h3[style*="text-align: left"] {
+    text-align: left !important;
+  }
+
+  .article-content p[style*="text-align: center"],
+  .article-content h1[style*="text-align: center"],
+  .article-content h2[style*="text-align: center"],
+  .article-content h3[style*="text-align: center"] {
+    text-align: center !important;
+  }
+
+  .article-content p[style*="text-align: right"],
+  .article-content h1[style*="text-align: right"],
+  .article-content h2[style*="text-align: right"],
+  .article-content h3[style*="text-align: right"] {
+    text-align: right !important;
+  }
+
   /* Hide scrollbar but keep scroll functionality */
   .scrollbar-hide {
     -ms-overflow-style: none;  /* IE and Edge */

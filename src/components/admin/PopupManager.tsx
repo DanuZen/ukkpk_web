@@ -290,31 +290,33 @@ export const PopupManager = () => {
 
             {popupSettings.show_button && (
               <div className="space-y-4 p-4 rounded-lg bg-gray-50 border">
-                <div className="space-y-2">
-                  <Label htmlFor="popup-button-text">Teks Tombol</Label>
-                  <Input
-                    id="popup-button-text"
-                    value={popupSettings.button_text}
-                    onChange={(e) =>
-                      setPopupSettings({ ...popupSettings, button_text: e.target.value })
-                    }
-                    placeholder="Contoh: Mulai Jelajahi"
-                  />
-                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="popup-button-text">Teks Tombol</Label>
+                    <Input
+                      id="popup-button-text"
+                      value={popupSettings.button_text}
+                      onChange={(e) =>
+                        setPopupSettings({ ...popupSettings, button_text: e.target.value })
+                      }
+                      placeholder="Contoh: Mulai Jelajahi"
+                    />
+                  </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="popup-button-link">Link Tombol (Opsional)</Label>
-                  <Input
-                    id="popup-button-link"
-                    value={popupSettings.button_link || ''}
-                    onChange={(e) =>
-                      setPopupSettings({ ...popupSettings, button_link: e.target.value })
-                    }
-                    placeholder="Contoh: /profil-ukkpk atau https://google.com"
-                  />
-                  <p className="text-xs text-muted-foreground">
-                    Kosongkan jika tombol hanya untuk menutup popup
-                  </p>
+                  <div className="space-y-2">
+                    <Label htmlFor="popup-button-link">Link Tombol (Opsional)</Label>
+                    <Input
+                      id="popup-button-link"
+                      value={popupSettings.button_link || ''}
+                      onChange={(e) =>
+                        setPopupSettings({ ...popupSettings, button_link: e.target.value })
+                      }
+                      placeholder="Contoh: /profil-ukkpk atau https://google.com"
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Kosongkan jika tombol hanya untuk menutup popup
+                    </p>
+                  </div>
                 </div>
               </div>
             )}

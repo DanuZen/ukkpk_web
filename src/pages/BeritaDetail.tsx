@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { supabase } from '@/integrations/supabase/client';
-import { ArrowLeft, Calendar, Share2, Facebook, Twitter, MessageCircle, Copy, Heart, User, Video, FileEdit } from 'lucide-react';
+import { ArrowLeft, Calendar, Share2, Facebook, Twitter, MessageCircle, Copy, Heart, User, Video, FileEdit, Link } from 'lucide-react';
 import { toast } from 'sonner';
 import { sanitizeHtml } from '@/lib/sanitize';
 
@@ -256,17 +256,30 @@ const BeritaDetail = () => {
 
               </div>
 
+              {/* Editor Info - All Screens (after content) */}
+              {news.editor && (
+                <div className="mb-6 pb-4 border-b border-border">
+                  <div className="bg-muted/50 px-2 py-1 md:px-3 md:py-1.5 rounded-md flex items-center gap-1.5 md:gap-2 text-[10px] md:text-sm text-muted-foreground w-fit">
+                    <FileEdit className="h-3 w-3 md:h-4 md:w-4" />
+                    <span>Penyunting: {news.editor}</span>
+
+                  </div>
+                </div>
+              )}
 
               {news.source && (
-                <div className="mt-8 pt-4 border-t border-border">
-                  <p className="text-xs md:text-sm font-semibold mb-2">Sumber:</p>
+                <div className="mt-12">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Link className="h-4 w-4 text-muted-foreground" />
+                    <p className="text-xs md:text-sm font-semibold">Sumber:</p>
+                  </div>
                   <div className="flex flex-col gap-1.5">
                     {(() => {
                       try {
                         const sources = JSON.parse(news.source);
                         if (Array.isArray(sources)) {
                           return sources.map((src, i) => (
-                            <div key={i} className="text-[10px] md:text-xs text-muted-foreground break-words">
+                            <div key={i} className="text-xs sm:text-sm md:text-base text-muted-foreground break-words">
                               {src.startsWith('http') ? (
                                 <a href={src} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline inline-flex items-center gap-1">
                                   {src}
@@ -276,19 +289,8 @@ const BeritaDetail = () => {
                           ));
                         }
                       } catch (e) {}
-                      return <div className="text-[10px] md:text-xs text-muted-foreground break-words">{news.source}</div>;
+                      return <div className="text-xs sm:text-sm md:text-base text-muted-foreground break-words">{news.source}</div>;
                     })()}
-                  </div>
-                </div>
-              )}
-
-              {/* Editor Info - All Screens (after content) */}
-              {news.editor && (
-                <div className="mb-6 pb-4 border-b border-border">
-                  <div className="bg-muted/50 px-2 py-1 md:px-3 md:py-1.5 rounded-md flex items-center gap-1.5 md:gap-2 text-[10px] md:text-sm text-muted-foreground w-fit">
-                    <FileEdit className="h-3 w-3 md:h-4 md:w-4" />
-                    <span>Penyunting: {news.editor}</span>
-
                   </div>
                 </div>
               )}

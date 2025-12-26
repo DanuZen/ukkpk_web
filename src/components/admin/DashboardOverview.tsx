@@ -25,12 +25,6 @@ interface NewsStats {
   published_at: string | null;
 }
 
-interface RecentActivity {
-  id: string;
-  title: string;
-  type: 'article' | 'news';
-  created_at: string;
-}
 
 export const DashboardOverview = () => {
   const [stats, setStats] = useState({
@@ -43,7 +37,6 @@ export const DashboardOverview = () => {
   });
   const [topArticles, setTopArticles] = useState<ArticleStats[]>([]);
   const [topNews, setTopNews] = useState<NewsStats[]>([]);
-  const [recentActivity, setRecentActivity] = useState<RecentActivity[]>([]);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -90,36 +83,8 @@ export const DashboardOverview = () => {
       }
     };
 
-    const fetchRecentActivity = async () => {
-      try {
-        const { data: recentArticles } = await supabase
-          .from('articles')
-          .select('id, title, created_at')
-          .order('created_at', { ascending: false })
-          .limit(3);
-
-        const { data: recentNews } = await supabase
-          .from('news')
-          .select('id, title, created_at')
-          .order('created_at', { ascending: false })
-          .limit(3);
-
-        const combined: RecentActivity[] = [
-          ...(recentArticles || []).map(a => ({ ...a, type: 'article' as const })),
-          ...(recentNews || []).map(n => ({ ...n, type: 'news' as const }))
-        ]
-        .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
-        .slice(0, 5);
-
-        setRecentActivity(combined);
-      } catch (error) {
-        // Error silently handled
-      }
-    };
-
     fetchStats();
     fetchTopContent();
-    fetchRecentActivity();
   }, []);
 
   return (
@@ -247,35 +212,6 @@ export const DashboardOverview = () => {
         </Card>
       </div>
 
-      {/* Recent Activity */}
-      <Card className="shadow-xl">
-        <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
-          <CardTitle className="text-sm sm:text-base md:text-xl font-semibold">Aktivitas Terbaru</CardTitle>
-        </CardHeader>
-        <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
-          <div className="space-y-2 sm:space-y-3 md:space-y-4">
-            {recentActivity.length === 0 ? (
-              <p className="text-center text-gray-500 py-4 sm:py-6 md:py-8 text-xs sm:text-sm">Belum ada aktivitas</p>
-            ) : (
-              recentActivity.map((activity) => (
-                <div key={`${activity.type}-${activity.id}`} className="flex items-start gap-2 sm:gap-3 md:gap-4 pb-2 sm:pb-3 md:pb-4 border-b last:border-0">
-                  <div className="flex-shrink-0">
-                    <Badge variant={activity.type === 'article' ? 'default' : 'secondary'} className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5">
-                      {activity.type === 'article' ? 'Artikel' : 'Berita'}
-                    </Badge>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h4 className="font-medium text-gray-900 text-xs sm:text-sm md:text-base line-clamp-2">{activity.title}</h4>
-                    <p className="text-[10px] sm:text-xs md:text-sm text-gray-500 mt-0.5">
-                      {format(new Date(activity.created_at), "d MMM yyyy, HH:mm", { locale: id })}
-                    </p>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-        </CardContent>
-      </Card>
 
       {/* Top Articles and News */}
       <div className="grid gap-3 sm:gap-4 md:gap-6 lg:grid-cols-2">

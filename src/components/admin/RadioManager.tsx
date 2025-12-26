@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Plus, Pencil, Trash2, Settings as SettingsIcon, Radio as RadioIcon } from "lucide-react";
+import { Plus, Pencil, Trash2, Settings as SettingsIcon, Radio as RadioIcon, ChevronUp, ChevronDown } from "lucide-react";
 import { ImageUpload } from "./ImageUpload";
 import { DashboardPageHeader } from "@/components/admin/DashboardPageHeader";
 
@@ -26,10 +26,13 @@ interface RadioSettings {
   id: string;
   streaming_url: string;
   banner_image_url?: string;
+  schedule_start_time?: string;
+  schedule_end_time?: string;
 }
 
 const DAYS = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
 const TIME_SLOTS = [
+  "00:00", "01:00", "02:00", "03:00", "04:00", "05:00",
   "06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
   "12:00", "13:00", "14:00", "15:00", "16:00", "17:00",
   "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"
@@ -46,6 +49,8 @@ export const RadioManager = () => {
   const [showSettingsDialog, setShowSettingsDialog] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState<{ day: number; time: string } | null>(null);
   const [selectedDayMobile, setSelectedDayMobile] = useState(0);
+  const [scheduleStartTime, setScheduleStartTime] = useState("00:00");
+  const [scheduleEndTime, setScheduleEndTime] = useState("23:00");
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -86,6 +91,8 @@ export const RadioManager = () => {
       setSettings(data);
       setStreamingUrl(data.streaming_url);
       setBannerImageUrl(data.banner_image_url || "");
+      setScheduleStartTime((data as any).schedule_start_time || "00:00");
+      setScheduleEndTime((data as any).schedule_end_time || "23:00");
     } catch (error) {
       // Error silently handled
     }
@@ -255,6 +262,11 @@ export const RadioManager = () => {
     });
   };
 
+  // Filter TIME_SLOTS based on schedule settings
+  const filteredTimeSlots = TIME_SLOTS.filter((time) => {
+    return time >= scheduleStartTime && time <= scheduleEndTime;
+  });
+
   return (
     <div className="space-y-3 sm:space-y-4 md:space-y-6">
       <DashboardPageHeader 
@@ -312,7 +324,7 @@ export const RadioManager = () => {
               {DAYS[selectedDayMobile]}
             </div>
             <div className="space-y-2">
-              {TIME_SLOTS.map((time) => {
+              {filteredTimeSlots.map((time) => {
                 const programsInSlot = getProgramsForSlot(selectedDayMobile, time.split(":")[0]);
                 const isEmpty = programsInSlot.length === 0;
 
@@ -427,7 +439,7 @@ export const RadioManager = () => {
 
               {/* Time Slots Grid */}
               <div className="space-y-1">
-                {TIME_SLOTS.map((time) => (
+                {filteredTimeSlots.map((time) => (
                   <div key={time} className="grid grid-cols-8 gap-1">
                     <div className="p-2 text-center text-sm font-medium text-gray-600 bg-gray-50 rounded flex items-center justify-center">
                       {time}
@@ -647,6 +659,110 @@ export const RadioManager = () => {
                 currentImageUrl={bannerImageUrl}
                 onFileSelect={setBannerImage}
               />
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Waktu Awal Jadwal</label>
+                <div className="flex gap-1">
+                  <Input
+                    type="time"
+                    value={scheduleStartTime}
+                    onChange={(e) => setScheduleStartTime(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        const [hour, minute] = scheduleStartTime.split(':').map(Number);
+                        const newHour = e.key === 'ArrowUp' 
+                          ? Math.min(23, hour + 1) 
+                          : Math.max(0, hour - 1);
+                        setScheduleStartTime(`${newHour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`);
+                      }
+                    }}
+                    className="h-8 sm:h-9 md:h-10 text-xs sm:text-sm flex-1"
+                  />
+                  <div className="flex flex-col gap-0.5">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                      className="h-[18px] w-6 p-0 bg-white hover:bg-red-600 hover:text-white active:bg-red-600 active:text-white transition-colors"
+                      onClick={(e) => {
+                        const [hour, minute] = scheduleStartTime.split(':').map(Number);
+                        const newHour = Math.min(23, hour + 1);
+                        setScheduleStartTime(`${newHour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`);
+                        e.currentTarget.blur();
+                      }}
+                    >
+                      <ChevronUp className="h-3 w-3" />
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                      className="h-[18px] w-6 p-0 bg-white hover:bg-red-600 hover:text-white active:bg-red-600 active:text-white transition-colors"
+                      onClick={(e) => {
+                        const [hour, minute] = scheduleStartTime.split(':').map(Number);
+                        const newHour = Math.max(0, hour - 1);
+                        setScheduleStartTime(`${newHour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`);
+                        e.currentTarget.blur();
+                      }}
+                    >
+                      <ChevronDown className="h-3 w-3" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Waktu Akhir Jadwal</label>
+                <div className="flex gap-1">
+                  <Input
+                    type="time"
+                    value={scheduleEndTime}
+                    onChange={(e) => setScheduleEndTime(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        const [hour, minute] = scheduleEndTime.split(':').map(Number);
+                        const newHour = e.key === 'ArrowUp' 
+                          ? Math.min(23, hour + 1) 
+                          : Math.max(0, hour - 1);
+                        setScheduleEndTime(`${newHour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`);
+                      }
+                    }}
+                    className="h-8 sm:h-9 md:h-10 text-xs sm:text-sm flex-1"
+                  />
+                  <div className="flex flex-col gap-0.5">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                      className="h-[18px] w-6 p-0 bg-white hover:bg-red-600 hover:text-white active:bg-red-600 active:text-white transition-colors"
+                      onClick={(e) => {
+                        const [hour, minute] = scheduleEndTime.split(':').map(Number);
+                        const newHour = Math.min(23, hour + 1);
+                        setScheduleEndTime(`${newHour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`);
+                        e.currentTarget.blur();
+                      }}
+                    >
+                      <ChevronUp className="h-3 w-3" />
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                      className="h-[18px] w-6 p-0 bg-white hover:bg-red-600 hover:text-white active:bg-red-600 active:text-white transition-colors"
+                      onClick={(e) => {
+                        const [hour, minute] = scheduleEndTime.split(':').map(Number);
+                        const newHour = Math.max(0, hour - 1);
+                        setScheduleEndTime(`${newHour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`);
+                        e.currentTarget.blur();
+                      }}
+                    >
+                      <ChevronDown className="h-3 w-3" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
             <Button onClick={handleUpdateSettings} className="w-full h-8 sm:h-9 md:h-10 text-xs sm:text-sm">
               Simpan Pengaturan

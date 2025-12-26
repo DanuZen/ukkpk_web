@@ -1,11 +1,23 @@
 import { User } from "@supabase/supabase-js";
 import { Search, Bell, LogOut, ExternalLink } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { supabase } from "@/integrations/supabase/client";
+import { format } from "date-fns";
+import { id } from "date-fns/locale";
+
+interface RecentActivity {
+  id: string;
+  title: string;
+  type: 'article' | 'news';
+  created_at: string;
+}
 
 interface DashboardHeaderProps {
   title: string;
@@ -23,6 +35,55 @@ export const DashboardHeader = ({
   onNavigate
 }: DashboardHeaderProps) => {
   const navigate = useNavigate();
+  const [recentActivity, setRecentActivity] = useState<RecentActivity[]>([]);
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [viewedActivities, setViewedActivities] = useState<string[]>([]);
+  
+  useEffect(() => {
+    const fetchRecentActivity = async () => {
+      try {
+        const { data: recentArticles } = await supabase
+          .from('articles')
+          .select('id, title, created_at')
+          .order('created_at', { ascending: false })
+          .limit(3);
+
+        const { data: recentNews } = await supabase
+          .from('news')
+          .select('id, title, created_at')
+          .order('created_at', { ascending: false })
+          .limit(3);
+
+        const combined: RecentActivity[] = [
+          ...(recentArticles || []).map(a => ({ ...a, type: 'article' as const })),
+          ...(recentNews || []).map(n => ({ ...n, type: 'news' as const }))
+        ]
+        .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+        .slice(0, 5);
+
+        setRecentActivity(combined);
+      } catch (error) {
+        // Error silently handled
+      }
+    };
+
+    fetchRecentActivity();
+    
+    // Load viewed activities from localStorage
+    const viewed = localStorage.getItem('viewedActivities');
+    if (viewed) {
+      setViewedActivities(JSON.parse(viewed));
+    }
+  }, []);
+  
+  // Update unread count based on viewed activities
+  useEffect(() => {
+    const unviewed = recentActivity.filter(
+      activity => !viewedActivities.includes(`${activity.type}-${activity.id}`)
+    );
+    setUnreadCount(unviewed.length);
+  }, [recentActivity, viewedActivities]);
   
   const getInitials = (email: string) => {
     return email.substring(0, 2).toUpperCase();
@@ -53,13 +114,73 @@ export const DashboardHeader = ({
           <ExternalLink className="h-4 w-4" />
         </Button>
 
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          className="hidden lg:flex text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9 flex-shrink-0"
-        >
-          <Bell className="h-4 w-4" />
-        </Button>
+        <DropdownMenu open={isNotificationOpen} onOpenChange={setIsNotificationOpen}>
+          <DropdownMenuTrigger asChild>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="flex text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9 flex-shrink-0 relative"
+            >
+              <Bell className="h-4 w-4" />
+              {unreadCount > 0 && (
+                <span className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 rounded-full text-[10px] text-white flex items-center justify-center font-semibold">
+                  {unreadCount}
+                </span>
+              )}
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-80">
+            <DropdownMenuLabel className="font-semibold text-base">Aktivitas Terbaru</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            {recentActivity.length === 0 ? (
+              <div className="p-4 text-center text-sm text-gray-500">
+                Belum ada aktivitas
+              </div>
+            ) : (
+              <div className="py-1">
+                {recentActivity
+                  .filter(activity => !viewedActivities.includes(`${activity.type}-${activity.id}`))
+                  .map((activity) => (
+                  <DropdownMenuItem 
+                    key={`${activity.type}-${activity.id}`} 
+                    className="flex flex-col items-start gap-2 p-3 cursor-pointer focus:bg-gray-50 hover:bg-gray-50"
+                    onClick={() => {
+                      // Mark as viewed
+                      const activityKey = `${activity.type}-${activity.id}`;
+                      const newViewed = [...viewedActivities, activityKey];
+                      setViewedActivities(newViewed);
+                      localStorage.setItem('viewedActivities', JSON.stringify(newViewed));
+                      
+                      // Navigate
+                      const url = activity.type === 'article' 
+                        ? `/artikel/${activity.id}` 
+                        : `/berita/${activity.id}`;
+                      navigate(url);
+                      setIsNotificationOpen(false);
+                    }}
+                  >
+                    <div className="flex items-start gap-2 w-full">
+                      <Badge 
+                        variant={activity.type === 'article' ? 'default' : 'secondary'} 
+                        className="text-[10px] px-2 py-0.5 flex-shrink-0"
+                      >
+                        {activity.type === 'article' ? 'Artikel' : 'Berita'}
+                      </Badge>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-medium text-gray-900 text-sm line-clamp-2">
+                          {activity.title}
+                        </h4>
+                        <p className="text-xs text-gray-500 mt-1">
+                          {format(new Date(activity.created_at), "d MMM yyyy, HH:mm", { locale: id })}
+                        </p>
+                      </div>
+                    </div>
+                  </DropdownMenuItem>
+                ))}
+              </div>
+            )}
+          </DropdownMenuContent>
+        </DropdownMenu>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

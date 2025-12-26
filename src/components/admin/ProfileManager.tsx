@@ -292,24 +292,6 @@ const SlideshowSection = () => {
           <CardTitle className="text-base sm:text-lg md:text-xl">Form Slideshow</CardTitle>
         </CardHeader>
       <CardContent className="space-y-4 sm:space-y-5 md:space-y-6 p-4 pt-0 sm:p-5 sm:pt-0 md:p-6 md:pt-0">
-        {/* Speed Control Section */}
-        <div className="space-y-3 p-3 sm:p-4 bg-muted/30 rounded-lg border border-border">
-          <div className="space-y-2">
-            <Label htmlFor="speed" className="text-sm sm:text-base">Kecepatan Auto-Rotation (milliseconds)</Label>
-            <p className="text-xs sm:text-sm text-muted-foreground">
-              Atur berapa lama setiap foto ditampilkan sebelum berganti otomatis (1000ms = 1 detik)
-            </p>
-            <div className="flex flex-col sm:flex-row gap-2">
-              <Input id="speed" type="number" min="1000" max="30000" step="500" value={autoPlaySpeed} onChange={e => setAutoPlaySpeed(Number(e.target.value))} className="w-full sm:max-w-xs" />
-              <Button onClick={handleUpdateSpeed} disabled={updating} variant="outline" className="w-full sm:w-auto">
-                {updating ? 'Menyimpan...' : 'Simpan'}
-              </Button>
-            </div>
-            <p className="text-xs text-muted-foreground">
-              Rekomendasi: 3000-7000ms untuk pengalaman terbaik
-            </p>
-          </div>
-        </div>
 
         {/* Upload Section */}
         <div className="space-y-4">
