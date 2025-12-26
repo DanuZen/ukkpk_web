@@ -113,6 +113,8 @@ export const HomeSlideshow = () => {
               src={image.image_url}
               alt={`Slide ${index + 1}`}
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/60"></div>
           </div>
