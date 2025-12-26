@@ -170,7 +170,7 @@ export const Navigation = () => {
                 </Button>
                 
                 {searchResults.length > 0 && <div className="absolute top-full mt-2 w-full bg-background border border-border rounded-lg shadow-lg max-h-96 overflow-y-auto z-50 animate-fade-in">
-                    {searchResults.map(result => <Link key={`${result.type}-${result.id}`} to={`/${result.type === 'article' ? 'artikel' : result.type === 'news' ? 'berita' : 'event'}`} className="block px-4 py-3 hover:bg-secondary/10 transition-colors border-b border-border last:border-b-0" onClick={() => {
+                    {searchResults.map(result => <Link key={`${result.type}-${result.id}`} to={`/${result.type === 'article' ? 'artikel' : result.type === 'news' ? 'berita' : 'event'}/${result.id}`} className="block px-4 py-3 hover:bg-secondary/10 transition-colors border-b border-border last:border-b-0" onClick={() => {
                 setIsSearchOpen(false);
                 setSearchQuery("");
                 setSearchResults([]);
