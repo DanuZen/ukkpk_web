@@ -55,6 +55,36 @@ export const WelcomePopup = () => {
     checkAndShowPopup();
   }, []);
 
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleMobileMenuChange = (e: CustomEvent) => {
+      setIsMobileMenuOpen(e.detail.isOpen);
+    };
+
+    window.addEventListener('mobile-menu-change' as any, handleMobileMenuChange);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsFooterVisible(entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+
+    const footer = document.querySelector('footer');
+    if (footer) {
+      observer.observe(footer);
+    }
+
+    return () => {
+      window.removeEventListener('mobile-menu-change' as any, handleMobileMenuChange);
+      if (footer) {
+        observer.unobserve(footer);
+      }
+    };
+  }, []);
+
   const handleClose = () => {
     setIsOpen(false);
     // Show floating button after popup is closed
@@ -127,7 +157,13 @@ export const WelcomePopup = () => {
 
       {/* Floating Button - appears on the right after popup is closed */}
       {showFloatingButton && popupData.show_button && (
-        <div className="fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-[9999] animate-in slide-in-from-right duration-500">
+        <div 
+          className={`fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-[9999] transition-all duration-500 ease-in-out ${
+            isFooterVisible || isMobileMenuOpen
+              ? 'translate-x-[200%] opacity-0' 
+              : 'translate-x-0 opacity-100 animate-in slide-in-from-right'
+          }`}
+        >
           <Button
             onClick={handleButtonClick}
             size="lg"

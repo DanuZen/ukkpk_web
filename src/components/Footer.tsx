@@ -224,7 +224,7 @@ export const Footer = () => {
               Syarat & Ketentuan
             </span>
             <a 
-              href="https://www.instagram.com/daann.u/" 
+              href="https://imdann.vercel.app/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white/80 hover:text-white transition-colors cursor-pointer"

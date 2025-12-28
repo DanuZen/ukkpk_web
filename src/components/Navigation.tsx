@@ -8,6 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
+
 interface SearchResult {
   id: string;
   title: string;
@@ -17,6 +18,7 @@ interface SearchResult {
   editor?: string | null;
   cameraman?: string[] | null;
 }
+
 const navItems = [{
   name: "HOME",
   path: "/"
@@ -33,6 +35,7 @@ const navItems = [{
   name: "PROFIL UKKPK",
   path: "/profil-ukkpk"
 }];
+
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -59,6 +62,13 @@ export const Navigation = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Dispatch custom event when mobile menu opens/closes
+  useEffect(() => {
+    const event = new CustomEvent('mobile-menu-change', { detail: { isOpen } });
+    window.dispatchEvent(event);
+  }, [isOpen]);
+
   useEffect(() => {
     const searchContent = async () => {
       if (!searchQuery.trim()) {
@@ -99,25 +109,6 @@ export const Navigation = () => {
             created_at: e.event_date
           }))
         ];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         setSearchResults(results);
       } catch (error) {
         console.error('Search error:', error);
@@ -128,15 +119,19 @@ export const Navigation = () => {
     const debounce = setTimeout(searchContent, 300);
     return () => clearTimeout(debounce);
   }, [searchQuery]);
+
   const handleLogout = async () => {
     await signOut();
     toast.success("Berhasil logout");
     setIsPopoverOpen(false);
     navigate("/");
   };
+
   const isHomePage = location.pathname === "/";
   const showTransparentNav = isHomePage && !isScrolled && !isOpen;
-  return <nav className={`${showTransparentNav ? "bg-transparent" : "bg-white border-b border-border shadow-sm"} sticky top-0 z-50 transition-all duration-300`}>
+
+  return (
+    <nav className={`${showTransparentNav ? "bg-transparent" : "bg-white border-b border-border shadow-sm"} sticky top-0 z-50 transition-all duration-300`}>
       <div className="container mx-auto px-4 relative">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -149,32 +144,39 @@ export const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1 flex-1 justify-end">
-            {!isSearchOpen ? <>
+            {!isSearchOpen ? (
+              <>
                 {navItems.map(item => {
-              const isActive = location.pathname === item.path;
-              return <Link key={item.name} to={item.path} className={`px-4 py-5 text-sm transition-all duration-300 relative ${isActive ? (showTransparentNav ? "font-semibold text-white border-b-2 border-white" : "font-semibold text-primary border-b-2 border-primary") : (showTransparentNav ? "font-medium text-white hover:border-b-2 hover:border-white/50" : "font-medium text-foreground hover:text-primary hover:border-b-2 hover:border-primary/50")}`}>
+                  const isActive = location.pathname === item.path;
+                  return (
+                    <Link key={item.name} to={item.path} className={`px-4 py-5 text-sm transition-all duration-300 relative ${isActive ? (showTransparentNav ? "font-semibold text-white border-b-2 border-white" : "font-semibold text-primary border-b-2 border-primary") : (showTransparentNav ? "font-medium text-white hover:border-b-2 hover:border-white/50" : "font-medium text-foreground hover:text-primary hover:border-b-2 hover:border-primary/50")}`}>
                       {item.name}
-                    </Link>;
-            })}
+                    </Link>
+                  );
+                })}
                 <Button variant="ghost" size="icon" className={`ml-2 transition-all duration-300 ${showTransparentNav ? "text-white hover:bg-white/10 hover:text-white" : "hover:bg-primary/10 hover:text-primary"}`} onClick={() => setIsSearchOpen(true)}>
                   <Search className="h-5 w-5" />
                 </Button>
-              </> : <div className="flex items-center gap-2 animate-fade-in flex-1 max-w-md relative">
+              </>
+            ) : (
+              <div className="flex items-center gap-2 animate-fade-in flex-1 max-w-md relative">
                 <Input type="text" placeholder="Cari artikel, berita, atau event..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="flex-1" autoFocus />
                 <Button variant="ghost" size="icon" className="hover:bg-primary hover:text-white transition-colors" onClick={() => {
-              setIsSearchOpen(false);
-              setSearchQuery("");
-              setSearchResults([]);
-            }}>
+                  setIsSearchOpen(false);
+                  setSearchQuery("");
+                  setSearchResults([]);
+                }}>
                   <X className="h-5 w-5" />
                 </Button>
                 
-                {searchResults.length > 0 && <div className="absolute top-full mt-2 w-full bg-background border border-border rounded-lg shadow-lg max-h-96 overflow-y-auto z-50 animate-fade-in">
-                    {searchResults.map(result => <Link key={`${result.type}-${result.id}`} to={`/${result.type === 'article' ? 'artikel' : result.type === 'news' ? 'berita' : 'event'}/${result.id}`} className="block px-4 py-3 hover:bg-secondary/10 transition-colors border-b border-border last:border-b-0" onClick={() => {
-                setIsSearchOpen(false);
-                setSearchQuery("");
-                setSearchResults([]);
-              }}>
+                {searchResults.length > 0 && (
+                  <div className="absolute top-full mt-2 w-full bg-background border border-border rounded-lg shadow-lg max-h-96 overflow-y-auto z-50 animate-fade-in">
+                    {searchResults.map(result => (
+                      <Link key={`${result.type}-${result.id}`} to={`/${result.type === 'article' ? 'artikel' : result.type === 'news' ? 'berita' : 'event'}/${result.id}`} className="block px-4 py-3 hover:bg-secondary/10 transition-colors border-b border-border last:border-b-0" onClick={() => {
+                        setIsSearchOpen(false);
+                        setSearchQuery("");
+                        setSearchResults([]);
+                      }}>
                         <div className="font-medium">{result.title}</div>
                         <div className="text-xs text-muted-foreground mt-1 flex flex-wrap gap-x-2">
                           <span>{result.type === 'article' ? 'Artikel' : result.type === 'news' ? 'Berita' : 'Event'}</span>
@@ -185,9 +187,12 @@ export const Navigation = () => {
                             </>
                           )}
                         </div>
-                      </Link>)}
-                  </div>}
-              </div>}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
             
             {/* Profile Icon with Login/Logout */}
             <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
@@ -197,7 +202,8 @@ export const Navigation = () => {
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-80 p-0 bg-white" align="end">
-                {!user ? <div className="bg-white">
+                {!user ? (
+                  <div className="bg-white">
                     <div className="p-6 space-y-5">
                       {/* Icon & Header */}
                       <div className="flex items-center gap-3">
@@ -235,7 +241,9 @@ export const Navigation = () => {
                         </p>
                       </div>
                     </div>
-                  </div> : <div className="bg-white">
+                  </div>
+                ) : (
+                  <div className="bg-white">
                     <div className="p-4 space-y-3">
                       {/* User Info */}
                       <div className="pb-3 border-b border-border/50">
@@ -273,7 +281,8 @@ export const Navigation = () => {
                         </Button>
                       </div>
                     </div>
-                  </div>}
+                  </div>
+                )}
               </PopoverContent>
             </Popover>
           </div>
@@ -285,14 +294,17 @@ export const Navigation = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && <div className="fixed top-16 left-0 right-0 bottom-0 lg:hidden bg-background/95 backdrop-blur-sm overflow-y-auto z-50 animate-in slide-in-from-top duration-300">
+        {isOpen && (
+          <div className="fixed top-16 left-0 right-0 bottom-0 lg:hidden bg-background/95 backdrop-blur-sm overflow-y-auto z-50 animate-in slide-in-from-top duration-300">
             <div className="py-4 space-y-2">
             {navItems.map(item => {
-          const isActive = location.pathname === item.path;
-          return <Link key={item.name} to={item.path} className={`block mx-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground shadow-md" : "text-foreground hover:bg-gray-100"}`} onClick={() => setIsOpen(false)}>
+              const isActive = location.pathname === item.path;
+              return (
+                <Link key={item.name} to={item.path} className={`block mx-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground shadow-md" : "text-foreground hover:bg-gray-100"}`} onClick={() => setIsOpen(false)}>
                   {item.name}
-                </Link>;
-        })}
+                </Link>
+              );
+            })}
             
             {/* Account Section */}
             <div className="border-t border-border mt-2 pt-2">
@@ -344,7 +356,9 @@ export const Navigation = () => {
               )}
             </div>
             </div>
-          </div>}
+          </div>
+        )}
       </div>
-    </nav>;
+    </nav>
+  );
 };
