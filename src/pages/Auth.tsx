@@ -3,6 +3,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { Eye, EyeOff, ArrowLeft, Mail, Lock } from "lucide-react";
+import logoUkkpk from "@/assets/logo-ukkpk.png";
+import logoMicuMascot from "@/assets/logo-micu-mascot.png";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -49,7 +51,7 @@ const Auth = () => {
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-12">
               <img
-                src="/src/assets/logo-ukkpk.png"
+                src={logoUkkpk}
                 alt="UKKPK UNP Logo"
                 className="w-10 h-10 object-contain"
               />
@@ -96,7 +98,7 @@ const Auth = () => {
           {/* Micu Mascot - Behind with opacity and rotation */}
           <div className="absolute -bottom-24 left-[80%] -translate-x-1/2 w-[700px] h-[700px] -rotate-12 opacity-100 z-0">
             <img
-              src="/src/assets/logo-micu-mascot.png"
+              src={logoMicuMascot}
               alt="Micu Mascot"
               className="w-full h-full object-contain"
             />
@@ -115,7 +117,7 @@ const Auth = () => {
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center justify-center gap-3 mb-8">
             <img
-              src="/src/assets/logo-ukkpk.png"
+              src={logoUkkpk}
               alt="UKKPK UNP Logo"
               className="w-10 h-10 object-contain"
             />
