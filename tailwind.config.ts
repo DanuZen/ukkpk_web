@@ -113,6 +113,18 @@ export default {
           '50%': { opacity: '0.5', transform: 'scale(1.05)' },
           '100%': { opacity: '0.2', transform: 'scale(0.95)' },
         },
+        'slide-in-left': {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        'slide-out-left': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+        'fade-out': {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -126,6 +138,9 @@ export default {
         float: 'float 3s ease-in-out infinite',
         'wave-pulse': 'wave-pulse 3s ease-in-out infinite',
         'broadcast-signal': 'broadcast-signal 4s ease-in-out infinite',
+        'slide-in-left': 'slide-in-left 0.8s ease-out',
+        'slide-out-left': 'slide-out-left 0.5s ease-in forwards',
+        'fade-out': 'fade-out 0.5s ease-in forwards',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

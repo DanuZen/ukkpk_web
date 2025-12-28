@@ -264,16 +264,13 @@ const Index = () => {
               <Card className="h-full border-border/50 shadow-xl">
                 <CardHeader className="p-3 sm:p-4 md:p-6 border-b border-border/50">
                   <CardTitle className="flex items-center gap-2 text-sm sm:text-base md:text-lg font-bold">
-                    <div className="p-1.5 sm:p-2 rounded-lg bg-primary/10">
-                      <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5 text-primary" />
-                    </div>
                     Informasi Lokasi
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-5 md:space-y-6">
                   {/* Address */}
                   <div className="flex gap-2.5 sm:gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-primary/10 hidden sm:flex items-center justify-center">
+                    <div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center">
                       <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -293,7 +290,7 @@ const Index = () => {
 
                   <div className="h-px bg-border/50 hidden lg:block" />
 
-                  {/* Contact - Hidden on mobile and tablet */}
+                  {/* Contact Group */}
                   <div className="space-y-2.5 sm:space-y-3 hidden lg:block">
                     <div className="flex items-center gap-2.5 sm:gap-3">
                       <div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-green-500/10 flex items-center justify-center">
@@ -327,24 +324,26 @@ const Index = () => {
                   <div className="h-px bg-border/50 hidden md:block" />
 
                   {/* Operating Hours - Hidden on mobile */}
-                  <div className="flex gap-2.5 sm:gap-3 hidden md:block">
-                    <div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-blue-500/10 md:hidden lg:flex items-center justify-center">
-                      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" />
-                      </svg>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-xs sm:text-sm md:text-base mb-1">Jam Operasional</h3>
-                      <div className="space-y-0.5 text-muted-foreground text-[10px] sm:text-xs md:text-sm">
-                        <p className="flex justify-between">
-                          <span>Senin - Jumat</span>
-                          <span className="font-medium text-foreground">08:00 - 17:00 WIB</span>
-                        </p>
-                        <p className="flex justify-between">
-                          <span>Sabtu - Minggu</span>
-                          <span className="font-medium text-destructive">Tutup</span>
-                        </p>
+                  <div className="hidden md:block">
+                    <div className="flex gap-3">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                        <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                          <circle cx="12" cy="12" r="10" />
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" />
+                        </svg>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-base mb-2">Jam Operasional</h3>
+                        <div className="space-y-1 text-muted-foreground text-sm">
+                          <div className="flex justify-between items-center">
+                            <span>Senin - Jumat</span>
+                            <span className="font-medium text-foreground">08:00 - 17:00 WIB</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span>Sabtu - Minggu</span>
+                            <span className="font-medium text-destructive">Tutup</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

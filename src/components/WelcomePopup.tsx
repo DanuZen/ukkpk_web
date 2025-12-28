@@ -97,7 +97,10 @@ export const WelcomePopup = () => {
 
           {/* Image Section */}
           {popupData.show_image && popupData.image_url && (
-            <div className="relative w-[90%] mx-auto sm:w-full bg-background rounded-lg overflow-hidden">
+            <div 
+              className="relative w-[90%] mx-auto sm:w-full bg-background rounded-lg overflow-hidden cursor-pointer hover:opacity-95 transition-opacity"
+              onClick={handleButtonClick}
+            >
               <img
                 src={popupData.image_url}
                 alt={popupData.title}

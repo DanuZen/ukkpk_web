@@ -132,9 +132,9 @@ export const DashboardHeader = ({
           <DropdownMenuContent align="end" className="w-80">
             <DropdownMenuLabel className="font-semibold text-base">Aktivitas Terbaru</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            {recentActivity.length === 0 ? (
-              <div className="p-4 text-center text-sm text-gray-500">
-                Belum ada aktivitas
+            {recentActivity.filter(activity => !viewedActivities.includes(`${activity.type}-${activity.id}`)).length === 0 ? (
+              <div className="flex flex-col items-center justify-center py-8 px-4 text-center">
+                <p className="text-sm font-medium text-gray-500">Tidak ada aktivitas terbaru</p>
               </div>
             ) : (
               <div className="py-1">

@@ -480,7 +480,7 @@ const ProfilUkkpk = () => {
               </div>
 
               {/* Features Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-6">
                 {features.slice(0, 4).map((feature, index) => (
                   <AnimatedSection key={index} animation="fade-up" delay={100 + index * 100}>
                     <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg h-full bg-white/60">
@@ -497,10 +497,15 @@ const ProfilUkkpk = () => {
               </div>
 
               {/* Baris kedua: 3 card centered */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 max-w-4xl mx-auto">
                 {features.slice(4, 7).map((feature, index) => (
-                  <AnimatedSection key={index + 4} animation="fade-up" delay={500 + index * 100}>
-                    <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg h-full bg-white/60">
+                  <AnimatedSection 
+                    key={index + 4} 
+                    animation="fade-up" 
+                    delay={500 + index * 100}
+                    className={index === 2 ? "col-span-2 md:col-span-1 flex justify-center" : ""}
+                  >
+                    <Card className={`group transition-all duration-300 hover:-translate-y-1 shadow-lg h-full bg-white/60 ${index === 2 ? "w-[calc(50%-0.375rem)] sm:w-[calc(50%-0.75rem)] md:w-full" : ""}`}>
                       <CardContent className="pt-8 pb-8 px-4 sm:px-6 md:px-8 text-center flex flex-col items-center relative h-full">
                         <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
                         <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
@@ -537,10 +542,15 @@ const ProfilUkkpk = () => {
               </div>
             </AnimatedSection>
 
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
               {values.map((value, index) => (
-                <AnimatedSection key={index} animation="scale-in" delay={100 + index * 150}>
-                  <Card className="text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 shadow-lg h-full bg-white/60">
+                <AnimatedSection 
+                  key={index} 
+                  animation="scale-in" 
+                  delay={100 + index * 150}
+                  className={index === 2 ? "col-span-2 md:col-span-1 flex justify-center" : ""}
+                >
+                  <Card className={`text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 shadow-lg h-full bg-white/60 ${index === 2 ? "w-[calc(50%-0.375rem)] sm:w-[calc(50%-0.75rem)] md:w-full" : ""}`}>
                     <CardContent className="pt-8 pb-8 px-4 sm:px-6 md:px-8 relative flex flex-col items-center h-full">
                       <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
                       <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-[100px]" />
