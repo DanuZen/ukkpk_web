@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
-import { Eye, Heart, FileText, Newspaper, TrendingUp, Users, MoreHorizontal, ArrowUpRight } from 'lucide-react';
+import { Eye, Heart, FileText, Newspaper, TrendingUp, Users, MoreHorizontal, ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell, AreaChart, Area } from 'recharts';
 import { DashboardPageHeader } from "@/components/admin/DashboardPageHeader";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface ArticleStats {
   id: string;
@@ -41,6 +41,7 @@ interface OverallStats {
 const COLORS = ['#dc2626', '#ea580c', '#f59e0b', '#84cc16', '#22c55e', '#06b6d4'];
 
 export const AnalyticsDashboard = () => {
+  const isMobile = useIsMobile();
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [chartData, setChartData] = useState<{
@@ -363,33 +364,44 @@ export const AnalyticsDashboard = () => {
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-lg font-semibold">Statistik Views</CardTitle>
             <div className="flex gap-2">
-              <Select value={selectedMonth.toString()} onValueChange={(value) => setSelectedMonth(Number(value))}>
-                <SelectTrigger className="w-[120px] bg-white">
-                  <SelectValue placeholder="Bulan" />
-                </SelectTrigger>
-                <SelectContent>
-                  {months.map((month, index) => (
-                    <SelectItem key={index} value={index.toString()}>
-                      {month}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Select value={selectedYear.toString()} onValueChange={(value) => setSelectedYear(Number(value))}>
-                <SelectTrigger className="w-[100px] bg-white">
-                  <SelectValue placeholder="Tahun" />
-                </SelectTrigger>
-                <SelectContent>
-                  {years.map((year) => (
-                    <SelectItem key={year} value={year.toString()}>
-                      {year}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+            <div className="flex items-center gap-0 sm:gap-2 ml-6 sm:ml-0">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 hover:bg-transparent hover:text-[#D31027]"
+                onClick={() => {
+                  if (selectedMonth === 0) {
+                    setSelectedMonth(11);
+                    setSelectedYear(selectedYear - 1);
+                  } else {
+                    setSelectedMonth(selectedMonth - 1);
+                  }
+                }}
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+              <span className="text-sm font-medium min-w-[100px] sm:min-w-[120px] text-center">
+                {months[selectedMonth]} {selectedYear}
+              </span>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 hover:bg-transparent hover:text-[#D31027]"
+                onClick={() => {
+                  if (selectedMonth === 11) {
+                    setSelectedMonth(0);
+                    setSelectedYear(selectedYear + 1);
+                  } else {
+                    setSelectedMonth(selectedMonth + 1);
+                  }
+                }}
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
             </div>
           </CardHeader>
-          <CardContent className="pt-4">
+          <CardContent className="pt-4 pl-4 sm:pl-6">
             <ResponsiveContainer width="100%" height={300}>
               <AreaChart data={chartData} margin={{ left: -20, right: 0, top: 0, bottom: 0 }}>
                 <defs>
@@ -402,17 +414,19 @@ export const AnalyticsDashboard = () => {
                 <XAxis 
                   dataKey="day" 
                   stroke="#9ca3af" 
-                  tick={{ fontSize: 12 }} 
+                  tick={{ fontSize: 10 }} 
                   axisLine={false}
                   tickLine={false}
                   dy={10}
                 />
                 <YAxis 
                   stroke="#9ca3af" 
-                  tick={{ fontSize: 12 }} 
+                  tick={{ fontSize: 10 }} 
                   axisLine={false}
                   tickLine={false}
                   dx={-10}
+                  allowDecimals={false}
+                  domain={[0, 160]}
                 />
                 <Tooltip 
                   cursor={{ stroke: '#dc2626', strokeWidth: 2 }}
@@ -440,10 +454,10 @@ export const AnalyticsDashboard = () => {
         </Card>
 
         <Card className="shadow-xl">
-          <CardHeader className="pb-2 sm:pb-3 md:pb-6 p-3 sm:p-4 md:p-6">
+          <CardHeader className="pb-2">
             <CardTitle className="text-lg font-semibold">Perbandingan Artikel vs Berita</CardTitle>
           </CardHeader>
-          <CardContent className="pt-0 p-3 sm:p-4 md:p-6">
+          <CardContent className="pt-4 pl-4 sm:pl-6">
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={comparisonData} margin={{ left: -20, right: 0, top: 0, bottom: 0 }}>
                 <defs>
@@ -491,7 +505,7 @@ export const AnalyticsDashboard = () => {
                   stroke="#dc2626"
                   strokeWidth={2}
                   radius={[4, 4, 0, 0]}
-                  barSize={48}
+                  barSize={isMobile ? 48 : 120}
                 />
                 <Bar 
                   dataKey="Berita" 
@@ -499,7 +513,7 @@ export const AnalyticsDashboard = () => {
                   stroke="#3b82f6"
                   strokeWidth={2}
                   radius={[4, 4, 0, 0]}
-                  barSize={48}
+                  barSize={isMobile ? 48 : 120}
                 />
               </BarChart>
             </ResponsiveContainer>

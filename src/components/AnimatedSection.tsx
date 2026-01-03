@@ -6,17 +6,19 @@ interface AnimatedSectionProps {
   animation?: "fade-up" | "fade-in" | "scale-in" | "slide-left" | "slide-right";
   className?: string;
   delay?: number;
+  triggerOnce?: boolean;
 }
 
 export const AnimatedSection = ({ 
   children, 
   animation = "fade-up",
   className = "",
-  delay = 0
+  delay = 0,
+  triggerOnce = false
 }: AnimatedSectionProps) => {
   const { ref, isVisible } = useScrollAnimation({
     threshold: 0.1,
-    triggerOnce: true,
+    triggerOnce,
   });
 
   const getAnimationClass = () => {

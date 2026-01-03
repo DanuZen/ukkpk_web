@@ -4,6 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { ChevronLeft, ChevronRight, Radio as RadioIcon, Play, BookOpen, Newspaper } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { AnimatedSection } from './AnimatedSection';
 
 interface SlideshowImage {
   id: string;
@@ -122,7 +123,7 @@ export const HomeSlideshow = () => {
       </div>
 
       {/* Overlay Text */}
-      <div className="absolute inset-0 flex items-center justify-center md:pt-16 md:pb-0">
+      <AnimatedSection animation="fade-up" className="absolute inset-0 flex items-center justify-center md:pt-16 md:pb-0">
         <div
           className="max-w-3xl text-left z-10 px-4 sm:px-6 animate-fade-in transition-all duration-300"
           style={{
@@ -179,7 +180,7 @@ export const HomeSlideshow = () => {
             </Link>
           </div>
         </div>
-      </div>
+      </AnimatedSection>
 
       {/* Navigation Arrows */}
       {images.length > 1 && (

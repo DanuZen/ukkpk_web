@@ -366,7 +366,9 @@ const Index = () => {
       </section>
 
       {/* Testimonials Section */}
-      <Testimonials />
+      <AnimatedSection animation="fade-up">
+        <Testimonials />
+      </AnimatedSection>
 
       {/* Contact Section - Kritik dan Saran */}
       <section className="min-h-[85vh] md:min-h-screen flex items-center py-24 sm:py-28 md:py-32 lg:py-40 scroll-mt-20 relative bg-white overflow-hidden">
