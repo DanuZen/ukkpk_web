@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { Eye, EyeOff, ArrowLeft, Mail, Lock } from "lucide-react";
 import logoUkkpk from "@/assets/logo-ukkpk.png";
@@ -15,6 +15,20 @@ const Auth = () => {
   const [isExiting, setIsExiting] = useState(false);
   const { signIn } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Check for email in location state (from switchAccount error)
+    if (location.state?.email) {
+      setEmail(location.state.email);
+    } else {
+      // Check for last active email in localStorage
+      const lastEmail = localStorage.getItem('last_active_email');
+      if (lastEmail) {
+        setEmail(lastEmail);
+      }
+    }
+  }, [location.state]);
 
   const handleNavigation = (path: string) => {
     setIsExiting(true);

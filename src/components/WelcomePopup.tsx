@@ -40,16 +40,24 @@ export const WelcomePopup = () => {
       const { data, error } = await supabase
         .from('popup_settings' as any)
         .select('*')
-        .eq('is_enabled', true)
         .single();
 
       if (error || !data) {
         return;
       }
 
-      setPopupData(data as unknown as PopupSettings);
-      setIsOpen(true);
-      setShowFloatingButton(false); // Reset floating button when popup opens
+      const settings = data as unknown as PopupSettings;
+      setPopupData(settings);
+      
+      if (settings.is_enabled) {
+        setIsOpen(true);
+        setShowFloatingButton(false); // Reset floating button when popup opens
+      } else {
+        setIsOpen(false);
+        if (settings.show_button) {
+          setShowFloatingButton(true);
+        }
+      }
     };
 
     checkAndShowPopup();

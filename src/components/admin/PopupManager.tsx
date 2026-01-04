@@ -223,7 +223,7 @@ export const PopupManager = () => {
             <div className="flex items-center justify-between sm:justify-end gap-2 sm:gap-4 w-full sm:w-auto">
               <div className="flex items-center gap-2 px-2 py-1 bg-gray-50 rounded-lg border flex-1 sm:flex-none justify-center sm:justify-start">
                 <Label htmlFor="popup-enabled" className="text-xs sm:text-sm font-medium cursor-pointer">
-                  {popupSettings.is_enabled ? 'Aktif' : 'Nonaktif'}
+                  {popupSettings.is_enabled ? 'Popup Aktif' : 'Popup Nonaktif'}
                 </Label>
                 <Switch
                   id="popup-enabled"
@@ -275,7 +275,10 @@ export const PopupManager = () => {
           {/* Button Settings */}
           <div className="space-y-4 pt-4">
             <div className="flex items-center justify-between">
-              <Label htmlFor="show_button" className="text-base font-medium">Tombol Aksi</Label>
+              <div className="space-y-1">
+                <Label htmlFor="show_button" className="text-base font-medium">Tombol Aksi</Label>
+                <p className="text-[10px] text-muted-foreground">Tombol akan tetap muncul di pojok kanan bawah meskipun popup dimatikan</p>
+              </div>
               <div className="flex items-center gap-2">
                 <Label htmlFor="show_button" className="text-xs font-normal text-muted-foreground">Tampilkan</Label>
                 <Switch

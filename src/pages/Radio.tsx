@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Layout } from '@/components/Layout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Radio as RadioIcon, Play, Clock, Mic, Volume2 } from 'lucide-react';
+import { Radio as RadioIcon, Play, Clock, Mic, Volume2, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import logoSigmaRadio from '@/assets/logo-sigma-radio.png';
@@ -162,7 +162,7 @@ const Radio = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pb-24 md:pb-0 px-4 bg-black overflow-hidden">
+      <section className="relative min-h-[88vh] md:min-h-screen flex items-center pb-24 md:pb-0 px-4 bg-black overflow-hidden">
         {/* Background Image with Dark Overlay - Only if set by admin */}
         {settings?.banner_image_url && (
           <>
@@ -171,7 +171,7 @@ const Radio = () => {
           </>
         )}
 
-        <div className="container mx-auto relative z-10">
+        <div className="container mx-auto relative z-10 pt-16 md:pt-0 md:-mt-12">
           <AnimatedSection animation="fade-up">
             <div className="max-w-3xl mx-auto text-center space-y-4 sm:space-y-6">
               {/* Badge */}
@@ -219,7 +219,7 @@ const Radio = () => {
 
               <AnimatedSection animation="fade-up" delay={50}>
                 <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-white/80 px-4 mb-8 sm:mb-12">
-                  Platform radio kampus yang menghubungkan Anda dengan berbagai program menarik, berita terkini, dan hiburan berkualitas dari UKKPK UNP. Dengarkan siaran langsung kami
+                  Radio kampus UNP yang menyajikan informasi, edukasi, dan hiburan dalam satu frekuensi.
                 </p>
               </AnimatedSection>
 
@@ -259,27 +259,32 @@ const Radio = () => {
 
               {/* Buttons */}
               <div className="flex flex-col gap-4 justify-center items-center">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 text-xs sm:text-sm md:text-base" onClick={handleListen}>
-                  <Play className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                  Dengar Sekarang
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/20 text-white px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 text-xs sm:text-sm md:text-base"
-                  onClick={() =>
-                    document.getElementById('jadwal-program')?.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'start',
-                    })
-                  }
-                >
-                  <Clock className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                  Lihat Jadwal
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-2.5 py-1.5 sm:px-6 sm:py-4 md:px-8 md:py-6 text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg hover:shadow-primary/50" onClick={handleListen}>
+                  <Play className="h-2.5 w-2.5 sm:h-5 sm:w-5 mr-1.5" />
+                  Dengarkan
                 </Button>
               </div>
+
+
             </div>
           </AnimatedSection>
+        </div>
+
+        {/* Scroll Indicator - Absolute Bottom */}
+        <div className="absolute bottom-4 md:bottom-28 left-1/2 -translate-x-1/2 z-20">
+          <Button
+            variant="ghost"
+            className="flex flex-col items-center gap-2 hover:bg-transparent text-white hover:text-white h-auto p-0 group"
+            onClick={() =>
+              document.getElementById('jadwal-program')?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              })
+            }
+          >
+            <span className="text-[9px] sm:text-xs font-medium tracking-widest uppercase group-hover:text-primary transition-colors">LIHAT JADWAL</span>
+            <ChevronDown className="h-4 w-4 sm:h-6 sm:w-6 animate-bounce group-hover:text-primary transition-colors" />
+          </Button>
         </div>
       </section>
       {/* Now Playing & Schedule Section */}
@@ -302,33 +307,29 @@ const Radio = () => {
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-8" />
 
                 {/* Day Navigation */}
-                <div className="flex items-center justify-center gap-2 md:gap-4 mb-8">
+                <div className="flex items-center justify-center gap-4 sm:gap-8 mb-8">
                   <Button
-                    variant="outline"
-                    size="sm"
+                    variant="ghost"
+                    size="icon"
                     onClick={handlePreviousDay}
-                    className="flex items-center gap-1 md:gap-2 text-xs md:text-sm px-2 py-1.5 md:px-3 md:py-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+                    className="rounded-full hover:bg-transparent hover:text-primary transition-colors"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" className="md:w-4 md:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
-                    Sebelumnya
+                    <ChevronLeft className="h-8 w-8" />
                   </Button>
 
-                  <Button variant="outline" size="sm" onClick={handleToday} className="font-medium text-xs md:text-sm px-2 py-1.5 md:px-3 md:py-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
-                    Hari Ini
-                  </Button>
+                  <div className="text-center min-w-[200px]">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-primary transition-all duration-300">
+                      {DAYS[selectedDay]}
+                    </h3>
+                  </div>
 
                   <Button
-                    variant="outline"
-                    size="sm"
+                    variant="ghost"
+                    size="icon"
                     onClick={handleNextDay}
-                    className="flex items-center gap-1 md:gap-2 text-xs md:text-sm px-2 py-1.5 md:px-3 md:py-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+                    className="rounded-full hover:bg-transparent hover:text-primary transition-colors"
                   >
-                    Berikutnya
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" className="md:w-4 md:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
+                    <ChevronRight className="h-8 w-8" />
                   </Button>
                 </div>
               </div>

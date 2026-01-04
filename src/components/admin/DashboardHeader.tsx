@@ -106,22 +106,26 @@ export const DashboardHeader = ({
       <div className="ml-auto flex items-center gap-2 md:gap-3">
         <Button 
           variant="ghost" 
-          size="icon" 
           onClick={() => navigate("/")} 
-          className="text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9 flex-shrink-0" 
+          className="group flex items-center justify-center h-9 w-9 md:hover:w-auto md:hover:px-3 text-gray-600 hover:bg-primary hover:text-white transition-all duration-300 flex-shrink-0" 
           title="Kembali ke Website"
         >
-          <ExternalLink className="h-4 w-4" />
+          <ExternalLink className="h-4 w-4 transition-transform duration-300 md:group-hover:-translate-x-1" />
+          <span className="hidden md:block max-w-0 overflow-hidden whitespace-nowrap opacity-0 md:group-hover:max-w-[100px] md:group-hover:ml-2 md:group-hover:opacity-100 transition-all duration-300">
+            Lihat Website
+          </span>
         </Button>
 
         <DropdownMenu open={isNotificationOpen} onOpenChange={setIsNotificationOpen}>
           <DropdownMenuTrigger asChild>
             <Button 
               variant="ghost" 
-              size="icon" 
-              className="flex text-gray-600 hover:bg-primary hover:text-white transition-colors h-9 w-9 flex-shrink-0 relative"
+              className="group flex items-center justify-center h-9 w-9 md:hover:w-auto md:hover:px-3 text-gray-600 hover:bg-primary hover:text-white transition-all duration-300 flex-shrink-0 relative"
             >
-              <Bell className="h-4 w-4" />
+              <Bell className="h-4 w-4 transition-transform duration-300 md:group-hover:-translate-x-1" />
+              <span className="hidden md:block max-w-0 overflow-hidden whitespace-nowrap opacity-0 md:group-hover:max-w-[100px] md:group-hover:ml-2 md:group-hover:opacity-100 transition-all duration-300">
+                Notifikasi
+              </span>
               {unreadCount > 0 && (
                 <span className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 rounded-full text-[10px] text-white flex items-center justify-center font-semibold">
                   {unreadCount}
@@ -179,31 +183,6 @@ export const DashboardHeader = ({
                 ))}
               </div>
             )}
-          </DropdownMenuContent>
-        </DropdownMenu>
-
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="relative h-9 w-9 rounded-full flex-shrink-0 p-0 md:hidden">
-              <Avatar className="h-9 w-9">
-                <AvatarFallback className="bg-primary text-white text-xs">
-                  {user?.email ? getInitials(user.email) : "AD"}
-                </AvatarFallback>
-              </Avatar>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-56">
-            <DropdownMenuLabel>
-              <div className="flex flex-col">
-                <span className="text-sm font-medium">Admin Account</span>
-                <span className="text-xs text-gray-500 truncate">{user?.email}</span>
-              </div>
-            </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={onSignOut} className="text-red-600 cursor-pointer">
-              <LogOut className="mr-2 h-4 w-4" />
-              Logout
-            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

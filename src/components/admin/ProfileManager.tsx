@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Trash2, Edit, Plus, Image as ImageIcon, Users, Settings } from "lucide-react";
 import { DashboardPageHeader } from "@/components/admin/DashboardPageHeader";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 interface SlideshowImage {
   id: string;
@@ -304,21 +305,55 @@ const SlideshowSection = () => {
         {/* Images Grid */}
         <div className="space-y-2">
           <Label>Foto di Slideshow</Label>
-          {images.length === 0 ? <p className="text-muted-foreground text-center py-8">
+          {images.length === 0 ? (
+            <p className="text-muted-foreground text-center py-8">
               Belum ada foto. Upload foto pertama untuk memulai slideshow.
-            </p> : <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {images.map(image => <div key={image.id} className="relative group">
-                  <img src={image.image_url} alt="Slideshow" className="w-full h-40 object-cover rounded-lg" />
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
-                    <Button variant="destructive" size="icon" onClick={() => handleDelete(image.id, image.image_url)}>
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
+            </p>
+          ) : (
+            <>
+              {/* Mobile Grid View */}
+              <div className="grid grid-cols-2 gap-4 md:hidden">
+                {images.map((image) => (
+                  <div key={image.id} className="relative group aspect-video w-full overflow-hidden rounded-lg">
+                    <img src={image.image_url} alt="Slideshow" className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <Button variant="destructive" size="icon" onClick={() => handleDelete(image.id, image.image_url)}>
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                    <div className="absolute top-2 left-2 bg-black/70 text-white px-2 py-1 rounded text-xs z-10">
+                      #{(image.order_index || 0) + 1}
+                    </div>
                   </div>
-                  <div className="absolute top-2 left-2 bg-black/70 text-white px-2 py-1 rounded text-xs">
-                    #{(image.order_index || 0) + 1}
-                  </div>
-                </div>)}
-            </div>}
+                ))}
+              </div>
+
+              {/* Desktop Carousel View */}
+              <div className="px-12 hidden md:block">
+                <Carousel opts={{ loop: true }} className="w-full max-w-6xl mx-auto">
+                  <CarouselContent>
+                    {images.map((image) => (
+                      <CarouselItem key={image.id} className="basis-1/3">
+                        <div className="relative group aspect-video w-full overflow-hidden rounded-lg">
+                          <img src={image.image_url} alt="Slideshow" className="w-full h-full object-cover" />
+                          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <Button variant="destructive" size="icon" onClick={() => handleDelete(image.id, image.image_url)}>
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
+                          <div className="absolute top-2 left-2 bg-black/70 text-white px-2 py-1 rounded text-xs z-10">
+                            #{(image.order_index || 0) + 1}
+                          </div>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious variant="ghost" className="hover:bg-transparent hover:text-primary" />
+                  <CarouselNext variant="ghost" className="hover:bg-transparent hover:text-primary" />
+                </Carousel>
+              </div>
+            </>
+          )}
         </div>
       </CardContent>
     </Card>
@@ -504,7 +539,7 @@ const StructureSection = () => {
                     </p>
                   </div>
                   <div className="flex gap-2">
-                    <Button size="sm" variant="outline" onClick={() => handleEdit(structure)}>
+                    <Button size="sm" variant="outline" onClick={() => handleEdit(structure)} className="hover:bg-destructive hover:text-destructive-foreground hover:border-destructive">
                       <Edit className="h-4 w-4" />
                     </Button>
                     <Button size="sm" variant="destructive" onClick={() => handleDelete(structure.id)}>

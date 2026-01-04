@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { FileText, Newspaper, MessageSquare, Eye, Heart, TrendingUp, ArrowUpRight, MoreHorizontal } from "lucide-react";
 import { DashboardPageHeader } from "@/components/admin/DashboardPageHeader";
-import { format } from "date-fns";
+import { format, startOfMonth, subMonths, endOfMonth } from "date-fns";
 import { id } from "date-fns/locale";
 
 interface ArticleStats {
@@ -25,12 +25,14 @@ interface NewsStats {
   published_at: string | null;
 }
 
-
 export const DashboardOverview = () => {
   const [stats, setStats] = useState({
     articles: 0,
+    articlesGrowth: 0,
     news: 0,
+    newsGrowth: 0,
     submissions: 0,
+    submissionsGrowth: 0,
     programs: 0,
     totalViews: 0,
     totalLikes: 0
@@ -40,12 +42,31 @@ export const DashboardOverview = () => {
 
   useEffect(() => {
     const fetchStats = async () => {
+      const now = new Date();
+      const thisMonthStart = startOfMonth(now).toISOString();
+
+      // Fetch totals and created_at for growth calculation
       const [articlesRes, newsRes, submissionsRes, programsRes] = await Promise.all([
-        supabase.from("articles").select("id, view_count, likes_count", { count: "exact" }),
-        supabase.from("news").select("id, view_count, likes_count", { count: "exact" }),
-        supabase.from("contact_submissions").select("id", { count: "exact", head: true }),
+        supabase.from("articles").select("id, view_count, likes_count, created_at", { count: "exact" }),
+        supabase.from("news").select("id, view_count, likes_count, created_at", { count: "exact" }),
+        supabase.from("contact_submissions").select("id, created_at", { count: "exact" }),
         supabase.from("radio_programs").select("id", { count: "exact", head: true })
       ]);
+
+      // Calculate growth (New items this month / Total at start of month)
+      const calculateGrowth = (data: any[], totalCount: number) => {
+        if (totalCount === 0) return 0;
+        const newThisMonth = data.filter(item => item.created_at >= thisMonthStart).length;
+        const totalAtStartOfMonth = totalCount - newThisMonth;
+        
+        if (totalAtStartOfMonth === 0) return newThisMonth > 0 ? 100 : 0;
+        
+        return ((newThisMonth / totalAtStartOfMonth) * 100);
+      };
+
+      const articlesGrowth = calculateGrowth(articlesRes.data || [], articlesRes.count || 0);
+      const newsGrowth = calculateGrowth(newsRes.data || [], newsRes.count || 0);
+      const submissionsGrowth = calculateGrowth(submissionsRes.data || [], submissionsRes.count || 0);
 
       const totalArticleViews = (articlesRes.data || []).reduce((sum, a) => sum + (a.view_count || 0), 0);
       const totalArticleLikes = (articlesRes.data || []).reduce((sum, a) => sum + (a.likes_count || 0), 0);
@@ -54,8 +75,11 @@ export const DashboardOverview = () => {
 
       setStats({
         articles: articlesRes.count || 0,
+        articlesGrowth,
         news: newsRes.count || 0,
+        newsGrowth,
         submissions: submissionsRes.count || 0,
+        submissionsGrowth,
         programs: programsRes.count || 0,
         totalViews: totalArticleViews + totalNewsViews,
         totalLikes: totalArticleLikes + totalNewsLikes
@@ -114,7 +138,8 @@ export const DashboardOverview = () => {
             <div className="text-4xl font-bold mb-2">{stats.articles.toLocaleString()}</div>
             <div className="flex items-center text-blue-100 text-xs">
               <span className="bg-white/20 px-1.5 py-0.5 rounded text-white flex items-center gap-1 mr-2">
-                <ArrowUpRight className="w-3 h-3" /> +8.5%
+                <ArrowUpRight className={`w-3 h-3 ${stats.articlesGrowth < 0 ? "rotate-180" : ""}`} /> 
+                {stats.articlesGrowth > 0 ? "+" : ""}{stats.articlesGrowth.toFixed(1)}%
               </span>
               <span>vs bulan lalu</span>
             </div>
@@ -142,7 +167,8 @@ export const DashboardOverview = () => {
             <div className="text-4xl font-bold mb-2">{stats.news.toLocaleString()}</div>
             <div className="flex items-center text-emerald-100 text-xs">
               <span className="bg-white/20 px-1.5 py-0.5 rounded text-white flex items-center gap-1 mr-2">
-                <TrendingUp className="w-3 h-3" /> +1.3%
+                <TrendingUp className={`w-3 h-3 ${stats.newsGrowth < 0 ? "rotate-180" : ""}`} /> 
+                {stats.newsGrowth > 0 ? "+" : ""}{stats.newsGrowth.toFixed(1)}%
               </span>
               <span>vs bulan lalu</span>
             </div>
@@ -170,7 +196,7 @@ export const DashboardOverview = () => {
             <div className="text-4xl font-bold mb-2">{stats.totalViews.toLocaleString()}</div>
             <div className="flex items-center text-purple-100 text-xs">
               <span className="bg-white/20 px-1.5 py-0.5 rounded text-white flex items-center gap-1 mr-2">
-                <TrendingUp className="w-3 h-3" /> -4.3%
+                <TrendingUp className="w-3 h-3" /> --%
               </span>
               <span>vs bulan lalu</span>
             </div>
@@ -198,7 +224,8 @@ export const DashboardOverview = () => {
             <div className="text-4xl font-bold mb-2">{stats.submissions.toLocaleString()}</div>
             <div className="flex items-center text-amber-100 text-xs">
               <span className="bg-white/20 px-1.5 py-0.5 rounded text-white flex items-center gap-1 mr-2">
-                <ArrowUpRight className="w-3 h-3" /> +1.8%
+                <ArrowUpRight className={`w-3 h-3 ${stats.submissionsGrowth < 0 ? "rotate-180" : ""}`} /> 
+                {stats.submissionsGrowth > 0 ? "+" : ""}{stats.submissionsGrowth.toFixed(1)}%
               </span>
               <span>vs bulan lalu</span>
             </div>

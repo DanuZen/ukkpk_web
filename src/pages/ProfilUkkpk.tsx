@@ -3,8 +3,9 @@ import { Layout } from '@/components/Layout';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
-import { Users, Target, Eye, Megaphone, FileText, Radio, Briefcase, ClipboardList, Users2, Handshake, Sparkles, Waves, Shield, Rocket, Mic, Building2 } from 'lucide-react';
+import { Users, Target, Eye, Megaphone, FileText, Radio, Briefcase, ClipboardList, Users2, Handshake, Sparkles, Waves, Shield, Rocket, Mic, Building2, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { AnimatedSection } from '@/components/AnimatedSection';
 import logoReporter from '@/assets/logo-reporter.png';
 import logoMicu from '@/assets/logo-micu-new.png';
 import logoMc from '@/assets/logo-mc.png';
@@ -33,28 +34,7 @@ interface StrukturOrganisasi {
   created_at: string;
 }
 
-const AnimatedSection: React.FC<{
-  children: React.ReactNode;
-  animation?: 'fade-up' | 'fade-in' | 'scale-in' | 'slide-left' | 'slide-right';
-  delay?: number;
-  className?: string;
-}> = ({ children, animation = 'fade-up', delay = 0, className = '' }) => {
-  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
-  const animationClasses = {
-    'fade-up': isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10',
-    'fade-in': isVisible ? 'opacity-100' : 'opacity-0',
-    'scale-in': isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95',
-    'slide-left': isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10',
-    'slide-right': isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10',
-  };
-
-  return (
-    <div ref={ref} className={`transition-all duration-700 ease-out ${animationClasses[animation]} ${className}`} style={{ transitionDelay: `${delay}ms` }}>
-      {children}
-    </div>
-  );
-};
 
 const ProfilUkkpk = () => {
   const [members, setMembers] = useState<OrgMember[]>([]);
@@ -196,7 +176,7 @@ const ProfilUkkpk = () => {
     <Layout>
       <div className="scroll-smooth">
         {/* Hero Section */}
-        <section className="relative h-screen flex items-center px-2 sm:px-4 bg-black overflow-hidden">
+        <section className="relative min-h-[88vh] md:min-h-screen w-full flex items-center px-2 sm:px-4 bg-black overflow-hidden">
           {profile?.banner_url && (
             <>
               <img src={profile.banner_url} alt="UKKPK Banner" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchPriority="high" />
@@ -205,7 +185,7 @@ const ProfilUkkpk = () => {
           )}
 
           <div className="container mx-auto relative z-10">
-            <AnimatedSection animation="fade-up">
+            <AnimatedSection animation="zoom-in">
               <div className="max-w-3xl mx-auto text-center space-y-4 sm:space-y-6">
                 <div className="flex justify-center mb-4 md:mb-6">
                   <div className="inline-flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full">
@@ -239,19 +219,34 @@ const ProfilUkkpk = () => {
                   }
                 `}</style>
 
-                <AnimatedSection animation="fade-up" delay={50}>
+                <AnimatedSection animation="flip-up" delay={50}>
                   <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white/90 px-4">Unit Kegiatan Komunikasi dan Penyiaran Kampus Universitas Negeri Padang</p>
                 </AnimatedSection>
               </div>
             </AnimatedSection>
           </div>
+
+          {/* Scroll Indicator - Absolute Bottom */}
+          <div className="absolute bottom-4 md:bottom-28 left-1/2 -translate-x-1/2 z-20">
+            <Button
+              variant="ghost"
+              className="flex flex-col items-center gap-2 hover:bg-transparent text-white hover:text-white h-auto p-0 group"
+              onClick={() => {
+                const element = document.getElementById('tentang-ukkpk');
+                element?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              <span className="text-[9px] sm:text-xs font-medium tracking-widest uppercase group-hover:text-primary transition-colors">LIHAT PROFIL</span>
+              <ChevronDown className="h-4 w-4 sm:h-6 sm:w-6 animate-bounce group-hover:text-primary transition-colors" />
+            </Button>
+          </div>
         </section>
 
         {/* Tentang UKKPK */}
-        <section className="min-h-[85vh] flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-2 sm:px-4 relative overflow-hidden bg-background scroll-mt-20">
+        <section id="tentang-ukkpk" className="min-h-[85vh] flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-2 sm:px-4 relative overflow-hidden bg-background scroll-mt-20">
           <div className="container mx-auto px-2 sm:px-6 relative z-10">
             <div className="max-w-5xl mx-auto">
-              <AnimatedSection animation="fade-up">
+              <AnimatedSection animation="bounce-in">
                 <div className="text-center mb-12">
                   <div className="inline-block mb-4">
                     <span className="text-[10px] md:text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
@@ -271,7 +266,7 @@ const ProfilUkkpk = () => {
                 </div>
               </AnimatedSection>
 
-              <AnimatedSection animation="scale-in" delay={100}>
+              <AnimatedSection animation="zoom-in" delay={100}>
                 <Card className="bg-white/60 border-primary/20 shadow-2xl overflow-hidden">
                   <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-12 md:pb-12 md:px-14 relative">
                     <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
@@ -295,7 +290,7 @@ const ProfilUkkpk = () => {
         <section className="min-h-[85vh] flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-2 sm:px-4 relative overflow-hidden bg-background scroll-mt-20">
           <div className="container mx-auto px-2 sm:px-6 relative z-10">
             <div className="max-w-5xl mx-auto">
-              <AnimatedSection animation="fade-up">
+              <AnimatedSection animation="zoom-in">
                 <div className="text-center mb-12">
                   <div className="inline-block mb-4">
                     <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
@@ -306,7 +301,7 @@ const ProfilUkkpk = () => {
                   <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
                     Arah & <span className="text-primary">Tujuan</span>
                   </h2>
-                  <AnimatedSection animation="fade-up" delay={50}>
+                  <AnimatedSection animation="flip-up" delay={50}>
                     <p className="text-xs sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
                       Visi dan misi UKKPK dalam mencetak generasi mahasiswa yang kompeten, inovatif, dan profesional di bidang komunikasi dan penyiaran kampus.
                     </p>
@@ -360,7 +355,7 @@ const ProfilUkkpk = () => {
         <section className="min-h-screen flex items-center py-16 sm:py-24 md:py-32 lg:py-40 scroll-mt-20 px-2 sm:px-4 bg-gray-100">
           <div className="container mx-auto px-2 sm:px-6">
             <div className="max-w-6xl mx-auto">
-              <AnimatedSection animation="fade-up" delay={100}>
+              <AnimatedSection animation="bounce-in" delay={100}>
                 <div className="text-center mb-12">
                   <div className="inline-block mb-4">
                     <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
@@ -415,7 +410,7 @@ const ProfilUkkpk = () => {
                       'Di era pandemi dan pasca pandemi, UKKPK semakin memperkuat kehadiran digitalnya. Berbagai inovasi seperti webinar, podcast, konten media sosial, dan kolaborasi lintas platform menjadi fokus utama. UKKPK terus beradaptasi dan berinovasi untuk tetap relevan di tengah perkembangan teknologi komunikasi yang pesat.',
                   },
                 ].map((item, index) => (
-                  <AnimatedSection key={index} animation="fade-up" delay={item.delay}>
+                  <AnimatedSection key={index} animation="flip-up" delay={item.delay}>
                     <Card className="bg-white/60 border-primary/20 shadow-xl overflow-hidden transition-all duration-500 h-full">
                       <CardContent className="pt-8 pb-8 px-4 sm:pt-10 sm:pb-10 sm:px-8 md:pt-10 md:pb-10 md:px-10 relative flex flex-col h-full">
                         <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
@@ -437,7 +432,7 @@ const ProfilUkkpk = () => {
         {/* Bidang Kegiatan */}
         <section className="min-h-screen flex items-center py-16 sm:py-24 md:py-32 lg:py-40 px-2 sm:px-4 relative overflow-hidden bg-background scroll-mt-20">
           <div className="container mx-auto px-2 sm:px-6 relative z-10">
-            <AnimatedSection animation="fade-up">
+            <AnimatedSection animation="zoom-in">
               <div className="text-center mb-12">
                 <div className="inline-block mb-4">
                   <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
@@ -457,7 +452,7 @@ const ProfilUkkpk = () => {
               {/* Logo MICU & Bidang */}
               <div className="max-w-4xl mx-auto mb-16">
                 {/* Logo MICU */}
-                <AnimatedSection animation="scale-in" delay={100}>
+                <AnimatedSection animation="rotate-in" delay={100}>
                   <div className="flex justify-center mb-4">
                     <div className="flex flex-col items-center group">
                       <img src={logoMicu} alt="MICU" className="w-80 h-80 mb-4 object-contain transition-all duration-300 hover:scale-110 hover:rotate-3 bg-transparent drop-shadow-2xl" />
@@ -468,7 +463,7 @@ const ProfilUkkpk = () => {
                 {/* 3 Logo Bidang */}
                 <div className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-8 max-w-3xl mx-auto">
                   {divisionLogos.map((logo, index) => (
-                    <AnimatedSection key={index} animation="scale-in" delay={200 + index * 100}>
+                    <AnimatedSection key={index} animation="zoom-in" delay={200 + index * 100}>
                       <div className="flex flex-col items-center group">
                         <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mb-4 rounded-lg overflow-hidden p-4 transition-all duration-300 hover:scale-110 hover:rotate-3 bg-transparent">
                           <img src={logo.image} alt={logo.name} className="w-full h-full object-contain drop-shadow-xl" />
@@ -482,7 +477,7 @@ const ProfilUkkpk = () => {
               {/* Features Grid */}
               <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-6">
                 {features.slice(0, 4).map((feature, index) => (
-                  <AnimatedSection key={index} animation="fade-up" delay={100 + index * 100}>
+                  <AnimatedSection key={index} animation="flip-up" delay={100 + index * 100}>
                     <Card className="group transition-all duration-300 hover:-translate-y-1 shadow-lg h-full bg-white/60">
                       <CardContent className="pt-8 pb-8 px-4 sm:px-6 md:px-8 text-center flex flex-col items-center relative h-full">
                         <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-[100px]" />
@@ -501,7 +496,7 @@ const ProfilUkkpk = () => {
                 {features.slice(4, 7).map((feature, index) => (
                   <AnimatedSection 
                     key={index + 4} 
-                    animation="fade-up" 
+                    animation="flip-up" 
                     delay={500 + index * 100}
                     className={index === 2 ? "col-span-2 md:col-span-1 flex justify-center" : ""}
                   >
@@ -526,7 +521,7 @@ const ProfilUkkpk = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-transparent" />
 
           <div className="container mx-auto px-2 sm:px-6 relative z-10">
-            <AnimatedSection animation="fade-up">
+            <AnimatedSection animation="zoom-in">
               <div className="text-center mb-12">
                 <div className="inline-block mb-4">
                   <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
@@ -546,7 +541,7 @@ const ProfilUkkpk = () => {
               {values.map((value, index) => (
                 <AnimatedSection 
                   key={index} 
-                  animation="scale-in" 
+                  animation="zoom-in" 
                   delay={100 + index * 150}
                   className={index === 2 ? "col-span-2 md:col-span-1 flex justify-center" : ""}
                 >
@@ -568,7 +563,7 @@ const ProfilUkkpk = () => {
         {/* Struktur Organisasi */}
         <section className="py-16 sm:py-24 md:py-32 lg:py-40 px-2 sm:px-4 relative overflow-hidden bg-background">
           <div className="container mx-auto px-2 sm:px-6 relative z-10">
-            <AnimatedSection animation="fade-up">
+            <AnimatedSection animation="bounce-in">
               <div className="text-center mb-12">
                 <div className="inline-block mb-4">
                   <span className="text-xs font-semibold text-primary tracking-wider uppercase flex items-center gap-1.5">
@@ -585,20 +580,35 @@ const ProfilUkkpk = () => {
             </AnimatedSection>
 
             {strukturData.length > 0 && (
-              <AnimatedSection animation="fade-in" delay={100}>
+              <AnimatedSection animation="zoom-in" delay={100}>
                 <div className="max-w-5xl mx-auto mb-8">
                   {strukturData.length > 1 && (
-                    <div className="flex justify-center gap-3 mb-8">
-                      {strukturData.map((struktur, index) => (
-                        <Button key={struktur.id} variant={selectedYear === index ? 'default' : 'outline'} onClick={() => setSelectedYear(index)} className="min-w-[140px] transition-all duration-300 hover:scale-105" size="lg">
-                          {struktur.angkatan}
-                        </Button>
-                      ))}
+                    <div className="flex items-center justify-center gap-4 sm:gap-8 mb-8">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => setSelectedYear((prev) => (prev === 0 ? strukturData.length - 1 : prev - 1))}
+                        className="rounded-full hover:bg-transparent hover:text-primary transition-colors"
+                      >
+                        <ChevronLeft className="h-8 w-8" />
+                      </Button>
+                      
+                      <div className="text-center min-w-[200px]">
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-primary transition-all duration-300">
+                          {strukturData[selectedYear]?.angkatan}
+                        </h3>
+                      </div>
+
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => setSelectedYear((prev) => (prev === strukturData.length - 1 ? 0 : prev + 1))}
+                        className="rounded-full hover:bg-transparent hover:text-primary transition-colors"
+                      >
+                        <ChevronRight className="h-8 w-8" />
+                      </Button>
                     </div>
                   )}
-                  <div className="text-center mb-6">
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">{strukturData[selectedYear]?.angkatan}</h3>
-                  </div>
                   <div className="transition-opacity duration-300">
                     <img src={strukturData[selectedYear]?.foto_url} alt={`Struktur Organisasi ${strukturData[selectedYear]?.angkatan}`} className="w-full rounded-lg shadow-xl" />
                   </div>
@@ -609,7 +619,7 @@ const ProfilUkkpk = () => {
             {members.length > 0 && (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 {members.map((member, index) => (
-                  <AnimatedSection key={member.id} animation="fade-up" delay={100 + (index % 3) * 100}>
+                  <AnimatedSection key={member.id} animation="flip-up" delay={100 + (index % 3) * 100}>
                     <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full bg-white/60">
                       <CardContent className="p-2 sm:p-4 md:p-6 text-center">
                         {member.photo_url && <img src={member.photo_url} alt={member.name} className="w-32 h-32 rounded-full mx-auto mb-4 object-cover" />}
